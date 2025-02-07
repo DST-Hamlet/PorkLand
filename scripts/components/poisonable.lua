@@ -13,6 +13,15 @@ local function UpdateTile(self)
     if TheWorld.Map:GetTileAtPoint(x, y, z) == WORLD_TILES.GASJUNGLE then
         in_gastile = true
     end
+    if TheWorld.Map:GetTileAtPoint(x, y, z) == WORLD_TILES.IMPASSABLE then
+        if TheWorld.Map:IsCloseToTile(x, y, z, 1.5, function(_x, _y, _z) -- 计算overhang，也就是地皮往虚空的延申部分
+                local tile = TheWorld.Map:GetTileAtPoint(_x, _y, _z)
+                return tile == WORLD_TILES.GASJUNGLE
+            end) then
+
+            in_gastile = true
+        end
+    end
     if was_in_gastile and not in_gastile then
         StopTakingGasDamage(self.inst, "gastile")
         self._in_gastile = false

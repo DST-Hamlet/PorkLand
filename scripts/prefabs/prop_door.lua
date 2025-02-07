@@ -6,7 +6,6 @@ local assets =
     Asset("ANIM", "anim/bat_cave_door.zip"),
     Asset("ANIM", "anim/ruins_stairs.zip"),
     Asset("ANIM", "anim/ant_cave_door.zip"),
-    Asset("ANIM", "anim/acorn.zip"),
     Asset("ANIM", "anim/pig_shop_doormats.zip"),
     Asset("ANIM", "anim/ant_hill_entrance.zip"),
     Asset("ANIM", "anim/ant_queen_entrance.zip"),
@@ -122,47 +121,6 @@ local function InitInteriorPrefab(inst, doer, prefab_definition, interior_defini
 
     TheWorld.components.interiorspawner:AddDoor(inst, door_definition)
 
-    if prefab_definition.animdata then
-        inst.components.rotatingbillboard:SetAnimation_Server(prefab_definition.animdata)
-
-        if prefab_definition.animdata.bank then
-            inst.AnimState:SetBank(prefab_definition.animdata.bank)
-            inst.door_data_bank = prefab_definition.animdata.bank
-        end
-
-        if prefab_definition.animdata.build then
-            inst.AnimState:SetBuild(prefab_definition.animdata.build)
-            inst.door_data_build = prefab_definition.animdata.build
-        end
-
-        if prefab_definition.animdata.anim then
-            inst.AnimState:PlayAnimation(prefab_definition.animdata.anim, true)
-            inst.door_data_animstate = prefab_definition.animdata.anim
-            -- this is for finding the right open and closed door animation.
-            inst.baseanimname = inst.door_data_animstate
-        end
-
-        if prefab_definition.animdata.background then
-            inst.AnimState:SetLayer(LAYER_BACKGROUND)
-            inst.AnimState:SetSortOrder(3)
-            --inst.Transform:SetTwoFaced()
-            -- inst.Transform:SetRotation(90)
-
-            inst.door_data_background = prefab_definition.animdata.background
-        end
-
-        if prefab_definition.animdata.light then
-            MakeTimeChanger(inst)
-        end
-
-        if prefab_definition.animdata.minimapicon then
-            local minimap = inst.entity:AddMiniMapEntity()
-            minimap:SetIcon(prefab_definition.animdata.minimapicon)
-
-            inst:SetMinimapIcon(prefab_definition.animdata.minimapicon)
-        end
-    end
-
     if prefab_definition.scale then
         inst.Transform:SetScale(prefab_definition.scale, prefab_definition.scale, prefab_definition.scale)
     end
@@ -175,6 +133,46 @@ local function InitInteriorPrefab(inst, doer, prefab_definition, interior_defini
 
     if inst.components.door then
         inst.components.door:UpdateDoorVis()
+    end
+
+    local animdata = prefab_definition.animdata
+
+    if not animdata then
+        print("prefab_definition passed to InitInteriorPrefab is a nil value!", inst)
+        return
+    end
+
+    inst.components.rotatingbillboard:SetAnimation_Server(animdata)
+
+    inst.AnimState:SetBank(animdata.bank)
+    inst.door_data_bank = animdata.bank
+
+    inst.AnimState:SetBuild(animdata.build)
+    inst.door_data_build = animdata.build
+
+    inst.AnimState:PlayAnimation(animdata.anim, true)
+    inst.door_data_animstate = animdata.anim
+    -- this is for finding the right open and closed door animation.
+    inst.baseanimname = inst.door_data_animstate
+
+    if animdata.background then
+        inst.AnimState:SetLayer(LAYER_BACKGROUND)
+        inst.AnimState:SetSortOrder(3)
+        --inst.Transform:SetTwoFaced()
+        -- inst.Transform:SetRotation(90)
+
+        inst.door_data_background = animdata.background
+    end
+
+    if animdata.light then
+        MakeTimeChanger(inst)
+    end
+
+    if animdata.minimapicon then
+        local minimap = inst.entity:AddMiniMapEntity()
+        minimap:SetIcon(animdata.minimapicon)
+
+        inst:SetMinimapIcon(animdata.minimapicon)
     end
 end
 
@@ -240,7 +238,9 @@ local function OnLoad(inst, data)
     if data.rotation and inst.components.rotatingbillboard == nil then
         inst.Transform:SetRotation(data.rotation)
     end
-    if data.door_data_background then
+    if data.door_data_background
+        or (data.door_data_animstate and data.door_data_animstate == "day_loop") then -- 第二个条件用于旧存档兼容
+
         inst.AnimState:SetLayer(LAYER_BACKGROUND)
         inst.AnimState:SetSortOrder(3)
         inst.door_data_background = data.door_data_background
@@ -312,6 +312,16 @@ local function OnLoad(inst, data)
         end
         inst.opentask, inst.opentaskinfo = inst:ResumeTask(data.opentimeleft, function() inst:PushEvent("open") end)
     end
+
+    if inst.components.door then -- 针对旧存档的兼容
+        inst.components.door:UpdateDoorVis()
+        local shadow = inst.components.door:GetShadow()
+        if shadow then
+            shadow.door_data_bank = inst.door_data_bank
+            shadow.door_data_build = inst.door_data_build
+            shadow.door_data_animstate = "south_floor"
+        end
+    end
 end
 
 local function DisableDoor(inst, setting, cause)
@@ -325,7 +335,9 @@ local function UseDoor(inst,data)
     if inst.usesounds then
         if data and data.doer and data.doer.SoundEmitter then
             for _, sound in ipairs(inst.usesounds) do
-                data.doer.SoundEmitter:PlaySound(sound)
+                data.doer:DoTaskInTime(FRAMES * 2, function()
+                    data.doer.SoundEmitter:PlaySound(sound)
+                end)
             end
         end
     end
@@ -396,20 +408,20 @@ local function CloseDoor(inst, nospread)
     end
 end
 
-local function test_player_house_door(inst)
-    local door = inst.components.door
-    if door then
-        local interior = TheWorld.components.interiorspawner:GetInteriorCenter(door.interior_name)
-        if interior and interior.playerroom then
-            inst.entity:AddMiniMapEntity()
-            inst.MiniMapEntity:SetIcon("player_frontdoor.tex")
-            inst.MiniMapEntity:SetIconOffset(4, 0)
-        end
+local function GetMinimapIcon(inst)
+    return inst._minimap_name:value()
+end
+
+local function OnEntitySleep(inst)
+    if inst.sg:HasStateTag("moving") or inst.sg:HasStateTag("shut") then
+        door.sg:GoToState("idle")
     end
 end
 
-local function GetMinimapIcon(inst)
-    return inst._minimap_name:value()
+local function OnEntityWake(inst)
+    if inst.sg:HasStateTag("moving") or inst.sg:HasStateTag("shut") then
+        door.sg:GoToState("idle")
+    end
 end
 
 local function fn()
@@ -421,11 +433,9 @@ local function fn()
     inst.entity:AddLight()
     inst.entity:AddNetwork()
 
-    MakeObstaclePhysics(inst, 1)
+    MakeObstaclePhysics(inst, 0.75)
 
-    inst.AnimState:SetBank("acorn")
-    inst.AnimState:SetBuild("acorn")
-    inst.AnimState:PlayAnimation("idle")
+    inst.AnimState:SetSortOrder(4)
 
     inst.Light:Enable(false)
 
@@ -435,15 +445,8 @@ local function fn()
 
     inst:DoTaskInTime(0, function() inst.Physics:SetActive(false) end)
 
-    inst:DoTaskInTime(0, test_player_house_door)
-
     inst.Transform:SetRotation(-90)
     inst:AddComponent("rotatingbillboard")
-    inst.components.rotatingbillboard.animdata = {
-        bank = "acorn",
-        build = "acorn",
-        anim = "idle"
-    }
 
     inst._minimap_name = net_string(inst.GUID, "prop_door._minimap_name")
     inst._minimap_name:set_local("")
@@ -484,6 +487,10 @@ end
 local function InitInteriorPrefab_shadow(inst, doer, prefab_definition, interior_definition)
     --If we are spawned inside of a building, then update our door to point at our interior
 
+    if not prefab_definition then
+        return
+    end
+
     if prefab_definition.animdata then
         if prefab_definition.animdata.bank then
             inst.AnimState:SetBank(prefab_definition.animdata.bank)
@@ -502,6 +509,19 @@ local function InitInteriorPrefab_shadow(inst, doer, prefab_definition, interior
     end
 end
 
+local function ShadowOnSave(inst, data)
+    data.animdata =
+    {
+        bank = inst.door_data_bank,
+        build = inst.door_data_build,
+        anim = inst.door_data_animstate,
+    }
+end
+
+local function ShadowOnLoad(inst, data)
+    InitInteriorPrefab_shadow(inst, nil, data, nil)
+end
+
 local function shadowfn()
     local inst = CreateEntity()
 
@@ -514,12 +534,16 @@ local function shadowfn()
 
     inst:AddTag("NOCLICK")  -- Note for future self: Was commented out, but not sure why.. if it's not there, the shadow eats the click on the door.
     inst:AddTag("NOBLOCK")
+    inst:AddTag("door_shadow")
     inst.initInteriorPrefab = InitInteriorPrefab_shadow
 
     inst:AddTag("SELECT_ME")
 
     inst.AnimState:SetLayer(LAYER_BACKGROUND)
     inst.AnimState:SetSortOrder(3)
+
+    inst.OnSave = ShadowOnSave
+    inst.OnLoad = ShadowOnLoad
     return inst
 end
 

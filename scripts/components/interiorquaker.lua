@@ -62,6 +62,15 @@ local QUAKE_LEVELS = {
         quake_intensity = 0.1,
     },
     [INTERIOR_QUAKE_LEVELS.MINOR_QUAKE] = {},
+    [INTERIOR_QUAKE_LEVELS.ANTHILL_REBUILT] = {
+        quake_time = function() return 5.5 end,
+        debrispersecond = function() return 0 end,
+        debrisbreakchance = 1,
+        max_critters = 0,
+        critter_spawn_offset = {},
+        level = 0,
+        quake_intensity = 0.6,
+    },
 }
 
 local DENSITYRADIUS = 5 -- the minimum radius that can contain 3 debris (allows for some clumping)
@@ -82,7 +91,6 @@ self.inst = inst
 -- Private
 local _ismastersim = TheWorld.ismastersim
 local _world = TheWorld
-local _active_players = {}
 local _critters_per_quake = {} -- {[number]interiorID: [string]number of critters left to spawn in a room}
 local _debris_spawn_rates = {} -- {[number]inetiorID: [number]debris_per_second}
 local _debris_spawn_times = {} -- {[number]interiorID: [number]tiem to next debris spawn in a room}
@@ -211,7 +219,7 @@ local OnRemoveDebris = _ismastersim and function(debris)
 end or nil
 
 local GetTimeForNextDebris = _ismastersim and function(interiorID)
-    return 1 / _debris_spawn_rates[interiorID]
+    return _debris_spawn_rates[interiorID] > 0 and (1 / _debris_spawn_rates[interiorID]) or 2147483647 -- 2^31-1
 end or nil
 
 local GetDebrisSpawnPoint = _ismastersim and function(interiorID, is_critter)
@@ -327,8 +335,7 @@ local UpdateTask = _ismastersim and function(src, dt, interiorID)
     else
         _debris_spawn_times[interiorID] = _debris_spawn_times[interiorID] - dt
         if _debris_spawn_times[interiorID] <= 0 then
-            local debris = SpawnDebrisForRoom(interiorID)
-            ShakeAllCamerasInRoom(interiorID, CAMERASHAKE.FULL, 0.7, 0.02, QUAKE_LEVELS[_isquaking[interiorID]].quake_intensity, debris, 40)
+            SpawnDebrisForRoom(interiorID)
             _debris_spawn_times[interiorID] = GetTimeForNextDebris(interiorID)
         end
     end
@@ -352,11 +359,27 @@ local StartQuakeForRoom = _ismastersim and function(src, data)
     _debris_spawn_rates[interiorID] = quake_params.debrispersecond()
     _debris_spawn_times[interiorID] = GetTimeForNextDebris(interiorID)
 
-    StartUpdateTask(interiorID, FRAMES, UpdateTask)
+    local room = TheWorld.components.interiorspawner:GetInteriorCenter(interiorID)
+    if room and room:IsValid() then
+        room._isquaking:set(true)
+        ShakeAllCamerasInRoom(interiorID, CAMERASHAKE.FULL, _quake_times[interiorID], 0.02, QUAKE_LEVELS[_isquaking[interiorID]].quake_intensity, room, 40)
 
-    TheWorld.components.interiorspawner:ForEachPlayerInRoom(interiorID, function(player)
-        player.player_classified.isquaking:set(true)
-    end)
+        -- Also quake surrounding rooms on PILLAR_DESTROYED level of quake
+        if quake_level == INTERIOR_QUAKE_LEVELS.PILLAR_DESTROYED and not data.from_nearby_room then
+            local group_id = room:GetGroupId()
+            local x, y = room:GetCoordinates()
+            local rooms = TheWorld.components.interiorspawner:GetSurroundingRooms(group_id, x, y)
+            for _, v in ipairs(rooms) do
+                TheWorld:PushEvent("interior_startquake", {
+                    quake_level = quake_level,
+                    interiorID = v.interior.interiorID,
+                    from_nearby_room = true,
+                })
+            end
+        end
+    end
+
+    StartUpdateTask(interiorID, FRAMES, UpdateTask)
 end or nil
 
 local EndQuakeForRoom = _ismastersim and function(src, data)
@@ -373,85 +396,31 @@ local EndQuakeForRoom = _ismastersim and function(src, data)
 
     StopUpdateTask(interiorID)
 
-    TheWorld.components.interiorspawner:ForEachPlayerInRoom(interiorID, function(player)
-        player.player_classified.isquaking:set(false)
-    end)
+    local room = TheWorld.components.interiorspawner:GetInteriorCenter(interiorID)
+    if room and room:IsValid() then
+        room._isquaking:set(false)
+    end
 end or nil
 
 --------------------------------------------------------------------------
 --[[ Private event handlers ]]
 --------------------------------------------------------------------------
 
-local function OnQuakeSoundDirty()
-    if ThePlayer.player_classified.isquaking:value() then
-        if not _world.SoundEmitter:PlayingSound("earthquake") then
-            _world.SoundEmitter:PlaySound("dontstarve/cave/earthquake", "earthquake")
-        end
-        _world.SoundEmitter:SetParameter("earthquake", "intensity", 1)
-    elseif _world.SoundEmitter:PlayingSound("earthquake") then
-        _world.SoundEmitter:KillSound("earthquake")
-    end
-end
-
-local OnUsedDoor = _ismastersim and function(player, data)
-    if not data.door then
-        return
-    end
-
-    local target_interior = data.door.components.door.target_interior
-    if data.exterior or not _isquaking[target_interior] then
-        player.player_classified.isquaking:set(false)
-    else
-        player.player_classified.isquaking:set(true)
-    end
-end or nil
-
-local OnPlayerJoined = _ismastersim and function(src, player)
-    for i, v in ipairs(_active_players) do
-        if v == player then
-            return
-        end
-    end
-    table.insert(_active_players, player)
-
-    local x, _ ,z = player.Transform:GetWorldPosition()
-    if TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
-        local room_id = TheWorld.components.interiorspawner:PositionToIndex({x = x, z = z})
-        if _isquaking[room_id] then
-            player.player_classified.isquaking:set(true)
-        end
-    end
-
-    player:ListenForEvent("used_door", OnUsedDoor)
-end or nil
-
-local OnPlayerLeft = _ismastersim and function(src, player)
-    for i, v in ipairs(_active_players) do
-        if v == player then
-            player:RemoveEventCallback("used_door", OnUsedDoor)
-            table.remove(_active_players, i)
-            return
-        end
-    end
-end or nil
-
 --------------------------------------------------------------------------
 --[[ Public member functions ]]
 --------------------------------------------------------------------------
+
+function self:IsRoomQuaking(interiorID)
+    return _isquaking[interiorID] ~= nil
+end
 
 --------------------------------------------------------------------------
 --[[ Initialization ]]
 --------------------------------------------------------------------------
 
-if not TheNet:IsDedicated() then
-    inst:ListenForEvent("isquakingdirty", OnQuakeSoundDirty, ThePlayer)
-end
-
 if _ismastersim then
     inst:ListenForEvent("interior_startquake", StartQuakeForRoom, _world)
     inst:ListenForEvent("interior_endquake", EndQuakeForRoom, _world)
-    inst:ListenForEvent("ms_playerjoined", OnPlayerJoined, _world)
-    inst:ListenForEvent("ms_playerleft", OnPlayerLeft, _world)
 end
 
 --------------------------------------------------------------------------

@@ -18,19 +18,26 @@ local herald_summons_interior = {
 }
 
 local function SpawnHeraldSummons(inst)
-    local fn
-    if inst:GetCurrentInteriorID() ~= nil then
-        fn = GetRandomItem(herald_summons_interior)
-    else
-        fn = GetRandomItem(herald_summons)
-    end
-
     local x, y, z = inst.Transform:GetWorldPosition()
     local player
-    if inst.components.combat.target and inst.components.combat.target:HasTag("player") then
+    if inst.components.combat.target
+        and inst.components.combat.target:HasTag("player")
+        and inst.components.combat:CanTarget(inst.components.combat.target) then
+
         player = inst.components.combat.target
     else
         player = FindClosestPlayerInRange(x, y, z, 20, true)
+    end
+
+    if not player then
+        return
+    end
+
+    local fn
+    if player:GetCurrentInteriorID() ~= nil then
+        fn = GetRandomItem(herald_summons_interior)
+    else
+        fn = GetRandomItem(herald_summons)
     end
 
     fn(player, inst)
@@ -73,7 +80,7 @@ local states =
         onenter = function(inst)
             inst.AnimState:PlayAnimation("appear")
             inst.SoundEmitter:PlaySound("dontstarve/ghost/ghost_howl")
-            TheMixer:PushMix("shadow") -- this doesn't work at all actually
+            -- TheMixer:PushMix("shadow") -- this doesn't work at all actually -- 等哪一天搞明白了Mixer再说
         end,
 
         timeline =
@@ -149,7 +156,7 @@ local states =
         timeline =
         {
             TimeEvent(0  * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/ancient_herald/summon") end),
-            TimeEvent(1  * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/ancient_herald/summon_2d") end),
+            TimeEvent(1  * FRAMES, function(inst) inst.SoundEmitter:PlaySound("porkland_soundpackage/creatures/boss/ancient_herald/summon_2d") end),
             TimeEvent(30 * FRAMES, function(inst) SpawnHeraldSummons(inst) end)
         },
 
@@ -166,7 +173,7 @@ CommonStates.AddCombatStates(states, {
     attacktimeline =
     {
         TimeEvent(0  * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/ancient_herald/attack") end),
-        TimeEvent(1  * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/ancient_herald/attack_2d") end),
+        TimeEvent(1  * FRAMES, function(inst) inst.SoundEmitter:PlaySound("porkland_soundpackage/creatures/boss/ancient_herald/attack_2d") end),
         TimeEvent(20 * FRAMES, function(inst)
             local ring = SpawnPrefab("laser_ring")
             ring.Transform:SetPosition(inst.Transform:GetWorldPosition())

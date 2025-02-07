@@ -143,17 +143,17 @@ function BrambleChain:OnSave()
 
     if self.core and self.core:IsValid() then
         data.core = self.core.GUID
-        refs.core = self.core.GUID
+        table.insert(refs, self.core.GUID)
     end
 
     if self.child and self.child:IsValid() then
         data.child = self.child.GUID
-        refs.child = self.child.GUID
+        table.insert(refs, self.child.GUID)
     end
 
     if self.parent and self.parent:IsValid() then
         data.parent = self.parent.GUID
-        refs.parent = self.parent.GUID
+        table.insert(refs, self.parent.GUID)
     end
 
     if self.natural_decay then

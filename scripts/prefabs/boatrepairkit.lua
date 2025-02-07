@@ -14,6 +14,8 @@ local function fn()
     inst.AnimState:SetBuild("boat_repair_kit")
     inst.AnimState:PlayAnimation("idle")
 
+    inst:AddTag("boat_repairer")
+
     PorkLandMakeInventoryFloatable(inst)
 
     inst.entity:SetPristine()

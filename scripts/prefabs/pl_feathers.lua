@@ -19,6 +19,8 @@ local function MakeFeather(name)
         inst.AnimState:SetBuild(asset_name)
         inst.AnimState:PlayAnimation("idle")
 
+        inst.pickupsound = "cloth"
+
         inst:AddTag("cattoy")
         inst:AddTag("birdfeather")
 

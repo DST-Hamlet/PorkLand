@@ -10,6 +10,7 @@ PrefabFiles = {
     "basefan",
     "bill_quill",
     "bill",
+    "birdwhistle",
     "boat_torch",
     "boatcontainer_classified",
     "boatrepairkit",
@@ -95,7 +96,7 @@ PrefabFiles = {
     "tree_pillar",
     "tuber",
     "tubertrees",
-    "undertile_marker",
+    "vampire_bat_wing",
     "vampirebat",
     "venomgland",
     "venus_stalk",
@@ -132,6 +133,7 @@ PrefabFiles = {
     "prop_door",
     "pig_ruins_creeping_vines",
     "pl_birds",
+    "pl_fish",
     "bat_hide",
     "cave_entrance_roc",
     "pig_ruins_light_beam",
@@ -236,9 +238,10 @@ PrefabFiles = {
     "waterfall_lilypond",
     "waterfall_sfx",
 
-    "fabric", -- 亚丹：这个表一开始不是说按照字母顺序进行排序的吗
+    "fabric", -- 亚丹：这个表一开始不是说按照字母顺序进行排序的吗 ziwbi: 排序一下不就好了
     "inv_bamboo",
     "sand",
+
 
     "roc_nest",
     "ro_bin_egg",
@@ -249,10 +252,35 @@ PrefabFiles = {
     "ox_horn",
     "ox_flute",
     "porklandintro",
-    "anthill",
+
+    "roc",
+    "roc_body_parts",
 
     "cutlass",
-    "pl_feathers"
+    "pl_feathers",
+
+    "giantgrub",
+    "antman",
+    "antman_warrior",
+    "antman_warrior_egg",
+    "anthill",
+    "antlarva",
+    "antqueen",
+    "antqueen_chamber",
+
+    "house_door",
+    "construction_permit",
+    "demolition_permit",
+
+    "coconade",
+    "trawlnet",
+    "sunkenprefab",
+
+    "pl_bat",
+
+    "falloff_fx",
+    "cloud_fx",
+    "group_parent"
 }
 
 Assets = {
@@ -270,6 +298,18 @@ Assets = {
     -- crafting menu icons
     Asset("ATLAS", "images/hud/pl_crafting_menu_icons.xml"),
 
+    -- minimap hud
+    Asset("ATLAS", "images/hud/pl_minimaphud.xml"),
+    Asset("IMAGE", "images/hud/pl_minimaphud.tex"),
+
+    -- interior map toggle button and arrows
+    Asset("ATLAS", "images/hud/pl_mapscreen_widgets.xml"),
+    Asset("IMAGE", "images/hud/pl_mapscreen_widgets.tex"),
+
+    -- falloff
+    Asset("IMAGE", "levels/tiles/black_falloff.tex"),
+    Asset("FILE", "levels/tiles/black_falloff.xml"),
+
     -- hud
     Asset("ATLAS", "images/overlays/fx3.xml"), -- poison, boat_over
     Asset("IMAGE", "images/overlays/fx3.tex"),
@@ -282,6 +322,7 @@ Assets = {
     Asset("ANIM", "anim/leaves_canopy2.zip"),  -- canopy
     Asset("ANIM", "anim/livingartifact_meter.zip"),
     Asset("ANIM", "anim/poison_meter_overlay.zip"),
+    Asset("ANIM", "anim/trawlnet_meter.zip"),
 
     Asset("ANIM", "anim/moon_aporkalypse_phases.zip"), -- blood moon
 
@@ -311,6 +352,12 @@ Assets = {
     Asset("ANIM", "anim/player_mount_actions_speargun.zip"),
     Asset("ANIM", "anim/player_actions_scroll.zip"),
     Asset("ANIM", "anim/player_mount_actions_scroll.zip"),
+    Asset("ANIM", "anim/player_teleport_bfb.zip"),
+    Asset("ANIM", "anim/player_teleport_bfb2.zip"),
+
+    -- replace_anim
+    Asset("ANIM", "anim/replace_anim/player_attacks_old.zip"),
+    Asset("ANIM", "anim/replace_anim/player_hits_old.zip"),
 
     -- boat ui
     Asset("ANIM", "anim/boat_health.zip"),
@@ -341,8 +388,16 @@ Assets = {
     Asset("ANIM", "anim/tree_leaf_short_blown.zip"),
     Asset("ANIM", "anim/tree_leaf_tall_blown.zip"),
 
+    -- visualvariant
+    Asset("ANIM", "anim/grassgreen_build.zip"),
+    Asset("ANIM", "anim/cutgrassgreen.zip"),
+    Asset("ANIM", "anim/log_rainforest.zip"),
+
     -- multiplayer_portal
     Asset("ANIM", "anim/portal_dst.zip"),
+
+    -- worldgen screen
+    Asset("ANIM", "anim/generating_hamlet.zip"),
 
     -- Billboard
     Asset("SHADER", "shaders/animrotatingbillboard.ksh"),
@@ -351,8 +406,10 @@ Assets = {
     Asset("SHADER", "shaders/anim_waterfall.ksh"),
     Asset("SHADER", "shaders/anim_waterfall_corner.ksh"),
 
+    -- Vertical
+    Asset("SHADER", "shaders/anim_vertical.ksh"),
+
     -- Interior MiniMap
-    Asset("ATLAS", "levels/textures/map_interior/pl_black_bg.xml"),
     Asset("ATLAS", "interior_minimap/interior_minimap.xml"),
     Asset("ATLAS", "levels/textures/map_interior/mini_floor_marble_royal.xml"),
     Asset("IMAGE", "levels/textures/map_interior/mini_floor_marble_royal.tex"),
@@ -363,11 +420,41 @@ Assets = {
     Asset("ATLAS", "levels/textures/map_interior/mini_vamp_cave_noise.xml"),
     Asset("IMAGE", "levels/textures/map_interior/mini_vamp_cave_noise.tex"),
 
+    Asset("ATLAS", "levels/textures/map_interior/mini_floor_wood.xml"),
+    Asset("IMAGE", "levels/textures/map_interior/mini_floor_wood.tex"),
+    Asset("ATLAS", "levels/textures/map_interior/mini_floor_woodpanels.xml"),
+    Asset("IMAGE", "levels/textures/map_interior/mini_floor_woodpanels.tex"),
+    Asset("ATLAS", "levels/textures/map_interior/mini_floor_marble.xml"),
+    Asset("IMAGE", "levels/textures/map_interior/mini_floor_marble.tex"),
+    Asset("ATLAS", "levels/textures/map_interior/mini_floor_checker.xml"),
+    Asset("IMAGE", "levels/textures/map_interior/mini_floor_checker.tex"),
+    Asset("ATLAS", "levels/textures/map_interior/mini_floor_checkered.xml"),
+    Asset("IMAGE", "levels/textures/map_interior/mini_floor_checkered.tex"),
+    Asset("ATLAS", "levels/textures/map_interior/mini_floor_cityhall.xml"),
+    Asset("IMAGE", "levels/textures/map_interior/mini_floor_cityhall.tex"),
+    Asset("ATLAS", "levels/textures/map_interior/mini_floor_sheetmetal.xml"),
+    Asset("IMAGE", "levels/textures/map_interior/mini_floor_sheetmetal.tex"),
+    Asset("ATLAS", "levels/textures/map_interior/mini_floor_geometrictiles.xml"),
+    Asset("IMAGE", "levels/textures/map_interior/mini_floor_geometrictiles.tex"),
+    Asset("ATLAS", "levels/textures/map_interior/mini_floor_shag_carpet.xml"),
+    Asset("IMAGE", "levels/textures/map_interior/mini_floor_shag_carpet.tex"),
+    Asset("ATLAS", "levels/textures/map_interior/mini_floor_transitional.xml"),
+    Asset("IMAGE", "levels/textures/map_interior/mini_floor_transitional.tex"),
+    Asset("ATLAS", "levels/textures/map_interior/mini_floor_herringbone.xml"),
+    Asset("IMAGE", "levels/textures/map_interior/mini_floor_herringbone.tex"),
+    Asset("ATLAS", "levels/textures/map_interior/mini_floor_hexagon.xml"),
+    Asset("IMAGE", "levels/textures/map_interior/mini_floor_hexagon.tex"),
+    Asset("ATLAS", "levels/textures/map_interior/mini_floor_hoof_curvy.xml"),
+    Asset("IMAGE", "levels/textures/map_interior/mini_floor_hoof_curvy.tex"),
+    Asset("ATLAS", "levels/textures/map_interior/mini_floor_octagon.xml"),
+    Asset("IMAGE", "levels/textures/map_interior/mini_floor_octagon.tex"),
+
     -- Cookbook HD icons
     Asset("ATLAS", "images/hud/pl_cook_pot_food_image.xml"),
     Asset("IMAGE", "images/hud/pl_cook_pot_food_image.tex"),
 
     Asset("SHADER", "shaders/ui_fillmode.ksh"),
+    Asset("SHADER", "shaders/ui_anim_cc_nolight.ksh"),
 }
 
 for _, v in ipairs(require("main/interior_texture_defs").Assets) do
@@ -376,7 +463,6 @@ end
 
 ToolUtil.RegisterInventoryItemAtlas("images/hud/pl_inventoryimages.xml")
 AddMinimapAtlas("images/minimap/pl_minimap.xml")
-AddMinimapAtlas("levels/textures/map_interior/pl_black_bg.xml")
 AddMinimapAtlas("interior_minimap/interior_minimap.xml")
 
 local sounds = {
@@ -389,6 +475,22 @@ local sounds = {
     Asset("SOUND", "sound/porkland_soundpackage_bank_1.fsb"),
     Asset("SOUNDPACKAGE", "sound/porkland_soundpackage.fev"),
 }
+
+local shade_anim_assets =
+{
+    {path = "images/shade_anim/roc_shadow/shadow/shadow-", length = 0},
+    {path = "images/shade_anim/roc_shadow/ground_pre/ground_pre-", length = 42},
+    {path = "images/shade_anim/roc_shadow/ground_loop/ground_loop-", length = 0},
+    {path = "images/shade_anim/roc_shadow/ground_pst/ground_pst-", length = 54},
+    {path = "images/shade_anim/roc_shadow/shadow_flap_loop/shadow_flap_loop-", length = 37},
+}
+for _, v in ipairs(shade_anim_assets) do
+    for i = 0, v.length do
+        local realframe = i + 1
+        local framepath = v.path..tostring(realframe)..".tex"
+        table.insert(Assets, Asset("IMAGE", framepath))
+    end
+end
 
 if not TheNet:IsDedicated() then
     for _, asset in ipairs(sounds) do

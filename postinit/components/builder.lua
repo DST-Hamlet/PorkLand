@@ -74,3 +74,18 @@ function Builder:RemoveIngredients(ingredients, recname, discounted, ...)
     end
     return remove_ingredients(self, ingredients, recname, discounted, ...)
 end
+
+local _EvaluateTechTrees = Builder.EvaluateTechTrees
+function Builder:EvaluateTechTrees(...)
+    local key = self.inst.components.inventory:FindItem(function(obj)
+        return obj:HasTag("prototyper_ignore_inlimbo")
+    end)
+    if key then
+        key:RemoveTag("INLIMBO")
+    end
+    local rets = {_EvaluateTechTrees(self, ...)}
+    if key then
+        key:AddTag("INLIMBO")
+    end
+    return unpack(rets)
+end

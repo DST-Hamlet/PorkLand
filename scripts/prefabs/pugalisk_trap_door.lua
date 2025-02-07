@@ -42,10 +42,6 @@ local function SpawnPugalisk(inst)
 end
 
 local function activate(inst)
-    if not GetWorldSetting("pugalisk_fountain", true) then
-        return
-    end
-
     if inst.state == STATES.CLOSED then
         inst.state = STATES.OPENING
         inst.AnimState:PlayAnimation("opening")

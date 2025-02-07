@@ -37,29 +37,35 @@ local function findfood(inst, target)
     end
 
     return target.components.inventory:FindItem(function(item)
-        if not item:IsValid() or not item.components.edible then
-            return false
-        end
-
-       return item.components.edible.foodtype == FOODTYPE.MEAT
-           or item.components.edible.secondaryfoodtype == FOODTYPE.MEAT
+        return inst.components.eater:CanEat(item)
     end)
 end
 
-local RETARGET_DIST = 6
-local RETARGET_DIST_WORMWOOD = 8
-local KEEP_TARGET_DIST = 8
+local RETARGET_DIST = 10
 local RETARGET_NO_TAGS = {"FX", "NOCLICK", "INLIMBO", "wall", "flytrap", "structure", "aquatic", "notarget"}
 local RETARGET_ONE_OF_TAGS = {"character", "monster", "animal"}
 
 local function RetargetFn(inst)
-    return FindEntity(inst, RETARGET_DIST, function(ent)
-        if ent:HasTag("plantkin") and (ent:GetDistanceSqToInst(inst) > RETARGET_DIST_WORMWOOD * RETARGET_DIST_WORMWOOD or not findfood(inst, ent)) then
+    local newtarget = FindEntity(inst, RETARGET_DIST, function(ent)
+        local real_retarget_dist = ent:GetPhysicsRadius(0) + inst.components.combat:GetAttackRange() + 2
+        if ent:GetDistanceSqToInst(inst) > real_retarget_dist * real_retarget_dist then
+            return false
+        end
+
+        if ent:HasTag("plantkin") and not findfood(inst, ent) then
             return false
         end
 
         return inst.components.combat:CanTarget(ent)
     end, nil, RETARGET_NO_TAGS, RETARGET_ONE_OF_TAGS)
+
+    local current_target = inst.components.combat.target
+    if current_target and inst.components.combat:CalcHitRangeSq(current_target) < inst:GetDistanceSqToInst(current_target)
+        and newtarget and newtarget ~= current_target then
+        return newtarget, true -- 第二个参数用于强制锁定新的仇恨目标
+    end
+
+    return newtarget
 end
 
 local function KeepTargetFn(inst, target)
@@ -69,7 +75,9 @@ local function KeepTargetFn(inst, target)
 
     if target and target:IsValid() and target.components.health and not target.components.health:IsDead() then
         local distsq = target:GetDistanceSqToInst(inst)
-        return distsq < KEEP_TARGET_DIST * KEEP_TARGET_DIST
+        local real_keep_target_dist = target:GetPhysicsRadius(0) + inst.components.combat:GetAttackRange() + 2
+
+        return distsq < real_keep_target_dist * real_keep_target_dist
     else
         return false
     end
@@ -87,10 +95,13 @@ end
 local function OnTimerDone(inst, data)
     local pt = inst:GetPosition()
     local radius = 15
-    local offset = FindWalkableOffset(pt, math.random() * 2 * PI, radius, 20, true, false) -- try avoiding walls
+    local offset = FindWalkableOffset(pt, math.random() * 2 * PI, radius, 20, true, true, function(position)
+        local px, py, pz = position:Get()
+        return TheWorld.Map:CanPlantAtPoint(px, py, pz) and TheWorld.Map:IsDeployPointClear(position, nil, DEPLOYSPACING_RADIUS[DEPLOYSPACING.DEFAULT])
+    end)
 
     if offset then
-        local ents = TheSim:FindEntities(pt.x, 0, pt.z, radius, {"flytrap"})
+        local ents = TheSim:FindEntities(pt.x, 0, pt.z, radius + 3, {"flytrap"})
         if #ents < 5 then
             local plant = SpawnPrefab("mean_flytrap")
             plant.Transform:SetPosition(pt.x + offset.x, 0, pt.z + offset.z)
@@ -168,6 +179,12 @@ local function fn()
     if not TheWorld.ismastersim then
         return inst
     end
+
+    inst:AddComponent("eater")
+    inst.components.eater:SetDiet({FOODTYPE.MEAT}, {FOODTYPE.MEAT})
+    inst.components.eater:SetCanEatHorrible()
+    inst.components.eater:SetCanEatRaw()
+    inst.components.eater:SetStrongStomach(true) -- can eat monster meat!
 
     inst:AddComponent("health")
     inst.components.health:SetMaxHealth(TUNING.ADULT_FLYTRAP_HEALTH)

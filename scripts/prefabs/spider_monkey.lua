@@ -266,7 +266,6 @@ end
 local function OnSave(inst, data)
     if inst.tree and inst.tree:IsValid() then
         data.tree = inst.tree.GUID
-        data.inherd = inst.inherd -- added to a herd
         return {tree = inst.tree.GUID}
     end
 end
@@ -300,6 +299,7 @@ local function fn()
 
     inst:AddTag("spider_monkey")
     inst:AddTag("animal")
+    inst:AddTag("scarytoprey")
 
     inst.entity:SetPristine()
 

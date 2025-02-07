@@ -84,7 +84,7 @@ local function fn()
     inst.entity:AddDynamicShadow()
     inst.entity:AddNetwork()
 
-    MakeAmphibiousCharacterPhysics(inst, 1, 0.5)
+    MakeAmphibiousCharacterPhysics(inst, 10, 0.5)
 
     inst.AnimState:SetBank("bill")
     inst.AnimState:SetBuild("bill_calm_build")

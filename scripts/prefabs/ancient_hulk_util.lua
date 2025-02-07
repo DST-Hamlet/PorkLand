@@ -1,5 +1,5 @@
 local function SetFires(x, y, z, rad)
-    for i, v in ipairs(TheSim:FindEntities(x, 0, z, rad, nil, { "laser", "DECOR", "INLIMBO" })) do
+    for i, v in ipairs(TheSim:FindEntities(x, 0, z, rad, nil, { "laser", "DECOR", "INLIMBO","FX" })) do
         if v.components.burnable then
             v.components.burnable:Ignite()
         end
@@ -36,22 +36,22 @@ local function OnAttacked(inst, v)
 end
 
 local function DoSectorAOE(inst, radius, start_angle, end_angle)
-    local function OnWorked(_, AOE_target)
-        local x, y, z = inst.Transform:GetWorldPosition()
-        AOE_target:DoTaskInTime(0.3, function() SetFires(x, y, z, radius) end)
-    end
-
     local x, y, z = inst.Transform:GetWorldPosition()
     SetFires(x, y, z, radius)
+
+    TheWorld:DoTaskInTime(0.3, function() SetFires(x, y, z, radius) end)
+
+    local attacker = inst.owner or inst
+
     DoSectorAOEDamageAndDestroy(inst, {
+        pos = Vector3(x, y, z),
         damage_radius = radius,
         start_angle = start_angle,
         end_angle = end_angle,
         onattackedfn = OnAttacked,
-        onworkedfn = OnWorked,
-        onpickedfn = OnWorked,
         validfn = is_valid_target,
-        use_world_picker = true
+        use_world_picker = true,
+        attacker = attacker
     })
 end
 
@@ -85,7 +85,6 @@ local function UpdateHit(inst)
 end
 
 local function PowerGlow(inst)
-
     if inst.components.bloomer ~= nil then
         inst.components.bloomer:PushBloom(inst, "shaders/anim.ksh", -1)
     else
@@ -96,13 +95,20 @@ local function PowerGlow(inst)
 end
 
 local function SpawnLaser(inst)
-    assert(inst.sg.statemem.targetpos)
+    local targetpos = inst.sg.statemem.targetpos
+    if targetpos == nil then
+        local angle =  inst.Transform:GetRotation() * DEGREES
+
+        local DIST = 3
+        local pt = Vector3(inst.Transform:GetWorldPosition())
+        targetpos = pt + Vector3(math.cos(angle + PI / 2), 0, -math.sin(angle + PI / 2)) * DIST
+    end
     local numsteps = 10
     local x, _, z = inst.Transform:GetWorldPosition()
 
-    local xt = inst.sg.statemem.targetpos.x
-    local yt = inst.sg.statemem.targetpos.y
-    local zt = inst.sg.statemem.targetpos.z
+    local xt = targetpos.x
+    local yt = targetpos.y
+    local zt = targetpos.z
 
     local dist =  math.sqrt(inst:GetDistanceSqToPoint(Vector3(xt, yt, zt))) -3
     local angle = (inst:GetAngleToPoint(xt, yt, zt) +90)* DEGREES
@@ -218,7 +224,6 @@ local function DropAncientRobots(inst)
         part_prop.spawntask:Cancel()
         part_prop.spawntask = nil
         part_prop.spawned = true
-        part_prop:AddTag("dormant")
         part_prop.sg:GoToState("idle_dormant")
 
         local target_pos = nil
@@ -241,9 +246,7 @@ local function ShootProjectile(inst, targetpos)
 
     local pt = inst.shotspawn:GetPosition()
     projectile.Transform:SetPosition(pt.x, pt.y, pt.z)
-    projectile.components.pl_complexprojectile:SetHorizontalSpeed(60)
-    projectile.components.pl_complexprojectile:SetGravity(-25)
-    projectile.components.pl_complexprojectile:Launch(targetpos, inst, inst)
+    projectile.components.throwable:Throw(targetpos, inst)
     projectile.owner = inst
 end
 

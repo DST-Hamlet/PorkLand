@@ -27,7 +27,7 @@ local events=
     CommonHandlers.OnSleep(),
     CommonHandlers.OnFreeze(),
     CommonHandlers.OnAttack(),
-    CommonHandlers.OnAttacked(true),
+    CommonHandlers.OnAttacked(nil, TUNING.CHARACTER_MAX_STUN_LOCKS),
     CommonHandlers.OnDeath(),
     EventHandler("transformnormal", function(inst) if inst.components.health:GetPercent() > 0 then inst.sg:GoToState("transformNormal") end end),
     EventHandler("doaction",
@@ -37,12 +37,20 @@ local events=
 
     EventHandler("behappy",
         function(inst, data)
-          inst.sg:GoToState("happy")
+            inst.sg:GoToState("happy")
         end),
     EventHandler("dance",
         function(inst, data)
             if not inst.sg:HasStateTag("busy") then
                 inst.sg:GoToState("dance")
+            end
+        end),
+    EventHandler("onsurprised",
+        function(inst, data)
+            if inst.components.health ~= nil and not inst.components.health:IsDead()
+                and not inst.sg:HasStateTag("busy") then
+
+                inst.sg:GoToState("hit")
             end
         end),
 }
@@ -385,7 +393,7 @@ local states =
     },
     State{
         name = "hit",
-        tags = {"busy"},
+        tags = {"busy", "hit"},
 
         onenter = function(inst)
 
@@ -420,10 +428,12 @@ local states =
         tags = {"busy"},
 
         onenter = function(inst)
-            local line = inst.poop_tip:HasTag("pigroyalty")
-                and inst:GetSpeechType("CITY_PIG_TALK_ROYAL_POOPTIP")
-                or inst:GetSpeechType("CITY_PIG_TALK_POOPTIP")
-            inst:SayLine(line)
+            if inst.poop_tip then
+                local line = inst.poop_tip:HasTag("pigroyalty")
+                    and inst:GetSpeechType("CITY_PIG_TALK_ROYAL_POOPTIP")
+                    or inst:GetSpeechType("CITY_PIG_TALK_POOPTIP")
+                inst:SayLine(line)
+            end
             inst.AnimState:PlayAnimation("interact")
             inst.Physics:Stop()
         end,
@@ -437,13 +447,9 @@ local states =
         {
             EventHandler("animover",
                 function(inst)
-                    inst:DoTaskInTime(4,
-                        function()
-                            inst.sg:GoToState("idle")
-                            inst.poop_tip = nil
-                            inst.tipping = false
-                        end
-                    )
+                    inst.sg:GoToState("idle")
+                    inst.poop_tip = nil
+                    inst.tipping = false
                 end
             ),
         },

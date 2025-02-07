@@ -14,7 +14,7 @@ local events =
     CommonHandlers.OnSleep(),
     CommonHandlers.OnFreeze(),
     CommonHandlers.OnAttack(),
-    CommonHandlers.OnAttacked(true),
+    CommonHandlers.OnAttacked(nil, TUNING.CHARACTER_MAX_STUN_LOCKS),
     CommonHandlers.OnDeath(),
 }
 
@@ -103,7 +103,7 @@ local states =
 
     State{
         name = "hit",
-        tags = {"busy", "evade"},
+        tags = {"busy", "evade", "hit"},
 
         onenter = function(inst)
             inst.SoundEmitter:PlaySound("dontstarve/pig/oink")
@@ -194,7 +194,7 @@ local states =
                 SpawnPrefab("collapse_big").Transform:SetPosition(inst.Transform:GetWorldPosition())
             end),
             TimeEvent(23 * FRAMES, function(inst)
-                TheWorld:PushEvent("bandit_escaped")
+                TheWorld:PushEvent("bandit_escaped", {bandit = inst})
                 inst:PerformBufferedAction()
                 inst:RemoveFromScene()
                 inst.sg:GoToState("idle")

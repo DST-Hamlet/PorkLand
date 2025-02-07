@@ -22,8 +22,8 @@ local assets =
     Asset("IMAGE", "images/colour_cubes/pork_lush_dusk_test.tex"),
     Asset("IMAGE", "images/colour_cubes/pork_lush_day_test.tex"),
 
-    Asset("IMAGE", "images/could/fog_cloud.tex"),
-    Asset("IMAGE", "images/could/fog_cloud_interior.tex"),
+    Asset("IMAGE", "images/cloud/fog_cloud.tex"),
+    Asset("IMAGE", "images/cloud/fog_cloud_interior.tex"),
 }
 
 local prefabs =
@@ -78,18 +78,34 @@ local function OnNewPlayerSpawned(src, player)
     ex_fns.GivePlayerStartingItems(player, { "machete" })
 end
 
+local TileManager = require "tilemanager"
+local GroundTiles = require "worldtiledefs"
+
+local function common_preinit(inst)
+    mod_protect_TileManager = false
+    TileManager.AddFalloffTexture(3, {
+        name = "black_falloff",
+        noise_texture = "images/square.tex",
+        should_have_falloff = TileGroups.LandTilesNotDock,
+        should_have_falloff_result = true,
+        neighbor_needs_falloff = TileGroups.LandTilesNotDock,
+        neighbor_needs_falloff_result = false
+    })
+    mod_protect_TileManager = true
+end
+
 local function common_postinit(inst)
     inst.has_pl_ocean = true
     inst.items_pass_ground = true
 
     -- Add waves
-    inst.entity:AddWaveComponent()
-    inst.WaveComponent:SetWaveParams(13.5, 2.5, -1)  -- wave texture u repeat, forward distance between waves
-    inst.WaveComponent:SetWaveSize(80, 3.5)  -- wave mesh width and height
-    inst.WaveComponent:SetWaveMotion(0.3, 0.5, 0.25)
-    inst.WaveComponent:SetWaveTexture(resolvefilepath("images/could/fog_cloud.tex"))
+    -- inst.entity:AddWaveComponent()
+    -- inst.WaveComponent:SetWaveParams(13.5, 2.5, -1)  -- wave texture u repeat, forward distance between waves
+    -- inst.WaveComponent:SetWaveSize(80, 3.5)  -- wave mesh width and height
+    -- inst.WaveComponent:SetWaveMotion(0.3, 0.5, 0.25)
+    -- inst.WaveComponent:SetWaveTexture(resolvefilepath("images/cloud/fog_cloud.tex"))
     -- See source\game\components\WaveRegion.h
-    inst.WaveComponent:SetWaveEffect("shaders/waves.ksh")
+    -- inst.WaveComponent:SetWaveEffect("shaders/waves.ksh")
 
     -- Initialize lua components
     inst:AddComponent("ambientlighting")
@@ -108,6 +124,8 @@ local function common_postinit(inst)
         inst.components.canopymanager:AddShadeTile(WORLD_TILES.DEEPRAINFOREST, rainforest_shade)
         inst.components.canopymanager:AddShadeTile(WORLD_TILES.GASJUNGLE, rainforest_shade)
         inst:AddComponent("pl_waterfallsoundcontroller")
+        inst:AddComponent("cloudmanager")
+        inst.components.cloudmanager:Init()
 
         inst.Map:SetUndergroundFadeHeight(0)
         inst.Map:AlwaysDrawWaves(true)
@@ -118,6 +136,7 @@ local function common_postinit(inst)
     inst:AddComponent("interiorquaker")
     inst:AddComponent("worldsoundmanager")
     inst:AddComponent("clientundertile")
+    inst:AddComponent("interiormaprevealer")
 end
 
 local function master_postinit(inst)
@@ -131,6 +150,8 @@ local function master_postinit(inst)
     inst:AddComponent("bramblemanager")
     inst:AddComponent("banditmanager")
     inst:AddComponent("rainforestflowerregrowth")
+    inst:AddComponent("giantgrubspawner")
+    inst:AddComponent("rocmanager")
 
     inst:AddComponent("worlddeciduoustreeupdater")
     inst:AddComponent("kramped")
@@ -141,6 +162,7 @@ local function master_postinit(inst)
     inst:AddComponent("shadowhandspawner")
     inst:AddComponent("brightmarespawner")
     inst:AddComponent("pl_worldwind")
+    inst:AddComponent("shadowmanager")
 
     --inst:AddComponent("regrowthmanager")
     -- inst:AddComponent("desolationspawner")
@@ -181,4 +203,4 @@ local function master_postinit(inst)
     inst:ListenForEvent("ms_newplayerspawned", OnNewPlayerSpawned)
 end
 
-return MakeWorld("porkland", prefabs, assets, common_postinit, master_postinit, {"porkland"}, {tile_physics_init = tile_physics_init})
+return MakeWorld("porkland", prefabs, assets, common_postinit, master_postinit, {"porkland"}, {common_preinit = common_preinit, tile_physics_init = tile_physics_init})

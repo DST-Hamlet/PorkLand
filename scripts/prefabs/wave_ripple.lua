@@ -24,14 +24,17 @@ local function WetAndDamage(inst, other)
         local moisture = v.components.moisture
         if moisture ~= nil then
             local waterproofness = moisture:GetWaterproofness()
-            moisture:DoDelta(inst.hitmoisture or SPLASH_WETNESS * (1 - waterproofness))
+            moisture:DoDelta((inst.hitmoisture or SPLASH_WETNESS) * (1 - waterproofness))
         end
     end
 end
 
-local function Splash(inst)
-    inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/wave_break")
-    local splash_water = SpawnPrefab("splash_water")
+local function Splash(inst, isboost)
+    local fxname = "splash_water"
+    if isboost then
+        fxname = "splash_water_boost"
+    end
+    local splash_water = SpawnPrefab(fxname)
     local x, y, z = inst.Transform:GetWorldPosition()
     splash_water.Transform:SetPosition(x, y, z)
 
@@ -58,12 +61,11 @@ local function OnCollideRipple(inst, other)
         if angle_difference < TUNING.WAVE_BOOST_ANGLE_THRESHOLD and is_moving then
             -- Do boost
             other:PushEvent("boostbywave", {position = inst.Transform:GetWorldPosition(), boost = nil}) -- boost param is for walani
-            inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/wave_boost")
+            Splash(inst, true)
         else
             WetAndDamage(inst, other)
+            Splash(inst)
         end
-
-        Splash(inst)
     elseif other:HasTag("waveobstacle") then
         -- other.components.waveobstacle:OnCollide(inst) This is only used for mangroves
         WetAndDamage(inst, other)

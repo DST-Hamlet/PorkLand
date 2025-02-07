@@ -96,12 +96,13 @@ return Class(function(self, inst)
 
     local POLLEN_PARTICLES = 1
 
+    -- 调高了降水速率, 以使得不会出现潮湿度增长速率为0.01的幽默情况. 当然, 繁茂季还是不会下雨
     local PEAK_PRECIPITATION_RANGES =
     {
-        temperate = {min = .1, max = .66},
+        temperate = {min = .2, max = .5},
         humid = {min = 1, max = 2},
-        lush = {min = .05, max = .15},
-        aporkalypse = {min = .1, max = .66},
+        lush = {min = 0.05, max = 0.15},
+        aporkalypse = {min = .2, max = .5},
     }
 
     --------------------------------------------------------------------------
@@ -245,7 +246,7 @@ return Class(function(self, inst)
             _rainsound = true
             _world.SoundEmitter:PlaySound("porkland_soundpackage/rain/islandrainAMB", "rain")
         end
-        _world.SoundEmitter:SetParameter("rain", "intensity", intensity * 3) -- 音效包里这个参数的范围是0——3
+        _world.SoundEmitter:SetParameter("rain", "intensity", intensity)
     end
 
     local function StopAmbientRainSound()
@@ -256,7 +257,7 @@ return Class(function(self, inst)
     end
 
     local function StartTreeRainSound(intensity)
-        if ThePlayer and ThePlayer:HasTag("inside_interior") then
+        if _activatedplayer and _activatedplayer:HasTag("inside_interior") then
             _treerainsound = false
             _world.SoundEmitter:KillSound("treerainsound")
             return
@@ -276,7 +277,7 @@ return Class(function(self, inst)
     end
 
     local function StartUmbrellaRainSound()
-        if ThePlayer and ThePlayer:HasTag("inside_interior") then
+        if _activatedplayer and _activatedplayer:HasTag("inside_interior") then
             _umbrellarainsound = false
             _world.SoundEmitter:KillSound("umbrellarainsound")
             return
@@ -853,6 +854,10 @@ return Class(function(self, inst)
             if _activatedplayer == nil then
                 StartTreeRainSound(0)
                 StopUmbrellaRainSound()
+            elseif _activatedplayer:HasTag("inside_interior") then
+                StopAmbientRainSound()
+                StopTreeRainSound()
+                StopUmbrellaRainSound()
             elseif _activatedplayer.replica.sheltered ~= nil and _activatedplayer.replica.sheltered:IsSheltered() then
                 StartTreeRainSound(preciprate_sound)
                 StopUmbrellaRainSound()
@@ -941,7 +946,7 @@ return Class(function(self, inst)
 
         -- Update pollen
         if _hasfx then
-            if _season ~= "lush" or (ThePlayer ~= nil and _world.components.sandstorms ~= nil and _world.components.sandstorms:IsInSandstorm(ThePlayer)) then
+            if _season ~= "lush" or (_activatedplayer ~= nil and _world.components.sandstorms ~= nil and _world.components.sandstorms:IsInSandstorm(_activatedplayer)) then
                 _pollenfx.particles_per_tick = 0
             elseif _seasonprogress < .2 then
                 local ramp = _seasonprogress / .2

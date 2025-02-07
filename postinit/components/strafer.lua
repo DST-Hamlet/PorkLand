@@ -31,7 +31,7 @@ function Strafer:OnUpdate(dt, ...)--基本上从原update函数中复制粘贴�
             if not self.ismastersim and self.lastdir ~= dir then
                 self.lastdir = dir
                 SendModRPCToServer(MOD_RPC["Porkland"]["StrafeFacing_pl"], dir)
-                print("SendModRPCToServer strafer",dir)
+                -- print("SendModRPCToServer strafer",dir)
             end
         end
     else

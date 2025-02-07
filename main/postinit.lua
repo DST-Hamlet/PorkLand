@@ -4,6 +4,7 @@ GLOBAL.setfenv(1, GLOBAL)
 -- Update this list when adding files
 local behaviour_posts = {
     "chaseandattack",
+    "runaway",
     "wander",
 }
 
@@ -14,15 +15,19 @@ local camera_posts = {
 local component_posts = {
     "actionqueuer",
     "ambientlighting",
+    "amphibiouscreature",
     "areaaware",
     "blinkstaff",
     "builder_replica",
     "builder",
+    "burnable",
     "circler",
     "clock",
     "colourcube",
     "combat",
     "crop",
+    "deployable",
+    "dest",
     "drownable",
     "dryer",
     "edible",
@@ -42,8 +47,10 @@ local component_posts = {
     "inventoryitem",
     "inventoryitemmoisture",
     "kramped",
+    "lighter",
     "locomotor",
     "lootdropper",
+    "maprecorder",
     "moisture",
     "oceancolor",
     "oldager",
@@ -58,9 +65,12 @@ local component_posts = {
     "resistance",
     "rider_replica",
     "rider",
+    "sanity",
     "seasons",
     "shard_clock",
     "shard_seasons",
+    "sheltered",
+    "skinner",
     "sleeper",
     "spawner",
     "strafer",
@@ -76,15 +86,19 @@ local component_posts = {
 }
 
 local prefab_posts = {
+    "batwing",
     "birdcage",
     "boomerang",
     "buff_workeffectiveness",
+    "earmuffshat",
     "grass",
+    "inventoryitem_classified",
     "mandrake",
     "meatrack",
     "mosquitosack",
     "multiplayer_portal",
     "orangestaff",
+    "pigskin",
     "player",
     "player_classified",
     "player_common_extensions",
@@ -100,6 +114,7 @@ local prefab_posts = {
     "shard_network",
     "spoiledfood",
     "statueruins",
+    "shadowcreature",
     "walls",
     "waterballoon",
     "wormwood",
@@ -116,6 +131,7 @@ local multipleprefab_posts = {
     "seeds",
     "stalagmite",
     "tradable",
+    "visualvariant",
 }
 
 local scenario_posts = {
@@ -124,15 +140,17 @@ local scenario_posts = {
 local screens_posts = {
     "mapscreen",
     "playerhud",
+    "worldgenscreen",
 }
 
 local stategraph_posts = {
     "bird",
+    "multiplayerportal",
+    "shadowcreature",
     "wilson",
     "wilson_client",
     "wilsonghost",
     "wilsonghost_client",
-    "multiplayerportal",
 }
 
 local brain_posts = {
@@ -153,6 +171,7 @@ local widget_posts = {
     "widget",
     "mapwidget",
     "recipepopup",
+    "itemtile",
 }
 
 local module_posts = {
@@ -174,6 +193,7 @@ end
 modimport("postinit/recipe")
 modimport("postinit/equipslotutil")
 modimport("postinit/stategraph")
+modimport("postinit/minimapentity")
 modimport("postinit/entityscript")
 modimport("postinit/bufferedaction")
 modimport("postinit/animstate")
@@ -181,7 +201,6 @@ modimport("postinit/stategraphs/commonstates")
 modimport("postinit/input")
 modimport("postinit/vector3")
 modimport("postinit/emittermanager")
-modimport("postinit/minimapentity")
 modimport("postinit/sim")
 modimport("postinit/pathfinder")
 modimport("postinit/groundcreep")
@@ -189,7 +208,7 @@ modimport("postinit/groundcreepentity")
 modimport("postinit/soundemitter")
 modimport("postinit/preparedfoods")
 modimport("postinit/skilltrees")
-
+modimport("postinit/lightwatcher")
 
 for _, file_name in ipairs(behaviour_posts) do
     modimport("postinit/behaviours/" .. file_name)

@@ -94,13 +94,6 @@ local function OnBuilt(inst)
     SetPlayerUncraftable(inst)
     inst.onbuilt = true
 
-    if inst:HasTag("rotate_fix") then
-        inst.Transform:SetRotation(-90)
-        if inst.components.rotatingbillboard then
-            inst.components.rotatingbillboard:OnUpdate()
-        end
-    end
-
     local x, y, z = inst.Transform:GetWorldPosition()
     if inst:HasTag("cornerpost") then
         local ents = TheSim:FindEntities(x, y, z, 1, {"cornerpost"})
@@ -123,7 +116,7 @@ local function OnBuilt(inst)
     if inst:HasTag("wallsection") then
         local ents = TheSim:FindEntities(x, y, z, 1, {"wallsection"})
         for _, ent in pairs(ents) do
-            if ent ~= inst and not (ent:HasTag("interior_door") and not ent.doorcanberemoved) then
+            if ent ~= inst and not (ent:HasTag("interior_door") and not ent:DoorCanBeRemoved()) then
                smash(ent)
             end
         end
@@ -240,6 +233,14 @@ local function OnSave(inst, data)
         data.roc_cave_delete_me = true
     end
 
+    if inst.children_to_spawn then
+        data.children_to_spawn = inst.children_to_spawn
+    end
+
+    if inst.rotate_flip_fixed then
+        data.rotate_flip_fixed = true
+    end
+
     return references
 end
 
@@ -311,6 +312,13 @@ local function OnLoad(inst, data)
         inst:AddTag("roc_cave_delete_me")
     end
 
+    if data.children_to_spawn then
+        inst.children_to_spawn = data.children_to_spawn
+    end
+
+    if data.rotate_flip_fixed then
+        inst.rotate_flip_fixed = data.rotate_flip_fixed
+    end
 end
 
 local function OnLoadPostPass(inst,ents, data)
@@ -334,12 +342,28 @@ local function OnLoadPostPass(inst,ents, data)
                 local childent = ents[child]
                 if childent then
                     table.insert(inst.decochildrenToRemove, childent.entity)
+                    if inst.components.rotatingbillboard then
+                        childent.entity.AnimState:SetScale(inst.Transform:GetScale())
+                    end
                 end
             end
         end
     end
     if inst.updateworkableart then
         UpdateArtWorkable(inst,true)
+    end
+
+    -- 修复罕见的右侧柱翻转问题
+    if inst.decal and inst.components.rotatingbillboard and not inst.rotate_flip_fixed then
+        inst.rotate_flip_fixed = true
+        local position = inst:GetPosition()
+        local current_interior = TheWorld.components.interiorspawner:GetInteriorCenter(position)
+        if current_interior then
+            local originpt = current_interior:GetPosition()
+            if position.z >= originpt.z then
+                inst.Transform:SetRotation(90)
+            end
+        end
     end
 end
 
@@ -439,6 +463,7 @@ local function MakeDeco(build, bank, animframe, data, name)
     local loopanim = data.loopanim
     local decal = data.decal
     local background = data.background
+    local finaloffset = data.finaloffset
     local light = data.light
     local followlight = data.followlight
     local scale = data.scale
@@ -469,6 +494,9 @@ local function MakeDeco(build, bank, animframe, data, name)
             inst.AnimState:SetLayer(LAYER_WORLD_BACKGROUND)
             inst.AnimState:SetSortOrder(background)
             inst.setbackground = background
+        end
+        if finaloffset then
+            inst.AnimState:SetFinalOffset(finaloffset)
         end
         if loopanim then
             inst.AnimState:SetTime(math.random() * inst.AnimState:GetCurrentAnimationLength())
@@ -558,7 +586,8 @@ local function MakeDeco(build, bank, animframe, data, name)
                 inst:AddTag("blocker")
                 inst.entity:AddPhysics()
                 inst.Physics:SetMass(0)
-                inst.Physics:SetCylinder(4.7, 4.0)
+                inst.Physics:SetCapsule(4.7, 1)
+                inst:SetDeployExtraSpacing(5)
                 inst.Physics:SetCollisionGroup(COLLISION.OBSTACLES)
                 inst.Physics:ClearCollisionMask()
                 inst.Physics:CollidesWith(COLLISION.ITEMS)
@@ -567,7 +596,7 @@ local function MakeDeco(build, bank, animframe, data, name)
                 inst:AddTag("blocker")
                 inst.entity:AddPhysics()
                 inst.Physics:SetMass(0)
-                inst.Physics:SetCylinder(1.6, 4.0)
+                inst.Physics:SetCapsule(1.6, 1)
                 inst.Physics:SetCollisionGroup(COLLISION.OBSTACLES)
                 inst.Physics:ClearCollisionMask()
                 inst.Physics:CollidesWith(COLLISION.ITEMS)
@@ -581,12 +610,14 @@ local function MakeDeco(build, bank, animframe, data, name)
 
         inst.Transform:SetRotation(-90)
         if decal then
+            inst.decal = true
             -- NOTE: only apply billborad render behavior on beam/pillar
             if name:find("_corner")
                 or name:find("_beam")
                 or name:find("_pillar")
+                or (bank and bank:find("wall_decals"))
                 or data.rotatingbillboard then
-                -- skip this 2024/6/13
+
                 inst:AddComponent("rotatingbillboard")
 
                 inst.components.rotatingbillboard.animdata = {
@@ -598,7 +629,17 @@ local function MakeDeco(build, bank, animframe, data, name)
                 inst.Transform:SetTwoFaced()
             end
         else
-            inst.Transform:SetTwoFaced()
+            if data.rotatingbillboard then
+                inst:AddComponent("rotatingbillboard")
+
+                inst.components.rotatingbillboard.animdata = {
+                    bank = bank,
+                    build = build,
+                    anim = animframe,
+                }
+            else
+                inst.Transform:SetTwoFaced()
+            end
         end
 
         if TheWorld.ismastersim then
@@ -613,6 +654,10 @@ local function MakeDeco(build, bank, animframe, data, name)
                 -- this way the backwall windows will show the right prefab name (with controller)
                 inst.name = STRINGS.NAMES[name_override:upper()]
                 inst.components.inspectable.nameoverride = name_override
+            end
+        else
+            if name_override then
+                inst:SetPrefabNameOverride(name_override)
             end
         end
 
@@ -646,7 +691,11 @@ local function MakeDeco(build, bank, animframe, data, name)
                     local child_prop = SpawnPrefab(child)
                     local x, y, z = inst.Transform:GetWorldPosition()
                     child_prop.Transform:SetPosition(x, y, z)
-                    child_prop.Transform:SetRotation(inst.Transform:GetRotation())
+                    if inst.components.rotatingbillboard and inst.components.rotatingbillboard.rotation_set then -- rotation_set属性用于判断rotatingbillboard组件是否完成初始化
+                        child_prop.Transform:SetRotation(inst.components.rotatingbillboard:GetRotation())
+                    else
+                        child_prop.Transform:SetRotation(inst.Transform:GetRotation())
+                    end
                     if not inst.decochildrenToRemove then
                         inst.decochildrenToRemove = {}
                     end
@@ -677,6 +726,13 @@ local function MakeDeco(build, bank, animframe, data, name)
             inst.components.workable.savestate = true
             inst.components.workable:SetOnWorkCallback(OnWorkCallBack)
             inst.updateworkableart = true
+        end
+
+        if data.cansit then
+            inst:AddComponent("sittable")
+            if not finaloffset then
+                inst.AnimState:SetFinalOffset(-1)
+            end
         end
 
         if prefabname == "pig_latin_1" then

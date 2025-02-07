@@ -35,6 +35,8 @@ local function fn()
     inst.AnimState:SetBuild("alloy")
     inst.AnimState:PlayAnimation("idle")
 
+    inst.pickupsound = "metal"
+
     inst:AddTag("molebait")
     inst:AddTag("scarerbait")
 

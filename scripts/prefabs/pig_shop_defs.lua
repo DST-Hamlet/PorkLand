@@ -144,7 +144,7 @@ local SHOPTYPES = {
         { "walrushat",          "oinc", 50 },
         { "molehat",            "oinc", 20 },
         { "catcoonhat",         "oinc", 10 },
-        { "captainhat",         "oinc", 20 },
+        -- { "captainhat",         "oinc", 20 },
         { "featherhat",         "oinc", 5  },
         { "strawhat",           "oinc", 3  },
         { "beefalohat",         "oinc", 10 },

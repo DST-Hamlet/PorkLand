@@ -22,6 +22,10 @@ local function SpawnRoBin(inst, spawn_pt, spawnevent)
         spawn_pt = GetSpawnPoint(pt)
     end
 
+    if not spawn_pt then
+        return
+    end
+
     if spawn_pt then
         local ro_bin = SpawnPrefab("ro_bin")
         if ro_bin then
@@ -55,6 +59,8 @@ local function RebindRoBin(inst, ro_bin)
         if ro_bin.components.follower.leader ~= inst then
             ro_bin.components.follower:SetLeader(inst)
         end
+
+        inst.ro_bin = ro_bin
         return true
     end
 end
@@ -86,7 +92,9 @@ local function OnRoBinDeath(inst)
 end
 
 local function FixRoBin(inst)
-    inst.fixtask = nil
+    if inst.ro_bin and inst.ro_bin:IsValid() then
+        return
+    end
     --take an existing ro_bin if there is one
     if not RebindRoBin(inst) then
         inst.AnimState:PlayAnimation("dead", true)
@@ -100,12 +108,6 @@ local function FixRoBin(inst)
             end
             StartRespawn(inst, time_remaining)
         end
-    end
-end
-
-local function OnPutInInventory(inst)
-    if not inst.fixtask then
-        inst.fixtask = inst:DoTaskInTime(1, function() FixRoBin(inst) end)
     end
 end
 
@@ -139,13 +141,18 @@ local function fn()
 
     inst.entity:AddTransform()
     inst.entity:AddAnimState()
+    inst.entity:AddMiniMapEntity()
     inst.entity:AddNetwork()
 
     MakeInventoryPhysics(inst)
+    MakeInventoryFloatable(inst, "med", nil, 0.65)
 
     inst.AnimState:SetBank("ro_bin_gem")
     inst.AnimState:SetBuild("ro_bin_gem")
     inst.AnimState:PlayAnimation("idle_loop", true)
+
+    inst.MiniMapEntity:SetPriority(5)
+    inst.MiniMapEntity:SetIcon("ro_bin_gem.tex")
 
     inst:AddTag("ro_bin_gizzard_stone")
     inst:AddTag("irreplaceable")
@@ -162,7 +169,6 @@ local function fn()
     inst.closedEye = "ro_bin_gem_closed"
 
     inst:AddComponent("inventoryitem")
-    inst.components.inventoryitem:SetOnPutInInventoryFn(OnPutInInventory)
     inst.components.inventoryitem:ChangeImageName(inst.openEye)
 
     inst:AddComponent("inspectable")
@@ -175,9 +181,10 @@ local function fn()
 
     inst.OnLoad = OnLoad
     inst.OnSave = OnSave
+    inst.SpawnRoBin = SpawnRoBin
     inst.OnRoBinDeath = OnRoBinDeath
 
-    inst.fixtask = inst:DoTaskInTime(1, function() FixRoBin(inst) end)
+    inst.fixtask = inst:DoPeriodicTask(1, function() FixRoBin(inst) end)
 
     return inst
 end

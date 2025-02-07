@@ -109,6 +109,7 @@ local function fn()
     inst.entity:AddAnimState()
     inst.entity:AddSoundEmitter()
     inst.entity:AddLight()
+    inst.entity:AddNetwork()
 
     inst.AnimState:SetBank("ruins_light_cone")
     inst.AnimState:SetBuild("ruins_light_beam")

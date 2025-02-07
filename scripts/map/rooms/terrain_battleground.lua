@@ -1,7 +1,7 @@
 AddRoom("BG_battleground_base", {
     colour = {r = 1.0, g = 1.0, b = 1.0, a = 0.3},
     value = WORLD_TILES.BATTLEGROUND_RAINFOREST_NOISE,
-    tags = {"ExitPiece", "Bramble"},
+    tags = {"ExitPiece"},
     contents = {
         distributepercent = .22,  --.26
         distributeprefabs = {
@@ -23,7 +23,7 @@ AddRoom("BG_battleground_base", {
 AddRoom("battleground_ribs", {
     colour = {r = 1.0, g = 1.0, b = 1.0, a = 0.3},
     value = WORLD_TILES.BATTLEGROUND_RAINFOREST_NOISE,
-    tags = {"ExitPiece", "Bramble"},
+    tags = {"ExitPiece"},
     contents = {
         distributepercent = .22,  --.26
         distributeprefabs = {
@@ -46,7 +46,7 @@ AddRoom("battleground_ribs", {
 AddRoom("battleground_claw", {
     colour = {r = 1.0, g = 1.0, b = 1.0, a = 0.3},
     value = WORLD_TILES.BATTLEGROUND_RAINFOREST_NOISE,
-    tags = {"ExitPiece", "Bramble"},
+    tags = {"ExitPiece"},
     contents = {
         distributepercent = .22,  --.26
         distributeprefabs = {
@@ -69,7 +69,7 @@ AddRoom("battleground_claw", {
 AddRoom("battleground_leg", {
     colour = {r = 1.0, g = 1.0, b = 1.0, a = 0.3},
     value = WORLD_TILES.BATTLEGROUND_RAINFOREST_NOISE,
-    tags = {"ExitPiece", "Bramble"},
+    tags = {"ExitPiece"},
     contents = {
         distributepercent = .22,  --.26
         distributeprefabs = {
@@ -92,7 +92,7 @@ AddRoom("battleground_leg", {
 AddRoom("battleground_head", {
     colour = {r = 1.0, g = 1.0, b = 1.0, a = 0.3},
     value = WORLD_TILES.BATTLEGROUND_RAINFOREST_NOISE,
-    tags = {"ExitPiece", "Bramble"},
+    tags = {"ExitPiece"},
     contents = {
         distributepercent = .22,  --.26
         distributeprefabs = {

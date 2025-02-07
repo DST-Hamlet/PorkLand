@@ -110,31 +110,38 @@ local states=
 
     State{
         name = "leap_attack",
-        tags = {"attack", "canrotate", "busy", "leapattack"},
+        tags = {"attack", "busy", "leapattack"},
 
         onenter = function(inst, data)
             inst.sg.statemem.startpos = data.startpos
             inst.sg.statemem.targetpos = data.targetpos
             inst.sg.statemem.leap_time = 0
             inst.components.locomotor:Stop()
-            inst.Physics:SetActive(false)
             inst.components.locomotor:EnableGroundSpeedMultiplier(false)
 
             inst.components.combat:StartAttack()
             inst.AnimState:PlayAnimation("jump_atk_loop")
-        end,
+            inst:ForceFacePoint(inst.sg.statemem.targetpos)
 
-        onupdate = function(inst, dt)
-            local percent = inst.sg.statemem.leap_time / inst.AnimState:GetCurrentAnimationLength()
-            inst.sg.statemem.leap_time = inst.sg.statemem.leap_time + dt
-            local xdiff = inst.sg.statemem.targetpos.x - inst.sg.statemem.startpos.x
-            local zdiff = inst.sg.statemem.targetpos.z - inst.sg.statemem.startpos.z
+            local time = inst.AnimState:GetCurrentAnimationLength()
+            local dist = math.sqrt(distsq(inst.sg.statemem.startpos.x, inst.sg.statemem.startpos.z, inst.sg.statemem.targetpos.x, inst.sg.statemem.targetpos.z))
+            local vel = dist/time
+            inst.sg.statemem.vel = vel
 
-            inst.Transform:SetPosition(inst.sg.statemem.startpos.x + xdiff * percent, 0, inst.sg.statemem.startpos.z + zdiff * percent)
+            local newmass = inst.Physics:GetMass()
+            local newrad = inst.Physics:GetRadius()
+            ChangeToJunmpingPhysics(inst, newmass, newrad)
+
+            inst.Physics:SetMotorVelOverride(vel,0,0)
         end,
 
         onexit = function(inst)
-            inst.Physics:SetActive(true)
+            inst.Physics:ClearMotorVelOverride()
+
+            local newmass = inst.Physics:GetMass()
+            local newrad = inst.Physics:GetRadius()
+            ChangeToAmphibiousCharacterPhysics(inst, newmass, newrad)
+
             inst.components.locomotor:Stop()
             inst.components.locomotor:EnableGroundSpeedMultiplier(true)
             inst.sg.statemem.startpos = nil
@@ -169,9 +176,26 @@ local states=
                         inst:PushEvent("onmissother")
                     end
                 end)
-            end
+            else
+                SpawnWaves(inst, 12, 360, 4, nil, nil, nil, true)
 
-            SpawnWaves(inst, 12, 360, 4, nil, nil, nil, true)
+                local old_damageRings = inst.components.groundpounder.damageRings
+                local old_numRings = inst.components.groundpounder.numRings
+                local old_groundpoundfx = inst.components.groundpounder.groundpoundfx
+                local old_groundpoundringfx = inst.components.groundpounder.groundpoundringfx
+
+                inst.components.groundpounder.damageRings = 1
+                inst.components.groundpounder.numRings = 1
+                inst.components.groundpounder.groundpoundfx = "splash_water_drop"
+                inst.components.groundpounder.groundpoundringfx = "bombsplash"
+
+                inst.components.groundpounder:GroundPound()
+
+                inst.components.groundpounder.damageRings = old_damageRings
+                inst.components.groundpounder.numRings = old_numRings
+                inst.components.groundpounder.groundpoundfx = old_groundpoundfx
+                inst.components.groundpounder.groundpoundringfx = old_groundpoundringfx
+            end
 
             inst.components.locomotor:Stop()
             inst.AnimState:PlayAnimation("jump_atk_pst")
@@ -244,7 +268,6 @@ local states=
 
         onenter = function(inst, noanim)
             if noanim then
-                inst.AnimState:SetBank("hippo")
                 inst.sg:GoToState("idle")
                 return
             end
@@ -266,17 +289,17 @@ local states=
             TimeEvent(8 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC002/creatures/seacreature_movement/water_emerge_med") end),
         },
 
+        onexit = function(inst)
+            inst.components.amphibiouscreature:RefreshBankFn()
+            inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/hippo/walk")
+        end,
+
         events =
         {
             EventHandler("animover", function(inst)
-                inst.AnimState:SetBank("hippo")
                 inst.sg:GoToState("idle")
             end),
         },
-
-        onexit = function(inst)
-            inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/hippo/walk")
-        end,
     },
 
     State{
@@ -309,6 +332,10 @@ local states=
                 SpawnWaves(inst, 6, 360, 2, "wave_ripple", nil, nil, nil, true)
             end),
         },
+
+        onexit = function(inst)
+            inst.components.amphibiouscreature:RefreshBankFn()
+        end,
 
         events =
         {

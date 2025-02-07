@@ -104,7 +104,7 @@ local function OnAporkalypseNear(inst)
         inst.AnimState:PushAnimation("down_idle")
         inst.down = true
 
-        TheWorld:PushEvent("ms_setrewindmult", inst.rewind_mult)
+        TheWorld:PushEvent("ms_setrewindmult", {source = inst, mult = inst.rewind_mult})
     end
 end
 
@@ -114,7 +114,7 @@ local function OnAporkalypseFar(inst)
         inst.AnimState:PushAnimation("up_idle")
         inst.down = nil
 
-        TheWorld:PushEvent("ms_setrewindmult", -inst.rewind_mult)
+        TheWorld:PushEvent("ms_setrewindmult", {source = inst, mult = 0})
     end
 end
 
@@ -137,6 +137,11 @@ local function Rearm(inst, doer)
        inst.components.creatureprox:ForceUpdate()
     end
 end
+
+local function AporkalypseDisarm(inst, doer)
+    Disarm(inst, doer)
+    TheWorld:PushEvent("ms_setrewindmult", {source = inst, mult = 0})
+ end
 
 local function CheckStartDown(inst)
     if inst:HasTag("startdown") then
@@ -250,6 +255,8 @@ local function MakeAporkalypseplate(name, build, rewind_mult)
 
         inst.components.creatureprox:SetOnNear(OnAporkalypseNear)
         inst.components.creatureprox:SetOnFar(OnAporkalypseFar)
+
+        inst.components.disarmable.disarmfn = AporkalypseDisarm
 
         inst.rewind_mult = rewind_mult
 

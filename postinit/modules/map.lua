@@ -53,11 +53,14 @@ function Map:GetVisualTileAtPoint(x, y, z)
 end
 
 local _IsPassableAtPoint = Map.IsPassableAtPoint
-function Map:IsPassableAtPoint(x, y, z, ...)
+function Map:IsPassableAtPoint(x, y, z, allow_water, ...)
     if TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
         return TheWorld.components.interiorspawner:IsInInteriorRoom(x, z)
     end
-    return _IsPassableAtPoint(self, x, y, z, ...)
+    if not allow_water and self:ReverseIsVisualWaterAtPoint(x, y, z) then
+        return false
+    end
+    return _IsPassableAtPoint(self, x, y, z, allow_water, ...)
 end
 
 function Map:IsImpassableAtPoint(x, y, z, ...)
@@ -68,6 +71,9 @@ function Map:IsImpassableAtPoint(x, y, z, ...)
 end
 
 function Map:ReverseIsVisualGroundAtPoint(x, y, z)
+    if TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
+        return TheWorld.components.interiorspawner:IsInInteriorRoom(x, z)
+    end
     return self:_IsVisualGroundAtPoint(x, y, z) and not self:ReverseIsVisualWaterAtPoint(x, y, z)
 end
 
@@ -76,7 +82,7 @@ function Map:ReverseIsVisualWaterAtPoint(x, y, z)
         return true
     end
     if TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
-        return not TheWorld.components.interiorspawner:IsInInteriorRoom(x, z)
+        return false
     end
 
     local center_x, _, center_z = self:GetTileCenterPoint(x, y, z)
@@ -301,7 +307,7 @@ function Map:IsAboveGroundAtPoint(x, y, z, allow_water, ...)
     end
     if TheWorld.has_pl_ocean then
         local valid_water_tile = (allow_water == true) and self:ReverseIsVisualWaterAtPoint(x, y, z)
-        return valid_water_tile or self:IsVisualGroundAtPoint(x, y, z)
+        return valid_water_tile or _IsAboveGroundAtPoint(self, x, y, z, ...)
     end
     return _IsAboveGroundAtPoint(self, x, y, z, ...)
 end
@@ -321,7 +327,41 @@ function Map:CanDeployRecipeAtPoint(pt, recipe, rot, player, ...)
         end
     end
 
+    local x, y, z = pt:Get()
+    if not self:ReverseIsVisualGroundAtPoint(x, y, z) or self:IsCloseToWater(x, y, z, 2.99) then
+        return false
+    end
+
     return _CanDeployRecipeAtPoint(self, pt, recipe, rot, player, ...)
+end
+
+local _CanPlantAtPoint = Map.CanPlantAtPoint
+function Map:CanPlantAtPoint(x, y, z, ...)
+    if not self:ReverseIsVisualGroundAtPoint(x, y, z) then
+        return false
+    end
+
+    return _CanPlantAtPoint(self, x, y, z, ...)
+end
+
+local _CanDeployWallAtPoint = Map.CanDeployWallAtPoint
+function Map:CanDeployWallAtPoint(pt, ...)
+    local x, y, z = pt:Get()
+    if not self:ReverseIsVisualGroundAtPoint(x, y, z) then
+        return false
+    end
+
+    return _CanDeployWallAtPoint(self, pt, ...)
+end
+
+local _CanDeployAtPoint = Map.CanDeployAtPoint
+function Map:CanDeployAtPoint(pt, ...)
+    local x, y, z = pt:Get()
+    if not self:ReverseIsVisualGroundAtPoint(x, y, z) then
+        return false
+    end
+
+    return _CanDeployAtPoint(self, pt, ...)
 end
 
 -- Copy of IsPassableAtPointWithPlatformRadiusBias that only checks the platform
@@ -338,6 +378,33 @@ function Map:GetNearbyPlatformAtPoint(pos_x, pos_y, pos_z, extra_radius)
         end
     end
     return nil
+end
+
+local CANOPY_TILES = {
+    [WORLD_TILES.GASJUNGLE] = true,
+    [WORLD_TILES.DEEPRAINFOREST] = true,
+}
+
+function Map:IsVisualCanopyAtPoint(x, y, z, radius)
+    local testradius = radius or 1.5
+    local isclosetocanopy = TheWorld.Map:IsCloseToTile(x, y, z, testradius, function(_x, _y, _z)
+        local tile = TheWorld.Map:GetTileAtPoint(_x, _y, _z)
+
+        local clientundertile = TheWorld.components.clientundertile
+
+        local coords_x, coords_y = TheWorld.Map:GetTileCoordsAtPoint(_x, _y, _z)
+
+        if clientundertile then
+            local old_tile = clientundertile:GetTileUnderneath(coords_x, coords_y)
+            if old_tile then
+                tile = old_tile
+            end
+        end
+
+        return CANOPY_TILES[tile]
+    end)
+
+    return isclosetocanopy
 end
 
 local _GetTileCenterPoint = Map.GetTileCenterPoint
@@ -384,7 +451,14 @@ function Map:GetTile(x, y, ...)
 end
 
 function Map:GetIslandTagAtPoint(x, y, z)
-    -- Note: If you care about the tile overlap then use FindVisualNodeAtPoint
+    local on_land = self:IsLandTileAtPoint(x, 0, z)
+    if not on_land then
+        local pt = Vector3(x, y, z)
+        local dest = FindNearbyLand(pt, 1)
+        if dest then
+            x, y, z = dest:Get()
+        end
+    end
     local node_index = self:GetNodeIdAtPoint(x, y, z)
     local node = TheWorld.topology.nodes[node_index]
     if node == nil or node.tags == nil then
@@ -442,4 +516,41 @@ end
 
 function Map:IsWater(tile) -- 给几何mod用的
     return TileGroupManager:IsOceanTile(tile)
+end
+
+function Map:CalcPercentTilesAtPoint(x, y, z, radius, typefn)
+    local coord_radius = (math.floor(radius / TILE_SCALE) + 1) * TILE_SCALE
+    local num_tiles = 0
+    local num_typetiles = 0
+    for i = - coord_radius, coord_radius, TILE_SCALE do
+        for j = - coord_radius, coord_radius, TILE_SCALE do
+            if i * i + j * j < radius * radius then
+                num_tiles = num_tiles + 1
+                if typefn(x + i, 0, z + j) then
+                    num_typetiles = num_typetiles + 1
+                end
+            end
+        end
+    end
+
+    if num_tiles > 0 then
+        return num_typetiles / num_tiles
+    else
+        return 0
+    end
+end
+
+function Map:IsPhysicsClearAtPoint(pt, inst)
+    local CANT_TAGS = {"INLIMBO", "NOCLICK", "FX"}
+    local x, y, z = pt:Get()
+    local ents = TheSim:FindEntities(x, y, z, MAX_PHYSICS_RADIUS, nil, CANT_TAGS)
+    for _, ent in ipairs(ents) do
+        if not (inst and ent == inst) then
+            local radius = ent:GetPhysicsRadius(0)
+            if ent:GetDistanceSqToPoint(x, y, z) < radius * radius then
+                return false
+            end
+        end
+    end
+    return true
 end

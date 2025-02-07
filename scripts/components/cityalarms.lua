@@ -36,10 +36,8 @@ local function spawn_guard_pig_from_offscreen(inst, city, threat)
                 end
                 guard.components.citypossession:SetCity(city)
                 guard.components.knownlocations:RememberLocation("home", pos)
-                guard:PushEvent("attacked", {
+                guard:PushEvent("onalarmed", {
                     attacker = threat,
-                    damage = 0,
-                    weapon = nil,
                 })
             end)
             break
@@ -80,10 +78,8 @@ local function spawn_guard_pig_from_tower(inst, city, tower, threat)
         guard.components.knownlocations:RememberLocation("home", pos)
     end
     guard.components.citypossession:SetCity(city)
-    guard:PushEvent("attacked", {
+    guard:PushEvent("onalarmed", {
         attacker = threat,
-        damage = 0,
-        weapon = nil,
     })
 end
 
@@ -149,10 +145,8 @@ function Cityalarms:ReleaseGuards(city, threat)
                 guard:AddTag("alarmed_picked")
                 guard:DoTaskInTime(math.random(), function()
                     guard:RemoveTag("alarmed_picked")
-                    guard:PushEvent("attacked", {
+                    guard:PushEvent("onalarmed", {
                         attacker = threat,
-                        damage = 0,
-                        weapon = nil,
                     })
                 end)
                 guard_assigned = true
@@ -245,10 +239,8 @@ function Cityalarms:TriggerAlarm(city, threat, ignore_royal_status)
             if pig.components.combat.target == nil then
                 -- print("ALERTING FROM WITNESS")
                 pig:DoTaskInTime(math.random(), function()
-                    pig:PushEvent("attacked", {
+                    pig:PushEvent("onalarmed", {
                         attacker = threat,
-                        damage = 0,
-                        weapon = nil,
                     })
                 end)
                 playmusic = true

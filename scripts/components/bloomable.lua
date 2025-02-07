@@ -132,16 +132,16 @@ function Bloomable:OnLoad(data)
     if data then
         self.blooming = data.blooming
 
+        if self.blooming then
+            self:StartBloom(true)
+        end
+
         if data.bloomtask then
             self:DoStartBloomTask(data.bloomtask)
         end
         if data.unbloomtask then
             self:DoStopBloomTask(data.unbloomtask)
         end
-    end
-
-    if self.blooming then
-        self:StartBloom(true)
     end
 end
 

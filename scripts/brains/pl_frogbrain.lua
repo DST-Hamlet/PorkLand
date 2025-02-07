@@ -46,24 +46,29 @@ end)
 function FrogBrain:OnStart()
     local root = PriorityNode(
     {
-        BrainCommon.PanicTrigger(self.inst),
+        WhileNode(
+            function() return not self.inst.sg:HasStateTag("falling") end, "not Falling",
+            PriorityNode(
+            {
+                BrainCommon.PanicTrigger(self.inst),
 
-        ChaseAndAttack(self.inst, MAX_CHASE_TIME),
+                ChaseAndAttack(self.inst, MAX_CHASE_TIME),
 
-        WhileNode(function() return ShouldGoHome(self.inst) end, "ShouldGoHome",
-            DoAction(self.inst, function() return GoHomeAction(self.inst) end, "go home", true)),
+                WhileNode(function() return ShouldGoHome(self.inst) end, "ShouldGoHome",
+                    DoAction(self.inst, function() return GoHomeAction(self.inst) end, "go home", true)),
 
-        DoAction(self.inst, EatFoodAction),
+                DoAction(self.inst, EatFoodAction),
 
-        WhileNode(function()
-            return TheWorld and not TheWorld.state.isnight
-        end, "ShouldWanderSleepTest",
+                WhileNode(function()
+                    return TheWorld and not TheWorld.state.isnight
+                end, "ShouldWanderSleepTest",
 
-        Wander(self.inst, function() return self.inst.components.knownlocations:GetLocation("home") end, MAX_WANDER_DIST)),
+                Wander(self.inst, function() return self.inst.components.knownlocations:GetLocation("home") end, MAX_WANDER_DIST)),
 
-        StandStill(self.inst, function() return self.inst.sg:HasStateTag("idle") end, nil),
-    }, 0.25)
-
+                StandStill(self.inst, function() return self.inst.sg:HasStateTag("idle") end, nil),
+            }, 0.25)
+        )
+    })
     self.bt = BT(self.inst, root)
 end
 

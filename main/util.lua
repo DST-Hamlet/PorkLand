@@ -1,5 +1,13 @@
 GLOBAL.setfenv(1, GLOBAL)
 
+local _TempTile_HandleTileChange_Void = TempTile_HandleTileChange_Void
+function TempTile_HandleTileChange_Void(x, y, z)
+    if TheWorld and TheWorld:HasTag("porkland") then
+        return
+    end
+    return _TempTile_HandleTileChange_Void(x, y, z)
+end
+
 function GetWorldSetting(setting, default)
     local worldsettings = TheWorld and TheWorld.components.worldsettings
     if worldsettings then
@@ -125,6 +133,10 @@ end
 ---@param targets_hit table|nil track entities hit with this table, not required
 ---@param targets_tossed table|nil track items tossed with this table, not required
 function DoCircularAOEDamageAndDestroy(inst, params, targets_hit, targets_tossed)
+    if not inst then
+        print("WARNING: inst in DoCircularAOEDamageAndDestroy is nil")
+        return
+    end
     local damage_radius = params.damage_radius
     local launch_radius = params.launch_range or damage_radius
     local LAUNCH_SPEED = params.launch_speed or 0.2
@@ -135,24 +147,38 @@ function DoCircularAOEDamageAndDestroy(inst, params, targets_hit, targets_tossed
     local ONWORKEDFN = params.onworkedfn or function(...) end
     local ONPICKEDFN = params.onpickedfn or function(...) end
     local VALIDFN = params.validfn or function(...) return true end
+    local attacker = params.attacker
+    if not attacker or not attacker:IsValid() then
+        attacker = nil
+    end
 
     targets_hit = targets_hit or {}
     targets_tossed = targets_tossed or {}
-    local pugalisk_parts = {}
 
     local areahit_was_disabled = inst.components.combat.areahitdisabled
     inst.components.combat:EnableAreaDamage(false)
     inst.components.combat.ignorehitrange = true
 
+    local areahit_was_disabled_attacker = nil
+    if attacker then
+        areahit_was_disabled_attacker = attacker.components.combat.areahitdisabled
+        attacker.components.combat:EnableAreaDamage(false)
+        attacker.components.combat.ignorehitrange = true
+    end
+
     local x, _, z = inst.Transform:GetWorldPosition()
+    if params.pos then
+        x = params.pos.x
+        z = params.pos.z
+    end
     for _, v in ipairs(TheSim:FindEntities(x, 0, z, damage_radius + 3, nil, DAMAGE_CANT_TAGS, DAMAGE_ONEOF_TAGS)) do
         if not targets_hit[v] and v:IsValid() and VALIDFN(inst, v) and not (v.components.health and v.components.health:IsDead()) then
             local actual_damage_range = damage_radius + v:GetPhysicsRadius(0.5)
             if v:GetDistanceSqToPoint(x, 0, z) < actual_damage_range * actual_damage_range then
                 if is_valid_work_target(v) then
                     targets_hit[v] = true
-                    v.components.workable:Destroy(inst)
                     ONWORKEDFN(inst, v)
+                    v.components.workable:Destroy(inst)
                     if v:IsValid() and v:HasTag("stump") then
                         v:Remove()
                     end
@@ -170,15 +196,19 @@ function DoCircularAOEDamageAndDestroy(inst, params, targets_hit, targets_tossed
                             end
                         end
                     end
-                elseif v:HasTag("pugalisk") then -- don't insta kill pugalisk
-                    local body = v._body and v._body:value() or v
-                    if not body.invulnerable then -- only attack when it's vulnerable
-                        pugalisk_parts[v] = v
+                elseif attacker ~= nil then
+                    if attacker.components.combat:CanTarget(v) and CanPVPTarget(attacker, v) then
+                        targets_hit[v] = true
+                        local damage = inst.components.combat:CalcDamage(v)
+                        v.components.combat:GetAttacked(attacker, damage)
+                        if v:IsValid() then
+                            ONATTACKEDFN(inst, v)
+                        end
                     end
-                    targets_hit[v] = true
                 elseif inst.components.combat:CanTarget(v) and CanPVPTarget(inst, v) then
                     targets_hit[v] = true
-                    inst.components.combat:DoAttack(v)
+                    local damage = inst.components.combat:CalcDamage(v)
+                    v.components.combat:GetAttacked(inst, damage)
                     if v:IsValid() then
                         ONATTACKEDFN(inst, v)
                     end
@@ -187,16 +217,13 @@ function DoCircularAOEDamageAndDestroy(inst, params, targets_hit, targets_tossed
         end
     end
 
-    local pugalisk = next(pugalisk_parts)
-    if pugalisk then
-        inst.components.combat:DoAttack(pugalisk)
-        if pugalisk:IsValid() then
-            ONATTACKEDFN(inst, pugalisk)
-        end
-    end
-
     inst.components.combat.areahitdisabled = areahit_was_disabled
     inst.components.combat.ignorehitrange = false
+
+    if attacker then
+        attacker.components.combat.areahitdisabled = areahit_was_disabled_attacker
+        attacker.components.combat.ignorehitrange = false
+    end
 
     if not SHOULD_LAUNCH then
         return
@@ -368,5 +395,63 @@ function HandleDugGround(dug_ground, x, y, z, ...)
         end
     else
         return _HandleDugGround(dug_ground, x, y, z, ...)
+    end
+end
+
+function PL_LandFlyingCreature(creature)
+    if creature:HasTag("flying") then
+        creature:RemoveTag("flying")
+        creature:PushEvent("on_landed")
+        if creature.OnLandPhysics then
+            creature:OnLandPhysics()
+        end
+    end
+end
+
+local NORAISE_state =
+{
+    ["sleep"] = true,
+    ["sleeping"] = true,
+    ["wake"] = true,
+    ["frozen"] = true,
+    ["thaw"] = true
+}
+
+function PL_RaiseFlyingCreature(creature, ...)
+    if creature.sg.nextstate and NORAISE_state[creature.sg.nextstate] then
+        return -- 保持落地状态的连续性
+    end
+
+    if not creature:HasTag("flying") then
+        creature:AddTag("flying")
+        creature:PushEvent("on_no_longer_landed")
+        if creature.OnRaisePhysics then
+            creature:OnRaisePhysics()
+        end
+    end
+end
+
+function IsPlayerInAntDisguise(player)
+    if not (player and player:IsValid()) then
+        return false
+    end
+
+    return (player.components.inventory and (player.components.inventory:EquipHasTag("antmask") and player.components.inventory:EquipHasTag("antsuit")))
+        or (player.replica.inventory and (player.replica.inventory:EquipHasTag("antmask") and player.replica.inventory:EquipHasTag("antsuit")))
+        or false
+end
+
+function TagToDirect(inst)
+    if inst:HasTag("door_north") then
+        return 180
+    end
+    if inst:HasTag("door_east") then
+        return -90
+    end
+    if inst:HasTag("door_west") then
+        return 90
+    end
+    if inst:HasTag("door_south") then
+        return 0
     end
 end

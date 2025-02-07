@@ -92,6 +92,7 @@ local function commonfn()
     inst:AddTag("wildfireprotected")
 
     MakeTinyFlyingCharacterPhysics(inst, 1, .5)
+    MakeInventoryFloatable(inst)
 
     inst.Transform:SetSixFaced()
     inst.Transform:SetScale(0.6, 0.6, 0.6)
@@ -277,6 +278,9 @@ end
 
 local function CocoonExpire(inst)
     inst.expiretask, inst.expiretaskinfo = nil, nil
+    if not inst.components.health:IsDead() then
+        inst.components.health:Kill()
+    end
     inst.sg:GoToState("cocoon_expire")
 end
 

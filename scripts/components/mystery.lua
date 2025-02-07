@@ -14,12 +14,12 @@ function Mystery:GenerateReward()
     local mid_tier = {"flint", "goldnugget", "oinc", "oinc10"}
 
     local toy_tier = {}
-    for i=1,NUM_TRINKETS do
-		table.insert(toy_tier, "trinket_" .. tostring(i))
-	end
+    for i = 1, NUM_TRINKETS do
+        table.insert(toy_tier, "trinket_" .. tostring(i))
+    end
 
     local high_tier = {}
-    for i=1,3 do
+    for i = 1, 3 do
         table.insert(high_tier, "relic_" .. tostring(i))
     end
 
@@ -95,8 +95,8 @@ function Mystery:OnLoad(data)
         self.reward = data.reward
     end
 
-    if data.reward then
-        self:AddReward(data.reward)
+    if data.ismystery then
+        self:AddReward(data.reward) -- data.reward可能为nil
     end
     if data.rolled then
         self.rolled = data.rolled
@@ -108,6 +108,10 @@ end
 
 function Mystery:OnSave()
     local data = {}
+
+    if self.inst:HasTag("mystery") then
+        data.ismystery = true
+    end
 
     if self.reward then
         data.reward = self.reward
@@ -124,7 +128,7 @@ end
 function Mystery:Investigate(doer)
     if doer and doer.components.uniqueidentity then
         local doer_uniqueid = doer.components.uniqueidentity:GetID()
-        self.investigaters[doer_uniqueid] = 1000
+        self.investigaters[doer_uniqueid] = 99999
     end
     if doer and doer.components.talker then
         if self.reward then

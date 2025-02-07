@@ -154,6 +154,9 @@ end
 
 -- Returns the interiorID of the room this entity is in
 function EntityScript:GetCurrentInteriorID() -- 亚丹：请暂时不要在客机使用这个函数
+    if not self:IsValid() then
+        return
+    end
     local x, _, z = self.Transform:GetWorldPosition()
     if TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
         local interiorID = TheWorld.components.interiorspawner:PositionToIndex({x = x, z = z})
@@ -176,14 +179,18 @@ function EntityScript:Play2DSoundOutSide(path, soundname, distance, paramname, p
     if not soundname then
         print("WARNING: EntityScript:Play2DSoundOutSide must have soundname")
     end
-    local pos = self:GetPosition()
-    local followentity = self
-    local areamode = AREAMODES.DISTANCE
-    TheWorld.components.worldsoundmanager:PlayWorldSound(path, soundname, paramname, paramval, pos, followentity, areamode, distance)
+    if TheWorld.ismastersim then
+        local pos = self:GetPosition()
+        local followentity = self
+        local areamode = AREAMODES.DISTANCE
+        TheWorld.components.worldsoundmanager:PlayWorldSound(path, soundname, paramname, paramval, pos, followentity, areamode, distance)
+    end
 end
 
 function EntityScript:Kill2DSound(soundname)
-    TheWorld.components.worldsoundmanager:KillWorldSound(self, soundname)
+    if TheWorld.ismastersim then
+        TheWorld.components.worldsoundmanager:KillWorldSound(self, soundname)
+    end
 end
 
 function EntityScript:GetCurrentAnimation()
@@ -193,24 +200,32 @@ function EntityScript:GetCurrentAnimation()
     end
 end
 
+function EntityScript:GetCurrentBank()
+    local debug_string = self.entity:GetDebugString()
+    if debug_string then
+        return string.match(debug_string, "bank:%s+(%S+)%s+")
+    end
+end
+
 local _GetIsWet = EntityScript.GetIsWet
 function EntityScript:GetIsWet(...)
     return self:HasTag("temporary_wet") or (_GetIsWet(self, ...) and not self:GetIsInInterior())
 end
 
+function EntityScript:GetShouldBrainStopped()
+    local stopped = false
+    if self.components.freezable and self.components.freezable:IsFrozen() then
+        stopped = true
+    end
+    if self.components.sleeper and self.components.sleeper:IsAsleep() then
+        stopped = true
+    end
+    return stopped
+end
+
 local _RestartBrain = EntityScript.RestartBrain
 function EntityScript:RestartBrain(...)
-    if self.components.freezable and self.components.freezable:IsFrozen() then
-        self:StopBrain()
-        if self.brainfn ~= nil then
-            self.brain = self.brainfn()
-            if self.brain ~= nil then
-                self.brain.inst = self
-                self.brain:Stop()
-            end
-        end
-        return
-    elseif self.components.sleeper and self.components.sleeper:IsAsleep() then
+    if self:GetShouldBrainStopped() then
         self:StopBrain()
         if self.brainfn ~= nil then
             self.brain = self.brainfn()
@@ -232,4 +247,26 @@ function EntityScript:GetAdjectivedName(...)
         return name
     end
     return _GetAdjectivedName(self, ...)
+end
+
+local _Remove = EntityScript.Remove
+function EntityScript:Remove(...)
+    if self.SoundEmitter then
+        self.SoundEmitter:KillAllSounds()
+    end
+    return _Remove(self, ...)
+end
+
+function EntityScript:IsInSameIsland(target)
+    if not (target and target:IsValid()) then
+        return false
+    end
+
+    local x, _, z = self.Transform:GetWorldPosition()
+    local tx, ty, tz = target.Transform:GetWorldPosition()
+
+    local current_island = TheWorld.Map:GetIslandTagAtPoint(x, 0, z)
+    local target_island = TheWorld.Map:GetIslandTagAtPoint(tx, ty, tz)
+
+    return current_island == target_island
 end

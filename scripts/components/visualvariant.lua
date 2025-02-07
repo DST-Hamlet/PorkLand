@@ -17,6 +17,7 @@ end)
 
 function VisualVariant:SetVariantData(prefab)
     self.variants = VARIANTS[prefab]
+    TryReCalculate(self.inst)
 end
 
 function VisualVariant:GetVariantData(variant)
@@ -90,6 +91,9 @@ function VisualVariant:SetVariant(variant)
 end
 
 function VisualVariant:ReCalculate()
+    if self.recalculatefn then
+        self.recalculatefn(self.inst)
+    end
     if TheWorld:HasTag("porkland") then
         self:SetVariant("porkland")
     else

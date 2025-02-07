@@ -20,6 +20,7 @@ return Class(function(self, inst)
     -- Public
     self.inst = inst
     self.rewind_mult = 0
+    self.rewind_multiplier = {}
 
     local _world = TheWorld
 
@@ -88,6 +89,8 @@ return Class(function(self, inst)
             return
         end
 
+        TUNING.PERISH_GLOBAL_MULT = TUNING.PERISH_APORKALYPSE_MULT -- 大灾变腐烂加速, 很难找到更好的写法
+
         _activeaporkalypse = true
         _timeuntilaporkalypse:set(0)
 
@@ -112,6 +115,10 @@ return Class(function(self, inst)
             return
         end
 
+        local elapseddaysinaporkalypse = _world.state.elapseddaysinseason
+
+        TUNING.PERISH_GLOBAL_MULT = TUNING.PERISH_NORMAL_MULT
+
         _activeaporkalypse = false
         _firstaporkalypse = false
         _timeuntilaporkalypse:set(APORKALYPSE_PERIOD_LENGTH)
@@ -124,7 +131,7 @@ return Class(function(self, inst)
             _seasons:EndAporkalypse()
         end
 
-        if _isplateau then
+        if _isplateau and elapseddaysinaporkalypse >= 2 then
             BeginFiesta()
         end
 
@@ -156,11 +163,24 @@ return Class(function(self, inst)
         end
     end or nil
 
-    local SetRewindMult = _ismastersim and function(src, mult)
-        self.rewind_mult = self.rewind_mult + mult
+    local SetRewindMult = _ismastersim and function(inst, data)
+        if data.source then
+            self.rewind_multiplier[data.source] = data.mult
+            local new_mult = 0
+            for k, v in pairs(self.rewind_multiplier) do
+                if k and k:IsValid() then
+                    new_mult = new_mult + v
+                else
+                    self.rewind_multiplier[k] = nil
+                end
+            end
+            self.rewind_mult = new_mult
+        else
+            self.rewind_mult = data.mult
+        end
 
         if not _ismastershard then
-            SendModRPCToShard(SHARD_MOD_RPC["Porkland"]["SetAporkalypseClockRewindMult"], 1, mult)
+            SendModRPCToShard(SHARD_MOD_RPC["Porkland"]["SetAporkalypseClockRewindMult"], 1, {mult = data.mult})
         end
     end or nil
 
@@ -254,7 +274,11 @@ return Class(function(self, inst)
 
             if _ismastershard then
                 if not _activeaporkalypse then
-                    BeginAporkalypse()
+                    if math.abs(self.rewind_mult) > 0.01 then
+                        _timeuntilaporkalypse:set(APORKALYPSE_PERIOD_LENGTH)
+                    else
+                        BeginAporkalypse()
+                    end
                 end
             else
                 -- Clients and secondary shards must wait server sync
@@ -306,7 +330,7 @@ return Class(function(self, inst)
             if _herald_time <= 0 then
                 local players = {}
                 for _, player in pairs(AllPlayers) do
-                    if not player:HasTag("inside_interior") then
+                    if not player:GetIsInInterior() then
                         table.insert(players, player)
                     end
                 end
@@ -318,6 +342,10 @@ return Class(function(self, inst)
         end
 
         _world:PushEvent("aporkalypseclocktick", {timeuntilaporkalypse = _timeuntilaporkalypse:value()})
+    end
+
+    function self:SpawnHeraldForPlayer(player)
+        SpawnHerald(player)
     end
 
     --------------------------------------------------------------------------

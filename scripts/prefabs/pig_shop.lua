@@ -160,9 +160,9 @@ local prefabs = {
     "rug_leather",
     "rug_fur",
 
-    "shelves_wood",
-    "shelves_marble",
-    "shelves_glass",
+    "shelf_wood",
+    "shelf_marble",
+    "shelf_glass",
 
     "deco_marble_cornerbeam",
     "deco_marble_beam",
@@ -373,8 +373,28 @@ local function CreateInteriorPalace(inst, exterior_door_def)
     }
 
     local palace_addprops = GetPropDef("pig_palace", depth, width, exterior_door_def, togallery_door_def)
-    local def = interior_spawner:CreateRoom("generic_interior", width, height, depth, name, inst.interiorID, palace_addprops, {}, wall_texture, floor_texture, minimap_texture, city_id, PIG_SHOP_COLOUR_CUBE, nil, nil, "palace", "PALACE", WORLD_TILES.DIRT)
-    interior_spawner:SpawnInterior(def)
+    interior_spawner:CreateRoom({
+        width = width,
+        height = height,
+        depth = depth,
+        dungeon_name = name,
+        roomindex = inst.interiorID,
+        addprops = palace_addprops,
+        exits = {},
+        walltexture = wall_texture,
+        floortexture = floor_texture,
+        minimaptexture = minimap_texture,
+        cityID = city_id,
+        colour_cube = PIG_SHOP_COLOUR_CUBE,
+        reverb = "palace",
+        ambient_sound = "PALACE",
+        footstep_tile = WORLD_TILES.DIRT,
+        cameraoffset = nil,
+        zoom = nil,
+        group_id = inst.interiorID,
+        interior_coordinate_x = 0,
+        interior_coordinate_y = 0,
+    })
     InitShopped(inst.interiorID)
 
     -- CREATE GALLERY
@@ -397,8 +417,28 @@ local function CreateInteriorPalace(inst, exterior_door_def)
     }
 
     local gallery_addprops = GetPropDef("pig_palace_gallery", depth, width, togiftshop_door_def, topalace_door_def)
-    def = interior_spawner:CreateRoom("generic_interior", width, height, depth, name, gallery_id, gallery_addprops, {}, wall_texture, floor_texture, minimap_texture, city_id ,PIG_SHOP_COLOUR_CUBE, nil, nil, "palace", "PALACE", WORLD_TILES.DIRT)
-    interior_spawner:SpawnInterior(def)
+    interior_spawner:CreateRoom({
+        width = width,
+        height = height,
+        depth = depth,
+        dungeon_name = name,
+        roomindex = gallery_id,
+        addprops = gallery_addprops,
+        exits = {},
+        walltexture = wall_texture,
+        floortexture = floor_texture,
+        minimaptexture = minimap_texture,
+        cityID = city_id,
+        colour_cube = PIG_SHOP_COLOUR_CUBE,
+        reverb = "palace",
+        ambient_sound = "PALACE",
+        footstep_tile = WORLD_TILES.DIRT,
+        cameraoffset = nil,
+        zoom = nil,
+        group_id = inst.interiorID,
+        interior_coordinate_x = -1,
+        interior_coordinate_y = 0,
+    })
     InitShopped(gallery_id)
 
     -- CREATE GIFT SHOP
@@ -421,8 +461,28 @@ local function CreateInteriorPalace(inst, exterior_door_def)
     }
 
     local giftshop_addprops = GetPropDef("pig_palace_giftshop", depth, width, toexit_door_def, togallery_door_def)
-    def = interior_spawner:CreateRoom("generic_interior", width, height, depth, name, giftshop_id, giftshop_addprops, {}, wall_texture, floor_texture, minimap_texture, city_id, PIG_SHOP_COLOUR_CUBE, nil, nil, "palace", "PALACE", WORLD_TILES.DIRT)
-    interior_spawner:SpawnInterior(def)
+    interior_spawner:CreateRoom({
+        width = width,
+        height = height,
+        depth = depth,
+        dungeon_name = name,
+        roomindex = giftshop_id,
+        addprops = giftshop_addprops,
+        exits = {},
+        walltexture = wall_texture,
+        floortexture = floor_texture,
+        minimaptexture = minimap_texture,
+        cityID = city_id,
+        colour_cube = PIG_SHOP_COLOUR_CUBE,
+        reverb = "palace",
+        ambient_sound = "PALACE",
+        footstep_tile = WORLD_TILES.DIRT,
+        cameraoffset = nil,
+        zoom = nil,
+        group_id = inst.interiorID,
+        interior_coordinate_x = -2,
+        interior_coordinate_y = 0,
+    })
     InitShopped(giftshop_id)
 end
 
@@ -473,10 +533,28 @@ local function CreateInterior(inst)
 
     local cityID = inst.components.citypossession and inst.components.citypossession.cityID
 
-    local def = interior_spawner:CreateRoom("generic_interior", width, height, depth, name, id, addprops, {},
-        wall_texture, floor_texture, minimap_texture, cityID, PIG_SHOP_COLOUR_CUBE, nil, nil, PIG_SHOP_REVERB,
-        PIG_SHOP_AMBIENT_SOUND, PIG_SHOP_FOOTSTEP)
-    interior_spawner:SpawnInterior(def)
+    interior_spawner:CreateRoom({
+        width = width,
+        height = height,
+        depth = depth,
+        dungeon_name = name,
+        roomindex = id,
+        addprops = addprops,
+        exits = {},
+        walltexture = wall_texture,
+        floortexture = floor_texture,
+        minimaptexture = minimap_texture,
+        cityID = cityID,
+        colour_cube = PIG_SHOP_COLOUR_CUBE,
+        reverb = PIG_SHOP_REVERB,
+        ambient_sound = PIG_SHOP_AMBIENT_SOUND,
+        footstep_tile = PIG_SHOP_FOOTSTEP,
+        cameraoffset = nil,
+        zoom = nil,
+        group_id = inst.interiorID,
+        interior_coordinate_x = 0,
+        interior_coordinate_y = 0,
+    })
 
     local center_ent = interior_spawner:GetInteriorCenter(id)
     if not inst:HasOneOfTags({"pig_shop_cityhall", "pig_shop_cityhall_player"}) then
@@ -505,12 +583,15 @@ local function OnLoad(inst, data)
     if data.interiorID then
         inst.interiorID = data.interiorID
     end
+    CreateInterior(inst)
 end
 
 local function UseDoor(inst, data)
     if inst.use_sounds and data and data.doer and data.doer.SoundEmitter then
         for _, sound in ipairs(inst.use_sounds) do
-            data.doer.SoundEmitter:PlaySound(sound)
+            data.doer:DoTaskInTime(FRAMES * 2, function()
+                data.doer.SoundEmitter:PlaySound(sound)
+            end)
         end
     end
 end
@@ -595,6 +676,9 @@ local function MakeShop(name, build, bank, data)
         inst.entity:AddNetwork()
 
         MakeObstaclePhysics(inst, 1.25)
+
+        -- For OnNight
+        inst:SetPrefabName(name)
 
         inst.bank = bank or "pig_shop"
         inst.build = build
@@ -691,7 +775,9 @@ local function MakeShop(name, build, bank, data)
         inst:WatchWorldState("isfiesta", OnIsFiesta)
         OnIsFiesta(inst, TheWorld.state.isfiesta)
 
-        inst:DoTaskInTime(0, CreateInterior)
+        inst:DoTaskInTime(0, function()
+            CreateInterior(inst)
+        end)
 
         inst.OnSave = OnSave
         inst.OnLoad = OnLoad

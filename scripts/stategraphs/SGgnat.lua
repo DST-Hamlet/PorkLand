@@ -20,7 +20,7 @@ local events =
             if wants_to_move then
                 inst.sg.statemem.wantstomove = true
             else
-                inst.sg:GoToState("idle")
+                inst.sg:GoToState("idle", true)
             end
         end
     end),
@@ -52,12 +52,16 @@ local states =
         name = "moving",
         tags = {"moving", "canrotate"},
 
-        onenter = function(inst)
+        onenter = function(inst, pushanim)
             if inst.components.locomotor:WantsToRun() then
                 inst.sg:GoToState("running", true)
             else
                 inst.components.locomotor:WalkForward()
-                inst.AnimState:PlayAnimation("idle_loop")
+                if pushanim then
+                    inst.AnimState:PushAnimation("idle_loop")
+                else
+                    inst.AnimState:PlayAnimation("idle_loop")
+                end
                 inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/gnat/LP", "move")
             end
         end,
@@ -74,7 +78,7 @@ local states =
 
         onenter = function(inst, pre)
             if not inst.components.locomotor:WantsToRun() then
-                inst.sg:GoToState("moving")
+                inst.sg:GoToState("moving", true)
             else
                 inst.components.locomotor:RunForward()
                 if pre then
@@ -84,6 +88,10 @@ local states =
                     inst.AnimState:PlayAnimation("run_loop")
                 end
             end
+        end,
+
+        onexit = function(inst)
+            inst.AnimState:PlayAnimation("run_pst")
         end,
 
         events =
@@ -108,7 +116,7 @@ local states =
         timeline =
         {
             TimeEvent(16 * FRAMES, function(inst)
-                LandFlyingCreature(inst)
+                PL_LandFlyingCreature(inst)
             end)
         }
     },
@@ -117,9 +125,13 @@ local states =
         name = "idle",
         tags = {"idle", "canrotate"},
 
-        onenter = function(inst)
+        onenter = function(inst, pushanim)
             inst.Physics:Stop()
-            inst.AnimState:PlayAnimation("idle_loop", true)
+            if pushanim then
+                inst.AnimState:PushAnimation("idle_loop", true)
+            else
+                inst.AnimState:PlayAnimation("idle_loop", true)
+            end
         end,
 
         events =
@@ -258,10 +270,10 @@ local states =
         tags = {"busy", "landing"},
 
         onenter = function(inst)
-            inst:PerformBufferedAction()
             inst.Physics:Stop()
             inst.AnimState:PlayAnimation("sleep_loop", true)
-            LandFlyingCreature(inst)
+            PL_LandFlyingCreature(inst)
+            inst:PerformBufferedAction()
         end,
 
         events =
@@ -271,10 +283,10 @@ local states =
             end),
         },
 
-        onexit = RaiseFlyingCreature,
+        onexit = PL_RaiseFlyingCreature,
     },
 }
 
-CommonStates.AddFrozenStates(states, LandFlyingCreature, RaiseFlyingCreature)
+CommonStates.AddFrozenStates(states, PL_LandFlyingCreature, PL_RaiseFlyingCreature)
 
 return StateGraph("gnat", states, events, "spawn", actionhandlers)

@@ -73,6 +73,7 @@ local function onhit(inst, worker)
 end
 
 local function onbuilt(inst)
+    inst.build_by_player = true
     inst.AnimState:PlayAnimation("place")
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/pighouse/wood_1")
     inst.AnimState:PushAnimation("idle")
@@ -101,6 +102,97 @@ local function OnReconstructe(inst)
     end
 end
 
+local function CreateInterior(inst)
+    local id = inst.interiorID
+    local can_reuse_interior = id ~= nil
+
+    local interior_spawner = TheWorld.components.interiorspawner
+    if not can_reuse_interior then
+        id = interior_spawner:GetNewID()
+        inst.interiorID = id
+        print("CreateInterior id:", id)
+    end
+
+    local name = "playerhouse" .. id
+    local exterior_door_def = {
+        my_door_id = name .. "_door",
+        target_door_id = name .. "_exit",
+        target_interior = id,
+    }
+    interior_spawner:AddDoor(inst, exterior_door_def)
+    interior_spawner:AddExterior(inst)
+
+    if can_reuse_interior then
+        -- Reuse old interior, but we still need to re-register the door
+        return
+    end
+
+    local floortexture = "levels/textures/noise_woodfloor.tex"
+    local walltexture = "levels/textures/interiors/shop_wall_woodwall.tex"
+    local minimaptexture = "levels/textures/map_interior/mini_floor_wood.tex"
+    local colorcube = "images/colour_cubes/pigshop_interior_cc.tex"
+
+    local addprops = GetPropDef("playerhouse_city", exterior_door_def)
+    interior_spawner:CreateRoom({
+        width = 15,
+        height = nil,
+        depth = 10,
+        dungeon_name = name,
+        roomindex = id,
+        addprops = addprops,
+        exits = {},
+        walltexture = walltexture,
+        floortexture = floortexture,
+        minimaptexture = minimaptexture,
+        colour_cube = colorcube,
+        playerroom = true,
+        reverb = "inside",
+        ambient_sound = "HOUSE",
+        footstep_tile = WORLD_TILES.WOODFLOOR,
+        cameraoffset = nil,
+        zoom = nil,
+        group_id = inst.interiorID,
+        interior_coordinate_x = 0,
+        interior_coordinate_y = 0,
+    })
+
+    local room = interior_spawner:GetInteriorCenter(id)
+    room:AddInteriorTags("home_prototyper")
+end
+
+local function UseDoor(inst, data)
+    if inst.usesounds then
+        if data and data.doer and data.doer.SoundEmitter then
+            for i, sound in ipairs(inst.usesounds) do
+                data.doer:DoTaskInTime(FRAMES * 2, function()
+                    data.doer.SoundEmitter:PlaySound(sound)
+                end)
+            end
+        end
+    end
+end
+
+-- local function canburn(inst)
+--     local interior_spawner = TheWorld.components.interiorspawner
+--     if inst.components.door then
+--         local interior = inst.components.door.target_interior
+--         if interior_spawner:IsPlayerConsideredInside(interior) then
+--             -- try again in 2-5 seconds
+--             return false, 2 + math.random() * 3
+--         end
+--     end
+--     return true
+-- end
+
+local function OnBurntUp(inst, data)
+    inst.components.fixable:AddReconstructionStageData("burnt", "pig_townhouse", inst.build, 0.75, 1)
+    if inst.doortask then
+        inst.doortask:Cancel()
+        inst.doortask = nil
+    end
+    inst:Remove()
+end
+
 local function OnSave(inst, data)
     if inst:HasTag("burnt") then
         data.burnt = true
@@ -111,13 +203,19 @@ local function OnSave(inst, data)
     data.interiorID = inst.interiorID
     data.prefabname = inst.prefabname
     data.minimapicon = inst.minimapicon
+    data.build_by_player = inst.build_by_player
 end
 
 local function OnLoad(inst, data)
     if data then
+        if data.build_by_player then
+            inst.build_by_player = data.build_by_player
+        end
+
         if data.interiorID then
             inst.interiorID = data.interiorID
         end
+        CreateInterior(inst)
 
         if data.build then
             inst.build = data.build
@@ -150,75 +248,6 @@ local function OnLoad(inst, data)
             inst.components.burnable.onburnt(inst)
         end
     end
-end
-
-local function CreatInterior(inst)
-    local id = inst.interiorID
-    local can_reuse_interior = id ~= nil
-
-    local interior_spawner = TheWorld.components.interiorspawner
-    if not can_reuse_interior then
-        id = interior_spawner:GetNewID()
-        inst.interiorID = id
-        print("CreateInterior id:", id)
-    end
-
-    local name = "playerhouse" .. id
-    local exterior_door_def = {
-        my_door_id = name .. "_door",
-        target_door_id = name .. "_exit",
-        target_interior = id,
-    }
-    interior_spawner:AddDoor(inst, exterior_door_def)
-    interior_spawner:AddExterior(inst)
-
-    if can_reuse_interior then
-        -- Reuse old interior, but we still need to re-register the door
-        return
-    end
-
-    local floortexture = "levels/textures/noise_woodfloor.tex"
-    local walltexture = "levels/textures/interiors/shop_wall_woodwall.tex"
-    local minimaptexture = "levels/textures/map_interior/mini_ruins_slab.tex"
-    local colorcube = "images/colour_cubes/pigshop_interior_cc.tex"
-
-    local addprops = GetPropDef("playerhouse_city", exterior_door_def)
-    local def = interior_spawner:CreateRoom("generic_interior", 15, nil, 10, name, id, addprops, {}, walltexture, floortexture, minimaptexture, nil, colorcube, nil, true, "inside", "HOUSE", WORLD_TILES.WOODFLOOR)
-    interior_spawner:SpawnInterior(def)
-
-    local room = interior_spawner:GetInteriorCenter(id)
-    room:AddInteriorTags("home_prototyper")
-end
-
-local function UseDoor(inst, data)
-    if inst.usesounds then
-        if data and data.doer and data.doer.SoundEmitter then
-            for i, sound in ipairs(inst.usesounds) do
-                data.doer.SoundEmitter:PlaySound(sound)
-            end
-        end
-    end
-end
-
--- local function canburn(inst)
---     local interior_spawner = TheWorld.components.interiorspawner
---     if inst.components.door then
---         local interior = inst.components.door.target_interior
---         if interior_spawner:IsPlayerConsideredInside(interior) then
---             -- try again in 2-5 seconds
---             return false, 2 + math.random() * 3
---         end
---     end
---     return true
--- end
-
-local function OnBurntUp(inst, data)
-    inst.components.fixable:AddReconstructionStageData("burnt", "pig_townhouse", inst.build, 0.75, 1)
-    if inst.doortask then
-        inst.doortask:Cancel()
-        inst.doortask = nil
-    end
-    inst:Remove()
 end
 
 local function fn()
@@ -297,11 +326,19 @@ local function fn()
     inst:ListenForEvent("deedbought", function() inst:BuyHouse() end, TheWorld)
 
     inst.interiors = {}
-    inst:DoTaskInTime(0, CreatInterior)
+    inst:DoTaskInTime(0, function()
+        CreateInterior(inst)
+    end)
 
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
 
+    inst.build_by_player = false
+    inst:DoTaskInTime(0, function()
+        if not inst.build_by_player then
+            TheWorld.playerhouse = inst
+        end
+    end)
     inst:ListenForEvent("onbuilt", onbuilt)
 
     inst.usesounds = {
@@ -311,8 +348,6 @@ local function fn()
     inst:ListenForEvent("usedoor", UseDoor)
 
     inst.OnReconstructe = OnReconstructe
-
-    TheWorld.playerhouse = inst
 
     return inst
 end

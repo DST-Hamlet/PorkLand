@@ -13,9 +13,9 @@ local function MakeVegStats(seedweight, hunger, health, perish_time, sanity, coo
     }
 end
 
-local COMMON = 3
--- local UNCOMMON = 1
--- local RARE = .5
+local COMMON = TUNING.SEED_CHANCE_COMMON
+local UNCOMMON = TUNING.SEED_CHANCE_UNCOMMON
+local RARE = TUNING.SEED_CHANCE_RARE
 
 local SEEDLESS =
 {
@@ -85,7 +85,7 @@ local function MakeVeggie(name, has_seeds)
         inst.AnimState:SetBuild(name)
         inst.AnimState:PlayAnimation("idle")
 
-        -- inst.pickupsound = "vegetation_firm"
+        inst.pickupsound = "vegetation_firm"
 
         --cookable (from cookable component) added to pristine state for optimization
         inst:AddTag("cookable")
@@ -163,9 +163,6 @@ local function MakeVeggie(name, has_seeds)
 
         if name == "coffeebeans" then
             inst.components.edible:SetOnEatenFn(function(inst, eater)
-                eater:RemoveDebuff("buff_speed_coffee")
-                eater:RemoveDebuff("buff_speed_tea")
-                eater:RemoveDebuff("buff_speed_icedtea")
                 eater:AddDebuff("buff_speed_coffee_beans", "buff_speed_coffee_beans")
             end)
         end
@@ -202,7 +199,7 @@ local function MakeVeggie(name, has_seeds)
         inst.AnimState:PlayAnimation(name)
         inst.AnimState:SetRayTestOnBB(true)
 
-        -- inst.pickupsound = "vegetation_firm"
+        inst.pickupsound = "vegetation_firm"
 
         --cookable (from cookable component) added to pristine state for optimization
         inst:AddTag("cookable")

@@ -1,6 +1,6 @@
 local function GetRandomOffset(pt, radius, offset_y)
     local theta = math.random() * TWOPI
-    local offset = FindWalkableOffset(pt, theta, radius, 12, true)
+    local offset = FindWalkableOffset(pt, theta, radius, 12, true, nil, nil, true)
 
     if offset then
         if offset_y then
@@ -107,7 +107,10 @@ local function SpawnHerald(player, inst)
     local herald = GetClosestInstWithTag("ancient_herald", player, 20)
 
     if herald == nil then
-        SpawnRandomInRange(player, "ancient_herald", 1, 1, 10, nil, function(herald) herald.sg:GoToState("appear") end)
+        SpawnRandomInRange(player, "ancient_herald", 1, 1, 10, nil, function(herald)
+            herald.sg:GoToState("appear")
+            herald.components.timer:StartTimer("summon_cd", TUNING.ANCIENT_HERALD_SUMMON_COOLDOWN)
+        end)
     else
         herald.components.combat:SuggestTarget(player)
     end

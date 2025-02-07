@@ -105,6 +105,10 @@ local function OnBanditDeath(src, data)
 end
 
 local function OnBanditEscaped(src, data)
+    if not (data and data.bandit and data.bandit:IsValid() and data.bandit == _bandit) then
+        return
+    end
+
     local oincs = _bandit.components.inventory:GetItemsWithTag("oinc")
     for _, oinc in pairs(oincs) do
         if _stolen_oincs[oinc.prefab] then
@@ -170,6 +174,10 @@ local function TrySpawnBanit()
         return
     end
 
+    if _world.state.isaporkalypse then
+        return
+    end
+
     local choices = {}
     for _, player in pairs(_active_players) do
         if not IsEntityDeadOrGhost(player) and IsPlayerInCity(player) then
@@ -226,7 +234,8 @@ local function GenerateTreasure(player)
     local offset = FindWalkableOffset(pos, angle, radius, 18, nil, nil, function(spawn_pos)
         local current_island = _map:GetIslandTagAtPoint(pos.x, 0, pos.z)
         local target_island = _map:GetIslandTagAtPoint(spawn_pos.x, 0, spawn_pos.z)
-        return current_island == target_island
+        local isposclear = _map:IsDeployPointClear(spawn_pos, nil, DEPLOYSPACING_RADIUS[DEPLOYSPACING.DEFAULT])
+        return isposclear and (current_island == target_island)
     end)
 
     if offset then
@@ -252,6 +261,11 @@ end
 --------------------------------------------------------------------------
 
 function self:SpawnBanditOnPlayer(player)
+    if _bandit then
+        print("already have a bandit in world!!!")
+        return
+    end
+
     local x, y, z = player.Transform:GetWorldPosition()
     local ents = TheSim:FindEntities(x, y, z, 40, {"bandit_cover"})
 

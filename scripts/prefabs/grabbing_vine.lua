@@ -104,7 +104,7 @@ local function commonfn()
     inst.AnimState:SetBuild("copycreep_build")
     inst.AnimState:PlayAnimation("idle_loop")
 
-    MakeCharacterPhysics(inst, 1, .3)
+    MakeCharacterPhysics(inst, 10, .3)
     inst.Physics:SetCollisionGroup(COLLISION.FLYERS)
     inst.Physics:CollidesWith(COLLISION.FLYERS)
 

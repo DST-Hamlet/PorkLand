@@ -13,7 +13,6 @@ local prefabs =
     "ro_bin_gizzard_stone",
     "die_fx",
     "chesterlight",
-    "sparklefx",
 }
 
 local function ShouldWakeUp(inst)
@@ -64,7 +63,7 @@ local function fn()
     inst.entity:AddSoundEmitter()
     inst.entity:AddNetwork()
 
-    MakeAmphibiousCharacterPhysics(inst, 1, 0.5)
+    MakeAmphibiousCharacterPhysics(inst, 75, 0.5)
 
     inst.AnimState:SetBank("ro_bin")
     inst.AnimState:SetBuild("ro_bin_build")
@@ -72,6 +71,7 @@ local function fn()
     inst.DynamicShadow:SetSize(2, 1.5)
 
     inst.MiniMapEntity:SetIcon("ro_bin.tex")
+    inst.MiniMapEntity:SetCanUseCache(false)
 
     inst.Transform:SetFourFaced()
 
@@ -105,6 +105,7 @@ local function fn()
     inst:AddComponent("locomotor")
     inst.components.locomotor.walkspeed = 5
     inst.components.locomotor.runspeed = 10 * 0.7
+    inst.components.locomotor.pathcaps = {allowocean = true}
 
     inst:AddComponent("follower")
 

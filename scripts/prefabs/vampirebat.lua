@@ -9,15 +9,18 @@ local assets =
 local prefabs =
 {
     "guano",
-    "vampire_bat_wing",
+    "monstermeat",
     "bat_hide",
+    "vampire_bat_wing",
+    "batwing",
 }
 
 SetSharedLootTable("vampirebat",
 {
     {"monstermeat",      0.5},
     {"bat_hide",         0.5},
-    {"vampire_bat_wing", 0.1},
+    {"vampire_bat_wing", 0.25},
+    -- {"batwing", 0.1},
 })
 
 local MAX_TARGET_SHARES = 5
@@ -50,14 +53,22 @@ local function KeepTarget(inst, target)
 end
 
 local RETARGET_DIST = 12
+local RETARGET_DIST_SLEEP = 3
 local RETARGET_CANT_TAGS = {"vampirebat"}
 local RETARGET_ONEOF_TAGS = {"character", "monster"}
 local function Retarget(inst)
     local ta = inst.components.teamattacker
 
-    local newtarget = FindEntity(inst, RETARGET_DIST, function(ent)
-        return inst.components.combat:CanTarget(ent)
-    end, nil, RETARGET_CANT_TAGS, RETARGET_ONEOF_TAGS)
+    local newtarget = nil
+    if not inst.components.sleeper:IsAsleep() then
+        newtarget = FindEntity(inst, RETARGET_DIST, function(ent)
+            return inst.components.combat:CanTarget(ent)
+        end, nil, RETARGET_CANT_TAGS, RETARGET_ONEOF_TAGS)
+    else
+        newtarget = FindEntity(inst, RETARGET_DIST_SLEEP, function(ent)
+            return inst.components.combat:CanTarget(ent)
+        end, nil, RETARGET_CANT_TAGS, RETARGET_ONEOF_TAGS)
+    end
 
     if newtarget and not ta.inteam and not ta:SearchForTeam() then
         MakeTeam(inst, newtarget)
@@ -91,15 +102,15 @@ local function OnAttackOther(inst, data)
 end
 
 local function OnWakeUp(inst)
-    inst.forcesleep = false
+
 end
 
 local function OnSave(inst, data)
     if inst:HasTag("batfrenzy") then
         data.batfrenzy = true
     end
-    if inst.forcesleep then
-        data.forcesleep = true
+    if inst.components.sleeper.hibernate then
+        data.hibernatesleep = true
     end
     if inst.sg:HasStateTag("flight") then
         data.flying = true
@@ -115,11 +126,10 @@ local function OnLoad(inst, data)
         inst:AddTag("batfrenzy")
     end
 
-    if data.forcesleep then
-        inst.forcesleep = true
-        inst.sg:GoToState("forcesleep")
+    if data.hibernatesleep then
         inst.components.sleeper.hibernate = true
         inst.components.sleeper:GoToSleep()
+        inst.sg:GoToState("sleeping")
     end
 
     if data.flying then
@@ -147,8 +157,8 @@ local function fn()
 
     inst.Transform:SetFourFaced()
 
-    MakeFlyingCharacterPhysics(inst, 1, 0.5)
-    PorkLandMakeInventoryFloatable(inst)
+    MakeFlyingCharacterPhysics(inst, 50, 0.5)
+    MakeInventoryFloatable(inst)
 
     inst:AddTag("vampirebat")
     inst:AddTag("scarytoprey")
@@ -245,13 +255,13 @@ local function DoDive(inst)
     end
 
     -- allow water but not interior
-    if player and player:IsValid() and not player:HasTag("inside_interior") and inst:IsOnPassablePoint(true) then
+    if player and player:IsValid() and not player:GetIsInInterior() and inst:IsOnPassablePoint(true) then
         local bat = SpawnPrefab("vampirebat")
         local spawn_point = inst:GetPosition()
         if bat and spawn_point then
+            bat.sg:GoToState("glide")
             bat.Transform:SetPosition(spawn_point.x, spawn_point.y + 30, spawn_point.z)
             bat:FacePoint(player.Transform:GetWorldPosition())
-            bat.sg:GoToState("glide")
             bat:AddTag("batfrenzy")
 
             bat:DoTaskInTime(2, function()
@@ -270,13 +280,11 @@ local function DoDive(inst)
 end
 
 
-local function CircleOnIsNight(inst)
+local function UpdateColourTweener(inst)
     if inst.taskinfo ~= nil then
-        if TheWorld.state.isnight then
-            inst.components.colourtweener:StartTween({1,1,1,0}, 3)
-        else
-            inst.components.colourtweener:StartTween({1,1,1,1}, 3)
-        end
+        local r, g, b = TheSim:GetAmbientColour()
+        local colourstrength = ((r + g + b) / 3) / 255
+        inst.components.colourtweener:StartTween({1,1,1,math.min(1, colourstrength * 1.2)}, 3)
     end
 end
 
@@ -337,9 +345,8 @@ local function circlingbatfn()
     inst.components.circler.maxScale = 8
 
     inst:AddComponent("colourtweener")
-    if not TheWorld.state.isnight then
-        inst.components.colourtweener:StartTween({1,1,1,1}, 3)
-    end
+    UpdateColourTweener(inst)
+    inst:DoPeriodicTask(3, UpdateColourTweener, math.random() * 3)
 
     inst:ListenForEvent("wingdown", OnWingDownShadow)
     -- flap sound
@@ -350,9 +357,6 @@ local function circlingbatfn()
             inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/vampire_bat/distant_taunt")
         end
     end)
-
-    inst:WatchWorldState("isnight", CircleOnIsNight)
-    inst:WatchWorldState("isday", CircleOnIsNight)
 
     inst.task, inst.taskinfo = inst:ResumeTask(20 + math.random() * 2, DoDive)
 

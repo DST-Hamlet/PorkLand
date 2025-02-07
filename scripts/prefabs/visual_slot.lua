@@ -36,11 +36,20 @@ local function CanMouseThrough(inst)
     end
 end
 
+local function DestOverride(inst)
+    local shelf = inst.replica.visualslot:GetShelf()
+    if shelf and shelf:IsValid() then
+        return shelf.Transform:GetWorldPosition()
+    end
+
+    return inst.Transform:GetWorldPosition()
+end
+
 local function fn()
     local inst = CreateEntity()
     inst.entity:AddTransform()
     inst.entity:AddAnimState()
-    inst.entity:AddFollower()
+    inst.entity:AddFollower() -- 由于visual_slot使用了FollowSymbol, 因此请尽量不要让它与逻辑相关, 除非再设置一个不使用由于visual_slot使用了FollowSymbol的parent
     inst.entity:AddSoundEmitter()
     inst.entity:AddNetwork()
 
@@ -51,6 +60,8 @@ local function fn()
     inst.displaynamefn = GetItemName
 
     inst.CanMouseThrough = CanMouseThrough
+
+    inst.DestOverride = DestOverride
 
     inst.entity:SetPristine()
 

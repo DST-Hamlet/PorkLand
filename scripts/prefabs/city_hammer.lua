@@ -26,6 +26,7 @@ local function fn(Sim)
     inst.entity:AddTransform()
     inst.entity:AddAnimState()
     inst.entity:AddSoundEmitter()
+    inst.entity:AddMiniMapEntity()
     inst.entity:AddNetwork()
 
     MakeInventoryPhysics(inst)
@@ -34,6 +35,9 @@ local function fn(Sim)
     inst.AnimState:SetBank("city_hammer")
     inst.AnimState:SetBuild("city_hammer")
     inst.AnimState:PlayAnimation("idle")
+
+    inst.MiniMapEntity:SetPriority(15)
+    inst.MiniMapEntity:SetIcon("city_hammer.tex")
 
     inst:AddTag("irreplaceable")
     inst:AddTag("hammer")

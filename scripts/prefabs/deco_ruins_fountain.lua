@@ -163,7 +163,9 @@ local function MakeFountain(name, build, bank, animframe, is_vortex)
 
         if is_vortex then
             inst:AddTag("vortex")
-            inst:Play2DSoundOutSide("dontstarve_DLC003/common/objects/endswell/hum_LP", "doom", 20)
+            inst:DoTaskInTime(0, function()
+                inst.SoundEmitter:PlaySound("porkland_soundpackage/common/objects/endswell/hum_LP", "doom")
+            end)
             inst.MiniMapEntity:SetIcon("pig_ruins_well_vortex.tex")
         end
 

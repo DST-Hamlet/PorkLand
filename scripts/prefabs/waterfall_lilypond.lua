@@ -6,7 +6,7 @@ local assets =
 
 local function OnSave(inst, data)
     if inst._paramrotation then
-        data.paramrotation = inst._paramrotation:value()
+        data.paramrotation_version_2 = inst._paramrotation:value()
     end
 end
 
@@ -16,8 +16,8 @@ local function OnLoad(inst, data)
         return
     end
 
-    if data.paramrotation then
-        inst._paramrotation:set(data.paramrotation)
+    if data.paramrotation_version_2 then
+        inst._paramrotation:set(data.paramrotation_version_2)
     else
         inst:Remove()
     end
@@ -50,11 +50,12 @@ local function fn()
     inst.AnimState:SetDefaultEffectHandle(resolvefilepath("shaders/anim_waterfall.ksh"))
 
     inst.AnimState:SetLayer(LAYER_BELOW_GROUND)
+    inst.AnimState:SetSortOrder(0)
     inst.AnimState:SetFinalOffset(-2)
 
     inst._paramrotation = net_float(inst.GUID, "_paramrotation", "paramrotationdirty")
 
-    inst:DoPeriodicTask(FRAMES, function()
+    inst:DoStaticTaskInTime(0, function()
         local x, _, z = inst.Transform:GetWorldPosition()
         inst.AnimState:SetFloatParams(x, z, (inst._paramrotation:value() or 0) * DEGREES) -- 不要用setrotation，直接修改paramrotation的参数就行
     end)
@@ -96,11 +97,12 @@ local function corner_fn()
     inst.AnimState:SetDefaultEffectHandle(resolvefilepath("shaders/anim_waterfall_corner.ksh"))
 
     inst.AnimState:SetLayer(LAYER_BELOW_GROUND)
+    inst.AnimState:SetSortOrder(0)
     inst.AnimState:SetFinalOffset(-2)
 
     inst._paramrotation = net_float(inst.GUID, "_paramrotation")
 
-    inst:DoPeriodicTask(FRAMES, function()
+    inst:DoStaticTaskInTime(0, function()
         local x, _, z = inst.Transform:GetWorldPosition()
         inst.AnimState:SetFloatParams(x, z, (inst._paramrotation:value() or 0) * DEGREES) -- 不要用setrotation，直接修改paramrotation的参数就行
     end)

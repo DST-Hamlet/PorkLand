@@ -76,7 +76,7 @@ local function SpawnPrefabChooser(inst) -- 鸟在每次起飞的时候会调用�
         return nil
     end
     if inst.prefab == "kingfisher" and math.random() < 0.1 then
-        return "fish"
+        return "coi"
     else
         return "seeds"
     end

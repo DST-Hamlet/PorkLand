@@ -1,0 +1,10 @@
+<Atlas>
+    <Texture filename="black_falloff.tex"/>
+    <Elements>
+        <Element name="01" u1="0" u2="0.234375" v1="0.53125" v2="1"/>
+        <Element name="05" u1="0.234375" u2="0.46875" v1="0.53125" v2="1"/>
+        <Element name="04" u1="0.46875" u2="0.703125" v1="0.53125" v2="1"/>
+        <Element name="03" u1="0.703125" u2="0.9375" v1="0.53125" v2="1"/>
+        <Element name="02" u1="0" u2="0.234375" v1="0.0625" v2="0.53125"/>
+    </Elements>
+</Atlas>

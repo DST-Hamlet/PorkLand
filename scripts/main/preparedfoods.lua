@@ -13,9 +13,6 @@ local foods = {
         oneat_desc = STRINGS.UI.COOKBOOK.FOOD_EFFECTS_SPEED_BOOST,
         oneatenfn = function(inst, eater)
             -- These buffs override each other, but RemoveExternalSpeedMultiplier needs the source in order to remove a buff
-            eater:RemoveDebuff("buff_speed_coffee_beans")
-            eater:RemoveDebuff("buff_speed_tea")
-            eater:RemoveDebuff("buff_speed_icedtea")
             eater:AddDebuff("buff_speed_coffee", "buff_speed_coffee")
         end,
         is_shipwreck_food = true,
@@ -54,9 +51,6 @@ local foods = {
         yotp = true,
         card_def = {ingredients = {{"piko_orange", 2}, {"honey", 2}}},
         oneatenfn = function(inst, eater)
-            eater:RemoveDebuff("buff_speed_coffee_beans")
-            eater:RemoveDebuff("buff_speed_icedtea")
-            eater:RemoveDebuff("buff_speed_coffee")
             eater:AddDebuff("buff_speed_tea", "buff_speed_tea")
         end,
     },
@@ -77,9 +71,6 @@ local foods = {
         yotp = true,
         card_def = {ingredients = {{"piko_orange", 2}, {"honey", 1}, {"ice", 1}}},
         oneatenfn = function(inst, eater)
-            eater:RemoveDebuff("buff_speed_coffee_beans")
-            eater:RemoveDebuff("buff_speed_tea")
-            eater:RemoveDebuff("buff_speed_coffee")
             eater:AddDebuff("buff_speed_icedtea", "buff_speed_icedtea")
         end,
     },
@@ -109,19 +100,6 @@ local foods = {
         perishtime = TUNING.PERISH_FASTISH,
         sanity = TUNING.SANITY_MED,
         cooktime = 3.5,
-        yotp = true,
-    },
-
-    spicyvegstinger =
-    {
-        test = function(cooker, names, tags) return (names.asparagus or names.asparagus_cooked or names.radish or names.radish_cooked) and tags.veggie and tags.veggie > 2 and tags.frozen and not tags.meat end,
-        priority = 15,
-        foodtype = FOODTYPE.VEGGIE,
-        health = TUNING.HEALING_SMALL,
-        hunger = TUNING.CALORIES_MED,
-        perishtime = TUNING.PERISH_SLOW,
-        sanity = TUNING.SANITY_LARGE,
-        cooktime = 0.5,
         yotp = true,
     },
 

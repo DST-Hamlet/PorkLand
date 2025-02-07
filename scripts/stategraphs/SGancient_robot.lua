@@ -55,7 +55,7 @@ AncientRobot.Events.OnAttacked = function()
             inst.components.lootdropper:SpawnLootPrefab("iron", Vector3(x, y, z))
             inst.hits = 0
 
-            if inst:HasTag("dormant") then
+            if inst.sg:HasStateTag("dormant") then
                 if math.random() < 0.6 then
                     inst:ActiveRobot(18 + math.random() * 4)
                 end
@@ -64,7 +64,7 @@ AncientRobot.Events.OnAttacked = function()
             end
         end
 
-        if inst:HasTag("dormant") and not inst.sg:HasStateTag("busy") then
+        if inst.sg:HasStateTag("dormant") and not inst.sg:HasStateTag("busy") then
             inst.sg:GoToState("hit_dormant")
         end
     end)
@@ -78,7 +78,9 @@ end
 
 AncientRobot.Events.OnDeactivate = function()
     return EventHandler("deactivate", function(inst, data)
-        if not inst:HasTag("dormant") then
+        if inst.sg:HasStateTag("busy") and not inst:IsAsleep() then
+            inst.wantstodeactivate = true
+        elseif not inst.sg:HasStateTag("dormant") then
             inst.sg:GoToState("deactivate")
         end
     end)
@@ -123,6 +125,8 @@ AncientRobot.States.AddIdle = function(states, is_leg)
             else
                 inst.AnimState:PlayAnimation("full")
             end
+
+            inst.wantstodeactivate = false
         end,
 
         timeline = idle_dormant_timeline,
@@ -147,10 +151,6 @@ AncientRobot.States.AddCommonStates = function(states)
 
         onupdate = function(inst)
             local x, y, z = inst.Transform:GetWorldPosition()
-
-            if y < 2 then
-                inst.Physics:SetMotorVel(0, 0, 0)
-            end
 
             if y <= 0.1 then
                 inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/hulk_metal_robot/explode_small", nil, 0.25)
@@ -279,7 +279,7 @@ end
 AncientRobot.States.AddDeactivate = function(states, timeline, onenter_sound)
     table.insert(states, State{
         name = "deactivate",
-        tags = {"busy", "deactivating"},
+        tags = {"busy", "deactivating", "dormant"},
 
         onenter = function(inst, pushanim)
             inst.components.locomotor:Stop()
@@ -287,12 +287,6 @@ AncientRobot.States.AddDeactivate = function(states, timeline, onenter_sound)
             inst.SoundEmitter:PlaySound(onenter_sound)
             inst:RemoveTag("hostile")
             inst:RemoveTag("monster")
-            inst:StopBrain()
-
-            if not inst:HasTag("dormant") then
-                inst.wantstodeactivate = nil
-                inst:AddTag("dormant")
-            end
         end,
 
         timeline = timeline,
@@ -486,35 +480,39 @@ AncientRobot.States.AddLeap = function(states, pre_timeline, loop_timeline, pst_
 
     table.insert(states, State{
         name = "leap_attack",
-        tags = {"attack", "canrotate", "busy", "leapattack"},
+        tags = {"attack", "busy", "leapattack"},
 
         onenter = function(inst, data)
             inst.sg.statemem.startpos = data.startpos
             inst.sg.statemem.targetpos = data.targetpos
             inst.sg.statemem.leap_time = 0
             inst.components.locomotor:Stop()
-            inst.Physics:SetActive(false)
             inst.components.locomotor:EnableGroundSpeedMultiplier(false)
 
             inst.components.combat:StartAttack()
             inst.AnimState:PlayAnimation("atk_loop")
+            inst:ForceFacePoint(inst.sg.statemem.targetpos)
             inst.SoundEmitter:PlaySound("dontstarve_DLC001/creatures/bearger/swhoosh")
-        end,
 
-        onupdate = function(inst, dt)
-            local percent = inst.sg.statemem.leap_time / inst.AnimState:GetCurrentAnimationLength()
-            if percent > 1 then
-                percent = 1
-            end
-            inst.sg.statemem.leap_time = inst.sg.statemem.leap_time + dt
-            local xdiff = inst.sg.statemem.targetpos.x - inst.sg.statemem.startpos.x
-            local zdiff = inst.sg.statemem.targetpos.z - inst.sg.statemem.startpos.z
+            local time = inst.AnimState:GetCurrentAnimationLength()
+            local dist = math.sqrt(distsq(inst.sg.statemem.startpos.x, inst.sg.statemem.startpos.z, inst.sg.statemem.targetpos.x, inst.sg.statemem.targetpos.z))
+            local vel = dist/time
+            inst.sg.statemem.vel = vel
 
-            inst.Transform:SetPosition(inst.sg.statemem.startpos.x + xdiff * percent, 0, inst.sg.statemem.startpos.z + zdiff * percent)
+            local newmass = inst.Physics:GetMass()
+            local newrad = inst.Physics:GetRadius()
+            ChangeToJunmpingPhysics(inst, newmass, newrad)
+
+            inst.Physics:SetMotorVelOverride(vel,0,0)
         end,
 
         onexit = function(inst)
-            inst.Physics:SetActive(true)
+            inst.Physics:ClearMotorVelOverride()
+
+            local newmass = inst.Physics:GetMass()
+            local newrad = inst.Physics:GetRadius()
+            ChangeToCharacterPhysics(inst, newmass, newrad)
+
             inst.components.locomotor:Stop()
             inst.components.locomotor:EnableGroundSpeedMultiplier(true)
             inst.sg.statemem.startpos = nil

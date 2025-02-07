@@ -6,7 +6,6 @@ local assets =
 local prefabs =
 {
     "iron",
-    "sparks_fx",
     "sparks_green_fx",
     "laser_ring",
 }

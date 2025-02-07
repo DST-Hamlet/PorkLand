@@ -5,15 +5,6 @@ local assets =
     Asset("ANIM", "anim/ui_krampusbag_2x5.zip")
 }
 
-local RESISTANCES =
-{
-    "_combat",
-    "explosive",
-    "quakedebris",
-    "caveindebris",
-    "trapdamage",
-}
-
 local function SetSoundparam(inst)
     local param = Remap(inst.components.fueled.currentfuel, 0, inst.components.fueled.maxfuel, 0, 1)
     inst.SoundEmitter:SetParameter("vortex", "intensity", param)
@@ -85,8 +76,8 @@ local function OnEquip(inst, owner)
 
     inst.fx_task = inst:DoPeriodicTask(0.1, function() SpawnFx(owner) end)
 
-    inst.SoundEmitter:PlaySound("porkland_soundpackage/common/crafted/vortex_armour/LP", "vortex")
-    inst.SoundEmitter:SetVolume("vortex", 0.5)
+    -- 由于许多人反映这个音效干扰性过强，因此暂时禁用这个音效——或许可以仅在玩家移动时播放这个音效？
+    -- inst.SoundEmitter:PlaySound("porkland_soundpackage/common/crafted/vortex_armour/LP", "vortex")
     SetSoundparam(inst)
 end
 
@@ -151,9 +142,7 @@ local function fn()
     inst:AddComponent("resistance")
     inst.components.resistance:SetShouldResistFn(ShouldResistFn)
     inst.components.resistance:SetOnResistDamageFn(OnResistDamage)
-    for _, tag in pairs(RESISTANCES) do
-        inst.components.resistance:AddResistance(tag)
-    end
+    inst.components.resistance.alltype_tags = true
     inst.components.resistance:SetNoTags({"shadow"}) -- doesn't protect from shadow creatures
 
     inst:AddComponent("fueled")

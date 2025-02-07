@@ -55,38 +55,18 @@ function InventoryItem:SetLanded(is_landed, should_poll_for_landing)
     _SetLanded(self, is_landed, should_poll_for_landing)
 end
 
-function InventoryItem:OnHitCloud()
-    local x, y, z = self.inst.Transform:GetWorldPosition()
-    if self.inst:HasTag("irreplaceable") then
-        local sx, sy, sz = FindRandomPointOnShoreFromOcean(x, y, z)
-        if sx then
-            self.inst.Transform:SetPosition(sx, sy, sz)
-        else
-            -- Our reasonable cases are out... so let's loop to find the portal and respawn there.
-            for k, v in pairs(Ents) do
-                if v:IsValid() and v:HasTag("multiplayer_portal") then
-                    self.inst.Transform:SetPosition(v.Transform:GetWorldPosition())
-                end
-            end
-        end
-    else
-        local fx = SpawnPrefab("splash_clouds_drop")
-        fx.Transform:SetPosition(x, y, z)
-        self.inst:Remove()
-    end
-end
-
 local _OnUpdate = InventoryItem.OnUpdate
 function InventoryItem:OnUpdate(dt, ...)
     local x, y, z = self.inst.Transform:GetWorldPosition()
 
     if x and y and z and self.inst.Physics and self.inst.Physics:GetCollisionGroup() == COLLISION.ITEMS then
+        local isimpassable = TheWorld.Map:IsImpassableAtPoint(x, 0, z)
         if self.inst.Physics then
-            if not self.onimpassable and TheWorld.Map:IsImpassableAtPoint(x, 0, z) then
+            if not self.onimpassable and isimpassable then
                 self:SetLanded(false, true)
                 self.onimpassable = true
                 self.inst.Physics:ClearCollidesWith(COLLISION.GROUND - COLLISION.VOID_LIMITS)
-            elseif self.onimpassable and not TheWorld.Map:IsImpassableAtPoint(x, 0, z) then
+            elseif self.onimpassable and not isimpassable then
                 self.onimpassable = false
                 self.inst.Physics:CollidesWith(COLLISION.GROUND - COLLISION.VOID_LIMITS)
                 self.inst.AnimState:SetLayer(LAYER_WORLD)
@@ -94,6 +74,7 @@ function InventoryItem:OnUpdate(dt, ...)
         end
     end
     if self.onimpassable and self.inst.Physics and self.inst.Physics:GetCollisionGroup() == COLLISION.ITEMS then
+        self:KeepOnInterior()
         if y then
             if y < -0.01 then
                 self.inst.AnimState:SetLayer(LAYER_BELOW_GROUND)
@@ -104,11 +85,15 @@ function InventoryItem:OnUpdate(dt, ...)
             end
             if y < -2 then
                 self:TryToSink()
-                self.inst:StopUpdatingComponent(self)
+                if not self.inst:HasTag("irreplaceable") then
+                    self.inst:StopUpdatingComponent(self)
+                end
             end
         else
             self:TryToSink()
-            self.inst:StopUpdatingComponent(self)
+            if not self.inst:HasTag("irreplaceable") then
+                self.inst:StopUpdatingComponent(self)
+            end
         end
     else
         return _OnUpdate(self, dt, ...)
@@ -134,6 +119,19 @@ function SinkEntity(entity, ...)
     local px, py, pz = 0, 0, 0
     if entity.Transform then
         px, py, pz = entity.Transform:GetWorldPosition()
+
+        if entity.persists
+            and entity.components.inventoryitem
+            and entity.components.inventoryitem.cangoincontainer
+            -- and TheWorld.Map:GetTileAtPoint(px, py, pz) ~= WORLD_TILES.OCEAN_DEEP then
+            and TheWorld.Map:ReverseIsVisualWaterAtPoint(px, py, pz) then
+
+            local sunkenprefab = SpawnPrefab("sunkenprefab")
+            sunkenprefab:Initialize(entity)
+            local fx = SpawnPrefab("splash_water_sink")
+            fx.Transform:SetPosition(px, py, pz)
+            return
+        end
     end
 
     if entity.components.inventory then
@@ -149,9 +147,12 @@ function SinkEntity(entity, ...)
 
     -- If the entity is irreplaceable, respawn it at the player
     if entity:HasTag("irreplaceable") then
-        local sx, sy, sz = FindRandomPointOnShoreFromOcean(px, py, pz)
+        local sx, _, sz = FindRandomPointOnShoreFromOcean(px, py, pz)
         if sx ~= nil then
-            entity.Transform:SetPosition(sx, sy, sz)
+            if entity.Physics then
+                entity.Physics:Stop()
+            end
+            entity.Transform:SetPosition(sx, 5, sz)
         else
             -- Our reasonable cases are out... so let's loop to find the portal and respawn there.
             for k, v in pairs(Ents) do

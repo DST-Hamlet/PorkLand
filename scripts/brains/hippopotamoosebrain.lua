@@ -13,15 +13,23 @@ local WANDER_DIST_DAY = 32
 local WANDER_DIST_DUSK = 16
 local MAX_JUMP_ATTACK_RANGE = 9
 local MAX_CHASE_TIME = 6
-local MAX_WANDER_DIST = 48
-local FIND_WATER_DIST = 32
+local MAX_WANDER_DIST = 96
+local FIND_WATER_DIST = 64
 local FIND_WATER_EXTRA_OFFSET = 4
-local WANDER_TIMES = {
+local WANDER_TIMES_DAY = {
     minwalktime = 3,
+    randwalktime = 1,
+    minwaittime = 3,
+    randwaittime = 1,
+}
+local WANDER_TIMES_DUSK = {
+    minwalktime = 1,
     randwalktime = 1,
     minwaittime = 5,
     randwaittime = 1,
 }
+local AVOID_HIPPO_DIST = 16
+local AVOID_HIPPO_STOP = 20
 
 local function not_land(position)
     local px, py, pz = position:Get()
@@ -109,6 +117,20 @@ local function ShouldLookForWater(inst)
     return not inst.components.amphibiouscreature.in_water
 end
 
+local HunterParams = {
+    tags = {"hippopotamoose"},
+}
+
+local function ShouldRunAway(hunter, inst)
+    local h_pt = hunter:GetPosition()
+    local pt = inst:GetPosition()
+    local offset = (pt - h_pt):Normalize() * 4
+    if TheWorld.Map:IsOceanTileAtPoint((pt + offset):Get()) then
+        return true
+    end
+    return false
+end
+
 local HippopotamooseBrain = Class(Brain, function(self, inst)
     Brain._ctor(self, inst)
 end)
@@ -121,13 +143,14 @@ function HippopotamooseBrain:OnStart()
             WhileNode(function() return ShouldLookForWater(self.inst) end, "Looking For Water",
                 Leash(self.inst, GetWaterNearby, 0.5, 0.5)),
             FaceEntity(self.inst, GetFaceTargetFn, KeepFaceTargetFn),
-            Wander(self.inst, GetWanderPosition, GetWanderDistance, WANDER_TIMES),
+            Wander(self.inst, GetWanderPosition, GetWanderDistance, WANDER_TIMES_DAY),
             StandStill(self.inst)
         }, 0.5)
 
     local dusk = WhileNode(function() return TheWorld.state.isdusk end, "IsDusk",
         PriorityNode{
-            Wander(self.inst, GetWanderPosition, GetWanderDistance),
+            RunAway(self.inst, HunterParams, AVOID_HIPPO_DIST, AVOID_HIPPO_STOP, ShouldRunAway),
+            Wander(self.inst, GetWanderPosition, GetWanderDistance, WANDER_TIMES_DUSK),
             StandStill(self.inst)
         }, 0.25)
 
@@ -138,17 +161,20 @@ function HippopotamooseBrain:OnStart()
 
     local root = PriorityNode(
     {
-        BrainCommon.PanicTrigger(self.inst),
+        WhileNode( function() return not self.inst.sg:HasStateTag("leapattack") end, "not jumping",
+            PriorityNode{
+                BrainCommon.PanicTrigger(self.inst),
 
-        WhileNode(function() return ShouldJumpAttack(self.inst) end, "jumpattack", DoAction(self.inst, function() return DoJumpAttack(self.inst) end, "jump", true)),
+                WhileNode(function() return ShouldJumpAttack(self.inst) end, "jumpattack", DoAction(self.inst, function() return DoJumpAttack(self.inst) end, "jump", true)),
 
-        IfNode(function() return self.inst.components.combat.target ~= nil end, "hastarget", AttackWall(self.inst)),
+                IfNode(function() return self.inst.components.combat.target ~= nil end, "hastarget", AttackWall(self.inst)),
 
-        ChaseAndAttack(self.inst, MAX_CHASE_TIME),
+                ChaseAndAttack(self.inst, MAX_CHASE_TIME),
 
-        day,
-        dusk,
-        night,
+                day,
+                dusk,
+                night
+        }, 1)
     }, 0.25)
 
     self.bt = BT(self.inst, root)

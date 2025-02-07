@@ -27,14 +27,18 @@ local function Hatch(inst)
         local angle = math.atan2(down.z, down.x) + (math.random()*60-30) * DEGREES
         local speed = 3
         stone.Physics:SetVel(speed*math.cos(angle), GetRandomWithVariance(8, 4), speed*math.sin(angle))
+
+        stone:SpawnRoBin(pt)
     end)
 end
 
 local function CheckHatch(inst)
-    if inst.playernear and inst.components.hatchable.state == "hatch" and not inst:HasTag("INLIMBO") and not inst:HasTag("falling") then
+    if inst.playernear
+        and inst.components.hatchable.state == "hatch"
+        and not inst:HasTag("INLIMBO")
+        and not inst.components.inventoryitem:IsHeld()then
+
         Hatch(inst)
-    else
-        inst.components.hatchable:StartUpdating()
     end
 end
 
@@ -58,9 +62,17 @@ end
 
 local function OnPutInInventory(inst)
     inst.SoundEmitter:KillSound("uncomfy")
+    inst.components.hatchable:StopUpdating()
 
     if inst.components.hatchable.state == "unhatched" then
         inst.components.hatchable:OnState("uncomfy")
+    end
+end
+
+local function OnLoadPostPass(inst)
+    --V2C: in case of load order of hatchable and inventoryitem components
+    if inst.components.inventoryitem:IsHeld() then
+        OnPutInInventory(inst)
     end
 end
 
@@ -98,6 +110,7 @@ local function OnHatchState(inst, state)
 end
 
 local function OnDropped(inst)
+    inst.components.hatchable:StartUpdating()
     CheckHatch(inst)
     PlayUncomfySound(inst)
     OnHatchState(inst, inst.components.hatchable.state)

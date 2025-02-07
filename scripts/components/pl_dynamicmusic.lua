@@ -99,10 +99,19 @@ local _activatedplayer = nil --cached for activation/deactivation only, NOT for 
 local _hasinspirationbuff = nil
 local _tone = nil
 local _tone_task = nil
+local _intensities = {}
 
 --------------------------------------------------------------------------
 --[[ Private member functions ]]
 --------------------------------------------------------------------------
+
+local function SetUpdateParam(sound, param, val)
+    if not _intensities[sound] then
+        _intensities[sound] = {}
+    end
+    _intensities[sound].paramname = param
+    _intensities[sound].paramval = val
+end
 
 local StopPlayingTone -- forward declare
 
@@ -120,7 +129,7 @@ local function StopBusy(inst, istimeout)
         end
         _busytask = nil
         _extendtime = 0
-        _soundemitter:SetParameter("busy", "intensity", 0)
+        SetUpdateParam("busy", "intensity", 0)
     end
 end
 
@@ -136,7 +145,7 @@ local function StartBusy(player)
         end
         _busytheme = BUSYTHEMES.PORKLAND
 
-        _soundemitter:SetParameter("busy", "intensity", 1)
+        SetUpdateParam("busy", "intensity", 1)
         _busytask = inst:DoTaskInTime(15, StopBusy, true)
         _extendtime = 0
 
@@ -156,7 +165,7 @@ local function StartBusyTheme(player, theme, sound, duration, extendtime)
             _busytheme = theme
         end
 
-        _soundemitter:SetParameter("busy", "intensity", 1)
+        SetUpdateParam("busy", "intensity", 1)
         _busytask = inst:DoTaskInTime(duration, StopBusy, true)
         _extendtime = extendtime or 0
     end
@@ -202,7 +211,7 @@ local function StartDanger(player)
         _extendtime = 0
 
         if _hasinspirationbuff then
-            _soundemitter:SetParameter("danger", "wathgrithr_intensity", _hasinspirationbuff)
+            SetUpdateParam("danger", "wathgrithr_intensity", _hasinspirationbuff)
         end
 
         StopPlayingTone(_tone)
@@ -222,7 +231,7 @@ local function StartTriggeredDanger(player, data)
         if #music > 0 then
             _soundemitter:PlaySound(music, "danger")
             if _hasinspirationbuff then
-                _soundemitter:SetParameter("danger", "wathgrithr_intensity", _hasinspirationbuff)
+                SetUpdateParam("danger", "wathgrithr_intensity", _hasinspirationbuff)
             end
         end
 
@@ -295,7 +304,7 @@ end
 -- Porkland
 
 local function ResumeTone()
-    _soundemitter:SetParameter("tone", "intensity", 1)
+    SetUpdateParam("tone", "intensity", 1)
 end
 
 StopPlayingTone = function(category)
@@ -327,7 +336,7 @@ local function SetTone(category)
         StopPlayingTone()
     end
     _soundemitter:PlaySound(tone.path, "tone")
-    _soundemitter:SetParameter("tone", "intensity", 1)
+    SetUpdateParam("tone", "intensity", 1)
     _tone = category
     _tone_task = inst:DoTaskInTime(tone.timeout, StopPlayingTone)
 
@@ -365,7 +374,7 @@ end
 
 local function StartShopMusic(player)
     _soundemitter:PlaySound("dontstarve_DLC003/music/shop_enter", "shop_music")
-    _soundemitter:SetParameter("shop_music", "intensity", 1)
+    SetUpdateParam("shop_music", "intensity", 1)
 end
 
 local function StopShopMusic(player)
@@ -509,6 +518,17 @@ local function OnEnableDynamicMusic(inst, enable)
             _soundemitter:KillSound("busy")
         end
         _isenabled = enable
+    end
+end
+
+inst:StartUpdatingComponent(self)
+
+function self:OnUpdate(dt)
+    for k, v in pairs(_intensities) do
+        if v and _soundemitter then
+            _soundemitter:SetParameter(k, v.paramname, v.paramval) -- 每帧只对同一个音效执行一次SetParameter, 不然会出问题
+        end
+        _intensities[k] = nil
     end
 end
 

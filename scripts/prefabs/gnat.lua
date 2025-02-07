@@ -47,12 +47,20 @@ local function FindLight(inst)
     return light
 end
 
+local LOSE_LIGHT_DIST = 20
+local function CanTargetLight(inst, target)
+    return target and target:IsValid()
+        and inst:GetDistanceSqToInst(target) < LOSE_LIGHT_DIST * LOSE_LIGHT_DIST
+end
+
 local function CanBuildMoundAtPoint(x, y, z)
     local ents = TheSim:FindEntities(x, y, z, 4, nil, {"FX", "NOCLICK", "DECOR", "INLIMBO"})
     return #ents <= 1 and TheWorld.Map:GetTileAtPoint(x, y, z) == WORLD_TILES.PAINTED and IsSurroundedByLand(x, y, z, 2)
 end
 
 local function BuildHome(inst)
+    inst:PushEvent("takeoff")
+
     local x, y, z = inst.Transform:GetWorldPosition()
 
     if not inst.CanBuildMoundAtPoint(x, y, z) then
@@ -66,7 +74,6 @@ local function BuildHome(inst)
     home.components.childspawner.childreninside = home.components.childspawner.childreninside - 1
     home:UpdateAnimations()
 
-    inst:PushEvent("takeoff")
     inst.makehome = nil
     inst.components.timer:StopTimer("build_mount_cd", TUNING.TOTAL_DAY_TIME * (0.5 + math.random() * 0.5))
 
@@ -86,7 +93,7 @@ end
 
 local function CanBeAttack(inst, data)
     return inst.components.freezable:IsFrozen()
-        or (data.weapon and (data.weapon:HasOneOfTags({"rangedweapon", "blowdart", "blowpipe", "slingshot", "thrown"})))
+        or (data.weapon and (data.weapon:HasOneOfTags({"rangedweapon", "blowdart", "blowpipe", "slingshot", "thrown", "gun"})))
 end
 
 local function CanBeHit(inst, data)
@@ -186,11 +193,15 @@ local function fn()
         inst.SoundEmitter:KillSound("move") -- stupid sound engine bug...
     end)
 
+    inst:ListenForEvent("freeze", function() inst:RemoveTag("lastresort") end)
+    inst:ListenForEvent("unfreeze", function() inst:AddTag("lastresort") end)
+
     MakeHauntablePanic(inst)
     MakePoisonableCharacter(inst)
     MakeTinyFreezableCharacter(inst, "fx_puff")
 
     inst.FindLight = FindLight
+    inst.CanTargetLight = CanTargetLight
 
     inst.build_mound_action = BuildHome
     inst.CanBuildMoundAtPoint = CanBuildMoundAtPoint

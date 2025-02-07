@@ -24,7 +24,7 @@ local function PropegateHedge(inst)
         return
     end
 
-    if not TheWorld.state.season == SEASONS.LUSH then
+    if not (TheWorld.state.season == SEASONS.LUSH) then -- not的优先级比==高
         return
     end
 
@@ -74,8 +74,8 @@ local function OnseasonChange(inst, season)
 end
 
 local function OnAttacked(inst, data)
-    if (data.weapon == nil or (not data.weapon:HasTag("projectile") and data.weapon.projectile == nil))
-        and data.attacker and data.attacker.components.combat and data.stimuli ~= "thorns" and not data.attacker:HasTag("thorny")
+    if data.attacker and data.attacker.components.combat and data.stimuli ~= "thorns" and not data.attacker:HasTag("thorny")
+        and (inst:IsNear(data.attacker, 3) or data.weapon == nil) -- 空手/近距离武器 会受到反伤
         and (data.attacker.components.combat == nil or (data.attacker.components.combat.defaultdamage > 0))
         and not (data.attacker.components.inventory ~= nil and data.attacker.components.inventory:EquipHasTag("bramble_resistant")) then
 
@@ -143,6 +143,7 @@ local function spikefn()
     inst:AddTag("hostile")
     inst:AddTag("bramble")
     inst:AddTag("soulless")
+    inst:AddTag("veggie")
 
     inst.entity:SetPristine()
 
@@ -210,6 +211,7 @@ end
 
 local function SpawnBrambles(inst)
     if inst.spawned then
+        inst:Remove()
         return
     end
 
@@ -242,6 +244,8 @@ local function SpawnBrambles(inst)
     core.AnimState:PushAnimation("idle")
 
     inst.spawned = true
+
+    inst:Remove()
 end
 
 local function fn()
@@ -269,6 +273,10 @@ local function fn()
     return inst
 end
 
+local function RegistSite(inst)
+    TheWorld.components.bramblemanager:RegisterBramble(inst)
+end
+
 -- dummy prefab used to register bramble spots
 local function sitefn()
     local inst = CreateEntity()
@@ -285,9 +293,9 @@ local function sitefn()
         return inst
     end
 
-    inst:DoTaskInTime(0, function()
-        TheWorld.components.bramblemanager:RegisterBramble(inst)
-    end)
+    inst:DoTaskInTime(0, RegistSite)
+
+    inst.OnLoad = RegistSite
 
     return inst
 end
@@ -313,6 +321,7 @@ local function corefn()
     inst:AddTag("bramble")
     inst:AddTag("bramble_core")
     inst:AddTag("soulless")
+    inst:AddTag("veggie")
 
     inst.entity:SetPristine()
 

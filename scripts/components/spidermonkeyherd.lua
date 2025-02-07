@@ -71,7 +71,8 @@ local function OnUpdate(self, dt)
     for _, monkey in pairs(_monkeys) do
         if monkey and monkey:IsValid() then
             if monkey.herd and monkey.herd.leader and monkey.herd.leader:IsValid()
-                and monkey:GetDistanceSqToInst(monkey.herd.leader) > REMOVE_FROM_HERD_DISTSQ then
+                and (monkey:GetDistanceSqToInst(monkey.herd.leader) > REMOVE_FROM_HERD_DISTSQ
+                or not monkey:IsInSameIsland(monkey.herd.leader)) then
                 self:RemoveFromHerd(monkey)
             else
                 self:AddToHerd(monkey)
@@ -129,6 +130,15 @@ function self:RemoveFromHerd(monkey)
     if monkey.herd then
         RemoveByValue(monkey.herd.monkeys, monkey)
         monkey.herd = nil
+        monkey.inherd = false
+    else
+        for _, herd in pairs(_herds) do
+            for k, herdmonkey in pairs(herd.monkeys) do
+                if monkey == herdmonkey then
+                    herd.monkeys[k] = nil
+                end
+            end
+        end
     end
 end
 
@@ -198,6 +208,7 @@ function self:LoadPostPass(ents, data)
     end
 
     if data.herds and next(data.herds) then
+        local added_monkeys = {} -- 旧存档会出现一只蜘蛛猴多次重复向群落中添加的情况
         for _, herd in pairs(data.herds) do
             local herd_data = {
                 tag = herd.tag,
@@ -208,7 +219,10 @@ function self:LoadPostPass(ents, data)
                 herd_data.leader = ents[herd.leader].entity
             end
             for _, monkey_GUID in pairs(herd.monkeys) do
-                if ents[monkey_GUID] then
+                if ents[monkey_GUID] and not added_monkeys[monkey_GUID] then -- 解决旧存档的重复蜘蛛猴
+                    added_monkeys[monkey_GUID] = true
+                    ents[monkey_GUID].entity.inherd = true
+                    ents[monkey_GUID].entity.herd = herd_data
                     table.insert(herd_data.monkeys, ents[monkey_GUID].entity)
                 end
             end

@@ -136,6 +136,10 @@ local function MakeHedgeType(data)
         inst.components.health:DoDelta(-data.windblown_damage, false, "wind")
     end
 
+    local function CanDeployFn_Client(inst, pt, mouseover, deployer, rot)
+        return not TheWorld.components.interiorspawner:IsInInterior(pt.x, pt.z)
+    end
+
     -- TODO: See if we need to do this
     -- local function test_wall(inst, pt)
     --     local map = TheWorld.Map
@@ -213,6 +217,8 @@ local function MakeHedgeType(data)
         inst.AnimState:PlayAnimation("idle")
 
         PorkLandMakeInventoryFloatable(inst)
+
+        inst.candeployfn = CanDeployFn_Client
 
         inst.entity:SetPristine()
 

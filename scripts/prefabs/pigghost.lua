@@ -49,7 +49,17 @@ local function OnIsAporkalypse(inst, isaporkalypse)
     end
 
     if inst:HasTag("aporkalypse_cleanup") then
-        inst.sg:GoToState("dissipate")
+        if inst:IsAsleep() then
+            inst:Remove()
+        else
+            inst.sg:GoToState("dissipate")
+        end
+    end
+end
+
+local function OnEntitySleep(inst)
+    if inst:HasTag("aporkalypse_cleanup") and not TheWorld.state.isaporkalypse then
+        inst:Remove()
     end
 end
 
@@ -61,6 +71,10 @@ local function OnLoad(inst, data)
     if data and data.aporkalypse_cleanup then
         inst:AddTag("aporkalypse_cleanup")
     end
+end
+
+local function OnRemove(inst)
+    inst.SoundEmitter:KillSound("howl")
 end
 
 local brain = require "brains/ghostbrain"
@@ -88,7 +102,9 @@ local function fn()
     inst.Light:Enable(true)
     inst.Light:SetColour(180 / 255, 195 / 255, 225 / 255)
 
-    inst.SoundEmitter:PlaySound("dontstarve/ghost/ghost_howl_LP", "howl")
+    inst:DoTaskInTime(0, function()
+        inst.SoundEmitter:PlaySound("dontstarve/ghost/ghost_howl_LP", "howl")
+    end)
 
     inst:AddTag("monster")
     inst:AddTag("hostile")
@@ -109,6 +125,7 @@ local function fn()
     inst.components.locomotor.walkspeed = TUNING.GHOST_SPEED
     inst.components.locomotor.runspeed = TUNING.GHOST_SPEED
     inst.components.locomotor.directdrive = true
+    inst.components.locomotor.pathcaps = {ignorewalls = true, ignorecreep = true, allowocean = true}
 
     inst:AddComponent("sanityaura")
     inst.components.sanityaura.aura = -TUNING.SANITYAURA_MED
@@ -138,6 +155,10 @@ local function fn()
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
 
+    inst.OnRemove = OnRemove
+
+    inst.OnEntitySleep = OnEntitySleep
+
     inst:ListenForEvent("death", OnDeath)
     inst:ListenForEvent("attacked", OnAttacked)
     inst:WatchWorldState("isaporkalypse", OnIsAporkalypse)
@@ -145,15 +166,13 @@ local function fn()
     return inst
 end
 
-local function OnIsAporkalypse_Spawner(inst, isaporkalypse)
-    if isaporkalypse then
-        inst.components.childspawner:StartSpawning()
-    else
-        inst.components.childspawner:StopSpawning()
+local function OnEntityWake_Spawner(inst)
+    if TheWorld.state.isaporkalypse then
+        inst.components.childspawner:ReleaseAllChildren()
     end
 end
 
-local function OnChildSpaned(inst, child)
+local function OnChildSpawned(inst, child)
     child:AddTag("aporkalypse_cleanup")
 end
 
@@ -171,13 +190,15 @@ local function spawner_fn()
 
     inst:AddComponent("childspawner")
     inst.components.childspawner.childname = "pigghost"
+    inst.components.childspawner.spawnradius = TUNING.ROOM_SMALL_DEPTH / 2
     inst.components.childspawner:SetRegenPeriod(TUNING.PIGGHOST_REGEN_TIME)
     inst.components.childspawner:SetSpawnPeriod(TUNING.PIGGHOST_RELEASE_TIME, TUNING.PIGGHOST_RELEASE_TIME)
     inst.components.childspawner:SetMaxChildren(TUNING.PIGGHOST_MAXCHILDREN)
-    inst.components.childspawner:SetSpawnedFn(OnChildSpaned)
+    inst.components.childspawner:SetSpawnedFn(OnChildSpawned)
+    inst.components.childspawner.canspawnfn = function() return TheWorld.state.isaporkalypse end
+    inst.components.childspawner:StartSpawning()
 
-    inst:WatchWorldState("isaporkalypse", OnIsAporkalypse_Spawner)
-    OnIsAporkalypse_Spawner(inst, TheWorld.state.isaporkalypse)
+    inst.OnEntityWake = OnEntityWake_Spawner
 
     return inst
 end

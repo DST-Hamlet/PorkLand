@@ -1,10 +1,11 @@
 <Atlas>
-    <Texture filename="pl_hud.tex" />
+    <Texture filename="pl_hud.tex"/>
     <Elements>
-        <Element name="filter_nautical.tex" u1="0.0009765625" u2="0.4931640625" v1="0.5029296875" v2="0.9990234375" />
-        <Element name="equip_slot_boat_utility.tex" u1="0.1337890625" u2="0.2646484375" v1="0.3681640625" v2="0.4990234375" />
-        <Element name="station_obsidian.tex" u1="0.5009765625" u2="0.9931640625" v1="0.5029296875" v2="0.9990234375" />
-        <Element name="gourmetstar.tex" u1="0.2666015625" u2="0.3037109375" v1="0.4638671875" v2="0.4990234375" />
-        <Element name="equip_slot_boat_light.tex" u1="0.0009765625" u2="0.1318359375" v1="0.3681640625" v2="0.4990234375" />
+        <Element name="blackbg.tex" u1="0" u2="0.625" v1="0.296875" v2="1"/>
+        <Element name="filter_nautical.tex" u1="0.625" u2="0.74853515625" v1="0.7509765625" v2="1"/>
+        <Element name="equip_slot_boat_utility.tex" u1="0.875" u2="0.908203125" v1="0.93359375" v2="1"/>
+        <Element name="station_obsidian.tex" u1="0.75" u2="0.87353515625" v1="0.7509765625" v2="1"/>
+        <Element name="gourmetstar.tex" u1="0.94140625" u2="0.951171875" v1="0.9814453125" v2="1"/>
+        <Element name="equip_slot_boat_light.tex" u1="0.908203125" u2="0.94140625" v1="0.93359375" v2="1"/>
     </Elements>
 </Atlas>

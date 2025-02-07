@@ -3,7 +3,6 @@ require("stategraphs/commonstates")
 local function OnWaterSound(inst)
     if inst.onwater then
         inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/ro_bin/flap")
-        inst.components.locomotor:WalkForward()
     end
 end
 
@@ -41,6 +40,11 @@ local states =
         tags = {"idle", "canrotate"},
 
         onenter = function(inst, pushanim)
+            if inst.components.container:IsOpen() then
+                inst.sg:GoToState("open_idle")
+                return
+            end
+
             inst.Physics:Stop()
             inst.AnimState:PlayAnimation("idle_loop")
         end,
@@ -160,60 +164,6 @@ local states =
     },
 
     State{
-        name = "take_off",
-        tags = {"canrotate", "busy"},
-
-        onenter = function(inst)
-            local should_move = inst.components.locomotor:WantsToMoveForward()
-            local should_run = inst.components.locomotor:WantsToRun()
-            if should_move then
-                inst.components.locomotor:WalkForward()
-            elseif should_run then
-                inst.components.locomotor:RunForward()
-            end
-            inst.AnimState:SetBank("robin_flight")
-            inst.AnimState:PlayAnimation("takeoff")
-        end,
-
-        events =
-        {
-            EventHandler("animover", function(inst)
-                inst.sg:GoToState("idle")
-            end),
-        },
-    },
-
-    State{
-        name = "land",
-        tags = {"canrotate", "busy"},
-
-        onenter = function(inst)
-            local should_move = inst.components.locomotor:WantsToMoveForward()
-            local should_run = inst.components.locomotor:WantsToRun()
-            if should_move then
-                inst.components.locomotor:WalkForward()
-            elseif should_run then
-                inst.components.locomotor:RunForward()
-            end
-            inst.AnimState:SetBank("robin_land")
-            inst.AnimState:PlayAnimation("takeoff")
-        end,
-
-        events =
-        {
-            EventHandler("animover", function(inst)
-                inst.sg:GoToState("idle")
-            end),
-        },
-
-        timeline =
-        {
-            TimeEvent(0 * FRAMES, function(inst)inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/ro_bin/mouth_open") end),
-            TimeEvent(8 * FRAMES, function(inst)inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/ro_bin/mouth_open", nil, 0.5) end),
-        },
-    },
-
-    State{
         name = "spawn",
         tags = {"canrotate", "busy"},
 
@@ -243,6 +193,10 @@ local states =
             end
             inst.AnimState:SetBank("ro_bin_water")
             inst.AnimState:PlayAnimation("land")
+        end,
+
+        onexit = function(inst)
+            inst.AnimState:SetBank("ro_bin")
         end,
 
         events =
@@ -285,7 +239,6 @@ starttimeline = {
     TimeEvent(1 * FRAMES, function(inst)
         if inst.onwater then
             inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/ro_bin/flap")
-            inst.components.locomotor:WalkForward()
         end
     end),
 },
@@ -329,11 +282,18 @@ endtimeline =
     TimeEvent(1*FRAMES, function(inst)
         if inst.onwater then
             inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/ro_bin/flap")
-            inst.components.locomotor:WalkForward()
         end
     end),
 },
-}, nil, true)
+}, {
+    walk = function(inst)
+        inst.sg.mem.altwalk = not inst.sg.mem.altwalk -- 左右脚交替走路
+        if not inst.onwater and inst.sg.mem.altwalk then
+            return "walk_loop_alt"
+        end
+        return "walk_loop"
+    end
+}, true)
 
 CommonStates.AddSleepStates(states, {
 starttimeline =

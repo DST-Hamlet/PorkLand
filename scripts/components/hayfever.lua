@@ -23,6 +23,8 @@ local Hayfever = Class(function(self, inst)
 
     self:WatchWorldState("ishayfever", self.OnHayFever)
     self:OnHayFever(TheWorld.state.ishayfever)
+
+    self.inst:StartUpdatingComponent(self)
 end,
 nil, {
     imune = onimune,
@@ -57,12 +59,23 @@ function Hayfever:CanSneeze()
 end
 
 function Hayfever:DoSneezeEffects()
+    if self.nextsneeze > 0 then
+        self.sneezed = false
+        return
+    end
+
     if self.inst.components.sanity ~= nil then
         self.inst.components.sanity:DoDelta(-TUNING.SANITY_SUPERTINY * 3)
     end
 
     -- cause player to drop stuff here.
-    local itemstodrop = math.random(1, 5) - 1
+    local itemstodrop = 0
+
+    if math.random() < 0.1 then
+        itemstodrop = 4
+    elseif math.random() < 0.6 then
+        itemstodrop = 1
+    end
 
     if itemstodrop > 0 then
         for i = 1, itemstodrop do
@@ -75,22 +88,32 @@ function Hayfever:DoSneezeEffects()
             end
         end
     end
+
+    if self.sneezed or math.random() > 0.7 then
+        self.sneezed = false
+        self.nextsneeze = self:GetNextSneezTime()
+    else
+        self.sneezed = true
+        self.nextsneeze = 1
+    end
 end
 
 function Hayfever:OnUpdate(dt)
     if self:CanSneeze() then
-        if self.nextsneeze <= 0 then
-            if not self.inst.sg.wantstosneeze then
+        if not self.enabled then
+            if self.nextsneeze <= 60 then
+                self.nextsneeze = 60
+            else
+                self.nextsneeze = self.nextsneeze - dt
+            end
+        elseif self.nextsneeze <= 0 then
+            if not self.inst.sg:HasStateTag("sneeze") then
                 -- large chance to sneeze twice in a row
-                if self.sneezed or math.random() > 0.7 then
-                    self.sneezed = false
-                    self.nextsneeze = self:GetNextSneezTime()
-                else
-                    self.sneezed = true
-                    self.nextsneeze = 1
-                end
-
                 self.inst:PushEvent("sneeze")
+
+                if self.inst.components.health:IsInvincible() then -- 测试时的上帝模式不打喷嚏
+                    self.nextsneeze = self:GetNextSneezTime()
+                end
             end
         else
             self.nextsneeze = self.nextsneeze - dt
@@ -118,8 +141,6 @@ function Hayfever:Enable(nosay)
         end
         self.enabled = true
     end
-
-    self.inst:StartUpdatingComponent(self)
 end
 
 function Hayfever:Disable(nosay)
@@ -128,18 +149,22 @@ function Hayfever:Disable(nosay)
 
         self.sneezed = false
         self.enabled = false
-        self.nextsneeze = self:GetNextSneezTimeInitial()
+        if self.nextsneeze < 60 then
+            self.nextsneeze = self:GetNextSneezTimeInitial()
+        end
 
         if not nosay then
             self.inst.components.talker:Say(GetString(self.inst, "ANNOUNCE_HAYFEVER_OFF"))
         end
     end
-
-    self.inst:StopUpdatingComponent(self)
 end
 
-function Hayfever:OnHayFever(enabled, nosay)
-    if enabled then
+function Hayfever:OnHayFever(enabled, nosay, force)
+    if enabled
+        and ((not self.inst.components.health:IsDead()
+        and not self.inst:HasTag("playerghost"))
+        or force) then
+
         self:Enable(nosay)
     else
         self:Disable(nosay)
@@ -165,15 +190,13 @@ function Hayfever:OnLoad(data)
     if data then
         self.sneezed = data.sneezed
         self.nextsneeze = data.nextsneeze or self:GetNextSneezTimeInitial()
-    end
 
-
-    if data.enabled then
-        if TheWorld.state.ishayfever then
-            self:Enable()
-        else
-            self.sneezed = false
-            self.nextsneeze = self:GetNextSneezTimeInitial()
+        if data.enabled then
+            if TheWorld.state.ishayfever then
+                self:Enable()
+            else
+                self.sneezed = false
+            end
         end
     end
 end

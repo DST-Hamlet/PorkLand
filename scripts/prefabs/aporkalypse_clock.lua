@@ -35,18 +35,19 @@ local function PlayClockAnimation(inst, anim)
 end
 
 local function OnRewindMultChange(inst, rewind_mult)
+    inst._rewind_mult:set(rewind_mult)
     if rewind_mult == 0 then  -- stop rewind
-        inst:Kill2DSound("rewind_sound")
-        inst:Play2DSoundOutSide("dontstarve_DLC003/common/objects/aporkalypse_clock/base_LP", "base_sound",20)
+        inst.SoundEmitter:KillSound("rewind_sound")
+        inst.SoundEmitter:PlaySound("porkland_soundpackage/common/objects/aporkalypse_clock/base_LP", "base_sound")
 
         inst.rewind = false
     else  -- start rewind
-        inst:Kill2DSound("base_sound")
+        inst.SoundEmitter:KillSound("base_sound")
 
         if rewind_mult < 0 then
-            inst:Play2DSoundOutSide("dontstarve_DLC003/common/objects/aporkalypse_clock/base_backwards_LP", "rewind_sound")
+            inst.SoundEmitter:PlaySound("porkland_soundpackage/common/objects/aporkalypse_clock/base_backwards_LP", "rewind_sound")
         elseif rewind_mult > 0 then
-            inst:Play2DSoundOutSide("dontstarve_DLC003/common/objects/aporkalypse_clock/base_fast_LP", "rewind_sound")
+            inst.SoundEmitter:PlaySound("porkland_soundpackage/common/objects/aporkalypse_clock/base_fast_LP", "rewind_sound")
         end
 
         inst.rewind = true
@@ -59,6 +60,7 @@ local function OnAporkalypseClockTick(inst, data)
     end
 
     local timeuntilaporkalypse = math.max(data.timeuntilaporkalypse or 0, 0)
+    inst._timeuntilaporkalypse:set(data.timeuntilaporkalypse)
     for i, clock in ipairs(inst.clocks) do
         local angle = timeuntilaporkalypse / TUNING.APORKALYPSE_PERIOD_LENGTH * 360 * rotation_speeds[i]
         set_rotation(clock, angle)
@@ -68,8 +70,8 @@ end
 local function OnStartAporkalypse(inst, data)
     inst:PlayClockAnimation("on")
 
-    inst:Kill2DSound("totem_sound")
-    inst:Kill2DSound("base_sound")
+    inst.SoundEmitter:KillSound("totem_sound")
+    inst.SoundEmitter:KillSound("base_sound")
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/stone_door/close")
 
     ShakeAllCameras(CAMERASHAKE.FULL, 0.7, 0.02, .5, inst)
@@ -81,8 +83,8 @@ end
 local function OnStopAporkalypse(inst, data)
     inst:PlayClockAnimation("off")
 
-    inst:Play2DSoundOutSide("dontstarve_DLC003/common/objects/aporkalypse_clock/totem_LP", "totem_sound",20)
-    inst:Play2DSoundOutSide("dontstarve_DLC003/common/objects/aporkalypse_clock/base_LP", "base_sound",20)
+    inst.SoundEmitter:PlaySound("porkland_soundpackage/common/objects/aporkalypse_clock/totem_LP", "totem_sound")
+    inst.SoundEmitter:PlaySound("porkland_soundpackage/common/objects/aporkalypse_clock/base_LP", "base_sound")
 
     inst.AnimState:PushAnimation("idle_pre", false)
     inst.AnimState:PushAnimation("idle_loop")
@@ -133,12 +135,38 @@ local function DoPostInit(inst)
     end
 
     if TheWorld.state.isaporkalypse then
-        inst:Kill2DSound("totem_sound")
-        inst:Kill2DSound("base_sound")
+        inst.SoundEmitter:KillSound("totem_sound")
+        inst.SoundEmitter:KillSound("base_sound")
 
         inst.AnimState:PlayAnimation("idle_on")
         inst:PlayClockAnimation("on")
+    else
+        inst.SoundEmitter:PlaySound("porkland_soundpackage/common/objects/aporkalypse_clock/totem_LP", "totem_sound")
+        inst.SoundEmitter:PlaySound("porkland_soundpackage/common/objects/aporkalypse_clock/base_LP", "base_sound")
     end
+
+    inst._clock_spawndirty:push()
+end
+
+local function RegistClocks(inst)
+    for i, v in ipairs(clock_prefabs) do
+        local clock = TheSim:FindFirstEntityWithTag(v)
+        if clock then
+            inst._clocks[i] = clock
+        end
+    end
+end
+
+local function ClientPerdictRotation(inst, dt)
+    if TheWorld.state.isaporkalypse then
+        return
+    end
+
+    for k, clock in pairs(inst._clocks) do
+        local angle = inst._timeuntilaporkalypse:value() / TUNING.APORKALYPSE_PERIOD_LENGTH * 360 * rotation_speeds[k]
+        set_rotation(clock, angle)
+    end
+    inst._timeuntilaporkalypse:set_local(inst._timeuntilaporkalypse:value() - dt - inst._rewind_mult:value() * 250 * dt)
 end
 
 local function aporkalypse_clock_fn()
@@ -158,12 +186,25 @@ local function aporkalypse_clock_fn()
     inst.AnimState:SetBuild("aporkalypse_totem")
     inst.AnimState:PlayAnimation("idle_loop", true)
 
-    inst:Play2DSoundOutSide("dontstarve_DLC003/common/objects/aporkalypse_clock/totem_LP", "totem_sound",20)
-    inst:Play2DSoundOutSide("dontstarve_DLC003/common/objects/aporkalypse_clock/base_LP", "base_sound",20)
+    inst._rewind_mult = net_float(inst.GUID, "_rewind_mult", "rewind_mult_dirty")
+    inst._clock_spawndirty = net_event(inst.GUID, "_clock_spawndirty", "clock_spawndirty")
+    inst._timeuntilaporkalypse = net_float(inst.GUID, "_timeuntilaporkalypse")
 
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
+        inst._clocks = {}
+        inst:ListenForEvent("clock_spawndirty", RegistClocks)
+        inst:DoTaskInTime(0, RegistClocks)
+
+        inst.oldtimeuntilaporkalypse = 0
+        inst:DoPeriodicTask(FRAMES, function(inst)
+            if inst.oldtimeuntilaporkalypse == inst._timeuntilaporkalypse:value() then
+                ClientPerdictRotation(inst, FRAMES)
+            end
+            inst.oldtimeuntilaporkalypse = inst._timeuntilaporkalypse:value()
+        end)
+
         return inst
     end
 
@@ -196,6 +237,8 @@ local function aporkalypse_marker_fn()
     inst.entity:AddTransform()
     inst.entity:AddAnimState()
     inst.entity:AddNetwork()
+
+    inst:AddTag("NOCLICK")
 
     inst.AnimState:SetBuild("aporkalypse_clock_marker")
     inst.AnimState:SetBank("clock_marker")
@@ -231,7 +274,8 @@ local function MakeClock(clock_num)
         inst.entity:AddAnimState()
         inst.entity:AddNetwork()
 
-        inst:AddTag("OnFloor")
+        inst:AddTag("NOCLICK")
+        inst:AddTag(name)
 
         inst.AnimState:SetBank(bank)
         inst.AnimState:SetBuild(build)

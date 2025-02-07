@@ -20,7 +20,7 @@ local VALID_TILES = {
     [WORLD_TILES.DIRT] = true,
 }
 
-local BRAMBLE_MIN_DISTANCE_SQ = 40 * 40
+local BRAMBLE_MIN_DISTANCE_SQ = 80 * 80
 
 --------------------------------------------------------------------------
 --[[ Public Member Variables ]]
@@ -36,6 +36,7 @@ local _bramble_spots = {}
 local _bramble_to_spawn = 7
 local _bramble_spawned = false
 local _disabled = false
+local _last_spawn_time = 0
 
 --------------------------------------------------------------------------
 --[[ Private member functions ]]
@@ -48,7 +49,16 @@ local function SpawnBrambles()
 
     local selected = {}
     local options = deepcopy(_bramble_spots)
-    local num_options = GetTableSize(options) -- options will have holes(nil value)
+    local num_options = #options -- options will have holes(nil value)
+
+    for i = #options, 1, -1 do
+        local to_test = options[i]
+        local x, y, z = Vector3(to_test.x, 0, to_test.z):Get()
+        local tile = TheWorld.Map:GetTileAtPoint(x, y, z)
+        if not VALID_TILES[tile] or not TheWorld.Map:ReverseIsVisualGroundAtPoint(x, y, z) then
+            table.remove(options, i)
+        end
+    end
 
     for i = 1, _bramble_to_spawn do
         -- reached max density, stop spawning more
@@ -59,10 +69,10 @@ local function SpawnBrambles()
         local choice = GetRandomItem(options)
         table.insert(selected, choice)
 
-        for ii = 1, num_options do
-            local to_test = options[i]
+        for ii = #options, 1, -1 do
+            local to_test = options[ii]
             if distsq(choice.x, choice.z, to_test.x, to_test.z) < BRAMBLE_MIN_DISTANCE_SQ then -- minimum distance between 2 brambles is 40
-                table.remove(options, i)
+                table.remove(options, ii)
             end
         end
     end
@@ -81,8 +91,11 @@ local function OnseasonChange(src, season)
     end
 
     if season == SEASONS.LUSH then
-        if not _bramble_spawned then
+        if not _bramble_spawned and (TheWorld.state.cycles - _last_spawn_time > 5) then
+            -- 为了防止频繁转动日晷进入繁茂季导致卡顿, 所以两次荆棘生长之间有5天的冷却时间
+            print("SpawnBrambles", TheWorld.state.cycles, _last_spawn_time)
             SpawnBrambles()
+            _last_spawn_time = TheWorld.state.cycles
         end
     else
         _bramble_spawned = false
@@ -98,11 +111,8 @@ function self:Disable(disable)
 end
 
 function self:RegisterBramble(bramble)
-    local x, y, z = bramble.Transform:GetWorldPosition()
-    local tile = TheWorld.Map:GetTileAtPoint(x, y, z)
-    if VALID_TILES[tile] and TheWorld.Map:ReverseIsVisualGroundAtPoint(x, y, z) then
-        table.insert(_bramble_spots, {x = x, z = z})
-    end
+    local x, _, z = bramble.Transform:GetWorldPosition()
+    table.insert(_bramble_spots, {x = x, z = z})
     bramble:Remove()
 end
 
@@ -120,6 +130,7 @@ function self:OnSave()
     return {
         bramble_spawned = _bramble_spawned,
         bramble_spots = _bramble_spots,
+        _last_spawn_time = _last_spawn_time,
     }
 end
 
@@ -130,6 +141,7 @@ function self:OnLoad(data)
 
     _bramble_spawned = data.bramble_spawned
     _bramble_spots = data.bramble_spots or {}
+    _last_spawn_time = data._last_spawn_time or 0
 end
 
 --------------------------------------------------------------------------

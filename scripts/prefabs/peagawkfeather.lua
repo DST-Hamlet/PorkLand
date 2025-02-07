@@ -19,6 +19,8 @@ local function fn()
     inst.AnimState:PlayAnimation("idle", true)
     inst.AnimState:SetFrame(math.random(1, 39)) -- so they don't blink at the same time
 
+    inst.pickupsound = "cloth"
+
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then

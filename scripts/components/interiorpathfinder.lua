@@ -30,7 +30,7 @@ local function IsClearPath(start_x, start_y, end_x, end_y, map, width, depth, ig
         local ix = math.floor(x + 0.5)
         local iy = math.floor(y + 0.5)
 
-        if not IsInBounds(ix, iy, map, width, depth) or (not ignorewalls and map[ix] and map[ix][iy] and map[ix][iy] == Blockers.Wall) then
+        if not IsInBounds(ix, iy, map, width, depth) or ((not ignorewalls) and map[ix] and map[ix][iy] and map[ix][iy] == Blockers.Wall) then
             -- print("point is not clear!!!!!", ix, iy)
             return false
         end
@@ -56,8 +56,8 @@ end
 
 local function CreateNode(x, y, g, h, parent)
     local node = {
-        x = x, -- 节点坐标位置
-        y = y,
+        x = tonumber(x), -- 节点坐标位置, 加tonumber是为了避免一个曾经发生过的罕见的报错
+        y = tonumber(y),
         g = 0, -- 节点离开始节点的网格路程距离
         h = 0, -- 节点离开始节点的最短网格距离
         f = g + h, -- 整条寻路的估计长度

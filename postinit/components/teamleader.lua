@@ -10,7 +10,7 @@ function TeamLeader:OnUpdate(dt, ...)  -- 修复了群体战斗生物不会因�
         (self.threat.components.health and self.threat.components.health:IsDead()) or
         self.threat:HasTag("playerghost") or
         self.threat:HasTag("noattack") or
-        self.threat:HasTag("flight") or
+        (self.threat.sg and self.threat.sg:HasStateTag("flight")) or  -- 这一行在复制后进行了改动以修复原版的错误
         self.threat:HasTag("invisible")) then  -- 复制自combat组件的keeptarget检测和CanBeAttacked函数
             self.threat = nil
     end

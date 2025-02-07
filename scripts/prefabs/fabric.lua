@@ -12,6 +12,8 @@ local function fn()
     inst.AnimState:SetBuild("fabric")
     inst.AnimState:PlayAnimation("idle")
 
+    inst.pickupsound = "cloth"
+
     MakeInventoryPhysics(inst)
 
     MakeInventoryFloatable(inst)

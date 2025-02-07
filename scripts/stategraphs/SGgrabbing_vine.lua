@@ -201,6 +201,12 @@ local states=
             inst.components.lootdropper:DropLoot()
         end,
 
+        timeline =
+        {
+            TimeEvent(22 * FRAMES, function(inst)
+                PL_LandFlyingCreature(inst)
+            end)
+        }
     },
 
     State{
@@ -215,16 +221,21 @@ local states=
         timeline=
         {
             TimeEvent(1 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/grabbing_vine/eat_drop") end),
-            TimeEvent(12 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/grabbing_vine/eat") end),
-            TimeEvent(24 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/grabbing_vine/eat_up") end),
-            TimeEvent(21 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/grabbing_vine/eat_drop") end),
+            TimeEvent(12 * FRAMES, function(inst)
+                inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/grabbing_vine/eat")
+                PL_LandFlyingCreature(inst)
+            end),
             TimeEvent(13 * FRAMES, function(inst) inst:PerformBufferedAction() end),
+            TimeEvent(21 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/grabbing_vine/eat_drop") end),
+            TimeEvent(24 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/grabbing_vine/eat_up") end),
+            TimeEvent(25 * FRAMES, function(inst) PL_RaiseFlyingCreature(inst) end),
 
         },
         events =
         {
             EventHandler("animover", function(inst) inst.sg:GoToState("down") end),
         },
+        onexit = PL_RaiseFlyingCreature,
     },
 
 

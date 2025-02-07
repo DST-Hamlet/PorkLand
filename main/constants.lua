@@ -38,6 +38,7 @@ INTERIOR_QUAKE_LEVELS = {
     PILLAR_DESTROYED = 2,
     QUEEN_ATTACK = 3,
     MINOR_QUAKE = 4,
+    ANTHILL_REBUILT = 5,
 }
 
 AREAMODES = {
@@ -92,3 +93,5 @@ NAUGHTY_VALUE["pog"] = 2
 NAUGHTY_VALUE["glowfly"] = 1
 NAUGHTY_VALUE["pigeon"] = 1
 NAUGHTY_VALUE["piko"] = 1
+
+MAX_PHYSICS_RADIUS = 5.2 -- the biggest lilypad

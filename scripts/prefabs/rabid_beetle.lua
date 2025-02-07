@@ -151,6 +151,7 @@ local function fn()
     inst.components.inventoryitem.canbepickedup = false
     inst.components.inventoryitem.canbepickedupalive = false
     inst.components.inventoryitem.nobounce = true
+    inst.components.inventoryitem:SetSinks(true)
 
     inst:AddComponent("combat")
     inst.components.combat:SetDefaultDamage(TUNING.RABID_BEETLE_DAMAGE)
@@ -171,6 +172,8 @@ local function fn()
     inst:DoStaticTaskInTime(0, function()
         inst.components.perishable:SetPercent(inst.components.timer:GetTimeLeft("endlife") / (TUNING.TOTAL_DAY_TIME + TUNING.SEG_TIME))
     end)
+
+    inst.inventoryloot = "rabid_beetle_inventory"
 
     inst:SetStateGraph("SGrabid_beetle")
     inst:SetBrain(brain)

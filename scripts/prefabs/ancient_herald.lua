@@ -76,7 +76,10 @@ local function fn()
     inst.entity:AddDynamicShadow()
     inst.entity:AddNetwork()
 
-    MakeCharacterPhysics(inst, 1000, 0.5) -- why not flying character?
+    MakeCharacterPhysics(inst, 1000, 0.5)
+    if TheWorld:HasTag("porkland") then
+        inst.Physics:ClearCollidesWith(COLLISION.LIMITS)
+    end
 
     inst.AnimState:SetBank("ancient_spirit")
     inst.AnimState:SetBuild("ancient_spirit")
@@ -110,6 +113,7 @@ local function fn()
     inst:AddComponent("locomotor") -- locomotor must be constructed before the stategraph
     inst.components.locomotor.walkspeed = TUNING.GHOST_SPEED
     inst.components.locomotor.runspeed = TUNING.GHOST_SPEED
+    inst.components.locomotor.pathcaps = {ignorecreep = true, allowocean = true}
 
     inst:AddComponent("sanityaura")
     inst.components.sanityaura.aurafn = CalcSanityAura

@@ -8,9 +8,31 @@ local assets =
     Asset("ANIM", "anim/pedestal_crate_lock.zip"),
 }
 
+local function OnIsPathFindingDirty(inst)
+    if inst._ispathfinding:value() then
+        if inst._pfpos == nil and inst:GetCurrentPlatform() == nil then
+            inst._pfpos = inst:GetPosition()
+            TheWorld.Pathfinder:AddWall(inst._pfpos:Get())
+        end
+    elseif inst._pfpos ~= nil then
+        TheWorld.Pathfinder:RemoveWall(inst._pfpos:Get())
+        inst._pfpos = nil
+    end
+end
+
+local function InitializePathFinding(inst)
+    inst:ListenForEvent("onispathfindingdirty", OnIsPathFindingDirty)
+    OnIsPathFindingDirty(inst)
+end
+
 local function MakeObstacle(inst)
     local x, y, z = inst.Transform:GetWorldPosition()
     TheWorld.Pathfinder:AddWall(x, y, z)
+end
+
+local function OnRemove(inst)
+    inst._ispathfinding:set_local(false)
+    OnIsPathFindingDirty(inst)
 end
 
 local function GetSlotSymbol(inst, slot)
@@ -33,14 +55,7 @@ local function OnFinish(inst, worker, workleft)
     end
 
     if inst.components.lootdropper then
-        local interior_spawner = TheWorld.components.interiorspawner
-        if interior_spawner.current_interior then
-            local originpt = interior_spawner:getSpawnOrigin()
-            local x, _, z = inst.Transform:GetWorldPosition()
-            local dropdir = Vector3(originpt.x - x, 0, originpt.z - z):GetNormalized()
-            inst.components.lootdropper.dropdir = dropdir
-            inst.components.lootdropper:DropLoot()
-        end
+        inst.components.lootdropper:DropLoot()
     end
 
     inst:Remove()
@@ -191,8 +206,11 @@ local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, on_r
         inst.entity:AddNetwork()
 
         if physics_round then
+            inst._ispathfinding = net_bool(inst.GUID, "_ispathfinding", "onispathfindingdirty")
             MakeObstaclePhysics(inst, .5)
-            inst:DoTaskInTime(0, MakeObstacle)
+            inst:DoTaskInTime(0, InitializePathFinding)
+
+            inst:ListenForEvent("onremove", OnRemove)
         else
             -- MakeInteriorPhysics(inst, 2, 1, 0.5) -- 暂时取消这些贴边物体的碰撞体和寻路，以减少卡位的可能性
             -- inst:DoTaskInTime(0, MakeObstacle)
@@ -229,6 +247,10 @@ local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, on_r
         inst:AddTag("wallsection")
         inst:AddTag("furniture")
         inst:AddTag("shelf")
+
+        if anim_def.name then
+            inst.name = anim_def.name
+        end
 
         inst.CanMouseThrough = CanMouseThrough
 
@@ -340,10 +362,10 @@ return MakeShelf("wood", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
     MakeShelf("floating", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
     MakeShelf("displaycase_wood", true, {animation = "displayshelf_wood"}),
     MakeShelf("displaycase_metal", true, {animation = "displayshelf_metal"}),
-    MakeShelf("queen_display_1", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock19_east", is_pedestal = true}, "SWAP_SIGN", nil, MakeLock),
-    MakeShelf("queen_display_2", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock17_east", is_pedestal = true}, "SWAP_SIGN", nil, MakeLock),
-    MakeShelf("queen_display_3", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock12_west", is_pedestal = true}, "SWAP_SIGN", nil, MakeLock),
-    MakeShelf("queen_display_4", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock12_west", is_pedestal = true}, "SWAP_SIGN", nil, MakeLock),
+    MakeShelf("queen_display_1", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock19_east", is_pedestal = true, name = STRINGS.NAMES.ROYAL_GALLERY}, "SWAP_SIGN", nil, MakeLock),
+    MakeShelf("queen_display_2", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock17_east", is_pedestal = true, name = STRINGS.NAMES.ROYAL_GALLERY}, "SWAP_SIGN", nil, MakeLock),
+    MakeShelf("queen_display_3", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock12_west", is_pedestal = true, name = STRINGS.NAMES.ROYAL_GALLERY}, "SWAP_SIGN", nil, MakeLock),
+    MakeShelf("queen_display_4", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock12_west", is_pedestal = true, name = STRINGS.NAMES.ROYAL_GALLERY}, "SWAP_SIGN", nil, MakeLock),
     MakeShelf("ruins", true, {animation = "ruins"}, nil, Curse),
     Prefab("shelves_lockvisual", lockvisual_fn, assets),
     Prefab("shelves_frontvisual", frontvisual_fn, assets)

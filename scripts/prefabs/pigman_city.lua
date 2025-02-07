@@ -41,7 +41,10 @@ local MALE = "MALE"
 local FEMALE = "FEMALE"
 
 local MAX_TARGET_SHARES = 5
-local SHARE_TARGET_DIST = 30
+local SHARE_TARGET_GUARD_DIST = 30
+local SHARE_TARGET_DIST = 16
+local SPREAD_SHARE_TARGET_DIST = 8
+local SPREAD_TARGET_DIST = 16
 
 local function GetSpeechType(inst, speech)
     return inst.talkertype and STRINGS[speech][inst.talkertype]
@@ -133,7 +136,11 @@ local function separatedesk(inst, separatedesk)
         ChangeToObstaclePhysics(inst)
         if inst.desk then
             local x, y, z = inst.desk.Transform:GetWorldPosition()
-            inst.Transform:SetPosition(x, y, z)
+            if inst.Physics then
+                inst.Physics:Teleport(x, y, z)
+            else
+                inst.Transform:SetPosition(x, y, z)
+            end
         end
         spawndesk(inst, false)
         inst:AddTag("atdesk")
@@ -298,22 +305,26 @@ local function ShouldAcceptItem(inst, item)
     return false
 end
 
-local function OnGetBribe(inst, item)
-    if not IsTableEmpty(inst.angry_at_players) then
-        if not inst.bribe_count then
-            inst.bribe_count = 0
+local function OnGetBribe(inst, giver, item)
+    if not inst:HasTag("guard") then
+        if inst.components.combat and inst.components.combat.target == giver then
+            inst.components.combat:GiveUp()
         end
-        inst.bribe_count = inst.bribe_count + item.oincvalue * item.components.stackable.stacksize
+        return
+    end
 
-        local bribe_threshold = inst:HasTag("guard") and 10 or 1
-        if inst.bribe_count >= bribe_threshold then
-            inst.angry_at_players = {}
+    if giver.components.uniqueidentity and inst.angry_at_criminals[giver.components.uniqueidentity:GetID()] then
+        local old_count = inst.angry_at_criminals[giver.components.uniqueidentity:GetID()]
+        inst.angry_at_criminals[giver.components.uniqueidentity:GetID()] = old_count - item.oincvalue * item.components.stackable.stacksize
 
-            if inst.components.combat and inst.components.combat.target and inst.components.combat.target:HasTag("player") then
+        if inst.angry_at_criminals[giver.components.uniqueidentity:GetID()] <= 0 then
+
+            if inst.components.combat and inst.components.combat.target == giver then
                 inst.components.combat:GiveUp()
             end
 
-            inst.bribe_count = 0
+            inst.angry_at_criminals[giver.components.uniqueidentity:GetID()] = nil
+
             inst:SayLine(inst:GetSpeechType("CITY_PIG_TALK_FORGIVE_PLAYER"))
         else
             inst:SayLine(inst:GetSpeechType("CITY_PIG_TALK_NOT_ENOUGH"))
@@ -422,7 +433,9 @@ local function OnGetItemFromPlayer(inst, giver, item)
         end
     end
 
-    if inst:HasTag("guard") and item:HasTag("securitycontract") then
+    if inst:HasTag("guard") and item:HasTag("securitycontract")
+        and not (inst.components.combat and inst.components.combat.target == giver) then
+
         inst.SoundEmitter:PlaySound("dontstarve/common/makeFriend")
         giver.components.leader:AddFollower(inst)
         inst.components.follower:AddLoyaltyTime(TUNING.PIG_LOYALTY_MAXTIME)
@@ -430,7 +443,7 @@ local function OnGetItemFromPlayer(inst, giver, item)
     end
 
     if item:HasTag("oinc") then
-        OnGetBribe(inst, item)
+        OnGetBribe(inst, giver, item)
     end
 end
 
@@ -457,37 +470,6 @@ local function OnEat(inst, food)
 
         poop.cityID = inst.components.citypossession.cityID
         TheWorld.components.periodicpoopmanager:OnPoop(poop.cityID, poop)
-    end
-end
-
-local function OnAttackedByDecidRoot(inst, attacker)
-    local fn = function(dude)
-        return dude:HasTag("pig") and not dude:HasTag("werepig") and not dude:HasTag("guard")
-    end
-
-    local x, y, z = inst.Transform:GetWorldPosition()
-    local ents = nil
-    if TheWorld.state.isspring then
-        ents = TheSim:FindEntities(x, y, z, (SHARE_TARGET_DIST * TUNING.SPRING_COMBAT_MOD) / 2)
-    else
-        ents = TheSim:FindEntities(x, y, z, SHARE_TARGET_DIST / 2)
-    end
-
-    if ents then
-        local num_helpers = 0
-        for _, v in ipairs(ents) do
-            if v ~= inst
-                and v.components.combat
-                and not (v.components.health and v.components.health:IsDead())
-                and fn(v) then
-
-                v:PushEvent("suggest_tree_target", {tree = attacker})
-                num_helpers = num_helpers + 1
-            end
-            if num_helpers >= MAX_TARGET_SHARES then
-                break
-            end
-        end
     end
 end
 
@@ -535,34 +517,80 @@ end
 
 local function OnAttacked(inst, data)
     local attacker = data.attacker
-    if attacker then
-        inst:ClearBufferedAction()
+    inst:ClearBufferedAction()
+    if attacker  then
+        inst.components.combat:SetTarget(attacker)
 
-        if attacker.prefab == "deciduous_root" and attacker.owner then
-            OnAttackedByDecidRoot(inst, attacker.owner)
-        elseif attacker.prefab ~= "deciduous_root" then
-            inst.components.combat:SetTarget(attacker)
-
-            if inst:HasTag("guard") then
-                if attacker:HasTag("player") and attacker.userid then
-                    inst.angry_at_players[attacker] = attacker.userid
+        if inst:HasTag("guard") then
+            inst.components.combat:ShareTarget(attacker, SHARE_TARGET_GUARD_DIST, function(dude) -- 守卫被非守卫打,大范围的守卫都会立刻注意
+                local canshare = dude:HasTag("civilizedpig") and dude:HasTag("guard") and not attacker:HasTag("guard")
+                if canshare then
+                    dude:PushEvent("onalarmed", {
+                        attacker = attacker,
+                    })
                 end
-                inst.components.combat:ShareTarget(attacker, SHARE_TARGET_DIST, function(dude)
-                    return dude:HasTag("pig") and (dude:HasTag("guard") or not attacker:HasTag("pig"))
+                return canshare
+            end, MAX_TARGET_SHARES)
+
+            inst.components.combat:ShareTarget(attacker, SHARE_TARGET_DIST, function(dude) -- 守卫被非猪打,小范围的普通猪人都会立刻注意
+                local canshare = dude:HasTag("civilizedpig") and not dude:HasTag("guard") and not attacker:HasTag("civilizedpig")
+
+                return canshare
+            end, MAX_TARGET_SHARES)
+        else
+            if not (attacker:HasTag("civilizedpig") and attacker:HasTag("guard")) then -- 普通猪人被守卫打,不会引起任何公民猪人的注意
+                inst.components.combat:ShareTarget(attacker, SHARE_TARGET_GUARD_DIST, function(dude) -- 普通猪人被打,大范围的守卫都会立刻注意
+                    local canshare = dude:HasTag("civilizedpig") and dude:HasTag("guard")
+                    if canshare then
+                        dude:PushEvent("onalarmed", {
+                            attacker = attacker,
+                        })
+                    end
+                    return canshare
                 end, MAX_TARGET_SHARES)
-            else
-                if not (attacker:HasTag("pig") and attacker:HasTag("guard")) then
-                    inst.components.combat:ShareTarget(attacker, SHARE_TARGET_DIST, function(dude)
-                        return dude:HasTag("pig")
-                    end, MAX_TARGET_SHARES)
-                end
+
+                inst.components.combat:ShareTarget(attacker, SHARE_TARGET_DIST, function(dude) -- 普通猪人被打,小范围的普通猪人都会立刻注意
+                    local canshare = dude:HasTag("civilizedpig") and not dude:HasTag("guard")
+
+                    return canshare
+                end, MAX_TARGET_SHARES)
             end
         end
+    end
+end
 
+local function OnNewTarget(inst, data)
+    local target = data.target
+    local oldtarget = data.oldtarget
+    if target then
         if not inst:HasTag("guards_called") then
             inst:AddTag("guards_called")
             if inst:HasTag("shopkeep") or inst:HasTag("pigqueen") then
-                spawn_guard_tasks(inst, data.attacker)
+                spawn_guard_tasks(inst, target)
+            end
+        end
+        if oldtarget == nil then
+            inst:ClearBufferedAction()
+            inst:PushEvent("onsurprised")
+        end
+    end
+end
+
+local function SuggestTargetFn(inst, data)
+    local target = data.target
+    if target and inst.components.follower.leader ~= target then
+        return true
+    end
+end
+
+local function OnAlarmed(inst, data)
+    local attacker = data.attacker
+    if attacker then
+        inst.components.combat:SuggestTarget(attacker)
+
+        if inst:HasTag("guard") and inst.components.follower.leader ~= attacker then
+            if not attacker:HasTag("sneaky") and attacker.components.uniqueidentity then
+                inst.angry_at_criminals[attacker.components.uniqueidentity:GetID()] = 10
             end
         end
     end
@@ -574,7 +602,15 @@ local function NormalRetargetFn(inst)
     return FindEntity(inst, TUNING.CITY_PIG_GUARD_TARGET_DIST, function(guy)
         if not guy.LightWatcher or guy.LightWatcher:IsInLight() then
 
-            if inst.angry_at_players[guy]
+            local angry_at_guy = false
+            if guy.components.uniqueidentity
+                and inst.angry_at_criminals[guy.components.uniqueidentity:GetID()]
+                and inst.angry_at_criminals[guy.components.uniqueidentity:GetID()] > 0 then
+
+                angry_at_guy = true
+            end
+
+            if angry_at_guy
                 and guy.components.health and not guy.components.health:IsDead()
                 and inst.components.combat:CanTarget(guy)
                 and not (inst.components.combat.target and inst.components.combat.target:HasTag("player")) then
@@ -582,7 +618,7 @@ local function NormalRetargetFn(inst)
                 inst:SayLine(inst:GetSpeechType("CITY_PIG_GUARD_TALK_ANGRY_PLAYER"))
             end
 
-            return (guy:HasTag("monster") or inst.angry_at_players[guy]) and
+            return (guy:HasTag("monster") or guy:HasTag("bandit") or angry_at_guy) and
                        guy.components.health and not guy.components.health:IsDead() and
                        inst.components.combat:CanTarget(guy) and
                        not (inst.components.follower.leader ~= nil and guy:HasTag("abigail"))
@@ -591,9 +627,42 @@ local function NormalRetargetFn(inst)
 end
 
 local function NormalKeepTargetFn(inst, target)
-    -- give up on dead guys, or guys in the dark, or werepigs
-    return inst.components.combat:CanTarget(target) and (not target.LightWatcher or target.LightWatcher:IsInLight()) and
-               not (target.sg and target.sg:HasStateTag("transform"))
+    local should_keep = inst.components.combat:CanTarget(target) and (not target.LightWatcher or target.LightWatcher:IsInLight())
+        and inst:GetDistanceSqToInst(target) < TUNING.CITY_PIG_GUARD_KEEP_TARGET_DIST * TUNING.CITY_PIG_GUARD_KEEP_TARGET_DIST
+
+    if should_keep then
+        if inst:HasTag("guard") and not target:HasTag("guard") then -- 守卫只有仇恨着非守卫生物才会导致仇恨传递
+            if target:HasTag("civilizedpig") then -- 如果目标是普通猪,那么守卫只会向守卫传递仇恨
+                inst.components.combat:ShareTarget(target, SPREAD_SHARE_TARGET_DIST, function(dude)
+                    return dude:HasTag("civilizedpig")
+                        and dude:GetDistanceSqToInst(target) < SPREAD_TARGET_DIST * SPREAD_TARGET_DIST
+                end, MAX_TARGET_SHARES)
+            else -- 如果目标是非猪,那么守卫会向所有公民猪人传递仇恨
+                inst.components.combat:ShareTarget(target, SPREAD_SHARE_TARGET_DIST, function(dude)
+                    return dude:HasTag("civilizedpig")
+                        and dude:GetDistanceSqToInst(target) < SPREAD_TARGET_DIST * SPREAD_TARGET_DIST
+                end, MAX_TARGET_SHARES)
+            end
+        else
+            if not (target:HasTag("civilizedpig") and target:HasTag("guard")) then -- 普通猪人仇恨守卫不会导致的仇恨传递
+                if not target:HasTag("civilizedpig") then -- 如果仇恨了非猪,那么普通猪人会向所有公民猪人传递仇恨
+                    inst.components.combat:ShareTarget(target, SPREAD_SHARE_TARGET_DIST, function(dude)
+                        return dude:HasTag("civilizedpig")
+                            and dude:GetDistanceSqToInst(target) < SPREAD_TARGET_DIST * SPREAD_TARGET_DIST
+                    end, MAX_TARGET_SHARES)
+                end
+            end
+        end
+    end
+
+    return should_keep
+end
+
+local function ShouldAggro(inst, target)
+    if inst:GetDistanceSqToInst(target) < TUNING.CITY_PIG_GUARD_KEEP_TARGET_DIST * TUNING.CITY_PIG_GUARD_KEEP_TARGET_DIST then
+        return true
+    end
+    return false
 end
 
 local function NormalShouldSleep(inst)
@@ -617,6 +686,9 @@ local function SetNormalPig(inst, brain_id)
     inst.components.combat:SetDefaultDamage(TUNING.PIG_DAMAGE)
     inst.components.combat:SetAttackPeriod(TUNING.PIG_ATTACK_PERIOD)
     inst.components.combat:SetKeepTargetFunction(NormalKeepTargetFn)
+    inst.components.combat:SetShouldAggroFn(ShouldAggro)
+    inst.components.combat.suggesttargetfn = SuggestTargetFn
+
     inst.components.locomotor.runspeed = TUNING.PIG_RUN_SPEED
     inst.components.locomotor.walkspeed = TUNING.PIG_WALK_SPEED
 
@@ -628,19 +700,13 @@ local function SetNormalPig(inst, brain_id)
     inst.components.lootdropper:AddRandomLoot("pigskin", 1)
     inst.components.lootdropper.numrandomloot = 1
 
-    inst.angry_at_players = {}
+    inst.angry_at_criminals = {}
     inst.components.health:SetMaxHealth(TUNING.PIG_HEALTH)
     inst.components.combat:SetRetargetFunction(3, NormalRetargetFn)
     inst.components.combat:SetTarget(nil)
     inst:ListenForEvent("suggest_tree_target", function(inst, data)
-        if data and data.tree and inst:GetBufferedAction() ~= ACTIONS.CHOP then
+        if data and data.tree and inst:GetBufferedAction().action ~= ACTIONS.CHOP then
             inst.tree_target = data.tree
-        end
-    end)
-
-    inst:ListenForEvent("itemget", function(inst, data)
-        if data.item:HasTag("oinc") then
-            OnGetBribe(inst, data.item)
         end
     end)
 
@@ -700,17 +766,7 @@ local function OnSave(inst, data)
     end
     -- end shopkeeper stuff
 
-    local cached_angry_at_player_ids = inst.cached_angry_at_player_ids or {}
-    for player, id in pairs(inst.angry_at_players) do
-        if player:IsValid() then
-            cached_angry_at_player_ids[id] = true
-        else
-            inst.angry_at_players[player] = nil
-        end
-    end
-    if not IsTableEmpty(cached_angry_at_player_ids) then
-        data.cached_angry_at_player_ids = cached_angry_at_player_ids
-    end
+    data.angry_at_criminals = inst.angry_at_criminals
 
     data.equipped = inst.equipped
     data.recieved_trinket = inst:HasTag("recieved_trinket")
@@ -746,39 +802,8 @@ local function OnLoad(inst, data)
         -- inst.equiptask = nil
     end
 
-    if data.cached_angry_at_player_ids then
-        inst.cached_angry_at_player_ids = data.cached_angry_at_player_ids
-
-        local cached_player_join_fn
-        local cached_new_player_spawned_fn
-
-        local function clear_callbacks_when_done(player)
-            if inst.cached_angry_at_player_ids[player.userid] then
-                inst.cached_angry_at_player_ids[player.userid] = nil
-            end
-            if IsTableEmpty(inst.cached_angry_at_player_ids) then
-                inst:RemoveEventCallback("ms_playerjoined", cached_player_join_fn, TheWorld)
-                inst:RemoveEventCallback("ms_newplayerspawned", cached_new_player_spawned_fn, TheWorld)
-            end
-        end
-
-        cached_player_join_fn = function(_, player)
-            if inst.cached_angry_at_player_ids[player.userid] then
-                inst.angry_at_players[player] = true
-            end
-            clear_callbacks_when_done(player)
-        end
-
-        cached_new_player_spawned_fn = function(_, player)
-            clear_callbacks_when_done(player)
-        end
-
-        -- need to check existing players, same way some world components do when adding _activeplayers
-        for _, player in pairs(AllPlayers) do
-            cached_player_join_fn(nil, player)
-        end
-        inst:ListenForEvent("ms_playerjoined", cached_player_join_fn, TheWorld)
-        inst:ListenForEvent("ms_newplayerspawned", cached_new_player_spawned_fn, TheWorld)
+    if data.angry_at_criminals then
+        inst.angry_at_criminals = data.angry_at_criminals
     end
 
     if data.recieved_trinket then
@@ -842,11 +867,12 @@ local function MakeCityPigman(name, build, sex, tags, common_postinit, master_po
 
         inst.SayLine = SayLine
         inst.GetSpeechType = GetSpeechType
-        inst.talkertype = name:upper()
+        inst.talkertype = name
 
         inst:AddTag("character")
         inst:AddTag("pig")
         inst:AddTag("civilized")
+        inst:AddTag("civilizedpig")
         inst:AddTag("scarytoprey")
         inst:AddTag("firecrackerdance")
         inst:AddTag("city_pig")
@@ -915,6 +941,8 @@ local function MakeCityPigman(name, build, sex, tags, common_postinit, master_po
         inst.components.inspectable.getstatus = GetStatus
         inst.components.inspectable.nameoverride = econprefab
 
+        inst:AddComponent("uniqueidentity")
+
         inst:AddComponent("trader")
         inst.components.trader:SetAcceptTest(ShouldAcceptItem)
         inst.components.trader.onaccept = OnGetItemFromPlayer
@@ -948,6 +976,8 @@ local function MakeCityPigman(name, build, sex, tags, common_postinit, master_po
         inst.OnLoadPostPass = OnLoadPostPass
 
         inst:ListenForEvent("attacked", OnAttacked)
+        inst:ListenForEvent("newcombattarget", OnNewTarget)
+        inst:ListenForEvent("onalarmed", OnAlarmed)
 
         SetNormalPig(inst)
 

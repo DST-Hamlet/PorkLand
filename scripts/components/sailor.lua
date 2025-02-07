@@ -149,8 +149,8 @@ function Sailor:OnUpdate(dt)
         if TheWorld.Map:ReverseIsVisualWaterAtPoint(x, y, z) then
             self.last_pos = pos
         elseif TheWorld.Map:ReverseIsVisualGroundAtPoint(x, y, z) then
-            local target_pos = Vector3(TheWorld.Map:GetTileCenterPoint(x, y, z))
-            self:Disembark(target_pos, nil, false, self.last_pos)
+            local target_pos = Vector3(x, y, z)
+            self:Disembark(target_pos, nil, true, self.last_pos)
         end
     else
         self.boatspeed = 0
@@ -318,7 +318,11 @@ function Sailor:Disembark(pos, boat_to_boat, no_state, boat_pos)
     end
     self.inst.Physics:Stop()
     self.inst.components.locomotor:StopMoving()
-    self.inst.Transform:SetPosition(x, y, z)
+    if no_state and pos then
+        self.inst.Transform:SetPosition(pos.x, pos.y, pos.z)
+    else
+        self.inst.Transform:SetPosition(x, y, z)
+    end
 
     local offset = self.boat.components.sailable.offset
     if offset ~= nil then

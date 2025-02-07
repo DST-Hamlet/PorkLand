@@ -63,6 +63,8 @@ local function fn()
     inst.components.workable:SetWorkLeft(TUNING.ROCKS_MINE)
     inst.components.workable:SetOnWorkCallback(OnWorkCallback)
 
+    MakeHauntable(inst)
+
     return inst
 end
 

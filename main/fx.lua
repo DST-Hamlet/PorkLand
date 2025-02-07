@@ -43,6 +43,16 @@ local pl_fx = {
         bank = "splash_water",
         build = "splash_water",
         anim = "idle",
+        sound = "dontstarve_DLC002/common/wave_break",
+        fn = TintOceantFx,
+    },
+    {
+        name = "splash_water_boost",
+        bank = "splash_water",
+        build = "splash_water",
+        anim = "idle",
+        sound = "dontstarve_DLC002/common/wave_break",
+        sound2 = "dontstarve_DLC002/common/wave_boost",
         fn = TintOceantFx,
     },
     {
@@ -64,7 +74,7 @@ local pl_fx = {
         bank = "splash_water_drop",
         build = "splash_water_drop",
         anim = "idle_sink",
-        sound = "dontstarve_DLC002/common/item_sink"
+        sound = "turnoftides/common/together/water/splash/small", -- "dontstarve_DLC002/common/item_sink"
     },
     {
         name = "boat_hit_fx_raft_log",
@@ -108,6 +118,20 @@ local pl_fx = {
         bank = "splash_clouds_drop",
         build = "splash_clouds_drop",
         anim = "idle_sink",
+        fn = BelowGroundFx,
+    },
+    {
+        name = "bombsplash",
+        bank = "bombsplash",
+        build = "water_bombsplash",
+        fn = TintOceantFx,
+        anim = "splash",
+    },
+    {
+        name = "clouds_bombsplash",
+        bank = "clouds_bombsplash",
+        build = "clouds_bombsplash",
+        anim = "splash",
         fn = BelowGroundFx,
     },
     {
@@ -174,8 +198,16 @@ local pl_fx = {
         bank = "laser_explosion",
         anim = "idle",
         fn = function(inst)
-            inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
             inst.Transform:SetScale(0.85, 0.85, 0.85)
+        end,
+    },
+    {
+        name = "laser_explosion_small",
+        build = "laser_explosion",
+        bank = "laser_explosion",
+        anim = "idle",
+        fn = function(inst)
+            inst.Transform:SetScale(0.4, 0.4, 0.4)
         end,
     },
     {
@@ -231,6 +263,36 @@ local pl_fx = {
         bank = "vortex_cloak_fx",
         build = "vortex_cloak_fx",
         anim = "idle",
+        sound = "dontstarve/creatures/together/stalker/shield",
+    },
+    {
+        name = "int_ceiling_dust_fx",
+        bank = "int_ceiling_dust_fx",
+        build = "int_ceiling_dust_fx",
+        anim = "idle",
+    },
+    {
+        name = "explode_large",
+        bank = "explode_large",
+        build = "explode_large",
+        anim = "large",
+        bloom = true,
+        sound = "dontstarve/common/blackpowder_explo",
+        fn = function(inst)
+            inst.AnimState:SetLightOverride(1)
+        end,
+    },
+    {
+        name = "explodering_fx",
+        bank = "explode_ring_fx",
+        build = "explode_ring_fx",
+        anim = "idle",
+        fn = function(inst)
+            inst.AnimState:SetFinalOffset(-1)
+            inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
+            inst.AnimState:SetLayer(LAYER_BACKGROUND)
+            inst.AnimState:SetSortOrder( -3 )
+        end,
     },
 }
 

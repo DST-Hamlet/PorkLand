@@ -241,22 +241,6 @@ local function OnBurnt(inst)
     inst.highlight_override = burnt_highlight_override
 end
 
-local function drop_critter(inst, prefab)
-    local critter = SpawnPrefab(prefab)
-    local pt = Vector3(inst.Transform:GetWorldPosition())
-
-    if math.random(0, 1) == 1 then -- why?
-        pt = pt + (TheCamera:GetRightVec() * (math.random() + 1))
-    else
-        pt = pt - (TheCamera:GetRightVec() * (math.random() + 1))
-    end
-
-    critter.sg:GoToState("fall")
-    pt.y = pt.y + (2 * inst.stage)
-
-    critter.Transform:SetPosition(pt:Get())
-end
-
 local function GrowFromSeed(inst)
     inst.components.growable:SetStage(1)
     inst.AnimState:PlayAnimation("grow_seed_to_short")

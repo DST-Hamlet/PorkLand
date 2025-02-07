@@ -180,6 +180,9 @@ local function OnFinishCallbackBurnt(inst, chopper)
     inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/bamboo_hack")
 
     inst.components.lootdropper:SpawnLootPrefab("charcoal")
+    if math.random() < 0.4 then
+        inst.components.lootdropper:SpawnLootPrefab("charcoal")
+    end
     inst.components.lootdropper:DropLoot()
 
     inst.persists = false
@@ -240,7 +243,7 @@ local function OnHacked(inst)
 end
 
 local function OnHackedFinal(inst, data)
-    if inst.tubers >= 0 then
+    if inst.components.hackable and inst.tubers >= 0 then
         inst.components.hackable.hacksleft = 3
         inst.components.hackable.canbehacked = true
         return

@@ -16,13 +16,13 @@ local function fn()
     inst.entity:AddLight()
     inst.entity:AddNetwork()
 
-
     inst.Light:SetIntensity(0.8)
     inst.Light:SetColour(98.5 / 255, 98.5 / 255, 25 / 255)
     inst.Light:SetFalloff(0.5)
     inst.Light:SetRadius(6)
     inst.Light:Enable(true)
 
+    inst:AddTag("safelight")
     inst:AddTag("NOBLOCK")
 
     inst.entity:SetPristine()
@@ -49,7 +49,7 @@ local function fn_large()
     inst.Light:SetRadius(9)
     inst.Light:Enable(true)
 
-
+    inst:AddTag("safelight")
     inst:AddTag("NOBLOCK")
 
     inst.entity:SetPristine()
@@ -62,4 +62,4 @@ local function fn_large()
 end
 
 return Prefab("deco_roomglow", fn, assets, prefabs),
-       Prefab("deco_roomglow_large", fn_large, assets, prefabs)
+        Prefab("deco_roomglow_large", fn_large, assets, prefabs)

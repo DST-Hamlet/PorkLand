@@ -20,7 +20,7 @@ float UVOffset[int(INDEX_SIZE)];
 
 void init() // 猪咪手算顶点核心科技
 {
-	WaterfallOffset[0] = vec3(0.0, 0., 0.); // 0
+	WaterfallOffset[0] = vec3(0., 0., 0.); // 0
     WaterfallOffset[1] = vec3(1.28, 0., 0.); // 1.28
     WaterfallOffset[2] = vec3(1.768, -0.196, 0.); // 0.5259
 	WaterfallOffset[3] = vec3(2.184, -0.748, 0.); // 0.173056 + 0.304704 = 0.6912 ^ 2
@@ -36,9 +36,9 @@ void init() // 猪咪手算顶点核心科技
 	UVOffset[3] = 3.016573; // 1
 	UVOffset[4] = 4.103293; // 1.25
 	UVOffset[5] = 6.436693; // 1.5
-	UVOffset[6] = 8.936693; // 2
+	UVOffset[6] = 9.936693; // 2
 	UVOffset[7] = 11.436693; // 2
-	UVOffset[6] = 13.936693; // 2
+	UVOffset[8] = 13.936693; // 2
 }
 
 void main()
@@ -74,7 +74,13 @@ void main()
     	sin(offset_rotation), 0.0, -cos(offset_rotation));
 	offset.z = 0.;
 
+	mat3 origin_rot = mat3(
+    	cos(R), 0.0, sin(R),
+    	0.0, 1.0, 0.0,
+    	sin(R), 0.0, -cos(R));
+
 	vec3 offset_trans_3 = offset * rot;
+	offset_trans_3 += vec3(-1.5, 0., 1.5) * origin_rot;
 	world_pos.xyz = offset_trans_3 + origin;
 
 	mat4 mtxPV = MatrixP * MatrixV;

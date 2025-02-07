@@ -197,7 +197,6 @@ local states =
 
         onenter = function(inst, noanim)
             if noanim then
-                inst.AnimState:SetBank("snake")
                 inst.sg:GoToState("taunt") -- Default State.
                 return
             end
@@ -213,10 +212,13 @@ local states =
             inst.AnimState:PlayAnimation("emerge")
         end,
 
+        onexit = function(inst)
+            inst.components.amphibiouscreature:RefreshBankFn()
+        end,
+
         events =
         {
             EventHandler("animover", function(inst)
-                inst.AnimState:SetBank("snake")
                 inst.sg:GoToState("idle")
             end),
         },
@@ -242,6 +244,10 @@ local states =
             end
             inst.AnimState:SetBank("snake_water")
             inst.AnimState:PlayAnimation("submerge")
+        end,
+
+        onexit = function(inst)
+            inst.components.amphibiouscreature:RefreshBankFn()
         end,
 
         events =

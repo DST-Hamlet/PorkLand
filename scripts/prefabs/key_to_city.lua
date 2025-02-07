@@ -3,14 +3,19 @@ local assets = {
 }
 
 local function OnActivate(inst)
-    -- inst.AnimState:PlayAnimation("use")
-    -- inst.AnimState:PushAnimation("idle")
-    -- inst.AnimState:PushAnimation("proximity_loop", true)
-    inst.SoundEmitter:PlaySound("dontstarve/common/researchmachine_lvl1_run", "sound")
-
-    inst:DoTaskInTime(1.5, function()
+    inst:DoTaskInTime(0, function()
         inst.SoundEmitter:KillSound("sound")
         inst.SoundEmitter:PlaySound("dontstarve/common/researchmachine_lvl1_ding", "sound")
+
+        if inst.killsoundtask then
+            inst.killsoundtask:Cancel()
+            inst.killsoundtask = nil
+        end
+
+        inst.killsoundtask = inst:DoTaskInTime(2, function()
+            inst.SoundEmitter:KillSound("sound")
+            inst.killsoundtask = nil
+        end)
     end)
 end
 
@@ -19,6 +24,7 @@ local function fn()
     inst.entity:AddTransform()
     inst.entity:AddAnimState()
     inst.entity:AddSoundEmitter()
+    inst.entity:AddMiniMapEntity()
     inst.entity:AddNetwork()
 
     MakeInventoryPhysics(inst)
@@ -26,11 +32,15 @@ local function fn()
 
     inst.AnimState:SetBank("keytocity")
     inst.AnimState:SetBuild("key_to_city")
+    inst.AnimState:PlayAnimation("idle")
+
+    inst.MiniMapEntity:SetPriority(15)
+    inst.MiniMapEntity:SetIcon("key_to_city.tex")
+
     inst:AddTag("prototyper")
+    inst:AddTag("prototyper_ignore_inlimbo")
     inst:AddTag("no_interior_protoyping")
     inst:AddTag("irreplaceable")
-
-    inst.AnimState:PlayAnimation("idle")
 
     inst.entity:SetPristine()
 

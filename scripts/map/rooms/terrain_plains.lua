@@ -1,7 +1,7 @@
 AddRoom("BG_plains_base", {
     colour = {r = 1.0, g = 1.0, b = 1.0, a = 0.3},
     value = WORLD_TILES.PLAINS,
-    tags = {"ExitPiece", "Bramble"},
+    tags = {"ExitPiece"},
     contents = {
         distributepercent = .25, -- .22, -- .26
         distributeprefabs = {
@@ -29,7 +29,7 @@ AddRoom("BG_plains_base", {
 AddRoom("plains_tallgrass", {
     colour = {r = 0.0, g = 1, b = 0.3, a = 0.3},
     value = WORLD_TILES.PLAINS,
-    tags = {"ExitPiece", "Bramble"},
+    tags = {"ExitPiece"},
     contents = {
         distributepercent = .15,  -- .3
         distributeprefabs = {
@@ -54,7 +54,7 @@ AddRoom("plains_tallgrass", {
 AddRoom("plains_ruins", {
     colour = {r = 0.0, g = 1, b = 0.3, a = 0.3},
     value = WORLD_TILES.PLAINS,
-    tags = {"ExitPiece", "Bramble"},
+    tags = {"ExitPiece"},
     contents = {
         distributepercent = .25,  -- .15, -- .3
         distributeprefabs = {
@@ -80,7 +80,7 @@ AddRoom("plains_ruins", {
 AddRoom("plains_pogs", {
     colour = {r = 0.0, g = 1, b = 0.3, a = 0.3},
     value = WORLD_TILES.PLAINS,
-    tags = {"ExitPiece", "Bramble"},
+    tags = {"ExitPiece"},
     contents = {
         distributepercent = .25,  -- .15, -- .3
         distributeprefabs = {
@@ -104,7 +104,7 @@ AddRoom("plains_pogs", {
 AddRoom("plains_base_nobatcave", {
     colour = {r = 1.0, g = 1.0, b = 1.0, a = 0.3},
     value = WORLD_TILES.PLAINS,
-    tags = {"ExitPiece", "Bramble"},
+    tags = {"ExitPiece"},
     contents = {
         distributepercent = .25,  --.22, --.26
         distributeprefabs = {

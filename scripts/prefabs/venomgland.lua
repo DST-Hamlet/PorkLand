@@ -27,6 +27,8 @@ local function fn()
     inst.AnimState:SetBuild("venom_gland")
     inst.AnimState:PlayAnimation("idle")
 
+    inst.pickupsound = "squidgy"
+
     inst:AddTag("cattoy")
     inst:AddTag("venomgland")
 

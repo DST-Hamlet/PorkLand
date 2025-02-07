@@ -155,6 +155,12 @@ function MakePickableBlowInWindGust(inst, wind_speed, destroy_chance)
     inst.components.blowinwindgust:Start()
 end
 
+local function remove_blowinwindgust(inst)
+    inst:RemoveComponent("blowinwindgust")
+    inst:RemoveEventCallback("onburnt", remove_blowinwindgust)
+    inst:RemoveEventCallback("workfinished", remove_blowinwindgust)
+end
+
 ---@param stages table The stage names in blown animation
 --- Note: Call this after defining inst:OnLoad since this overrides it
 function MakeTreeBlowInWindGust(inst, stages, threshold, destroy_chance)
@@ -206,7 +212,9 @@ function MakeTreeBlowInWindGust(inst, stages, threshold, destroy_chance)
     end
 
     local function OnGustFall(inst)
-        inst.components.workable.onfinish(inst, TheWorld)
+        if inst.components.workable then
+            inst.components.workable:Destroy(TheWorld)
+        end
     end
 
     inst:AddComponent("blowinwindgust")
@@ -225,19 +233,11 @@ function MakeTreeBlowInWindGust(inst, stages, threshold, destroy_chance)
     end
 
     if inst.components.burnable then
-        local onburnt = inst.components.burnable.onburnt
-        inst.components.burnable:SetOnBurntFn(function(inst)
-            if onburnt then onburnt(inst) end
-            inst:RemoveComponent("blowinwindgust")
-        end)
+        inst:ListenForEvent("onburnt", remove_blowinwindgust)
     end
 
     if inst.components.workable then
-        local onfinish = inst.components.workable.onfinish
-        inst.components.workable:SetOnFinishCallback(function(inst, chopper)
-            if onfinish then onfinish(inst, chopper) end
-            inst:RemoveComponent("blowinwindgust")
-        end)
+        inst:ListenForEvent("workfinished", remove_blowinwindgust)
     end
 end
 
@@ -325,6 +325,46 @@ function MakeAmphibiousCharacterPhysics(inst, mass, radius)
     inst:AddTag("amphibious")
 end
 
+function ChangeToAmphibiousCharacterPhysics(inst, mass, rad)
+    local phys = inst.Physics
+    if mass then
+        phys:SetMass(mass)
+        phys:SetFriction(0)
+    end
+    inst.Physics:SetCollisionGroup(COLLISION.CHARACTERS)
+    inst.Physics:ClearCollisionMask()
+    inst.Physics:CollidesWith((TheWorld.has_ocean and COLLISION.GROUND) or COLLISION.WORLD)
+    inst.Physics:CollidesWith(COLLISION.OBSTACLES)
+    inst.Physics:CollidesWith(COLLISION.SMALLOBSTACLES)
+    inst.Physics:CollidesWith(COLLISION.CHARACTERS)
+    inst.Physics:CollidesWith(COLLISION.GIANTS)
+    inst.Physics:ClearCollidesWith(COLLISION.LAND_OCEAN_LIMITS)
+    if rad then
+        phys:SetCapsule(rad, 1)
+    end
+    if mass then
+        phys:SetDamping(5) -- 最后执行摩擦力, 否则会出问题. 例如联机版的鬼魂漂移bug
+    end
+    return phys
+end
+
+function ChangeToJunmpingPhysics(inst, mass, rad)
+    local phys = inst.Physics
+    if mass then
+        phys:SetMass(mass)
+        phys:SetFriction(0)
+    end
+    inst.Physics:ClearCollisionMask()
+    inst.Physics:CollidesWith((TheWorld.has_ocean and COLLISION.GROUND) or COLLISION.WORLD)
+    if rad then
+        phys:SetCapsule(rad, 1)
+    end
+    if mass then
+        phys:SetDamping(5) -- 最后执行摩擦力, 否则会出问题. 例如联机版的鬼魂漂移bug
+    end
+    return phys
+end
+
 ---@param land_bank string
 ---@param water_bank string
 ---@param should_silent function|nil
@@ -342,7 +382,9 @@ function MakeAmphibious(inst, land_bank, water_bank, should_silent, on_enter_wat
         end
 
         if inst.DynamicShadow then
-            inst.DynamicShadow:Enable(false)
+            if not (inst.sg and inst.sg:HasStateTag("falling")) then
+                inst.DynamicShadow:Enable(false)
+            end
         end
 
         if inst.components.burnable then
@@ -380,6 +422,14 @@ function MakeAmphibious(inst, land_bank, water_bank, should_silent, on_enter_wat
     inst:AddComponent("amphibiouscreature")
     inst.components.amphibiouscreature:SetEnterWaterFn(OnEnterWater)
     inst.components.amphibiouscreature:SetExitWaterFn(OnExitWater)
+    inst.components.amphibiouscreature.RefreshBankFn = function(self)
+        local x, y, z = self.inst.Transform:GetWorldPosition()
+        if TheWorld.Map:ReverseIsVisualWaterAtPoint(x, y, z) then
+            self.inst.AnimState:SetBank(water_bank)
+        else
+            self.inst.AnimState:SetBank(land_bank)
+        end
+    end
 end
 
 function UpdateSailorPathcaps(inst, allowocean)
@@ -400,6 +450,45 @@ function MakeInventoryPhysics(inst, mass, rad, ...)
     return physics
 end
 
+local _ChangeToInventoryItemPhysics = ChangeToInventoryItemPhysics
+function ChangeToInventoryItemPhysics(inst, mass, rad, ...)
+    local physics = _ChangeToInventoryItemPhysics(inst, mass, rad, ...)
+    if TheWorld:HasTag("porkland") then
+        physics:ClearCollidesWith(COLLISION.LIMITS)
+        physics:ClearCollidesWith(COLLISION.VOID_LIMITS)
+    end
+    return physics
+end
+
+function MakeThrowablePhysics(inst, mass, rad, ...)
+    local physics = MakeInventoryPhysics(inst, mass, rad, ...)
+    inst.Physics:SetFriction(100)
+    inst.Physics:SetRestitution(0)
+    inst.Physics:SetDontRemoveOnSleep(true)
+
+    return physics
+end
+
+function MakeCharacterThrowablePhysics(inst, mass, rad)
+    local phys = inst.entity:AddPhysics()
+    phys:SetMass(mass)
+    phys:SetFriction(100)
+    phys:SetRestitution(0)
+    phys:SetCollisionGroup(COLLISION.CHARACTERS)
+    phys:ClearCollisionMask()
+    phys:CollidesWith(COLLISION.WORLD)
+    phys:CollidesWith(COLLISION.OBSTACLES)
+    phys:CollidesWith(COLLISION.SMALLOBSTACLES)
+    phys:CollidesWith(COLLISION.CHARACTERS)
+    phys:CollidesWith(COLLISION.GIANTS)
+    phys:SetCapsule(rad, 1)
+    if TheWorld:HasTag("porkland") then
+        phys:ClearCollidesWith(COLLISION.LIMITS)
+        phys:ClearCollidesWith(COLLISION.VOID_LIMITS)
+    end
+    return phys
+end
+
 local _MakeProjectilePhysics = MakeProjectilePhysics
 function MakeProjectilePhysics(inst, mass, rad, ...)
     local physics = _MakeProjectilePhysics(inst, mass, rad, ...)
@@ -410,10 +499,67 @@ function MakeProjectilePhysics(inst, mass, rad, ...)
     return physics
 end
 
+function ChangeToFlyingCharacterPhysics(inst, mass, rad)
+    local phys = inst.Physics
+    if mass then
+        phys:SetMass(mass)
+        phys:SetFriction(0)
+    end
+    phys:SetCollisionGroup(COLLISION.FLYERS)
+    phys:ClearCollisionMask()
+    phys:CollidesWith((TheWorld:CanFlyingCrossBarriers() and COLLISION.GROUND) or COLLISION.WORLD)
+    phys:CollidesWith(COLLISION.FLYERS)
+    if rad then
+        phys:SetCapsule(rad, 1)
+    end
+    if mass then
+        phys:SetDamping(5) -- 最后执行摩擦力, 否则会出问题. 例如联机版的鬼魂漂移bug
+    end
+    return phys
+end
+
+local _ChangeToCharacterPhysics = ChangeToCharacterPhysics
+function ChangeToCharacterPhysics(inst, mass, rad, ...)
+    local physics = _ChangeToCharacterPhysics(inst, mass, rad, ...)
+    if mass then
+        physics:SetDamping(5) -- 最后执行摩擦力, 否则会出问题. 例如联机版的鬼魂漂移bug
+    end
+    return physics
+end
+
+local _MakeFlyingCharacterPhysics = MakeFlyingCharacterPhysics
+function MakeFlyingCharacterPhysics(inst, mass, rad, ...)
+    local physics = _MakeFlyingCharacterPhysics(inst, mass, rad, ...)
+    inst.OnLandPhysics = function(inst)
+        local newmass = inst.Physics:GetMass()
+        local newrad = inst.Physics:GetRadius()
+        ChangeToCharacterPhysics(inst, newmass, newrad)
+    end
+    inst.OnRaisePhysics = function(inst)
+        local newmass = inst.Physics:GetMass()
+        local newrad = inst.Physics:GetRadius()
+        ChangeToFlyingCharacterPhysics(inst, newmass, newrad)
+    end
+    return physics
+end
+
+local _MakeGhostPhysics = MakeGhostPhysics
+function MakeGhostPhysics(inst, ...)
+    _MakeGhostPhysics(inst, ...)
+    local physics = inst.Physics
+    if TheWorld:HasTag("porkland") then
+        physics:ClearCollidesWith(COLLISION.LIMITS)
+    end
+    return physics
+end
+
 local _RemovePhysicsColliders = RemovePhysicsColliders
 function RemovePhysicsColliders(inst, ...)
     _RemovePhysicsColliders(inst, ...)
     local physics = inst.Physics
+    if not physics then
+        return
+    end
     if TheWorld:HasTag("porkland") and physics:GetMass() > 0 then
         physics:ClearCollidesWith(COLLISION.LIMITS)
         physics:ClearCollidesWith(COLLISION.VOID_LIMITS)

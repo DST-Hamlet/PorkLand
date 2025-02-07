@@ -25,6 +25,7 @@ function PlayerHud:CreateOverlays(owner, ...)
     self.poisonover = self.overlayroot:AddChild(PoisonOver(owner))
 
     self.fogover = self.overlayroot:AddChild(FogOver(owner))
+    self.fogover:MoveToBack()
     self.fogover:Hide()
 
     self.pollenover = self.overlayroot:AddChild(PollenOver(owner))
@@ -37,6 +38,14 @@ function PlayerHud:CreateOverlays(owner, ...)
     self.inst:ListenForEvent("livingartifactoveron", function(inst, data) self.livingartifactover:TurnOn() end, self.owner)
     self.inst:ListenForEvent("livingartifactoveroff", function(inst, data) self.livingartifactover:TurnOff() end, self.owner)
     self.inst:ListenForEvent("livingartifactoverpulse", function(inst, data) self.livingartifactover:Flash(data) end, self.owner)
+
+    -- 亚丹: 暂时注释掉这一部分, 因为太屎山了
+    -- self.inst:ListenForEvent("sanity_stun", function(inst, data) self:GoInsane() end, self.owner)
+    -- self.inst:ListenForEvent("sanity_stun_over", function(inst, data)
+        -- if self.owner.replica.sanity:IsSane() then
+            -- self:GoSane()
+        -- end
+    -- end, self.owner)
 end
 
 local _UpdateClouds = PlayerHud.UpdateClouds
@@ -81,12 +90,20 @@ function PlayerHud:UpdateFogClouds(camera)
         local dist_percent = (camera.distance - camera.mindist) / (camera.maxdist - camera.mindist)
         local cutoff = TUNING.HUD_CLOUD_CUTOFF
         if dist_percent > cutoff then
+            camera.should_push_down = true
             local p = easing.outCubic(dist_percent - cutoff, 0, .5, 1 - cutoff)
             intensity = math.max(intensity, p)
-            self.clouds:Show()
-        elseif not (intensity > 0) then
-            self.clouds:Hide()
+            TheMixer:PushMix("high")
+        else
+            camera.should_push_down = false
+            TheMixer:PopMix("high")
         end
+    end
+
+    if intensity > 0 then
+        self.clouds:Show()
+    else
+        self.clouds:Hide()
     end
 
     self.clouds:GetAnimState():SetMultColour(1, 1, 1, intensity)

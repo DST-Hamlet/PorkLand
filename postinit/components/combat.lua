@@ -102,11 +102,19 @@ end
 
 local _CalcDamage = Combat.CalcDamage
 function Combat:CalcDamage(target, weapon, multiplier, ...)
+    if target:HasTag("alwaysblock") then
+        return 0
+    end
+
     local rets = {_CalcDamage(self, target, weapon, multiplier, ...)}
     local bonus = self.damagebonus or 0  -- not affected by multipliers
 
     local dmg = rets[1]
     dmg = (dmg - bonus) * self:GetDamageModifier() + bonus
+
+    if self.overridecalcdamagefn then
+        rets = {self.overridecalcdamagefn(self, target, weapon, multiplier, ...)}
+    end
     return unpack(rets)
 end
 
@@ -136,6 +144,10 @@ end
 
 local _SuggestTarget = Combat.SuggestTarget
 function Combat:SuggestTarget(target)
+    if self.suggesttargetfn and not self.suggesttargetfn(self.inst, {target = target}) then
+        return false
+    end
+
     if not self.target and target and target:HasTag("sneaky") then
         if self.inst:GetDistanceSqToInst(target) > 6 * 6 then
             return false

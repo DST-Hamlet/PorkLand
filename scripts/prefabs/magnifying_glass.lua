@@ -102,8 +102,7 @@ local function fn()
     inst:AddComponent("weapon")
     inst.components.weapon:SetDamage(TUNING.MAGNIFYING_GLASS_DAMAGE)
 
-    inst:AddComponent("tool")
-    inst.components.tool:SetAction(ACTIONS.SPY)
+    inst:AddComponent("investigater")
 
     inst:AddComponent("inspectable")
     inst:AddComponent("inventoryitem")

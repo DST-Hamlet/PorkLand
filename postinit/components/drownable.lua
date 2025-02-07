@@ -40,6 +40,15 @@ function Drownable:CanDrownOverWater(allow_invincible)
     return ret and not self.inst:HasTag("playerghost") -- HACK: Playerghosts dont drown because they lack the onsink sg event
 end
 
+local _GetFallingReason = Drownable.GetFallingReason
+function Drownable:GetFallingReason()
+    local reason = _GetFallingReason(self)
+    if (reason == FALLINGREASON.VOID) and TheWorld:HasTag("porkland") then
+        return
+    end
+    return reason
+end
+
 Drownable._WashAshore = Drownable.WashAshore
 function Drownable:WashAshore()
     if TheWorld.has_pl_ocean and self:ShouldDrownToDeath() then

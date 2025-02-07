@@ -218,7 +218,7 @@ local states=
         {
             TimeEvent(18 * FRAMES, function(inst)
                 local x, y, z = inst.Transform:GetWorldPosition()
-                if not TheWorld.Map:ReverseIsVisualWaterAtPoint(x, y, z) then
+                if TheWorld.Map:ReverseIsVisualWaterAtPoint(x, y, z) then
                     inst.SoundEmitter:PlaySound("dontstarve_DLC003/movement/water/small_submerge")
                 end
             end),
@@ -227,7 +227,7 @@ local states=
             TimeEvent(25 * FRAMES, function(inst) inst.components.combat:DoAttack() end),
             TimeEvent(38 * FRAMES, function(inst)
                 local x, y, z = inst.Transform:GetWorldPosition()
-                if not TheWorld.Map:ReverseIsVisualWaterAtPoint(x, y, z) then
+                if TheWorld.Map:ReverseIsVisualWaterAtPoint(x, y, z) then
                     inst.SoundEmitter:PlaySound("dontstarve_DLC003/movement/water/small_splash")
                 end
             end),
@@ -253,6 +253,7 @@ local states=
             local pt = Point(inst.Transform:GetWorldPosition())
             if pt.y < 2 then
                 inst.Physics:SetMotorVel(0,0,0)
+                inst.DynamicShadow:Enable(true)
             end
 
             if pt.y <= .1 then
@@ -261,9 +262,14 @@ local states=
                 inst.Physics:Stop()
                 inst.Physics:SetDamping(5)
                 inst.Physics:Teleport(pt.x,pt.y,pt.z)
-                inst.DynamicShadow:Enable(true)
                 inst.SoundEmitter:PlaySound(inst.sounds.splat)
-                inst.sg:GoToState("idle", "jump_pst")
+                if TheWorld.Map:ReverseIsVisualWaterAtPoint(pt.x,pt.y,pt.z) then
+                    inst.sg:GoToState("idle", "jumpin_pst")
+                    inst.DynamicShadow:Enable(false)
+                else
+                    inst.sg:GoToState("idle", "jump_pst")
+                    inst.DynamicShadow:Enable(true)
+                end
             end
         end,
 
@@ -316,7 +322,6 @@ local states=
 
         onenter = function(inst, noanim)
             if noanim then
-                inst.AnimState:SetBank("frog")
                 inst.sg:GoToState("idle")
                 return
             end
@@ -330,6 +335,10 @@ local states=
             end
             inst.AnimState:SetBank("frog_water")
             inst.AnimState:PlayAnimation("jumpout_pre")
+        end,
+
+        onexit = function(inst)
+            inst.components.amphibiouscreature:RefreshBankFn()
         end,
 
         events=
@@ -352,13 +361,17 @@ local states=
             elseif should_run then
                 inst.components.locomotor:RunForward()
             end
+            inst.AnimState:SetBank("frog_water")
             inst.AnimState:PlayAnimation("jumpout")
+        end,
+
+        onexit = function(inst)
+            inst.components.amphibiouscreature:RefreshBankFn()
         end,
 
         events=
         {
             EventHandler("animover", function(inst)
-                inst.AnimState:SetBank("frog")
                 inst.sg:GoToState("idle")
             end),
         },
@@ -385,6 +398,10 @@ local states=
 
             inst.AnimState:SetBank("frog_water")
             inst.AnimState:PlayAnimation("jumpin_pre")
+        end,
+
+        onexit = function(inst)
+            inst.components.amphibiouscreature:RefreshBankFn()
         end,
 
         events=
@@ -425,15 +442,15 @@ local states=
 
         onenter = function(inst)
             inst.Physics:Stop()
-            inst.AnimState:PlayAnimation("atk_pre")
-            inst.AnimState:PushAnimation("atk", false)
+            inst.AnimState:PlayAnimation("eat_pre")
+            inst.AnimState:PushAnimation("eat_loop", false)
+            inst.AnimState:PushAnimation("eat_pst", false)
         end,
 
         timeline=
         {
             TimeEvent(17 * FRAMES, function(inst) inst:PerformBufferedAction() end),
-            TimeEvent(20 * FRAMES, function(inst) inst.SoundEmitter:PlaySound(inst.sounds.attack_spit) end),
-            TimeEvent(20 * FRAMES, function(inst) inst.SoundEmitter:PlaySound(inst.sounds.attack_voice) end),
+            TimeEvent(20 * FRAMES, function(inst) inst.SoundEmitter:PlaySound(inst.sounds.grunt) end),
         },
 
         events=

@@ -81,6 +81,9 @@ local function fn()
     inst.components.perishable:StartPerishing()
     inst.components.perishable.onperishreplacement = "spoiled_food"
 
+    inst:AddComponent("converter")
+    inst.components.converter.targetprefab = "honey"
+
     inst:AddComponent("inventoryitem")
     -- inst.components.inventoryitem:SetOnPutInInventoryFn(OnPutInInventory)
     -- inst.components.inventoryitem:SetOnRemovedFn(OnRemoved)

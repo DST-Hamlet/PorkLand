@@ -24,6 +24,8 @@ local function fn()
     inst.AnimState:SetBuild("tuber_crop")
     inst.AnimState:PlayAnimation("idle")
 
+    inst.pickupsound = "vegetation_firm"
+
     inst:AddTag("poisonous")
 
     inst.entity:SetPristine()
@@ -78,6 +80,8 @@ local function cookedfn()
     inst.AnimState:SetBuild("tuber_crop")
     inst.AnimState:PlayAnimation("cooked")
 
+    inst.pickupsound = "vegetation_firm"
+
     inst:AddTag("poisonous")
 
     inst.entity:SetPristine()
@@ -131,6 +135,8 @@ local function bloomfn()
     inst.AnimState:SetBuild("tuber_bloom_crop")
     inst.AnimState:PlayAnimation("idle")
 
+    inst.pickupsound = "vegetation_firm"
+
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
@@ -181,6 +187,8 @@ local function cookedbloomfn()
     inst.AnimState:SetBank("tuber_bloom_crop")
     inst.AnimState:SetBuild("tuber_bloom_crop")
     inst.AnimState:PlayAnimation("cooked")
+
+    inst.pickupsound = "vegetation_firm"
 
     inst.entity:SetPristine()
 

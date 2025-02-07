@@ -45,6 +45,7 @@ local function Sparkle(inst)
     if target then
         local lifeplant_sparkle = SpawnPrefab("lifeplant_sparkle")
         lifeplant_sparkle.Transform:SetPosition(target.Transform:GetWorldPosition())
+        lifeplant_sparkle.owner = inst
     end
 end
 
@@ -91,16 +92,10 @@ end
 local function OnPlanted(inst, data)
     inst.AnimState:PlayAnimation("grow")
     inst.AnimState:PushAnimation("idle_loop",true)
-    if data.fountain then
-        inst.fountain = data.fountain
-    end
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/flower_of_life/plant")
 end
 
 local function OnRemoved(inst)
-    if inst.fountain and not inst.dug then
-        inst.fountain:PushEvent("deactivate")
-    end
     inst.SoundEmitter:KillSound("drainloop")
 end
 
@@ -131,7 +126,7 @@ local function OnResurrect(inst, player)
     inst.persists = false
 
     inst.AnimState:PlayAnimation("transform")
-    inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/flower_of_life/rebirth")
+    inst.SoundEmitter:PlaySound("porkland_soundpackage/common/crafted/flower_of_life/rebirth")
 
     player.sg:GoToState("rebirth_floweroflife")
 
@@ -140,11 +135,6 @@ local function OnResurrect(inst, player)
     end)
 
     inst:DoTaskInTime(7, function()
-        -- Reset fountain
-        if inst.fountain then
-            inst.fountain:PushEvent("deactivate")
-        end
-
         local tick_time = TheSim:GetTickTime()
         local time_to_erode = 4
         inst:StartThread( function()
@@ -302,11 +292,6 @@ local function OnSave(inst, data)
     if inst:HasTag("burnt") or (inst.components.burnable and inst.components.burnable:IsBurning()) then
         data.burnt = true
     end
-
-    if inst.fountain and inst.fountain:IsValid() then
-        data.fountainID = inst.fountain.GUID
-        return {inst.fountain and inst.fountain.GUID}
-    end
 end
 
 local function OnLoad(inst, data)
@@ -316,9 +301,7 @@ local function OnLoad(inst, data)
 end
 
 local function OnLoadPostPass(inst, newents, data)
-    if data ~= nil and data.fountainID ~= nil then
-        inst.fountain = newents[data.fountainID].entity
-    end
+
 end
 
 local function fn()
@@ -400,25 +383,26 @@ local function fn()
 end
 
 local function TestForPlant(inst)
-    local ent = TheSim:FindFirstEntityWithTag("lifeplant")
+    local ent = inst.owner
 
-    if not ent or ent:GetDistanceSqToInst(inst) < 1 then
+    if not (ent and ent:IsValid())or ent:GetDistanceSqToInst(inst) < 1 then
         inst:Remove()
     end
 end
 
 local function OnSparkleSpawned(inst)
-    local ent = TheSim:FindFirstEntityWithTag("lifeplant") -- Assuming that there's only one lifeplant
-    if ent then
-        local x, y, z = ent.Transform:GetWorldPosition()
-        local angle = inst:GetAngleToPoint(x, y, z)
-        inst.Transform:SetRotation(angle)
+    local ent = inst.owner -- Assuming that there's only one lifeplant
 
-        inst.components.locomotor:WalkForward()
-        inst:DoPeriodicTask(0.1, TestForPlant)
-    else
+    if not (ent and ent:IsValid()) then
         inst:Remove()
     end
+
+    local x, y, z = ent.Transform:GetWorldPosition()
+    local angle = inst:GetAngleToPoint(x, y, z)
+    inst.Transform:SetRotation(angle)
+
+    inst.components.locomotor:WalkForward()
+    inst:DoPeriodicTask(0.1, TestForPlant)
 end
 
 local function sparklefn()
@@ -460,6 +444,8 @@ local function sparklefn()
     inst.components.locomotor:SetTriggersCreep(false)
 
     inst:DoTaskInTime(0, OnSparkleSpawned)
+
+    inst:DoTaskInTime(4, inst.Remove)
 
     inst.OnEntitySleep = inst.Remove
 

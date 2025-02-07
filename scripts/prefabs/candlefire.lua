@@ -94,7 +94,7 @@ local function fn()
     effect:SetScaleEnvelope(0, SCALE_ENVELOPE_NAME)
     effect:SetBlendMode(0, BLENDMODE.Additive)
     effect:EnableBloomPass(0, true)
-
+    effect:SetDragCoefficient(0, 0.4)
 
     local tick_time = TheSim:GetTickTime()
     local desired_particles_per_second = 64
@@ -110,6 +110,14 @@ local function fn()
             num_particles_to_emit = num_particles_to_emit - 1
         end
     end )
+
+    inst:DoPeriodicTask(FRAMES, function()
+        if TheWorld.net ~= nil and TheWorld.net.components.plateauwind and TheWorld.net.components.plateauwind:GetIsWindy() then
+            local windangle = TheWorld.net.components.plateauwind:GetWindAngle() * DEGREES
+            local windspeed = TheWorld.net.components.plateauwind:GetWindSpeed() * 6
+            inst.VFXEffect:SetAcceleration(0, math.cos(windangle) * windspeed, 0, -math.sin(windangle) * windspeed)
+        end
+    end)
 
     return inst
 end

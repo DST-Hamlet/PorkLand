@@ -6,34 +6,37 @@ local ground_types = {
     -- Translates tile type index from constants.lua into tiled tileset.
     -- Order they appear here is the order they will be used in tiled.
     WORLD_TILES.IMPASSABLE, WORLD_TILES.ROAD, WORLD_TILES.ROCKY, WORLD_TILES.DIRT,
-    WORLD_TILES.SAVANNA, WORLD_TILES.GRASS, WORLD_TILES.FOREST, WORLD_TILES.MARSH,
+    WORLD_TILES.SAVANNA, WORLD_TILES.GRASS, WORLD_TILES.FOREST, WORLD_TILES.MARSH, -- 8
 
     WORLD_TILES.WOODFLOOR, WORLD_TILES.CARPET, WORLD_TILES.CHECKER,WORLD_TILES.CAVE,
-    WORLD_TILES.FUNGUS, WORLD_TILES.SINKHOLE, WORLD_TILES.WALL_ROCKY, WORLD_TILES.WALL_DIRT,
+    WORLD_TILES.FUNGUS, WORLD_TILES.SINKHOLE, WORLD_TILES.WALL_ROCKY, WORLD_TILES.WALL_DIRT, -- 16
 
     WORLD_TILES.WALL_MARSH, WORLD_TILES.WALL_CAVE, WORLD_TILES.WALL_FUNGUS, WORLD_TILES.WALL_SINKHOLE,
-    WORLD_TILES.UNDERROCK, WORLD_TILES.MUD, WORLD_TILES.WALL_MUD, WORLD_TILES.WALL_WOOD,
+    WORLD_TILES.UNDERROCK, WORLD_TILES.MUD, WORLD_TILES.WALL_MUD, WORLD_TILES.WALL_WOOD, -- 24
 
     WORLD_TILES.BRICK, WORLD_TILES.BRICK_GLOW, WORLD_TILES.TILES, WORLD_TILES.TILES_GLOW,
-    WORLD_TILES.TRIM, WORLD_TILES.TRIM_GLOW, WORLD_TILES.WALL_HUNESTONE, WORLD_TILES.WALL_HUNESTONE_GLOW,
+    WORLD_TILES.TRIM, WORLD_TILES.TRIM_GLOW, WORLD_TILES.WALL_HUNESTONE, WORLD_TILES.WALL_HUNESTONE_GLOW, -- 32
 
     WORLD_TILES.WALL_STONEEYE, WORLD_TILES.WALL_STONEEYE_GLOW, WORLD_TILES.FUNGUSRED, WORLD_TILES.FUNGUSGREEN,
-    WORLD_TILES.BEACH, WORLD_TILES.JUNGLE, WORLD_TILES.SWAMP, WORLD_TILES.OCEAN_SHALLOW,
+    WORLD_TILES.BEACH, WORLD_TILES.JUNGLE, WORLD_TILES.SWAMP, WORLD_TILES.OCEAN_SHALLOW, -- 40
 
     WORLD_TILES.OCEAN_MEDIUM, WORLD_TILES.OCEAN_DEEP, WORLD_TILES.OCEAN_CORAL, WORLD_TILES.MANGROVE,
-    WORLD_TILES.MAGMAFIELD, WORLD_TILES.TIDALMARSH, WORLD_TILES.MEADOW, WORLD_TILES.VOLCANO,
+    WORLD_TILES.MAGMAFIELD, WORLD_TILES.TIDALMARSH, WORLD_TILES.MEADOW, WORLD_TILES.VOLCANO, -- 48
 
     WORLD_TILES.VOLCANO_LAVA, WORLD_TILES.ASH, WORLD_TILES.VOLCANO_ROCK, WORLD_TILES.OCEAN_SHIPGRAVEYARD,
-    WORLD_TILES.COBBLEROAD, WORLD_TILES.FOUNDATION, WORLD_TILES.DEEPRAINFOREST, WORLD_TILES.LAWN,
+    WORLD_TILES.COBBLEROAD, WORLD_TILES.FOUNDATION, WORLD_TILES.DEEPRAINFOREST, WORLD_TILES.LAWN, -- 56
 
     WORLD_TILES.PIGRUINS, WORLD_TILES.LILYPOND, WORLD_TILES.GASJUNGLE, WORLD_TILES.SUBURB,
-    WORLD_TILES.RAINFOREST, WORLD_TILES.PIGRUINS_NOCANOPY, WORLD_TILES.PLAINS, WORLD_TILES.PAINTED,
+    WORLD_TILES.RAINFOREST, WORLD_TILES.PIGRUINS_NOCANOPY, WORLD_TILES.PLAINS, WORLD_TILES.PAINTED, -- 64
 
     WORLD_TILES.BATTLEGROUND, WORLD_TILES.INTERIOR, WORLD_TILES.FIELDS
 }
 
-local ground_types_rainforest = {
-    WORLD_TILES.DEEPRAINFOREST, WORLD_TILES.GASJUNGLE,
+local allow_tiles_deeprainforest =
+{
+    [WORLD_TILES.DEEPRAINFOREST] = true,
+    [WORLD_TILES.GASJUNGLE] = true,
+    [WORLD_TILES.PIGRUINS] = true,
 }
 
 AllLayouts["PorkLandStart"] = StaticLayout.Get("map/static_layouts/porkland_start", {
@@ -78,7 +81,8 @@ AllLayouts["PigRuinsHead"] = StaticLayout.Get("map/static_layouts/pig_ruins_head
         end
     }
 })
-AllLayouts["PigRuinsHead"].ground_types = ground_types_rainforest
+AllLayouts["PigRuinsHead"].ground_types = ground_types
+AllLayouts["PigRuinsHead"].allow_tiles = allow_tiles_deeprainforest
 
 local function GetRandomSmashingpot()
     return math.random() < 0.7 and {"smashingpot"} or nil
@@ -94,7 +98,8 @@ AllLayouts["PigRuinsArtichoke"] = StaticLayout.Get("map/static_layouts/pig_ruins
         item2 = {"pig_ruins_artichoke"}
     }
 })
-AllLayouts["PigRuinsArtichoke"].ground_types = ground_types_rainforest
+AllLayouts["PigRuinsArtichoke"].ground_types = ground_types
+AllLayouts["PigRuinsArtichoke"].allow_tiles = allow_tiles_deeprainforest
 
 local function PigRuinsEntranceProps()
     return {
@@ -108,21 +113,27 @@ end
 
 AllLayouts["PigRuinsEntrance1"] = StaticLayout.Get("map/static_layouts/pig_ruins_entrance_1", PigRuinsEntranceProps())
 AllLayouts["PigRuinsEntrance1"].ground_types = ground_types
+AllLayouts["PigRuinsEntrance1"].allow_tiles = allow_tiles_deeprainforest
 
 AllLayouts["PigRuinsEntrance2"] = StaticLayout.Get("map/static_layouts/pig_ruins_entrance_2")
 AllLayouts["PigRuinsEntrance2"].ground_types = ground_types
+AllLayouts["PigRuinsEntrance2"].allow_tiles = allow_tiles_deeprainforest
 
 AllLayouts["PigRuinsEntrance3"] = StaticLayout.Get("map/static_layouts/pig_ruins_entrance_3")
 AllLayouts["PigRuinsEntrance3"].ground_types = ground_types
+AllLayouts["PigRuinsEntrance3"].allow_tiles = allow_tiles_deeprainforest
 
 AllLayouts["PigRuinsEntrance4"] = StaticLayout.Get("map/static_layouts/pig_ruins_entrance_4", PigRuinsEntranceProps())
 AllLayouts["PigRuinsEntrance4"].ground_types = ground_types
+AllLayouts["PigRuinsEntrance4"].allow_tiles = allow_tiles_deeprainforest
 
 AllLayouts["PigRuinsEntrance5"] = StaticLayout.Get("map/static_layouts/pig_ruins_entrance_5", PigRuinsEntranceProps())
 AllLayouts["PigRuinsEntrance5"].ground_types = ground_types
+AllLayouts["PigRuinsEntrance5"].allow_tiles = allow_tiles_deeprainforest
 
 AllLayouts["PigRuinsExit1"] = StaticLayout.Get("map/static_layouts/pig_ruins_exit_1")
 AllLayouts["PigRuinsExit1"].ground_types = ground_types
+AllLayouts["PigRuinsExit1"].allow_tiles = allow_tiles_deeprainforest
 
 local function GetPigRuinsExitProps()
     return {
@@ -136,9 +147,11 @@ end
 
 AllLayouts["PigRuinsExit2"] = StaticLayout.Get("map/static_layouts/pig_ruins_exit_2", GetPigRuinsExitProps())
 AllLayouts["PigRuinsExit2"].ground_types = ground_types
+AllLayouts["PigRuinsExit2"].allow_tiles = allow_tiles_deeprainforest
 
 AllLayouts["PigRuinsExit4"] = StaticLayout.Get("map/static_layouts/pig_ruins_exit_4", GetPigRuinsExitProps())
 AllLayouts["PigRuinsExit4"].ground_types = ground_types
+AllLayouts["PigRuinsExit4"].allow_tiles = allow_tiles_deeprainforest
 
 AllLayouts["pig_ruins_nocanopy"] = StaticLayout.Get("map/static_layouts/pig_ruins_nocanopy")
 AllLayouts["pig_ruins_nocanopy"].ground_types = ground_types
