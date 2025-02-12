@@ -68,6 +68,7 @@ local function BuildHome(inst)
     end
 
     local home = SpawnPrefab("gnatmound")
+    home.stageloots = {}
     home.Transform:SetPosition(x, y, z)
     home.components.workable.workleft = 1
     home.components.childspawner:TakeOwnership(inst)
