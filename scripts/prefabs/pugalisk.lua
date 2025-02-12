@@ -407,8 +407,10 @@ local function bodyfn()
     inst:ListenForEvent("bodycomplete", OnBodyComplete_Body)
     inst:ListenForEvent("bodyfinished", OnBodyFinished_Body)
 
-    inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/pugalisk/movement_LP", "speed")
-    inst.SoundEmitter:SetParameter("speed", "intensity", 0)
+    inst:DoTaskInTime(0, function()
+        inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/pugalisk/movement_LP", "speed")
+        inst.SoundEmitter:SetParameter("speed", "intensity", 0)
+    end)
 
     -- now I see why klei devs screamed "KILLLL GEARS!!!!!!!!!" in ancient_hulk.lua, SoundEmitter is so buggy :/
     inst:ListenForEvent("onremove", function()
