@@ -570,10 +570,11 @@ local function OnHacked(inst, hacker, hacksleft)
             inst.stage = inst.stage -1
 
             if inst.stage == 0 then
-                inst.components.hackable.canbehacked = false
+                inst.components.workable:SetWorkable(false)
+                inst.components.shearable:SetCanShear(false)
                 inst.components.door:SetDoorDisabled(false, "vines")
             else
-                inst.components.hackable.hacksleft = inst.components.hackable.maxhacks
+                inst.components.workable:SetWorkLeft(TUNING.RUINS_ENTRANCE_VINES_HACKS)
             end
         end
     end
@@ -597,7 +598,7 @@ end
 
 local function OnSave(inst, data)
     data.stage = inst.stage
-    data.canhack = inst.components.hackable.canbehacked
+    data.canhack = inst.components.workable:CanBeWorked()
 
     if inst:HasTag("top_ornament") then
         data.top_ornament = true
@@ -618,7 +619,8 @@ local function OnLoad(inst, data)
             inst.stage = data.stage
         end
         if data.canhack then
-            inst.components.hackable.canbehacked = data.canhack
+            inst.components.workable:SetWorkable(data.canhack)
+            inst.components.shearable:SetCanShear(data.canhack)
         end
         if data.top_ornament then
             inst:AddTag("top_ornament")
@@ -715,11 +717,12 @@ local function MakeEntrance(name, is_entrance, dungeon_name)
             return inst
         end
 
+        inst:AddComponent("workable")
+        inst.components.workable:SetWorkAction(ACTIONS.HACK)
+        inst.components.workable:SetWorkLeft(TUNING.RUINS_ENTRANCE_VINES_HACKS)
+        inst.components.workable:SetOnWorkCallback(OnHacked)
+
         inst:AddComponent("hackable")
-        inst.components.hackable:SetUp()
-        inst.components.hackable.onhackedfn = OnHacked
-        inst.components.hackable.hacksleft = TUNING.RUINS_ENTRANCE_VINES_HACKS
-        inst.components.hackable.maxhacks = TUNING.RUINS_ENTRANCE_VINES_HACKS
 
         inst:AddComponent("shearable")
 
@@ -735,14 +738,16 @@ local function MakeEntrance(name, is_entrance, dungeon_name)
         else -- this prefab is an exit. Just set the door and art
             inst:AddTag(dungeon_name .. "_EXIT_TARGET")
             inst.stage = 0
-            inst.components.hackable.canbehacked = false
+            inst.components.workable:SetWorkable(false)
+            inst.components.shearable:SetCanShear(false)
             inst.components.door.disabled = nil
             RefreshBuild(inst)
         end
 
         if dungeon_name == "RUINS_SMALL" then
             inst.stage = 0
-            inst.components.hackable.canbehacked = false
+            inst.components.workable:SetWorkable(false)
+            inst.components.shearable:SetCanShear(false)
             inst.components.door.disabled = nil
             RefreshBuild(inst)
         end

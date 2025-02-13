@@ -134,7 +134,7 @@ function Door:Activate(doer)
             doer:PushEvent("used_door", {door = self.inst, exterior = true})
             if house.components.hackable and house.stage > 0 then -- 内部门用 vineable, 外部门用 hackable... 需要代码清理
                 house.stage = 1
-                house.components.hackable:Hack(doer, 9999)
+                house.components.hackable:Destroy(doer)
             end
             return true
         end
@@ -155,7 +155,7 @@ function Door:Activate(doer)
                 and target_door.components.vineable.vines.stage > 0 then
 
                 target_door.components.vineable.vines.stage = 1
-                target_door.components.vineable.vines.components.hackable:Hack(doer, 9999)
+                target_door.components.vineable.vines.components.hackable:Destroy(doer)
             end
             if target_door.components.vineable
                 and target_door.regrowtask

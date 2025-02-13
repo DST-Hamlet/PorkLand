@@ -103,11 +103,13 @@ local function GetGrowFn(stage, grow_animation)
         inst.AnimState:PlayAnimation(grow_animation)
         inst.SoundEmitter:PlaySound("dontstarve_DLC002/creatures/volcano_cactus/grow_pre")
 
-        local min_tubers = inst.tubers
-        if stage == "tall" then
-            min_tubers = min_tubers + 1
+        local tubers = inst.tubers
+        if stage == "short" then
+            tubers = inst.maxtubers
+        elseif stage == "tall" then
+            tubers = tubers + 1
         end
-        inst.tubers = math.min(min_tubers, inst.maxtubers)
+        inst.tubers = math.min(tubers, inst.maxtubers)
         UpdateArt(inst)
         PushSway(inst)
     end
@@ -136,13 +138,13 @@ end
 local function MakeStump(inst, push_anim)
     local anim = anims[inst.stage]
 
+    inst:RemoveTag("workable")
     inst:RemoveTag("shelter")
     inst:RemoveTag("gustable")
 
     inst:RemoveComponent("burnable")
     inst:RemoveComponent("propagator")
     inst:RemoveComponent("growable")
-    inst:RemoveComponent("hackable")
     inst:RemoveComponent("bloomable")
     inst:RemoveComponent("blowinwindgust")
 
@@ -169,8 +171,6 @@ end
 
 local function OnFinishCallbackBurnt(inst, chopper)
     local anim = anims[inst.stage]
-
-    inst:RemoveComponent("hackable")
 
     RemovePhysicsColliders(inst)
 
@@ -205,8 +205,10 @@ local function OnBurntChanges(inst)
 
     inst.components.lootdropper:SetLoot({})
 
-    if inst.components.hackable then
-        inst.components.hackable.onhackedfn = OnFinishCallbackBurnt
+    if inst.components.workable then
+        inst.components.workable:SetWorkLeft(1)
+        inst.components.workable:SetOnWorkCallback(nil)
+        inst.components.workable:SetOnFinishCallback(OnFinishCallbackBurnt)
     end
 end
 
@@ -221,38 +223,28 @@ local function OnBurnt(inst)
     inst.highlight_override = burnt_highlight_override
 end
 
-local function OnRegen(inst)
-    if not inst:HasTag("burnt") and not inst:HasTag("stump") then
-        inst.tubers = math.min(inst.tubers + 1, inst.maxtubers)
-        UpdateArt(inst)
-    end
-end
-
 local function OnHacked(inst)
     local anim = anims[inst.stage]
     inst.AnimState:PlayAnimation(anim.chop)
     PushSway(inst)
 
-    if inst.components.hackable.hacksleft <= 0 then
+    if inst.components.workable:GetWorkLeft() <= 0 then
         inst.tubers = inst.tubers -1
+        UpdateArt(inst)
+        inst.components.lootdropper:DropLoot()
+        if inst.tubers >= 0 then
+            inst.components.workable:SetWorkLeft(3)
+        end
     end
-
-    UpdateArt(inst)
 
     inst.SoundEmitter:PlaySound("dontstarve_DLC002/creatures/volcano_cactus/hit")
 end
 
-local function OnHackedFinal(inst, data)
-    if inst.components.hackable and inst.tubers >= 0 then
-        inst.components.hackable.hacksleft = 3
-        inst.components.hackable.canbehacked = true
-        return
-    end
-
+local function OnHackedFinal(inst, worker)
     inst.SoundEmitter:PlaySound("dontstarve_DLC002/creatures/volcano_cactus/tuber_fall")
 
     local pt = inst:GetPosition()
-    local hispos = data.hacker:GetPosition()
+    local hispos = worker:GetPosition()
     local he_right = (hispos - pt):Dot(TheCamera:GetRightVec()) > 0
 
     local anim = anims[inst.stage]
@@ -280,7 +272,7 @@ local function StartBloom(inst)
     end
 
     inst.build = "blooming"
-    inst.components.hackable.product = "tuber_bloom_crop"
+    inst.components.lootdropper:SetLoot({"tuber_bloom_crop"})
     inst.AnimState:SetBuild("tuber_bloom_build")
 end
 
@@ -290,7 +282,7 @@ local function StopBloom(inst)
     end
 
     inst.build = "normal"
-    inst.components.hackable.product = "tuber_crop"
+    inst.components.lootdropper:SetLoot({"tuber_crop"})
     inst.AnimState:SetBuild("tuber_tree_build")
 end
 
@@ -437,17 +429,18 @@ local function MakeTree(name, build, stage, data)
         inst.stage = stage == 0 and math.random(1, 3) or stage
 
         inst:AddComponent("lootdropper")
+        inst.components.lootdropper:SetLoot({"tuber_crop"})
 
         inst:AddComponent("inspectable")
         inst.components.inspectable.getstatus = GetStatus
 
+        inst:AddComponent("workable")
+        inst.components.workable:SetWorkAction(ACTIONS.HACK)
+        inst.components.workable:SetWorkLeft(3)
+        inst.components.workable:SetOnWorkCallback(OnHacked)
+        inst.components.workable:SetOnFinishCallback(OnHackedFinal)
+
         inst:AddComponent("hackable")
-        inst.components.hackable:SetUp("tuber_crop", TUNING.VINE_REGROW_TIME)
-        inst.components.hackable.onregenfn = OnRegen
-        inst.components.hackable.onhackedfn = OnHacked
-        inst.components.hackable.hacksleft = 3
-        inst.components.hackable.maxhacks = 3
-        inst.components.hackable.repeat_hack_cycle = true
 
         inst:AddComponent("growable")
         inst.components.growable.stages = growth_stages
@@ -474,11 +467,11 @@ local function MakeTree(name, build, stage, data)
         MakeHauntableWork(inst)
         MakeTreeBlowInWindGust(inst, {"short", "tall"}, TUNING.JUNGLETREE_WINDBLOWN_SPEED, TUNING.JUNGLETREE_WINDBLOWN_FALL_CHANCE)
 
-        if data == "burnt"  then
+        if data == "burnt" then
             OnBurnt(inst)
         end
 
-        if data == "stump"  then
+        if data == "stump" then
             MakeStump(inst)
         end
 
@@ -490,7 +483,6 @@ local function MakeTree(name, build, stage, data)
         inst.tubers = inst.maxtubers
         UpdateArt(inst)
 
-        inst:ListenForEvent("hacked", OnHackedFinal)
         inst:WatchWorldState("season", OnseasonChange)
         OnseasonChange(inst, TheWorld.state.season)
 
