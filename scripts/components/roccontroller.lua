@@ -266,6 +266,12 @@ function RocController:GetTarget()
 end
 
 function RocController:CheckTargetPlayer()
+    if self.liftoff then
+        self.target = nil
+        self.target_player = nil
+        return
+    end
+
     if self.target_player then
         if not self.target_player:IsValid() then
             self.target_player = nil
@@ -511,10 +517,7 @@ function RocController:OnUpdate(dt)
 
         local distance_sq_to_player = self.inst:GetDistanceSqToInst(player)
         if distance_sq_to_player > TURN_DIST * TURN_DIST * scale_sq then
-            -- has landed and is flying again, should leave now
-            if self.liftoff and not self.inst.teleporting then
-                self.inst:Remove()
-            elseif not self.landed then
+            if not self.landed then
                 -- self.inst.Transform:SetRotation(self.inst:GetAngleToPoint(px, py, pz))
                 self.inst:PushEvent("turn")
             end
@@ -536,7 +539,11 @@ function RocController:OnUpdate(dt)
     else
         self.inst.components.glidemotor:SetTargetPos(nil)
         self.inst:PushEvent("liftoff")
-        if self.liftoff and not self.inst.teleporting then
+
+        local x, y, z = self.inst.Transform:GetWorldPosition()
+        local players = FindPlayersInRange(x, y, z, TURN_DIST * 2, true)
+        if self.liftoff and not self.inst.teleporting
+            and not next(players) then
             self.inst:Remove()
         end
     end

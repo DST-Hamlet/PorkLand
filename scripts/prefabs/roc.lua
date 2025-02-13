@@ -31,6 +31,12 @@ local function OnRemoved(inst)
     TheWorld.components.rocmanager:RemoveRoc(inst)
 end
 
+local function OnTimerDone(inst, data)
+    if data.name == "left" then
+        inst:PushEvent("liftoff")
+    end
+end
+
 local function fn()
     local inst = CreateEntity()
 
@@ -72,6 +78,8 @@ local function fn()
 
     inst:AddComponent("areaaware")
 
+    inst:AddComponent("timer")
+
     inst:AddComponent("locomotor") -- locomotor must be constructed before the stategraph
     inst.components.locomotor.runspeed = TUNING.ROC_SPEED
 
@@ -86,6 +94,7 @@ local function fn()
     inst.components.roccontroller.scalefn = scalefn
 
     inst:ListenForEvent("onremove", OnRemoved)
+    inst:ListenForEvent("timerdone", OnTimerDone)
 
     inst:SetStateGraph("SGroc")
 

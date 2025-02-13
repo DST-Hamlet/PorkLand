@@ -174,6 +174,10 @@ local function TrySpawnBanit()
         return
     end
 
+    if _world.state.isaporkalypse then
+        return
+    end
+
     local choices = {}
     for _, player in pairs(_active_players) do
         if not IsEntityDeadOrGhost(player) and IsPlayerInCity(player) then

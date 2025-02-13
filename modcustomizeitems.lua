@@ -3,7 +3,6 @@ if not env.is_mim_enabled then
     FrontEndAssets = {
         Asset("IMAGE", "images/hud/customization_porkland.tex"),
         Asset("ATLAS", "images/hud/customization_porkland.xml"),
-        -- Asset("ANIM", "anim/generating_hamlet.zip"),
     }
     ReloadFrontEndAssets()
 

@@ -12,6 +12,7 @@ assert(TheWorld.ismastersim, "RocManager should not exist on client")
 
 local SPAWNDIST = 40
 local ROC_TIMER_NAME = "ROC_RESPAWN_TIMER"
+local ROC_MAX_CHASE_TIME = 180
 
 -- Public
 self.inst = inst
@@ -117,6 +118,7 @@ function self:SpawnRocToPlayer(player)
     local roc = SpawnPrefab("roc")
     roc.Transform:SetPosition(pt.x + offset.x, 0, pt.z + offset.z)
     roc.components.roccontroller.target_player = player
+    roc.components.timer:StartTimer("left", ROC_MAX_CHASE_TIME)
 
     _roc = roc
     return true

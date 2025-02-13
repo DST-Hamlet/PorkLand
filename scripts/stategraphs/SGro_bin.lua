@@ -40,6 +40,11 @@ local states =
         tags = {"idle", "canrotate"},
 
         onenter = function(inst, pushanim)
+            if inst.components.container:IsOpen() then
+                inst.sg:GoToState("open_idle")
+                return
+            end
+
             inst.Physics:Stop()
             inst.AnimState:PlayAnimation("idle_loop")
         end,

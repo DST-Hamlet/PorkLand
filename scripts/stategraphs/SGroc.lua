@@ -17,7 +17,11 @@ local events =
         end
     end),
     EventHandler("land", function(inst) inst.sg:GoToState("land") end),
-    EventHandler("takeoff", function(inst) inst.sg:GoToState("takeoff") end),
+    EventHandler("takeoff", function(inst)
+        if not inst.sg:HasStateTag("moving") then
+            inst.sg:GoToState("takeoff")
+        end
+    end),
 }
 
 local states =

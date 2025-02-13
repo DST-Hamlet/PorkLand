@@ -158,11 +158,15 @@ local function RegistClocks(inst)
 end
 
 local function ClientPerdictRotation(inst, dt)
-    inst._timeuntilaporkalypse:set_local(inst._timeuntilaporkalypse:value() - dt - inst._rewind_mult:value() * 250 * dt)
+    if TheWorld.state.isaporkalypse then
+        return
+    end
+
     for k, clock in pairs(inst._clocks) do
         local angle = inst._timeuntilaporkalypse:value() / TUNING.APORKALYPSE_PERIOD_LENGTH * 360 * rotation_speeds[k]
         set_rotation(clock, angle)
     end
+    inst._timeuntilaporkalypse:set_local(inst._timeuntilaporkalypse:value() - dt - inst._rewind_mult:value() * 250 * dt)
 end
 
 local function aporkalypse_clock_fn()
