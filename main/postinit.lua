@@ -115,6 +115,7 @@ local prefab_posts = {
     "spoiledfood",
     "statueruins",
     "shadowcreature",
+    "telestaff",
     "walls",
     "waterballoon",
     "wormwood",

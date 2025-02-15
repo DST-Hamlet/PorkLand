@@ -25,6 +25,15 @@ end
 
 AllRecipes["cookbook"].ingredients = {Ingredient("papyrus", 1), Ingredient("radish", 1)} -- TODO: 检测世界来修改配方
 
+local _telebase_testfn = AllRecipes["telebase"].testfn
+AllRecipes["telebase"].testfn = function(pt, rot, ...)
+    if TheWorld.components.interiorspawner:IsInInterior(pt.x, pt.z) then
+        return false
+    end
+
+    return _telebase_testfn(pt, rot, ...)
+end
+
 local _GetValidRecipe = GetValidRecipe
 function GetValidRecipe(recipe_name, ...)
     local recipe = _GetValidRecipe(recipe_name, ...)
@@ -101,30 +110,6 @@ local function AquaticRecipe(name, data)
         AllRecipes[name].aquatic = data
         AllRecipes[name].build_mode = BUILDMODE.WATER
     end
-end
-
-local function IsMarshLand(pt, rot)
-    local ground_tile = TheWorld.Map:GetTileAtPoint(pt.x, pt.y, pt.z)
-    return ground_tile and ground_tile == WORLD_TILES.MARSH
-end
-
-local function telebase_testfn(pt, rot)
-    --See telebase.lua
-    local telebase_parts =
-    {
-        { x = -1.6, z = -1.6 },
-        { x =  2.7, z = -0.8 },
-        { x = -0.8, z =  2.7 },
-    }
-    rot = (45 - rot) * DEGREES
-    local sin_rot = math.sin(rot)
-    local cos_rot = math.cos(rot)
-    for i, v in ipairs(telebase_parts) do
-        if not TheWorld.Map:IsVisualGroundAtPoint(pt.x + v.x * cos_rot - v.z * sin_rot, pt.y, pt.z + v.z * cos_rot + v.x * sin_rot) then
-            return false
-        end
-    end
-    return true
 end
 
 AddTech("CITY", true)
