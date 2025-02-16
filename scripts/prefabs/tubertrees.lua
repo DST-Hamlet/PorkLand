@@ -17,6 +17,8 @@ local prefabs =
     "tuber_bloom_crop_cooked",
 }
 
+local HACKS_PER_TUBER = 3
+
 local TUBER_SLOTS_SHORT = {5, 6}
 local TUBER_SLOTS_TALL = {8, 5, 7}
 
@@ -60,6 +62,14 @@ local function UpdateArt(inst)
 
     for i = 1, inst.tubers do
         inst.AnimState:Show("tubers" .. inst.tuberslots[i])
+    end
+end
+
+local function UpdateTubers(inst, tubers, skip_workleft_update)
+    inst.tubers = tubers
+    UpdateArt(inst)
+    if not skip_workleft_update then
+        inst.components.workable:SetWorkLeft((inst.tubers + 1) * HACKS_PER_TUBER)
     end
 end
 
@@ -109,8 +119,7 @@ local function GetGrowFn(stage, grow_animation)
         elseif stage == "tall" then
             tubers = tubers + 1
         end
-        inst.tubers = math.min(tubers, inst.maxtubers)
-        UpdateArt(inst)
+        UpdateTubers(inst, math.min(tubers, inst.maxtubers))
         PushSway(inst)
     end
 end
@@ -163,7 +172,7 @@ local function MakeStump(inst, push_anim)
 
     inst.MiniMapEntity:SetIcon("tuber_trees_stump.tex")
 
-    inst:AddComponent("workable")
+    -- inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.DIG)
     inst.components.workable:SetOnFinishCallback(OnFinishCallbackStump)
     inst.components.workable:SetWorkLeft(1)
@@ -223,18 +232,18 @@ local function OnBurnt(inst)
     inst.highlight_override = burnt_highlight_override
 end
 
-local function OnHacked(inst)
+local function OnHacked(inst, worker, workleft, numworks)
     local anim = anims[inst.stage]
     inst.AnimState:PlayAnimation(anim.chop)
     PushSway(inst)
 
-    if inst.components.workable:GetWorkLeft() <= 0 then
-        inst.tubers = inst.tubers -1
-        UpdateArt(inst)
-        inst.components.lootdropper:DropLoot()
-        if inst.tubers >= 0 then
-            inst.components.workable:SetWorkLeft(3)
+    local tubers_left = math.max(math.ceil(workleft / HACKS_PER_TUBER) - 1, 0)
+    local tubers_to_drop = inst.tubers - tubers_left
+    if tubers_to_drop > 0 then
+        for i = 1, tubers_to_drop do
+            inst.components.lootdropper:DropLoot()
         end
+        UpdateTubers(inst, tubers_left, true)
     end
 
     inst.SoundEmitter:PlaySound("dontstarve_DLC002/creatures/volcano_cactus/hit")
@@ -322,8 +331,7 @@ local function OnLoad(inst, data)
     end
 
     if data.tubers then
-        inst.tubers = math.min(data.tubers, inst.maxtubers) -- inst.maxtubers is correctly set by growable component.
-        UpdateArt(inst)
+        UpdateTubers(inst, math.min(data.tubers, inst.maxtubers)) -- inst.maxtubers is correctly set by growable component.
     end
 
     if data.burnt then
@@ -436,7 +444,7 @@ local function MakeTree(name, build, stage, data)
 
         inst:AddComponent("workable")
         inst.components.workable:SetWorkAction(ACTIONS.HACK)
-        inst.components.workable:SetWorkLeft(3)
+        -- inst.components.workable:SetWorkLeft((inst.tubers + 1) * HACKS_PER_TUBER) -- We will call this in UpdateTubers later on
         inst.components.workable:SetOnWorkCallback(OnHacked)
         inst.components.workable:SetOnFinishCallback(OnHackedFinal)
 
@@ -480,8 +488,7 @@ local function MakeTree(name, build, stage, data)
         inst.OnEntitySleep = OnEntitySleep
         inst.OnEntityWake = OnEntityWake
 
-        inst.tubers = inst.maxtubers
-        UpdateArt(inst)
+        UpdateTubers(inst, inst.maxtubers)
 
         inst:WatchWorldState("season", OnseasonChange)
         OnseasonChange(inst, TheWorld.state.season)
