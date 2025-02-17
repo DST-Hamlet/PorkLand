@@ -500,6 +500,10 @@ function RocController:MoveBodyParts(dt, player)
 end
 
 function RocController:OnUpdate(dt)
+    if TheWorld.state.isnight then
+        self.inst:PushEvent("liftoff")
+    end
+
     self:CheckTargetPlayer()
 
     local player = self.target_player

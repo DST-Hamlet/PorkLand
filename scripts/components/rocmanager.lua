@@ -88,9 +88,7 @@ function self:SpawnRoc()
         return false
     end
 
-    self:SpawnRocToPlayer(player)
-
-    return true
+    return self:SpawnRocToPlayer(player)
 end
 
 
@@ -152,7 +150,7 @@ self.inst:ListenForEvent("ms_playerleft", OnPlayerLeft, _world)
 
 _worldsettingstimer:AddTimer(ROC_TIMER_NAME, GetNextSpawnTime(), TUNING.ROC_ENABLED, function()
     local spawned
-    if TheWorld.state.time < 1/2 then -- will only spawn before the first half of daylight, and not wile player is indoors
+    if TheWorld.state.time < 1/3 then -- will only spawn before the first half of daylight, and not wile player is indoors
         spawned = self:SpawnRoc()
     else
         spawned = false
@@ -189,7 +187,7 @@ function self:OnLoad(data)
         return
     end
 
-    if data.enable then
+    if data.enable ~= nil then
         _enable = data.enable
     end
 end
