@@ -87,7 +87,7 @@ void main()
 	gl_Position = mtxPV * world_pos;
 
 	PS_TEXCOORD = TEXCOORD0;
-	PS_TEXCOORD.x = UVOffset[waterfall_index] * 0.15 * 0.25; // 纹理缩放，以及传递纹理坐标数据
+	PS_TEXCOORD.x = UVOffset[waterfall_index] * 0.15; // 纹理缩放，以及传递纹理坐标数据
 	PS_TEXCOORD.y = float(corner_index) * 0.125 + 0.5;
 	PS_POS = world_pos.xyz;
 
