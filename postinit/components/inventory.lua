@@ -1,4 +1,6 @@
 local AddComponentPostInit = AddComponentPostInit
+GLOBAL.setfenv(1, GLOBAL)
+
 local Inventory = require("components/inventory")
 
 local _GetEquippedItem = Inventory.GetEquippedItem
@@ -51,7 +53,7 @@ function Inventory:_ctor(inst, ...)
     if inst.prefab == "wheeler" then
         local get_max_item_slots = GetMaxItemSlots
         GetMaxItemSlots = function()
-           return 12
+            return 12
         end
         local ret = { _ctor(self, inst, ...) }
         GetMaxItemSlots = get_max_item_slots

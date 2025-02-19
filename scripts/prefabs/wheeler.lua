@@ -39,6 +39,9 @@ local function UpdateBonusSpeed(inst)
 end
 
 local common_postinit = function(inst)
+    -- For our hack in Inventory._ctor to pickup our prefab name
+    inst:SetPrefabName("wheeler")
+
 	inst.MiniMapEntity:SetIcon("wheeler.tex")
 end
 
