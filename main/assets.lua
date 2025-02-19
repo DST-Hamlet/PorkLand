@@ -280,7 +280,9 @@ PrefabFiles = {
 
     "falloff_fx",
     "cloud_fx",
-    "group_parent"
+    "group_parent",
+
+    "wheeler",
 }
 
 Assets = {
@@ -497,3 +499,18 @@ if not TheNet:IsDedicated() then
         table.insert(Assets, asset)
     end
 end
+
+local function AddCharacter(name, gender)
+    table.insert(Assets, Asset("ATLAS", "bigportraits/"..name..".xml"))
+    -- table.insert(Assets, Asset("ATLAS", "bigportraits/"..name.."_none.xml"))
+    -- table.insert(Assets, Asset("ATLAS", "images/names_"..name..".xml"))
+    table.insert(Assets, Asset("ATLAS", "images/avatars/avatar_"..name..".xml"))
+    -- table.insert(Assets, Asset("ATLAS", "images/avatars/avatar_ghost_"..name..".xml"))
+    table.insert(Assets, Asset("ATLAS", "images/avatars/self_inspect_"..name..".xml"))
+    -- table.insert(Assets, Asset("ATLAS", "images/saveslot_portraits/"..name..".xml"))
+    -- table.insert(Assets, Asset("ATLAS", "images/crafting_menu_avatars/avatar_"..name..".xml"))
+
+    AddModCharacter(name, gender)
+end
+
+AddCharacter("wheeler", "FEMALE")

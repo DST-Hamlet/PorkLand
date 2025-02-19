@@ -722,6 +722,12 @@ local tuning = {
 
     ANIMSHADE_MIN_STRENGTH = 0.1429,           -- blend min strength - modulated with avg ambient
     ANIMSHADE_MAX_STRENGTH = 0.5,           -- blend max strength - modulated with avg ambient
+
+    WHEELER_HEALTH = 100,
+    WHEELER_HUNGER = 150,
+    WHEELER_SANITY = 200,
+    WHEELER_DODGE_COOLDOWN = 1.5,
+    DODGE_TIMEOUT = 0.25,
 }
 
 
