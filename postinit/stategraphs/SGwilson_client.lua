@@ -826,6 +826,60 @@ local states = {
     },
 
     State{
+        name = "shoot",
+        tags = {"attack", "notalking", "abouttoattack", "busy"},
+
+        onenter = function(inst)
+            if inst.replica.rider:IsRiding() then
+                inst.Transform:SetFourFaced()
+            end
+            local weapon = inst.replica.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
+            if weapon and weapon:HasTag("hand_gun") then
+                inst.AnimState:PlayAnimation("hand_shoot")
+            else
+                inst.AnimState:PlayAnimation("shoot")
+            end
+
+            local buffaction = inst:GetBufferedAction()
+            local target = buffaction and buffaction.target
+            inst.replica.combat:SetTarget(target)
+            inst.replica.combat:StartAttack()
+            inst.components.locomotor:Stop()
+
+            if target and target:IsValid() then
+                inst:FacePoint(target.Transform:GetWorldPosition())
+            end
+        end,
+
+        timeline=
+        {
+            TimeEvent(17*FRAMES, function(inst)
+                inst:PerformPreviewBufferedAction()
+                inst.sg:RemoveStateTag("abouttoattack")
+            end),
+            TimeEvent(20*FRAMES, function(inst)
+                inst.sg:RemoveStateTag("attack")
+            end),
+        },
+
+        events=
+        {
+            EventHandler("animover", function(inst)
+                inst.sg:GoToState("idle")
+            end ),
+        },
+
+        onexit = function(inst)
+            if inst.replica.rider:IsRiding() then
+                inst.Transform:SetSixFaced()
+            end
+            if inst.sg:HasStateTag("abouttoattack") and inst.replica.combat ~= nil then
+                inst.replica.combat:CancelAttack()
+            end
+        end,
+    },
+
+    State{
         name = "blunderbuss",
         tags = {"attack", "notalking", "abouttoattack"},
 
@@ -1020,8 +1074,12 @@ AddStategraphPostInit("wilson_client", function(sg)
             end
             if not (inst.sg:HasStateTag("attack") and action and action.target == inst.sg.statemem.attacktarget or inst.replica.health:IsDead()) then
                 local equip = inst.replica.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
-                if equip and equip:HasTag("blunderbuss_loaded") then
-                    return "blunderbuss"
+                if equip then
+                    if equip:HasTag("blunderbuss_loaded") then
+                        return "blunderbuss"
+                    elseif equip:HasTag("gun") then
+                        return "shoot"
+                    end
                 end
             end
             return _attack_deststate and _attack_deststate(inst, action, ...)
