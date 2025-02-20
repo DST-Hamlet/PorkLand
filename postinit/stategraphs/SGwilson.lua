@@ -2408,10 +2408,10 @@ local states = {
             inst.components.combat:StartAttack()
             inst.components.locomotor:Stop()
 
-            if inst.components.combat.target then
+            if target then
                 inst.components.combat:BattleCry()
-                if inst.components.combat.target and inst.components.combat.target:IsValid() then
-                    inst:FacePoint(Point(inst.components.combat.target.Transform:GetWorldPosition()))
+                if target:IsValid() then
+                    inst:FacePoint(target.Transform:GetWorldPosition())
                 end
             end
         end,
