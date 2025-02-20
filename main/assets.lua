@@ -283,6 +283,7 @@ PrefabFiles = {
     "group_parent",
 
     "wheeler",
+    "trusty_shooter",
 }
 
 Assets = {
@@ -356,6 +357,7 @@ Assets = {
     Asset("ANIM", "anim/player_mount_actions_scroll.zip"),
     Asset("ANIM", "anim/player_teleport_bfb.zip"),
     Asset("ANIM", "anim/player_teleport_bfb2.zip"),
+    Asset("ANIM", "anim/player_pistol.zip"),
 
     -- replace_anim
     Asset("ANIM", "anim/replace_anim/player_attacks_old.zip"),

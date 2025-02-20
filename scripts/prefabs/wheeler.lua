@@ -9,15 +9,15 @@ local assets =
 
 local prefabs =
 {
-	-- "trusty_shooter",
-	-- "wheeler_tracker"
+
 }
 
-local start_inv =
-{
-	-- "trusty_shooter",
-	-- "wheeler_tracker",
-}
+local start_inv = {}
+for k, v in pairs(TUNING.GAMEMODE_STARTING_ITEMS) do
+    start_inv[string.lower(k)] = v.WHEELER
+end
+
+prefabs = FlattenTree({ prefabs, start_inv }, true)
 
 -- local function AllowDodge(inst)
 --     return (GetTime() - inst.last_dodge_time > TUNING.WHEELER_DODGE_COOLDOWN) and
@@ -26,8 +26,8 @@ local start_inv =
 
 -- local function GetPointSpecialActions(inst, pos, useitem, right)
 --     if right then
---     	if AllowDodge(inst) then
---         	return { ACTIONS.DODGE }
+--         if AllowDodge(inst) then
+--             return { ACTIONS.DODGE }
 --         end
 --     end
 --     return {}
@@ -42,23 +42,27 @@ local common_postinit = function(inst)
     -- For our hack in Inventory._ctor to pickup our prefab name
     inst:SetPrefabName("wheeler")
 
-	inst.MiniMapEntity:SetIcon("wheeler.tex")
+    inst.MiniMapEntity:SetIcon("wheeler.tex")
+
+    inst:AddTag("trusty_shooter")
 end
 
 local master_postinit = function(inst)
-	-- inst.soundsname = "wheeler"
+    inst.starting_inventory = start_inv[TheNet:GetServerGameMode()] or start_inv.default
+
+    -- inst.soundsname = "wheeler"
     -- inst.talker_path_override = "dontstarve_DLC003/characters/"
 
-	-- inst.last_dodge_time = GetTime()
+    -- inst.last_dodge_time = GetTime()
 
-	inst.components.health:SetMaxHealth(TUNING.WHEELER_HEALTH)
-	inst.components.sanity:SetMax(TUNING.WHEELER_SANITY)
-	inst.components.hunger:SetMax(TUNING.WHEELER_HUNGER)
+    inst.components.health:SetMaxHealth(TUNING.WHEELER_HEALTH)
+    inst.components.sanity:SetMax(TUNING.WHEELER_SANITY)
+    inst.components.hunger:SetMax(TUNING.WHEELER_HUNGER)
     -- See postinit/components/inventory and postinit/components/inventory_replica,
     -- this is hard coded there
-	-- inst.components.inventory:SetNumSlots(12)
+    -- inst.components.inventory:SetNumSlots(12)
 
-	inst.AnimState:Hide("HAIR_HAT")
+    inst.AnimState:Hide("HAIR_HAT")
 
     -- inst.components.playeractionpicker.pointspecialactionsfn = GetPointSpecialActions
 
@@ -73,7 +77,7 @@ local master_postinit = function(inst)
 
     inst:ListenForEvent("itemget", UpdateBonusSpeed)
     inst:ListenForEvent("itemlose", UpdateBonusSpeed)
-	inst:DoTaskInTime(0, function() UpdateBonusSpeed(inst) end)
+    inst:DoTaskInTime(0, function() UpdateBonusSpeed(inst) end)
 end
 
 return MakePlayerCharacter("wheeler", prefabs, assets, common_postinit, master_postinit, start_inv)

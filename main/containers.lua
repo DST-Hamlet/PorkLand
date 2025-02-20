@@ -294,3 +294,8 @@ params["ro_bin"] = deepcopy(params["chester"])
 
 params["trawlnetdropped"] = deepcopy(params["treasurechest"])
 params["sunkenprefab"] = deepcopy(params["treasurechest"])
+
+params["trusty_shooter"] = deepcopy(params["slingshot"])
+function params.trusty_shooter.itemtestfn(container, item, slot)
+    return container.inst:CanTakeAmmo(item)
+end

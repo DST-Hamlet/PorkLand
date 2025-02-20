@@ -2387,6 +2387,66 @@ local states = {
     },
 
     State{
+        name = "shoot",
+        tags = {"attack", "notalking", "abouttoattack", "busy"},
+
+        onenter = function(inst)
+            if inst.components.rider:IsRiding() then
+                inst.Transform:SetFourFaced()
+            end
+            local weapon = inst.components.combat:GetWeapon()
+            local otherequipped = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
+            if (weapon and weapon:HasTag("hand_gun")) or (otherequipped and otherequipped:HasTag("hand_gun")) then
+                inst.AnimState:PlayAnimation("hand_shoot")
+            else
+                inst.AnimState:PlayAnimation("shoot")
+            end
+
+            local buffaction = inst:GetBufferedAction()
+            local target = buffaction and buffaction.target
+            inst.components.combat:SetTarget(target)
+            inst.components.combat:StartAttack()
+            inst.components.locomotor:Stop()
+
+            if inst.components.combat.target then
+                inst.components.combat:BattleCry()
+                if inst.components.combat.target and inst.components.combat.target:IsValid() then
+                    inst:FacePoint(Point(inst.components.combat.target.Transform:GetWorldPosition()))
+                end
+            end
+        end,
+
+        timeline=
+        {
+            TimeEvent(17*FRAMES, function(inst)
+                inst:PerformBufferedAction()
+                inst.sg:RemoveStateTag("abouttoattack")
+            end),
+            TimeEvent(20*FRAMES, function(inst)
+                inst.sg:RemoveStateTag("attack")
+            end),
+        },
+
+        events=
+        {
+            EventHandler("animover", function(inst)
+                inst.sg:GoToState("idle")
+            end ),
+        },
+
+        onexit = function(inst)
+            if inst.components.rider:IsRiding() then
+                inst.Transform:SetSixFaced()
+            end
+
+            inst.components.combat:SetTarget(nil)
+			if inst.sg:HasStateTag("abouttoattack") then
+				inst.components.combat:CancelAttack()
+            end
+        end,
+    },
+
+    State{
         name = "blunderbuss",
         tags = {"attack", "notalking", "abouttoattack"},
 
@@ -2631,10 +2691,18 @@ AddStategraphPostInit("wilson", function(sg)
 
     local _attack_deststate = sg.actionhandlers[ACTIONS.ATTACK].deststate
     sg.actionhandlers[ACTIONS.ATTACK].deststate = function(inst, action, ...)
+        if inst:HasTag("ironlord") then
+            return "ironlord_attack"
+        end
+
         if not inst.sg:HasStateTag("sneeze") then
-            local weapon = inst.components.combat ~= nil and inst.components.combat:GetWeapon()
-            if weapon and weapon:HasTag("blunderbuss_loaded") then
-                return "blunderbuss"
+            local weapon = inst.components.combat and inst.components.combat:GetWeapon()
+            if weapon then
+                if weapon:HasTag("blunderbuss_loaded") then
+                    return "blunderbuss"
+                elseif weapon:HasTag("gun") then
+                    return "shoot"
+                end
             end
             return _attack_deststate and _attack_deststate(inst, action, ...)
         end
@@ -2987,16 +3055,6 @@ AddStategraphPostInit("wilson", function(sg)
         inst.SoundEmitter:PlaySound(sound)
         inst.sg.statemem.recoilstate = "mine_recoil"
         inst:PerformBufferedAction()
-    end
-
-    local _attack_deststate = sg.actionhandlers[ACTIONS.ATTACK].deststate
-    sg.actionhandlers[ACTIONS.ATTACK].deststate = function(inst, ...)
-        if inst:HasTag("ironlord") then
-            return "ironlord_attack"
-        end
-        if not inst.sg:HasStateTag("sneeze") then
-            return _attack_deststate and _attack_deststate(inst, ...)
-        end
     end
 
     local _chop_deststate = sg.actionhandlers[ACTIONS.CHOP].deststate
