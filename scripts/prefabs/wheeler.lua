@@ -34,7 +34,7 @@ local function GetPointSpecialActions(inst, pos, useitem, right)
 end
 
 local function OnSetOwner(inst)
-    if inst.components.playeractionpicker ~= nil then
+    if inst.components.playeractionpicker then
         inst.components.playeractionpicker.pointspecialactionsfn = GetPointSpecialActions
     end
 end
@@ -57,8 +57,8 @@ end
 local master_postinit = function(inst)
     inst.starting_inventory = start_inv[TheNet:GetServerGameMode()] or start_inv.default
 
-    -- inst.soundsname = "wheeler"
-    -- inst.talker_path_override = "dontstarve_DLC003/characters/"
+    inst.soundsname = "wheeler"
+    inst.talker_path_override = "dontstarve_DLC003/characters/"
 
     inst.last_dodge_time = GetTime()
 
@@ -71,8 +71,7 @@ local master_postinit = function(inst)
 
     inst.AnimState:Hide("HAIR_HAT")
 
-    -- inst.components.playeractionpicker.pointspecialactionsfn = GetPointSpecialActions
-
+    -- TODO: Support this for controller players
     -- inst:AddComponent("reticule")
     -- inst.components.reticule.targetfn = function()
     --     return Vector3(inst.entity:LocalToWorldSpace(5.5,0,0))
@@ -84,7 +83,7 @@ local master_postinit = function(inst)
 
     inst:ListenForEvent("itemget", UpdateBonusSpeed)
     inst:ListenForEvent("itemlose", UpdateBonusSpeed)
-    inst:DoTaskInTime(0, function() UpdateBonusSpeed(inst) end)
+    inst:DoTaskInTime(0, UpdateBonusSpeed)
 end
 
 return MakePlayerCharacter("wheeler", prefabs, assets, common_postinit, master_postinit, start_inv)
