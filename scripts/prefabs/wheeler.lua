@@ -19,19 +19,25 @@ end
 
 prefabs = FlattenTree({ prefabs, start_inv }, true)
 
--- local function AllowDodge(inst)
---     return (GetTime() - inst.last_dodge_time > TUNING.WHEELER_DODGE_COOLDOWN) and
---             not inst.components.driver:GetIsDriving() and not inst.components.rider:IsRiding()
--- end
+local function AllowDodge(inst)
+    return (GetTime() - inst.last_dodge_time > TUNING.WHEELER_DODGE_COOLDOWN)
+        and not inst.replica.sailor:IsSailing() and not inst.replica.rider:IsRiding()
+end
 
--- local function GetPointSpecialActions(inst, pos, useitem, right)
---     if right then
---         if AllowDodge(inst) then
---             return { ACTIONS.DODGE }
---         end
---     end
---     return {}
--- end
+local function GetPointSpecialActions(inst, pos, useitem, right)
+    if right then
+        if AllowDodge(inst) then
+            return { ACTIONS.DODGE }
+        end
+    end
+    return {}
+end
+
+local function OnSetOwner(inst)
+    if inst.components.playeractionpicker ~= nil then
+        inst.components.playeractionpicker.pointspecialactionsfn = GetPointSpecialActions
+    end
+end
 
 local function UpdateBonusSpeed(inst)
     local empty_slots = inst.components.inventory:GetNumSlots() - inst.components.inventory:NumItems()
@@ -45,6 +51,7 @@ local common_postinit = function(inst)
     inst.MiniMapEntity:SetIcon("wheeler.tex")
 
     inst:AddTag("trusty_shooter")
+    inst:ListenForEvent("setowner", OnSetOwner)
 end
 
 local master_postinit = function(inst)
@@ -53,7 +60,7 @@ local master_postinit = function(inst)
     -- inst.soundsname = "wheeler"
     -- inst.talker_path_override = "dontstarve_DLC003/characters/"
 
-    -- inst.last_dodge_time = GetTime()
+    inst.last_dodge_time = GetTime()
 
     inst.components.health:SetMaxHealth(TUNING.WHEELER_HEALTH)
     inst.components.sanity:SetMax(TUNING.WHEELER_SANITY)

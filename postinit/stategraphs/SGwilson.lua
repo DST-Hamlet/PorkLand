@@ -151,6 +151,7 @@ local actionhandlers = {
     ActionHandler(ACTIONS.BUILD_ROOM, "doshortaction"),
     ActionHandler(ACTIONS.DEMOLISH_ROOM, "doshortaction"),
     ActionHandler(ACTIONS.THROW, "throw"),
+    ActionHandler(ACTIONS.DODGE, "dodge"),
 }
 
 local eventhandlers = {
@@ -2440,8 +2441,8 @@ local states = {
             end
 
             inst.components.combat:SetTarget(nil)
-			if inst.sg:HasStateTag("abouttoattack") then
-				inst.components.combat:CancelAttack()
+            if inst.sg:HasStateTag("abouttoattack") then
+                inst.components.combat:CancelAttack()
             end
         end,
     },
@@ -2651,6 +2652,68 @@ local states = {
                 inst.DynamicShadow:Enable(false)
             end),
         },
+    },
+
+    State
+    {
+        name = "dodge",
+        tags = {"busy", "evade", "no_stun", "canrotate"},
+
+        onenter = function(inst)
+            local action = inst:GetBufferedAction()
+            if action then
+                local pos = action:GetActionPoint()
+                inst:ForceFacePoint(pos)
+            end
+
+            inst.sg:SetTimeout(TUNING.DODGE_TIMEOUT)
+            inst.components.locomotor:Stop()
+            inst.AnimState:PlayAnimation("slide_pre")
+
+            inst.AnimState:PushAnimation("slide_loop")
+            inst.SoundEmitter:PlaySound("dontstarve_DLC003/characters/wheeler/slide")
+            inst.Physics:SetMotorVelOverride(20, 0, 0)
+            inst.components.locomotor:EnableGroundSpeedMultiplier(false)
+
+            inst.was_invincible = inst.components.health.invincible
+            inst.components.health:SetInvincible(true)
+
+            inst.last_dodge_time = GetTime()
+        end,
+
+        ontimeout = function(inst)
+            inst.sg:GoToState("dodge_pst")
+        end,
+
+        onexit = function(inst)
+            inst.components.locomotor:EnableGroundSpeedMultiplier(true)
+            inst.Physics:ClearMotorVelOverride()
+            inst.components.locomotor:Stop()
+
+            inst.components.locomotor:SetBufferedAction(nil)
+            if not inst.was_invincible then
+                inst.components.health:SetInvincible(false)
+            end
+
+            inst.was_invincible = nil
+        end,
+    },
+
+    State
+    {
+        name = "dodge_pst",
+        tags = {"evade", "no_stun"},
+
+        onenter = function(inst)
+            inst.AnimState:PlayAnimation("slide_pst")
+        end,
+
+        events =
+        {
+            EventHandler("animover", function(inst)
+                inst.sg:GoToState("idle")
+            end),
+        }
     },
 }
 

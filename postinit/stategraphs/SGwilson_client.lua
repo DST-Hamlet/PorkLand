@@ -74,6 +74,7 @@ local actionhandlers = {
     ActionHandler(ACTIONS.BUILD_ROOM, "doshortaction"),
     ActionHandler(ACTIONS.DEMOLISH_ROOM, "doshortaction"),
     ActionHandler(ACTIONS.THROW, "throw"),
+    ActionHandler(ACTIONS.DODGE, "dodge"),
 }
 
 local eventhandlers = {
@@ -966,6 +967,60 @@ local states = {
                 end
             end),
         },
+    },
+
+    State
+    {
+        name = "dodge",
+        tags = {"busy", "evade", "no_stun", "canrotate"},
+
+        onenter = function(inst)
+            local action = inst:GetBufferedAction()
+            if action then
+                local pos = action:GetActionPoint()
+                inst:ForceFacePoint(pos)
+            end
+
+            inst.sg:SetTimeout(TUNING.DODGE_TIMEOUT)
+            inst.components.locomotor:Stop()
+            inst.AnimState:PlayAnimation("slide_pre")
+
+            inst.AnimState:PushAnimation("slide_loop")
+            inst.SoundEmitter:PlaySound("dontstarve_DLC003/characters/wheeler/slide")
+            inst.Physics:SetMotorVelOverride(20, 0, 0)
+            inst.components.locomotor:EnableGroundSpeedMultiplier(false)
+
+            inst.last_dodge_time = GetTime()
+        end,
+
+        ontimeout = function(inst)
+            inst.sg:GoToState("dodge_pst")
+        end,
+
+        onexit = function(inst)
+            inst.components.locomotor:EnableGroundSpeedMultiplier(true)
+            inst.Physics:ClearMotorVelOverride()
+            inst.components.locomotor:Stop()
+
+            inst.components.locomotor:SetBufferedAction(nil)
+        end,
+    },
+
+    State
+    {
+        name = "dodge_pst",
+        tags = {"evade", "no_stun"},
+
+        onenter = function(inst)
+            inst.AnimState:PlayAnimation("slide_pst")
+        end,
+
+        events =
+        {
+            EventHandler("animover", function(inst)
+                inst.sg:GoToState("idle")
+            end),
+        }
     },
 }
 
