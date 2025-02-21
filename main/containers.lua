@@ -299,3 +299,6 @@ params["trusty_shooter"] = deepcopy(params["slingshot"])
 function params.trusty_shooter.itemtestfn(container, item, slot)
     return container.inst:CanTakeAmmo(item)
 end
+params["wheeler_tracker"] = deepcopy(params["slingshot"])
+params["wheeler_tracker"].itemtestfn = nil
+params["wheeler_tracker"].widget.slotbg = nil

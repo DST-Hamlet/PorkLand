@@ -284,6 +284,7 @@ PrefabFiles = {
 
     "wheeler",
     "trusty_shooter",
+    "wheeler_tracker",
 }
 
 Assets = {

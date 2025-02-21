@@ -860,5 +860,6 @@ end
 
 TUNING.GAMEMODE_STARTING_ITEMS.DEFAULT.WHEELER = {
     "trusty_shooter",
+    -- TODO: Find a way to make this thing lesser laggy and then enable it
     -- "wheeler_tracker",
 }
