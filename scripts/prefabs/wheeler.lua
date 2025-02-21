@@ -51,6 +51,7 @@ local common_postinit = function(inst)
     inst.MiniMapEntity:SetIcon("wheeler.tex")
 
     inst:AddTag("trusty_shooter")
+    inst:AddTag("tracker_user")
     inst:ListenForEvent("setowner", OnSetOwner)
 end
 

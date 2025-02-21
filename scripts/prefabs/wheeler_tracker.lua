@@ -53,7 +53,6 @@ local function TrackNext(inst, goal_inst)
     end)
 end
 
-
 local function DeactivateTracking(inst)
     if inst.arrow_rotation_update then
         inst.arrow_rotation_update:Cancel()
@@ -77,28 +76,21 @@ local function ActivateTracking(inst)
         return
     end
 
-    local function update_item()
-        local closer_item = TrackNext(inst, inst.tracked_item)
-        if closer_item ~= inst.tracked_item then
-            inst.tracked_item = closer_item
-        end
-    end
-
     if inst.tracked_item then
-
         if not inst.arrow then
             inst.arrow = SpawnPrefab("wheeler_tracker_arrow")
             owner:AddChild(inst.arrow)
+            inst.arrow.Network:SetClassifiedTarget(owner)
         end
 
         if inst.arrow_rotation_update == nil then
             inst.arrow_rotation_update = inst:DoPeriodicTask(0, function()
+                if not inst.tracked_item
+                    or not inst.tracked_item:IsValid()
+                    or inst.tracked_item:IsInLimbo()
+                    or not CanGiveLoot(inst.tracked_item, inst.components.container:GetItemInSlot(1)) then
 
-                if inst.tracked_item and (inst.tracked_item:IsInLimbo() or not CanGiveLoot(inst.tracked_item, inst.components.container:GetItemInSlot(1))) then
                     inst.tracked_item = nil
-                end
-
-                if inst.tracked_item == nil or not inst.tracked_item:IsValid() then
                     DeactivateTracking(inst)
                     inst.tracked_item = TrackNext(inst, inst.components.container:GetItemInSlot(1))
                     ActivateTracking(inst)
@@ -122,7 +114,7 @@ local function RefreshTracking(inst)
     end
 end
 
-local function on_equip(inst, owner, force)
+local function OnEquip(inst, owner, force)
     owner.AnimState:ClearOverrideSymbol("swap_object")
 
     RefreshTracking(inst)
@@ -135,7 +127,7 @@ local function on_equip(inst, owner, force)
     end
 end
 
-local function on_unequip(inst, owner)
+local function OnUnequip(inst, owner)
     DeactivateTracking(inst)
     if inst.refresh_tracking_owner_listener then
         inst:ListenForEvent("leaveinterior", inst.refresh_tracking_owner_listener, owner)
@@ -147,18 +139,23 @@ local function on_unequip(inst, owner)
     end
 end
 
-local  function on_lose_item(inst, data)
+local function OnEquipToModel(inst, owner, from_ground)
+    if inst.components.container then
+        inst.components.container:Close()
+    end
+end
+
+local  function OnItemLose(inst, data)
     DeactivateTracking(inst)
 
     inst.components.inventoryitem:ChangeImageName("tracker_open")
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/characters/wheeler/tracker/open")
 end
 
-local function on_take_item(inst, data)
-    -- Needs to be in place because this can be called before the HUD exists
-
+local function OnItemGet(inst, data)
     inst.components.inventoryitem:ChangeImageName("tracker")
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/characters/wheeler/tracker/close")
+
     if inst.components.equippable:IsEquipped() then
         DeactivateTracking(inst)
         inst.tracked_item = TrackNext(inst, data.item)
@@ -197,15 +194,17 @@ local function fn()
     inst:AddComponent("inspectable")
 
     inst:AddComponent("equippable")
-    inst.components.equippable:SetOnEquip(on_equip)
-    inst.components.equippable:SetOnUnequip(on_unequip)
+    inst.components.equippable.restrictedtag = "tracker_user"
+    inst.components.equippable:SetOnEquip(OnEquip)
+    inst.components.equippable:SetOnUnequip(OnUnequip)
+    inst.components.equippable:SetOnEquipToModel(OnEquipToModel)
 
     inst:AddComponent("container")
     inst.components.container:WidgetSetup("wheeler_tracker")
     inst.components.container.canbeopened = false
     inst.components.container.stay_open_on_hide = true
-    inst:ListenForEvent("itemget", on_take_item)
-    inst:ListenForEvent("itemlose", on_lose_item)
+    inst:ListenForEvent("itemget", OnItemGet)
+    inst:ListenForEvent("itemlose", OnItemLose)
 
     -- inst:AddComponent("characterspecific")
     -- inst.components.characterspecific:SetOwner("wheeler")
@@ -213,10 +212,11 @@ local function fn()
     return inst
 end
 
-local function arrowfn(Sim)
+local function arrowfn()
     local inst = CreateEntity()
     inst.entity:AddTransform()
     inst.entity:AddAnimState()
+    inst.entity:AddNetwork()
 
     inst.AnimState:SetBank("tracker_pointer")
     inst.AnimState:SetBuild("tracker_pointer")
@@ -226,10 +226,15 @@ local function arrowfn(Sim)
     inst.AnimState:SetLayer(LAYER_BACKGROUND)
     inst.AnimState:SetSortOrder(4)
 
-    inst.pos_target = ThePlayer
+    inst.entity:SetPristine()
+
+    if not TheWorld.ismastersim then
+        return inst
+    end
+
     inst.UpdateRotation = function(inst, x, y, z)
         inst:FacePoint(x, y, z)
-        inst.Transform:SetRotation(inst.Transform:GetRotation() + 90 - inst.pos_target.Transform:GetRotation())
+        inst.Transform:SetRotation(inst.Transform:GetRotation() + 90 - inst.parent.Transform:GetRotation())
     end
 
     return inst
