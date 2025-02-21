@@ -300,5 +300,7 @@ function params.trusty_shooter.itemtestfn(container, item, slot)
     return container.inst:CanTakeAmmo(item)
 end
 params["wheeler_tracker"] = deepcopy(params["slingshot"])
-params["wheeler_tracker"].itemtestfn = nil
+function params.wheeler_tracker.itemtestfn(container, item, slot)
+    return true
+end
 params["wheeler_tracker"].widget.slotbg = nil
