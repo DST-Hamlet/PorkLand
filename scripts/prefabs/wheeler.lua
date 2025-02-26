@@ -1,4 +1,4 @@
-local MakePlayerCharacter = require "prefabs/player_common"
+local MakePlayerCharacter = require("prefabs/player_common")
 
 local assets =
 {
@@ -61,7 +61,6 @@ end
 local master_postinit = function(inst)
     inst.starting_inventory = start_inv[TheNet:GetServerGameMode()] or start_inv.default
 
-    inst.soundsname = "wheeler"
     inst.talker_path_override = "dontstarve_DLC003/characters/"
 
     inst.components.health:SetMaxHealth(TUNING.WHEELER_HEALTH)
