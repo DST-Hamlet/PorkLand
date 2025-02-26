@@ -200,10 +200,8 @@ end
 
 local do_action = PlayerController.DoAction
 function PlayerController:DoAction(buffaction, ...)
-    if buffaction and not self.ismastersim and not self:CanLocomote() then
-        if buffaction == ACTIONS.DODGE then
-            self.inst.last_dodge_time = GetTime()
-        end
+    if buffaction and buffaction.action == ACTIONS.DODGE and not self:CanLocomote() then
+        self.inst.last_dodge_time = GetTime()
     end
     return do_action(self, buffaction, ...)
 end

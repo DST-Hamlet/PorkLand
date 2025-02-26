@@ -53,6 +53,8 @@ local common_postinit = function(inst)
     inst:AddTag("trusty_shooter")
     inst:AddTag("tracker_user")
     inst:ListenForEvent("setowner", OnSetOwner)
+
+    inst.last_dodge_time = GetTime()
 end
 
 local master_postinit = function(inst)
@@ -60,8 +62,6 @@ local master_postinit = function(inst)
 
     inst.soundsname = "wheeler"
     inst.talker_path_override = "dontstarve_DLC003/characters/"
-
-    inst.last_dodge_time = GetTime()
 
     inst.components.health:SetMaxHealth(TUNING.WHEELER_HEALTH)
     inst.components.sanity:SetMax(TUNING.WHEELER_SANITY)
@@ -71,16 +71,6 @@ local master_postinit = function(inst)
     -- inst.components.inventory:SetNumSlots(12)
 
     inst.AnimState:Hide("HAIR_HAT")
-
-    -- TODO: Support this for controller players
-    -- inst:AddComponent("reticule")
-    -- inst.components.reticule.targetfn = function()
-    --     return Vector3(inst.entity:LocalToWorldSpace(5.5,0,0))
-    -- end
-
-    -- inst.components.reticule:SetValidateFn(AllowDodge)
-
-    -- inst.components.reticule.ease = false
 
     inst:ListenForEvent("itemget", UpdateBonusSpeed)
     inst:ListenForEvent("itemlose", UpdateBonusSpeed)
