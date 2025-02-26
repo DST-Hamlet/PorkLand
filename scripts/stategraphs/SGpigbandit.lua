@@ -103,7 +103,7 @@ local states =
 
     State{
         name = "hit",
-        tags = {"busy", "evade", "hit"},
+        tags = {"busy", "evade"},
 
         onenter = function(inst)
             inst.SoundEmitter:PlaySound("dontstarve/pig/oink")
