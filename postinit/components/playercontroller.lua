@@ -198,6 +198,16 @@ function PlayerController:GetMapActions(...)
     return _GetMapActions(self, ...)
 end
 
+local do_action = PlayerController.DoAction
+function PlayerController:DoAction(buffaction, ...)
+    if buffaction and not self.ismastersim and not self:CanLocomote() then
+        if buffaction == ACTIONS.DODGE then
+            self.inst.last_dodge_time = GetTime()
+        end
+    end
+    return do_action(self, buffaction, ...)
+end
+
 AddComponentPostInit("playercontroller", function(self)
     self.lasttick_controlpressed = {}
 end)
