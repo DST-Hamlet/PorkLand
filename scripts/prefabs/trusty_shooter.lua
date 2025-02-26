@@ -33,7 +33,7 @@ local function OnEquipToModel(inst, owner, from_ground)
 end
 
 local function CanTakeAmmo(inst, ammo)
-    return not ammo.components.health
+    return not ammo.replica.health
         and not ammo:HasTag("irreplaceable")
         and not ammo:HasTag("invalidammo")
 end
@@ -186,6 +186,8 @@ local function fn()
     -- weapon (from weapon component) added to pristine state for optimization
     inst:AddTag("weapon")
 
+    inst.CanTakeAmmo = CanTakeAmmo
+
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
@@ -210,7 +212,6 @@ local function fn()
     inst.components.container:WidgetSetup("trusty_shooter")
     inst.components.container.canbeopened = false
     inst.components.container.stay_open_on_hide = true
-    inst.CanTakeAmmo = CanTakeAmmo
     inst:ListenForEvent("itemget", OnTakeAmmo)
     inst:ListenForEvent("itemlose", ResetAmmo)
 
