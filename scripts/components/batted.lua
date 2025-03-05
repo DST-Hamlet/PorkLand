@@ -96,21 +96,31 @@ local function AddBatToCaves()
     end
 end
 
-local function GetNextRegenTime()
-    local day = TheWorld.state.cycles
-    local time = 130
+local RATE_D5 = 1 / 960  -- 1 bat every 2 days
+local RATE_D10 = 1 / 720 -- 1 bat every 1.5 days
+local RATE_D20 = 1 / 480 -- 1 bat a day
+local RATE_D40 = 1 / 360 -- 1.5 bats / day
+local RATE_D40P = 1 / 240 -- 2 bats / day
 
-    if day < 5 then
-        time = 960 -- 1 bat every 2 days
-    elseif day < 10 then
-        time = 720 -- 1 bat every 1.5 days
-    elseif day < 20 then
-        time = 480 -- 1 bat a day
-    elseif day < 40 then
-        time = 360 -- 1.5 bats / day
-    else
-        time = 240 -- 2 bats / day
+local function GetNextRegenTime()
+    --local day = TheWorld.state.cycles
+    local time = 130
+    local rate = 0
+    for _, player in pairs(AllPlayers) do
+        local age = player.components.age:GetAgeInDays()     
+        if age < 5 then
+            rate = rate + RATE_D5
+        elseif age < 10 then
+            rate = rate + RATE_D10
+        elseif age < 20 then
+            rate = rate + RATE_D20
+        elseif age < 40 then
+            rate = rate + RATE_D40
+        else
+            rate = rate + RATE_D40P
+        end
     end
+    if rate ~= 0 then time = 1 / rate end
 
     return time * _time_modifiers:CalculateModifierFromKey(MODIFIER_KEY_REGEN_TIME)
 end
