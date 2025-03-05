@@ -97,7 +97,7 @@ local function OnFar(inst)
     end
 end
 
-local function OnAporkalypseNear(inst)
+local function OnAporkalypseNear(inst, ents)
     if not inst.down then
         inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/items/pressure_plate/hit")
         inst.AnimState:PlayAnimation("popdown")
@@ -105,6 +105,10 @@ local function OnAporkalypseNear(inst)
         inst.down = true
 
         TheWorld:PushEvent("ms_setrewindmult", {source = inst, mult = inst.rewind_mult})
+    end
+    
+    for k, ent in ipairs(ents) do
+        ent.PL_CausedAporkalypse = true
     end
 end
 
