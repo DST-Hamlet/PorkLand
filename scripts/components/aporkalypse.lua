@@ -322,19 +322,25 @@ return Class(function(self, inst)
                 end
 
                 local batted = _world.components.batted
-                batted:RegenBat(15)
+                batted:RegenBat(15 + 13 * (#AllPlayers - 1))
                 batted:ForceBatAttack()
                 ScheduleBatAttack()
             end
             _herald_time = _herald_time - dt
             if _herald_time <= 0 then
                 local players = {}
+                local oldest_age = -1
+                local oldest_player = nil
                 for _, player in pairs(AllPlayers) do
-                    if not player:GetIsInInterior() then
+                    local age = player.components.age:GetAgeInDays()
+                    if not player:GetIsInInterior() and (player.PL_CausedAporkalypse == true or age >= 15) then
                         table.insert(players, player)
+                    elseif age > oldest_age then
+                        oldest_player = player
+                        oldest_age = age
                     end
                 end
-
+                if players[1] == nil then players[1] = oldest_player end
                 local player = GetRandomItem(players)
                 SpawnHerald(player)
                 ScheduleHeraldAttack()
