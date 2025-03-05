@@ -24,6 +24,7 @@ local MODIFIER_KEY_REGEN_TIME = "regen"
 local MODIFIER_RARE = 1.25
 local MODIFIER_OFTEN = 0.9
 local MODIFIER_ALWAYS = 0.75
+local _world = TheWorld
 
 --------------------------------------------------------------------------
 --[[ Member variables ]]
@@ -500,6 +501,20 @@ function self:LoadPostPass(ents, data)
         end
     end
 end
+
+--------------------------------------------------------------------------
+--[[ Binary Heap Detection ]]
+--------------------------------------------------------------------------
+
+local function AddToHeap(player)
+    _player_battime_binaryheap:Insert(player)
+end
+local function RemoveFromHeap(player)
+    _player_battime_binaryheap:Remove(player)
+end
+        
+inst:ListenForEvent("ms_playerspawn", AddToHeap, _world)
+inst:ListenForEvent("playerexited", AddToHeap, _world)
 
 --------------------------------------------------------------------------
 --[[ Debug ]]
