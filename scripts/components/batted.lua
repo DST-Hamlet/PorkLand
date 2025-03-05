@@ -179,7 +179,7 @@ local function CollectBatsForAttack()
         _player_battime_binaryheap:Insert(player)
     end
 
-    if _target_player = nil then return end --no players
+    if _target_player == nil then return end --no players
 
     local suitable_bat_count = 0
     for _, bat in pairs(_bats) do
