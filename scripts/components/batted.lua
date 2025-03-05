@@ -46,6 +46,7 @@ local _bat_remainder = 0
 local _time_modifiers = SourceModifierList(inst, 1)
 
 local _player_battime_binaryheap = BinaryHeap({}, "porkland_nextbattedtime")
+local _target_player = nil
 
 --------------------------------------------------------------------------
 --[[ Private event handlers ]]
@@ -161,14 +162,23 @@ local function IsBatSuitableForAttack(bat)
 end
 
 local function CollectBatsForAttack()
-    target_players = {}
-
-    for _, player in pairs(AllPlayers) do
-        if not player:GetIsInInterior() then
-            table.insert(target_players, player)
+    local putbackin_players = {}
+    _target_player = nil
+    
+    while _player_battime_binaryheap[1] ~= nil do --take stuff out of heap, heap is always sorted at [1] position
+        _target_player = _player_battime_binaryheap[1]
+        _player_battime_binaryheap:Remove(target_player)
+        if not target_player:GetIsInInterior() then
+            break    
         end
+        table.insert(putbackin_players, target_player)
     end
-    shuffleArray(target_players)
+    
+    for _, player in ipairs(putbackin_players) do
+        _player_battime_binaryheap:Insert(player)
+    end
+
+    if _target_player = nil then return end --no players
 
     local suitable_bat_count = 0
     for _, bat in pairs(_bats) do
@@ -178,11 +188,31 @@ local function CollectBatsForAttack()
         end
     end
 
+    local age = target_player.components.age:GetAgeInDays()
+    local min_bound = 0
+    local max_bound = 0
+    if age < 10 then
+        min_bound = 2
+        max_bound = 2
+    elseif age < 25 then
+        min_bound = 3
+        max_bound = 4
+    elseif age < 50 then
+        min_bound = 4
+        max_bound = 6
+    elseif age < 100 then
+        min_bound = 5
+        max_bound = 7
+    else
+        min_bound = 7
+        max_bound = 50
+    end --labels copied from dst wiki
+    
     -- Equally split among all players, each player gets at least 1 bat,
     -- if there are less bats than players, some players will not be attacked
     _bat_per_player = suitable_bat_count / math.max(GetTableSize(target_players), 1)
     _bat_remainder = suitable_bat_count % math.max(GetTableSize(target_players), 1)
-
+    
     print("_bat_per_player", _bat_per_player, suitable_bat_count)
 end
 
