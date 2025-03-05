@@ -410,28 +410,29 @@ function self:LongUpdate(dt)
             dt_bat_attack = 0
         else
             dt_bat_attack = dt_bat_attack - _bat_attack_time
-            CollectBatsForAttack()
             local spawnfailed = false
-
-            if next(_bats_to_attack) then
-                local no_bat_left
-                if _target_player then
-                    SpawnBatsForPlayer(_target_player)
-                else
-                    spawnfailed = true
-                    print("bat attack cant find any available player")
+            while not spawnfailed do --throw bats at players until spawn fails
+                CollectBatsForAttack()
+                if next(_bats_to_attack) then
+                    local no_bat_left
+                    if _target_player then
+                        SpawnBatsForPlayer(_target_player)
+                    else
+                        spawnfailed = true
+                        print("bat attack cant find any available player")
+                    end
+                    _bats_to_attack = {} -- reset it since all bats were removed
                 end
-                _bats_to_attack = {} -- reset it since all bats were removed
-            end
-
-            if spawnfailed then
-                _bat_attack_time = GetNextAttackTime() / 10 --we have more bat attacks, start sooner
-            else
-                local current_time = TheWorld.state.cycles + TheWorld.state.time
-                _target_player.porkland_nextbattedtime = current_time + GetNextAttackTime()
-                _player_battime_binaryheap:Insert(_target_player)
-                _target_player = nil
-                _bat_attack_time = _player_battime_binaryheap[1].porkland_nextbattedtime - current_time
+    
+                if spawnfailed then
+                    _bat_attack_time = GetNextAttackTime() / 10 --we have more bat attacks, start sooner
+                else
+                    local current_time = TheWorld.state.cycles + TheWorld.state.time
+                    _target_player.porkland_nextbattedtime = current_time + GetNextAttackTime()
+                    _player_battime_binaryheap:Insert(_target_player)
+                    _target_player = nil
+                    _bat_attack_time = _player_battime_binaryheap[1].porkland_nextbattedtime - current_time
+                end
             end
         end
     end
