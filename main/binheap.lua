@@ -5,6 +5,8 @@
 -- BinaryHeap:Insert - Inserts an object into BinaryHeap
 -- BinaryHeap:Remove - Removes an object from BinaryHeap
 
+GLOBAL.setfenv(1, GLOBAL)
+
 BinaryHeap = BinaryHeap or {}
 BinaryHeap.__index = BinaryHeap
 
