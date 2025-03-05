@@ -330,7 +330,7 @@ return Class(function(self, inst)
             if _herald_time <= 0 then
                 local players = {}
                 for _, player in pairs(AllPlayers) do
-                    if not player:GetIsInInterior() then
+                    if not player:GetIsInInterior() and player.components.age:GetAgeInDays() < 15 then
                         table.insert(players, player)
                     end
                 end
