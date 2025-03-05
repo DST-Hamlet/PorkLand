@@ -7,7 +7,7 @@
 
 GLOBAL.setfenv(1, GLOBAL)
 
-BinaryHeap = BinaryHeap or {}
+BinaryHeap = {}
 BinaryHeap.__index = BinaryHeap
 
 function BinaryHeap:Insert(item)
