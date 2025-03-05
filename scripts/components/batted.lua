@@ -45,6 +45,8 @@ local _bat_per_player = 0
 local _bat_remainder = 0
 local _time_modifiers = SourceModifierList(inst, 1)
 
+local _player_battime_binaryheap = BinaryHeap({}, "porkland_nextbattedtime")
+
 --------------------------------------------------------------------------
 --[[ Private event handlers ]]
 --------------------------------------------------------------------------
