@@ -96,6 +96,11 @@ local function OnLoad(inst, data, ...)
         if data.is_ghost then
             --blockPoison(inst)
         end
+        
+        if data.porkland_nextbattedtime then
+            local current_time = TheWorld.state.cycles + TheWorld.state.time
+            inst.porkland_nextbattedtime = data.porkland_nextbattedtime + current_time --add here to prevent instant bat upon load
+        end
     end
     -- Well this really sucks, thanks for making my life hell klei :) (I blame Zarklord specifically because funi)
     local _DoTaskInTime = inst.DoTaskInTime
@@ -114,9 +119,18 @@ local function OnLoad(inst, data, ...)
             return unpack(_rets)
         end or nil, ...)
     end
+    
     local rets = {inst.__OnLoad(inst, data, ...)}
     inst.DoTaskInTime = _DoTaskInTime
     return unpack(rets)
+end
+
+local function OnSave(inst, data, ...)
+    if inst.porkland_nextbattedtime then
+        local current_time = TheWorld.state.cycles + TheWorld.state.time
+        data.porkland_nextbattedtime = inst.porkland_nextbattedtime - current_time --add here to prevent instant bat upon load
+    end
+    inst.__OnSave(inst, data, ...)
 end
 
 local function UpdateHomeTechBonus(inst, data)
@@ -224,6 +238,11 @@ AddPlayerPostInit(function(inst)
     if inst.OnLoad then
         inst.__OnLoad = inst.OnLoad
         inst.OnLoad = OnLoad
+    end
+
+    if inst.OnSave then
+        inst.__OnSave = inst.OnSave
+        inst.OnSave = OnSave
     end
 
 end)
