@@ -206,14 +206,21 @@ local function CollectBatsForAttack()
     else
         min_bound = 7
         max_bound = 50
-    end --labels copied from dst wiki
+    end --bounds copied from dst wiki
+
+    if suitable_bat_count < min_bound then
+        _bat_per_player = 0 --force failure
+        _player_battime_binaryheap:Insert(_target_player)
+        _target_player = nil
+        print("bat attack cant find enough bats", min_bound, "is not less than", suitable_bat_count)
+    elseif suitable_bat_count > max_bound then -- Throw everything on 1 player, the others have their own batted timer.
+        _bat_per_player = max_bound
+    else
+        _bat_per_player = suitable_bat_count            
+    end
+    _bat_remainder = suitable_bat_count - _bat_per_player
     
-    -- Equally split among all players, each player gets at least 1 bat,
-    -- if there are less bats than players, some players will not be attacked
-    _bat_per_player = suitable_bat_count / math.max(GetTableSize(target_players), 1)
-    _bat_remainder = suitable_bat_count % math.max(GetTableSize(target_players), 1)
-    
-    print("_bat_per_player", _bat_per_player, suitable_bat_count)
+    print("_bat_per_player", _target_player, _bat_per_player, suitable_bat_count)
 end
 
 local function GetSpawnPointForPlayer(player)
@@ -408,13 +415,8 @@ function self:LongUpdate(dt)
 
             if next(_bats_to_attack) then
                 local no_bat_left
-                if #target_players > 0 then
-                    for _, player in pairs(target_players) do
-                        no_bat_left = SpawnBatsForPlayer(player)
-                        if no_bat_left then
-                            break
-                        end
-                    end
+                if _target_player then
+                    SpawnBatsForPlayer(_target_player)
                 else
                     spawnfailed = true
                     print("bat attack cant find any available player")
@@ -423,9 +425,13 @@ function self:LongUpdate(dt)
             end
 
             if spawnfailed then
-                _bat_attack_time = GetNextAttackTime() / 5
+                _bat_attack_time = GetNextAttackTime() / 10 --we have more bat attacks, start sooner
             else
-                _bat_attack_time = GetNextAttackTime()
+                local current_time = TheWorld.state.cycles + TheWorld.state.time
+                _target_player.porkland_nextbattedtime = current_time + GetNextAttackTime()
+                _player_battime_binaryheap:Insert(_target_player)
+                _target_player = nil
+                _bat_attack_time = _player_battime_binaryheap[1].porkland_nextbattedtime - current_time
             end
         end
     end
