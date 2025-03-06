@@ -48,6 +48,8 @@ local _time_modifiers = SourceModifierList(inst, 1)
 
 local _player_battime_binaryheap = BinaryHeap("porkland_nextbattedtime", "porkland_nextbattedtime_index")
 local _target_player = nil
+local _force_bat_min = nil
+local _force_bat_max = nil
 
 --------------------------------------------------------------------------
 --[[ Private event handlers ]]
@@ -193,28 +195,33 @@ local function CollectBatsForAttack()
     local age = _target_player.components.age:GetAgeInDays()
     local min_bound = 0
     local max_bound = 0
-    if age < 10 then
-        min_bound = 2
-        max_bound = 2
-    elseif age < 25 then
-        min_bound = 3
-        max_bound = 4
-    elseif age < 50 then
-        min_bound = 4
-        max_bound = 6
-    elseif age < 100 then
-        min_bound = 5
-        max_bound = 7
-    else
-        min_bound = 7
-        max_bound = 50
-    end --bounds copied from dst wiki
+	if _force_bat_min then
+		min_bound = _force_bat_min
+		max_bound = _force_bat_max
+	else
+		if age < 10 then
+			min_bound = 2
+			max_bound = 2
+		elseif age < 25 then
+			min_bound = 3
+			max_bound = 4
+		elseif age < 50 then
+			min_bound = 4
+			max_bound = 6
+		elseif age < 100 then
+			min_bound = 5
+			max_bound = 7
+		else
+			min_bound = 7
+			max_bound = 50
+		end --bounds copied from dst wiki
+	end
 
     if suitable_bat_count < min_bound then
         _bat_per_player = 0 --force failure
         _player_battime_binaryheap:Insert(_target_player)
         _target_player = nil
-        print("bat attack cant find enough bats", min_bound, "is not less than", suitable_bat_count)
+        print("bat attack cant find enough bats", suitable_bat_count, "is less than", min_bound)
     elseif suitable_bat_count > max_bound then -- Throw everything on 1 player, the others have their own batted timer.
         _bat_per_player = max_bound
     else
@@ -436,6 +443,8 @@ function self:LongUpdate(dt)
 					_bat_attack_time = GetNextAttackTime() / player_mod
 				end
             end
+			_force_bat_min = nil
+			_force_bat_max = nil
         end
     end
 end
@@ -536,6 +545,8 @@ end
 
 function self:ForceBatAttack()
     _bat_attack_time = 0
+	_force_bat_min = 13
+	_force_bat_max = 15
     self:OnUpdate(0)
 end
 
