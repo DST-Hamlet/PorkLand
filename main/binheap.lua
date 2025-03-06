@@ -13,7 +13,8 @@ BinaryHeap.__index = BinaryHeap
 function BinaryHeap:Insert(item)
 	local index = #self + 1
 	local key = self.key
-	item.index = index
+	local indexkey = self.indexkey
+	item[indexkey] = index
 	self[index] = item
 	while index > 1 do
 		local parent = math.floor(index/2)
@@ -21,15 +22,16 @@ function BinaryHeap:Insert(item)
 			break
 		end
 		self[index], self[parent] = self[parent], self[index]
-		self[index].index = index
-		self[parent].index = parent
+		self[index][indexkey] = index
+		self[parent][indexkey] = parent
 		index = parent
 	end
 	return item
 end
 
 function BinaryHeap:Remove(item)
-	local index = item.index
+	local indexkey = self.indexkey
+	local index = item[indexkey]
 	if self[index] ~= item then return end
 	local key = self.key
 	local heap_size = #self
@@ -38,7 +40,7 @@ function BinaryHeap:Remove(item)
 		return
 	end
 	self[index] = self[heap_size]
-	self[index].index = index
+	self[index][indexkey] = index
 	self[heap_size] = nil
 	while true do
 		local left = index*2
@@ -53,10 +55,10 @@ function BinaryHeap:Remove(item)
 			break
 		end
 		self[index], self[newindex] = self[newindex], self[index]
-		self[index].index = index
-		self[newindex].index = newindex
+		self[index][indexkey] = index
+		self[newindex][indexkey] = newindex
 		index = newindex
 	end
 end
 
-setmetatable(BinaryHeap, {__call = function(self, key) return setmetatable({key=key}, self) end})
+setmetatable(BinaryHeap, {__call = function(self, key, indexkey) return setmetatable({key=key, indexkey = indexkey}, self) end})
