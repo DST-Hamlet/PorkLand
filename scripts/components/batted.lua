@@ -168,11 +168,11 @@ local function CollectBatsForAttack()
     
     while _player_battime_binaryheap[1] ~= nil do --take stuff out of heap, heap is always sorted at [1] position
         _target_player = _player_battime_binaryheap[1]
-        _player_battime_binaryheap:Remove(target_player)
-        if not target_player:GetIsInInterior() then
+        _player_battime_binaryheap:Remove(_target_player)
+        if not _target_player:GetIsInInterior() then
             break    
         end
-        table.insert(putbackin_players, target_player)
+        table.insert(putbackin_players, _target_player)
     end
     
     for _, player in ipairs(putbackin_players) do
@@ -189,7 +189,7 @@ local function CollectBatsForAttack()
         end
     end
 
-    local age = target_player.components.age:GetAgeInDays()
+    local age = _target_player.components.age:GetAgeInDays()
     local min_bound = 0
     local max_bound = 0
     if age < 10 then
