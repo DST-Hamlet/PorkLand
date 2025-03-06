@@ -446,7 +446,7 @@ function self:LongUpdate(dt)
 				end
 				if _force_bat_mean and _force_bat_iters < #AllPlayers then
 					_force_bat_count = GetRandomWithVariance(_force_bat_mean, _force_bat_variance)
-					batted:RegenBat(_force_bat_count)
+					self:RegenBat(_force_bat_count)
 					_force_bat_iters = _force_bat_iters + 1
 				end
             end
