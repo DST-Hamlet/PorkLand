@@ -322,7 +322,7 @@ return Class(function(self, inst)
                 end
 
                 local batted = _world.components.batted
-                batted:RegenBat(15)
+                batted:RegenBat(15 + 13 * (#AllPlayers - 1))
                 batted:ForceBatAttack()
                 ScheduleBatAttack()
             end
