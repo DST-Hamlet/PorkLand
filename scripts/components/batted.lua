@@ -46,7 +46,7 @@ local _bat_per_player = 0
 local _bat_remainder = 0
 local _time_modifiers = SourceModifierList(inst, 1)
 
-local _player_battime_binaryheap = BinaryHeap({}, "porkland_nextbattedtime")
+local _player_battime_binaryheap = BinaryHeap("porkland_nextbattedtime")
 local _target_player = nil
 
 --------------------------------------------------------------------------
@@ -429,7 +429,7 @@ function self:LongUpdate(dt)
                     _bat_attack_time = GetNextAttackTime() / 10 --we have more bat attacks, start sooner
                 else
                     local current_time = TheWorld.state.cycles + TheWorld.state.time
-                    _target_player.porkland_nextbattedtime = current_time + GetNextAttackTime()
+                    _target_player.porkland_nextbattedtime = current_time + GetNextAttackTime() / TUNING.TOTAL_DAY_TIME
                     _player_battime_binaryheap:Insert(_target_player)
                     _target_player = nil
                     _bat_attack_time = _player_battime_binaryheap[1].porkland_nextbattedtime - current_time
@@ -510,7 +510,7 @@ local function AddToHeap(src, player)
     player:DoTaskInTime(0, function()
         if not player.porkland_nextbattedtime then --new player or just joined ham
             local current_time = TheWorld.state.cycles + TheWorld.state.time
-            player.porkland_nextbattedtime = current_time + GetNextAttackTime()
+            player.porkland_nextbattedtime = current_time + GetNextAttackTime() / TUNING.TOTAL_DAY_TIME
         end
 		print("BATTED_TIME", player, player.porkland_nextbattedtime)
         _player_battime_binaryheap:Insert(player)
