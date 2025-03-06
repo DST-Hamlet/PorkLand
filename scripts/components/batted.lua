@@ -224,6 +224,7 @@ local function CollectBatsForAttack()
         _player_battime_binaryheap:Insert(_target_player)
         _target_player = nil
         print("bat attack cant find enough bats", suitable_bat_count, "is less than", min_bound)
+		return
     elseif suitable_bat_count > max_bound then -- Throw everything on 1 player, the others have their own batted timer.
         _bat_per_player = max_bound
     else
@@ -444,7 +445,7 @@ function self:LongUpdate(dt)
 					if player_mod == 0 then player_mod = 1 end
 					_bat_attack_time = GetNextAttackTime() / player_mod
 				end
-				if _force_bat_mean and _force_bat_iters < #AllPlayers then
+				if _force_bat_mean and _force_bat_iters < #AllPlayers - 1 then
 					_force_bat_count = GetRandomWithVariance(_force_bat_mean, _force_bat_variance)
 					self:RegenBat(_force_bat_count)
 					_force_bat_iters = _force_bat_iters + 1
