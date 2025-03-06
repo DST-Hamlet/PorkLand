@@ -46,7 +46,7 @@ local _bat_per_player = 0
 local _bat_remainder = 0
 local _time_modifiers = SourceModifierList(inst, 1)
 
-local _player_battime_binaryheap = BinaryHeap("porkland_nextbattedtime")
+local _player_battime_binaryheap = BinaryHeap("porkland_nextbattedtime", "porkland_nextbattedtime_index")
 local _target_player = nil
 
 --------------------------------------------------------------------------
@@ -170,9 +170,10 @@ local function CollectBatsForAttack()
         _target_player = _player_battime_binaryheap[1]
         _player_battime_binaryheap:Remove(_target_player)
         if not _target_player:GetIsInInterior() then
-            break    
+            break
         end
         table.insert(putbackin_players, _target_player)
+        _target_player = nil
     end
     
     for _, player in ipairs(putbackin_players) do
@@ -412,29 +413,27 @@ function self:LongUpdate(dt)
         else
             dt_bat_attack = dt_bat_attack - _bat_attack_time
             local spawnfailed = false
-            while not spawnfailed do --throw bats at players until spawn fails
+            --while not spawnfailed do --throw bats at players until spawn fails
                 CollectBatsForAttack()
-                if next(_bats_to_attack) then
-                    local no_bat_left
-                    if _target_player then
-                        SpawnBatsForPlayer(_target_player)
-                    else
-                        spawnfailed = true
-                        print("bat attack cant find any available player")
-                    end
-                    _bats_to_attack = {} -- reset it since all bats were removed
-                end
-    
-                if spawnfailed then
-                    _bat_attack_time = GetNextAttackTime() / 10 --we have more bat attacks, start sooner
-                else
-                    local current_time = TheWorld.state.cycles + TheWorld.state.time
-                    _target_player.porkland_nextbattedtime = current_time * TOTAL_DAY_TIME + GetNextAttackTime()
-                    _player_battime_binaryheap:Insert(_target_player)
-                    _target_player = nil
-                    _bat_attack_time = _player_battime_binaryheap[1].porkland_nextbattedtime - current_time
-                end
-            end
+				if not _target_player then
+					spawnfailed = true 
+				else
+					if next(_bats_to_attack) then
+						SpawnBatsForPlayer(_target_player)
+						--_bats_to_attack = {} -- reset it since all bats were removed
+					end
+				end
+		
+				if spawnfailed then
+					_bat_attack_time = _bat_regen_time --check next bat regen
+				else
+					local current_time = TheWorld.state.cycles + TheWorld.state.time
+					_target_player.porkland_nextbattedtime = current_time * TUNING.TOTAL_DAY_TIME + GetNextAttackTime()
+					_player_battime_binaryheap:Insert(_target_player)
+					_target_player = nil
+					_bat_attack_time = _player_battime_binaryheap[1].porkland_nextbattedtime - current_time * TUNING.TOTAL_DAY_TIME
+				end
+            --end
         end
     end
 end
@@ -510,7 +509,7 @@ local function AddToHeap(src, player)
     player:DoTaskInTime(0, function()
         if not player.porkland_nextbattedtime then --new player or just joined ham
             local current_time = TheWorld.state.cycles + TheWorld.state.time
-            player.porkland_nextbattedtime = current_time * TOTAL_DAY_TIME + GetNextAttackTime()
+            player.porkland_nextbattedtime = current_time * TUNING.TOTAL_DAY_TIME + GetNextAttackTime()
         end
 		print("BATTED_TIME", player, player.porkland_nextbattedtime)
         _player_battime_binaryheap:Insert(player)
