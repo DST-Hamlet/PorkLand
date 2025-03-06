@@ -506,16 +506,17 @@ end
 --[[ Binary Heap Detection ]]
 --------------------------------------------------------------------------
 
-local function AddToHeap(player)
+local function AddToHeap(src, player)
     player:DoTaskInTime(0, function()
         if not player.porkland_nextbattedtime then --new player or just joined ham
             local current_time = TheWorld.state.cycles + TheWorld.state.time
             player.porkland_nextbattedtime = current_time + GetNextAttackTime()
         end
+		print("BATTED_TIME", player, player.porkland_nextbattedtime)
         _player_battime_binaryheap:Insert(player)
     end)
 end
-local function RemoveFromHeap(player)
+local function RemoveFromHeap(src, player)
     _player_battime_binaryheap:Remove(player)
 end
         
