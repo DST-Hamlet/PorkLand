@@ -48,8 +48,10 @@ local _time_modifiers = SourceModifierList(inst, 1)
 
 local _player_battime_binaryheap = BinaryHeap("porkland_nextbattedtime", "porkland_nextbattedtime_index")
 local _target_player = nil
-local _force_bat_min = nil
-local _force_bat_max = nil
+local _force_bat_mean = nil
+local _force_bat_variance = nil
+local _force_bat_count = nil
+local _force_bat_iters = 0
 
 --------------------------------------------------------------------------
 --[[ Private event handlers ]]
@@ -195,9 +197,9 @@ local function CollectBatsForAttack()
     local age = _target_player.components.age:GetAgeInDays()
     local min_bound = 0
     local max_bound = 0
-	if _force_bat_min then
-		min_bound = _force_bat_min
-		max_bound = _force_bat_max
+	if _force_bat_count then
+		min_bound = _force_bat_count
+		max_bound = _force_bat_count
 	else
 		if age < 10 then
 			min_bound = 2
@@ -442,9 +444,16 @@ function self:LongUpdate(dt)
 					if player_mod == 0 then player_mod = 1 end
 					_bat_attack_time = GetNextAttackTime() / player_mod
 				end
+				if _force_bat_mean and _force_bat_iters < #AllPlayers then
+					_force_bat_count = GetRandomWithVariance(_force_bat_mean + _force_bat_variance)
+					batted:RegenBat(_force_bat_count)
+					_force_bat_iters = _force_bat_iters + 1
+				end
             end
-			_force_bat_min = nil
-			_force_bat_max = nil
+			_force_bat_mean = nil
+			_force_bat_variance = nil
+			_force_bat_count = nil
+			_force_bat_iters = nil
         end
     end
 end
@@ -545,8 +554,15 @@ end
 
 function self:ForceBatAttack()
     _bat_attack_time = 0
-	_force_bat_min = 13
-	_force_bat_max = 15
+	if #AllPlayers == 1 then
+		_force_bat_mean = 15
+		_force_bat_variance = 0
+	else
+		_force_bat_mean = 14
+		_force_bat_variance = 1
+	end
+	_force_bat_count = 15
+	_force_bat_iters = 0
     self:OnUpdate(0)
 end
 
