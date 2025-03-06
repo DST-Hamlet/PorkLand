@@ -413,7 +413,7 @@ function self:LongUpdate(dt)
         else
             dt_bat_attack = dt_bat_attack - _bat_attack_time
             local spawnfailed = false
-            --while not spawnfailed do --throw bats at players until spawn fails
+            while not spawnfailed do --throw bats at players until spawn fails
                 CollectBatsForAttack()
 				if not _target_player then
 					spawnfailed = true 
@@ -431,9 +431,11 @@ function self:LongUpdate(dt)
 					_target_player.porkland_nextbattedtime = current_time * TUNING.TOTAL_DAY_TIME + GetNextAttackTime()
 					_player_battime_binaryheap:Insert(_target_player)
 					_target_player = nil
-					_bat_attack_time = _player_battime_binaryheap[1].porkland_nextbattedtime - current_time * TUNING.TOTAL_DAY_TIME
+					local player_mod = #AllPlayers
+					if player_mod == 0 then player_mod = 1 end
+					_bat_attack_time = GetNextAttackTime() / player_mod
 				end
-            --end
+            end
         end
     end
 end
