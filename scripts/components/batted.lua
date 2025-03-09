@@ -24,6 +24,7 @@ local MODIFIER_KEY_REGEN_TIME = "regen"
 local MODIFIER_RARE = 1.25
 local MODIFIER_OFTEN = 0.9
 local MODIFIER_ALWAYS = 0.75
+local BATTIME_OVERFLOW_MAX = 1000000000
 local _world = TheWorld
 
 --------------------------------------------------------------------------
@@ -32,6 +33,7 @@ local _world = TheWorld
 
 -- Public
 self.inst = inst
+self._player_battime_startindex = TheWorld.state.cycles + TheWorld.state.time * TUNING.TOTAL_DAY_TIME
 
 -- Private
 local _spawnmode = "normal"
@@ -438,8 +440,17 @@ function self:LongUpdate(dt)
 					_bat_attack_time = _bat_regen_time --check next bat regen
 				else
 					local current_time = TheWorld.state.cycles + TheWorld.state.time
-					_target_player.porkland_nextbattedtime = current_time * TUNING.TOTAL_DAY_TIME + GetNextAttackTime()
+					current_time = current_time * TUNING.TOTAL_DAY_TIME - self._player_battime_startindex
+					_target_player.porkland_nextbattedtime = current_time + GetNextAttackTime()
 					_player_battime_binaryheap:Insert(_target_player)
+					
+					if current_time > BATTIME_OVERFLOW_MAX then
+						for i=1, #_player_battime_binaryheap do
+							_player_battime_binaryheap[i].porkland_nextbattedtime = _player_battime_binaryheap[i].porkland_nextbattedtime - BATTIME_OVERFLOW_MAX
+						end
+						self._player_battime_startindex = self._player_battime_startindex - BATTIME_OVERFLOW_MAX
+					end
+					
 					_target_player = nil
 					local player_mod = #AllPlayers
 					if player_mod == 0 then player_mod = 1 end
@@ -530,7 +541,7 @@ local function AddToHeap(src, player)
     player:DoTaskInTime(0, function()
         if not player.porkland_nextbattedtime then --new player or just joined ham
             local current_time = TheWorld.state.cycles + TheWorld.state.time
-            player.porkland_nextbattedtime = current_time * TUNING.TOTAL_DAY_TIME + GetNextAttackTime()
+            player.porkland_nextbattedtime = current_time * TUNING.TOTAL_DAY_TIME - self._player_battime_startindex + GetNextAttackTime()
         end
 		print("BATTED_TIME", player, player.porkland_nextbattedtime)
         _player_battime_binaryheap:Insert(player)
