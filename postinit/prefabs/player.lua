@@ -99,7 +99,7 @@ local function OnLoad(inst, data, ...)
         
         if data.porkland_nextbattedtime then
             local current_time = TheWorld.state.cycles + TheWorld.state.time
-            inst.porkland_nextbattedtime = data.porkland_nextbattedtime + current_time --add here to prevent instant bat upon load
+            inst.porkland_nextbattedtime = data.porkland_nextbattedtime + current_time * TUNING.TOTAL_DAY_TIME - TheWorld.components.batted._player_battime_startindex --add here to prevent instant bat upon load
         end
     end
     -- Well this really sucks, thanks for making my life hell klei :) (I blame Zarklord specifically because funi)
@@ -128,7 +128,7 @@ end
 local function OnSave(inst, data, ...)
     if inst.porkland_nextbattedtime then
         local current_time = TheWorld.state.cycles + TheWorld.state.time
-        data.porkland_nextbattedtime = inst.porkland_nextbattedtime - current_time --add here to prevent instant bat upon load
+        data.porkland_nextbattedtime = inst.porkland_nextbattedtime - current_time * TUNING.TOTAL_DAY_TIME + TheWorld.components.batted._player_battime_startindex --add here to prevent instant bat upon load
     end
     inst.__OnSave(inst, data, ...)
 end
