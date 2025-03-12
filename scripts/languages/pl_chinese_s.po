@@ -29213,12 +29213,12 @@ msgstr "谁知道生存的意愿会以豆子的形式体现？"
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.COI
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.COI"
 msgid "It's almost too pretty to eat. Almost."
-msgstr "啊哈，死鱼。所有气味中最难闻的。"
+msgstr "这么漂亮几乎都不舍得吃了。几乎。"
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.COI_COOKED
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.COI_COOKED"
 msgid "Life forces us to hurt each other."
-msgstr "这鱼多出来的刺是送的，不收钱！"
+msgstr "生活迫使我们彼此伤害。"
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.CONSTRUCTION_PERMIT
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.CONSTRUCTION_PERMIT"
