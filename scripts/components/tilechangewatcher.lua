@@ -7,7 +7,10 @@ local TileChangeWatcher = Class(function(self, inst)
     self.falloffs = {}
     self.last_tile_center = nil
 
-    self.inst:StartUpdatingComponent(self)
+    self.effects = {}
+    self.effects[1] = SpawnPrefab("falloff_fx_new")
+
+    inst:StartWallUpdatingComponent(self)
 end)
 
 function TileChangeWatcher:ClearFalloffs()
@@ -16,15 +19,22 @@ function TileChangeWatcher:ClearFalloffs()
 end
 
 function TileChangeWatcher:SpawnFalloffs()
+    for _, effect in ipairs(self.effects) do
+        effect.VFXEffect:ClearAllParticles(0)
+    end
     for _, data in ipairs(self.falloffs) do
-        -- TODO: Actually generate the falloffs
+        print("SpawnFallOff",data.position)
+        for _, effect in ipairs(self.effects) do
+            effect:emit_fn(data.position)
+        end
     end
 end
 
 function TileChangeWatcher:OnRemoveEntity()
     self:ClearFalloffs()
 end
-self.OnRemoveFromEntity = self.OnRemoveEntity
+
+TileChangeWatcher.OnRemoveFromEntity = TileChangeWatcher.OnRemoveEntity
 
 local adjacent = {
     {
@@ -49,7 +59,7 @@ local adjacent = {
     },
 }
 
-function TileChangeWatcher:OnUpdate(dt)
+function TileChangeWatcher:OnWallUpdate(dt)
     local current_tile_center = Vector3(TheWorld.Map:GetTileCenterPoint(self.inst.Transform:GetWorldPosition()))
     if current_tile_center == self.last_tile_center then
         return
