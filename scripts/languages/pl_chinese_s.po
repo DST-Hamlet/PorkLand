@@ -5,6 +5,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "POT Version: 2.0"
 
+#. STRINGS.ACTIONS.DODGE
+msgctxt "STRINGS.ACTIONS.DODGE"
+msgid "Dodge"
+msgstr "闪避"
+
+#. STRINGS.ACTIONS.GIVE.LOAD
+msgctxt "STRINGS.ACTIONS.GIVE.LOAD"
+msgid "Load"
+msgstr "装载"
+
 #. STRINGS.ACTIONS.BUILD_ROOM
 msgctxt "STRINGS.ACTIONS.BUILD_ROOM"
 msgid "Build Room"

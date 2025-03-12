@@ -1,5 +1,6 @@
 return {
     ACTIONS = {
+        DODGE = "Dodge",
         BUILD_ROOM = "Build Room",
         CHARGE_UP = "Charge",
         CUREPOISON = {
@@ -21,6 +22,9 @@ return {
             RETRIEVE = "Retrieve",
         },
         GAS = "Gas",
+        GIVE = {
+            LOAD = "Load",
+        }
         HACK = "Hack",
         PAN = "Pan",
         PICK = {

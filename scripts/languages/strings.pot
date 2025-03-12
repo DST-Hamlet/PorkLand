@@ -1,6 +1,16 @@
 "Application: Dont' Starve\n"
 "POT Version: 2.0\n"
 
+#. STRINGS.ACTIONS.DODGE
+msgctxt "STRINGS.ACTIONS.DODGE"
+msgid "Dodge"
+msgstr ""
+
+#. STRINGS.ACTIONS.GIVE.LOAD
+msgctxt "STRINGS.ACTIONS.GIVE.LOAD"
+msgid "Load"
+msgstr ""
+
 #. STRINGS.ACTIONS.BUILD_ROOM
 msgctxt "STRINGS.ACTIONS.BUILD_ROOM"
 msgid "Build Room"
