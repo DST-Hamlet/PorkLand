@@ -147,6 +147,10 @@ function DoCircularAOEDamageAndDestroy(inst, params, targets_hit, targets_tossed
     local ONWORKEDFN = params.onworkedfn or function(...) end
     local ONPICKEDFN = params.onpickedfn or function(...) end
     local VALIDFN = params.validfn or function(...) return true end
+    local attacker = params.attacker
+    if not attacker or not attacker:IsValid() then
+        attacker = nil
+    end
 
     targets_hit = targets_hit or {}
     targets_tossed = targets_tossed or {}
@@ -154,6 +158,13 @@ function DoCircularAOEDamageAndDestroy(inst, params, targets_hit, targets_tossed
     local areahit_was_disabled = inst.components.combat.areahitdisabled
     inst.components.combat:EnableAreaDamage(false)
     inst.components.combat.ignorehitrange = true
+
+    local areahit_was_disabled_attacker = nil
+    if attacker then
+        areahit_was_disabled_attacker = attacker.components.combat.areahitdisabled
+        attacker.components.combat:EnableAreaDamage(false)
+        attacker.components.combat.ignorehitrange = true
+    end
 
     local x, _, z = inst.Transform:GetWorldPosition()
     if params.pos then
@@ -185,9 +196,19 @@ function DoCircularAOEDamageAndDestroy(inst, params, targets_hit, targets_tossed
                             end
                         end
                     end
+                elseif attacker ~= nil then
+                    if attacker.components.combat:CanTarget(v) and CanPVPTarget(attacker, v) then
+                        targets_hit[v] = true
+                        local damage = inst.components.combat:CalcDamage(v)
+                        v.components.combat:GetAttacked(attacker, damage)
+                        if v:IsValid() then
+                            ONATTACKEDFN(inst, v)
+                        end
+                    end
                 elseif inst.components.combat:CanTarget(v) and CanPVPTarget(inst, v) then
                     targets_hit[v] = true
-                    inst.components.combat:DoAttack(v)
+                    local damage = inst.components.combat:CalcDamage(v)
+                    v.components.combat:GetAttacked(inst, damage)
                     if v:IsValid() then
                         ONATTACKEDFN(inst, v)
                     end
@@ -198,6 +219,11 @@ function DoCircularAOEDamageAndDestroy(inst, params, targets_hit, targets_tossed
 
     inst.components.combat.areahitdisabled = areahit_was_disabled
     inst.components.combat.ignorehitrange = false
+
+    if attacker then
+        attacker.components.combat.areahitdisabled = areahit_was_disabled_attacker
+        attacker.components.combat.ignorehitrange = false
+    end
 
     if not SHOULD_LAUNCH then
         return
@@ -413,4 +439,19 @@ function IsPlayerInAntDisguise(player)
     return (player.components.inventory and (player.components.inventory:EquipHasTag("antmask") and player.components.inventory:EquipHasTag("antsuit")))
         or (player.replica.inventory and (player.replica.inventory:EquipHasTag("antmask") and player.replica.inventory:EquipHasTag("antsuit")))
         or false
+end
+
+function TagToDirect(inst)
+    if inst:HasTag("door_north") then
+        return 180
+    end
+    if inst:HasTag("door_east") then
+        return -90
+    end
+    if inst:HasTag("door_west") then
+        return 90
+    end
+    if inst:HasTag("door_south") then
+        return 0
+    end
 end

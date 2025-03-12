@@ -27,13 +27,10 @@ end
 local function MakeBrambleSites(new_entities, topology_save, map_width, map_height)
     SetConstants(new_entities, map_width, map_height)
 
-    if topology_save.GlobalTags["Bramble"] then
-        for task, nodes in pairs(topology_save.GlobalTags["Bramble"]) do
-            for i, node in ipairs(nodes) do
-                local c_x, c_y = WorldSim:GetSiteCentroid(topology_save.GlobalTags["Bramble"][task][i])
-                SetEntity("bramblesite", c_x, c_y)
-            end
-        end
+    local nodes = topology_save.root:GetNodes(true)
+    for _, node in pairs(nodes) do
+        local c_x, c_y = WorldSim:GetSiteCentroid(node.id)
+        SetEntity("bramblesite", c_x, c_y)
     end
 end
 

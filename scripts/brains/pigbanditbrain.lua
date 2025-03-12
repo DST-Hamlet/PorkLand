@@ -10,13 +10,14 @@ local MAX_CHASE_DIST = 30
 local RUN_AWAY_DIST = 5
 local STOP_RUN_AWAY_DIST = 8
 local SEE_STOLEN_ITEM_DIST = 10
+local CLOSE_ITEM_DIST = 1.5
 local MAX_WANDER_DIST = 20
 
 local PICKUP_OINC_MUST_TAGS = {"_inventoryitem", "oinc"}
 local PICKUP_OINC_NO_TAGS = {"INLIMBO", "outofreach", "trap"}
 
-local function OincNearby(inst)
-    return FindEntity(inst, SEE_STOLEN_ITEM_DIST, function(item)
+local function OincNearby(inst, dist)
+    return FindEntity(inst, dist or SEE_STOLEN_ITEM_DIST, function(item)
         return item.components.inventoryitem.canbepickedup and item:IsOnValidGround()
     end, PICKUP_OINC_MUST_TAGS, PICKUP_OINC_NO_TAGS)
 end
@@ -27,7 +28,12 @@ local function FindVanishPosition(inst)
     local theta = math.random() * 2 * PI
     local radius = 70
 
-    local offset = FindWalkableOffset(pt, theta, radius, 12, true)
+    local offset = FindWalkableOffset(pt, theta, radius, 18, nil, nil, function(vanish_pos)
+        local current_island = TheWorld.Map:GetIslandTagAtPoint(pt.x, 0, pt.z)
+        local target_island = TheWorld.Map:GetIslandTagAtPoint(vanish_pos.x, 0, vanish_pos.z)
+        local isposclear = TheWorld.Map:IsPhysicsClearAtPoint(vanish_pos)
+        return isposclear and (current_island == target_island)
+    end)
 
     if offset then
         return pt + offset
@@ -35,7 +41,9 @@ local function FindVanishPosition(inst)
 end
 
 local function ShouldVanish(inst)
-    return (inst.attacked or (inst.components.inventory:NumItems() > 1 and not OincNearby(inst))) and not inst.sg:HasStateTag("busy")
+    return (inst.attacked or (inst.components.inventory:HasItemWithTag("oinc", 1) and not OincNearby(inst)))
+        and not OincNearby(inst, CLOSE_ITEM_DIST)
+        and not inst.sg:HasStateTag("busy")
 end
 
 local function DoVanish(inst)
@@ -49,7 +57,8 @@ end
 local function PickupAction(inst)
     local target = OincNearby(inst)
 
-    if target then
+    if target
+        and not (inst.attacked and inst.components.combat.target and inst.components.combat.target:GetDistanceSqToInst(inst) < 4 * 4) then
         return BufferedAction(inst, target, ACTIONS.PICKUP)
     end
 end
@@ -88,7 +97,7 @@ function PigBanditBrain:OnStart()
         RunAway(self.inst, function(guy) return guy:HasTag("pig") and guy.components.combat and guy.components.combat.target == self.inst end, RUN_AWAY_DIST, STOP_RUN_AWAY_DIST),
 
         Wander(self.inst, GetPlayerPos, MAX_WANDER_DIST)
-    }, 0.5)
+    }, 0.25)
 
     self.bt = BT(self.inst, root)
 end

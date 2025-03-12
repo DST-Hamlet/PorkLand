@@ -286,7 +286,6 @@ local function CreateRegularRooms(inst)
     local doorway_prefabs = {inst}
     for _, ent in pairs(Ents) do
         if ent:HasTag("ant_hill_exit") then
-            ent:RemoveTag("ant_hill_exit") -- todo tag
             table.insert(doorway_prefabs, ent)
         end
     end
@@ -315,10 +314,27 @@ local function CreateRegularRooms(inst)
                 doorway_count = doorway_count + 1
             end
 
-            local def = interior_spawner:CreateRoom("generic_interior", ANT_CAVE_WIDTH, ANT_CAVE_HEIGHT, ANT_CAVE_DEPTH, ANTHILL_DUNGEON_NAME, room.id, addprops,
-                room.exits, ANT_CAVE_WALL_TEXTURE, ANT_CAVE_FLOOR_TEXTURE, ANT_CAVE_MINIMAP_TEXTURE, nil, ANT_CAVE_COLOUR_CUBE,
-                nil, nil, "anthill", "ANT_HIVE", WORLD_TILES.DIRT)
-            interior_spawner:SpawnInterior(def)
+            interior_spawner:CreateRoom({
+                width = ANT_CAVE_WIDTH,
+                height = ANT_CAVE_HEIGHT,
+                depth = ANT_CAVE_DEPTH,
+                dungeon_name = ANTHILL_DUNGEON_NAME,
+                roomindex = room.id,
+                addprops = addprops,
+                exits = room.exits,
+                walltexture = ANT_CAVE_WALL_TEXTURE,
+                floortexture = ANT_CAVE_FLOOR_TEXTURE,
+                minimaptexture = ANT_CAVE_MINIMAP_TEXTURE,
+                colour_cube = ANT_CAVE_COLOUR_CUBE,
+                reverb = "anthill",
+                ambient_sound = "ANT_HIVE",
+                footstep_tile = WORLD_TILES.DIRT,
+                cameraoffset = nil,
+                zoom = nil,
+                group_id = inst.rooms[1][1].id,
+                interior_coordinate_x = room.x,
+                interior_coordinate_y = -room.y,
+            })
         end
     end
 end
@@ -398,17 +414,11 @@ local function Earthquake(inst)
 end
 
 local function CreateInterior(inst)
-    if inst.maze_generated then
-        return
-    end
-
     BuildGrid(inst)
     CreateRegularRooms(inst)
     BuildWalls(inst)
     RefreshDoors(inst)
     TheWorld.components.interiorspawner:AddExterior(inst)
-
-    inst.maze_generated = true
 end
 
 local function GenerateMaze(inst)
@@ -417,8 +427,7 @@ local function GenerateMaze(inst)
     RefreshDoors(inst)
     Earthquake(inst)
 
-    inst.maze_reset_count = inst.maze_reset_count + 1
-
+    inst.maze_reset_time = TheWorld.components.worldtimetracker:GetTime()
     for _, player in ipairs(AllPlayers) do
         local interiorvisitor = player.components.interiorvisitor
         if interiorvisitor then
@@ -442,8 +451,7 @@ local function GetStatus(inst)
 end
 
 local function OnSave(inst, data)
-    data.maze_generated = inst.maze_generated
-    data.maze_reset_count = inst.maze_reset_count
+    data.maze_reset_time = inst.maze_reset_time
     data.interiorID = inst.interiorID
     if inst.rooms then
         data.rooms = inst.rooms
@@ -465,12 +473,8 @@ local function OnLoad(inst, data)
         return
     end
 
-    if data.maze_generated then
-        inst.maze_generated = data.maze_generated
-    end
-
-    if data.maze_reset_count then
-        inst.maze_reset_count = data.maze_reset_count
+    if data.maze_reset_time then
+        inst.maze_reset_time = data.maze_reset_time
     end
 
     if data.interiorID then
@@ -481,6 +485,14 @@ local function OnLoad(inst, data)
 
     if data.rooms then
         inst.rooms = data.rooms
+    end
+end
+
+local function OnLoadPostPass(inst, data) -- 出口的连接写在 OnLoadPostPass 中，这样才能确定所有储存的实体已经添加进世界
+    if inst.is_entrance then
+        if inst.interiorID == nil then
+            CreateInterior(inst)
+        end
     end
 end
 
@@ -514,6 +526,7 @@ local function makefn(is_entrance)
         inst:AddTag("structure")
         inst:AddTag("client_forward_action_target")
         if is_entrance then
+            inst.is_entrance = true
             inst:AddTag("ant_hill_entrance")
         else
             inst:AddTag("ant_hill_exit")
@@ -550,14 +563,18 @@ local function makefn(is_entrance)
 
         inst.OnSave = OnSave
         inst.OnLoad = OnLoad
+        inst.OnLoadPostPass = OnLoadPostPass
         inst.GenerateMaze = GenerateMaze
 
         if is_entrance then
-            inst:DoTaskInTime(0, CreateInterior)
+            inst:DoTaskInTime(0, function()
+                if inst.interiorID == nil then
+                    CreateInterior(inst)
+                end
+            end)
             inst:DoPeriodicTask(TUNING.TOTAL_DAY_TIME / 3, inst.GenerateMaze)
-
             TheWorld.anthill_entrance = inst
-            inst.maze_reset_count = 0
+            inst.maze_reset_time = 0
         end
 
         return inst

@@ -24,6 +24,7 @@ local function fn()
     inst.entity:AddTransform()
     inst.entity:AddAnimState()
     inst.entity:AddSoundEmitter()
+    inst.entity:AddMiniMapEntity()
     inst.entity:AddNetwork()
 
     MakeInventoryPhysics(inst)
@@ -31,12 +32,15 @@ local function fn()
 
     inst.AnimState:SetBank("keytocity")
     inst.AnimState:SetBuild("key_to_city")
+    inst.AnimState:PlayAnimation("idle")
+
+    inst.MiniMapEntity:SetPriority(15)
+    inst.MiniMapEntity:SetIcon("key_to_city.tex")
+
     inst:AddTag("prototyper")
     inst:AddTag("prototyper_ignore_inlimbo")
     inst:AddTag("no_interior_protoyping")
     inst:AddTag("irreplaceable")
-
-    inst.AnimState:PlayAnimation("idle")
 
     inst.entity:SetPristine()
 

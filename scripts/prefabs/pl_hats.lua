@@ -243,7 +243,6 @@ local function MakeHat(name)
         inst:AddTag("bat_hat")
         inst:AddTag("clearfog")
         inst:AddTag("nightvision")
-        inst:AddTag("no_sewing")
         inst:AddTag("venting")
     end
 
@@ -512,16 +511,13 @@ local function MakeHat(name)
     local function bandit_onequip(inst, owner)
         _onequip(inst, owner)
         owner:AddTag("sneaky")
-        inst.monster = owner:HasTag("monster")
-        owner:AddTag("monster") -- wouldn't this make regular pigs target you too?
+        owner:AddTag("bandit")
     end
 
     local function bandit_onunequip(inst, owner)
         _onunequip(inst, owner)
         owner:RemoveTag("sneaky")
-        if not inst.monster then
-            owner:RemoveTag("monster")
-        end
+        owner:RemoveTag("bandit")
     end
 
     local function bandit_custom_init(inst)

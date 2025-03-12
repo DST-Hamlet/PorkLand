@@ -27,6 +27,10 @@ function Grogginess:OnRemoveFromEntity(...)
     self.foggygroggy = false
 
     _RemoveEventCallback(self, ...)
+
+    if self.inst:HasTag("groggy") then
+        self.inst:RemoveTag("groggy")
+    end
 end
 
 function Grogginess:HasOverHeatinggear()
@@ -64,7 +68,7 @@ function Grogginess.OnFogProofChange(inst, data)
         self.foggygroggy = TheWorld.state.fullfog and hotitems ~= nil and not self.inst:GetIsInInterior()  -- if equip venting
 
         if not self.foggygroggy then
-            if inst.components.talker then
+            if inst.components.talker and not inst.components.health:IsDead() then
                 inst.components.talker:Say(GetString(inst, "ANNOUNCE_DEHUMID"))
             end
             return
@@ -90,7 +94,7 @@ function Grogginess.OnFogProofChange(inst, data)
                 end
             end
         end
-        if name and inst.components.talker then
+        if name and inst.components.talker and not inst.components.health:IsDead() then
             if name == "MISSING NAME" then
                 name = hotitems[1]:GetDisplayName()
             end

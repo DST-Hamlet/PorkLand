@@ -50,6 +50,7 @@ local component_posts = {
     "lighter",
     "locomotor",
     "lootdropper",
+    "maprecorder",
     "moisture",
     "oceancolor",
     "oldager",
@@ -113,6 +114,8 @@ local prefab_posts = {
     "shard_network",
     "spoiledfood",
     "statueruins",
+    "shadowcreature",
+    "telestaff",
     "walls",
     "waterballoon",
     "wormwood",
@@ -122,6 +125,7 @@ local prefab_posts = {
 local multipleprefab_posts = {
     "blowinhurricane",
     "blowinwindgust",
+    "edible",
     "firepit",
     "health",
     "notraptrigger",
@@ -143,11 +147,12 @@ local screens_posts = {
 
 local stategraph_posts = {
     "bird",
+    "multiplayerportal",
+    "shadowcreature",
     "wilson",
     "wilson_client",
     "wilsonghost",
     "wilsonghost_client",
-    "multiplayerportal",
 }
 
 local brain_posts = {
@@ -190,7 +195,7 @@ end
 modimport("postinit/recipe")
 modimport("postinit/equipslotutil")
 modimport("postinit/stategraph")
-modimport("postinit/minimapentity") -- Make sure this loads before entityscript for PorkLandOnMiniMapEntityRemove
+modimport("postinit/minimapentity")
 modimport("postinit/entityscript")
 modimport("postinit/bufferedaction")
 modimport("postinit/animstate")

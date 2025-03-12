@@ -159,8 +159,12 @@ function Hayfever:Disable(nosay)
     end
 end
 
-function Hayfever:OnHayFever(enabled, nosay)
-    if enabled then
+function Hayfever:OnHayFever(enabled, nosay, force)
+    if enabled
+        and ((not self.inst.components.health:IsDead()
+        and not self.inst:HasTag("playerghost"))
+        or force) then
+
         self:Enable(nosay)
     else
         self:Disable(nosay)
@@ -186,15 +190,13 @@ function Hayfever:OnLoad(data)
     if data then
         self.sneezed = data.sneezed
         self.nextsneeze = data.nextsneeze or self:GetNextSneezTimeInitial()
-    end
 
-
-    if data.enabled then
-        if TheWorld.state.ishayfever then
-            self:Enable()
-        else
-            self.sneezed = false
-            self.nextsneeze = self:GetNextSneezTimeInitial()
+        if data.enabled then
+            if TheWorld.state.ishayfever then
+                self:Enable()
+            else
+                self.sneezed = false
+            end
         end
     end
 end

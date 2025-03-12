@@ -550,7 +550,7 @@ local states = {
 
     State{
         name = "usedoor",
-        tags = {"doing", "busy", "canrotate"},
+        tags = {"doing", "busy"},
         server_states = {"usedoor"},
 
         onenter = function(inst)
@@ -560,6 +560,12 @@ local states = {
 
             inst:PerformPreviewBufferedAction()
             inst.sg:SetTimeout(TIMEOUT)
+
+            local buffaction = inst:GetBufferedAction()
+            local target = buffaction ~= nil and buffaction.target or nil
+            if target and TagToDirect(target) then
+                inst.Transform:SetRotation(TagToDirect(target))
+            end
         end,
 
         onupdate = function(inst)

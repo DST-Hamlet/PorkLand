@@ -212,19 +212,20 @@ function EntityScript:GetIsWet(...)
     return self:HasTag("temporary_wet") or (_GetIsWet(self, ...) and not self:GetIsInInterior())
 end
 
+function EntityScript:GetShouldBrainStopped()
+    local stopped = false
+    if self.components.freezable and self.components.freezable:IsFrozen() then
+        stopped = true
+    end
+    if self.components.sleeper and self.components.sleeper:IsAsleep() then
+        stopped = true
+    end
+    return stopped
+end
+
 local _RestartBrain = EntityScript.RestartBrain
 function EntityScript:RestartBrain(...)
-    if self.components.freezable and self.components.freezable:IsFrozen() then
-        self:StopBrain()
-        if self.brainfn ~= nil then
-            self.brain = self.brainfn()
-            if self.brain ~= nil then
-                self.brain.inst = self
-                self.brain:Stop()
-            end
-        end
-        return
-    elseif self.components.sleeper and self.components.sleeper:IsAsleep() then
+    if self:GetShouldBrainStopped() then
         self:StopBrain()
         if self.brainfn ~= nil then
             self.brain = self.brainfn()
@@ -248,6 +249,14 @@ function EntityScript:GetAdjectivedName(...)
     return _GetAdjectivedName(self, ...)
 end
 
+local _Remove = EntityScript.Remove
+function EntityScript:Remove(...)
+    if self.SoundEmitter then
+        self.SoundEmitter:KillAllSounds()
+    end
+    return _Remove(self, ...)
+end
+
 function EntityScript:IsInSameIsland(target)
     if not (target and target:IsValid()) then
         return false
@@ -260,12 +269,4 @@ function EntityScript:IsInSameIsland(target)
     local target_island = TheWorld.Map:GetIslandTagAtPoint(tx, ty, tz)
 
     return current_island == target_island
-end
-
-local on_remove = EntityScript.OnRemove
-function EntityScript:OnRemove(...)
-    if self.MiniMapEntity then
-        PorkLandOnMiniMapEntityRemove(self)
-    end
-    return on_remove(self, ...)
 end

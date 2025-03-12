@@ -27,6 +27,9 @@ local tuning = {
     APORKALYPSE_NEAR_TIME = 7 * total_day_time,
     APORKALYPSE_PERIOD_LENGTH = 60 * total_day_time,
 
+    PERISH_APORKALYPSE_MULT = 1.5,
+    PERISH_NORMAL_MULT = 1,
+
     MACHETE_DAMAGE = wilson_attack * .88,
     MACHETE_USES = 100,
 
@@ -282,6 +285,7 @@ local tuning = {
     GUARDTOWER_CITY_RESPAWNTIME = total_day_time*3,
 
     CITY_PIG_GUARD_TARGET_DIST = 20,
+    CITY_PIG_GUARD_KEEP_TARGET_DIST = 32,
 
     WAVE_HIT_MOISTURE = 15,
     WAVE_HIT_DAMAGE = 5,
@@ -362,7 +366,7 @@ local tuning = {
 
     ADULT_FLYTRAP_HEALTH = 400,
     ADULT_FLYTRAP_DAMAGE = 30,
-    ADULT_FLYTRAP_ATTACK_PERIOD = 5,
+    ADULT_FLYTRAP_ATTACK_PERIOD = 1,
     ADULT_FLYTRAP_ATTACK_DIST = 4,
 
     WALKING_STICK_DAMAGE = wilson_attack * 0.6,
@@ -715,6 +719,9 @@ local tuning = {
 
     ENTITY_WAKE_DIST = 64,
     ENTITY_SLEEP_DIST = 64 * 1.2,
+
+    ANIMSHADE_MIN_STRENGTH = 0.1429,           -- blend min strength - modulated with avg ambient
+    ANIMSHADE_MAX_STRENGTH = 0.5,           -- blend max strength - modulated with avg ambient
 }
 
 

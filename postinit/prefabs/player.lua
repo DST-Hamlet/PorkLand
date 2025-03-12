@@ -77,7 +77,7 @@ local function OnDeath(inst, data)
     end
 
     if inst.components.hayfever ~= nil then
-        inst.components.hayfever:Disable()
+        inst.components.hayfever:Disable(true)
     end
 end
 
@@ -87,7 +87,7 @@ local function OnRespawnFromGhost(inst, data)
     end
 
     if inst.components.hayfever ~= nil then
-        inst.components.hayfever:OnHayFever(TheWorld.state.ishayfever)
+        inst.components.hayfever:OnHayFever(TheWorld.state.ishayfever, true, true)
     end
 end
 
@@ -119,21 +119,6 @@ local function OnLoad(inst, data, ...)
     return unpack(rets)
 end
 
-local SANITY_MODIFIER_NAME = "PLAYERHOUSE_SANITY"
-
-local function UpdateInteriorSanity(inst, data)
-    if data.from then
-        inst.components.sanity.externalmodifiers:RemoveModifier(data.from, SANITY_MODIFIER_NAME) -- remove sanity from whichever room we were
-    end
-
-    if data.to then -- still inside
-        local interiorID = data.to.interiorID
-        if TheWorld.components.interiorspawner:GetInteriorDefine(interiorID).dungeon_name:find("playerhouse") then
-            inst.components.sanity.externalmodifiers:SetModifier(data.to, TUNING.SANITY_PLAYERHOUSE_GAIN, SANITY_MODIFIER_NAME)
-        end
-    end
-end
-
 local function UpdateHomeTechBonus(inst, data)
     if data.to and data.to:HasInteriorTag("home_prototyper") then
         inst.components.builder.home_bonus = 2
@@ -143,8 +128,12 @@ local function UpdateHomeTechBonus(inst, data)
 end
 
 local function OnInteriorChange(inst, data)
-    UpdateInteriorSanity(inst, data)
     UpdateHomeTechBonus(inst, data)
+    if data.to == nil then
+        -- We store the naughty value when the player is inside an interior,
+        -- and triggers it once they go out
+        TheWorld.components.kramped:OnNaughtyAction(0, inst)
+    end
 end
 
 AddPlayerPostInit(function(inst)
@@ -203,43 +192,6 @@ AddPlayerPostInit(function(inst)
     if i then
         debug.setupvalue(_RegisterActivePlayerEventListeners, i, OnGotNewItem)
     end
-
-    local REPLACE_ANIMS =
-    {
-        -- ["atk_pre"] = "atk_pre_old",
-        -- ["atk_lag"] = "atk_lag_old",
-        -- ["atk"] = "atk_old",
-        ["hit"] = "hit_old",
-        ["hit_goo"] = "hit_goo_old",
-    }
-
-    local wilson_bank_hash = inst.AnimState:GetBankHash()
-
-    local _AnimState = inst.AnimState
-    local AnimState = setmetatable({}, {__index = function(t, k)
-        if k == "PlayAnimation" then
-            return function(t, animname, ...)
-                if _AnimState:GetBankHash() == wilson_bank_hash and REPLACE_ANIMS[animname] then
-                    return _AnimState:PlayAnimation(REPLACE_ANIMS[animname], ...)
-                else
-                    return _AnimState:PlayAnimation(animname, ...)
-                end
-            end
-        elseif k == "PushAnimation" then
-            return function(t, animname, ...)
-                if _AnimState:GetBankHash() == wilson_bank_hash and REPLACE_ANIMS[animname] then
-                    return _AnimState:PushAnimation(REPLACE_ANIMS[animname], ...)
-                else
-                    return _AnimState:PushAnimation(animname, ...)
-                end
-            end
-        end
-
-        return function(t, ...)
-            return _AnimState[k](_AnimState, ...)
-        end
-    end})
-    rawset(inst, "AnimState", AnimState)
 
     inst.components.lightwatcherproxy:UseHighPrecision()
 

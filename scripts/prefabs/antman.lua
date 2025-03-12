@@ -348,7 +348,7 @@ local function fn()
 
     inst:ListenForEvent("attacked", OnAttacked)
     inst:ListenForEvent("suggest_tree_target", function(inst, data)
-        if data and data.tree and inst:GetBufferedAction() ~= ACTIONS.CHOP then
+        if data and data.tree and inst:GetBufferedAction().action ~= ACTIONS.CHOP then
             inst.tree_target = data.tree
         end
     end)

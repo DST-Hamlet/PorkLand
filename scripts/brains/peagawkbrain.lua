@@ -12,7 +12,7 @@ local HIDE_PLAYER_DIST = 8
 
 local SEE_FOOD_DIST = 20
 -- local SEE_BUSH_DIST = 40
--- local MAX_WANDER_DIST = 80
+local MAX_WANDER_DIST = 6
 
 local PeagawkBrain = Class(Brain, function(self, inst)
     Brain._ctor(self, inst)
@@ -44,7 +44,8 @@ end
 
 local function TransformAction(inst)
     if not inst.components.health:IsDead() then
-        if not inst.is_bush then
+        local x, y, z = inst.Transform:GetWorldPosition()
+        if not inst.is_bush and TheWorld.Map:CanDeployPlantAtPoint(Vector3(x, y, z), inst) then
             local hunter = FindEntity(inst, HIDE_PLAYER_DIST, nil, {'scarytoprey'}, {'notarget'})
             if hunter == nil then
                 return BufferedAction(inst, nil, ACTIONS.PEAGAWK_TRANSFORM)
@@ -73,6 +74,8 @@ function PeagawkBrain:OnStart()
         DoAction(self.inst, TransformAction, "Transform", true),
 
         IfNode(function() return self.inst.is_bush and not self.inst.components.health:IsDead() end, "Bush", StandStill(self.inst)),
+
+        Wander(self.inst, nil, MAX_WANDER_DIST),
     }, .25)
 
     self.bt = BT(self.inst, root)

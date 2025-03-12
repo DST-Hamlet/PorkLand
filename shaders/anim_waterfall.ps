@@ -71,8 +71,8 @@ void main()
     vec4 colour; //基础纹理
     vec4 colour_2; //表层水流纹理
 
-    float tex_x = mod(PS_TEXCOORD.x - TIMEPARAMS.x * 0.125, 1.0); // 纹理平移
-    float tex_x_2 = mod(PS_TEXCOORD.x - TIMEPARAMS.x * 0.125 * 0.5, 1.0); // 表层水流纹理平移，速度更慢
+    float tex_x = mod(PS_TEXCOORD.x - TIMEPARAMS.x * 0.5, 0.5); // 纹理平移
+    float tex_x_2 = mod(PS_TEXCOORD.x - TIMEPARAMS.x * 0.25, 0.5); // 表层水流纹理平移，速度更慢
     float tex_y = PS_TEXCOORD.y;
     vec3 new_texcoord = vec3(tex_x, tex_y, PS_TEXCOORD.z);
     vec3 new_texcoord_2 = vec3(tex_x_2, tex_y, PS_TEXCOORD.z);
@@ -124,8 +124,17 @@ if (PS_POS.y < -2.)
 {
     if (colour.a > 0.)
     {
-        colour.a *= 3. + PS_POS.y; // 世界坐标越低的纹理越透明
+        colour.a *= 1. + (2. + PS_POS.y) * 0.5; // 世界坐标越低的纹理越透明
     }
+}
+
+if (colour.a > 1.0)
+{
+    colour.a = 1.0;
+}
+if (colour.a < 0.0)
+{
+    colour.a = 0.0;
 }
 
 #if defined ( FADE_OUT )
@@ -155,9 +164,9 @@ if (PS_POS.y < -2.)
 
         if (PS_POS.y < -2.)
         {
-            light.r *= 3. + PS_POS.y; // 减少低坐标透明纹理的光照贴图的透明度
-            light.g *= 3. + PS_POS.y;
-            light.b *= 3. + PS_POS.y;
+            light.r *= 1. + (2. + PS_POS.y) * 0.5; // 减少低坐标透明纹理的光照贴图的透明度
+            light.g *= 1. + (2. + PS_POS.y) * 0.5;
+            light.b *= 1. + (2. + PS_POS.y) * 0.5;
         }
 
         gl_FragColor.rgb *= max( light.rgb, vec3( LIGHT_OVERRIDE, LIGHT_OVERRIDE, LIGHT_OVERRIDE ) );

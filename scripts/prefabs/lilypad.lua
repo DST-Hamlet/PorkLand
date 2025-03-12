@@ -33,6 +33,7 @@ local function RefreshBuild(inst)
     inst.Transform:SetRotation(inst.rotation)
 
     inst.Physics:SetCapsule(SIZES[inst.size], 0.01)
+    inst:SetDeployExtraSpacing(SIZES[inst.size] + 0.5)
 end
 
 local function ReturnChildren(inst)

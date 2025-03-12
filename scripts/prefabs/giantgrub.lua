@@ -72,9 +72,6 @@ local function OnEntityWake(inst)
         inst.escapetask = nil
     end
 end
-local function OnRemove(inst)
-    inst.SoundEmitter:KillAllSounds()
-end
 
 local brain = require("brains/giantgrubbrain")
 
@@ -158,7 +155,6 @@ local function fn()
 
     inst.OnEntitySleep = OnEntitySleep
     inst.OnEntityWake = OnEntityWake
-    inst.OnRemoveEntity = OnRemove
 
     return inst
 end

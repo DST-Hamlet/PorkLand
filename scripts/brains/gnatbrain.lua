@@ -2,7 +2,7 @@ require("behaviours/wander")
 require("behaviours/doaction")
 require("behaviours/panic")
 require("behaviours/findlight")
-require("behaviours/follow")
+require("behaviours/followandtest")
 
 local BrainCommon = require("brains/braincommon")
 
@@ -15,6 +15,10 @@ end
 
 local function GetLightTarget(inst)
     return inst:FindLight()
+end
+
+local function LightTargetTest(inst, target)
+    return inst:CanTargetLight(target)
 end
 
 local function GetInfestTarget(inst)
@@ -55,7 +59,7 @@ function GnatBrain:OnStart()
                 BrainCommon.PanicTrigger(self.inst),
 
                 WhileNode(function() return ShouldChaseLight(self.inst) end, "Chase Light",
-                    Follow(self.inst, function() return GetLightTarget(self.inst) end, 0, 1, 1)),
+                    FollowAndTest(self.inst, function() return GetLightTarget(self.inst) end, 0, 1, 1, nil, nil, nil, LightTargetTest)),
 
                 WhileNode(function() return not self.inst.components.infester.infested end, "not infesting",
 

@@ -102,68 +102,7 @@ local function OnReconstructe(inst)
     end
 end
 
-local function OnSave(inst, data)
-    if inst:HasTag("burnt") then
-        data.burnt = true
-    end
-    data.build = inst.build
-    data.animset = inst.animset
-    data.bought = inst.bought
-    data.interiorID = inst.interiorID
-    data.prefabname = inst.prefabname
-    data.minimapicon = inst.minimapicon
-    data.build_by_player = inst.build_by_player
-end
-
-local function OnLoad(inst, data)
-    if data then
-        if data.build_by_player then
-            inst.build_by_player = data.build_by_player
-        end
-
-        if data.interiorID then
-            inst.interiorID = data.interiorID
-        end
-
-        if data.build then
-            inst.build = data.build
-            inst.AnimState:SetBuild(inst.build)
-            setScale(inst, inst.build)
-        end
-
-        if data.animset then
-            inst.animset = data.animset
-            inst.AnimState:SetBank(inst.animset)
-        end
-        if data.bought then
-            inst.bought = data.bought
-            inst.AnimState:Hide("boards")
-            inst.components.door:SetDoorDisabled(false, "bought_state")
-        else
-            inst.components.door:SetDoorDisabled(true, "bought_state")
-        end
-        if data.prefabname then
-            inst.prefabname = data.prefabname
-            inst.name = STRINGS.NAMES[string.upper(data.prefabname)]
-        end
-
-        if data.minimapicon then
-            inst.minimapicon = data.minimapicon
-            inst.MiniMapEntity:SetIcon(inst.minimapicon)
-        end
-
-        if data.burnt then
-            inst.components.burnable.onburnt(inst)
-        end
-
-        -- keep compatible with older saves
-        if not TheWorld.components.interiorspawner:IsPlayerHouseRegistered(inst) then
-            TheWorld.components.interiorspawner:RegisterPlayerHouse(inst)
-        end
-    end
-end
-
-local function CreatInterior(inst)
+local function CreateInterior(inst)
     local id = inst.interiorID
     local can_reuse_interior = id ~= nil
 
@@ -194,13 +133,31 @@ local function CreatInterior(inst)
     local colorcube = "images/colour_cubes/pigshop_interior_cc.tex"
 
     local addprops = GetPropDef("playerhouse_city", exterior_door_def)
-    local def = interior_spawner:CreateRoom("generic_interior", 15, nil, 10, name, id, addprops, {}, walltexture, floortexture, minimaptexture, nil, colorcube, nil, true, "inside", "HOUSE", WORLD_TILES.WOODFLOOR)
-    interior_spawner:SpawnInterior(def)
+    interior_spawner:CreateRoom({
+        width = 15,
+        height = nil,
+        depth = 10,
+        dungeon_name = name,
+        roomindex = id,
+        addprops = addprops,
+        exits = {},
+        walltexture = walltexture,
+        floortexture = floortexture,
+        minimaptexture = minimaptexture,
+        colour_cube = colorcube,
+        playerroom = true,
+        reverb = "inside",
+        ambient_sound = "HOUSE",
+        footstep_tile = WORLD_TILES.WOODFLOOR,
+        cameraoffset = nil,
+        zoom = nil,
+        group_id = inst.interiorID,
+        interior_coordinate_x = 0,
+        interior_coordinate_y = 0,
+    })
 
     local room = interior_spawner:GetInteriorCenter(id)
     room:AddInteriorTags("home_prototyper")
-
-    interior_spawner:RegisterPlayerHouse(inst)
 end
 
 local function UseDoor(inst, data)
@@ -234,6 +191,63 @@ local function OnBurntUp(inst, data)
         inst.doortask = nil
     end
     inst:Remove()
+end
+
+local function OnSave(inst, data)
+    if inst:HasTag("burnt") then
+        data.burnt = true
+    end
+    data.build = inst.build
+    data.animset = inst.animset
+    data.bought = inst.bought
+    data.interiorID = inst.interiorID
+    data.prefabname = inst.prefabname
+    data.minimapicon = inst.minimapicon
+    data.build_by_player = inst.build_by_player
+end
+
+local function OnLoad(inst, data)
+    if data then
+        if data.build_by_player then
+            inst.build_by_player = data.build_by_player
+        end
+
+        if data.interiorID then
+            inst.interiorID = data.interiorID
+        end
+        CreateInterior(inst)
+
+        if data.build then
+            inst.build = data.build
+            inst.AnimState:SetBuild(inst.build)
+            setScale(inst, inst.build)
+        end
+
+        if data.animset then
+            inst.animset = data.animset
+            inst.AnimState:SetBank(inst.animset)
+        end
+        if data.bought then
+            inst.bought = data.bought
+            inst.AnimState:Hide("boards")
+            inst.components.door:SetDoorDisabled(false, "bought_state")
+        else
+            inst.components.door:SetDoorDisabled(true, "bought_state")
+        end
+        if data.prefabname then
+            inst.prefabname = data.prefabname
+            inst.name = STRINGS.NAMES[string.upper(data.prefabname)]
+        end
+
+        if data.minimapicon then
+            inst.minimapicon = data.minimapicon
+            inst.MiniMapEntity:SetIcon(inst.minimapicon)
+        end
+
+        if data.burnt then
+            inst.components.burnable.onburnt(inst)
+        end
+    end
 end
 
 local function fn()
@@ -312,7 +326,9 @@ local function fn()
     inst:ListenForEvent("deedbought", function() inst:BuyHouse() end, TheWorld)
 
     inst.interiors = {}
-    inst:DoTaskInTime(0, CreatInterior)
+    inst:DoTaskInTime(0, function()
+        CreateInterior(inst)
+    end)
 
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
@@ -332,10 +348,6 @@ local function fn()
     inst:ListenForEvent("usedoor", UseDoor)
 
     inst.OnReconstructe = OnReconstructe
-
-    inst:ListenForEvent("onremove", function()
-        TheWorld.components.interiorspawner:UnregisterPlayerHouse(inst)
-    end)
 
     return inst
 end

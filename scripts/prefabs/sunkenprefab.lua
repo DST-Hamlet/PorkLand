@@ -3,7 +3,7 @@ local SHADER = "shaders/anim_sunken.ksh"
 local assets =
 {
     Asset("ANIM", "anim/bubbles_sunk.zip"),
-    Asset("ANIM", "anim/sunken_visual_slot.zip"),
+    -- Asset("ANIM", "anim/sunken_visual_slot.zip"),
     Asset("SHADER", SHADER),
 }
 
@@ -34,13 +34,15 @@ local function init(inst, item)
         if item.components.lootdropper then
             local stacksize = item.components.stackable and item.components.stackable:StackSize() or 1
             for i = 1, stacksize do
+                if item.inventoryloot then
+                    item.components.lootdropper:SetChanceLootTable(item.inventoryloot)
+                end
                 local loots = item.components.lootdropper:GenerateLoot()
                 for k, v in pairs(loots) do
                     local loot = SpawnPrefab(v)
                     if loot then
-                        if not inst.components.container:GiveItem(loot, nil, nil, false) then
-                            loot:Remove()
-                        end
+                        loot.Transform:SetPosition(item.Transform:GetWorldPosition())
+                        SinkEntity(loot)
                     end
                 end
             end
@@ -50,6 +52,10 @@ local function init(inst, item)
         if not inst.components.container:GiveItem(item, nil, nil, false) then
             item:Remove()
         end
+    end
+
+    if inst.components.container:IsEmpty() then
+        inst:Remove()
     end
 
     inst.components.timer:StartTimer("destroy", TUNING.SUNKENPREFAB_REMOVE_TIME)
@@ -66,6 +72,7 @@ local function fn()
 
     inst:AddTag("sunkencontainer")
     inst:AddTag("fishable")
+    inst:AddTag("NOBLOCK")
 
     inst._sunkenvisual = net_entity(inst.GUID, "_sunkenvisual", "sunkenvisualdirty")
 

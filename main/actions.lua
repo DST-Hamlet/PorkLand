@@ -75,11 +75,11 @@ local function DoToolWork(act, workaction, ...)
         act.doer.player_classified._last_work_target:set(act.target)
         act.doer.player_classified:ClearLastTarget()
     end
-    if act.target.components.hackable ~= nil and act.target.components.hackable:CanBeHacked() and workaction == ACTIONS.HACK then
+    if workaction == ACTIONS.HACK and act.target.components.hackable ~= nil and act.target.components.hackable:CanBeWorked() then
         if act.invobject and act.invobject.components.obsidiantool then
             act.invobject.components.obsidiantool:Use(act.doer, act.target)
         end
-        act.target.components.hackable:Hack(act.doer,
+        act.target.components.hackable:WorkedBy(act.doer,
             (
                 (act.invobject ~= nil and act.invobject.components.tool ~= nil and act.invobject.components.tool:GetEffectiveness(workaction)) or
                 (act.doer ~= nil and act.doer.components.worker ~= nil and act.doer.components.worker:GetEffectiveness(workaction)) or
@@ -107,7 +107,7 @@ ACTIONS.HACK.fn = function(act)
 end
 
 ACTIONS.HACK.validfn = function(act) -- this fixes hacking a nonvalid target when holding the mouse
-    return (act.target.components.hackable and act.target.components.hackable:CanBeHacked())
+    return (act.target.components.hackable and act.target.components.hackable:CanBeWorked())
         or (act.target.components.workable and act.target.components.workable:CanBeWorked() and act.target.components.workable:GetWorkAction() == ACTIONS.HACK)
 end
 
@@ -300,12 +300,12 @@ ACTIONS.SEARCH_MYSTERY.validfn = function(act)
     end
 end
 
-ACTIONS.USEDOOR.fn = function(act, forcesuccess)
+ACTIONS.USEDOOR.fn = function(act)
     local door = act.target
     if not door or not door.components.door then
         return false
     end
-    if not forcesuccess and (door.components.door.disabled or door.components.door.hidden) then
+    if door.components.door:IsLocked() then
         return false, "LOCKED"
     end
     return door.components.door:Activate(act.doer)
@@ -527,6 +527,7 @@ ACTIONS.GAS.fn = function(act)
     if act.doer and act.invobject and act.invobject.components.gasser then
         local pos = act:GetActionPoint() or (act.target and act.target:GetPosition())
         local doer_pos = act.doer:GetPosition()
+        pos.y = doer_pos.y
         pos = doer_pos + (pos - doer_pos):Normalize() * act.action.distance
         act.invobject.components.gasser:Gas(pos)
         return true
@@ -595,21 +596,6 @@ ACTIONS.THROW.fn = function(act)
     if thrown and thrown.components.throwable then
         local pos = act.GetActionPoint and act:GetActionPoint() or act.pos or act.doer:GetPosition()  --act.doer:GetPosition() Prevent error from monkey when throwing  -jerry
         thrown.components.throwable:Throw(pos, act.doer)
-        return true
-    end
-end
-
--- Patch for hackable things
-local _FERTILIZE_fn = ACTIONS.FERTILIZE.fn
-function ACTIONS.FERTILIZE.fn(act, ...)
-    if _FERTILIZE_fn(act, ...) then
-        return true
-    end
-
-    if act.target.components.hackable and act.target.components.hackable:CanBeFertilized()
-        and act.invobject and act.invobject.components.fertilizer then
-
-        act.target.components.hackable:Fertilize(act.invobject, act.doer)
         return true
     end
 end
@@ -1117,16 +1103,18 @@ end
 
 local _USEITEM_inventoryitem = USEITEM.inventoryitem
 function USEITEM.inventoryitem(inst, doer, target, actions, right, ...)
-    if not inst.replica.inventoryitem:CanOnlyGoInPocket() then
-        if target:HasTag("weighdownable") then
-            table.insert(actions, ACTIONS.WEIGHDOWN)
-            return
-        elseif target:HasTag("visual_slot") then
-            if target:HasTag("empty") then
-                local shelf = target.replica.visualslot:GetShelf()
-                if not (shelf and shelf.replica.shopped) then
-                    table.insert(actions, ACTIONS.PUTONSHELF)
-                    return
+    if inst.replica.inventoryitem ~= nil then
+        if not inst.replica.inventoryitem:CanOnlyGoInPocket() then
+            if target:HasTag("weighdownable") then
+                table.insert(actions, ACTIONS.WEIGHDOWN)
+                return
+            elseif target:HasTag("visual_slot") then
+                if target:HasTag("empty") then
+                    local shelf = target.replica.visualslot:GetShelf()
+                    if not (shelf and shelf.replica.shopped) then
+                        table.insert(actions, ACTIONS.PUTONSHELF)
+                        return
+                    end
                 end
             end
         end

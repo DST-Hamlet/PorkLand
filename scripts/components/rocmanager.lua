@@ -12,6 +12,7 @@ assert(TheWorld.ismastersim, "RocManager should not exist on client")
 
 local SPAWNDIST = 40
 local ROC_TIMER_NAME = "ROC_RESPAWN_TIMER"
+local ROC_MAX_CHASE_TIME = 180
 
 -- Public
 self.inst = inst
@@ -87,14 +88,12 @@ function self:SpawnRoc()
         return false
     end
 
-    self:SpawnRocToPlayer(player)
-
-    return true
+    return self:SpawnRocToPlayer(player)
 end
 
 
 function self:SpawnRocToPlayer(player)
-    if not _enable then
+    if not _enable or not TUNING.ROC_ENABLED then
         return false
     end
 
@@ -117,6 +116,7 @@ function self:SpawnRocToPlayer(player)
     local roc = SpawnPrefab("roc")
     roc.Transform:SetPosition(pt.x + offset.x, 0, pt.z + offset.z)
     roc.components.roccontroller.target_player = player
+    roc.components.timer:StartTimer("left", ROC_MAX_CHASE_TIME)
 
     _roc = roc
     return true
@@ -150,7 +150,7 @@ self.inst:ListenForEvent("ms_playerleft", OnPlayerLeft, _world)
 
 _worldsettingstimer:AddTimer(ROC_TIMER_NAME, GetNextSpawnTime(), TUNING.ROC_ENABLED, function()
     local spawned
-    if TheWorld.state.time < 1/2 then -- will only spawn before the first half of daylight, and not wile player is indoors
+    if TheWorld.state.time < 1/3 then -- will only spawn before the first half of daylight, and not wile player is indoors
         spawned = self:SpawnRoc()
     else
         spawned = false
@@ -187,7 +187,7 @@ function self:OnLoad(data)
         return
     end
 
-    if data.enable then
+    if data.enable ~= nil then
         _enable = data.enable
     end
 end

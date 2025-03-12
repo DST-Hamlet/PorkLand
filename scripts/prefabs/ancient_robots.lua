@@ -43,9 +43,8 @@ end
 
 local function CheckPause(inst)
     if not inst.components.timer:TimerExists("discharge") then
-        if not inst:HasTag("dormant") then
-            inst:AddTag("dormant")
-            inst.sg:GoToState("idle_dormant")
+        if not inst.sg:HasStateTag("dormant") then
+            inst:PushEvent("deactivate")
         end
     else
         if TheWorld.state.isaporkalypse then
@@ -66,10 +65,9 @@ local function ActiveRobot(inst, time)
 
     CheckPause(inst)
 
-    if inst:HasTag("dormant") then
+    if inst.sg:HasStateTag("dormant") then
         inst:PushEvent("shock")
         inst.wantstodeactivate = nil
-        inst:RemoveTag("dormant")
     end
 end
 
@@ -101,7 +99,7 @@ end
 
 local function OnTimerDone(inst, data)
     if data.name == "discharge" then
-        inst.wantstodeactivate = true
+        CheckPause(inst)
     end
 end
 
@@ -109,14 +107,14 @@ local function OnSave(inst, data)
     if inst.hits then
         data.hits = inst.hits
     end
-    if inst:HasTag("dormant") or not inst.components.timer:TimerExists("discharge") then -- 第二个条件是考虑到那些因为意外计时结束没有停下的robot
-        data.dormant = true
-    end
     if inst:HasTag("mossy") then
         data.mossy = true
     end
     if inst.spawned then
         data.spawned = true
+    end
+    if not inst.components.timer:TimerExists("discharge") then
+        data.dormant = true
     end
 end
 
@@ -125,19 +123,15 @@ local function OnLoad(inst, data)
         if data.hits then
             inst.hits = data.hits
         end
-        if data.dormant then
-            inst:AddTag("dormant")
-        end
         if data.mossy then
             inst:AddTag("mossy")
         end
         if data.spawned then
             inst.spawned = true
         end
-    end
-
-    if inst:HasTag("dormant") then
-        inst.sg:GoToState("idle_dormant")
+        if data.dormant then
+            inst.sg:GoToState("idle_dormant")
+        end
     end
 end
 
@@ -147,6 +141,12 @@ local function OnLoadPostPass(inst, newents, data)
             inst.spawntask:Cancel()
             inst.spawntask = nil
         end
+    end
+end
+
+local function OnEntitySleep(inst)
+    if inst.wantstodeactivate then
+        inst.sg:GoToState("deactivate")
     end
 end
 
@@ -224,17 +224,19 @@ local function commonfn()
     inst.spawntask = inst:DoTaskInTime(0, function()
         if not inst.spawned then
             inst:AddTag("mossy")
-            inst:AddTag("dormant")
-            inst.sg:GoToState("idle_dormant")
-            inst:StopBrain()
             inst.spawned = true
+            inst.sg:GoToState("idle_dormant")
         end
+
+        inst:CheckPause()
     end)
 
     inst:ListenForEvent("removemoss", RemoveMoss)
     inst:ListenForEvent("lightningstrike", OnLightning)
     inst:ListenForEvent("timerdone", OnTimerDone)
     inst:WatchWorldState("isaporkalypse", OnAporkalypse)
+
+    inst.CheckPause = CheckPause
 
     return inst
 end

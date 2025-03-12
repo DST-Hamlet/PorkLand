@@ -36,8 +36,7 @@ local RETARGET_NO_TAGS = {"FX", "NOCLICK", "INLIMBO", "wall", "flytrap", "struct
 
 local function RetargetFn(inst)
     return FindEntity(inst, RETARGET_DIST, function(ent)
-        if (ent:HasTag("plantkin") or ent:HasTag("chess"))
-            and (ent:GetDistanceSqToInst(inst) > RETARGET_DIST * RETARGET_DIST or not findfood(inst, ent)) then
+        if (ent:HasTag("plantkin") and not findfood(inst, ent)) then
             return false
         end
 
@@ -47,7 +46,8 @@ end
 
 local KEEP_TAGET_DIST = 15
 local function KeepTargetFn(inst, target)
-    if not inst.keeptargetevenifnofood and target:HasTag("plantkin") and not findfood(inst,target) then
+    if not (inst.keeptargetevenifnofood and not inst:GetShouldBrainStopped())
+        and (target:HasTag("plantkin") and not findfood(inst,target)) then
         return false
     end
 
@@ -158,20 +158,12 @@ local function SanityAura(inst, observer)
 end
 
 local function ShouldSleep(inst)
-    return TheWorld.state.isday
-           and not (inst.components.combat and inst.components.combat.target)
-           and not (inst.components.homeseeker and inst.components.homeseeker:HasHome() )
-           and not (inst.components.burnable and inst.components.burnable:IsBurning() )
-           and not (inst.components.follower and inst.components.follower.leader)
-           and not (inst.components.freezable and inst.components.freezable:IsFrozen())
+    return NocturnalSleepTest(inst)
+    and not (inst:GetBufferedAction() and inst:GetBufferedAction().action == ACTIONS.EAT)
 end
 
 local function ShouldWake(inst)
-    return TheWorld.state.isnight
-           or (inst.components.combat and inst.components.combat.target)
-           or (inst.components.homeseeker and inst.components.homeseeker:HasHome() )
-           or (inst.components.burnable and inst.components.burnable:IsBurning() )
-           or (inst.components.follower and inst.components.follower.leader)
+    return NocturnalWakeTest(inst)
 end
 
 local brain = require("brains/flytrapbrain")

@@ -70,6 +70,18 @@ local function Rebuild(inst)
     inst.components.workable:SetWorkLeft(inst.components.workable.workleft + 1)
     -- ziwbi: honestly could use some transition animation here
     UpdateAnimations(inst)
+
+    -- 亚丹: 或许刷新掉落物信息可以写成一个函数, 并且在workleft变化时进行调用
+    if inst.components.workable.workleft > 4 then
+        inst.stageloots[4] = true
+        inst.stageloots[2] = true
+    elseif inst.components.workable.workleft > 2 then
+        inst.stageloots[4] = nil
+        inst.stageloots[2] = true
+    else
+        inst.stageloots[4] = nil
+        inst.stageloots[2] = nil
+    end
 end
 
 local function OnSave(inst, data)

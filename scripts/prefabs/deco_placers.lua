@@ -96,11 +96,10 @@ local function CornerPillarPlaceTest(inst)
             if distsq(subpt.coord.x, subpt.coord.z, pt.x, pt.z) < 2 then
                 inst.Transform:SetPosition(subpt.coord.x, subpt.coord.y, subpt.coord.z)
                 -- inst.Transform:SetRotation(subpt.rot)
-                inst.components.rotatingbillboard:SetRotation(-90)
                 if subpt.rot < 0 then
-                    inst.Transform:SetScale(1,1,1)
+                    inst.components.rotatingbillboard:SetRotation(-90)
                 else
-                    inst.Transform:SetScale(-1,1,1)
+                    inst.components.rotatingbillboard:SetRotation(90)
                 end
 
                 inst.accept_placement = true
@@ -656,7 +655,7 @@ return  MakePillarPlacer("deco_wood_cornerbeam_placer",       "wall_decals",    
         MakeRugPlacer("rug_circle_placer",    "rugs", "rugs", "half_circle",    RugPlacerAnim,      Rug2PlaceTest),
         MakeRugPlacer("rug_hedgehog_placer",  "rugs", "rugs", "rug_hedgehog",   RugPlacerAnim,      Rug2PlaceTest),
         MakeRugPlacer("rug_porcupuss_placer", "rugs", "rugs", "rug_porcupuss",  RugPropPlacerAnim,  RugPlaceTestFn),
-        MakeRugPlacer("rug_hoofprint_placer", "rugs", "rugs", "rug_hoofprints", RugPlacerAnim,      Rug28PlaceTest),
+        MakeRugPlacer("rug_hoofprint_placer", "rugs", "rugs", "rug_hoofprint",  RugPlacerAnim,      Rug28PlaceTest),
         MakeRugPlacer("rug_octagon_placer",   "rugs", "rugs", "rug_octagon",    RugPlacerAnim,      Rug28PlaceTest),
         MakeRugPlacer("rug_swirl_placer",     "rugs", "rugs", "rug_swirl",      RugPlacerAnim,      Rug28PlaceTest),
         MakeRugPlacer("rug_catcoon_placer",   "rugs", "rugs", "rug_catcoon",    RugPlacerAnim,      Rug28PlaceTest),

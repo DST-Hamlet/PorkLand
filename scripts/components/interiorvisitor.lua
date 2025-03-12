@@ -13,6 +13,12 @@ local function on_z(self, value)
     end
 end
 
+local function on_exterior_icon(self, value)
+    if self.inst.replica.interiorvisitor then
+        self.inst.replica.interiorvisitor.exterior_icon:set(value)
+    end
+end
+
 local function on_center_ent(self, value)
     if self.inst.replica.interiorvisitor then
         self.inst.replica.interiorvisitor.center_ent:set(value)
@@ -32,10 +38,18 @@ local function init(inst)
     end
 end
 
+local function on_respawned_from_ghost(inst)
+    local interiorvisitor = inst.components.interiorvisitor
+    if interiorvisitor then
+        interiorvisitor:RecordMapOnEnteringNewRoom()
+    end
+end
+
 local InteriorVisitor = Class(function(self, inst)
     self.inst = inst
     self.exterior_pos_x = 0
     self.exterior_pos_z = 0
+    self.exterior_icon = ""
     self.interior_cc = "images/colour_cubes/day05_cc.tex"
     self.center_ent = nil
     self.last_center_ent = nil
@@ -44,7 +58,8 @@ local InteriorVisitor = Class(function(self, inst)
         addition = {},
         deletion = {},
     }
-    self.anthill_visited_time = {}
+    self.always_shown_minimap_entities = {}
+    self.room_visited_time = {}
 
     -- self.restore_physics_task = nil
 
@@ -55,16 +70,24 @@ local InteriorVisitor = Class(function(self, inst)
         self:RecordMap(data.id, nil)
     end
     self.inst:ListenForEvent("room_removed", self.record_map_on_room_removal, TheWorld)
+    self.inst:ListenForEvent("ms_respawnedfromghost", on_respawned_from_ghost)
 end, nil,
 {
     exterior_pos_x = on_x,
     exterior_pos_z = on_z,
+    exterior_icon = on_exterior_icon,
     center_ent = on_center_ent,
     interior_cc = on_interior_cc,
 })
 
 function InteriorVisitor:OnRemoveFromEntity()
     self.inst:RemoveEventCallback("room_removed", self.record_map_on_room_removal, TheWorld)
+    self.inst:RemoveEventCallback("ms_respawnedfromghost", on_respawned_from_ghost)
+end
+
+function InteriorVisitor:SetExteriorPosition(x, z)
+    self.exterior_pos_x = x
+    self.exterior_pos_z = z
 end
 
 local function BitAND(a,b)
@@ -118,19 +141,17 @@ end
 
 local function is_anthill_room(id)
     local interior_spawner = TheWorld.components.interiorspawner
-    local interior_define = interior_spawner:GetInteriorDefine(id)
+    local interior_define = interior_spawner:GetInteriorDefinition(id)
     return interior_define and interior_define.dungeon_name == "ANTHILL1"
 end
 
 function InteriorVisitor:RecordMap(id, data, no_send)
     self.interior_map[id] = data
 
-    if is_anthill_room(id) then
-        if data then
-            self.anthill_visited_time[id] = TheWorld.anthill_entrance.maze_reset_count
-        else
-            self.anthill_visited_time[id] = nil
-        end
+    if data then
+        self.room_visited_time[id] = TheWorld.components.worldtimetracker:GetTime()
+    else
+        self.room_visited_time[id] = nil
     end
 
     if no_send then
@@ -169,7 +190,7 @@ function InteriorVisitor:RecordAnthillDoorMapReset(no_send)
         if is_anthill_room(id) then
             if id == (self.center_ent and self.center_ent.interiorID) then
                 self:RecordMap(id, data, true)
-            elseif not (self.anthill_visited_time[id] and self.anthill_visited_time[id] >= TheWorld.anthill_entrance.maze_reset_count) then
+            elseif self.room_visited_time[id] < anthill_entrance.maze_reset_time then
                 for _, door in ipairs(data.doors) do
                     door.unknown = true
                     door.hidden = false
@@ -183,12 +204,23 @@ function InteriorVisitor:RecordAnthillDoorMapReset(no_send)
     end
 end
 
-function InteriorVisitor:ValidateMap()
+function InteriorVisitor:ValidateAndMigrateMapData()
     for id, map_data in pairs(self.interior_map) do
         local center = TheWorld.components.interiorspawner:GetInteriorCenter(id)
         if not center or (map_data.uuid and map_data.uuid ~= center.uuid) then
             self.interior_map[id] = nil
-            self.anthill_visited_time[id] = nil
+            self.room_visited_time[id] = nil
+        else
+            if not map_data.group_id then
+                local group_id = center:GetGroupId()
+                local x, y = center:GetCoordinates()
+                map_data.group_id = group_id
+                map_data.coord_x = x
+                map_data.coord_y = y
+            end
+            if not self.room_visited_time[id] then
+                self.room_visited_time[id] = TheWorld.components.worldtimetracker:GetTime()
+            end
         end
     end
     self:RecordAnthillDoorMapReset(true)
@@ -247,6 +279,53 @@ function InteriorVisitor:UpdateSurroundingDoorMaps(center_ent, last_center_ent, 
     end
 end
 
+function InteriorVisitor:CanRecordMap(room_id)
+    -- Can record if we're not ghost or if have previously visited this room
+    return not self.inst:HasTag("playerghost") or self.interior_map[room_id]
+end
+
+function InteriorVisitor:RecordMapOnEnteringNewRoom(last_center)
+    local current_center = self.center_ent
+    if current_center and self:CanRecordMap(current_center.interiorID) then
+        local map_data = current_center:CollectMinimapData()
+        self:UpdateSurroundingDoorMaps(current_center, last_center, map_data)
+        self:RecordMap(current_center.interiorID, map_data)
+    end
+    -- Record again and ignore non cacheable things once we're out of the last visited room
+    if last_center and last_center ~= current_center and last_center:IsValid() and self:CanRecordMap(last_center.interiorID) then
+        local map_data = last_center:CollectMinimapData(true)
+        self:UpdateSurroundingDoorMaps(last_center, current_center, map_data)
+        self:RecordMap(last_center.interiorID, map_data)
+    end
+end
+
+local function GetExterior(center)
+    local door = center:GetDoorToExterior()
+    if door then
+        local exterior = TheWorld.components.interiorspawner:GetExteriorById(door.components.door.interior_name)
+        if exterior then
+            return exterior
+        end
+    end
+end
+
+-- Get the current room's exterior or fallback to any of the exit exteriors from all connected rooms
+function InteriorVisitor:GetLastEnteredExterior()
+    local interior_spawner = TheWorld.components.interiorspawner
+    local exterior = GetExterior(self.center_ent)
+    if exterior then
+        return exterior
+    end
+    for room in pairs(interior_spawner:GetAllConnectedRooms(self.center_ent)) do
+        if self.interior_map[room.interiorID] then
+            local exterior = GetExterior(self.center_ent)
+            if exterior then
+                return exterior
+            end
+        end
+    end
+end
+
 function InteriorVisitor:UpdateExteriorPos()
     local interior_spawner = TheWorld.components.interiorspawner
     local x, _, z = self.inst.Transform:GetWorldPosition()
@@ -257,20 +336,8 @@ function InteriorVisitor:UpdateExteriorPos()
     self.last_center_ent = ent
 
     if last_center_ent ~= ent then
-        if ent then
-            local map_data = ent:CollectMinimapData()
-            self:UpdateSurroundingDoorMaps(ent, last_center_ent, map_data)
-            self:RecordMap(ent.interiorID, map_data)
-        end
-        -- Record again and ignore non cacheable things once we're out of the last visited room
-        if last_center_ent and last_center_ent:IsValid() then
-            local map_data = last_center_ent:CollectMinimapData(true)
-            self:UpdateSurroundingDoorMaps(last_center_ent, ent, map_data)
-            self:RecordMap(last_center_ent.interiorID, map_data)
-        end
+        self:RecordMapOnEnteringNewRoom(last_center_ent)
     end
-
-    local grue = self.inst.components.grue or {}
 
     if ent then
         if not self.inst:HasTag("inside_interior") then
@@ -278,25 +345,17 @@ function InteriorVisitor:UpdateExteriorPos()
         end
         self.inst:PushEvent("enterinterior", {from = last_center_ent, to = ent})
         self.interior_cc = ent.interior_cc
-        grue.pl_no_light_interior = --[[ent:HasInteriorTag("NO_LIGHT") or]] true
-        if grue.pl_no_light_interior then
-            self.inst:AddTag("pl_no_light_interior")
-            grue:Start()
-        else
-            self.inst:RemoveTag("pl_no_light_interior")
-        end
         self:UpdatePlayerAndCreaturePhysics(ent)
 
-        if ent:GetIsSingleRoom() then -- check if this room is single, if so, get the unique exit
-            local door = ent:GetDoorToExterior()
-            local house = interior_spawner:GetExteriorById(door.components.door.interior_name)
-            if house ~= nil then
-                local x, _, z = house.Transform:GetWorldPosition()
-                -- when opening minimap inside a single room,
-                -- focus on exterior house position
-                self.exterior_pos_x = x
-                self.exterior_pos_z = z
-                return
+        -- If we just entered a room from outside
+        if not last_center_ent then
+            local exterior = self:GetLastEnteredExterior()
+            if exterior then
+                local x, _, z = exterior.Transform:GetWorldPosition()
+                self:SetExteriorPosition(x, z)
+                if exterior.MiniMapEntity then
+                    self.exterior_icon = exterior.MiniMapEntity:GetIcon() or ""
+                end
             end
         end
     else
@@ -304,35 +363,134 @@ function InteriorVisitor:UpdateExteriorPos()
             self.inst:RemoveTag("inside_interior")
             self.inst:PushEvent("leaveinterior", {from = last_center_ent, to = nil})
         end
-        grue.pl_no_light_interior = false
-        self.inst:RemoveTag("pl_no_light_interior")
 
         if not interior_spawner:IsInInteriorRegion(x, z) then
             self.last_mainland_pos = {x = x, z = z}
         end
+        self.exterior_icon = ""
     end
 
-    self.exterior_pos_x = 0
-    self.exterior_pos_z = 0
+    self:RevealAlwaysShownMinimapEntities()
+end
+
+local function can_reveal_entity(player, entity)
+    local restriction = entity.MiniMapEntity:GetRestriction()
+    return not restriction or player:HasTag(restriction)
+end
+
+function InteriorVisitor:RevealAlwaysShownMinimapEntities()
+    if not self.center_ent then
+        if not IsTableEmpty(self.always_shown_minimap_entities) then
+            self.always_shown_minimap_entities = {}
+            SendModRPCToClient(GetClientModRPC("PorkLand", "always_shown_interior_map"), self.inst.userid, ZipAndEncodeString({ { type = "clear" } }))
+        end
+        return
+    end
+
+    local sync_actions = {}
+
+    for ent in pairs(self.always_shown_minimap_entities) do
+        if not TheWorld.components.interiormaprevealer.tracking_entities[ent] then
+            table.insert(sync_actions, {
+                type = "delete",
+                data = self.always_shown_minimap_entities[ent].id,
+            })
+            self.always_shown_minimap_entities[ent] = nil
+        end
+    end
+
+    local interior_group = self.center_ent:GetGroupId()
+
+    for ent in pairs(TheWorld.components.interiormaprevealer.tracking_entities) do
+        local network_id = ent.Network and ent.Network:GetNetworkID()
+        -- Some mods have entities with minimap icon but without network
+        if network_id and not (ent.prefab == "globalmapicon" and ent._target and ent._target.prefab == "interiorworkblank") then
+            local pos = ent:GetPosition()
+            local center = TheWorld.components.interiorspawner:GetInteriorCenter(pos)
+            local current_data = self.always_shown_minimap_entities[ent]
+            if center and center ~= self.center_ent and interior_group == center:GetGroupId() and can_reveal_entity(self.inst, ent) then
+                local icon = ent.MiniMapEntity:GetIcon()
+                if icon ~= nil and icon ~= "" then
+                    local offset = pos - center:GetPosition()
+                    local priority = ent.MiniMapEntity:GetPriority() or 0
+                    local coord_x, coord_y = center:GetCoordinates()
+                    local has_changes = false
+                    if not current_data then
+                        current_data = {
+                            id = network_id,
+                            coord_x = coord_x,
+                            coord_y = coord_y,
+                            offset_x = offset.x,
+                            offset_z = offset.z,
+                            icon = icon,
+                            priority = priority,
+                        }
+                        self.always_shown_minimap_entities[ent] = current_data
+                        has_changes = true
+                    elseif current_data.offset_x ~= offset.x
+                        or current_data.offset_z ~= offset.z
+                        or current_data.coord_x ~= coord_x
+                        or current_data.coord_y ~= coord_y
+                        or current_data.icon ~= icon
+                        or current_data.priority ~= priority then
+
+                        current_data.offset_x = offset.x
+                        current_data.offset_z = offset.z
+                        current_data.coord_x = coord_x
+                        current_data.coord_y = coord_y
+                        current_data.icon = icon
+                        current_data.priority = priority
+                        has_changes = true
+                    end
+                    if has_changes then
+                        table.insert(sync_actions, {
+                            type = "replace",
+                            data = current_data,
+                        })
+                    end
+                end
+            elseif current_data then
+                table.insert(sync_actions, {
+                    type = "delete",
+                    data = network_id,
+                })
+                self.always_shown_minimap_entities[ent] = nil
+            end
+        end
+    end
+
+    if not IsTableEmpty(sync_actions) then
+        SendModRPCToClient(GetClientModRPC("PorkLand", "always_shown_interior_map"), self.inst.userid, ZipAndEncodeString(sync_actions))
+    end
 end
 
 function InteriorVisitor:OnSave()
     return {
+        -- The position of last exterior the player entered
+        last_exterior_pos = {x = self.exterior_pos_x, z = self.exterior_pos_z},
+        -- The position of the player before they entered a room
         last_mainland_pos = self.last_mainland_pos,
+        exterior_icon = self.exterior_icon,
         interior_map = self.interior_map,
-        anthill_visited_time = self.anthill_visited_time,
+        room_visited_time = self.room_visited_time,
     }
 end
 
 function InteriorVisitor:OnLoad(data)
+    if data.last_exterior_pos then
+        self:SetExteriorPosition(data.last_exterior_pos.x, data.last_exterior_pos.z)
+    end
     if data.last_mainland_pos then
         self.last_mainland_pos = data.last_mainland_pos
+    end
+    if data.exterior_icon then
+        self.exterior_icon = data.exterior_icon
     end
     if data.interior_map then
         self.interior_map = data.interior_map
     end
-    if data.anthill_visited_time then
-        self.anthill_visited_time = data.anthill_visited_time
+    if data.room_visited_time then
+        self.room_visited_time = data.room_visited_time
     end
 
     for id, map_data in pairs(self.interior_map) do -- 转换旧存档的数据格式
@@ -352,8 +510,9 @@ function InteriorVisitor:OnLoad(data)
     end
 end
 
+-- This should be called after all entities loaded
 function InteriorVisitor:Init()
-    self:ValidateMap()
+    self:ValidateAndMigrateMapData()
     -- Don't quite understand why ThePlayer can be nil when the client receives this,
     -- from HandleClientRPC in networkclientrpc.lua, it shouldn't happen, but it does anyway,
     -- since this is not critical to the client on initial load, use a delay here to mitigate this

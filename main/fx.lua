@@ -121,6 +121,13 @@ local pl_fx = {
         fn = BelowGroundFx,
     },
     {
+        name = "bombsplash",
+        bank = "bombsplash",
+        build = "water_bombsplash",
+        fn = TintOceantFx,
+        anim = "splash",
+    },
+    {
         name = "clouds_bombsplash",
         bank = "clouds_bombsplash",
         build = "clouds_bombsplash",
@@ -256,6 +263,7 @@ local pl_fx = {
         bank = "vortex_cloak_fx",
         build = "vortex_cloak_fx",
         anim = "idle",
+        sound = "dontstarve/creatures/together/stalker/shield",
     },
     {
         name = "int_ceiling_dust_fx",

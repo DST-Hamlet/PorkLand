@@ -1,4 +1,3 @@
-local AddComponentPostInit = AddComponentPostInit
 GLOBAL.setfenv(1, GLOBAL)
 
 local Sanity = require("components/sanity")
@@ -9,7 +8,6 @@ local LIGHT_DRAIN_STATE =
     INTERIOR = 1,
     HOUSE = 2,
     PLAYERHOUSE = 3,
-
 }
 
 local function GetLightDrainState(inst)
@@ -19,7 +17,8 @@ local function GetLightDrainState(inst)
         return LIGHT_DRAIN_STATE.OUTSIDE
     end
 
-    local is_playerhouse = FindEntity(center, TUNING.ROOM_FINDENTITIES_RADIUS, nil, {"playerhouse_light"}, {"INLIMBO"}) ~= nil
+    local interiorID = inst:GetCurrentInteriorID()
+    local is_playerhouse = TheWorld.components.interiorspawner:GetInteriorDefinition(interiorID).dungeon_name:find("playerhouse")
     local is_house = FindEntity(center, TUNING.ROOM_FINDENTITIES_RADIUS, nil, {"safelight"}, {"INLIMBO"}) ~= nil
 
     if is_playerhouse then
@@ -68,9 +67,9 @@ function Sanity:UpdateInteriorMode()
     if TheWorld.state.isday and not TheWorld:HasTag("cave") and drainstate == LIGHT_DRAIN_STATE.INTERIOR then
         local lightval = CanEntitySeeInDark(self.inst) and .9 or self.inst.LightWatcher:GetLightValue()
         local light_rate =
-            (lightval > TUNING.SANITY_HIGH_LIGHT and _LIGHT_SANITY_DRAINS[SANITY_MODE_INSANITY].NIGHT_LIGHT) or
+            ((lightval > TUNING.SANITY_HIGH_LIGHT and _LIGHT_SANITY_DRAINS[SANITY_MODE_INSANITY].NIGHT_LIGHT) or
             (lightval < TUNING.SANITY_LOW_LIGHT and _LIGHT_SANITY_DRAINS[SANITY_MODE_INSANITY].NIGHT_DARK) or
-            _LIGHT_SANITY_DRAINS[SANITY_MODE_INSANITY].NIGHT_DIM
+            _LIGHT_SANITY_DRAINS[SANITY_MODE_INSANITY].NIGHT_DIM) * self.night_drain_mult
 
         _LIGHT_SANITY_DRAINS[SANITY_MODE_INSANITY].DAY = light_rate
     end

@@ -41,7 +41,7 @@ local function is_point_suitable(x, z)
     end
 
     if not _map:CanPlantAtPoint(x, 0, z)
-    or not _map:IsDeployPointClear(Vector3(x, 0, z), nil, DEPLOYSPACING_RADIUS[DEPLOYSPACING.DEFAULT]) then
+        or not _map:IsDeployPointClear(Vector3(x, 0, z), nil, DEPLOYSPACING_RADIUS[DEPLOYSPACING.DEFAULT]) then
         return false
     end
 

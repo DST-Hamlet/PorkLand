@@ -225,7 +225,6 @@ local function fn()
     inst.orbs = 2
 
     inst:ListenForEvent("attacked", OnAttacked)
-    inst:ListenForEvent("onremove", function() inst.SoundEmitter:KillSound("gears") end)
 
     inst:ListenForEvent("killed", function(inst, data)
         if inst.components.combat and data and data.victim == inst.components.combat.target then
@@ -346,6 +345,7 @@ local function mine_fn()
 
     inst:AddComponent("combat")
     inst.components.combat:SetDefaultDamage(TUNING.ANCIENT_HULK_MINE_DAMAGE)
+    inst.components.combat.playerdamagepercent = 0.5
 
     inst.OnSave = MineOnSave
     inst.OnLoad = MineOnLoad

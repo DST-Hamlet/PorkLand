@@ -144,6 +144,10 @@ end
 
 local _SuggestTarget = Combat.SuggestTarget
 function Combat:SuggestTarget(target)
+    if self.suggesttargetfn and not self.suggesttargetfn(self.inst, {target = target}) then
+        return false
+    end
+
     if not self.target and target and target:HasTag("sneaky") then
         if self.inst:GetDistanceSqToInst(target) > 6 * 6 then
             return false

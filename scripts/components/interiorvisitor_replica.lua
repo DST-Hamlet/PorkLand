@@ -10,10 +10,14 @@ local InteriorVisitor = Class(function(self, inst)
     self.exterior_pos_x:set_local(0)
     self.exterior_pos_z = net_shortint(inst.GUID, "interiorvisitor.exterior_pos_z", "interiorvisitor.exterior_pos")
     self.exterior_pos_z:set_local(0)
+    self.exterior_icon = net_string(inst.GUID, "interiorvisitor.exterior_icon", "interiorvisitor.exterior_pos")
+    self.exterior_icon:set_local("")
     self.interior_cc = net_smallbyte(inst.GUID, "interiorvisitor.interior_cc", "interiorvisitor.interior_cc")
 
     self.interior_map = {}
+    self.interior_map_groups = {}
     self.local_interior_map_override = {}
+    self.always_shown_interior_map = {}
 
     self.ininterior = false
 
@@ -133,7 +137,9 @@ function InteriorVisitor:OnUpdate()
                 ambientlighting:Pl_Refresh()
             end
 
-            TheWorld.WaveComponent:SetWaveTexture(resolvefilepath("images/cloud/fog_cloud_interior.tex")) -- disable clouds
+            if TheWorld and TheWorld.components.cloudmanager then
+                TheWorld.components.cloudmanager:SetEnabled(false)
+            end
         end
 
         if room_center_ent:HasInteriorMinimap() then
@@ -158,7 +164,9 @@ function InteriorVisitor:OnUpdate()
                 ambientlighting:Pl_Refresh()
             end
 
-            TheWorld.WaveComponent:SetWaveTexture(resolvefilepath("images/cloud/fog_cloud.tex")) -- enable clouds again
+            if TheWorld and TheWorld.components.cloudmanager then
+                TheWorld.components.cloudmanager:SetEnabled(true)
+            end
         end
     end
 end
@@ -182,7 +190,13 @@ end
 -- Receiving from interior_map client RPC
 function InteriorVisitor:OnNewInteriorMapData(data)
     for id, data in pairs(data) do
+        data.interior_id = id
         self.interior_map[id] = data
+        if not self.interior_map_groups[data.group_id] then
+            self.interior_map_groups[data.group_id] = {}
+        end
+        local coord_key = TheWorld.components.interiorspawner:CoordinatesToKey(data.coord_x, data.coord_y)
+        self.interior_map_groups[data.group_id][coord_key] = data
     end
     self.inst:PushEvent("refresh_interior_minimap")
 end
@@ -190,9 +204,31 @@ end
 -- Receiving from remove_interior_map client RPC
 function InteriorVisitor:RemoveInteriorMapData(data)
     for _, id in ipairs(data) do
-        self.interior_map[id] = data
+        local map_data = self.interior_map[id]
+        if map_data then
+            local coord_key = TheWorld.components.interiorspawner:CoordinatesToKey(map_data.coord_x, map_data.coord_y)
+            self.interior_map_groups[map_data.group_id][coord_key] = nil
+            if IsTableEmpty(self.interior_map_groups[map_data.group_id]) then
+                self.interior_map_groups[map_data.group_id] = nil
+            end
+            self.interior_map[id] = nil
+        end
     end
     self.inst:PushEvent("refresh_interior_minimap")
+end
+
+-- Receiving from always_shown_interior_map client RPC
+function InteriorVisitor:OnAlwaysShownInteriorMapData(data)
+    for _, action in ipairs(data) do
+        if action.type == "delete" then
+            self.always_shown_interior_map[action.data] = nil
+        elseif action.type == "replace" then
+            self.always_shown_interior_map[action.data.id] = action.data
+        elseif action.type == "clear" then
+            self.always_shown_interior_map = {}
+        end
+    end
+    self.inst:PushEvent("refresh_always_shown_interior_minimap", {actions = data})
 end
 
 -- function InteriorVisitor:OnRemoveFromEntity()

@@ -243,7 +243,7 @@ local function OnFinishCallback(inst, worker)
 end
 
 local function WorkMultiplierFn(inst, worker, numworks)
-    if worker:HasTag("player") then -- only worked by the player
+    if worker:HasTag("player") or worker:HasTag("interior_destroyer") then -- only worked by the player
         return 1
     else
         return 0
@@ -360,10 +360,10 @@ local function OnBuilt(inst)
     end
 
     if not replace_existing_door then
-        local house_id = interior_spawner:GetPlayerHouseByRoomId(current_room_id)
-        local connecting_room_id = interior_spawner:GetPlayerRoomInDirection(house_id, current_room_id, interior_spawner:GetDirByLabel(baseanimname))
-        if connecting_room_id then
-            local interior_def = interior_spawner:GetInteriorDefine(connecting_room_id)
+        local connecting_room = interior_spawner:GetRoomInDirection(current_interior, interior_spawner:GetDirByLabel(baseanimname))
+        if connecting_room then
+            local connecting_room_id = connecting_room.interiorID
+            local interior_def = interior_spawner:GetInteriorDefinition(connecting_room_id)
             ActivateSelf(inst, connecting_room_id, current_room_id)
 
             local opposing_exit = PLAYER_INTERIOR_EXIT_DIR_DATA[baseanimname].op_dir
@@ -440,16 +440,14 @@ end
 
 local function DoorCanBeRemoved(inst)
     local interior_spawner = TheWorld.components.interiorspawner
-    local interiorID = inst:GetCurrentInteriorID()
-    local house_id = interior_spawner:GetPlayerHouseByRoomId(interiorID)
-    return interior_spawner:ConnectedToExitAndNoUnreachableRooms(house_id, interiorID, inst.baseanimname)
+    local current_interior = interior_spawner:GetInteriorCenter(inst:GetCurrentInteriorID())
+    return interior_spawner:ConnectedToExitAndNoUnreachableRooms(current_interior, inst.baseanimname)
 end
 
 local function RoomCanBeRemoved(inst)
     local interior_spawner = TheWorld.components.interiorspawner
-    local interiorID = inst:GetCurrentInteriorID()
-    local house_id = interior_spawner:GetPlayerHouseByRoomId(interiorID)
-    return interior_spawner:ConnectedToExitAndNoUnreachableRooms(house_id, interiorID, inst.baseanimname, inst.components.door.target_interior)
+    local current_interior = interior_spawner:GetInteriorCenter(inst:GetCurrentInteriorID())
+    return interior_spawner:ConnectedToExitAndNoUnreachableRooms(current_interior, inst.baseanimname, inst.components.door.target_interior)
 end
 
 local function MakeHouseDoor(name)

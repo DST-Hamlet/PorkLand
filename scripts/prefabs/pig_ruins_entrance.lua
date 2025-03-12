@@ -472,11 +472,27 @@ local function BuildMaze(inst, dungeondef, exterior_door_def)
         local addprops = GenerateProps("pig_ruins_" .. room_type, PIG_RUINS_DEPTH, PIG_RUINS_WIDTH,
             exits_open, exits_vined, room, room_type, dungeondef, exterior_door_def)
 
-        local def = interior_spawner:CreateRoom("generic_interior", PIG_RUINS_WIDTH, 5, PIG_RUINS_DEPTH, dungeondef.name, room.id, addprops, room.exits,
-            wall_texture, floor_texture, PIG_RUINS_MINIMAP_TEXTURE, nil, PIG_RUINS_COLOUR_CUBE, nil, nil,
-            PIG_RUINS_CAVE_REVERB, PIG_RUINS_CAVE_AMBIENT, PIG_RUINS_CAVE_GROUND_SOUND)
-        def.room_type = room_type -- 获得更多调试信息
-        interior_spawner:SpawnInterior(def)
+        interior_spawner:CreateRoom({
+            width = PIG_RUINS_WIDTH,
+            height = 5,
+            depth = PIG_RUINS_DEPTH,
+            dungeon_name = dungeondef.name,
+            roomindex = room.id,
+            addprops = addprops,
+            exits = room.exits,
+            walltexture = wall_texture,
+            floortexture = floor_texture,
+            minimaptexture = PIG_RUINS_MINIMAP_TEXTURE,
+            colour_cube = PIG_RUINS_COLOUR_CUBE,
+            reverb = PIG_RUINS_CAVE_REVERB,
+            ambient_sound = PIG_RUINS_CAVE_AMBIENT,
+            footstep_tile = PIG_RUINS_CAVE_GROUND_SOUND,
+            cameraoffset = nil,
+            zoom = nil,
+            group_id = inst.interiorID,
+            interior_coordinate_x = room.x,
+            interior_coordinate_y = room.y,
+        })
 
         local center_ent = interior_spawner:GetInteriorCenter(room.id)
         center_ent:AddInteriorTags("pig_ruins") -- need this for dynamic music
@@ -554,10 +570,11 @@ local function OnHacked(inst, hacker, hacksleft)
             inst.stage = inst.stage -1
 
             if inst.stage == 0 then
-                inst.components.hackable.canbehacked = false
+                inst.components.workable:SetWorkable(false)
+                inst.components.shearable:SetCanShear(false)
                 inst.components.door:SetDoorDisabled(false, "vines")
             else
-                inst.components.hackable.hacksleft = inst.components.hackable.maxhacks
+                inst.components.workable:SetWorkLeft(TUNING.RUINS_ENTRANCE_VINES_HACKS)
             end
         end
     end
@@ -581,7 +598,7 @@ end
 
 local function OnSave(inst, data)
     data.stage = inst.stage
-    data.canhack = inst.components.hackable.canbehacked
+    data.canhack = inst.components.workable:CanBeWorked()
 
     if inst:HasTag("top_ornament") then
         data.top_ornament = true
@@ -602,7 +619,8 @@ local function OnLoad(inst, data)
             inst.stage = data.stage
         end
         if data.canhack then
-            inst.components.hackable.canbehacked = data.canhack
+            inst.components.workable:SetWorkable(data.canhack)
+            inst.components.shearable:SetCanShear(data.canhack)
         end
         if data.top_ornament then
             inst:AddTag("top_ornament")
@@ -699,11 +717,12 @@ local function MakeEntrance(name, is_entrance, dungeon_name)
             return inst
         end
 
+        inst:AddComponent("workable")
+        inst.components.workable:SetWorkAction(ACTIONS.HACK)
+        inst.components.workable:SetWorkLeft(TUNING.RUINS_ENTRANCE_VINES_HACKS)
+        inst.components.workable:SetOnWorkCallback(OnHacked)
+
         inst:AddComponent("hackable")
-        inst.components.hackable:SetUp()
-        inst.components.hackable.onhackedfn = OnHacked
-        inst.components.hackable.hacksleft = TUNING.RUINS_ENTRANCE_VINES_HACKS
-        inst.components.hackable.maxhacks = TUNING.RUINS_ENTRANCE_VINES_HACKS
 
         inst:AddComponent("shearable")
 
@@ -719,14 +738,16 @@ local function MakeEntrance(name, is_entrance, dungeon_name)
         else -- this prefab is an exit. Just set the door and art
             inst:AddTag(dungeon_name .. "_EXIT_TARGET")
             inst.stage = 0
-            inst.components.hackable.canbehacked = false
+            inst.components.workable:SetWorkable(false)
+            inst.components.shearable:SetCanShear(false)
             inst.components.door.disabled = nil
             RefreshBuild(inst)
         end
 
         if dungeon_name == "RUINS_SMALL" then
             inst.stage = 0
-            inst.components.hackable.canbehacked = false
+            inst.components.workable:SetWorkable(false)
+            inst.components.shearable:SetCanShear(false)
             inst.components.door.disabled = nil
             RefreshBuild(inst)
         end

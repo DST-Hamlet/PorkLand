@@ -194,7 +194,7 @@ local states =
                 SpawnPrefab("collapse_big").Transform:SetPosition(inst.Transform:GetWorldPosition())
             end),
             TimeEvent(23 * FRAMES, function(inst)
-                TheWorld:PushEvent("bandit_escaped")
+                TheWorld:PushEvent("bandit_escaped", {bandit = inst})
                 inst:PerformBufferedAction()
                 inst:RemoveFromScene()
                 inst.sg:GoToState("idle")

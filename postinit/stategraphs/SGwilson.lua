@@ -189,16 +189,18 @@ local eventhandlers = {
         end
     end),
     -- Happens when the Ant Queen uses her song attack
-    EventHandler("sanity_stun",
-    function(inst, data)
+    EventHandler("sanity_stun", function(inst, data)
         for k, v in pairs(inst.components.inventory.equipslots) do
             if v:HasTag("earmuff") then
                 return
             end
         end
-
-        inst.sg:GoToState("sanity_stun", data.duration)
-        inst.components.sanity:DoDelta(-TUNING.SANITY_LARGE)
+        if not (inst.components.health:IsDead() or
+                inst.sg:HasStateTag("sleeping") or
+                inst.sg:HasStateTag("frozen")) then
+            inst.sg:GoToState("sanity_stun", data.duration)
+            inst.components.sanity:DoDelta(-TUNING.SANITY_LARGE)
+        end
     end),
     EventHandler("cower", function(inst, data)
         --NOTE: cower DO knock you out of shell/bush hat
@@ -322,7 +324,7 @@ local states = {
                 inst.sg.statemem.action:IsValid() and
                 inst.sg.statemem.action.target ~= nil and
                 inst.sg.statemem.action.target.components.hackable ~= nil and
-                inst.sg.statemem.action.target.components.hackable:CanBeHacked() and
+                inst.sg.statemem.action.target.components.hackable:CanBeWorked() and
                 inst.sg.statemem.action.target:IsActionValid(inst.sg.statemem.action.action) and
                 CanEntitySeeTarget(inst, inst.sg.statemem.action.target) then
                     inst:ClearBufferedAction()
@@ -624,7 +626,6 @@ local states = {
                 if fishingrod ~= nil and fishingrod.target and fishingrod.target.components.inventoryitem then
                     local delta = inst:GetPosition() - fishingrod.target:GetPosition()
                     fishingrod.target.components.inventoryitem:Launch(Vector3(0,10,0) + delta * 2)
-                    inst.sg.statemem.tool:PushEvent("fishingcollect")
                 elseif fishingrod ~= nil and fishingrod.target and fishingrod.target:HasTag("sunkencontainer") then
                     local item = fishingrod.target.components.container:RemoveItemBySlot(1)
                     item.Transform:SetPosition(fishingrod.target.Transform:GetWorldPosition())
@@ -632,7 +633,10 @@ local states = {
                     fishingrod.target = item
                     local delta = inst:GetPosition() - fishingrod.target:GetPosition()
                     fishingrod.target.components.inventoryitem:Launch(Vector3(0,10,0) + delta * 2)
-                    inst.sg.statemem.tool:PushEvent("fishingcollect")
+                end
+
+                if fishingrod then
+                    inst.sg.statemem.tool:PushEvent("fishingcollect") -- 耐久结算
                 end
             end),
             TimeEvent(64*FRAMES, function(inst)
@@ -1713,7 +1717,7 @@ local states = {
 
     State{
         name = "usedoor",
-        tags = {"doing", "busy", "canrotate"},
+        tags = {"doing", "busy"},
 
         onenter = function(inst)
             inst.components.locomotor:Stop()
@@ -1723,12 +1727,29 @@ local states = {
                 -- inst.components.playercontroller:EnableMapControls(false)
                 inst.components.playercontroller:Enable(false)
             end
+
+            local buffaction = inst:GetBufferedAction()
+            local target = buffaction ~= nil and buffaction.target or nil
+            if target and target.components.door then
+                inst:ForceFacePoint((inst:GetPosition() - target.components.door:GetOffsetPos()):Get())
+            end
         end,
 
         timeline =
         {
             TimeEvent(2 * FRAMES, function(inst)
-                inst:ScreenFade(false, 0.4)
+                local buffaction = inst:GetBufferedAction()
+                local target = buffaction ~= nil and buffaction.target or nil
+                if target and not target.components.door:IsLocked() then
+                    inst:ScreenFade(false, 0.4)
+                    inst.sg.mem.screenfaded = true
+                end
+                inst:DoStaticTaskInTime(0.6, function()
+                    if inst.sg.mem.screenfaded then
+                        inst:ScreenFade(true, 0.4)
+                        inst.sg.mem.screenfaded = false
+                    end
+                end)
             end),
 
             TimeEvent(15 * FRAMES, function(inst)
@@ -1736,7 +1757,6 @@ local states = {
             end),
 
             TimeEvent(19 * FRAMES, function(inst)
-                inst:ScreenFade(true, 0.4)
                 if inst.components.playercontroller then
                     -- inst.components.playercontroller:EnableMapControls(true)
                     inst.components.playercontroller:Enable(true)
@@ -1754,7 +1774,10 @@ local states = {
                 inst.components.playercontroller:EnableMapControls(true)
                 inst.components.playercontroller:Enable(true)
             end
-            inst:ScreenFade(true, 0.4)
+            if inst.sg.mem.screenfaded then
+                inst:ScreenFade(true, 0.4)
+                inst.sg.mem.screenfaded = false
+            end
         end,
     },
 

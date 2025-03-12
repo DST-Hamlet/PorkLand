@@ -29,7 +29,7 @@ end
 function MakeHackableBlowInWindGust(inst, wind_speed, destroy_chance)
     inst.onblownpstdone = function(inst)
         if inst.components.hackable and
-            inst.components.hackable:CanBeHacked() and
+            inst.components.hackable:CanBeWorked() and
             (
                 inst.AnimState:IsCurrentAnimation("blown_pst") or
                 inst.AnimState:IsCurrentAnimation("blown_loop") or
@@ -42,7 +42,7 @@ function MakeHackableBlowInWindGust(inst, wind_speed, destroy_chance)
     end
 
     inst.ongustanimdone = function(inst)
-        if inst.components.hackable and inst.components.hackable:CanBeHacked() then
+        if inst.components.hackable and inst.components.hackable:CanBeWorked() then
             if inst.components.blowinwindgust:IsGusting() then
                 local anim = math.random(1, 2)
                 inst.AnimState:PlayAnimation("blown_loop"..anim, false)
@@ -51,7 +51,7 @@ function MakeHackableBlowInWindGust(inst, wind_speed, destroy_chance)
                     inst:RemoveEventCallback("animover", inst.ongustanimdone)
 
                     -- This may not be true anymore
-                    if inst.components.hackable and inst.components.hackable:CanBeHacked() then
+                    if inst.components.hackable and inst.components.hackable:CanBeWorked() then
                         inst.AnimState:PlayAnimation("blown_pst", false)
                         -- changed this from a push animation to an animover listen event so that it can be interrupted if necessary, and that a check can be made at the end to know if it should go to idle at that time.
                         --inst.AnimState:PushAnimation("idle", true)
@@ -66,17 +66,17 @@ function MakeHackableBlowInWindGust(inst, wind_speed, destroy_chance)
 
     inst.onguststart = function(inst, windspeed)
         inst:DoTaskInTime(math.random()/2, function(inst)
-            if inst.components.hackable and inst.components.hackable:CanBeHacked() then
+            if inst.components.hackable and inst.components.hackable:CanBeWorked() then
                 inst.AnimState:PlayAnimation("blown_pre", false)
                 inst:ListenForEvent("animover", inst.ongustanimdone)
             end
         end)
     end
 
+    local destroyer = CreateEntity()
     inst.ongusthack = function(inst)
-        if inst.components.hackable and inst.components.hackable:CanBeHacked() then
-            inst.components.hackable:MakeEmpty()
-            inst.components.lootdropper:SpawnLootPrefab(inst.components.hackable.product)
+        if inst.components.hackable and inst.components.hackable:CanBeWorked() then
+            inst.components.hackable:Destroy(destroyer)
         end
     end
 
@@ -325,6 +325,46 @@ function MakeAmphibiousCharacterPhysics(inst, mass, radius)
     inst:AddTag("amphibious")
 end
 
+function ChangeToAmphibiousCharacterPhysics(inst, mass, rad)
+    local phys = inst.Physics
+    if mass then
+        phys:SetMass(mass)
+        phys:SetFriction(0)
+    end
+    inst.Physics:SetCollisionGroup(COLLISION.CHARACTERS)
+    inst.Physics:ClearCollisionMask()
+    inst.Physics:CollidesWith((TheWorld.has_ocean and COLLISION.GROUND) or COLLISION.WORLD)
+    inst.Physics:CollidesWith(COLLISION.OBSTACLES)
+    inst.Physics:CollidesWith(COLLISION.SMALLOBSTACLES)
+    inst.Physics:CollidesWith(COLLISION.CHARACTERS)
+    inst.Physics:CollidesWith(COLLISION.GIANTS)
+    inst.Physics:ClearCollidesWith(COLLISION.LAND_OCEAN_LIMITS)
+    if rad then
+        phys:SetCapsule(rad, 1)
+    end
+    if mass then
+        phys:SetDamping(5) -- 最后执行摩擦力, 否则会出问题. 例如联机版的鬼魂漂移bug
+    end
+    return phys
+end
+
+function ChangeToJunmpingPhysics(inst, mass, rad)
+    local phys = inst.Physics
+    if mass then
+        phys:SetMass(mass)
+        phys:SetFriction(0)
+    end
+    inst.Physics:ClearCollisionMask()
+    inst.Physics:CollidesWith((TheWorld.has_ocean and COLLISION.GROUND) or COLLISION.WORLD)
+    if rad then
+        phys:SetCapsule(rad, 1)
+    end
+    if mass then
+        phys:SetDamping(5) -- 最后执行摩擦力, 否则会出问题. 例如联机版的鬼魂漂移bug
+    end
+    return phys
+end
+
 ---@param land_bank string
 ---@param water_bank string
 ---@param should_silent function|nil
@@ -342,7 +382,9 @@ function MakeAmphibious(inst, land_bank, water_bank, should_silent, on_enter_wat
         end
 
         if inst.DynamicShadow then
-            inst.DynamicShadow:Enable(false)
+            if not (inst.sg and inst.sg:HasStateTag("falling")) then
+                inst.DynamicShadow:Enable(false)
+            end
         end
 
         if inst.components.burnable then
@@ -489,10 +531,24 @@ local _MakeFlyingCharacterPhysics = MakeFlyingCharacterPhysics
 function MakeFlyingCharacterPhysics(inst, mass, rad, ...)
     local physics = _MakeFlyingCharacterPhysics(inst, mass, rad, ...)
     inst.OnLandPhysics = function(inst)
-        ChangeToCharacterPhysics(inst, mass, rad)
+        local newmass = inst.Physics:GetMass()
+        local newrad = inst.Physics:GetRadius()
+        ChangeToCharacterPhysics(inst, newmass, newrad)
     end
     inst.OnRaisePhysics = function(inst)
-        ChangeToFlyingCharacterPhysics(inst, mass, rad)
+        local newmass = inst.Physics:GetMass()
+        local newrad = inst.Physics:GetRadius()
+        ChangeToFlyingCharacterPhysics(inst, newmass, newrad)
+    end
+    return physics
+end
+
+local _MakeGhostPhysics = MakeGhostPhysics
+function MakeGhostPhysics(inst, ...)
+    _MakeGhostPhysics(inst, ...)
+    local physics = inst.Physics
+    if TheWorld:HasTag("porkland") then
+        physics:ClearCollidesWith(COLLISION.LIMITS)
     end
     return physics
 end
@@ -501,6 +557,9 @@ local _RemovePhysicsColliders = RemovePhysicsColliders
 function RemovePhysicsColliders(inst, ...)
     _RemovePhysicsColliders(inst, ...)
     local physics = inst.Physics
+    if not physics then
+        return
+    end
     if TheWorld:HasTag("porkland") and physics:GetMass() > 0 then
         physics:ClearCollidesWith(COLLISION.LIMITS)
         physics:ClearCollidesWith(COLLISION.VOID_LIMITS)
@@ -537,9 +596,9 @@ function MakeHauntableVineDoor(inst)
         if math.random() <= TUNING.HAUNT_CHANCE_OFTEN then
             if inst.components.vineable and inst.components.vineable.vines and
                 inst.components.vineable.vines.components.hackable and inst.components.vineable.vines.stage > 0 then
-                    inst.components.vineable.vines.components.hackable:Hack(player, 1)
+                    inst.components.vineable.vines.components.hackable:WorkedBy(player, 1)
             elseif inst.components.hackable and inst.stage > 0 then -- 内部门用vineable, 外部门用hackable...需要代码清理
-                inst.components.hackable:Hack(player, 1)
+                inst.components.hackable:WorkedBy(player, 1)
             end
         end
         return false

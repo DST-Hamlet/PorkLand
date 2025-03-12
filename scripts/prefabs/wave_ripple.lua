@@ -24,7 +24,7 @@ local function WetAndDamage(inst, other)
         local moisture = v.components.moisture
         if moisture ~= nil then
             local waterproofness = moisture:GetWaterproofness()
-            moisture:DoDelta(inst.hitmoisture or SPLASH_WETNESS * (1 - waterproofness))
+            moisture:DoDelta((inst.hitmoisture or SPLASH_WETNESS) * (1 - waterproofness))
         end
     end
 end

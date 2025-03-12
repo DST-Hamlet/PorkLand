@@ -1,6 +1,15 @@
 local AddComponentPostInit = AddComponentPostInit
 GLOBAL.setfenv(1, GLOBAL)
 
+local immune_to_wind_tags = {
+    "ghost",
+    "playerghost",
+    "shadow",
+    "shadowchesspiece",
+    "windspeedimmune",
+    "INLIMBO",
+}
+
 local function GetWindSpeed(self)
     local wind_speed = 1
 
@@ -10,7 +19,7 @@ local function GetWindSpeed(self)
 
     -- get a wind speed adjustment
     if TheWorld.net ~= nil and TheWorld.net.components.plateauwind and TheWorld.net.components.plateauwind:GetIsWindy()
-        and not self.inst:HasTag("windspeedimmune")
+        and not self.inst:HasOneOfTags(immune_to_wind_tags)
         and not self.inst:HasTag("playerghost") then
 
         local windangle = self.inst.Transform:GetRotation() - TheWorld.net.components.plateauwind:GetWindAngle()
@@ -100,10 +109,19 @@ end
 
 local function RecalculateExternalSpeedMultiplier(self, sources)
     local m = 1
+    local speedmultipliers = {}
     for source, src_params in pairs(sources) do
         for k, v in pairs(src_params.multipliers) do
-            m = m + (v - 1)
+            if speedmultipliers[k] == nil then
+                speedmultipliers[k] = v
+            elseif speedmultipliers[k] < v then
+                speedmultipliers[k] = v
+            end
         end
+    end
+
+    for k, v in pairs(speedmultipliers) do
+        m = m + (v - 1)
     end
     return m
 end

@@ -42,7 +42,7 @@ local function CommonFn()
     inst.AnimState:PlayAnimation("idle")
 
     MakeInventoryPhysics(inst)
-    MakeInventoryFloatable(inst, "idle_water", "idle")
+    PorkLandMakeInventoryFloatable(inst)
 
     inst.entity:SetPristine()
 

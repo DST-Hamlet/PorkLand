@@ -4,7 +4,6 @@ GLOBAL.setfenv(1, GLOBAL)
 AddPrefabPostInit("world", function(inst)
     if not TheWorld.components.interiorspawner then
         inst:AddComponent("interiorspawner")
-
     end
 
     if not TheWorld.ismastersim then
@@ -35,5 +34,9 @@ AddPrefabPostInit("world", function(inst)
 
     if not TheWorld.components.globalidentityinfo then
         inst:AddComponent("globalidentityinfo")
+    end
+
+    if not TheWorld.components.worldtimetracker then
+        inst:AddComponent("worldtimetracker")
     end
 end)
