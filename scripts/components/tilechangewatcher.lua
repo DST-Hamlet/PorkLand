@@ -1,4 +1,5 @@
-local REFRESH_RADIUS = 7
+-- 40 / 4 = 10
+local REFRESH_RADIUS = PLAYER_CAMERA_SEE_DISTANCE / TILE_SCALE
 
 local TileChangeWatcher = Class(function(self, inst)
     self.inst = inst
