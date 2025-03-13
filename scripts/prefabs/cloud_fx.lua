@@ -19,8 +19,7 @@ local function fn()
     inst.AnimState:SetDeltaTimeMultiplier(2)
 
     inst.AnimState:SetLayer(LAYER_BELOW_GROUND)
-    inst.AnimState:SetSortOrder(-1)
-    inst.AnimState:SetFinalOffset(-2)
+    inst.AnimState:SetSortOrder(-3)
 
     inst:AddTag("FX")
     inst:AddTag("NOCLICK")

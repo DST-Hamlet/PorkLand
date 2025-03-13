@@ -50,8 +50,7 @@ local function fn()
     inst.AnimState:SetDefaultEffectHandle(resolvefilepath("shaders/anim_waterfall.ksh"))
 
     inst.AnimState:SetLayer(LAYER_BELOW_GROUND)
-    inst.AnimState:SetSortOrder(0)
-    inst.AnimState:SetFinalOffset(-2)
+    inst.AnimState:SetSortOrder(3)
 
     inst._paramrotation = net_float(inst.GUID, "_paramrotation", "paramrotationdirty")
 

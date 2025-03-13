@@ -7,8 +7,8 @@ local TileChangeWatcher = Class(function(self, inst)
     self.falloffs = {}
     self.last_tile_center = nil
 
-    self.effects = {}
-    self.effects[1] = SpawnPrefab("falloff_fx_new")
+    self.effectparents = {}
+    self.effectparents[1] = SpawnPrefab("falloff_fx_parent")
 
     inst:StartWallUpdatingComponent(self)
 end)
@@ -19,13 +19,13 @@ function TileChangeWatcher:ClearFalloffs()
 end
 
 function TileChangeWatcher:SpawnFalloffs()
-    for _, effect in ipairs(self.effects) do
-        effect.VFXEffect:ClearAllParticles(0)
+    for _, parent in ipairs(self.effectparents) do
+        parent:ClearVFX()
     end
     for _, data in ipairs(self.falloffs) do
         print("SpawnFallOff",data.position)
-        for _, effect in ipairs(self.effects) do
-            effect:emit_fn(data.position)
+        for _, parent in ipairs(self.effectparents) do
+            parent:SpawnFalloff(data.position, data.angle)
         end
     end
 end
@@ -36,25 +36,27 @@ end
 
 TileChangeWatcher.OnRemoveFromEntity = TileChangeWatcher.OnRemoveEntity
 
+local offset_x = 0.01
+
 local adjacent = {
     {
-        x = TILE_SCALE,
+        x = TILE_SCALE + offset_x,
         z = 0,
         angle = 0,
     },
     {
-        x = -TILE_SCALE,
+        x = -(TILE_SCALE + offset_x),
         z = 0,
         angle = 180,
     },
     {
         x = 0,
-        z = TILE_SCALE,
+        z = TILE_SCALE + offset_x,
         angle = 270,
     },
     {
         x = 0,
-        z = -TILE_SCALE,
+        z = -(TILE_SCALE + offset_x),
         angle = 90,
     },
 }
@@ -81,7 +83,7 @@ function TileChangeWatcher:UpdateFalloffs()
                     if adjacent_tile and not TileGroupManager:IsLandTile(adjacent_tile) then
                         table.insert(self.falloffs, {
                             position = Vector3(center.x + v.x / 2, center.y, center.z + v.z / 2),
-                            angle = -v.angle + 90,
+                            angle = v.angle,
                         })
                     end
                 end

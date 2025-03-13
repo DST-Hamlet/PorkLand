@@ -1,8 +1,10 @@
-local TEXTURE = "levels/textures/interiors/antcave_wall_rock.tex"
-local SHADER = "shaders/interior_wall_particle.ksh"
+local TEXTURE = "levels/tiles/falloff.tex"
+local SHADER = "shaders/falloff_particle.ksh"
 
 local COLOUR_ENVELOPE_NAME = "pl_falloffcolourenvelope"
 local SCALE_ENVELOPE_NAME = "pl_falloffscaleenvelope"
+
+local MAX_LIFETIME = 1e10
 
 local assets =
 {
@@ -11,10 +13,6 @@ local assets =
 }
 
 --------------------------------------------------------------------------
-
-local function IntColour(r, g, b, a)
-    return { r / 255, g / 255, b / 255, a / 255 }
-end
 
 local function InitEnvelope()
     EnvelopeManager:AddColourEnvelope(
@@ -25,7 +23,7 @@ local function InitEnvelope()
         }
     )
 
-    local width, height = 1.46484375, 1.46484375 * 1.08
+    local width, height = 1.171875 * 4 * 1.0025, 1.171875 * 4 * 2
     EnvelopeManager:AddVector2Envelope(
         SCALE_ENVELOPE_NAME,
         {
@@ -35,27 +33,18 @@ local function InitEnvelope()
     )
 
     InitEnvelope = nil
-    IntColour = nil
 end
-
-
-
---------------------------------------------------------------------------
-
-local MAX_LIFETIME = 60
-local MIN_LIFETIME = 30
 
 --------------------------------------------------------------------------
 
 local function fn()
     local inst = CreateEntity()
+    inst.entity:AddTransform()
 
     inst:AddTag("FX")
     --[[Non-networked entity]]
     inst.entity:SetCanSleep(false)
     inst.persists = false
-
-    inst.entity:AddTransform()
 
     if InitEnvelope ~= nil then
         InitEnvelope()
@@ -64,61 +53,69 @@ local function fn()
     local effect = inst.entity:AddVFXEffect()
     effect:InitEmitters(1)
     effect:SetRenderResources(0, resolvefilepath(TEXTURE), resolvefilepath(SHADER))
-    effect:SetMaxNumParticles(0, 1000)
+    effect:SetMaxNumParticles(0, 10000)
     effect:SetMaxLifetime(0, MAX_LIFETIME)
     effect:SetColourEnvelope(0, COLOUR_ENVELOPE_NAME)
     effect:SetScaleEnvelope(0, SCALE_ENVELOPE_NAME)
-    --effect:SetLayer(0, LAYER_BACKGROUND)
+    effect:SetUVFrameSize(0, 0.25, 0.5)
+    effect:SetLayer(0, LAYER_BELOW_GROUND)
+    effect:SetSortOrder(0, -1)
     effect:EnableDepthTest(0, true)
     effect:EnableDepthWrite(0, true)
     effect:SetSpawnVectors(0,
         1, 0, 0,
         0, 1, 0)
 
-    -----------------------------------------------------
+    return inst
+end
 
-    local rng = math.random
-    local tick_time = TheSim:GetTickTime()
+local function ClearVFX(inst)
+    for k, v in pairs(inst.effects) do
+        v.VFXEffect:ClearAllParticles(0)
+    end
+end
 
-    local desired_particles_per_second = 0--300
-    inst.particles_per_tick = desired_particles_per_second * tick_time
+local function SpawnFalloff(inst, pos, angle)
+    inst.effects[angle].Transform:SetPosition(pos.x, pos.y, pos.z)
 
-    inst.num_particles_to_emit = inst.particles_per_tick
+    inst.effects[angle].VFXEffect:AddParticleUV(
+        0,
+        MAX_LIFETIME,           -- lifetime
+        0, -4, 0,         -- position
+        0, 0, 0,          -- velocity
+        0, 0        -- uvoffset_x, uvoffset_y        -- uv offset
+    )
+end
 
-    local function emit_fn(inst, pos)
-        inst.Transform:SetPosition(pos.x, pos.y, pos.z)
-        local lifetime = MIN_LIFETIME + (MAX_LIFETIME - MIN_LIFETIME) * UnitRand()
+local ANGLE_TO_VECTOR = {
+    [0] = {0, 0, 1},
+    [90] = {1, 0, 0},
+    [180] = {0, 0, -1},
+    [270] = {-1, 0, 0},
+}
 
-        effect:AddParticle(
-            0,
-            lifetime,           -- lifetime
-            0, 2, 0,         -- position
-            0, 0, 0          -- velocity
-       )
+local function fn_parent()
+    local inst = CreateEntity()
+    inst.entity:AddTransform()
+
+    inst:AddTag("FX")
+    --[[Non-networked entity]]
+    inst.entity:SetCanSleep(false)
+    inst.persists = false
+
+    inst.effects = {}
+    for k, data in pairs(ANGLE_TO_VECTOR) do
+        inst.effects[k] = SpawnPrefab("falloff_fx_child")
+        inst.effects[k].VFXEffect:SetSpawnVectors(0,
+        data[1], data[2], data[3],
+        0, 1, 0)
     end
 
-    inst.emit_fn = emit_fn
-
-    local function updateFunc()
-        -- emit_fn()
-    end
-
-    inst.time = 0
-    inst.interval = 0
-
-    EmitterManager:AddEmitter(inst, nil, updateFunc)
-
-    function inst:PostInit()
-        local dt = 1 / 30
-        local t = MAX_LIFETIME
-        while t > 0 do
-            t = t - dt
-            updateFunc()
-            effect:FastForward(0, dt)
-        end
-    end
+    inst.SpawnFalloff = SpawnFalloff
+    inst.ClearVFX = ClearVFX
 
     return inst
 end
 
-return Prefab("falloff_fx_new", fn, assets)
+return Prefab("falloff_fx_child", fn, assets),
+    Prefab("falloff_fx_parent", fn_parent, assets)

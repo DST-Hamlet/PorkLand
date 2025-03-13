@@ -411,6 +411,9 @@ Assets = {
     -- Vertical
     Asset("SHADER", "shaders/anim_vertical.ksh"),
 
+    -- FallOff
+    Asset("SHADER", "shaders/falloff_particle.ksh"),
+
     -- Interior MiniMap
     Asset("ATLAS", "interior_minimap/interior_minimap.xml"),
     Asset("ATLAS", "levels/textures/map_interior/mini_floor_marble_royal.xml"),
