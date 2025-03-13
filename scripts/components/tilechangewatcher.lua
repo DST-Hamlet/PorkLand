@@ -24,7 +24,6 @@ function TileChangeWatcher:SpawnFalloffs()
     end
     for _, data in ipairs(self.falloffs) do
         for _, parent in ipairs(self.effectparents) do
-            print("SpawnFalloff", data.position, data.angle, data.type)
             parent:SpawnFalloff(data.position, data.angle, data.type)
         end
     end

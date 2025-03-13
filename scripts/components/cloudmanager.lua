@@ -11,9 +11,10 @@ end)
 
 function CloudManager:Init()
     self.clouds_parent = SpawnPrefab("group_parent")
+    self.cloud_fx = SpawnPrefab("cloud_fx")
     local random_offset_z = 0
     for i = 1, self.num do
-        local cloud = SpawnPrefab("cloud_fx")
+        local cloud = SpawnPrefab("group_child")
         self.clouds[i] = cloud
 
         cloud.entity:SetParent(self.clouds_parent.entity)
@@ -63,6 +64,22 @@ function CloudManager:UpdatePos(dt)
 
     self.clouds_parent.Transform:SetPosition(newpos.x, -4, newpos.z)
     self.clouds_parent.Transform:SetRotation(- TheCamera.heading)
-end
 
+    self.cloud_fx.VFXEffect:ClearAllParticles(0)
+    for i = 1, self.num do
+        local cloud = self.clouds[i]
+        if cloud and cloud:IsValid() then
+            local x, y, z = cloud.Transform:GetWorldPosition()
+            self.cloud_fx.Transform:SetPosition(x, y, z)
+            if i == 24 then
+                print("spawn cloud wave", x, y, z)
+            end
+            self.cloud_fx.VFXEffect:AddParticle(
+                0,
+                1e10,           -- lifetime
+                0, 0, 0,         -- position
+                0, 0, 0)          -- velocity
+        end
+    end
+end
 return CloudManager

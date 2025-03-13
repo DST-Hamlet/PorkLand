@@ -59,7 +59,7 @@ local function fn()
     effect:SetScaleEnvelope(0, SCALE_ENVELOPE_NAME)
     effect:SetUVFrameSize(0, 0.234375, 0.46875)
     effect:SetLayer(0, LAYER_BELOW_GROUND)
-    effect:SetSortOrder(0, 2)
+    effect:SetSortOrder(0, 1)
     effect:EnableDepthTest(0, true)
     effect:EnableDepthWrite(0, true)
     effect:SetSpawnVectors(0,
