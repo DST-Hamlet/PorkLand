@@ -75,7 +75,16 @@ local function ClearVFX(inst)
     end
 end
 
-local function SpawnFalloff(inst, pos, angle)
+local TYPE_UV = {
+    [1] = {0, 0.5},
+    [2] = {0.25, 0.5},
+    [3] = {0.5, 0.5},
+    [4] = {0.75, 0.5},
+    [5] = {0, 0},
+    [6] = {0.25, 0},
+}
+
+local function SpawnFalloff(inst, pos, angle, type)
     inst.effects[angle].Transform:SetPosition(pos.x, pos.y, pos.z)
 
     inst.effects[angle].VFXEffect:AddParticleUV(
@@ -83,7 +92,7 @@ local function SpawnFalloff(inst, pos, angle)
         MAX_LIFETIME,           -- lifetime
         0, -4, 0,         -- position
         0, 0, 0,          -- velocity
-        0, 0        -- uvoffset_x, uvoffset_y        -- uv offset
+        TYPE_UV[type][1], TYPE_UV[type][2]        -- uvoffset_x, uvoffset_y        -- uv offset
     )
 end
 

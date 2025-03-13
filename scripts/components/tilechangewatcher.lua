@@ -23,9 +23,9 @@ function TileChangeWatcher:SpawnFalloffs()
         parent:ClearVFX()
     end
     for _, data in ipairs(self.falloffs) do
-        print("SpawnFallOff",data.position)
         for _, parent in ipairs(self.effectparents) do
-            parent:SpawnFalloff(data.position, data.angle)
+            print("SpawnFalloff", data.position, data.angle, data.type)
+            parent:SpawnFalloff(data.position, data.angle, data.type)
         end
     end
 end
@@ -70,6 +70,10 @@ function TileChangeWatcher:OnWallUpdate(dt)
     self:UpdateFalloffs()
 end
 
+local function GetFalloffType(x, z)
+    return math.floor(((x * 73856093 + bit.bxor(z, 19349663)) % 6) + 1)
+end
+
 function TileChangeWatcher:UpdateFalloffs()
     self:ClearFalloffs()
     local current_tile_center = self.last_tile_center
@@ -84,6 +88,7 @@ function TileChangeWatcher:UpdateFalloffs()
                         table.insert(self.falloffs, {
                             position = Vector3(center.x + v.x / 2, center.y, center.z + v.z / 2),
                             angle = v.angle,
+                            type = GetFalloffType(center.x + v.x / 2, center.z + v.z / 2)
                         })
                     end
                 end
