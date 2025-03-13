@@ -23,7 +23,7 @@ local function InitEnvelope()
         }
     )
 
-    local width, height = 1.171875 * 4 * 1.0025, 1.171875 * 4 * 2
+    local width, height = 1.171875 * 4 * 1.0025 * 1.0666667, 1.171875 * 4 * 2 * 1.0666667
     EnvelopeManager:AddVector2Envelope(
         SCALE_ENVELOPE_NAME,
         {
@@ -57,9 +57,9 @@ local function fn()
     effect:SetMaxLifetime(0, MAX_LIFETIME)
     effect:SetColourEnvelope(0, COLOUR_ENVELOPE_NAME)
     effect:SetScaleEnvelope(0, SCALE_ENVELOPE_NAME)
-    effect:SetUVFrameSize(0, 0.25, 0.5)
+    effect:SetUVFrameSize(0, 0.234375, 0.46875)
     effect:SetLayer(0, LAYER_BELOW_GROUND)
-    effect:SetSortOrder(0, -1)
+    effect:SetSortOrder(0, 2)
     effect:EnableDepthTest(0, true)
     effect:EnableDepthWrite(0, true)
     effect:SetSpawnVectors(0,
@@ -76,12 +76,12 @@ local function ClearVFX(inst)
 end
 
 local TYPE_UV = {
-    [1] = {0, 0.5},
-    [2] = {0.25, 0.5},
-    [3] = {0.5, 0.5},
-    [4] = {0.75, 0.5},
-    [5] = {0, 0},
-    [6] = {0.25, 0},
+    [1] = {0.0078125, 0.515625},
+    [2] = {0.2578125, 0.515625},
+    [3] = {0.5078125, 0.515625},
+    [4] = {0.7578125, 0.515625},
+    [5] = {0.0078125, 0.015625},
+    [6] = {0.2421875, 0.015625},
 }
 
 local function SpawnFalloff(inst, pos, angle, type)
