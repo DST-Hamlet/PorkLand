@@ -24,7 +24,7 @@ return {
         GAS = "Gas",
         GIVE = {
             LOAD = "Load",
-        }
+        },
         HACK = "Hack",
         PAN = "Pan",
         PICK = {

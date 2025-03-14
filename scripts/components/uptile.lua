@@ -85,24 +85,10 @@ function Uptile:FixAllTiles(force) -- 请确保在世界第一次加载时执行
                         end
                     end
                 end
-
-                if not self.tilesfixed["mud_falloff"] then
-                    if TileGroupManager:IsLandTile(tile) then
-                        for i, v in ipairs(adjacent) do
-                            local neibor_tile = map:GetTile(x + v.x, y + v.z)
-                            if neibor_tile and not TileGroupManager:IsLandTile(neibor_tile) then
-                                local falloff = SpawnPrefab("falloff_fx")
-                                falloff.Transform:SetPosition(tx + v.x * 2, _, tz + v.z * 2)
-                                falloff._paramrotation:set(-v.angle + 90)
-                            end
-                        end
-                    end
-                end
             end
         end
         self.tilesfixed["pigruins"] = true
         self.tilesfixed["lilypond_version_1"] = true
-        self.tilesfixed["mud_falloff"] = true
     end
 end
 

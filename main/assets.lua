@@ -281,6 +281,7 @@ PrefabFiles = {
     "falloff_fx",
     "cloud_fx",
     "group_parent",
+    "group_child",
 
     "wheeler",
     "trusty_shooter",
