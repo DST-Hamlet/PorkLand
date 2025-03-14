@@ -1,6 +1,6 @@
 local FALLOFF_TYPES =
 {
-    ["mud"] = 
+    ["mud"] =
     {
         testfn = function(tile, adjacent_tile)
             if TileGroupManager:IsLandTile(tile) and not TileGroupManager:IsLandTile(adjacent_tile) then
@@ -10,7 +10,7 @@ local FALLOFF_TYPES =
 
         texture = "levels/tiles/falloff.tex",
     },
-    -- ["test"] = 
+    -- ["test"] =
     -- {
         -- testfn = function(tile, adjacent_tile)
             -- if TileGroupManager:IsOceanTile(tile) and TileGroupManager:IsImpassableTile(adjacent_tile) then
@@ -22,10 +22,10 @@ local FALLOFF_TYPES =
     -- },
 }
 
--- 40 / 4 = 10
-local REFRESH_RADIUS = PLAYER_CAMERA_SEE_DISTANCE / TILE_SCALE
+-- PLAYER_CAMERA_SEE_DISTANCE (40) / TILE_SCALE (4) = 10
+local REFRESH_RADIUS = (PLAYER_CAMERA_SEE_DISTANCE / TILE_SCALE) + 5
 
-local TileChangeWatcher = Class(function(self, inst)
+local FalloffManager = Class(function(self, inst)
     self.inst = inst
 
     self.falloffs = {}
@@ -41,24 +41,24 @@ local TileChangeWatcher = Class(function(self, inst)
     inst:StartWallUpdatingComponent(self)
 end)
 
-function TileChangeWatcher:ClearFalloffs()
-    for _, fx_inst in pairs(self.falloff_fxs) do
+function FalloffManager:ClearFalloffs()
+    for _, fx_inst in pairs(FalloffManager.falloff_fxs) do
         fx_inst:ClearVFX()
     end
-    self.falloffs = {}
+    FalloffManager.falloffs = {}
 end
 
-function TileChangeWatcher:SpawnFalloffs()
-    for _, data in ipairs(self.falloffs) do
-        self.falloff_fxs[data.name]:SpawnFalloff(data.position, data.angle, data.variant)
+function FalloffManager:SpawnFalloffs()
+    for _, data in ipairs(FalloffManager.falloffs) do
+        FalloffManager.falloff_fxs[data.name]:SpawnFalloff(data.position, data.angle, data.variant)
     end
 end
 
-function TileChangeWatcher:OnRemoveEntity()
-    self:ClearFalloffs()
+function FalloffManager:OnRemoveEntity()
+    FalloffManager:ClearFalloffs()
 end
 
-TileChangeWatcher.OnRemoveFromEntity = TileChangeWatcher.OnRemoveEntity
+FalloffManager.OnRemoveFromEntity = FalloffManager.OnRemoveEntity
 
 local offset_x = 0.01
 
@@ -85,22 +85,22 @@ local adjacent = {
     },
 }
 
-function TileChangeWatcher:OnWallUpdate(dt)
-    local current_tile_center = Vector3(TheWorld.Map:GetTileCenterPoint(self.inst.Transform:GetWorldPosition()))
-    if current_tile_center == self.last_tile_center then
+function FalloffManager:OnWallUpdate(dt)
+    local current_tile_center = Vector3(TheWorld.Map:GetTileCenterPoint(FalloffManager.inst.Transform:GetWorldPosition()))
+    if current_tile_center == FalloffManager.last_tile_center then
         return
     end
-    self.last_tile_center = current_tile_center
-    self:UpdateFalloffs()
+    FalloffManager.last_tile_center = current_tile_center
+    FalloffManager:UpdateFalloffs()
 end
 
 local function GetFalloffVariant(x, z)
     return math.floor(((x * 73856093 + bit.bxor(z, 19349663)) % 6) + 1)
 end
 
-function TileChangeWatcher:UpdateFalloffs()
-    self:ClearFalloffs()
-    local current_tile_center = self.last_tile_center
+function FalloffManager:UpdateFalloffs()
+    FalloffManager:ClearFalloffs()
+    local current_tile_center = FalloffManager.last_tile_center
     for x = -REFRESH_RADIUS, REFRESH_RADIUS do
         for z = -REFRESH_RADIUS, REFRESH_RADIUS do
             local center = current_tile_center + Vector3(x * TILE_SCALE, 0, z * TILE_SCALE)
@@ -111,7 +111,7 @@ function TileChangeWatcher:UpdateFalloffs()
                     if adjacent then
                         for falloff_name, falloff_data in pairs(FALLOFF_TYPES) do
                             if falloff_data.testfn(tile, adjacent_tile) then
-                                table.insert(self.falloffs, {
+                                table.insert(FalloffManager.falloffs, {
                                     position = Vector3(center.x + v.x / 2, center.y, center.z + v.z / 2),
                                     angle = v.angle,
                                     variant = GetFalloffVariant(center.x + v.x / 2, center.z + v.z / 2),
@@ -124,7 +124,7 @@ function TileChangeWatcher:UpdateFalloffs()
             end
         end
     end
-    self:SpawnFalloffs()
+    FalloffManager:SpawnFalloffs()
 end
 
-return TileChangeWatcher
+return FalloffManager

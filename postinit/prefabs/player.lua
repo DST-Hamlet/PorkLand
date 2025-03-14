@@ -145,7 +145,7 @@ AddPlayerPostInit(function(inst)
                     inst:AddComponent("windvisuals")
                     inst:AddComponent("cloudpuffmanager")
                     inst:AddComponent("persistencevision")
-                    inst:AddComponent("tilechangewatcher")
+                    inst:AddComponent("falloffmanager")
                 end
             end
         end)
