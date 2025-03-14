@@ -1,4 +1,4 @@
-local TEXTURE = "images/cloud/fog_cloud.tex"
+local TEXTURE = "images/cloud/fog_cloud_long.tex"
 local SHADER = "shaders/vfx_particle.ksh"
 
 local COLOUR_ENVELOPE_NAME = "pl_cloudcolourenvelope"
@@ -8,7 +8,7 @@ local MAX_LIFETIME = 1e10
 
 local assets =
 {
-    Asset("IMAGE", "images/cloud/fog_cloud.tex"),
+    Asset("IMAGE", "images/cloud/fog_cloud_long.tex"),
 }
 
 local function InitEnvelope()
@@ -20,7 +20,7 @@ local function InitEnvelope()
         }
     )
 
-    local width, height = 1.171875 * 4, 1.171875 * 2
+    local width, height = 1.171875 * 2, 1.171875 * 2
     EnvelopeManager:AddVector2Envelope(
         SCALE_ENVELOPE_NAME,
         {

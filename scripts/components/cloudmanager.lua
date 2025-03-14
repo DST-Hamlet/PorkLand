@@ -7,6 +7,8 @@ local CloudManager = Class(function(self, inst)
     self.cloud_dist = 2.5
 
     self.oldheading = 0
+
+    self.top_index = 0
 end)
 
 function CloudManager:Init()
@@ -20,6 +22,8 @@ function CloudManager:Init()
         cloud.entity:SetParent(self.clouds_parent.entity)
         random_offset_z = random_offset_z + 4 + math.random() * 8
         cloud.Transform:SetPosition((i - self.num / 2) * self.cloud_dist, 0, random_offset_z)
+
+        self.top_index = i
     end
 end
 
@@ -43,6 +47,10 @@ function CloudManager:Move(offset_x, offset_z)
                 x = (x + self.num * self.cloud_dist / 2) % (self.num * self.cloud_dist) - self.num * self.cloud_dist / 2
                 z = (z + 16 / 2) % (16) - 16 / 2
                 cloud.Transform:SetPosition(x, y, z)
+
+                if - x > self.num * self.cloud_dist / 2 - self.cloud_dist and - x <= self.num * self.cloud_dist / 2 then
+                    self.top_index = i -- 遮挡排序
+                end
             end
         end
     end
@@ -62,11 +70,26 @@ function CloudManager:UpdatePos(dt)
     self:Move(- lx, - lz)
     self.oldheading = TheCamera.heading
 
-    self.clouds_parent.Transform:SetPosition(newpos.x, -4, newpos.z)
+    self.clouds_parent.Transform:SetPosition(newpos.x, -5, newpos.z)
     self.clouds_parent.Transform:SetRotation(- TheCamera.heading)
 
     self.cloud_fx.VFXEffect:ClearAllParticles(0)
-    for i = 1, self.num do
+    for i = self.top_index, self.num do -- 根据遮挡关系执行
+        local cloud = self.clouds[i]
+        if cloud and cloud:IsValid() then
+            local x, y, z = cloud.Transform:GetWorldPosition()
+            self.cloud_fx.Transform:SetPosition(x, y, z)
+            if i == 24 then
+                print("spawn cloud wave", x, y, z)
+            end
+            self.cloud_fx.VFXEffect:AddParticle(
+                0,
+                1e10,           -- lifetime
+                0, 0, 0,         -- position
+                0, 0, 0)          -- velocity
+        end
+    end
+    for i = 1, self.top_index - 1 do
         local cloud = self.clouds[i]
         if cloud and cloud:IsValid() then
             local x, y, z = cloud.Transform:GetWorldPosition()

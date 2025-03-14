@@ -1,5 +1,5 @@
 local TEXTURE = "levels/tiles/falloff.tex"
-local SHADER = "shaders/falloff_particle.ksh"
+local SHADER = "shaders/vfx_particle.ksh"
 
 local COLOUR_ENVELOPE_NAME = "pl_falloffcolourenvelope"
 local SCALE_ENVELOPE_NAME = "pl_falloffscaleenvelope"
