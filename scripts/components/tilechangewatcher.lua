@@ -7,25 +7,23 @@ local TileChangeWatcher = Class(function(self, inst)
     self.falloffs = {}
     self.last_tile_center = nil
 
-    self.falloff_fxs = {}
-    self.falloff_fxs[1] = SpawnPrefab("falloff_fx")
+    self.falloff_fxs = {
+        ["levels/tiles/falloff.tex"] = SpawnPrefab("falloff_fx"),
+    }
 
     inst:StartWallUpdatingComponent(self)
 end)
 
 function TileChangeWatcher:ClearFalloffs()
+    for _, fx_inst in pairs(self.falloff_fxs) do
+        fx_inst:ClearVFX()
+    end
     self.falloffs = {}
-    -- TODO: Actually remove the falloffs
 end
 
 function TileChangeWatcher:SpawnFalloffs()
-    for _, fx_inst in ipairs(self.falloff_fxs) do
-        fx_inst:ClearVFX()
-    end
     for _, data in ipairs(self.falloffs) do
-        for _, fx_inst in ipairs(self.falloff_fxs) do
-            fx_inst:SpawnFalloff(data.position, data.angle, data.type)
-        end
+        self.falloff_fxs[data.texture]:SpawnFalloff(data.position, data.angle, data.variant)
     end
 end
 
@@ -69,7 +67,7 @@ function TileChangeWatcher:OnWallUpdate(dt)
     self:UpdateFalloffs()
 end
 
-local function GetFalloffType(x, z)
+local function GetFalloffVariant(x, z)
     return math.floor(((x * 73856093 + bit.bxor(z, 19349663)) % 6) + 1)
 end
 
@@ -87,7 +85,8 @@ function TileChangeWatcher:UpdateFalloffs()
                         table.insert(self.falloffs, {
                             position = Vector3(center.x + v.x / 2, center.y, center.z + v.z / 2),
                             angle = v.angle,
-                            type = GetFalloffType(center.x + v.x / 2, center.z + v.z / 2)
+                            varient = GetFalloffVariant(center.x + v.x / 2, center.z + v.z / 2),
+                            texture = "levels/tiles/falloff.tex",
                         })
                     end
                 end
