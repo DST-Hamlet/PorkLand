@@ -1,6 +1,8 @@
 local CloudManager = Class(function(self, inst)
     self.inst = inst
 
+    self.enabled = true
+
     self.clouds = {}
     self.clouds_move_offset = {}
 
@@ -34,9 +36,9 @@ end
 
 function CloudManager:SetEnabled(enabled)
     if enabled then
-        self.clouds_parent:Show()
+        self.enabled = true
     else
-        self.clouds_parent:Hide()
+        self.enabled = false
     end
 end
 
@@ -79,6 +81,11 @@ function CloudManager:UpdatePos(dt)
     self.clouds_parent.Transform:SetRotation(- TheCamera.heading)
 
     self.cloud_fx.VFXEffect:ClearAllParticles(0)
+
+    if not self.enabled then
+        return
+    end
+    
     local c_down = TheCamera:GetPitchDownVec():Normalize()
     local c_right = TheCamera:GetRightVec():Normalize()
 

@@ -76,7 +76,13 @@ local function ClearVFX(inst)
     end
 end
 
-local TYPE_UV = {
+local function SetTexture(inst, texture)
+    for k, v in pairs(inst.child_effects) do
+        v.VFXEffect:SetRenderResources(0, resolvefilepath(texture), resolvefilepath(SHADER))
+    end
+end
+
+local VARIANT_UV = {
     [1] = {0.0078125, 0.515625},
     [2] = {0.2578125, 0.515625},
     [3] = {0.5078125, 0.515625},
@@ -85,7 +91,7 @@ local TYPE_UV = {
     [6] = {0.2421875, 0.015625},
 }
 
-local function SpawnFalloff(inst, pos, angle, type)
+local function SpawnFalloff(inst, pos, angle, variant)
     inst.child_effects[angle].Transform:SetPosition(pos.x, pos.y, pos.z)
 
     inst.child_effects[angle].VFXEffect:AddParticleUV(
@@ -93,7 +99,7 @@ local function SpawnFalloff(inst, pos, angle, type)
         MAX_LIFETIME,           -- lifetime
         0, -4, 0,         -- position
         0, 0, 0,          -- velocity
-        TYPE_UV[type][1], TYPE_UV[type][2]        -- uvoffset_x, uvoffset_y        -- uv offset
+        VARIANT_UV[variant][1], VARIANT_UV[variant][2]        -- uvoffset_x, uvoffset_y        -- uv offset
     )
 end
 
@@ -130,6 +136,7 @@ local function fn()
 
     inst.SpawnFalloff = SpawnFalloff
     inst.ClearVFX = ClearVFX
+    inst.SetTexture = SetTexture
 
     return inst
 end
