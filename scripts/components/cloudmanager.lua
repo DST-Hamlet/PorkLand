@@ -2,13 +2,17 @@ local CloudManager = Class(function(self, inst)
     self.inst = inst
 
     self.clouds = {}
+    self.clouds_move_offset = {}
 
     self.num = 48
     self.cloud_dist = 2.5
+    self.width = 14.4
 
     self.oldheading = 0
 
     self.top_index = 0
+
+    self.offset_y = 0
 end)
 
 function CloudManager:Init()
@@ -18,9 +22,10 @@ function CloudManager:Init()
     for i = 1, self.num do
         local cloud = SpawnPrefab("group_child")
         self.clouds[i] = cloud
+        self.clouds_move_offset[i] = math.random() * PI2
 
         cloud.entity:SetParent(self.clouds_parent.entity)
-        random_offset_z = random_offset_z + 4 + math.random() * 8
+        random_offset_z = random_offset_z + 2 + math.random() * self.width / 2
         cloud.Transform:SetPosition((i - self.num / 2) * self.cloud_dist, 0, random_offset_z)
 
         self.top_index = i
@@ -45,7 +50,7 @@ function CloudManager:Move(offset_x, offset_z)
                 x = x + offset_x
                 z = z + offset_z
                 x = (x + self.num * self.cloud_dist / 2) % (self.num * self.cloud_dist) - self.num * self.cloud_dist / 2
-                z = (z + 16 / 2) % (16) - 16 / 2
+                z = (z + self.width / 2) % (self.width) - self.width / 2
                 cloud.Transform:SetPosition(x, y, z)
 
                 if - x > self.num * self.cloud_dist / 2 - self.cloud_dist and - x <= self.num * self.cloud_dist / 2 then
@@ -74,14 +79,22 @@ function CloudManager:UpdatePos(dt)
     self.clouds_parent.Transform:SetRotation(- TheCamera.heading)
 
     self.cloud_fx.VFXEffect:ClearAllParticles(0)
+    local c_down = TheCamera:GetPitchDownVec():Normalize()
+    local c_right = TheCamera:GetRightVec():Normalize()
+
+    local c_up = c_down:Cross(c_right):Normalize()
+
+    local time = GetTime()
+    local offset_y = 0
+    local offset_x = 0
+
     for i = self.top_index, self.num do -- 根据遮挡关系执行
         local cloud = self.clouds[i]
         if cloud and cloud:IsValid() then
-            local x, y, z = cloud.Transform:GetWorldPosition()
+            offset_y = math.sin(time * 0.3 + self.clouds_move_offset[i]) * 0.25
+            offset_x = math.sin(time * 0.3 + self.clouds_move_offset[i]) * 0.5
+            local x, y, z = (cloud:GetPosition() + c_up * offset_y + c_right * offset_x):Get()
             self.cloud_fx.Transform:SetPosition(x, y, z)
-            if i == 24 then
-                print("spawn cloud wave", x, y, z)
-            end
             self.cloud_fx.VFXEffect:AddParticle(
                 0,
                 1e10,           -- lifetime
@@ -92,11 +105,10 @@ function CloudManager:UpdatePos(dt)
     for i = 1, self.top_index - 1 do
         local cloud = self.clouds[i]
         if cloud and cloud:IsValid() then
-            local x, y, z = cloud.Transform:GetWorldPosition()
+            offset_y = math.sin(time * 0.3 + self.clouds_move_offset[i]) * 0.25
+            offset_x = math.sin(time * 0.3 + self.clouds_move_offset[i]) * 0.5
+            local x, y, z = (cloud:GetPosition() + c_up * offset_y + c_right * offset_x):Get()
             self.cloud_fx.Transform:SetPosition(x, y, z)
-            if i == 24 then
-                print("spawn cloud wave", x, y, z)
-            end
             self.cloud_fx.VFXEffect:AddParticle(
                 0,
                 1e10,           -- lifetime

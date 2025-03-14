@@ -20,7 +20,7 @@ local function InitEnvelope()
         }
     )
 
-    local width, height = 1.171875 * 2, 1.171875 * 2
+    local width, height = 1.171875 * 1.8, 1.171875 * 1.8
     EnvelopeManager:AddVector2Envelope(
         SCALE_ENVELOPE_NAME,
         {
