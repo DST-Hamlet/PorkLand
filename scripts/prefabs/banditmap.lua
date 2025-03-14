@@ -102,6 +102,8 @@ local function banditmapfn()
     inst:AddComponent("mapspotrevealer")
     inst.components.mapspotrevealer:SetGetTargetFn(GetRevealTarget)
 
+    inst:AddComponent("erasablepaper")
+
     inst.treasure = nil
 
     inst.OnSave = MapOnSave
