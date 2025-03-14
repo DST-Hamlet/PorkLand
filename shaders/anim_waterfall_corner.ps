@@ -71,8 +71,8 @@ void main()
     vec4 colour; //基础纹理
     vec4 colour_2; //表层水流纹理
 
-    float tex_x = mod(PS_TEXCOORD.x - TIMEPARAMS.x * 0.5, 0.5); // 纹理平移
-    float tex_x_2 = mod(PS_TEXCOORD.x - TIMEPARAMS.x * 0.25, 0.5); // 表层水流纹理平移，速度更慢
+    float tex_x = PS_TEXCOORD.x * 0.25 - mod(TIMEPARAMS.x, 1.0) * 0.125 + 0.125; // 纹理平移
+    float tex_x_2 = PS_TEXCOORD.x * 0.25 - mod(TIMEPARAMS.x, 2.0) * 0.0625 + 0.125; // 表层水流纹理平移，速度更慢
     float tex_y = PS_TEXCOORD.y;
     vec3 new_texcoord = vec3(tex_x, tex_y, PS_TEXCOORD.z);
     vec3 new_texcoord_2 = vec3(tex_x_2, tex_y, PS_TEXCOORD.z);
