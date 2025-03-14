@@ -151,6 +151,7 @@ local actionhandlers = {
     ActionHandler(ACTIONS.BUILD_ROOM, "doshortaction"),
     ActionHandler(ACTIONS.DEMOLISH_ROOM, "doshortaction"),
     ActionHandler(ACTIONS.THROW, "throw"),
+    ActionHandler(ACTIONS.DODGE, "dodge"),
 }
 
 local eventhandlers = {
@@ -2387,6 +2388,66 @@ local states = {
     },
 
     State{
+        name = "shoot",
+        tags = {"attack", "notalking", "abouttoattack", "busy"},
+
+        onenter = function(inst)
+            if inst.components.rider:IsRiding() then
+                inst.Transform:SetFourFaced()
+            end
+            local weapon = inst.components.combat:GetWeapon()
+            local otherequipped = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
+            if (weapon and weapon:HasTag("hand_gun")) or (otherequipped and otherequipped:HasTag("hand_gun")) then
+                inst.AnimState:PlayAnimation("hand_shoot")
+            else
+                inst.AnimState:PlayAnimation("shoot")
+            end
+
+            local buffaction = inst:GetBufferedAction()
+            local target = buffaction and buffaction.target
+            inst.components.combat:SetTarget(target)
+            inst.components.combat:StartAttack()
+            inst.components.locomotor:Stop()
+
+            if target then
+                inst.components.combat:BattleCry()
+                if target:IsValid() then
+                    inst:FacePoint(target.Transform:GetWorldPosition())
+                end
+            end
+        end,
+
+        timeline=
+        {
+            TimeEvent(17*FRAMES, function(inst)
+                inst:PerformBufferedAction()
+                inst.sg:RemoveStateTag("abouttoattack")
+            end),
+            TimeEvent(20*FRAMES, function(inst)
+                inst.sg:RemoveStateTag("attack")
+            end),
+        },
+
+        events=
+        {
+            EventHandler("animover", function(inst)
+                inst.sg:GoToState("idle")
+            end ),
+        },
+
+        onexit = function(inst)
+            if inst.components.rider:IsRiding() then
+                inst.Transform:SetSixFaced()
+            end
+
+            inst.components.combat:SetTarget(nil)
+            if inst.sg:HasStateTag("abouttoattack") then
+                inst.components.combat:CancelAttack()
+            end
+        end,
+    },
+
+    State{
         name = "blunderbuss",
         tags = {"attack", "notalking", "abouttoattack"},
 
@@ -2592,6 +2653,68 @@ local states = {
             end),
         },
     },
+
+    State
+    {
+        name = "dodge",
+        tags = {"busy", "evade", "no_stun", "canrotate"},
+
+        onenter = function(inst)
+            local action = inst:GetBufferedAction()
+            if action then
+                local pos = action:GetActionPoint()
+                inst:ForceFacePoint(pos)
+            end
+
+            inst.sg:SetTimeout(TUNING.DODGE_TIMEOUT)
+            inst.components.locomotor:Stop()
+            inst.AnimState:PlayAnimation("slide_pre")
+
+            inst.AnimState:PushAnimation("slide_loop")
+            inst.SoundEmitter:PlaySound("dontstarve_DLC003/characters/wheeler/slide")
+            inst.Physics:SetMotorVelOverride(20, 0, 0)
+            inst.components.locomotor:EnableGroundSpeedMultiplier(false)
+
+            inst.was_invincible = inst.components.health.invincible
+            inst.components.health:SetInvincible(true)
+
+            inst.last_dodge_time = GetTime()
+        end,
+
+        ontimeout = function(inst)
+            inst.sg:GoToState("dodge_pst")
+        end,
+
+        onexit = function(inst)
+            inst.components.locomotor:EnableGroundSpeedMultiplier(true)
+            inst.Physics:ClearMotorVelOverride()
+            inst.components.locomotor:Stop()
+
+            inst.components.locomotor:SetBufferedAction(nil)
+            if not inst.was_invincible then
+                inst.components.health:SetInvincible(false)
+            end
+
+            inst.was_invincible = nil
+        end,
+    },
+
+    State
+    {
+        name = "dodge_pst",
+        tags = {"evade", "no_stun"},
+
+        onenter = function(inst)
+            inst.AnimState:PlayAnimation("slide_pst")
+        end,
+
+        events =
+        {
+            EventHandler("animover", function(inst)
+                inst.sg:GoToState("idle")
+            end),
+        }
+    },
 }
 
 for _, actionhandler in ipairs(actionhandlers) do
@@ -2631,10 +2754,18 @@ AddStategraphPostInit("wilson", function(sg)
 
     local _attack_deststate = sg.actionhandlers[ACTIONS.ATTACK].deststate
     sg.actionhandlers[ACTIONS.ATTACK].deststate = function(inst, action, ...)
+        if inst:HasTag("ironlord") then
+            return "ironlord_attack"
+        end
+
         if not inst.sg:HasStateTag("sneeze") then
-            local weapon = inst.components.combat ~= nil and inst.components.combat:GetWeapon()
-            if weapon and weapon:HasTag("blunderbuss_loaded") then
-                return "blunderbuss"
+            local weapon = inst.components.combat and inst.components.combat:GetWeapon()
+            if weapon then
+                if weapon:HasTag("blunderbuss_loaded") then
+                    return "blunderbuss"
+                elseif weapon:HasTag("gun") then
+                    return "shoot"
+                end
             end
             return _attack_deststate and _attack_deststate(inst, action, ...)
         end
@@ -2987,16 +3118,6 @@ AddStategraphPostInit("wilson", function(sg)
         inst.SoundEmitter:PlaySound(sound)
         inst.sg.statemem.recoilstate = "mine_recoil"
         inst:PerformBufferedAction()
-    end
-
-    local _attack_deststate = sg.actionhandlers[ACTIONS.ATTACK].deststate
-    sg.actionhandlers[ACTIONS.ATTACK].deststate = function(inst, ...)
-        if inst:HasTag("ironlord") then
-            return "ironlord_attack"
-        end
-        if not inst.sg:HasStateTag("sneeze") then
-            return _attack_deststate and _attack_deststate(inst, ...)
-        end
     end
 
     local _chop_deststate = sg.actionhandlers[ACTIONS.CHOP].deststate
