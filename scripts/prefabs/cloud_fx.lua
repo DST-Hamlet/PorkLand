@@ -59,6 +59,7 @@ local function fn()
     effect:SetLayer(0, LAYER_BELOW_GROUND)
     effect:SetSortOrder(0, 2)
     effect:EnableDepthTest(0, true)
+    effect:SetKillOnEntityDeath(0, true)
 
     return inst
 end

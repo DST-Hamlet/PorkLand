@@ -7,8 +7,8 @@ local TileChangeWatcher = Class(function(self, inst)
     self.falloffs = {}
     self.last_tile_center = nil
 
-    self.effectparents = {}
-    self.effectparents[1] = SpawnPrefab("falloff_fx_parent")
+    self.falloff_fxs = {}
+    self.falloff_fxs[1] = SpawnPrefab("falloff_fx")
 
     inst:StartWallUpdatingComponent(self)
 end)
@@ -19,12 +19,12 @@ function TileChangeWatcher:ClearFalloffs()
 end
 
 function TileChangeWatcher:SpawnFalloffs()
-    for _, parent in ipairs(self.effectparents) do
-        parent:ClearVFX()
+    for _, fx_inst in ipairs(self.falloff_fxs) do
+        fx_inst:ClearVFX()
     end
     for _, data in ipairs(self.falloffs) do
-        for _, parent in ipairs(self.effectparents) do
-            parent:SpawnFalloff(data.position, data.angle, data.type)
+        for _, fx_inst in ipairs(self.falloff_fxs) do
+            fx_inst:SpawnFalloff(data.position, data.angle, data.type)
         end
     end
 end
