@@ -1,32 +1,65 @@
+local TEXTURE = "images/cloud/fog_cloud_long.tex"
+local SHADER = "shaders/vfx_particle.ksh"
+
+local COLOUR_ENVELOPE_NAME = "pl_cloudcolourenvelope"
+local SCALE_ENVELOPE_NAME = "pl_cloudscaleenvelope"
+
+local MAX_LIFETIME = 1e10
+
 local assets =
 {
-    Asset("ANIM", "anim/cloudwave.zip"),
+    Asset("IMAGE", "images/cloud/fog_cloud_long.tex"),
 }
+
+local function InitEnvelope()
+    EnvelopeManager:AddColourEnvelope(
+        COLOUR_ENVELOPE_NAME,
+        {
+            { 0,    { 1, 1, 1, 1 } },
+            { 1,    { 1, 1, 1, 1 } },
+        }
+    )
+
+    local width, height = 1.171875 * 1.8, 1.171875 * 1.8
+    EnvelopeManager:AddVector2Envelope(
+        SCALE_ENVELOPE_NAME,
+        {
+            { 0,    { width, height } },
+            { 1,    { width, height } },
+        }
+    )
+
+    InitEnvelope = nil
+end
 
 local function fn()
     local inst = CreateEntity()
 
     inst.entity:AddTransform()
-    inst.entity:AddAnimState()
     inst.entity:SetCanSleep(false)
     --[[Non-networked entity]]
-
-    inst.AnimState:SetBuild("cloudwave")
-    inst.AnimState:SetBank("cloudwave")
-    inst.AnimState:PlayAnimation("wave_loop", true)
-    inst.AnimState:SetScale(2,2,2)
-    inst.AnimState:SetFrame(math.random(inst.AnimState:GetCurrentAnimationNumFrames()) - 1)
-    inst.AnimState:SetDeltaTimeMultiplier(2)
-
-    inst.AnimState:SetLayer(LAYER_BELOW_GROUND)
-    inst.AnimState:SetSortOrder(-1)
-    inst.AnimState:SetFinalOffset(-2)
 
     inst:AddTag("FX")
     inst:AddTag("NOCLICK")
     inst:AddTag("NOBLOCK")
 
     inst.persists = false
+
+    if InitEnvelope ~= nil then
+        InitEnvelope()
+    end
+
+    local effect = inst.entity:AddVFXEffect()
+    effect:InitEmitters(1)
+    effect:SetRenderResources(0, resolvefilepath(TEXTURE), resolvefilepath(SHADER))
+    effect:SetMaxNumParticles(0, 10000)
+    effect:SetMaxLifetime(0, MAX_LIFETIME)
+    effect:SetColourEnvelope(0, COLOUR_ENVELOPE_NAME)
+    effect:SetScaleEnvelope(0, SCALE_ENVELOPE_NAME)
+    effect:SetLayer(0, LAYER_BELOW_GROUND)
+    effect:SetSortOrder(0, 2)
+    effect:EnableDepthTest(0, true)
+    effect:SetKillOnEntityDeath(0, true)
 
     return inst
 end

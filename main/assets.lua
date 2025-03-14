@@ -280,7 +280,8 @@ PrefabFiles = {
 
     "falloff_fx",
     "cloud_fx",
-    "group_parent"
+    "group_parent",
+    "group_child",
 }
 
 Assets = {
