@@ -42,20 +42,20 @@ local FalloffManager = Class(function(self, inst)
 end)
 
 function FalloffManager:ClearFalloffs()
-    for _, fx_inst in pairs(FalloffManager.falloff_fxs) do
+    for _, fx_inst in pairs(self.falloff_fxs) do
         fx_inst:ClearVFX()
     end
-    FalloffManager.falloffs = {}
+    self.falloffs = {}
 end
 
 function FalloffManager:SpawnFalloffs()
-    for _, data in ipairs(FalloffManager.falloffs) do
-        FalloffManager.falloff_fxs[data.name]:SpawnFalloff(data.position, data.angle, data.variant)
+    for _, data in ipairs(self.falloffs) do
+        self.falloff_fxs[data.name]:SpawnFalloff(data.position, data.angle, data.variant)
     end
 end
 
 function FalloffManager:OnRemoveEntity()
-    FalloffManager:ClearFalloffs()
+    self:ClearFalloffs()
 end
 
 FalloffManager.OnRemoveFromEntity = FalloffManager.OnRemoveEntity
@@ -86,12 +86,12 @@ local adjacent = {
 }
 
 function FalloffManager:OnWallUpdate(dt)
-    local current_tile_center = Vector3(TheWorld.Map:GetTileCenterPoint(FalloffManager.inst.Transform:GetWorldPosition()))
-    if current_tile_center == FalloffManager.last_tile_center then
+    local current_tile_center = Vector3(TheWorld.Map:GetTileCenterPoint(self.inst.Transform:GetWorldPosition()))
+    if current_tile_center == self.last_tile_center then
         return
     end
-    FalloffManager.last_tile_center = current_tile_center
-    FalloffManager:UpdateFalloffs()
+    self.last_tile_center = current_tile_center
+    self:UpdateFalloffs()
 end
 
 local function GetFalloffVariant(x, z)
@@ -99,8 +99,8 @@ local function GetFalloffVariant(x, z)
 end
 
 function FalloffManager:UpdateFalloffs()
-    FalloffManager:ClearFalloffs()
-    local current_tile_center = FalloffManager.last_tile_center
+    self:ClearFalloffs()
+    local current_tile_center = self.last_tile_center
     for x = -REFRESH_RADIUS, REFRESH_RADIUS do
         for z = -REFRESH_RADIUS, REFRESH_RADIUS do
             local center = current_tile_center + Vector3(x * TILE_SCALE, 0, z * TILE_SCALE)
@@ -111,7 +111,7 @@ function FalloffManager:UpdateFalloffs()
                     if adjacent then
                         for falloff_name, falloff_data in pairs(FALLOFF_TYPES) do
                             if falloff_data.testfn(tile, adjacent_tile) then
-                                table.insert(FalloffManager.falloffs, {
+                                table.insert(self.falloffs, {
                                     position = Vector3(center.x + v.x / 2, center.y, center.z + v.z / 2),
                                     angle = v.angle,
                                     variant = GetFalloffVariant(center.x + v.x / 2, center.z + v.z / 2),
@@ -124,7 +124,7 @@ function FalloffManager:UpdateFalloffs()
             end
         end
     end
-    FalloffManager:SpawnFalloffs()
+    self:SpawnFalloffs()
 end
 
 return FalloffManager
