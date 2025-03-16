@@ -10,10 +10,16 @@ function UnderTile:Get()
     return _underneath_tiles
 end
 
-function UnderTile:NotifyUnderTileChanged()
-    if self.inst.components.clientundertile then
-        self.inst.components.clientundertile:SyncUnderTiles()
-    end
+-- data: {
+--      action: "update"
+--      data: { [index: number]: tile }
+-- } |
+-- {
+--      action: "remove"
+--      data: { [index: number]: true }
+-- }
+function UnderTile:NotifyUnderTileChanged(data)
+    SendModRPCToClient(GetClientModRPC("PorkLand", "update_undertile"), nil, ZipAndEncodeString(data))
 end
 
 function UnderTile:CheckInSize(x, y)
@@ -33,10 +39,22 @@ AddComponentPostInit("undertile", function(self, inst)
         if not self:CheckInSize(x, y) then
             return
         end
-        local current_tile = self:GetTileUnderneath(x, y)
+        local old_tile = self:GetTileUnderneath(x, y)
         local ret = { set_tile_underneath(self, x, y, tile, ...) }
-        if self:GetTileUnderneath(x, y) ~= current_tile then
-            self:NotifyUnderTileChanged()
+        local current_tile = self:GetTileUnderneath(x, y)
+        if current_tile ~= old_tile then
+            local index = _underneath_tiles:GetIndex(x, y)
+            if current_tile == nil then
+                self:NotifyUnderTileChanged({
+                    action = "remove",
+                    data = { [index] = true },
+                })
+            else
+                self:NotifyUnderTileChanged({
+                    action = "update",
+                    data = { [index] = current_tile },
+                })
+            end
         end
         return unpack(ret)
     end
@@ -49,7 +67,11 @@ AddComponentPostInit("undertile", function(self, inst)
         local current_tile = self:GetTileUnderneath(x, y)
         local ret = { clear_tile_underneath(self, x, y, ...) }
         if self:GetTileUnderneath(x, y) ~= current_tile then
-            self:NotifyUnderTileChanged()
+            local index = _underneath_tiles:GetIndex(x, y)
+            self:NotifyUnderTileChanged({
+                action = "remove",
+                data = { [index] = true },
+            })
         end
         return unpack(ret)
     end
@@ -67,6 +89,11 @@ AddComponentPostInit("undertile", function(self, inst)
         if not _underneath_tiles then
             print("WARNING: Can't get upvalue _underneath_tiles form UnderTile.OnLoad, client side shadows and canopies will not work!")
         end
-        self:NotifyUnderTileChanged()
+        -- Don't quite understand why ThePlayer can be nil when the client receives this,
+        -- from HandleClientRPC in networkclientrpc.lua, it shouldn't happen, but it does anyway,
+        -- since this is not critical to the client on initial load, use a delay here to mitigate this
+        self.inst:DoStaticTaskInTime(3, function()
+            self:NotifyUnderTileChanged(self:Get():Save())
+        end)
     end)
 end)
