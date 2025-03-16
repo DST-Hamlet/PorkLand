@@ -28,30 +28,38 @@ function UnderTile:CheckInSize(x, y)
 end
 
 AddComponentPostInit("undertile", function(self, inst)
-    local _SetTileUnderneath = self.SetTileUnderneath
+    local set_tile_underneath = self.SetTileUnderneath
     self.SetTileUnderneath = function(self, x, y, tile, ...)
         if not self:CheckInSize(x, y) then
             return
         end
-        self:NotifyUnderTileChanged()
-        return _SetTileUnderneath(self, x, y, tile, ...)
+        local current_tile = self:GetTileUnderneath(x, y)
+        local ret = { set_tile_underneath(self, x, y, tile, ...) }
+        if self:GetTileUnderneath(x, y) ~= current_tile then
+            self:NotifyUnderTileChanged()
+        end
+        return unpack(ret)
     end
 
-    local _ClearTileUnderneath = self.ClearTileUnderneath
+    local clear_tile_underneath = self.ClearTileUnderneath
     self.ClearTileUnderneath = function(self, x, y, ...)
         if not self:CheckInSize(x, y) then
             return
         end
-        self:NotifyUnderTileChanged()
-        return _ClearTileUnderneath(self, x, y, ...)
+        local current_tile = self:GetTileUnderneath(x, y)
+        local ret = { clear_tile_underneath(self, x, y, ...) }
+        if self:GetTileUnderneath(x, y) ~= current_tile then
+            self:NotifyUnderTileChanged()
+        end
+        return unpack(ret)
     end
 
-    local _GetTileUnderneath = self.GetTileUnderneath
+    local get_tile_underneath = self.GetTileUnderneath
     self.GetTileUnderneath = function(self, x, y, ...)
         if not self:CheckInSize(x, y) then
             return
         end
-        return _GetTileUnderneath(self, x, y, ...)
+        return get_tile_underneath(self, x, y, ...)
     end
 
     self.inst:DoStaticTaskInTime(0, function()
