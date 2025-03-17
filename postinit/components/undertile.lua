@@ -39,6 +39,9 @@ AddComponentPostInit("undertile", function(self, inst)
         if not self:CheckInSize(x, y) then
             return
         end
+        if not _underneath_tiles then
+            return set_tile_underneath(self, x, y, tile, ...)
+        end
         local old_tile = self:GetTileUnderneath(x, y)
         local ret = { set_tile_underneath(self, x, y, tile, ...) }
         local current_tile = self:GetTileUnderneath(x, y)
@@ -64,6 +67,9 @@ AddComponentPostInit("undertile", function(self, inst)
         if not self:CheckInSize(x, y) then
             return
         end
+        if not _underneath_tiles then
+            return clear_tile_underneath(self, x, y, ...)
+        end
         local current_tile = self:GetTileUnderneath(x, y)
         local ret = { clear_tile_underneath(self, x, y, ...) }
         if self:GetTileUnderneath(x, y) ~= current_tile then
@@ -88,6 +94,7 @@ AddComponentPostInit("undertile", function(self, inst)
         _underneath_tiles = ToolUtil.GetUpvalue(self.OnLoad, "_underneath_tiles")
         if not _underneath_tiles then
             print("WARNING: Can't get upvalue _underneath_tiles form UnderTile.OnLoad, client side shadows and canopies will not work!")
+            return
         end
         self:NotifyUnderTileChanged(self:Get():Save())
     end)
