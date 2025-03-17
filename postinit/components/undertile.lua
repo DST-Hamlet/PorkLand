@@ -89,11 +89,6 @@ AddComponentPostInit("undertile", function(self, inst)
         if not _underneath_tiles then
             print("WARNING: Can't get upvalue _underneath_tiles form UnderTile.OnLoad, client side shadows and canopies will not work!")
         end
-        -- Don't quite understand why ThePlayer can be nil when the client receives this,
-        -- from HandleClientRPC in networkclientrpc.lua, it shouldn't happen, but it does anyway,
-        -- since this is not critical to the client on initial load, use a delay here to mitigate this
-        self.inst:DoStaticTaskInTime(3, function()
-            self:NotifyUnderTileChanged(self:Get():Save())
-        end)
+        self:NotifyUnderTileChanged(self:Get():Save())
     end)
 end)
