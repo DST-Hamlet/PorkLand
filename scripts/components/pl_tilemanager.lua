@@ -25,27 +25,6 @@ end
 
 PL_TileManager.OnRemoveFromEntity = PL_TileManager.OnRemoveEntity
 
-local offset_x = 0.01
-
-local adjacent = {
-    {
-        x = TILE_SCALE + offset_x,
-        z = 0,
-    },
-    {
-        x = -(TILE_SCALE + offset_x),
-        z = 0,
-    },
-    {
-        x = 0,
-        z = TILE_SCALE + offset_x,
-    },
-    {
-        x = 0,
-        z = -(TILE_SCALE + offset_x),
-    },
-}
-
 function PL_TileManager:UpdateTiles()
     self:ClearTiles()
     local current_tile_center = self.inst.components.tilechangewatcher.last_tile_center
@@ -54,16 +33,33 @@ function PL_TileManager:UpdateTiles()
             local center = current_tile_center + Vector3(x * TILE_SCALE, 0, z * TILE_SCALE)
             local tile = TheWorld.Map:GetTileAtPoint(center.x, center.y, center.z)
             if tile then
-                for _, v in ipairs(adjacent) do
-                    local adjacent_tile = TheWorld.Map:GetTileAtPoint(center.x + v.x, center.y, center.z + v.z)
-                    if adjacent then
-
+                -- local adjacent_tiles = {
+                --     {false, false, false},
+                --     {false, false, false},
+                --     {false, false, false},
+                -- }
+                local value = 0
+                local bitmask_values = {
+                    { 1,   2,   4   },
+                    { 8,   16,  32  },
+                    { 64,  128, 256 },
+                }
+                local tile_map = {
+                    [0] = 17,
+                    [1] = 18,
+                    [16] = 1,
+                }
+                for x = -1, 1 do
+                    for z = -1, 1 do
+                        local adjacent_tile = TheWorld.Map:GetTileAtPoint(center.x + x * TILE_SCALE, center.y, center.z + z * TILE_SCALE)
+                        -- adjacent_tiles[x + 2][z + 2] = adjacent_tile == WORLD_TILES.LILYPOND
+                        if adjacent_tile == WORLD_TILES.LILYPOND then
+                            value = value + bitmask_values[z + 2][x + 2]
+                        end
                     end
                 end
 
-                if tile == WORLD_TILES.LILYPOND then
-                    self.tiletest:SpawnTile(center, 3)
-                end
+                self.tiletest:SpawnTile(center, tile_map[value] or 17)
             end
         end
     end
