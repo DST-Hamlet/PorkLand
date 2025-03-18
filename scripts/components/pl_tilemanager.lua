@@ -4,11 +4,11 @@ local REFRESH_RADIUS = (PLAYER_CAMERA_SEE_DISTANCE / TILE_SCALE) + 5
 local PL_TileManager = Class(function(self, inst)
     self.inst = inst
 
-    self.last_tile_center = nil
-
     self.tiletest = SpawnPrefab("tile_fx")
 
-    inst:StartWallUpdatingComponent(self)
+    self.inst.components.tilechangewatcher:ListenToUpdate(function()
+        self:UpdateTiles()
+    end)
 end)
 
 function PL_TileManager:ClearTiles()
@@ -45,15 +45,6 @@ local adjacent = {
         z = -(TILE_SCALE + offset_x),
     },
 }
-
-function PL_TileManager:OnWallUpdate(dt)
-    local current_tile_center = Vector3(TheWorld.Map:GetTileCenterPoint(self.inst.Transform:GetWorldPosition()))
-    if current_tile_center == self.last_tile_center then
-        return
-    end
-    self.last_tile_center = current_tile_center
-    self:UpdateTiles()
-end
 
 function PL_TileManager:UpdateTiles()
     self:ClearTiles()

@@ -29,7 +29,6 @@ local FalloffManager = Class(function(self, inst)
     self.inst = inst
 
     self.falloffs = {}
-    self.last_tile_center = nil
 
     self.falloff_fxs = {}
 
@@ -38,7 +37,9 @@ local FalloffManager = Class(function(self, inst)
         self.falloff_fxs[name]:SetTexture(data.texture)
     end
 
-    inst:StartWallUpdatingComponent(self)
+    self.inst.components.tilechangewatcher:ListenToUpdate(function()
+        self:UpdateFalloffs()
+    end)
 end)
 
 function FalloffManager:ClearFalloffs()
@@ -84,15 +85,6 @@ local adjacent = {
         angle = 90,
     },
 }
-
-function FalloffManager:OnWallUpdate(dt)
-    local current_tile_center = Vector3(TheWorld.Map:GetTileCenterPoint(self.inst.Transform:GetWorldPosition()))
-    if current_tile_center == self.last_tile_center then
-        return
-    end
-    self.last_tile_center = current_tile_center
-    self:UpdateFalloffs()
-end
 
 local function GetFalloffVariant(x, z)
     return math.floor(((x * 73856093 + bit.bxor(z, 19349663)) % 6) + 1)
