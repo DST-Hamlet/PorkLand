@@ -23,6 +23,8 @@ function PL_TileManager:OnRemoveEntity()
     self:ClearTiles()
 end
 
+PL_TileManager.OnRemoveFromEntity = PL_TileManager.OnRemoveEntity
+
 local WEST = 1
 local NORTH_WEST = 2
 local NORTH = 4
@@ -80,6 +82,10 @@ local function AddToTileMap(val, data)
     local key = GetKeyForNeighbors(data)
     tile_map[key] = val
 end
+
+-- 序号1为完整的地皮
+
+-- 仅有边相邻
 AddToTileMap(2, {WEST})
 AddToTileMap(3, {NORTH})
 AddToTileMap(4, {NORTH, WEST})
@@ -96,7 +102,55 @@ AddToTileMap(14, {SOUTH, EAST, WEST})
 AddToTileMap(15, {SOUTH, EAST, NORTH})
 AddToTileMap(16, {SOUTH, EAST, NORTH, WEST})
 
-PL_TileManager.OnRemoveFromEntity = PL_TileManager.OnRemoveEntity
+-- 序号17为完全不相邻
+AddToTileMap(17, {})
+
+-- 仅有角相邻
+AddToTileMap(18, {NORTH_WEST})
+AddToTileMap(19, {NORTH_EAST})
+AddToTileMap(20, {NORTH_EAST, NORTH_WEST})
+AddToTileMap(21, {SOUTH_EAST})
+AddToTileMap(22, {SOUTH_EAST, NORTH_WEST})
+AddToTileMap(23, {SOUTH_EAST, NORTH_EAST})
+AddToTileMap(24, {SOUTH_EAST, NORTH_EAST, NORTH_WEST})
+AddToTileMap(25, {SOUTH_WEST})
+AddToTileMap(26, {SOUTH_WEST, NORTH_WEST})
+AddToTileMap(27, {SOUTH_WEST, NORTH_EAST})
+AddToTileMap(28, {SOUTH_WEST, NORTH_EAST, NORTH_WEST})
+AddToTileMap(29, {SOUTH_WEST, SOUTH_EAST})
+AddToTileMap(30, {SOUTH_WEST, SOUTH_EAST, NORTH_WEST})
+AddToTileMap(31, {SOUTH_WEST, SOUTH_EAST, NORTH_EAST})
+AddToTileMap(32, {SOUTH_WEST, SOUTH_EAST, NORTH_EAST, NORTH_WEST})
+
+-- 有1条边和不为0个角相邻
+AddToTileMap(33, {NORTH, SOUTH_EAST})
+AddToTileMap(34, {EAST, SOUTH_WEST})
+AddToTileMap(35, {SOUTH, NORTH_WEST})
+AddToTileMap(36, {WEST, NORTH_EAST})
+AddToTileMap(37, {NORTH, SOUTH_EAST, SOUTH_WEST})
+AddToTileMap(38, {EAST, SOUTH_WEST, NORTH_WEST})
+AddToTileMap(39, {SOUTH, NORTH_WEST, NORTH_EAST})
+AddToTileMap(40, {WEST, NORTH_EAST, SOUTH_EAST})
+AddToTileMap(41, {NORTH, SOUTH_WEST})
+AddToTileMap(42, {EAST, NORTH_WEST})
+AddToTileMap(43, {SOUTH, NORTH_EAST})
+AddToTileMap(44, {WEST, SOUTH_EAST})
+
+-- 有1条边和1个角相邻
+AddToTileMap(45, {WEST, NORTH, SOUTH_EAST})
+AddToTileMap(46, {NORTH, EAST, SOUTH_WEST})
+AddToTileMap(47, {EAST, SOUTH, NORTH_WEST})
+AddToTileMap(48, {SOUTH, WEST, NORTH_EAST})
+
+local function GetTileVariant(x, z) -- TODO:减少连续性
+    local hash = x * 73856093
+    hash = bit.bxor(hash, z * 19349663)
+    hash = bit.bxor(hash, (x + z) * 83492791)
+    hash = bit.bxor(hash, bit.lshift(hash, 13))
+    hash = bit.bxor(hash, bit.rshift(hash, 7))
+    hash = hash > 0 and hash or -hash
+    return (hash % 2)
+end
 
 function PL_TileManager:UpdateTiles()
     self:ClearTiles()
@@ -119,8 +173,12 @@ function PL_TileManager:UpdateTiles()
 
                     local key = GetKeyForNeighbors(neighbor_data)
 
-                    if tile_map[key] then
-                        self.tiletest:SpawnTile(center, tile_map[key] or 17)
+                    if key > 0 then
+                        local value = tile_map[key]
+                        if value < 17 then
+                            value = value + GetTileVariant(center.x, center.z) * 48 -- 随机变体
+                        end
+                        self.tiletest:SpawnTile(center, value or 1)
                     end
                 end
             end
