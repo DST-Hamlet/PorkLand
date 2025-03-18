@@ -165,8 +165,8 @@ local function fn()
     effect:SetColourEnvelope(0, COLOUR_ENVELOPE_NAME)
     effect:SetScaleEnvelope(0, SCALE_ENVELOPE_NAME)
     effect:SetUVFrameSize(0, 0.0625, 0.0625)
-    effect:SetLayer(0, LAYER_GROUND)
-    effect:SetSortOrder(0, 1)
+    effect:SetLayer(0, LAYER_BACKGROUND)
+    effect:SetSortOrder(0, -4)
     effect:SetKillOnEntityDeath(0, true)
     effect:SetSpawnVectors(0,
         1, 0, 0,
