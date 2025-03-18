@@ -126,8 +126,8 @@ end
 local function SpawnFalloff(inst, pos)
     inst.Transform:SetPosition(pos.x, pos.y, pos.z)
 
-    local TEX_U = ((pos.x - 2) % 29) * 0.03446276 * 0.25 -- 地皮纹理每隔7.25个地皮单位重复一次
-    local TEX_V = ((pos.z - 2) % 29) * 0.03446276 * 0.25
+    local TEX_U = ((pos.x - 2) % 29) * 0.03446276 * 0.25 + 0.0390625 -- 地皮纹理每隔7.25个地皮单位重复一次
+    local TEX_V = ((pos.z - 2) % 29) * 0.03446276 * 0.25 + 0.0390625
 
     local lifetime = 1e9 + (pos.x) * 10000 + (pos.z)
 
