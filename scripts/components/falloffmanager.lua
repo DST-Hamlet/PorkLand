@@ -38,8 +38,6 @@ local FalloffManager = Class(function(self, inst)
         self.falloff_fxs[name]:SetTexture(data.texture)
     end
 
-    self.tiletest = SpawnPrefab("tile_fx")
-
     inst:StartWallUpdatingComponent(self)
 end)
 
@@ -101,8 +99,6 @@ local function GetFalloffVariant(x, z)
 end
 
 function FalloffManager:UpdateFalloffs()
-    self.tiletest.VFXEffect:ClearAllParticles(0)
-
     self:ClearFalloffs()
     local current_tile_center = self.last_tile_center
     for x = -REFRESH_RADIUS, REFRESH_RADIUS do
@@ -124,10 +120,6 @@ function FalloffManager:UpdateFalloffs()
                             end
                         end
                     end
-                end
-
-                if tile == WORLD_TILES.LILYPOND then
-                    self.tiletest:SpawnFalloff(center)
                 end
             end
         end
