@@ -48,7 +48,7 @@ local adjacent = {
 
 function PL_TileManager:UpdateTiles()
     self:ClearTiles()
-    local current_tile_center = self.last_tile_center
+    local current_tile_center = self.inst.components.tilechangewatcher.last_tile_center
     for x = -REFRESH_RADIUS, REFRESH_RADIUS do
         for z = -REFRESH_RADIUS, REFRESH_RADIUS do
             local center = current_tile_center + Vector3(x * TILE_SCALE, 0, z * TILE_SCALE)
