@@ -12,18 +12,18 @@ local FALLOFF_TYPES =
 
         texture = "levels/tiles/falloff.tex",
     },
-    ["test"] =
-    {
-        testfn = function(tile, adjacent_tile)
-            if TileGroupManager:IsOceanTile(tile) and TileGroupManager:IsImpassableTile(adjacent_tile) then
-                return true
-            end
-        end,
-
-        id = 1,
-
-        texture = "levels/tiles/dock_falloff.tex",
-    },
+    --["test"] =
+    --{
+    --    testfn = function(tile, adjacent_tile)
+    --        if TileGroupManager:IsOceanTile(tile) and TileGroupManager:IsImpassableTile(adjacent_tile) then
+    --            return true
+    --        end
+    --    end,
+--
+    --    id = 1,
+--
+    --    texture = "levels/tiles/dock_falloff.tex",
+    --},
 }
 
 -- PLAYER_CAMERA_SEE_DISTANCE (40) / TILE_SCALE (4) = 10
@@ -53,7 +53,6 @@ end
 function FalloffManager:SpawnFalloffs()
     for id, datas in pairs(self.falloffs) do
         for _, data in ipairs(datas) do
-            print("SpawnFalloff", id, data.position, data.angle, data.variant)
             self.falloff_fx:SpawnFalloff(id, data.position, data.angle, data.variant)
         end
     end

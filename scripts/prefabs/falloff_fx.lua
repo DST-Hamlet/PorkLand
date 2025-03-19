@@ -58,7 +58,6 @@ local function fn_fx()
     effect:InitEmitters(index_count)
     for name, data in pairs(falloff_fx_datas) do
         local i = data.id
-        print("SetRenderResources", data.texture, SHADER)
         effect:SetRenderResources(i, resolvefilepath(data.texture), resolvefilepath(SHADER))
         effect:SetMaxNumParticles(i, 10000)
         effect:SetMaxLifetime(i, MAX_LIFETIME)
@@ -70,7 +69,6 @@ local function fn_fx()
         effect:EnableDepthTest(i, true)
         effect:EnableDepthWrite(i, true)
         effect:SetKillOnEntityDeath(i, true)
-        print("SetSpawnVectors", spawn_vector[1], spawn_vector[2], spawn_vector[3])
         effect:SetSpawnVectors(i,
             spawn_vector[1], spawn_vector[2], spawn_vector[3],
             0, 1, 0)
