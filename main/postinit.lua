@@ -146,7 +146,6 @@ local screens_posts = {
 }
 
 local stategraph_posts = {
-    "bird",
     "multiplayerportal",
     "shadowcreature",
     "wilson",
