@@ -8,18 +8,22 @@ local FALLOFF_TYPES =
             end
         end,
 
+        id = 0,
+
         texture = "levels/tiles/falloff.tex",
     },
-    -- ["test"] =
-    -- {
-        -- testfn = function(tile, adjacent_tile)
-            -- if TileGroupManager:IsOceanTile(tile) and TileGroupManager:IsImpassableTile(adjacent_tile) then
-                -- return true
-            -- end
-        -- end,
+    ["test"] =
+    {
+        testfn = function(tile, adjacent_tile)
+            if TileGroupManager:IsOceanTile(tile) and TileGroupManager:IsImpassableTile(adjacent_tile) then
+                return true
+            end
+        end,
 
-        -- texture = "levels/tiles/dock_falloff.tex",
-    -- },
+        id = 1,
+
+        texture = "levels/tiles/dock_falloff.tex",
+    },
 }
 
 -- PLAYER_CAMERA_SEE_DISTANCE (40) / TILE_SCALE (4) = 10
@@ -30,12 +34,9 @@ local FalloffManager = Class(function(self, inst)
 
     self.falloffs = {}
 
-    self.falloff_fxs = {}
+    self.falloff_fx = SpawnPrefab("falloff_fx")
 
-    for name, data in pairs(FALLOFF_TYPES) do
-        self.falloff_fxs[name] = SpawnPrefab("falloff_fx")
-        self.falloff_fxs[name]:SetTexture(data.texture)
-    end
+    self.falloff_fx:InitVFX(GetTableSize(FALLOFF_TYPES), FALLOFF_TYPES)
 
     self.inst.components.tilechangewatcher:ListenToUpdate(function()
         self:UpdateFalloffs()
@@ -43,15 +44,18 @@ local FalloffManager = Class(function(self, inst)
 end)
 
 function FalloffManager:ClearFalloffs()
-    for _, fx_inst in pairs(self.falloff_fxs) do
-        fx_inst:ClearVFX()
+    for name, typedata in pairs(FALLOFF_TYPES) do
+        self.falloff_fx:ClearVFX(typedata.id)
     end
     self.falloffs = {}
 end
 
 function FalloffManager:SpawnFalloffs()
-    for _, data in ipairs(self.falloffs) do
-        self.falloff_fxs[data.name]:SpawnFalloff(data.position, data.angle, data.variant)
+    for id, datas in pairs(self.falloffs) do
+        for _, data in ipairs(datas) do
+            print("SpawnFalloff", id, data.position, data.angle, data.variant)
+            self.falloff_fx:SpawnFalloff(id, data.position, data.angle, data.variant)
+        end
     end
 end
 
@@ -61,7 +65,7 @@ end
 
 FalloffManager.OnRemoveFromEntity = FalloffManager.OnRemoveEntity
 
-local offset_x = 0.01
+local offset_x = 0
 
 local adjacent = {
     {
@@ -111,7 +115,11 @@ function FalloffManager:UpdateFalloffs()
                     if adjacent then
                         for falloff_name, falloff_data in pairs(FALLOFF_TYPES) do
                             if falloff_data.testfn(tile, adjacent_tile) then
-                                table.insert(self.falloffs, {
+                                if self.falloffs[falloff_data.id] == nil then
+                                    self.falloffs[falloff_data.id] = {}
+                                end
+
+                                table.insert(self.falloffs[falloff_data.id], {
                                     position = Vector3(center.x + v.x / 2, center.y, center.z + v.z / 2),
                                     angle = v.angle,
                                     variant = GetFalloffVariant(center.x + v.x / 2, center.z + v.z / 2),
