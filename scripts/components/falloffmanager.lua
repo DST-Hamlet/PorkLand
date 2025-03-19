@@ -88,7 +88,7 @@ local adjacent = {
 
 local function GetFalloffVariant(x, z)
     -- 将 x 和 y 组合成一个种子
-    local seed = x * 127.1 + y * 311.7
+    local seed = x * 127.1 + z * 311.7
 
     -- 使用简单的哈希算法生成伪随机值
     local random = math.sin(seed) * 43758.5453
