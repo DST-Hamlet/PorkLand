@@ -142,14 +142,20 @@ AddToTileMap(46, {NORTH, EAST, SOUTH_WEST})
 AddToTileMap(47, {EAST, SOUTH, NORTH_WEST})
 AddToTileMap(48, {SOUTH, WEST, NORTH_EAST})
 
-local function GetTileVariant(x, z) -- TODO:减少连续性
-    local hash = x * 73856093
-    hash = bit.bxor(hash, z * 19349663)
-    hash = bit.bxor(hash, (x + z) * 83492791)
-    hash = bit.bxor(hash, bit.lshift(hash, 13))
-    hash = bit.bxor(hash, bit.rshift(hash, 7))
-    hash = hash > 0 and hash or -hash
-    return (hash % 2)
+local function GetTileVariant(x, z)
+    -- 将 x 和 y 组合成一个种子
+    local seed = x * 127.1 + z * 311.7
+
+    -- 使用简单的哈希算法生成伪随机值
+    local random = math.sin(seed) * 43758.5453
+    random = random - math.floor(random) -- 取小数部分
+
+    -- 返回 0 或 1
+    if random < 0.5 then
+        return 0
+    else
+        return 1
+    end
 end
 
 function PL_TileManager:UpdateTiles()

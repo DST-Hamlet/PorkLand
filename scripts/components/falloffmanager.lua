@@ -87,7 +87,15 @@ local adjacent = {
 }
 
 local function GetFalloffVariant(x, z)
-    return math.floor(((x * 73856093 + bit.bxor(z, 19349663)) % 6) + 1)
+    -- 将 x 和 y 组合成一个种子
+    local seed = x * 127.1 + y * 311.7
+
+    -- 使用简单的哈希算法生成伪随机值
+    local random = math.sin(seed) * 43758.5453
+    random = random - math.floor(random) -- 取小数部分
+
+    -- 将随机值映射到 1 到 6 之间的整数
+    return math.floor(random * 6) + 1
 end
 
 function FalloffManager:UpdateFalloffs()
