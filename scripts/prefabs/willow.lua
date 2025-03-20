@@ -60,6 +60,7 @@ end
 local function common_postinit(inst)
     inst:AddTag("pyromaniac")
     inst:AddTag("expertchef")
+    inst:AddTag("bernieowner") -- this tag allows bernie to transform into BERNIE!
 end
 
 local function UpdateSanityTemperature(inst)
