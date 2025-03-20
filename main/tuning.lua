@@ -795,7 +795,7 @@ TUNING.PROTOTYPER_TREES.CITY = TechTree.Create({
 
 local default_starting_items = {
     WILSON = {},
-    -- WILLOW = {"lighter", "bernie_inactive"},
+    WILLOW = {"lighter", "bernie_inactive"},
     -- WENDY = {"abigail_flower"},
     -- WOLFGANG = {},
     -- WX78 = {},
