@@ -734,12 +734,18 @@ AddRecipe2("pillar_door",   {Ingredient("oinc", 20)}, TECH.HOME, {nounlock = tru
 AddRecipe2("construction_permit", {Ingredient("oinc", 50)}, TECH.HOME, {nounlock = true}, {"HOME_DOOR"})
 AddRecipe2("demolition_permit",   {Ingredient("oinc", 10)}, TECH.HOME, {nounlock = true}, {"HOME_DOOR"})
 
-----BOOK----
+-- BOOK --
 AddRecipe2("book_birds",       {Ingredient("papyrus", 2), Ingredient("bird_egg", 2)},                      TECH.NONE,          {builder_tag = "pl_bookbuilder"}, {"CHARACTER"})
 AddRecipe2("book_gardening",   {Ingredient("papyrus", 2), Ingredient("seeds", 1), Ingredient("poop", 1)},  TECH.SCIENCE_ONE,   {builder_tag = "pl_bookbuilder"}, {"CHARACTER"})
 AddRecipe2("book_sleep",       {Ingredient("papyrus", 2), Ingredient("nightmarefuel", 2)},                 TECH.MAGIC_TWO,     {builder_tag = "pl_bookbuilder"}, {"CHARACTER"})
 AddRecipe2("book_brimstone",   {Ingredient("papyrus", 2), Ingredient("redgem", 1)},                        TECH.MAGIC_THREE,   {builder_tag = "pl_bookbuilder"}, {"CHARACTER"})
 AddRecipe2("book_tentacles",   {Ingredient("papyrus", 2), Ingredient("tentaclespots", 1)},                 TECH.SCIENCE_THREE, {builder_tag = "pl_bookbuilder"}, {"CHARACTER"})
+
+-- Maxwell --
+AddRecipe2("shadowlumber_builder",  {Ingredient("nightmarefuel", 2), Ingredient("axe", 1),     Ingredient(CHARACTER_INGREDIENT.MAX_SANITY, TUNING.SHADOWWAXWELL_SANITY_PENALTY.SHADOWLUMBER)},  TECH.WAXWELLJOURNAL, {builder_tag = "pl_shadowmagic", nounlock = true}, {"character"})
+AddRecipe2("shadowminer_builder",   {Ingredient("nightmarefuel", 2), Ingredient("pickaxe", 1), Ingredient(CHARACTER_INGREDIENT.MAX_SANITY, TUNING.SHADOWWAXWELL_SANITY_PENALTY.SHADOWMINER)},	TECH.WAXWELLJOURNAL, {builder_tag = "pl_shadowmagic", nounlock = true}, {"character"})
+AddRecipe2("shadowdigger_builder",  {Ingredient("nightmarefuel", 2), Ingredient("shovel", 1),  Ingredient(CHARACTER_INGREDIENT.MAX_SANITY, TUNING.SHADOWWAXWELL_SANITY_PENALTY.SHADOWDIGGER)},	TECH.WAXWELLJOURNAL, {builder_tag = "pl_shadowmagic", nounlock = true}, {"character"})
+AddRecipe2("shadowduelist_builder", {Ingredient("nightmarefuel", 2), Ingredient("spear", 1),   Ingredient(CHARACTER_INGREDIENT.MAX_SANITY, TUNING.SHADOWWAXWELL_SANITY_PENALTY.SHADOWDUELIST)},	TECH.WAXWELLJOURNAL, {builder_tag = "pl_shadowmagic", nounlock = true}, {"character"})
 
 -- Deconstruct ---
 AddDeconstructRecipe("pig_guard_tower_palace", {Ingredient("cutstone", 3), Ingredient("halberd", 2), Ingredient("pigskin", 4)})
