@@ -175,6 +175,7 @@ local function fn()
     inst:SetStateGraph("SGghost")
 
     inst:AddComponent("inspectable")
+    -- TODO: insepctable.getstatus
 
     inst:AddComponent("health")
     inst.components.health:SetMaxHealth(TUNING.ABIGAIL_HEALTH)
