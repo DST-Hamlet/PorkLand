@@ -435,7 +435,6 @@ local function onbecamehuman(inst)
     inst.components.talker:StopIgnoringAll("becamebeaver")
     inst.components.catcher:SetEnabled(true)
     inst.components.debuffable:SetFollowSymbol("headbase", 0, -200, 0)
-    inst.components.stormwatcher:SetSandstormSpeedMultiplier(TUNING.SANDSTORM_SPEED_MOD)
     inst.components.carefulwalker:SetCarefulWalkingSpeedMultiplier(TUNING.CAREFUL_SPEED_MOD)
 
     if inst.components.inspectable.getstatus == BeaverGetStatus then
