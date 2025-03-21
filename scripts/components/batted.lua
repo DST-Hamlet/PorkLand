@@ -24,6 +24,8 @@ local MODIFIER_KEY_REGEN_TIME = "regen"
 local MODIFIER_RARE = 1.25
 local MODIFIER_OFTEN = 0.9
 local MODIFIER_ALWAYS = 0.75
+local BATTIME_OVERFLOW_MAX = 1000000000
+local _world = TheWorld
 
 --------------------------------------------------------------------------
 --[[ Member variables ]]
@@ -31,6 +33,7 @@ local MODIFIER_ALWAYS = 0.75
 
 -- Public
 self.inst = inst
+self._player_battime_startindex = TheWorld.state.cycles + TheWorld.state.time * TUNING.TOTAL_DAY_TIME
 
 -- Private
 local _spawnmode = "normal"
@@ -44,6 +47,13 @@ local _bat_attack_time = 0
 local _bat_per_player = 0
 local _bat_remainder = 0
 local _time_modifiers = SourceModifierList(inst, 1)
+
+local _player_battime_binaryheap = BinaryHeap("porkland_nextbattedtime", "porkland_nextbattedtime_index")
+local _target_player = nil
+local _force_bat_mean = nil
+local _force_bat_variance = nil
+local _force_bat_count = nil
+local _force_bat_iters = 0
 
 --------------------------------------------------------------------------
 --[[ Private event handlers ]]
@@ -96,21 +106,31 @@ local function AddBatToCaves()
     end
 end
 
-local function GetNextRegenTime()
-    local day = TheWorld.state.cycles
-    local time = 130
+local RATE_D5 = 1 / 960  -- 1 bat every 2 days
+local RATE_D10 = 1 / 720 -- 1 bat every 1.5 days
+local RATE_D20 = 1 / 480 -- 1 bat a day
+local RATE_D40 = 1 / 360 -- 1.5 bats / day
+local RATE_D40P = 1 / 240 -- 2 bats / day
 
-    if day < 5 then
-        time = 960 -- 1 bat every 2 days
-    elseif day < 10 then
-        time = 720 -- 1 bat every 1.5 days
-    elseif day < 20 then
-        time = 480 -- 1 bat a day
-    elseif day < 40 then
-        time = 360 -- 1.5 bats / day
-    else
-        time = 240 -- 2 bats / day
+local function GetNextRegenTime()
+    --local day = TheWorld.state.cycles
+    local time = 130
+    local rate = 0
+    for _, player in pairs(AllPlayers) do
+        local age = player.components.age:GetAgeInDays()     
+        if age < 5 then
+            rate = rate + RATE_D5
+        elseif age < 10 then
+            rate = rate + RATE_D10
+        elseif age < 20 then
+            rate = rate + RATE_D20
+        elseif age < 40 then
+            rate = rate + RATE_D40
+        else
+            rate = rate + RATE_D40P
+        end
     end
+    if rate ~= 0 then time = 1 / rate end
 
     return time * _time_modifiers:CalculateModifierFromKey(MODIFIER_KEY_REGEN_TIME)
 end
@@ -149,14 +169,24 @@ local function IsBatSuitableForAttack(bat)
 end
 
 local function CollectBatsForAttack()
-    target_players = {}
-
-    for _, player in pairs(AllPlayers) do
-        if not player:GetIsInInterior() then
-            table.insert(target_players, player)
+    local putbackin_players = {}
+    _target_player = nil
+    
+    while _player_battime_binaryheap[1] ~= nil do --take stuff out of heap, heap is always sorted at [1] position
+        _target_player = _player_battime_binaryheap[1]
+        _player_battime_binaryheap:Remove(_target_player)
+        if not _target_player:GetIsInInterior() then
+            break
         end
+        table.insert(putbackin_players, _target_player)
+        _target_player = nil
     end
-    shuffleArray(target_players)
+    
+    for _, player in ipairs(putbackin_players) do
+        _player_battime_binaryheap:Insert(player)
+    end
+
+    if _target_player == nil then return end --no players
 
     local suitable_bat_count = 0
     for _, bat in pairs(_bats) do
@@ -166,12 +196,45 @@ local function CollectBatsForAttack()
         end
     end
 
-    -- Equally split among all players, each player gets at least 1 bat,
-    -- if there are less bats than players, some players will not be attacked
-    _bat_per_player = suitable_bat_count / math.max(GetTableSize(target_players), 1)
-    _bat_remainder = suitable_bat_count % math.max(GetTableSize(target_players), 1)
+    local age = _target_player.components.age:GetAgeInDays()
+    local min_bound = 0
+    local max_bound = 0
+	if _force_bat_count then
+		min_bound = _force_bat_count
+		max_bound = _force_bat_count
+	else
+		if age < 10 then
+			min_bound = 2
+			max_bound = 2
+		elseif age < 25 then
+			min_bound = 3
+			max_bound = 4
+		elseif age < 50 then
+			min_bound = 4
+			max_bound = 6
+		elseif age < 100 then
+			min_bound = 5
+			max_bound = 7
+		else
+			min_bound = 7
+			max_bound = 50
+		end --bounds copied from dst wiki
+	end
 
-    print("_bat_per_player", _bat_per_player, suitable_bat_count)
+    if suitable_bat_count < min_bound then
+        _bat_per_player = 0 --force failure
+        _player_battime_binaryheap:Insert(_target_player)
+        _target_player = nil
+        print("bat attack cant find enough bats", suitable_bat_count, "is less than", min_bound)
+		return
+    elseif suitable_bat_count > max_bound then -- Throw everything on 1 player, the others have their own batted timer.
+        _bat_per_player = max_bound
+    else
+        _bat_per_player = suitable_bat_count            
+    end
+    _bat_remainder = suitable_bat_count - _bat_per_player
+    
+    print("_bat_per_player", _target_player, _bat_per_player, suitable_bat_count)
 end
 
 local function GetSpawnPointForPlayer(player)
@@ -361,30 +424,48 @@ function self:LongUpdate(dt)
             dt_bat_attack = 0
         else
             dt_bat_attack = dt_bat_attack - _bat_attack_time
-            CollectBatsForAttack()
             local spawnfailed = false
-
-            if next(_bats_to_attack) then
-                local no_bat_left
-                if #target_players > 0 then
-                    for _, player in pairs(target_players) do
-                        no_bat_left = SpawnBatsForPlayer(player)
-                        if no_bat_left then
-                            break
-                        end
-                    end
-                else
-                    spawnfailed = true
-                    print("bat attack cant find any available player")
-                end
-                _bats_to_attack = {} -- reset it since all bats were removed
+            while not spawnfailed do --throw bats at players until spawn fails
+                CollectBatsForAttack()
+				if not _target_player then
+					spawnfailed = true 
+				else
+					if next(_bats_to_attack) then
+						SpawnBatsForPlayer(_target_player)
+						--_bats_to_attack = {} -- reset it since all bats were removed
+					end
+				end
+		
+				if spawnfailed then
+					_bat_attack_time = _bat_regen_time --check next bat regen
+				else
+					local current_time = TheWorld.state.cycles + TheWorld.state.time
+					current_time = current_time * TUNING.TOTAL_DAY_TIME - self._player_battime_startindex
+					_target_player.porkland_nextbattedtime = current_time + GetNextAttackTime()
+					_player_battime_binaryheap:Insert(_target_player)
+					
+					if current_time > BATTIME_OVERFLOW_MAX then
+						for i=1, #_player_battime_binaryheap do
+							_player_battime_binaryheap[i].porkland_nextbattedtime = _player_battime_binaryheap[i].porkland_nextbattedtime - BATTIME_OVERFLOW_MAX
+						end
+						self._player_battime_startindex = self._player_battime_startindex - BATTIME_OVERFLOW_MAX
+					end
+					
+					_target_player = nil
+					local player_mod = #AllPlayers
+					if player_mod == 0 then player_mod = 1 end
+					_bat_attack_time = GetNextAttackTime() / player_mod
+				end
+				if _force_bat_mean and _force_bat_iters < #AllPlayers - 1 then
+					_force_bat_count = GetRandomWithVariance(_force_bat_mean, _force_bat_variance)
+					self:RegenBat(_force_bat_count)
+					_force_bat_iters = _force_bat_iters + 1
+				end
             end
-
-            if spawnfailed then
-                _bat_attack_time = GetNextAttackTime() / 5
-            else
-                _bat_attack_time = GetNextAttackTime()
-            end
+			_force_bat_mean = nil
+			_force_bat_variance = nil
+			_force_bat_count = nil
+			_force_bat_iters = nil
         end
     end
 end
@@ -453,6 +534,27 @@ function self:LoadPostPass(ents, data)
 end
 
 --------------------------------------------------------------------------
+--[[ Binary Heap Detection ]]
+--------------------------------------------------------------------------
+
+local function AddToHeap(src, player)
+    player:DoTaskInTime(0, function()
+        if not player.porkland_nextbattedtime then --new player or just joined ham
+            local current_time = TheWorld.state.cycles + TheWorld.state.time
+            player.porkland_nextbattedtime = current_time * TUNING.TOTAL_DAY_TIME - self._player_battime_startindex + GetNextAttackTime()
+        end
+		print("BATTED_TIME", player, player.porkland_nextbattedtime)
+        _player_battime_binaryheap:Insert(player)
+    end)
+end
+local function RemoveFromHeap(src, player)
+    _player_battime_binaryheap:Remove(player)
+end
+        
+inst:ListenForEvent("ms_playerspawn", AddToHeap, _world)
+inst:ListenForEvent("ms_playerleft", RemoveFromHeap, _world)
+
+--------------------------------------------------------------------------
 --[[ Debug ]]
 --------------------------------------------------------------------------
 
@@ -464,6 +566,15 @@ end
 
 function self:ForceBatAttack()
     _bat_attack_time = 0
+	if #AllPlayers == 1 then
+		_force_bat_mean = 15
+		_force_bat_variance = 0
+	else
+		_force_bat_mean = 14
+		_force_bat_variance = 1
+	end
+	_force_bat_count = 15
+	_force_bat_iters = 0
     self:OnUpdate(0)
 end
 
