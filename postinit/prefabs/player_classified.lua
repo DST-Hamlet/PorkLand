@@ -216,10 +216,12 @@ local function OnBeavernessDelta(parent, data)
         --parent.player_classified.isbeavernesspulsedown:set_local(false)
     elseif data.newpercent > data.oldpercent then
         --Force dirty, we just want to trigger an event on the client
-        SetDirty(parent.player_classified.isbeavernesspulseup, true)
+        parent.player_classified.isbeavernesspulseup:set_local(true)
+        parent.player_classified.isbeavernesspulseup:set(true)
     elseif data.newpercent < data.oldpercent then
         --Force dirty, we just want to trigger an event on the client
-        SetDirty(parent.player_classified.isbeavernesspulsedown, true)
+        parent.player_classified.isbeavernesspulsedown:set_local(true)
+        parent.player_classified.isbeavernesspulsedown:set(true)
     end
 end
 

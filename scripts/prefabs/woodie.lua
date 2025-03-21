@@ -521,7 +521,7 @@ local function onbecamebeaver(inst)
 end
 
 local function onrespawnedfromghost(inst)
-    inst.components.beaverness:StartTimeEffect(1, -0.75 * inst.components.beaverness.max / TUNING.BEAVER_DRAIN_TIME)
+    inst.components.beaverness:StartTimeEffect(1, -0.75 * inst.components.beaverness.max / TUNING.PL_BEAVER_DRAIN_TIME)
 
     if inst._wasnomorph == nil then
         inst._wasnomorph = inst.sg:HasStateTag("nomorph") or inst.sg:HasStateTag("silentmorph")

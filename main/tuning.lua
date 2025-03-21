@@ -728,6 +728,8 @@ local tuning = {
     WILLOW_CHILL_END = 0,
 
     WOLFGANG_HUNGER = 300,
+
+    PL_BEAVER_DRAIN_TIME = 5 * total_day_time, -- time it takes the log meter to drain to transform threshold
 }
 
 
