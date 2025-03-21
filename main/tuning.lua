@@ -806,7 +806,7 @@ local default_starting_items = {
     WATHGRITHR = {"spear_wathgrithr", "wathgrithrhat", "meat", "meat", "meat", "meat"},
     WEBBER = {"spidereggsack", "monstermeat", "monstermeat"},
     WINONA = {"sewing_tape", "sewing_tape", "sewing_tape"},
-    -- WORMWOOD = {},
+    WORMWOOD = {},
     -- WARLY = {"portablecookpot_item", "potato", "potato", "garlic"},
 }
 
