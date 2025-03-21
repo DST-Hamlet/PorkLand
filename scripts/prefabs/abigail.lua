@@ -119,6 +119,10 @@ local function AbleToAcceptTest(inst, item)
     return false, item.prefab == "reviver" and "ABIGAILHEART" or nil
 end
 
+local function getstatus(inst)
+    return "LEVEL3"
+end
+
 local function fn()
     local inst = CreateEntity()
 
@@ -175,7 +179,7 @@ local function fn()
     inst:SetStateGraph("SGghost")
 
     inst:AddComponent("inspectable")
-    -- TODO: insepctable.getstatus
+    inst.components.inspectable.getstatus = getstatus
 
     inst:AddComponent("health")
     inst.components.health:SetMaxHealth(TUNING.ABIGAIL_HEALTH)
