@@ -224,6 +224,10 @@ AddPlayerPostInit(function(inst)
     inst:ListenForEvent("enterinterior", OnInteriorChange)
     inst:ListenForEvent("leaveinterior", OnInteriorChange)
 
+    inst:ListenForEvent("onterraform", function(src, data)
+        SendModRPCToClient(GetClientModRPC("PorkLand", "tile_changed"), nil, ZipAndEncodeString(data))
+    end, TheWorld)
+
     if inst.OnLoad then
         inst.__OnLoad = inst.OnLoad
         inst.OnLoad = OnLoad
