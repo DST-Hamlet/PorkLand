@@ -207,6 +207,55 @@ local function ClearLastTarget(inst)
     inst.clearlastworktargettask = inst:DoTaskInTime(1, function() inst._last_work_target:set(nil) end)
 end
 
+local function OnBeavernessDelta(parent, data)
+    if data.overtime then
+        --V2C: Don't clear: it's redundant as player_classified shouldn't
+        --     get constructed remotely more than once, and this would've
+        --     also resulted in lost pulses if network hasn't ticked yet.
+        --parent.player_classified.isbeavernesspulseup:set_local(false)
+        --parent.player_classified.isbeavernesspulsedown:set_local(false)
+    elseif data.newpercent > data.oldpercent then
+        --Force dirty, we just want to trigger an event on the client
+        SetDirty(parent.player_classified.isbeavernesspulseup, true)
+    elseif data.newpercent < data.oldpercent then
+        --Force dirty, we just want to trigger an event on the client
+        SetDirty(parent.player_classified.isbeavernesspulsedown, true)
+    end
+end
+
+local function OnBeavernessDirty(inst)
+    if inst._parent ~= nil then
+        local oldpercent = inst._oldbeavernesspercent
+        local percent = inst.currentbeaverness:value() * .01
+        local data =
+        {
+            oldpercent = oldpercent,
+            newpercent = percent,
+            overtime =
+                not (inst.isbeavernesspulseup:value() and percent > oldpercent) and
+                not (inst.isbeavernesspulsedown:value() and percent < oldpercent),
+        }
+        inst._oldbeavernesspercent = percent
+        inst.isbeavernesspulseup:set_local(false)
+        inst.isbeavernesspulsedown:set_local(false)
+        inst._parent:PushEvent("beavernessdelta", data)
+        --push starving event if hunger value isn't currently starving
+        if inst._oldhungerpercent > 0 then
+            if oldpercent > 0 then
+                if percent <= 0 then
+                    inst._parent:PushEvent("startstarving")
+                end
+            elseif percent > 0 then
+                inst._parent:PushEvent("stopstarving")
+            end
+        end
+    else
+        inst._oldbeavernesspercent = 1
+        inst.isbeavernesspulseup:set_local(false)
+        inst.isbeavernesspulsedown:set_local(false)
+    end
+end
+
 local function RegisterNetListeners(inst)
     if TheWorld.ismastersim then
         inst._parent = inst.entity:GetParent()
@@ -215,10 +264,14 @@ local function RegisterNetListeners(inst)
         inst:ListenForEvent("start_city_alarm", function() inst.cityalarmevent:push() end)
         inst:ListenForEvent("sanity_stun", function() inst.sanitystunevent:push() end)
         inst:ListenForEvent("worktargetdirty", inst.ClearLastTarget)
+        inst:ListenForEvent("beavernessdelta", OnBeavernessDelta, inst._parent)
     else
         inst.poisonpulse:set_local(false)
         inst.isquaking:set_local(false)
+        inst.isbeavernesspulseup:set_local(false)
+        inst.isbeavernesspulsedown:set_local(false)
         inst:ListenForEvent("poisonpulsedirty", OnPoisonPulseDirty)
+        inst:ListenForEvent("beavernessdirty", OnBeavernessDirty)
     end
 
     if not TheNet:IsDedicated() and inst._parent == ThePlayer then
@@ -247,6 +300,12 @@ AddPrefabPostInit("player_classified", function(inst)
     inst.isquaking = net_bool(inst.GUID, "interiorquaker.isquaking", "isquakingdirty")
     inst._last_work_target = net_entity(inst.GUID, "_last_work_target", "worktargetdirty")
 
+    --Beaverness variables
+    inst._oldbeavernesspercent = 1
+    inst.currentbeaverness = net_byte(inst.GUID, "beaverness.current", "beavernessdirty")
+    inst.isbeavernesspulseup = net_bool(inst.GUID, "beaverness.dodeltaovertime(up)", "beavernessdirty")
+    inst.isbeavernesspulsedown = net_bool(inst.GUID, "beaverness.dodeltaovertime(down)", "beavernessdirty")
+
     inst.isironlord = inst.isironlord or net_bool(inst.GUID, "livingartifact.isironlord", "ironlorddirty")
     inst.ironlordtimeleft = inst.ironlordtimeleft or net_float(inst.GUID, "livingartifact.ironlordtimeleft", "ironlordtimedirty")
     inst.instantironlord = inst.instant_ironlord or net_bool(inst.GUID, "livingartifact.instantironlord") -- just a flag for loading
@@ -258,6 +317,7 @@ AddPrefabPostInit("player_classified", function(inst)
     inst.isingas:set(false)
     inst.riderspeedmultiplier:set(1)
     inst.isquaking:set(false)
+    inst.currentbeaverness:set(100)
 
     inst.ClearLastTarget = ClearLastTarget
 
