@@ -498,3 +498,14 @@ if not TheNet:IsDedicated() then
         table.insert(Assets, asset)
     end
 end
+
+local dst_chracters = {
+    "wortox",
+    "wurt",
+    "walter",
+    "wanda",
+}
+
+for _, v in pairs(dst_chracters) do
+    RemoveDefaultCharacter(v)
+end
