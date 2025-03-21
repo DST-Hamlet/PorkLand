@@ -802,12 +802,12 @@ local default_starting_items = {
     WICKERBOTTOM = {"papyrus", "papyrus"},
     WES = {"balloons_empty"},
     WAXWELL = {"waxwelljournal", "nightmarefuel", "nightmarefuel", "nightmarefuel", "nightmarefuel", "nightmarefuel", "nightmarefuel"},
-    -- WOODIE = {"lucy"},
+    WOODIE = {"lucy"},
     WATHGRITHR = {"spear_wathgrithr", "wathgrithrhat", "meat", "meat", "meat", "meat"},
     WEBBER = {"spidereggsack", "monstermeat", "monstermeat"},
     WINONA = {"sewing_tape", "sewing_tape", "sewing_tape"},
     WORMWOOD = {},
-    -- WARLY = {"portablecookpot_item", "potato", "potato", "garlic"},
+    WARLY = {"portablecookpot_item", "potato", "potato", "garlic"},
 }
 
 for character, starting_items in pairs(default_starting_items) do
