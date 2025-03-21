@@ -37,7 +37,6 @@ end
 
 --------------------------------------------------------------------------
 
-local index_count = 0
 local spawn_vector = {1, 0, 0}
 local falloff_fx_datas = {}
 
@@ -55,7 +54,7 @@ local function fn_fx()
     end
 
     local effect = inst.entity:AddVFXEffect()
-    effect:InitEmitters(index_count)
+    effect:InitEmitters(GetTableSize(falloff_fx_datas))
     for name, data in pairs(falloff_fx_datas) do
         local i = data.id
         effect:SetRenderResources(i, resolvefilepath(data.texture), resolvefilepath(SHADER))
@@ -84,19 +83,17 @@ local ANGLE_TO_VECTOR = {
     [270] = {-1, 0, 0},
 }
 
-local function InitVFX(inst, count, FALLOFF_TYPES)
-    index_count = count
-    falloff_fx_datas = FALLOFF_TYPES
+local function InitVFX(inst, faloff_datas)
+    falloff_fx_datas = faloff_datas
     for k, data in pairs(ANGLE_TO_VECTOR) do
         spawn_vector = data
         inst.child_effects[k] = SpawnPrefab("falloff_fx_child")
         spawn_vector = {1, 0, 0}
     end
-    index_count = 0
     falloff_fx_datas = {}
 end
 
-local function ClearVFX(inst, index)
+local function ClearFalloff(inst, index)
     for k, v in pairs(inst.child_effects) do
         v.VFXEffect:ClearAllParticles(index)
     end
@@ -143,7 +140,7 @@ local function fn()
 
     inst.InitVFX = InitVFX
     inst.SpawnFalloff = SpawnFalloff
-    inst.ClearVFX = ClearVFX
+    inst.ClearFalloff = ClearFalloff
 
     return inst
 end

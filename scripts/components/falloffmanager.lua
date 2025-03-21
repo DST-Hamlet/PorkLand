@@ -8,8 +8,6 @@ local FALLOFF_TYPES =
             end
         end,
 
-        id = 0,
-
         texture = "levels/tiles/falloff.tex",
     },
     --["test"] =
@@ -26,6 +24,12 @@ local FALLOFF_TYPES =
     --},
 }
 
+local falloff_id = 0
+for name, data in pairs(FALLOFF_TYPES) do
+    FALLOFF_TYPES[name].id = falloff_id
+    falloff_id = falloff_id + 1
+end
+
 -- PLAYER_CAMERA_SEE_DISTANCE (40) / TILE_SCALE (4) = 10
 local REFRESH_RADIUS = (PLAYER_CAMERA_SEE_DISTANCE / TILE_SCALE) + 5
 
@@ -36,7 +40,7 @@ local FalloffManager = Class(function(self, inst)
 
     self.falloff_fx = SpawnPrefab("falloff_fx")
 
-    self.falloff_fx:InitVFX(GetTableSize(FALLOFF_TYPES), FALLOFF_TYPES)
+    self.falloff_fx:InitVFX(FALLOFF_TYPES)
 
     self.inst.components.tilechangewatcher:ListenToUpdate(function()
         self:UpdateFalloffs()
@@ -45,7 +49,7 @@ end)
 
 function FalloffManager:ClearFalloffs()
     for name, typedata in pairs(FALLOFF_TYPES) do
-        self.falloff_fx:ClearVFX(typedata.id)
+        self.falloff_fx:ClearFalloff(typedata.id)
     end
     self.falloffs = {}
 end

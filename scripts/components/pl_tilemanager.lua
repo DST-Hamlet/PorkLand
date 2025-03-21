@@ -1,10 +1,24 @@
+local TILE_TYPES =
+{
+    [WORLD_TILES.LILYPOND] =
+    {
+        texture = "levels/merged_tex/lilypond_merged.tex",
+    },
+}
+
+local tile_id = 0
+for name, data in pairs(TILE_TYPES) do
+    TILE_TYPES[name].id = tile_id
+    tile_id = tile_id + 1
+end
+
 -- PLAYER_CAMERA_SEE_DISTANCE (40) / TILE_SCALE (4) = 10
 local REFRESH_RADIUS = (PLAYER_CAMERA_SEE_DISTANCE / TILE_SCALE) + 5
 
 local PL_TileManager = Class(function(self, inst)
     self.inst = inst
 
-    self.tiletest = SpawnPrefab("tile_fx")
+    self.tiletest = SpawnTileFxEntity(TILE_TYPES)
 
     self.inst.components.tilechangewatcher:ListenToUpdate(function()
         self:UpdateTiles()
@@ -12,7 +26,9 @@ local PL_TileManager = Class(function(self, inst)
 end)
 
 function PL_TileManager:ClearTiles()
-    self.tiletest.VFXEffect:ClearAllParticles(0)
+    for name, data in pairs(TILE_TYPES) do
+        self.tiletest:ClearTile(data.id)
+    end
 end
 
 function PL_TileManager:SpawnTiles()
@@ -166,25 +182,30 @@ function PL_TileManager:UpdateTiles()
             local center = current_tile_center + Vector3(x * TILE_SCALE, 0, z * TILE_SCALE)
             local tile = TheWorld.Map:GetTileAtPoint(center.x, center.y, center.z)
             if tile then
-                if tile == WORLD_TILES.LILYPOND then
-                    self.tiletest:SpawnTile(center, 1)
-                else
-                    local neighbor_data = {}
-                    for dir, v in pairs(NEIGHBOR_TILES) do
-                        local adjacent_tile = TheWorld.Map:GetTileAtPoint(center.x + v.x * TILE_SCALE, center.y, center.z + v.z * TILE_SCALE)
-                        if adjacent_tile == WORLD_TILES.LILYPOND then
-                            table.insert(neighbor_data, dir)
-                        end
-                    end
+                if TILE_TYPES[tile] then
+                    self.tiletest:SpawnTile(center, 1, TILE_TYPES[tile].id)
+                end
 
-                    local key = GetKeyForNeighbors(neighbor_data)
+                local neighbor_datas = {}
+                for dir, v in pairs(NEIGHBOR_TILES) do
+                    local adjacent_tile = TheWorld.Map:GetTileAtPoint(center.x + v.x * TILE_SCALE, center.y, center.z + v.z * TILE_SCALE)
+                    if TILE_TYPES[adjacent_tile] then
+                        if neighbor_datas[adjacent_tile] == nil then
+                            neighbor_datas[adjacent_tile] = {}
+                        end
+                        table.insert(neighbor_datas[adjacent_tile], dir)
+                    end
+                end
+
+                for tile_type, data in pairs(neighbor_datas) do
+                    local key = GetKeyForNeighbors(data)
 
                     if key > 0 then
                         local value = tile_map[key]
                         if value < 17 then
                             value = value + GetTileVariant(center.x, center.z) * 48 -- 随机变体
                         end
-                        self.tiletest:SpawnTile(center, value or 1)
+                        self.tiletest:SpawnTile(center, value or 1, TILE_TYPES[tile_type].id)
                     end
                 end
             end
