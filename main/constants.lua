@@ -73,7 +73,7 @@ TECH.HOME = {
 }
 
 TECH.WAXWELLJOURNAL = {
-    SHADOW = TUNING.PROTOTYPER_TREES.WAXWELLJOURNAL -- 4
+    SHADOW = 4
 }
 
 -- Just an arbitrary number

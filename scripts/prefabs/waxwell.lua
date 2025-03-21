@@ -101,7 +101,7 @@ local function OnReroll(inst)
 end
 
 local function common_postinit(inst)
-    inst:AddTag("pl_shadowmagic") -- builder tag issue
+    inst:AddTag("shadowmagic")
     inst:AddTag("dappereffects")
     --reader (from reader component) added to pristine state for optimization
     inst:AddTag("reader")
