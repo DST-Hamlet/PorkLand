@@ -18,6 +18,8 @@ local REFRESH_RADIUS = (PLAYER_CAMERA_SEE_DISTANCE / TILE_SCALE) + 5
 local PL_TileManager = Class(function(self, inst)
     self.inst = inst
 
+    self.falloffs = {}
+
     self.tiletest = SpawnTileFxEntity(TILE_TYPES)
 
     self.inst.components.tilechangewatcher:ListenToUpdate(function()
@@ -29,10 +31,19 @@ function PL_TileManager:ClearTiles()
     for name, data in pairs(TILE_TYPES) do
         self.tiletest:ClearTile(data.id)
     end
+    self.tiles = {}
 end
 
 function PL_TileManager:SpawnTiles()
-
+    for i = 1, GetTableSize(TILE_TYPES) do
+        local id = i - 1
+        local datas = self.tiles[id]
+        if datas then
+            for _, data in ipairs(datas) do
+                self.tiletest:SpawnTile(data.position, data.overhang_type, id)
+            end
+        end
+    end
 end
 
 function PL_TileManager:OnRemoveEntity()
@@ -183,7 +194,14 @@ function PL_TileManager:UpdateTiles()
             local tile = TheWorld.Map:GetTileAtPoint(center.x, center.y, center.z)
             if tile then
                 if TILE_TYPES[tile] then
-                    self.tiletest:SpawnTile(center, 1, TILE_TYPES[tile].id)
+                    if self.tiles[TILE_TYPES[tile].id] == nil then
+                        self.tiles[TILE_TYPES[tile].id] = {}
+                    end
+                    table.insert(self.tiles[TILE_TYPES[tile].id], {
+                        position = Vector3(center.x, center.y, center.z),
+                        overhang_type = 1,
+                    })
+                    -- self.tiletest:SpawnTile(center, 1, TILE_TYPES[tile].id)
                 end
 
                 local neighbor_datas = {}
@@ -205,7 +223,14 @@ function PL_TileManager:UpdateTiles()
                         if value < 17 then
                             value = value + GetTileVariant(center.x, center.z) * 48 -- 随机变体
                         end
-                        self.tiletest:SpawnTile(center, value or 1, TILE_TYPES[tile_type].id)
+                        if self.tiles[TILE_TYPES[tile_type].id] == nil then
+                            self.tiles[TILE_TYPES[tile_type].id] = {}
+                        end
+                        table.insert(self.tiles[TILE_TYPES[tile_type].id], {
+                            position = Vector3(center.x, center.y, center.z),
+                            overhang_type = value,
+                        })
+                        -- self.tiletest:SpawnTile(center, value or 1, TILE_TYPES[tile_type].id)
                     end
                 end
             end

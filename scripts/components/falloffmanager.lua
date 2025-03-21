@@ -55,9 +55,13 @@ function FalloffManager:ClearFalloffs()
 end
 
 function FalloffManager:SpawnFalloffs()
-    for id, datas in pairs(self.falloffs) do
-        for _, data in ipairs(datas) do
-            self.falloff_fx:SpawnFalloff(id, data.position, data.angle, data.variant)
+    for i = 1, GetTableSize(FALLOFF_TYPES) do
+        local id = i - 1
+        local datas = self.falloffs[id]
+        if datas then
+            for _, data in ipairs(datas) do
+                self.falloff_fx:SpawnFalloff(id, data.position, data.angle, data.variant)
+            end
         end
     end
 end
