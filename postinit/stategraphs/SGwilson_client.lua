@@ -827,7 +827,7 @@ local states = {
     },
 
     State{
-        name = "shoot",
+        name = "hand_shoot",
         tags = {"attack", "notalking", "abouttoattack", "busy"},
 
         onenter = function(inst)
@@ -835,11 +835,7 @@ local states = {
                 inst.Transform:SetFourFaced()
             end
             local weapon = inst.replica.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
-            if weapon and weapon:HasTag("hand_gun") then
-                inst.AnimState:PlayAnimation("hand_shoot")
-            else
-                inst.AnimState:PlayAnimation("shoot")
-            end
+            inst.AnimState:PlayAnimation("hand_shoot")
 
             local buffaction = inst:GetBufferedAction()
             local target = buffaction and buffaction.target
@@ -986,7 +982,7 @@ local states = {
             inst.AnimState:PlayAnimation("slide_pre")
 
             inst.AnimState:PushAnimation("slide_loop")
-            inst.SoundEmitter:PlaySound("dontstarve_DLC003/characters/wheeler/slide")
+            inst.SoundEmitter:PlaySound("porkland_soundpackage/characters/wheeler/slide")
             inst.Physics:SetMotorVelOverride(20, 0, 0)
             inst.components.locomotor:EnableGroundSpeedMultiplier(false)
 
@@ -1132,8 +1128,8 @@ AddStategraphPostInit("wilson_client", function(sg)
                 if equip then
                     if equip:HasTag("blunderbuss_loaded") then
                         return "blunderbuss"
-                    elseif equip:HasTag("gun") then
-                        return "shoot"
+                    elseif equip:HasTag("hand_gun_loaded") then
+                        return "hand_shoot"
                     end
                 end
             end

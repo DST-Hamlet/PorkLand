@@ -10,7 +10,7 @@ local function oncatchable(self)
     end
 end
 
-local Projectile = Class(function(self, inst)
+local Projectile_gun = Class(function(self, inst)
     self.inst = inst
     self.owner = nil
     self.target = nil
@@ -69,7 +69,7 @@ local function StartTrackingDelayOwner(self, owner)
     end
 end
 
-function Projectile:OnRemoveFromEntity()
+function Projectile_gun:OnRemoveFromEntity()
     self.inst:RemoveTag("projectile")
     self.inst:RemoveTag("catchable")
     if self.dozeOffTask ~= nil then
@@ -83,63 +83,63 @@ function Projectile:OnRemoveFromEntity()
     StopTrackingDelayOwner(self)
 end
 
-function Projectile:GetDebugString()
+function Projectile_gun:GetDebugString()
     return string.format("target: %s, owner %s", tostring(self.target), tostring(self.owner))
 end
 
-function Projectile:SetSpeed(speed)
+function Projectile_gun:SetSpeed(speed)
     self.speed = speed
 end
 
-function Projectile:SetStimuli(stimuli)
+function Projectile_gun:SetStimuli(stimuli)
     self.stimuli = stimuli
 end
 
-function Projectile:SetRange(range)
+function Projectile_gun:SetRange(range)
     self.range = range
 end
 
-function Projectile:SetHitDist(dist)
+function Projectile_gun:SetHitDist(dist)
     self.hitdist = dist
 end
 
-function Projectile:SetOnThrownFn(fn)
+function Projectile_gun:SetOnThrownFn(fn)
     self.onthrown = fn
 end
 
-function Projectile:SetOnHitFn(fn)
+function Projectile_gun:SetOnHitFn(fn)
     self.onhit = fn
 end
 
-function Projectile:SetOnPreHitFn(fn)
+function Projectile_gun:SetOnPreHitFn(fn)
     self.onprehit = fn
 end
 
-function Projectile:SetOnCaughtFn(fn)
+function Projectile_gun:SetOnCaughtFn(fn)
     self.oncaught = fn
 end
 
-function Projectile:SetOnMissFn(fn)
+function Projectile_gun:SetOnMissFn(fn)
     self.onmiss = fn
 end
 
-function Projectile:SetCanCatch(cancatch)
+function Projectile_gun:SetCanCatch(cancatch)
     self.cancatch = cancatch
 end
 
-function Projectile:SetHoming(homing)
+function Projectile_gun:SetHoming(homing)
     self.homing = homing
 end
 
-function Projectile:SetLaunchOffset(offset)
+function Projectile_gun:SetLaunchOffset(offset)
     self.launchoffset = offset -- x is radius, y is height, z is ignored
 end
 
-function Projectile:IsThrown()
+function Projectile_gun:IsThrown()
     return self.target ~= nil
 end
 
-function Projectile:Throw(owner, target, attacker)
+function Projectile_gun:Throw(owner, target, attacker)
     self.owner = owner
     self.target = target
     self.start = self.overridestartpos or owner:GetPosition()
@@ -166,7 +166,7 @@ function Projectile:Throw(owner, target, attacker)
     end
 end
 
-function Projectile:Catch(catcher)
+function Projectile_gun:Catch(catcher)
     if self.cancatch then
         StopTrackingDelayOwner(self)
         self:Stop()
@@ -177,7 +177,7 @@ function Projectile:Catch(catcher)
     end
 end
 
-function Projectile:Miss(target)
+function Projectile_gun:Miss(target)
     local attacker = self.owner
     if attacker ~= nil and attacker.components.combat == nil and attacker.components.weapon ~= nil and attacker.components.inventoryitem ~= nil then
         attacker = attacker.components.inventoryitem.owner
@@ -189,7 +189,7 @@ function Projectile:Miss(target)
     end
 end
 
-function Projectile:Stop()
+function Projectile_gun:Stop()
     self.inst.Physics:CollidesWith(COLLISION.LIMITS)
 
     self.inst:RemoveTag("activeprojectile")
@@ -199,7 +199,7 @@ function Projectile:Stop()
     self.delaypos = nil
 end
 
-function Projectile:Hit(target)
+function Projectile_gun:Hit(target)
     local attacker = self.owner
     local weapon = self.inst
     StopTrackingDelayOwner(self)
@@ -214,7 +214,13 @@ function Projectile:Hit(target)
     if self.onprehit ~= nil then
         self.onprehit(self.inst, attacker, target)
     end
-    target.components.combat:GetAttacked(attacker, self.damage, weapon)
+
+    local pvp_mult = 1
+    if attacker:HasTag("player") and target:HasTag("player") then
+        pvp_mult = 0.5
+    end
+
+    target.components.combat:GetAttacked(attacker, self.damage * pvp_mult, weapon)
     if self.onhit ~= nil then
         self.onhit(self.inst, attacker, target)
     end
@@ -225,13 +231,13 @@ local function DozeOff(inst, self)
     self:Stop()
 end
 
-function Projectile:OnEntitySleep()
+function Projectile_gun:OnEntitySleep()
     if self.dozeOffTask == nil then
         self.dozeOffTask = self.inst:DoTaskInTime(DOZE_OFF_TIME, DozeOff, self)
     end
 end
 
-function Projectile:OnEntityWake()
+function Projectile_gun:OnEntityWake()
     if self.dozeOffTask ~= nil then
         self.dozeOffTask:Cancel()
         self.dozeOffTask = nil
@@ -326,7 +332,7 @@ local function DoUpdate(self, target, pos, rot, force)
     return false
 end
 
-function Projectile:OnUpdate(dt)
+function Projectile_gun:OnUpdate(dt)
     local target = self.target
     if self.homing and target ~= nil and target:IsValid() and not target:IsInLimbo() then
         self.dest = target:GetPosition()
@@ -355,7 +361,7 @@ function Projectile:OnUpdate(dt)
     DoUpdate(self, target, pos)
 end
 
-function Projectile:RotateToTarget(dest)
+function Projectile_gun:RotateToTarget(dest)
     local direction = dest - self.inst:GetPosition()
     direction:Normalize()
     local angle = math.acos(direction:Dot(Vector3(1, 0, 0))) / DEGREES
@@ -369,7 +375,7 @@ local function OnShow(inst, self)
     StopTrackingDelayOwner(self)
 end
 
-function Projectile:DelayVisibility(duration)
+function Projectile_gun:DelayVisibility(duration)
     if self.delaytask ~= nil then
         self.delaytask:Cancel()
     end
@@ -388,12 +394,12 @@ function Projectile:DelayVisibility(duration)
     self.delaytask = self.inst:DoTaskInTime(duration, OnShow, self)
 end
 
-function Projectile:SetBounced(bounced)
+function Projectile_gun:SetBounced(bounced)
     self.bounced = bounced ~= false
 end
 
-function Projectile:IsBounced()
+function Projectile_gun:IsBounced()
     return self.bounced == true
 end
 
-return Projectile
+return Projectile_gun

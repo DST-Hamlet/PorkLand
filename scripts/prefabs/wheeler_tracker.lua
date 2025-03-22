@@ -48,7 +48,7 @@ local function TrackNext(inst, goal_inst)
     -- print("TRACKING A", prefab)
 
     -- TODO: Optimize this
-    return FindEntity(inst, 1000, function(entity)
+    return FindEntity(inst, 200, function(entity)
         return CanGiveLoot(entity, goal_inst)
     end)
 end
@@ -149,7 +149,7 @@ local  function OnItemLose(inst, data)
     DeactivateTracking(inst)
 
     inst.components.inventoryitem:ChangeImageName("tracker_open")
-    inst.SoundEmitter:PlaySound("dontstarve_DLC003/characters/wheeler/tracker/open")
+    inst.SoundEmitter:PlaySound("porkland_soundpackage/characters/wheeler/tracker/open")
 end
 
 local function OnItemGet(inst, data)
@@ -179,8 +179,6 @@ local function fn()
 
     MakeInventoryPhysics(inst)
     PorkLandMakeInventoryFloatable(inst)
-
-    inst:AddTag("irreplaceable")
 
     inst.entity:SetPristine()
 

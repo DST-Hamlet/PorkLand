@@ -295,11 +295,39 @@ params["ro_bin"] = deepcopy(params["chester"])
 params["trawlnetdropped"] = deepcopy(params["treasurechest"])
 params["sunkenprefab"] = deepcopy(params["treasurechest"])
 
-params["trusty_shooter"] = deepcopy(params["slingshot"])
+params.trusty_shooter =
+{
+    widget =
+    {
+        slotpos =
+        {
+            Vector3(0,   32 + 4,  0),
+        },
+        animbank = "ui_cookpot_1x2",
+        animbuild = "ui_cookpot_1x2",
+        pos = Vector3(0, 15, 0),
+    },
+    type = "hand_inv",
+    excludefromcrafting = true,
+}
 function params.trusty_shooter.itemtestfn(container, item, slot)
     return container.inst:CanTakeAmmo(item)
 end
-params["wheeler_tracker"] = deepcopy(params["slingshot"])
+params.wheeler_tracker =
+{
+    widget =
+    {
+        slotpos =
+        {
+            Vector3(0,   32 + 4,  0),
+        },
+        animbank = "ui_cookpot_1x2",
+        animbuild = "ui_cookpot_1x2",
+        pos = Vector3(0, 15, 0),
+    },
+    type = "hand_inv",
+    excludefromcrafting = true,
+}
 function params.wheeler_tracker.itemtestfn(container, item, slot)
     return true
 end

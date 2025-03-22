@@ -62,6 +62,11 @@ local master_postinit = function(inst)
     inst.starting_inventory = start_inv[TheNet:GetServerGameMode()] or start_inv.default
 
     inst.talker_path_override = "dontstarve_DLC003/characters/"
+    inst.SoundEmitter:OverrideSound("dontstarve_DLC003/characters/wheeler/ghost_LP", "porkland_soundpackage/characters/wheeler/ghost_LP")
+    inst.SoundEmitter:OverrideSound("dontstarve_DLC003/characters/wheeler/pose", "porkland_soundpackage/characters/wheeler/pose")
+    inst.SoundEmitter:OverrideSound("dontstarve_DLC003/characters/wheeler/yawn", "porkland_soundpackage/characters/wheeler/yawn")
+    inst.SoundEmitter:OverrideSound("dontstarve_DLC003/characters/wheeler/eye_rub_vo", "porkland_soundpackage/characters/wheeler/eye_rub_vo")
+    inst.SoundEmitter:OverrideSound("dontstarve_DLC003/characters/wheeler/carol", "porkland_soundpackage/characters/wheeler/carol")
 
     inst.components.health:SetMaxHealth(TUNING.WHEELER_HEALTH)
     inst.components.sanity:SetMax(TUNING.WHEELER_SANITY)

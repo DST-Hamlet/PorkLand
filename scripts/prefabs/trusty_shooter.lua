@@ -74,7 +74,7 @@ local function LoadWeapon(inst, item)
 
     inst:AddTag("projectile")
     inst.components.weapon:SetProjectile(item.prefab)
-    inst:AddTag("gun")
+    inst:AddTag("hand_gun_loaded")
 
     SetAmmoDamageAndRange(inst, item)
 
@@ -98,7 +98,7 @@ local function ResetAmmo(inst)
     --Go back to crummy bat mode
     inst:RemoveTag("projectile")
     inst.components.weapon:SetProjectile(nil)
-    inst:RemoveTag("gun")
+    inst:RemoveTag("hand_gun_loaded")
 
     --Change ranges back to melee
     inst.components.weapon:SetRange(nil, nil)
@@ -130,6 +130,8 @@ local function OnProjectileHit(inst, attacker, target, weapon)
 end
 
 local function OnProjectileLaunched(inst, attacker, target, proj)
+    local damage = inst.components.weapon.damage
+
     if inst.components.container then
         local ammo_stack = inst.components.container:GetItemInSlot(1)
         local item = inst.components.container:RemoveItem(ammo_stack)
@@ -140,10 +142,13 @@ local function OnProjectileLaunched(inst, attacker, target, proj)
 
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/characters/wheeler/air_horn/shoot")
 
-    proj:AddComponent("projectile")
+    if proj.components.projectile_gun == nil then
+        proj:AddComponent("projectile_gun")
+    end
 
-    proj.components.projectile:SetSpeed(35)
-    proj.components.projectile:SetOnHitFn(OnProjectileHit)
+    proj.components.projectile_gun.damage = damage
+    proj.components.projectile_gun:SetSpeed(35)
+    proj.components.projectile_gun:SetOnHitFn(OnProjectileHit)
 
     proj.components.inventoryitem.canbepickedup = false
 
@@ -160,7 +165,7 @@ local function OnProjectileLaunched(inst, attacker, target, proj)
         local x, y, z = attacker.Transform:GetWorldPosition()
         proj.Transform:SetPosition(x, y + 2.5, z)
     end
-    proj.components.projectile:Throw(inst, target, attacker)
+    proj.components.projectile_gun:Throw(inst, target, attacker)
 end
 
 local function fn()
@@ -181,8 +186,7 @@ local function fn()
     inst.AnimState:PlayAnimation("idle")
 
     inst:AddTag("hand_gun")
-    inst:AddTag("irreplaceable")
-
+    inst:AddTag("rangedweapon")
     -- weapon (from weapon component) added to pristine state for optimization
     inst:AddTag("weapon")
 
