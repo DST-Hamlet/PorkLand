@@ -722,6 +722,69 @@ local tuning = {
 
     ANIMSHADE_MIN_STRENGTH = 0.1429,           -- blend min strength - modulated with avg ambient
     ANIMSHADE_MAX_STRENGTH = 0.5,           -- blend max strength - modulated with avg ambient
+
+    WHEELER_HEALTH = 100,
+    WHEELER_HUNGER = 150,
+    WHEELER_SANITY = 200,
+    WHEELER_DODGE_COOLDOWN = 1.5,
+    DODGE_TIMEOUT = 0.25,
+
+    TRUSTY_SHOOTER_DAMAGE_HIGH = 60,
+    TRUSTY_SHOOTER_DAMAGE_MEDIUM = 45,
+    TRUSTY_SHOOTER_DAMAGE_LOW = wilson_attack,
+
+    TRUSTY_SHOOTER_ATTACK_RANGE_HIGH = 11,
+    TRUSTY_SHOOTER_ATTACK_RANGE_MEDIUM = 9,
+    TRUSTY_SHOOTER_ATTACK_RANGE_LOW = 7,
+
+    TRUSTY_SHOOTER_HIT_RANGE_HIGH = 13,
+    TRUSTY_SHOOTER_HIT_RANGE_MEDIUM = 11,
+    TRUSTY_SHOOTER_HIT_RANGE_LOW = 9,
+
+    TRUSTY_SHOOTER_TIERS =
+    {
+        AMMO_HIGH = {
+            "gears",
+            "purplegem",
+            "bluegem",
+            "redgem",
+            "orangegem",
+            "yellowgem",
+            "greengem",
+            "oinc10",
+            "oinc100",
+            "nightmarefuel",
+            "gunpowder",
+            "relic_1",
+            "relic_2",
+            "relic_3",
+            "relic_4",
+            "relic_5",
+        },
+
+        AMMO_LOW =
+        {
+            "feather_crow",
+            "feather_robin",
+            "feather_robin_winter",
+            "feather_thunder",
+            "ash",
+            "beardhair",
+            "beefalowool",
+            "butterflywings",
+            "clippings",
+            "cutgrass",
+            "cutreeds",
+            "foliage",
+            "palmleaf",
+            "papyrus",
+            "petals",
+            "petals_evil",
+            "pigskin",
+            "silk",
+            "seaweed",
+        },
+    },
 }
 
 
@@ -794,3 +857,9 @@ for key, value in pairs(tuning) do
 
     TUNING[key] = value
 end
+
+TUNING.GAMEMODE_STARTING_ITEMS.DEFAULT.WHEELER = {
+    "trusty_shooter",
+    -- TODO: Find a way to make this thing lesser laggy and then enable it
+    -- "wheeler_tracker",
+}

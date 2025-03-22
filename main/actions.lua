@@ -58,6 +58,8 @@ if not rawget(_G, "HotReloading") then
         SEARCH_MYSTERY = Action({priority = -1, distance = 1}),
 
         THROW = Action({priority = 0, instant = false, rmb = true, distance = 20, mount_valid = true}),
+
+        DODGE = Action({priority = -5, instant = false, distance = math.huge}),
     }
 
     for name, ACTION in pairs(_G.PL_ACTIONS) do
@@ -1221,24 +1223,25 @@ function USEITEM.healer(inst, doer, target, actions, right, ...)
     return _USEITEM_healer(inst, doer, target, actions, right, ...)
 end
 
-local _USEITEMlighter = USEITEM.lighter
+local _USEITEM_lighter = USEITEM.lighter
 function USEITEM.lighter(inst, doer, target, actions, ...)
     local wasLimbo = false
     if target:HasTag("allowinventoryburning") and target:HasTag("INLIMBO") then
         target:RemoveTag("INLIMBO")
         wasLimbo = true
     end
-    _USEITEMlighter(inst, doer, target, actions, ...)
+    _USEITEM_lighter(inst, doer, target, actions, ...)
     if wasLimbo and target:IsValid() and target.inlimbo then
         target:AddTag("INLIMBO")
     end
 end
 
-local _POINTfishingrod = POINT.fishingrod
+local _POINT_fishingrod = POINT.fishingrod
 function POINT.fishingrod(inst, doer, pos, actions, right, target, ...)
     if TheWorld:HasTag("porkland") then
         return
     end
+    return _POINT_fishingrod(inst, doer, pos, actions, right, target, ...)
 end
 
 local PlayerController = require("components/playercontroller")

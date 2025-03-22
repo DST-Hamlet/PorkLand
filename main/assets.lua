@@ -282,6 +282,10 @@ PrefabFiles = {
     "cloud_fx",
     "group_parent",
     "group_child",
+
+    "wheeler",
+    "trusty_shooter",
+    "wheeler_tracker",
 }
 
 Assets = {
@@ -355,6 +359,7 @@ Assets = {
     Asset("ANIM", "anim/player_mount_actions_scroll.zip"),
     Asset("ANIM", "anim/player_teleport_bfb.zip"),
     Asset("ANIM", "anim/player_teleport_bfb2.zip"),
+    Asset("ANIM", "anim/player_pistol.zip"),
 
     -- replace_anim
     Asset("ANIM", "anim/replace_anim/player_attacks_old.zip"),
@@ -498,3 +503,20 @@ if not TheNet:IsDedicated() then
         table.insert(Assets, asset)
     end
 end
+
+local function AddCharacter(name, gender)
+    table.insert(Assets, Asset("ATLAS", "bigportraits/"..name..".xml"))
+    -- TODO: Decide if we want to use Glassic API or not for character skins
+    -- table.insert(Assets, Asset("ATLAS", "bigportraits/"..name.."_none.xml"))
+    table.insert(Assets, Asset("ATLAS", "images/names_gold_"..name..".xml"))
+    table.insert(Assets, Asset("ATLAS", "images/names_gold_cn_"..name..".xml"))
+    table.insert(Assets, Asset("ATLAS", "images/avatars/avatar_"..name..".xml"))
+    table.insert(Assets, Asset("ATLAS", "images/avatars/avatar_ghost_"..name..".xml"))
+    table.insert(Assets, Asset("ATLAS", "images/avatars/self_inspect_"..name..".xml"))
+    -- table.insert(Assets, Asset("ATLAS", "images/saveslot_portraits/"..name..".xml"))
+    -- table.insert(Assets, Asset("ATLAS", "images/crafting_menu_avatars/avatar_"..name..".xml"))
+
+    AddModCharacter(name, gender)
+end
+
+AddCharacter("wheeler", "FEMALE")
