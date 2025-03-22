@@ -145,16 +145,14 @@ local function OnEquipToModel(inst, owner, from_ground)
     end
 end
 
-local  function OnItemLose(inst, data)
+local function OnItemLose(inst, data)
     DeactivateTracking(inst)
 
     inst.components.inventoryitem:ChangeImageName("tracker_open")
-    inst.SoundEmitter:PlaySound("porkland_soundpackage/characters/wheeler/tracker/open")
 end
 
 local function OnItemGet(inst, data)
     inst.components.inventoryitem:ChangeImageName("tracker")
-    inst.SoundEmitter:PlaySound("dontstarve_DLC003/characters/wheeler/tracker/close")
 
     if inst.components.equippable:IsEquipped() then
         DeactivateTracking(inst)
@@ -163,11 +161,22 @@ local function OnItemGet(inst, data)
     end
 end
 
+local function OnItemLoseClient(inst, data)
+    if inst.replica.inventoryitem:IsHeldBy(ThePlayer) then
+        TheFocalPoint.SoundEmitter:PlaySound("porkland_soundpackage/characters/wheeler/tracker/open")
+    end
+end
+
+local function OnItemGetClient(inst, data)
+    if inst.replica.inventoryitem:IsHeldBy(ThePlayer) then
+        TheFocalPoint.SoundEmitter:PlaySound("dontstarve_DLC003/characters/wheeler/tracker/close")
+    end
+end
+
 local function fn()
     local inst = CreateEntity()
     inst.entity:AddTransform()
     inst.entity:AddAnimState()
-    inst.entity:AddSoundEmitter()
     inst.entity:AddNetwork()
 
     inst.entity:AddMiniMapEntity()
@@ -179,6 +188,11 @@ local function fn()
 
     MakeInventoryPhysics(inst)
     PorkLandMakeInventoryFloatable(inst)
+
+	if not TheNet:IsDedicated() then
+        inst:ListenForEvent("itemget", OnItemGetClient)
+        inst:ListenForEvent("itemlose", OnItemLoseClient)
+    end
 
     inst.entity:SetPristine()
 

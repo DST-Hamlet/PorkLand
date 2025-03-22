@@ -331,4 +331,3 @@ params.wheeler_tracker =
 function params.wheeler_tracker.itemtestfn(container, item, slot)
     return true
 end
-params["wheeler_tracker"].widget.slotbg = nil

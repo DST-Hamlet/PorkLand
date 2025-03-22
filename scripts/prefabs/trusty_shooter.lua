@@ -38,11 +38,27 @@ local function CanTakeAmmo(inst, ammo)
         and not ammo:HasTag("invalidammo")
 end
 
+local function GetTakeAmmoSound(ammo)
+    if ammo.replica.equippable then
+        return "dontstarve_DLC003/characters/wheeler/air_horn/load_3"
+    end
+    for _, v in ipairs(TUNING.TRUSTY_SHOOTER_TIERS.AMMO_HIGH) do
+        if ammo.prefab == v then
+            return "dontstarve_DLC003/characters/wheeler/air_horn/load_3"
+        end
+    end
+    for _, v in ipairs(TUNING.TRUSTY_SHOOTER_TIERS.AMMO_LOW) do
+        if ammo.prefab == v then
+            return "dontstarve_DLC003/characters/wheeler/air_horn/load_1"
+        end
+    end
+    return "dontstarve_DLC003/characters/wheeler/air_horn/load_2"
+end
+
 local function SetAmmoDamageAndRange(inst, ammo)
     if ammo.components.equippable then
         inst.components.weapon:SetRange(TUNING.TRUSTY_SHOOTER_ATTACK_RANGE_HIGH, TUNING.TRUSTY_SHOOTER_HIT_RANGE_HIGH)
         inst.components.weapon:SetDamage(TUNING.TRUSTY_SHOOTER_DAMAGE_HIGH)
-        inst.SoundEmitter:PlaySound("dontstarve_DLC003/characters/wheeler/air_horn/load_3")
         return
     end
 
@@ -50,7 +66,6 @@ local function SetAmmoDamageAndRange(inst, ammo)
         if ammo.prefab == v then
             inst.components.weapon:SetRange(TUNING.TRUSTY_SHOOTER_ATTACK_RANGE_HIGH, TUNING.TRUSTY_SHOOTER_HIT_RANGE_HIGH)
             inst.components.weapon:SetDamage(TUNING.TRUSTY_SHOOTER_DAMAGE_HIGH)
-            inst.SoundEmitter:PlaySound("dontstarve_DLC003/characters/wheeler/air_horn/load_3")
             return
         end
     end
@@ -59,12 +74,10 @@ local function SetAmmoDamageAndRange(inst, ammo)
         if ammo.prefab == v then
             inst.components.weapon:SetRange(TUNING.TRUSTY_SHOOTER_ATTACK_RANGE_LOW, TUNING.TRUSTY_SHOOTER_HIT_RANGE_LOW)
             inst.components.weapon:SetDamage(TUNING.TRUSTY_SHOOTER_DAMAGE_LOW)
-            inst.SoundEmitter:PlaySound("dontstarve_DLC003/characters/wheeler/air_horn/load_1")
             return
         end
     end
 
-    inst.SoundEmitter:PlaySound("dontstarve_DLC003/characters/wheeler/air_horn/load_2")
     inst.components.weapon:SetRange(TUNING.TRUSTY_SHOOTER_ATTACK_RANGE_MEDIUM, TUNING.TRUSTY_SHOOTER_HIT_RANGE_MEDIUM)
     inst.components.weapon:SetDamage(TUNING.TRUSTY_SHOOTER_DAMAGE_MEDIUM)
 end
@@ -91,6 +104,13 @@ local function OnTakeAmmo(inst, data)
     local ammo = data and data.item
     if ammo then
         LoadWeapon(inst, data.item)
+    end
+end
+
+local function OnTakeAmmoClient(inst, data)
+    local ammo = data and data.item
+    if ammo and inst.replica.inventoryitem:IsHeldBy(ThePlayer) then
+        TheFocalPoint.SoundEmitter:PlaySound(GetTakeAmmoSound(ammo))
     end
 end
 
@@ -191,6 +211,10 @@ local function fn()
     inst:AddTag("weapon")
 
     inst.CanTakeAmmo = CanTakeAmmo
+
+	if not TheNet:IsDedicated() then
+        inst:ListenForEvent("itemget", OnTakeAmmoClient)
+    end
 
     inst.entity:SetPristine()
 
