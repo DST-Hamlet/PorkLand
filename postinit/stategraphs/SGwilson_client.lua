@@ -834,7 +834,6 @@ local states = {
             if inst.replica.rider:IsRiding() then
                 inst.Transform:SetFourFaced()
             end
-            local weapon = inst.replica.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
             inst.AnimState:PlayAnimation("hand_shoot")
 
             local buffaction = inst:GetBufferedAction()

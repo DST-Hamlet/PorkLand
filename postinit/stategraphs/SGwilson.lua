@@ -2395,8 +2395,6 @@ local states = {
             if inst.components.rider:IsRiding() then
                 inst.Transform:SetFourFaced()
             end
-            local weapon = inst.components.combat:GetWeapon()
-            local otherequipped = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
             inst.AnimState:PlayAnimation("hand_shoot")
 
             local buffaction = inst:GetBufferedAction()
