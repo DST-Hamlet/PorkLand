@@ -10,10 +10,16 @@ function UnderTile:Get()
     return _underneath_tiles
 end
 
-function UnderTile:NotifyUnderTileChanged()
-    if self.inst.components.clientundertile then
-        self.inst.components.clientundertile:SyncUnderTiles()
-    end
+-- data: {
+--      action: "update"
+--      data: { [index: number]: tile }
+-- } |
+-- {
+--      action: "remove"
+--      data: { [index: number]: true }
+-- }
+function UnderTile:NotifyUnderTileChanged(data)
+    SendModRPCToClient(GetClientModRPC("PorkLand", "update_undertile"), nil, ZipAndEncodeString(data))
 end
 
 function UnderTile:CheckInSize(x, y)
@@ -28,37 +34,68 @@ function UnderTile:CheckInSize(x, y)
 end
 
 AddComponentPostInit("undertile", function(self, inst)
-    local _SetTileUnderneath = self.SetTileUnderneath
+    local set_tile_underneath = self.SetTileUnderneath
     self.SetTileUnderneath = function(self, x, y, tile, ...)
         if not self:CheckInSize(x, y) then
             return
         end
-        self:NotifyUnderTileChanged()
-        return _SetTileUnderneath(self, x, y, tile, ...)
+        if not _underneath_tiles then
+            return set_tile_underneath(self, x, y, tile, ...)
+        end
+        local old_tile = self:GetTileUnderneath(x, y)
+        local ret = { set_tile_underneath(self, x, y, tile, ...) }
+        local current_tile = self:GetTileUnderneath(x, y)
+        if current_tile ~= old_tile then
+            local index = _underneath_tiles:GetIndex(x, y)
+            if current_tile == nil then
+                self:NotifyUnderTileChanged({
+                    action = "remove",
+                    data = { [index] = true },
+                })
+            else
+                self:NotifyUnderTileChanged({
+                    action = "update",
+                    data = { [index] = current_tile },
+                })
+            end
+        end
+        return unpack(ret)
     end
 
-    local _ClearTileUnderneath = self.ClearTileUnderneath
+    local clear_tile_underneath = self.ClearTileUnderneath
     self.ClearTileUnderneath = function(self, x, y, ...)
         if not self:CheckInSize(x, y) then
             return
         end
-        self:NotifyUnderTileChanged()
-        return _ClearTileUnderneath(self, x, y, ...)
+        if not _underneath_tiles then
+            return clear_tile_underneath(self, x, y, ...)
+        end
+        local current_tile = self:GetTileUnderneath(x, y)
+        local ret = { clear_tile_underneath(self, x, y, ...) }
+        if self:GetTileUnderneath(x, y) ~= current_tile then
+            local index = _underneath_tiles:GetIndex(x, y)
+            self:NotifyUnderTileChanged({
+                action = "remove",
+                data = { [index] = true },
+            })
+        end
+        return unpack(ret)
     end
 
-    local _GetTileUnderneath = self.GetTileUnderneath
+    local get_tile_underneath = self.GetTileUnderneath
     self.GetTileUnderneath = function(self, x, y, ...)
         if not self:CheckInSize(x, y) then
             return
         end
-        return _GetTileUnderneath(self, x, y, ...)
+        return get_tile_underneath(self, x, y, ...)
     end
 
     self.inst:DoStaticTaskInTime(0, function()
         _underneath_tiles = ToolUtil.GetUpvalue(self.OnLoad, "_underneath_tiles")
         if not _underneath_tiles then
             print("WARNING: Can't get upvalue _underneath_tiles form UnderTile.OnLoad, client side shadows and canopies will not work!")
+            return
         end
-        self:NotifyUnderTileChanged()
+        self:NotifyUnderTileChanged(self:Get():Save())
     end)
 end)

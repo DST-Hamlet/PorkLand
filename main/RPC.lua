@@ -106,6 +106,13 @@ AddClientModRPCHandler("Porkland", "always_shown_interior_map", function(data)
     end
 end)
 
+AddClientModRPCHandler("Porkland", "update_undertile", function(data)
+    local clientundertile = TheWorld and TheWorld.components.clientundertile
+    if clientundertile then
+        clientundertile:OnUnderTilesChange(DecodeAndUnzipString(data))
+    end
+end)
+
 AddUserCommand("saveme", {
     aliases = nil,
     prettyname = nil,

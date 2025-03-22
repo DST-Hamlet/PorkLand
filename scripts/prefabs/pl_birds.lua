@@ -33,6 +33,20 @@ local kingfisher_sounds = {
     flyin = "dontstarve/birds/flyin",
 }
 
+local crow_sounds =
+{
+    takeoff = "dontstarve/birds/takeoff_crow",
+    chirp = "dontstarve/birds/chirp_crow",
+    flyin = "dontstarve/birds/flyin",
+}
+
+local robin_sounds =
+{
+    takeoff = "dontstarve/birds/takeoff_robin",
+    chirp = "dontstarve/birds/chirp_robin",
+    flyin = "dontstarve/birds/flyin",
+}
+
 local function ShouldSleep(inst)
     return DefaultSleepTest(inst) and not inst.sg:HasStateTag("flight")
 end
@@ -84,7 +98,7 @@ end
 
 local brain = require("brains/birdbrain")
 
-local function MakeBird(name, sounds, feather_name)
+local function MakeBird(name, sounds, feather_name, isreplace)
     local assets =
     {
         Asset("ANIM", "anim/crow.zip"),
@@ -139,6 +153,10 @@ local function MakeBird(name, sounds, feather_name)
         --cookable (from cookable component) added to pristine state for optimization
         inst:AddTag("cookable")
 
+        if isreplace then
+            inst:SetPrefabNameOverride(name)
+        end
+
         MakeFeedableSmallLivestockPristine(inst)
 
         inst.entity:SetPristine()
@@ -175,6 +193,9 @@ local function MakeBird(name, sounds, feather_name)
         inst.components.inventoryitem.canbepickedup = false
         inst.components.inventoryitem.canbepickedupalive = true
         inst.components.inventoryitem:SetSinks(true)
+        if isreplace then
+            inst.components.inventoryitem:ChangeImageName(name)
+        end
 
         inst:AddComponent("cookable")
         inst.components.cookable.product = "cookedsmallmeat"
@@ -205,7 +226,7 @@ local function MakeBird(name, sounds, feather_name)
         MakeFeedableSmallLivestock(inst, TUNING.BIRD_PERISH_TIME, OnPutInInventory, OnDropped)
 
         inst:SetBrain(brain)
-        inst:SetStateGraph("SGbird")
+        inst:SetStateGraph("SGpl_bird")
 
         inst.flyawaydistance = TUNING.BIRD_SEE_THREAT_DISTANCE
 
@@ -224,7 +245,12 @@ local function MakeBird(name, sounds, feather_name)
         return inst
     end
 
-    return Prefab(name, fn, assets, prefabs)
+    local prefabname = name
+    if isreplace then
+        prefabname = "pl_"..name
+    end
+
+    return Prefab(prefabname, fn, assets, prefabs)
 end
 
 local function DoSpawn(inst)
@@ -282,4 +308,6 @@ return  MakeBird("toucan", toucan_sounds, "crow"),
         MakeBird("pigeon", pigeon_sounds, "robin_winter"),
         MakeBird("parrot_blue", parrot_blue_sounds, "robin_winter"),
         MakeBird("kingfisher", kingfisher_sounds, "robin_winter"),
+        MakeBird("crow", crow_sounds, "crow", true),
+        MakeBird("robin", robin_sounds, "robin", true),
         Prefab("pigeon_swarm", fn, {}, {"pigeon"})
