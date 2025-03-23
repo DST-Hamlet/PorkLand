@@ -148,11 +148,11 @@ end
 local function OnItemLose(inst, data)
     DeactivateTracking(inst)
 
-    inst.components.inventoryitem:ChangeImageName("tracker_open")
+    inst.components.inventoryitem:ChangeImageName("wheeler_tracker_open")
 end
 
 local function OnItemGet(inst, data)
-    inst.components.inventoryitem:ChangeImageName("tracker")
+    inst.components.inventoryitem:ChangeImageName("wheeler_tracker")
 
     if inst.components.equippable:IsEquipped() then
         DeactivateTracking(inst)
@@ -201,7 +201,7 @@ local function fn()
     end
 
     inst:AddComponent("inventoryitem")
-    inst.components.inventoryitem:ChangeImageName("tracker_open")
+    inst.components.inventoryitem:ChangeImageName("wheeler_tracker_open")
 
     inst:AddComponent("inspectable")
 
