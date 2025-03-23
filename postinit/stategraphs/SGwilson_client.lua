@@ -986,6 +986,7 @@ local states = {
             inst.components.locomotor:EnableGroundSpeedMultiplier(false)
 
             inst.last_dodge_time = GetTime()
+            inst:PerformPreviewBufferedAction()
         end,
 
         ontimeout = function(inst)
