@@ -1,5 +1,7 @@
 local SHADER = "shaders/tile_particle.ksh"
 
+-- ShaderCompiler.exe -little “tile_particle” “tile_particle.vs” “tile_particle.ps” “tile_particle.ksh” -oglsl
+
 local COLOUR_ENVELOPE_NAME = "pl_tilecolourenvelope"
 local SCALE_ENVELOPE_NAME = "pl_tilescaleenvelope"
 
@@ -107,7 +109,7 @@ local function InitEnvelope()
         }
     )
 
-    local width, height = 1, 1
+    local width, height = 1.171875 * 4, 1.171875 * 4
     EnvelopeManager:AddVector2Envelope(
         SCALE_ENVELOPE_NAME,
         {
