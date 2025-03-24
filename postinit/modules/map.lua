@@ -450,6 +450,30 @@ function Map:GetTile(x, y, ...)
     end
 end
 
+local node_id_index_map
+local _GetNodeIdAtPoint = Map.GetNodeIdAtPoint
+function Map:GetNodeIdAtPoint(x, y, z, ...)
+    if not TheWorld.topology.node_datas then
+        return _GetNodeIdAtPoint(self, x, y, z, ...)
+    end
+
+    if not node_id_index_map then
+        node_id_index_map = {}
+        for i, node in pairs(TheWorld.topology.nodes) do
+            node_id_index_map[TheWorld.topology.ids[i]] = i
+        end
+    end
+
+    local coords_x, coords_y = self:GetTileCoordsAtPoint(x, y, z)
+    for node_id, node_data in pairs(TheWorld.topology.node_datas) do
+        if node_data.site_points.map[coords_x] and node_data.site_points.map[coords_x][coords_y] then
+            return node_id_index_map[node_id] or 0
+        end
+    end
+
+    return 0
+end
+
 function Map:GetIslandTagAtPoint(x, y, z)
     local on_land = self:IsLandTileAtPoint(x, 0, z)
     if not on_land then
