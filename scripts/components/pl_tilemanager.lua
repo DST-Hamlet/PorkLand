@@ -217,21 +217,23 @@ function PL_TileManager:UpdateTiles()
                 end
 
                 for tile_type, data in pairs(neighbor_datas) do
-                    local key = GetKeyForNeighbors(data)
+                    if tile ~= tile_type then
+                        local key = GetKeyForNeighbors(data)
 
-                    if key > 0 then
-                        local value = tile_map[key]
-                        if value < 17 then
-                            value = value + GetTileVariant(center.x, center.z) * 48 -- 随机变体
+                        if key > 0 then
+                            local value = tile_map[key]
+                            if value < 17 then
+                                value = value + GetTileVariant(center.x, center.z) * 48 -- 随机变体
+                            end
+                            if self.tiles[TILE_TYPES[tile_type].id] == nil then
+                                self.tiles[TILE_TYPES[tile_type].id] = {}
+                            end
+                            table.insert(self.tiles[TILE_TYPES[tile_type].id], {
+                                position = Vector3(center.x, center.y, center.z),
+                                overhang_type = value,
+                            })
+                            -- self.tiletest:SpawnTile(center, value or 1, TILE_TYPES[tile_type].id)
                         end
-                        if self.tiles[TILE_TYPES[tile_type].id] == nil then
-                            self.tiles[TILE_TYPES[tile_type].id] = {}
-                        end
-                        table.insert(self.tiles[TILE_TYPES[tile_type].id], {
-                            position = Vector3(center.x, center.y, center.z),
-                            overhang_type = value,
-                        })
-                        -- self.tiletest:SpawnTile(center, value or 1, TILE_TYPES[tile_type].id)
                     end
                 end
             end
