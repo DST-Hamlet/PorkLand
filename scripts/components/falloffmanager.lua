@@ -68,6 +68,7 @@ end
 
 function FalloffManager:OnRemoveEntity()
     self:ClearFalloffs()
+    self.falloff_fx:Remove()
 end
 
 FalloffManager.OnRemoveFromEntity = FalloffManager.OnRemoveEntity

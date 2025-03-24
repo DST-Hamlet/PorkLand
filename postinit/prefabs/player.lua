@@ -138,7 +138,7 @@ end
 
 AddPlayerPostInit(function(inst)
     if not TheNet:IsDedicated() then
-        inst:DoTaskInTime(0, function()
+        inst:DoStaticTaskInTime(0, function()
             if inst == ThePlayer then -- only do this for the local player character
                 inst:ListenForEvent("oincsounddirty", PlayOincSound)
                 if TheWorld:HasTag("porkland") then

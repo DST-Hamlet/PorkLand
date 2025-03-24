@@ -48,6 +48,7 @@ end
 
 function PL_TileManager:OnRemoveEntity()
     self:ClearTiles()
+    self.tiletest:Remove()
 end
 
 PL_TileManager.OnRemoveFromEntity = PL_TileManager.OnRemoveEntity
