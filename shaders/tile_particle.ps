@@ -53,6 +53,8 @@ void main()
 	vec2 noise_texcoord = vec2(noise_x, noise_z);
 	vec4 colour = texture2D( SAMPLER[0], PS_TEXCOORD_LIFE.xy );
 	vec4 colour2 = texture2D( SAMPLER[0], noise_texcoord.xy );
-	gl_FragColor = vec4( colour.rgb * PS_COLOUR.rgb * colour2.rgb , colour.a * PS_COLOUR.a * colour2.a );
+	gl_FragColor = vec4( colour.rgb * PS_COLOUR.rgb * colour2.rgb * colour.a , colour.a * PS_COLOUR.a * colour2.a );
+
+	vec3 light = CalculateLightingContribution();
 	gl_FragColor.rgb *= CalculateLightingContribution();
 }
