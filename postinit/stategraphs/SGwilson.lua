@@ -2389,44 +2389,61 @@ local states = {
 
     State{
         name = "hand_shoot",
-        tags = {"attack", "notalking", "abouttoattack", "busy"},
+        tags = { "attack", "notalking", "abouttoattack", "autopredict" },
 
         onenter = function(inst)
-            if inst.components.rider:IsRiding() then
-                inst.Transform:SetFourFaced()
+            if inst.components.combat:InCooldown() then
+                inst.sg:RemoveStateTag("abouttoattack")
+                inst:ClearBufferedAction()
+                inst.sg:GoToState("idle", true)
+                return
             end
-            inst.AnimState:PlayAnimation("hand_shoot")
-
             local buffaction = inst:GetBufferedAction()
-            local target = buffaction and buffaction.target
+            local target = buffaction ~= nil and buffaction.target or nil
             inst.components.combat:SetTarget(target)
             inst.components.combat:StartAttack()
             inst.components.locomotor:Stop()
+            local cooldown = math.max(20 * FRAMES)
 
-            if target then
-                inst.components.combat:BattleCry()
-                if target:IsValid() then
-                    inst:FacePoint(target.Transform:GetWorldPosition())
-                end
+            inst.AnimState:PlayAnimation("hand_shoot")
+
+            inst.sg:SetTimeout(cooldown)
+
+            if target ~= nil and target:IsValid() then
+                inst:FacePoint(target.Transform:GetWorldPosition())
+                inst.sg.statemem.attacktarget = target
+                inst.sg.statemem.retarget = target
             end
         end,
 
-        timeline=
+        timeline =
         {
             TimeEvent(17*FRAMES, function(inst)
                 inst:PerformBufferedAction()
                 inst.sg:RemoveStateTag("abouttoattack")
             end),
-            TimeEvent(20*FRAMES, function(inst)
-                inst.sg:RemoveStateTag("attack")
-            end),
         },
 
-        events=
+        ontimeout = function(inst)
+            inst.sg:RemoveStateTag("attack")
+            inst.sg:AddStateTag("idle")
+        end,
+
+        events =
         {
-            EventHandler("animover", function(inst)
-                inst.sg:GoToState("idle")
-            end ),
+            EventHandler("equip", function(inst) inst.sg:GoToState("idle") end),
+            EventHandler("unequip", function(inst, data)
+				if inst.sg.statemem.thrown and data.eslot == EQUIPSLOTS.HANDS then
+					inst.sg.statemem.thrown = nil
+				else
+                    inst.sg:GoToState("idle")
+                end
+            end),
+			EventHandler("animqueueover", function(inst)
+                if inst.AnimState:AnimDone() then
+                    inst.sg:GoToState("idle")
+                end
+            end),
         },
 
         onexit = function(inst)
@@ -2467,6 +2484,11 @@ local states = {
         onexit = function(inst)
             if inst.components.rider:IsRiding() then
                 inst.Transform:SetSixFaced()
+            end
+
+            inst.components.combat:SetTarget(nil)
+            if inst.sg:HasStateTag("abouttoattack") then
+                inst.components.combat:CancelAttack()
             end
         end,
 

@@ -828,41 +828,58 @@ local states = {
 
     State{
         name = "hand_shoot",
-        tags = {"attack", "notalking", "abouttoattack", "busy"},
+        tags = { "attack", "notalking", "abouttoattack" },
 
         onenter = function(inst)
+			local combat = inst.replica.combat
+			if combat:InCooldown() then
+				inst.sg:RemoveStateTag("abouttoattack")
+				inst:ClearBufferedAction()
+				inst.sg:GoToState("idle", true)
+				return
+			end
+
+			combat:StartAttack()
+			inst.sg:SetTimeout(20 * FRAMES)
+            inst.components.locomotor:Stop()
+
             if inst.replica.rider:IsRiding() then
                 inst.Transform:SetFourFaced()
             end
             inst.AnimState:PlayAnimation("hand_shoot")
 
-            local buffaction = inst:GetBufferedAction()
-            local target = buffaction and buffaction.target
-            inst.replica.combat:SetTarget(target)
-            inst.replica.combat:StartAttack()
-            inst.components.locomotor:Stop()
+			local buffaction = inst:GetBufferedAction()
+            if buffaction ~= nil then
+                inst:PerformPreviewBufferedAction()
 
-            if target and target:IsValid() then
-                inst:FacePoint(target.Transform:GetWorldPosition())
+                if buffaction.target ~= nil and buffaction.target:IsValid() then
+                    inst:FacePoint(buffaction.target:GetPosition())
+                    inst.sg.statemem.attacktarget = buffaction.target
+                    inst.sg.statemem.retarget = buffaction.target
+                end
             end
         end,
 
-        timeline=
+        timeline =
         {
             TimeEvent(17*FRAMES, function(inst)
-                inst:PerformPreviewBufferedAction()
+                inst:ClearBufferedAction()
                 inst.sg:RemoveStateTag("abouttoattack")
-            end),
-            TimeEvent(20*FRAMES, function(inst)
-                inst.sg:RemoveStateTag("attack")
             end),
         },
 
-        events=
+        ontimeout = function(inst)
+            inst.sg:RemoveStateTag("attack")
+            inst.sg:AddStateTag("idle")
+        end,
+
+        events =
         {
-            EventHandler("animover", function(inst)
-                inst.sg:GoToState("idle")
-            end ),
+			EventHandler("animqueueover", function(inst)
+                if inst.AnimState:AnimDone() then
+                    inst.sg:GoToState("idle")
+                end
+            end),
         },
 
         onexit = function(inst)
