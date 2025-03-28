@@ -7,6 +7,7 @@ PL_CONFIG = {
 
 modimport("main/constants")
 modimport("main/util")
+modimport("main/binheap")
 -- modimport("main/oceanutil")
 
 modimport("main/assets")
