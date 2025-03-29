@@ -84,3 +84,19 @@ function PlayerActionPicker:GetLeftClickActions(position, target, ...)
 
     return actions or {}
 end
+
+local get_right_click_actions = PlayerActionPicker.GetRightClickActions
+function PlayerActionPicker:GetRightClickActions(position, target, ...)
+    local actions = get_right_click_actions(self, position, target, ...)
+
+    -- Allow performing wheeler's DODGE on impassable points
+    if IsTableEmpty(actions) and (target == nil or target:HasTag("walkableplatform") or target:HasTag("walkableperipheral")) and not self.map:IsPassableAtPoint(position:Get()) then
+        local useitem = self.inst.replica.inventory:GetActiveItem()
+        local point_special_actions = self:GetPointSpecialActions(position, useitem, true)
+        if point_special_actions[1] and point_special_actions[1].action == ACTIONS.DODGE then
+            actions = point_special_actions
+        end
+    end
+
+    return actions or {}
+end
