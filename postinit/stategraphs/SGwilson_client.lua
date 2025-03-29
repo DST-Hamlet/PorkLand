@@ -74,6 +74,7 @@ local actionhandlers = {
     ActionHandler(ACTIONS.BUILD_ROOM, "doshortaction"),
     ActionHandler(ACTIONS.DEMOLISH_ROOM, "doshortaction"),
     ActionHandler(ACTIONS.THROW, "throw"),
+    ActionHandler(ACTIONS.DODGE, "dodge"),
 }
 
 local eventhandlers = {
@@ -826,6 +827,72 @@ local states = {
     },
 
     State{
+        name = "hand_shoot",
+        tags = { "attack", "notalking", "abouttoattack" },
+
+        onenter = function(inst)
+			local combat = inst.replica.combat
+			if combat:InCooldown() then
+				inst.sg:RemoveStateTag("abouttoattack")
+				inst:ClearBufferedAction()
+				inst.sg:GoToState("idle", true)
+				return
+			end
+
+			combat:StartAttack()
+			inst.sg:SetTimeout(20 * FRAMES)
+            inst.components.locomotor:Stop()
+
+            if inst.replica.rider:IsRiding() then
+                inst.Transform:SetFourFaced()
+            end
+            inst.AnimState:PlayAnimation("hand_shoot")
+
+			local buffaction = inst:GetBufferedAction()
+            if buffaction ~= nil then
+                inst:PerformPreviewBufferedAction()
+
+                if buffaction.target ~= nil and buffaction.target:IsValid() then
+                    inst:FacePoint(buffaction.target:GetPosition())
+                    inst.sg.statemem.attacktarget = buffaction.target
+                    inst.sg.statemem.retarget = buffaction.target
+                end
+            end
+        end,
+
+        timeline =
+        {
+            TimeEvent(17*FRAMES, function(inst)
+                inst:ClearBufferedAction()
+                inst.sg:RemoveStateTag("abouttoattack")
+            end),
+        },
+
+        ontimeout = function(inst)
+            inst.sg:RemoveStateTag("attack")
+            inst.sg:AddStateTag("idle")
+        end,
+
+        events =
+        {
+			EventHandler("animqueueover", function(inst)
+                if inst.AnimState:AnimDone() then
+                    inst.sg:GoToState("idle")
+                end
+            end),
+        },
+
+        onexit = function(inst)
+            if inst.replica.rider:IsRiding() then
+                inst.Transform:SetSixFaced()
+            end
+            if inst.sg:HasStateTag("abouttoattack") and inst.replica.combat ~= nil then
+                inst.replica.combat:CancelAttack()
+            end
+        end,
+    },
+
+    State{
         name = "blunderbuss",
         tags = {"attack", "notalking", "abouttoattack"},
 
@@ -912,6 +979,61 @@ local states = {
                 end
             end),
         },
+    },
+
+    State
+    {
+        name = "dodge",
+        tags = {"busy", "evade", "no_stun", "canrotate"},
+
+        onenter = function(inst)
+            local action = inst:GetBufferedAction()
+            if action then
+                local pos = action:GetActionPoint()
+                inst:ForceFacePoint(pos)
+            end
+
+            inst.sg:SetTimeout(TUNING.DODGE_TIMEOUT)
+            inst.components.locomotor:Stop()
+            inst.AnimState:PlayAnimation("slide_pre")
+
+            inst.AnimState:PushAnimation("slide_loop")
+            inst.SoundEmitter:PlaySound("porkland_soundpackage/characters/wheeler/slide")
+            inst.Physics:SetMotorVelOverride(20, 0, 0)
+            inst.components.locomotor:EnableGroundSpeedMultiplier(false)
+
+            inst.last_dodge_time = GetTime()
+            inst:PerformPreviewBufferedAction()
+        end,
+
+        ontimeout = function(inst)
+            inst.sg:GoToState("dodge_pst")
+        end,
+
+        onexit = function(inst)
+            inst.components.locomotor:EnableGroundSpeedMultiplier(true)
+            inst.Physics:ClearMotorVelOverride()
+            inst.components.locomotor:Stop()
+
+            inst.components.locomotor:SetBufferedAction(nil)
+        end,
+    },
+
+    State
+    {
+        name = "dodge_pst",
+        tags = {"evade", "no_stun"},
+
+        onenter = function(inst)
+            inst.AnimState:PlayAnimation("slide_pst")
+        end,
+
+        events =
+        {
+            EventHandler("animover", function(inst)
+                inst.sg:GoToState("idle")
+            end),
+        }
     },
 }
 
@@ -1020,8 +1142,12 @@ AddStategraphPostInit("wilson_client", function(sg)
             end
             if not (inst.sg:HasStateTag("attack") and action and action.target == inst.sg.statemem.attacktarget or inst.replica.health:IsDead()) then
                 local equip = inst.replica.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
-                if equip and equip:HasTag("blunderbuss_loaded") then
-                    return "blunderbuss"
+                if equip then
+                    if equip:HasTag("blunderbuss_loaded") then
+                        return "blunderbuss"
+                    elseif equip:HasTag("hand_gun_loaded") then
+                        return "hand_shoot"
+                    end
                 end
             end
             return _attack_deststate and _attack_deststate(inst, action, ...)
