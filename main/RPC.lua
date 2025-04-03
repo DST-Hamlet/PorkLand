@@ -113,6 +113,22 @@ AddClientModRPCHandler("Porkland", "update_undertile", function(data)
     end
 end)
 
+AddClientModRPCHandler("Porkland", "tile_changed", function(data)
+    local tilechangewatcher = ThePlayer and ThePlayer.components.tilechangewatcher
+    if tilechangewatcher then
+        if TheWorld.ismastersim then
+            -- TODO: Use the data if we have more granular updates in the future
+            tilechangewatcher:NotifyUpdate()
+        else
+            -- Delay this for a frame on client to wait for the tile to update
+            ThePlayer:DoStaticTaskInTime(0, function()
+                -- TODO: Use the data if we have more granular updates in the future
+                tilechangewatcher:NotifyUpdate()
+            end)
+        end
+    end
+end)
+
 AddUserCommand("saveme", {
     aliases = nil,
     prettyname = nil,
