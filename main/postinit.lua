@@ -8,6 +8,10 @@ local behaviour_posts = {
     "wander",
 }
 
+local brain_posts = {
+    "abigailbrain",
+}
+
 local camera_posts = {
     "followcamera",
 }
@@ -154,9 +158,6 @@ local stategraph_posts = {
     "wilsonghost_client",
 }
 
-local brain_posts = {
-}
-
 local widget_posts = {
     "bloodover",
     "containerwidget",
@@ -215,6 +216,10 @@ for _, file_name in ipairs(behaviour_posts) do
     modimport("postinit/behaviours/" .. file_name)
 end
 
+for _, file_name in ipairs(brain_posts) do
+    modimport("postinit/brains/" .. file_name)
+end
+
 for _, file_name in ipairs(camera_posts) do
     modimport("postinit/cameras/" .. file_name)
 end
@@ -241,10 +246,6 @@ end
 
 for _, file_name in ipairs(stategraph_posts) do
     modimport("postinit/stategraphs/SG" .. file_name)
-end
-
-for _, file_name in ipairs(brain_posts) do
-    modimport("postinit/brains/" .. file_name)
 end
 
 for _, file_name in ipairs(widget_posts) do
