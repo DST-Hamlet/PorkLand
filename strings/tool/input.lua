@@ -7,7 +7,14 @@ package.path = package.path .. ";".. dst_string_path .. "/?.lua"
 package.path = package.path .. ";".. ds_path .. "/data/scripts" .. "/?.lua"
 
 keys = {  -- copy key = over key
-["SILVERNECKLACE"] = "SILVERNECKLACE",
+["GOGGLESNORMALHAT"] = "GOGGLESNORMALHAT",
+["GOGGLESHEATHATT"] = "GOGGLESHEATHAT",
+["GOGGLESARMORHAT"] = "GOGGLESARMORHAT",
+["GOGGLESSHOOTHAT"] = "GOGGLESSHOOTHAT",
+["THUMPER"] = "THUMPER",
+["TELEBRELLA"] = "TELEBRELLA",
+["TELIPAD"] = "TELIPAD",
+
 --MOONDIAL
 }
 
