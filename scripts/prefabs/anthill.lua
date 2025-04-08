@@ -418,7 +418,9 @@ local function CreateInterior(inst)
     CreateRegularRooms(inst)
     BuildWalls(inst)
     RefreshDoors(inst)
-    TheWorld.components.interiorspawner:AddExterior(inst)
+    if inst.interiorID then
+        TheWorld.components.interiorspawner:AddExterior(inst)
+    end
 end
 
 local function GenerateMaze(inst)
