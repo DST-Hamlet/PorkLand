@@ -661,7 +661,7 @@ local states = {
             inst.components.locomotor:Stop()
             inst.AnimState:PlayAnimation("charge_pre")
             inst.AnimState:PushAnimation("charge_grow")
-            inst.SoundEmitter:PlaySound("porkland_soundpackage/common/crafted/iron_lord/charge_up_LP", "chargedup")
+            inst.SoundEmitter:PlaySound("porkland_soundpackage/common/crafted/iron_lord/charge_up_LP", "chargedup", nil, true)
 
             inst.sg.statemem.ready_to_shoot = false
             inst.sg.statemem.should_shoot = false
@@ -676,9 +676,9 @@ local states = {
         onupdate = function(inst)
             if inst.sg.statemem.should_shoot then
                 if inst.sg.statemem.ready_to_shoot then
-                    inst.SoundEmitter:PlaySoundWithParams("dontstarve_DLC003/creatures/boss/hulk_metal_robot/laser",  {intensity = math.random(0.7, 1)})
+                    inst.SoundEmitter:PlaySoundWithParams("dontstarve_DLC003/creatures/boss/hulk_metal_robot/laser",  {intensity = math.random(0.7, 1)}, nil, true)
                 else
-                    inst.SoundEmitter:PlaySoundWithParams("dontstarve_DLC003/common/crafted/iron_lord/smallshot", {timeoffset = math.random()})
+                    inst.SoundEmitter:PlaySoundWithParams("dontstarve_DLC003/common/crafted/iron_lord/smallshot", {timeoffset = math.random()}, nil, true)
                 end
                 inst.SoundEmitter:KillSound("chargedup")
                 inst.sg:GoToState("ironlord_shoot", inst.sg.statemem.ready_to_shoot)
@@ -691,7 +691,7 @@ local states = {
             TimeEvent(20 * FRAMES, function(inst)
                 inst.AnimState:PlayAnimation("charge_super_pre")
                 inst.AnimState:PushAnimation("charge_super_loop", true)
-                inst.SoundEmitter:PlaySound("porkland_soundpackage/common/crafted/iron_lord/electro")
+                inst.SoundEmitter:PlaySound("porkland_soundpackage/common/crafted/iron_lord/electro", nil, nil, true)
                 inst.sg.statemem.ready_to_shoot = false
             end),
             TimeEvent(25 * FRAMES, function(inst) inst.sg.statemem.ready_to_shoot = true end),
@@ -917,7 +917,7 @@ local states = {
             TimeEvent(12*FRAMES, function(inst)
                 inst:PerformPreviewBufferedAction()
                 inst.sg:RemoveStateTag("abouttoattack")
-                inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/items/weapon/blunderbuss_shoot")
+                inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/items/weapon/blunderbuss_shoot", nil, nil, true)
             end),
             TimeEvent(20*FRAMES, function(inst) inst.sg:RemoveStateTag("attack") end),
         },
@@ -939,6 +939,7 @@ local states = {
     State{
         name = "map",
         tags = {"doing"},
+        server_states = {"map"},
 
         onenter = function(inst)
             inst.components.locomotor:Stop()
@@ -961,8 +962,6 @@ local states = {
 
         timeline=
         {
-            TimeEvent(24 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/treasuremap_open") end),
-            TimeEvent(58 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/treasuremap_close") end),
         },
 
         events=
@@ -998,7 +997,7 @@ local states = {
             inst.AnimState:PlayAnimation("slide_pre")
 
             inst.AnimState:PushAnimation("slide_loop")
-            inst.SoundEmitter:PlaySound("porkland_soundpackage/characters/wheeler/slide")
+            inst.SoundEmitter:PlaySound("porkland_soundpackage/characters/wheeler/slide", nil, nil, true)
             inst.Physics:SetMotorVelOverride(20, 0, 0)
             inst.components.locomotor:EnableGroundSpeedMultiplier(false)
 
