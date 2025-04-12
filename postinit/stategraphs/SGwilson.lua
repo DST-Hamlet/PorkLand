@@ -2688,7 +2688,7 @@ local states = {
 
             inst.AnimState:PushAnimation("slide_loop")
             inst.SoundEmitter:PlaySound("porkland_soundpackage/characters/wheeler/slide", nil, nil, true)
-            inst.Physics:SetMotorVelOverride(20, 0, 0)
+            inst.Physics:SetMotorVelOverride(15, 0, 0)
             inst.components.locomotor:EnableGroundSpeedMultiplier(false)
 
             inst.was_invincible = inst.components.health.invincible
