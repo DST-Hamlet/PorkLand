@@ -2688,11 +2688,11 @@ local states = {
 
             inst.AnimState:PushAnimation("slide_loop")
             inst.SoundEmitter:PlaySound("porkland_soundpackage/characters/wheeler/slide", nil, nil, true)
-            inst.Physics:SetMotorVelOverride(15, 0, 0)
+            inst.Physics:SetMotorVelOverride(16, 0, 0)
             inst.components.locomotor:EnableGroundSpeedMultiplier(false)
 
-            inst.was_invincible = inst.components.health.invincible
-            inst.components.health:SetInvincible(true)
+            inst:AddTag("difficult_to_hit")
+            inst.CanBeAttack = function() return false end
 
             inst.last_dodge_time = GetTime()
         end,
@@ -2707,11 +2707,9 @@ local states = {
             inst.components.locomotor:Stop()
 
             inst.components.locomotor:SetBufferedAction(nil)
-            if not inst.was_invincible then
-                inst.components.health:SetInvincible(false)
-            end
 
-            inst.was_invincible = nil
+            inst:RemoveTag("difficult_to_hit")
+            inst.CanBeAttack = nil
         end,
     },
 

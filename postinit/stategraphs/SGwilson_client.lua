@@ -998,7 +998,7 @@ local states = {
 
             inst.AnimState:PushAnimation("slide_loop")
             inst.SoundEmitter:PlaySound("porkland_soundpackage/characters/wheeler/slide", nil, nil, true)
-            inst.Physics:SetMotorVelOverride(15, 0, 0)
+            inst.Physics:SetMotorVelOverride(16, 0, 0)
             inst.components.locomotor:EnableGroundSpeedMultiplier(false)
 
             inst.last_dodge_time = GetTime()
