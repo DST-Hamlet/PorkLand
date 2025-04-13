@@ -110,7 +110,14 @@ end
 local function OnTakeAmmoClient(inst, data)
     local ammo = data and data.item
     if ammo and inst.replica.inventoryitem:IsHeldBy(ThePlayer) then
-        TheFocalPoint.SoundEmitter:PlaySound(GetTakeAmmoSound(ammo))
+        local container_classified = inst.replica.container and inst.replica.container.classified
+        if not (container_classified
+            and container_classified._itemspreview
+            and container_classified._itemspreview[data.slot]
+            and container_classified._itemspreview[data.slot].prefab == ammo.prefab
+        ) then
+            TheFocalPoint.SoundEmitter:PlaySound(GetTakeAmmoSound(ammo))
+        end
     end
 end
 

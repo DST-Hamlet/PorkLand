@@ -161,15 +161,29 @@ local function OnItemGet(inst, data)
     end
 end
 
-local function OnItemLoseClient(inst, data)
-    if inst.replica.inventoryitem:IsHeldBy(ThePlayer) then
-        TheFocalPoint.SoundEmitter:PlaySound("porkland_soundpackage/characters/wheeler/tracker/open")
+local function OnItemGetClient(inst, data)
+    local item = data and data.item
+    if item and inst.replica.inventoryitem:IsHeldBy(ThePlayer) then
+        local container_classified = inst.replica.container and inst.replica.container.classified
+        if not (container_classified
+            and container_classified._itemspreview
+            and container_classified._itemspreview[data.slot]
+            and container_classified._itemspreview[data.slot].prefab == item.prefab
+        ) then
+            TheFocalPoint.SoundEmitter:PlaySound("dontstarve_DLC003/characters/wheeler/tracker/close")
+        end
     end
 end
 
-local function OnItemGetClient(inst, data)
-    if inst.replica.inventoryitem:IsHeldBy(ThePlayer) then
-        TheFocalPoint.SoundEmitter:PlaySound("dontstarve_DLC003/characters/wheeler/tracker/close")
+local function OnItemLoseClient(inst, data)
+    if  inst.replica.inventoryitem:IsHeldBy(ThePlayer) then
+        local container_classified = inst.replica.container and inst.replica.container.classified
+        if not (container_classified
+            and container_classified._itemspreview
+            and container_classified._itemspreview[data.slot] == nil
+        ) then
+            TheFocalPoint.SoundEmitter:PlaySound("porkland_soundpackage/characters/wheeler/tracker/open")
+        end
     end
 end
 
