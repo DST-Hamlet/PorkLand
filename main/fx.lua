@@ -291,7 +291,7 @@ local pl_fx = {
             inst.AnimState:SetFinalOffset(-1)
             inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
             inst.AnimState:SetLayer(LAYER_BACKGROUND)
-            inst.AnimState:SetSortOrder( -3 )
+            inst.AnimState:SetSortOrder( -2 )
         end,
     },
 }

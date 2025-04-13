@@ -71,7 +71,7 @@ local function toss_items(inst, target)
         vel.x = speed * math.cos(angle)
         vel.y = speed * 3
         vel.z = speed * math.sin(angle)
-        item.Physics:SetVel(vel.x, vel.y, vel.z)
+        item.components.inventoryitem:Launch(Vector3(vel.x, vel.y, vel.z))
     end
 end
 

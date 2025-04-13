@@ -385,12 +385,12 @@ local _HandleDugGround = HandleDugGround
 function HandleDugGround(dug_ground, x, y, z, ...)
     if SpeciaTileDrop[dug_ground] then
         local loot = SpawnPrefab(SpeciaTileDrop[dug_ground])
+        loot.Transform:SetPosition(x, y, z)
+        local angle = math.random() * TWOPI
         if loot.components.inventoryitem ~= nil then
             loot.components.inventoryitem:InheritWorldWetnessAtXZ(x, z)
-        end
-        loot.Transform:SetPosition(x, y, z)
-        if loot.Physics ~= nil then
-            local angle = math.random() * TWOPI
+            loot.components.inventoryitem:Launch(Vector3(2 * math.cos(angle), 10, 2 * math.sin(angle)))
+        elseif loot.Physics ~= nil then
             loot.Physics:SetVel(2 * math.cos(angle), 10, 2 * math.sin(angle))
         end
     else

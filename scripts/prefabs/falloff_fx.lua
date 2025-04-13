@@ -23,7 +23,7 @@ local function InitEnvelope()
         }
     )
 
-    local width, height = 1.171875 * 4 * 1.0025 * 1.0666667, 1.171875 * 4 * 2 * 1.0666667
+    local width, height = 1.171875 * 4 * 1.0666667, 1.171875 * 4 * 2 * 1.0666667
     EnvelopeManager:AddVector2Envelope(
         SCALE_ENVELOPE_NAME,
         {
@@ -36,6 +36,9 @@ local function InitEnvelope()
 end
 
 --------------------------------------------------------------------------
+
+local spawn_vector = {1, 0, 0}
+local falloff_fx_datas = {}
 
 local function fn_fx()
     local inst = CreateEntity()
@@ -51,34 +54,48 @@ local function fn_fx()
     end
 
     local effect = inst.entity:AddVFXEffect()
-    effect:InitEmitters(1)
-    effect:SetRenderResources(0, resolvefilepath(TEXTURE), resolvefilepath(SHADER))
-    effect:SetMaxNumParticles(0, 10000)
-    effect:SetMaxLifetime(0, MAX_LIFETIME)
-    effect:SetColourEnvelope(0, COLOUR_ENVELOPE_NAME)
-    effect:SetScaleEnvelope(0, SCALE_ENVELOPE_NAME)
-    effect:SetUVFrameSize(0, 0.234375, 0.46875)
-    effect:SetLayer(0, LAYER_BELOW_GROUND)
-    effect:SetSortOrder(0, 1)
-    effect:EnableDepthTest(0, true)
-    effect:EnableDepthWrite(0, true)
-    effect:SetKillOnEntityDeath(0, true)
-    effect:SetSpawnVectors(0,
-        1, 0, 0,
-        0, 1, 0)
+    effect:InitEmitters(GetTableSize(falloff_fx_datas))
+    for name, data in pairs(falloff_fx_datas) do
+        local i = data.id
+        effect:SetRenderResources(i, resolvefilepath(data.texture), resolvefilepath(SHADER))
+        effect:SetMaxNumParticles(i, 10000)
+        effect:SetMaxLifetime(i, MAX_LIFETIME)
+        effect:SetColourEnvelope(i, COLOUR_ENVELOPE_NAME)
+        effect:SetScaleEnvelope(i, SCALE_ENVELOPE_NAME)
+        effect:SetUVFrameSize(i, 0.234375, 0.46875)
+        effect:SetLayer(i, LAYER_BELOW_GROUND)
+        effect:SetSortOrder(i, 1)
+        effect:EnableDepthTest(i, true)
+        effect:EnableDepthWrite(i, true)
+        effect:SetKillOnEntityDeath(i, true)
+        effect:SetSpawnVectors(i,
+            spawn_vector[1], spawn_vector[2], spawn_vector[3],
+            0, 1, 0)
+    end
 
     return inst
 end
 
-local function ClearVFX(inst)
-    for k, v in pairs(inst.child_effects) do
-        v.VFXEffect:ClearAllParticles(0)
+local ANGLE_TO_VECTOR = {
+    [0] = {0, 0, 1},
+    [90] = {1, 0, 0},
+    [180] = {0, 0, -1},
+    [270] = {-1, 0, 0},
+}
+
+local function InitVFX(inst, faloff_datas)
+    falloff_fx_datas = faloff_datas
+    for k, data in pairs(ANGLE_TO_VECTOR) do
+        spawn_vector = data
+        inst.child_effects[k] = SpawnPrefab("falloff_fx_child")
+        spawn_vector = {1, 0, 0}
     end
+    falloff_fx_datas = {}
 end
 
-local function SetTexture(inst, texture)
+local function ClearFalloff(inst, index)
     for k, v in pairs(inst.child_effects) do
-        v.VFXEffect:SetRenderResources(0, resolvefilepath(texture), resolvefilepath(SHADER))
+        v.VFXEffect:ClearAllParticles(index)
     end
 end
 
@@ -91,24 +108,17 @@ local VARIANT_UV = {
     [6] = {0.2421875, 0.015625},
 }
 
-local function SpawnFalloff(inst, pos, angle, variant)
+local function SpawnFalloff(inst, index, pos, angle, variant)
     inst.child_effects[angle].Transform:SetPosition(pos.x, pos.y, pos.z)
 
     inst.child_effects[angle].VFXEffect:AddParticleUV(
-        0,
+        index,
         MAX_LIFETIME,           -- lifetime
         0, -4, 0,         -- position
         0, 0, 0,          -- velocity
         VARIANT_UV[variant][1], VARIANT_UV[variant][2]        -- uvoffset_x, uvoffset_y        -- uv offset
     )
 end
-
-local ANGLE_TO_VECTOR = {
-    [0] = {0, 0, 1},
-    [90] = {1, 0, 0},
-    [180] = {0, 0, -1},
-    [270] = {-1, 0, 0},
-}
 
 local function fn()
     local inst = CreateEntity()
@@ -120,12 +130,6 @@ local function fn()
     inst.persists = false
 
     inst.child_effects = {}
-    for k, data in pairs(ANGLE_TO_VECTOR) do
-        inst.child_effects[k] = SpawnPrefab("falloff_fx_child")
-        inst.child_effects[k].VFXEffect:SetSpawnVectors(0,
-        data[1], data[2], data[3],
-        0, 1, 0)
-    end
 
     inst:ListenForEvent("onremove", function()    
         for k, v in pairs(inst.child_effects) do
@@ -134,9 +138,9 @@ local function fn()
         end
     end)
 
+    inst.InitVFX = InitVFX
     inst.SpawnFalloff = SpawnFalloff
-    inst.ClearVFX = ClearVFX
-    inst.SetTexture = SetTexture
+    inst.ClearFalloff = ClearFalloff
 
     return inst
 end

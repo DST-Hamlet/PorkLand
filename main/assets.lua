@@ -283,6 +283,8 @@ PrefabFiles = {
     "group_parent",
     "group_child",
 
+    "tile_fx",
+
     "wheeler",
     "trusty_shooter",
     "wheeler_tracker",

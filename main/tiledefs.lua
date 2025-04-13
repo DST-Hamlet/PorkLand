@@ -379,16 +379,17 @@ local pl_tiledefs = {
         tile_data = {
             name = "Lilypond"
         },
-        ground_tile_def  = {
-            name = "water_medium",
-            noise_texture = "Ground_lilypond2",
-            runsound = "run_marsh",
-            walksound = "walk_marsh",
-            -- flashpoint_modifier = 250, -- 亚丹：不知道谁给莲花池地皮加上的更高起火点特性，我先注释掉了，虽然在水上起火慢很合理
-            is_shoreline = true,
-            ocean_depth = "SHALLOW",
-            cannotbedug = true,
-        },
+        -- 贴图通过VFX显示
+        -- ground_tile_def  = {
+            -- name = "water_medium",
+            -- noise_texture = "Ground_lilypond2",
+            -- runsound = "run_marsh",
+            -- walksound = "walk_marsh",
+            -- -- flashpoint_modifier = 250, -- 亚丹：不知道谁给莲花池地皮加上的更高起火点特性，我先注释掉了，虽然在水上起火慢很合理
+            -- is_shoreline = true,
+            -- ocean_depth = "SHALLOW",
+            -- cannotbedug = true,
+        -- },
         minimap_tile_def = {
             name = "map_edge",
             noise_texture = "mini_lilypond_noise",
