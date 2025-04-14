@@ -6,6 +6,36 @@ local assets =
     Asset("MINIMAP_IMAGE", "trusty_shooter"),
 }
 
+local function SetAmmoDamageAndRange(inst, ammo, owner)
+    -- Only wheeler gets the full damage and range
+    local modifier = owner and owner:HasTag("trusty_shooter") and 1 or 0.5
+
+    if ammo.components.equippable then
+        inst.components.weapon:SetRange(TUNING.TRUSTY_SHOOTER_ATTACK_RANGE_HIGH * modifier, TUNING.TRUSTY_SHOOTER_HIT_RANGE_HIGH * modifier)
+        inst.components.weapon:SetDamage(TUNING.TRUSTY_SHOOTER_DAMAGE_HIGH * modifier)
+        return
+    end
+
+    for _, v in ipairs(TUNING.TRUSTY_SHOOTER_TIERS.AMMO_HIGH) do
+        if ammo.prefab == v then
+            inst.components.weapon:SetRange(TUNING.TRUSTY_SHOOTER_ATTACK_RANGE_HIGH * modifier, TUNING.TRUSTY_SHOOTER_HIT_RANGE_HIGH * modifier)
+            inst.components.weapon:SetDamage(TUNING.TRUSTY_SHOOTER_DAMAGE_HIGH * modifier)
+            return
+        end
+    end
+
+    for _, v in ipairs(TUNING.TRUSTY_SHOOTER_TIERS.AMMO_LOW) do
+        if ammo.prefab == v then
+            inst.components.weapon:SetRange(TUNING.TRUSTY_SHOOTER_ATTACK_RANGE_LOW * modifier, TUNING.TRUSTY_SHOOTER_HIT_RANGE_LOW * modifier)
+            inst.components.weapon:SetDamage(TUNING.TRUSTY_SHOOTER_DAMAGE_LOW * modifier)
+            return
+        end
+    end
+
+    inst.components.weapon:SetRange(TUNING.TRUSTY_SHOOTER_ATTACK_RANGE_MEDIUM * modifier, TUNING.TRUSTY_SHOOTER_HIT_RANGE_MEDIUM * modifier)
+    inst.components.weapon:SetDamage(TUNING.TRUSTY_SHOOTER_DAMAGE_MEDIUM * modifier)
+end
+
 local function OnEquip(inst, owner, force)
     owner.AnimState:OverrideSymbol("swap_object", inst.override_bank, "swap_trusty_shooter")
     owner.AnimState:Show("ARM_carry")
@@ -13,6 +43,9 @@ local function OnEquip(inst, owner, force)
 
     if inst.components.container then
         inst.components.container:Open(owner)
+
+        local item = inst.components.container:GetItemInSlot(1)
+        SetAmmoDamageAndRange(inst, item, owner)
     end
 end
 
@@ -55,33 +88,6 @@ local function GetTakeAmmoSound(ammo)
     return "dontstarve_DLC003/characters/wheeler/air_horn/load_2"
 end
 
-local function SetAmmoDamageAndRange(inst, ammo)
-    if ammo.components.equippable then
-        inst.components.weapon:SetRange(TUNING.TRUSTY_SHOOTER_ATTACK_RANGE_HIGH, TUNING.TRUSTY_SHOOTER_HIT_RANGE_HIGH)
-        inst.components.weapon:SetDamage(TUNING.TRUSTY_SHOOTER_DAMAGE_HIGH)
-        return
-    end
-
-    for _, v in ipairs(TUNING.TRUSTY_SHOOTER_TIERS.AMMO_HIGH) do
-        if ammo.prefab == v then
-            inst.components.weapon:SetRange(TUNING.TRUSTY_SHOOTER_ATTACK_RANGE_HIGH, TUNING.TRUSTY_SHOOTER_HIT_RANGE_HIGH)
-            inst.components.weapon:SetDamage(TUNING.TRUSTY_SHOOTER_DAMAGE_HIGH)
-            return
-        end
-    end
-
-    for _, v in ipairs(TUNING.TRUSTY_SHOOTER_TIERS.AMMO_LOW) do
-        if ammo.prefab == v then
-            inst.components.weapon:SetRange(TUNING.TRUSTY_SHOOTER_ATTACK_RANGE_LOW, TUNING.TRUSTY_SHOOTER_HIT_RANGE_LOW)
-            inst.components.weapon:SetDamage(TUNING.TRUSTY_SHOOTER_DAMAGE_LOW)
-            return
-        end
-    end
-
-    inst.components.weapon:SetRange(TUNING.TRUSTY_SHOOTER_ATTACK_RANGE_MEDIUM, TUNING.TRUSTY_SHOOTER_HIT_RANGE_MEDIUM)
-    inst.components.weapon:SetDamage(TUNING.TRUSTY_SHOOTER_DAMAGE_MEDIUM)
-end
-
 local function LoadWeapon(inst, item)
         -- inst.SoundEmitter:PlaySound("dontstarve_DLC003/characters/wheeler/air_horn/load_2")
 
@@ -89,13 +95,13 @@ local function LoadWeapon(inst, item)
     inst.components.weapon:SetProjectile(item.prefab)
     inst:AddTag("hand_gun_loaded")
 
-    SetAmmoDamageAndRange(inst, item)
-
     --If equipped, change current equip overrides
     local owner = inst.components.inventoryitem:GetGrandOwner()
     if owner and inst.components.equippable and inst.components.equippable:IsEquipped() then
         owner.AnimState:OverrideSymbol("swap_object", inst.override_bank, "swap_trusty_shooter")
     end
+
+    SetAmmoDamageAndRange(inst, item, owner)
 
     inst.components.inventoryitem:ChangeImageName("trusty_shooter")
 end
