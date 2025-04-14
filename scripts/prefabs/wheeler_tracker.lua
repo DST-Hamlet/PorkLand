@@ -127,6 +127,11 @@ local function OnEquip(inst, owner, force)
     end
 
     inst.components.fueled:StartConsuming()
+
+    if owner.components.maprevealable ~= nil then
+        owner.components.maprevealable:AddRevealSource(inst, "compassbearer")
+    end
+    owner:AddTag("compassbearer")
 end
 
 local function OnUnequip(inst, owner)
@@ -141,12 +146,22 @@ local function OnUnequip(inst, owner)
     end
 
     inst.components.fueled:StopConsuming()
+
+    if owner.components.maprevealable ~= nil then
+        owner.components.maprevealable:RemoveRevealSource(inst)
+    end
+    owner:RemoveTag("compassbearer")
 end
 
 local function OnEquipToModel(inst, owner, from_ground)
     if inst.components.container then
         inst.components.container:Close()
     end
+
+    if owner.components.maprevealable ~= nil then
+        owner.components.maprevealable:RemoveRevealSource(inst)
+    end
+    owner:RemoveTag("compassbearer")
 end
 
 local function OnItemLose(inst, data)
@@ -206,6 +221,8 @@ local function fn()
 
     MakeInventoryPhysics(inst)
     PorkLandMakeInventoryFloatable(inst)
+
+    inst:AddTag("compass")
 
 	if not TheNet:IsDedicated() then
         inst:ListenForEvent("itemget", OnItemGetClient)
