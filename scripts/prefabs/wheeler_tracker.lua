@@ -72,7 +72,7 @@ end
 
 local function ActivateTracking(inst)
     local owner = inst.components.inventoryitem.owner
-    if not owner then
+    if not (owner and owner:HasTag("tracker_user")) then
         return
     end
 
