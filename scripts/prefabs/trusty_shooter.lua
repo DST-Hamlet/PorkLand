@@ -193,6 +193,8 @@ local function OnProjectileLaunched(inst, attacker, target, proj)
         proj.Transform:SetPosition(x, y + 2.5, z)
     end
     proj.components.projectile_gun:Throw(inst, target, attacker)
+
+    inst.components.finiteuses:Use(1)
 end
 
 local function fn()
@@ -252,8 +254,10 @@ local function fn()
 
     inst.override_bank = "swap_trusty_shooter"
 
-    -- inst:AddComponent("characterspecific")
-    -- inst.components.characterspecific:SetOwner("wheeler")
+    inst:AddComponent("finiteuses")
+    inst.components.finiteuses:SetOnFinished(inst.Remove)
+    inst.components.finiteuses:SetMaxUses(TUNING.TRUSTY_SHOOTER_USES)
+    inst.components.finiteuses:SetUses(TUNING.TRUSTY_SHOOTER_USES)
 
     return inst
 end

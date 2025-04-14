@@ -125,6 +125,8 @@ local function OnEquip(inst, owner, force)
     if inst.components.container then
         inst.components.container:Open(owner)
     end
+
+    inst.components.fueled:StartConsuming()
 end
 
 local function OnUnequip(inst, owner)
@@ -137,6 +139,8 @@ local function OnUnequip(inst, owner)
     if inst.components.container then
         inst.components.container:Close()
     end
+
+    inst.components.fueled:StopConsuming()
 end
 
 local function OnEquipToModel(inst, owner, from_ground)
@@ -232,8 +236,10 @@ local function fn()
     inst:ListenForEvent("itemget", OnItemGet)
     inst:ListenForEvent("itemlose", OnItemLose)
 
-    -- inst:AddComponent("characterspecific")
-    -- inst.components.characterspecific:SetOwner("wheeler")
+    inst:AddComponent("fueled")
+    inst.components.fueled.fueltype = FUELTYPE.MAGIC
+    inst.components.fueled:InitializeFuelLevel(TUNING.WHEELER_TRACKER_PERISHTIME)
+    inst.components.fueled:SetDepletedFn(inst.Remove)
 
     return inst
 end

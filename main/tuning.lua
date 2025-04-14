@@ -785,6 +785,9 @@ local tuning = {
             "seaweed",
         },
     },
+
+    TRUSTY_SHOOTER_USES = 400,
+    WHEELER_TRACKER_PERISHTIME = total_day_time * 4,
 }
 
 
