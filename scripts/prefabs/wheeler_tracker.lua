@@ -48,10 +48,11 @@ local function TrackNext(inst, goal_inst)
     -- print("TRACKING A", prefab)
 
     -- TODO: Optimize this
+
     if inst:GetIsInInterior() then
         return FindEntity(inst, 60, function(entity)
             return CanGiveLoot(entity, goal_inst)
-        end) 
+        end)
     end
 
     return FindEntity(inst, 200, function(entity)
@@ -68,7 +69,7 @@ local function DeactivateTracking(inst)
     inst._istracking:set(false)
 end
 
-local function ServerUpdateTragetPos(inst, x, y, z)
+local function ServerUpdateTargetPos(inst, x, y, z)
     inst._targetpos.x:set(x)
     inst._targetpos.z:set(z)
 end
@@ -92,7 +93,7 @@ local function ActivateTracking(inst)
                     inst.tracked_item = TrackNext(inst, inst.components.container:GetItemInSlot(1))
                     ActivateTracking(inst)
                 else
-                    inst:ServerUpdateTragetPos(inst.tracked_item.Transform:GetWorldPosition())
+                    inst:ServerUpdateTargetPos(inst.tracked_item.Transform:GetWorldPosition())
                     inst._istracking:set(true)
                 end
             end)
@@ -279,7 +280,7 @@ local function fn()
     inst.components.fueled:InitializeFuelLevel(TUNING.WHEELER_TRACKER_FUEL)
     inst.components.fueled:SetDepletedFn(ondepleted)
 
-    inst.ServerUpdateTragetPos = ServerUpdateTragetPos
+    inst.ServerUpdateTargetPos = ServerUpdateTargetPos
     return inst
 end
 
