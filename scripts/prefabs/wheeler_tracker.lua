@@ -81,7 +81,7 @@ local function ActivateTracking(inst)
 
     if inst.tracked_item then
         if inst.arrow_rotation_update == nil then
-            inst.arrow_rotation_update = inst:DoPeriodicTask(0, function()
+            inst.arrow_rotation_update = inst:DoPeriodicTask(FRAMES, function()
                 if not inst.tracked_item
                     or not inst.tracked_item:IsValid()
                     or inst.tracked_item:IsInLimbo()
@@ -172,9 +172,7 @@ local function OnItemGet(inst, data)
     inst.components.inventoryitem:ChangeImageName("wheeler_tracker")
 
     if inst.components.equippable:IsEquipped() then
-        DeactivateTracking(inst)
-        inst.tracked_item = TrackNext(inst, data.item)
-        ActivateTracking(inst)
+        RefreshTracking(inst)
     end
 end
 
