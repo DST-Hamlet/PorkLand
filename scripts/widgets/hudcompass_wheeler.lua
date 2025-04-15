@@ -32,15 +32,15 @@ local HudCompass_Wheeler = Class(Widget, function(self, owner, isattached)
     self.needle:GetAnimState():PlayAnimation("idle", true)
 
     if isattached then
-        self.bg:GetAnimState():SetBank("compass_hud")
-        self.bg:GetAnimState():SetBuild("compass_hud")
+        self.bg:GetAnimState():SetBank("wheeler_compass_hud")
+        self.bg:GetAnimState():SetBuild("wheeler_compass_hud")
         self.bg:GetAnimState():PlayAnimation("hidden")
 
         self.needle:SetPosition(0, 70, 0)
         self.needle:Hide()
     else
-        self.bg:GetAnimState():SetBank("compass_bg")
-        self.bg:GetAnimState():SetBuild("compass_bg")
+        self.bg:GetAnimState():SetBank("wheeler_compass_bg")
+        self.bg:GetAnimState():SetBuild("wheeler_compass_bg")
         self.bg:GetAnimState():PlayAnimation("idle")
     end
 
@@ -291,8 +291,16 @@ function HudCompass_Wheeler:OnUpdate(dt)
     local fullmoon_t = TheWorld.state.isfullmoon and math.sin(TheWorld.state.timeinphase * math.pi) or 0
     local fullmoon_offset = math.sin(t*0.8) * Lerp(0, 720, fullmoon_t)
 
+    if self.compass_item
+        and self.compass_item:IsValid()
+        and self.compass_item._istracking:value() then
+
+        sanity_offset = 0
+        fullmoon_offset = 0
+    end
+
     -- Offset from wobble
-    local wobble_offset = math.sin(t*2)*5
+    local wobble_offset = math.floor(math.sin(t)*2 + 0.5) * 3
 
     self.offsetheading = EaseHeading(self.offsetheading, wobble_offset + fullmoon_offset + sanity_offset, .5)
 

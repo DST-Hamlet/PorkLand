@@ -387,6 +387,10 @@ Assets = {
 
     Asset("ANIM", "anim/meat_rack_food_pl.zip"),
 
+    -- wheeler ui
+    Asset("ANIM", "anim/wheeler_compass_hud.zip"),
+    Asset("ANIM", "anim/wheeler_compass_bg.zip"),
+
     -- Wind blown
     Asset("ANIM", "anim/grass_blown.zip"),
     Asset("ANIM", "anim/sapling_blown.zip"),
