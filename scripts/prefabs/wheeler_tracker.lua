@@ -65,15 +65,12 @@ local function DeactivateTracking(inst)
         inst.arrow_rotation_update = nil
     end
 
-    if inst.distance_update then
-        inst.distance_update:Cancel()
-        inst.distance_update = nil
-    end
+    inst._istracking:set(false)
+end
 
-    if inst.arrow then
-        inst.arrow:Remove()
-        inst.arrow = nil
-    end
+local function ServerUpdateTragetPos(inst, x, y, z)
+    inst._targetpos.x:set(x)
+    inst._targetpos.z:set(z)
 end
 
 local function ActivateTracking(inst)
@@ -83,12 +80,6 @@ local function ActivateTracking(inst)
     end
 
     if inst.tracked_item then
-        if not inst.arrow then
-            inst.arrow = SpawnPrefab("wheeler_tracker_arrow")
-            owner:AddChild(inst.arrow)
-            inst.arrow.Network:SetClassifiedTarget(owner)
-        end
-
         if inst.arrow_rotation_update == nil then
             inst.arrow_rotation_update = inst:DoPeriodicTask(0, function()
                 if not inst.tracked_item
@@ -101,7 +92,8 @@ local function ActivateTracking(inst)
                     inst.tracked_item = TrackNext(inst, inst.components.container:GetItemInSlot(1))
                     ActivateTracking(inst)
                 else
-                    inst.arrow:UpdateRotation(inst.tracked_item.Transform:GetWorldPosition())
+                    inst:ServerUpdateTragetPos(inst.tracked_item.Transform:GetWorldPosition())
+                    inst._istracking:set(true)
                 end
             end)
         end
@@ -247,12 +239,19 @@ local function fn()
     MakeInventoryPhysics(inst)
     PorkLandMakeInventoryFloatable(inst)
 
-    inst:AddTag("compass")
+    inst:AddTag("tracker_compass")
 
 	if not TheNet:IsDedicated() then
         inst:ListenForEvent("itemget", OnItemGetClient)
         inst:ListenForEvent("itemlose", OnItemLoseClient)
     end
+
+    inst._istracking = net_bool(inst.GUID, "_istracking")
+
+    inst._targetpos = {
+        x = net_float(inst.GUID, "_targetpos.x"),
+        z = net_float(inst.GUID, "_targetpos.z"),
+    }
 
     inst.entity:SetPristine()
 
@@ -281,36 +280,9 @@ local function fn()
     inst.components.fueled.fueltype = FUELTYPE.MAGIC
     inst.components.fueled:InitializeFuelLevel(TUNING.WHEELER_TRACKER_FUEL)
     inst.components.fueled:SetDepletedFn(ondepleted)
+
+    inst.ServerUpdateTragetPos = ServerUpdateTragetPos
     return inst
 end
 
-local function arrowfn()
-    local inst = CreateEntity()
-    inst.entity:AddTransform()
-    inst.entity:AddAnimState()
-    inst.entity:AddNetwork()
-
-    inst.AnimState:SetBank("tracker_pointer")
-    inst.AnimState:SetBuild("tracker_pointer")
-    inst.AnimState:PlayAnimation("idle")
-
-    inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
-    inst.AnimState:SetLayer(LAYER_BACKGROUND)
-    inst.AnimState:SetSortOrder(4)
-
-    inst.entity:SetPristine()
-
-    if not TheWorld.ismastersim then
-        return inst
-    end
-
-    inst.UpdateRotation = function(inst, x, y, z)
-        inst:FacePoint(x, y, z)
-        inst.Transform:SetRotation(inst.Transform:GetRotation() + 90 - inst.parent.Transform:GetRotation())
-    end
-
-    return inst
-end
-
-return Prefab("wheeler_tracker", fn, assets),
-       Prefab("wheeler_tracker_arrow", arrowfn, assets)
+return Prefab("wheeler_tracker", fn, assets)

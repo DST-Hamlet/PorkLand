@@ -4,9 +4,10 @@ local UIAnim = require "widgets/uianim"
 local function TryCompass(self)
     if self.owner.replica.inventory ~= nil then
         local equipment = self.owner.replica.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
-        if equipment ~= nil and equipment:HasTag("compass") then
+        if equipment ~= nil and equipment:HasTag("tracker_compass") then
             --self:OnEquipCompass(equipment)
             self:OpenCompass()
+            self.compass_item = equipment
             return true
         end
     end
@@ -16,7 +17,7 @@ local function TryCompass(self)
 end
 
 --base class for imagebuttons and animbuttons.
-local HudCompass = Class(Widget, function(self, owner, isattached)
+local HudCompass_Wheeler = Class(Widget, function(self, owner, isattached)
     self.owner = owner
     Widget._ctor(self, "Hud Compass")
     self:SetClickable(false)
@@ -48,10 +49,12 @@ local HudCompass = Class(Widget, function(self, owner, isattached)
     self.displayheading = 0
     self.currentheading = 0
     self.offsetheading = 0
-    self.forceperdegree = 0.005
+    self.forceperdegree = 0.08
     self.headingvel = 0
-    self.damping = 0.98
+    self.damping = 0.92
     self.easein = 0
+
+    self.compass_item = nil
 
     --self.currentcompass = nil
 
@@ -60,15 +63,17 @@ local HudCompass = Class(Widget, function(self, owner, isattached)
     end, self.owner)
 
     self.inst:ListenForEvent("equip", function(inst, data)
-        if data.item ~= nil and data.item:HasTag("compass") then
+        if data.item ~= nil and data.item:HasTag("tracker_compass") then
             --self:OnEquipCompass(data.item)
             self:OpenCompass()
+            self.compass_item = data.item
         end
     end, self.owner)
     self.inst:ListenForEvent("unequip", function(inst, data)
         if data.eslot == EQUIPSLOTS.HANDS then
             --self:OnEquipCompass(nil)
             self:CloseCompass()
+            self.compass_item = nil
         end
     end, self.owner)
     --Client only event, because when inventory is closed, we will stop
@@ -111,7 +116,7 @@ local function OnRemoveMaster(inst)
     end
 end
 
-function HudCompass:SetMaster()
+function HudCompass_Wheeler:SetMaster()
     if mastercompass ~= nil and mastercompass ~= self then
         mastercompass.inst:RemoveEventCallback("onremove", OnRemoveMaster)
     end
@@ -119,7 +124,7 @@ function HudCompass:SetMaster()
     self.inst:ListenForEvent("onremove", OnRemoveMaster)
 end
 
-function HudCompass:CopyMasterNeedle()
+function HudCompass_Wheeler:CopyMasterNeedle()
     self.displayheading = mastercompass.displayheading
     self.currentheading = mastercompass.currentheading
     self.offsetheading = mastercompass.offsetheading
@@ -128,7 +133,7 @@ function HudCompass:CopyMasterNeedle()
 end
 --------------------------------------------------------------------------
 
-function HudCompass:OpenCompass()
+function HudCompass_Wheeler:OpenCompass()
     if not self.isattached then
         if not self.isopen then
             self.isopen = true
@@ -174,7 +179,7 @@ function HudCompass:OpenCompass()
     self:Show()
 end
 
-function HudCompass:CloseCompass()
+function HudCompass_Wheeler:CloseCompass()
     if not self.isattached then
         if self.isopen then
             self.isopen = false
@@ -205,7 +210,7 @@ function HudCompass:CloseCompass()
 end
 
 --[[
-function HudCompass:OnEquipCompass(compass)
+function HudCompass_Wheeler:OnEquipCompass(compass)
     if compass ~= nil then
         self.currentcompass = compass
         self:OpenCompass()
@@ -227,11 +232,23 @@ local function EaseHeading(heading0, heading1, k)
     return NormalizeHeading(heading0 + math.clamp(delta * k, -20, 20))
 end
 
-function HudCompass:GetCompassHeading()
+function HudCompass_Wheeler:GetCompassHeading()
+    if self.compass_item 
+        and self.compass_item:IsValid()
+        and self.compass_item._istracking:value() then
+
+        local x = self.compass_item._targetpos.x:value()
+        local z = self.compass_item._targetpos.z:value()
+        local x1, y1, z1 = self.owner.Transform:GetWorldPosition()
+        return x1 == x and z1 == z
+            and 0
+            or math.atan2(z1 - z, x - x1) * RADIANS + TheCamera:GetHeading() +180
+    end
+
     return TheCamera ~= nil and (TheCamera:GetHeading() - 45) or 0
 end
 
-function HudCompass:OnUpdate(dt)
+function HudCompass_Wheeler:OnUpdate(dt)
     if mastercompass ~= nil and mastercompass ~= self then
         self:CopyMasterNeedle()
         self.needle:SetRotation(self.displayheading)
@@ -267,12 +284,20 @@ function HudCompass:OnUpdate(dt)
 
     -- Offsets from sanity
     local sanity = self.owner.replica.sanity
-	local sanity_t = math.clamp((sanity:IsInsanityMode() and sanity:GetPercent() or (1.0 - sanity:GetPercent())) * 3, 0, 1)
+    local sanity_t = math.clamp((sanity:IsInsanityMode() and sanity:GetPercent() or (1.0 - sanity:GetPercent())) * 3, 0, 1)
     local sanity_offset = math.sin(t*0.2) * Lerp(720, 0, sanity_t)
 
     -- Offset from full moon
     local fullmoon_t = TheWorld.state.isfullmoon and math.sin(TheWorld.state.timeinphase * math.pi) or 0
     local fullmoon_offset = math.sin(t*0.8) * Lerp(0, 720, fullmoon_t)
+
+    if self.compass_item 
+        and self.compass_item:IsValid()
+        and self.compass_item._istracking:value() then
+
+        local sanity_offset = 0
+        local fullmoon_offset = 0
+    end
 
     -- Offset from wobble
     local wobble_offset = math.sin(t*2)*5
@@ -284,4 +309,4 @@ function HudCompass:OnUpdate(dt)
     self.needle:SetRotation(self.displayheading)
 end
 
-return HudCompass
+return HudCompass_Wheeler
