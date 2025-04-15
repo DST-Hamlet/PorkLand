@@ -6,7 +6,6 @@ local HudCompass_Wheeler = require ("widgets/hudcompass_wheeler")
 
 local W = 68
 local SEP = 12
-local YSEP = 8
 local INTERSEP = 28
 
 local _GetInventoryLists = InventoryBar.GetInventoryLists
@@ -44,7 +43,6 @@ local function RebuildLayout(self, inventory, overflow, do_integrated_backpack, 
     end
 
     -- 复制自scripts/widgets/inventorybar，用于计算特定装备在物品栏中的位置
-    local y = overflow ~= nil and ((W + YSEP) / 2) or 0
 
     local num_slots = inventory:GetNumSlots()
     local num_equip = #self.equipslotinfo

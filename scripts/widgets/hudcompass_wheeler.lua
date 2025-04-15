@@ -233,13 +233,13 @@ local function EaseHeading(heading0, heading1, k)
 end
 
 function HudCompass_Wheeler:GetCompassHeading()
-    if self.compass_item 
+    if self.compass_item
         and self.compass_item:IsValid()
         and self.compass_item._istracking:value() then
 
         local x = self.compass_item._targetpos.x:value()
         local z = self.compass_item._targetpos.z:value()
-        local x1, y1, z1 = self.owner.Transform:GetWorldPosition()
+        local x1, _, z1 = self.owner.Transform:GetWorldPosition()
         return x1 == x and z1 == z
             and 0
             or math.atan2(z1 - z, x - x1) * RADIANS + TheCamera:GetHeading() +180
@@ -290,14 +290,6 @@ function HudCompass_Wheeler:OnUpdate(dt)
     -- Offset from full moon
     local fullmoon_t = TheWorld.state.isfullmoon and math.sin(TheWorld.state.timeinphase * math.pi) or 0
     local fullmoon_offset = math.sin(t*0.8) * Lerp(0, 720, fullmoon_t)
-
-    if self.compass_item 
-        and self.compass_item:IsValid()
-        and self.compass_item._istracking:value() then
-
-        local sanity_offset = 0
-        local fullmoon_offset = 0
-    end
 
     -- Offset from wobble
     local wobble_offset = math.sin(t*2)*5
