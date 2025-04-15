@@ -48,6 +48,12 @@ local function TrackNext(inst, goal_inst)
     -- print("TRACKING A", prefab)
 
     -- TODO: Optimize this
+    if inst:GetIsInInterior() then
+        return FindEntity(inst, 60, function(entity)
+            return CanGiveLoot(entity, goal_inst)
+        end) 
+    end
+
     return FindEntity(inst, 200, function(entity)
         return CanGiveLoot(entity, goal_inst)
     end)
@@ -206,6 +212,25 @@ local function OnItemLoseClient(inst, data)
     end
 end
 
+local function ondepleted(inst)
+    if inst.components.inventoryitem ~= nil
+        and inst.components.inventoryitem.owner ~= nil then
+        local data = {
+            prefab = inst.prefab,
+            equipslot = inst.components.equippable.equipslot,
+            announce = "ANNOUNCE_COMPASS_OUT",
+        }
+        inst.components.inventoryitem.owner:PushEvent("itemranout", data)
+    end
+    inst:Remove()
+end
+
+local function onattack(inst, attacker, target)
+    if inst.components.fueled ~= nil then
+        inst.components.fueled:DoDelta(inst.components.fueled.maxfuel * TUNING.WHEELER_TRACKER_ATTACK_DECAY_PERCENT)
+    end
+end
+
 local function fn()
     local inst = CreateEntity()
     inst.entity:AddTransform()
@@ -254,9 +279,8 @@ local function fn()
 
     inst:AddComponent("fueled")
     inst.components.fueled.fueltype = FUELTYPE.MAGIC
-    inst.components.fueled:InitializeFuelLevel(TUNING.WHEELER_TRACKER_PERISHTIME)
-    inst.components.fueled:SetDepletedFn(inst.Remove)
-
+    inst.components.fueled:InitializeFuelLevel(TUNING.WHEELER_TRACKER_FUEL)
+    inst.components.fueled:SetDepletedFn(ondepleted)
     return inst
 end
 

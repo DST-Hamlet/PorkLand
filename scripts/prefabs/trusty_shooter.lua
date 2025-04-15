@@ -10,25 +10,27 @@ local function SetAmmoDamageAndRange(inst, ammo, owner)
     -- Only wheeler gets the full damage and range
     local modifier = owner and owner:HasTag("trusty_shooter") and 1 or 0.5
 
-    if ammo.components.equippable then
-        inst.components.weapon:SetRange(TUNING.TRUSTY_SHOOTER_ATTACK_RANGE_HIGH * modifier, TUNING.TRUSTY_SHOOTER_HIT_RANGE_HIGH * modifier)
-        inst.components.weapon:SetDamage(TUNING.TRUSTY_SHOOTER_DAMAGE_HIGH * modifier)
-        return
-    end
-
-    for _, v in ipairs(TUNING.TRUSTY_SHOOTER_TIERS.AMMO_HIGH) do
-        if ammo.prefab == v then
+    if ammo then
+        if ammo.components.equippable then
             inst.components.weapon:SetRange(TUNING.TRUSTY_SHOOTER_ATTACK_RANGE_HIGH * modifier, TUNING.TRUSTY_SHOOTER_HIT_RANGE_HIGH * modifier)
             inst.components.weapon:SetDamage(TUNING.TRUSTY_SHOOTER_DAMAGE_HIGH * modifier)
             return
         end
-    end
 
-    for _, v in ipairs(TUNING.TRUSTY_SHOOTER_TIERS.AMMO_LOW) do
-        if ammo.prefab == v then
-            inst.components.weapon:SetRange(TUNING.TRUSTY_SHOOTER_ATTACK_RANGE_LOW * modifier, TUNING.TRUSTY_SHOOTER_HIT_RANGE_LOW * modifier)
-            inst.components.weapon:SetDamage(TUNING.TRUSTY_SHOOTER_DAMAGE_LOW * modifier)
-            return
+        for _, v in ipairs(TUNING.TRUSTY_SHOOTER_TIERS.AMMO_HIGH) do
+            if ammo.prefab == v then
+                inst.components.weapon:SetRange(TUNING.TRUSTY_SHOOTER_ATTACK_RANGE_HIGH * modifier, TUNING.TRUSTY_SHOOTER_HIT_RANGE_HIGH * modifier)
+                inst.components.weapon:SetDamage(TUNING.TRUSTY_SHOOTER_DAMAGE_HIGH * modifier)
+                return
+            end
+        end
+
+        for _, v in ipairs(TUNING.TRUSTY_SHOOTER_TIERS.AMMO_LOW) do
+            if ammo.prefab == v then
+                inst.components.weapon:SetRange(TUNING.TRUSTY_SHOOTER_ATTACK_RANGE_LOW * modifier, TUNING.TRUSTY_SHOOTER_HIT_RANGE_LOW * modifier)
+                inst.components.weapon:SetDamage(TUNING.TRUSTY_SHOOTER_DAMAGE_LOW * modifier)
+                return
+            end
         end
     end
 
