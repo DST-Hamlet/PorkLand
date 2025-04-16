@@ -2688,7 +2688,7 @@ local states = {
 
             inst.AnimState:PushAnimation("slide_loop")
             inst.SoundEmitter:PlaySound("porkland_soundpackage/characters/wheeler/slide", nil, nil, true)
-            inst.Physics:SetMotorVelOverride(16, 0, 0)
+            inst.Physics:SetMotorVelOverride(20, 0, 0)
             inst.components.locomotor:EnableGroundSpeedMultiplier(false)
 
             inst:AddTag("difficult_to_hit")
@@ -2696,6 +2696,17 @@ local states = {
 
             inst.last_dodge_time = GetTime()
         end,
+
+        timeline=
+        {
+            TimeEvent(3*FRAMES, function(inst)
+                inst.Physics:SetMotorVelOverride(14, 0, 0)
+            end),
+            TimeEvent(8*FRAMES, function(inst)
+                inst.Physics:SetMotorVelOverride(8, 0, 0)
+                inst.AnimState:PlayAnimation("slide_pst")
+            end),
+        },
 
         ontimeout = function(inst)
             inst.sg:GoToState("dodge_pst")
@@ -2717,10 +2728,6 @@ local states = {
     {
         name = "dodge_pst",
         tags = {"evade", "no_stun"},
-
-        onenter = function(inst)
-            inst.AnimState:PlayAnimation("slide_pst")
-        end,
 
         events =
         {
