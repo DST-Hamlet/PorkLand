@@ -10,6 +10,12 @@ local prefabs =
     "slugbug",
 }
 
+SetSharedLootTable("rock_flippable",
+{
+    {"rocks",    1},
+    {"rocks", 0.33},
+})
+
 local function wobble(inst)
     if inst.AnimState:IsCurrentAnimation("idle") then
         inst.AnimState:PlayAnimation("wobble")
@@ -61,12 +67,20 @@ local function setloot(inst)
         inst.components.lootdropper:AddRandomLoot("cutgrass", 8) -- Weighted average
         inst.components.lootdropper:AddRandomLoot("goldnugget", 1) -- Weighted average
     end
+
+    local loot = inst.components.lootdropper:PickRandomLoot()
+    inst.components.lootdropper:ClearRandomLoot()
+    inst.components.pickable.product = loot
+
+    inst.pickloot = loot
 end
 
 local function onpickedfn(inst, picker)
     inst.AnimState:PlayAnimation("flip_over", false)
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/harvested/flipping_rock/open")
-    inst.components.lootdropper:DropLoot(inst:GetPosition())
+    inst.components.pickable.product = nil
+
+    inst.pickloot = nil
 end
 
 local function makefullfn(inst)
@@ -74,7 +88,11 @@ local function makefullfn(inst)
     inst.AnimState:PushAnimation("idle")
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/harvested/flipping_rock/open")
 
-    inst:DoTaskInTime(0, setloot)
+    inst:DoTaskInTime(0, function()
+        if inst.pickloot == nil then
+            setloot(inst)
+        end
+    end)
 end
 
 local function makeemptyfn(inst)
@@ -102,18 +120,30 @@ end
 local function OnWorked(inst, worker, workleft)
     if workleft <= 0 then
         inst.SoundEmitter:PlaySound("dontstarve/wilson/rock_break")
-        inst.components.lootdropper:DropLootPrefab(SpawnPrefab("rocks"))
-
-        if math.random() < 0.3 then
-            inst.components.lootdropper:DropLootPrefab(SpawnPrefab("rocks"))
-        end
+        inst.components.lootdropper:DropLoot()
 
         if inst.components.pickable.canbepicked then
-            inst.components.lootdropper:DropLoot()
+            inst.components.lootdropper:SpawnLootPrefab(inst.components.pickable.product, pt)
         end
 
         inst:Remove()
     end
+end
+
+local function OnLoad(inst, data)
+    if not data then
+        return
+    end
+    
+    if data.pickloot then
+        inst.components.pickable.product = data.pickloot
+
+        inst.pickloot = data.pickloot
+    end
+end
+
+local function OnSave(inst, data)
+    data.pickloot = inst.pickloot
 end
 
 local function fn(Sim)
@@ -148,6 +178,7 @@ local function fn(Sim)
     inst.components.pickable.makefullfn = makefullfn
     inst.components.pickable.makeemptyfn = makeemptyfn
     inst.components.pickable.quickpick = true
+    inst.components.pickable.droppicked = true
 
     inst:AddComponent("workable")
     inst.components.workable:SetWorkLeft(3)
@@ -157,8 +188,13 @@ local function fn(Sim)
     inst:AddComponent("lootdropper")
     inst.components.lootdropper.numrandomloot = 1
     inst.components.lootdropper.chancerandomloot = 1.0 -- drop some random item X% of the time
+    inst.components.lootdropper:SetChanceLootTable("rock_flippable")
     -- inst.components.lootdropper.alwaysinfront = true
-    inst:DoTaskInTime(0, setloot)
+    inst:DoTaskInTime(0, function()
+        if inst.pickloot == nil then
+            setloot(inst)
+        end
+    end)
 
     inst:AddComponent("inspectable")
 
@@ -168,6 +204,9 @@ local function fn(Sim)
     inst.OnEntityWake = OnEntityWake
 
     MakeHauntableWork(inst)
+
+    inst.OnSave = OnSave
+    inst.OnLoad = OnLoad
 
     return inst
 end
