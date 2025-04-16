@@ -8,6 +8,8 @@ local total_day_time = TUNING.TOTAL_DAY_TIME
 
 local wilson_attack = TUNING.SPEAR_DAMAGE
 local wilson_health = TUNING.WILSON_HEALTH
+local wilson_hunger = TUNING.WILSON_HUNGER
+local wilson_sanity = TUNING.WILSON_SANITY
 
 local tuning = {
     MAPWRAPPER_WARN_RANGE = 14,
@@ -722,6 +724,22 @@ local tuning = {
 
     ANIMSHADE_MIN_STRENGTH = 0.1429,           -- blend min strength - modulated with avg ambient
     ANIMSHADE_MAX_STRENGTH = 0.5,           -- blend max strength - modulated with avg ambient
+
+    WILLOW_SANITY_CHILLING = -20,
+    WILLOW_CHILL_START = 0.4,
+    WILLOW_CHILL_END = 0,
+
+    WOLFGANG_HUNGER = 300,
+
+    -- for character selection screen
+    WX78_HEALTH = wilson_health,
+    WX78_HUNGER = wilson_health,
+    WICKERBOTTOM_HEALTH = wilson_health,
+    WES_HEALTH = math.ceil(wilson_health * 0.75),
+    WES_HUNGER = math.ceil(wilson_hunger * 0.75),
+    WES_SANITY = math.ceil(wilson_sanity * 0.75),
+
+    PL_BEAVER_DRAIN_TIME = 5 * total_day_time, -- time it takes the log meter to drain to transform threshold
 }
 
 
@@ -786,6 +804,27 @@ TUNING.PROTOTYPER_TREES.HOGUSPORKUSATOR = TechTree.Create({
 TUNING.PROTOTYPER_TREES.CITY = TechTree.Create({
     CITY = 2,
 })
+
+local default_starting_items = {
+    WILSON = {},
+    WILLOW = {"lighter", "bernie_inactive"},
+    WENDY = {"abigail_flower"},
+    WOLFGANG = {},
+    WX78 = {},
+    WICKERBOTTOM = {"papyrus", "papyrus"},
+    WES = {"balloons_empty"},
+    WAXWELL = {"waxwelljournal", "nightmarefuel", "nightmarefuel", "nightmarefuel", "nightmarefuel", "nightmarefuel", "nightmarefuel"},
+    WOODIE = {"lucy"},
+    WATHGRITHR = {"spear_wathgrithr", "wathgrithrhat", "meat", "meat", "meat", "meat"},
+    WEBBER = {"spidereggsack", "monstermeat", "monstermeat", "disguisehat"},
+    WINONA = {"sewing_tape", "sewing_tape", "sewing_tape"},
+    WORMWOOD = {},
+    WARLY = {"portablecookpot_item", "potato", "potato", "garlic"},
+}
+
+for character, starting_items in pairs(default_starting_items) do
+    TUNING.GAMEMODE_STARTING_ITEMS.DEFAULT[character] = starting_items
+end
 
 for key, value in pairs(tuning) do
     if TUNING[key] then
