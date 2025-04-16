@@ -254,8 +254,6 @@ local function fn()
 
     inst:AddComponent("container")
     inst.components.container:WidgetSetup("trusty_shooter")
-    inst.components.container.canbeopened = false
-    inst.components.container.stay_open_on_hide = true
     inst:ListenForEvent("itemget", OnTakeAmmo)
     inst:ListenForEvent("itemlose", ResetAmmo)
 

@@ -270,8 +270,6 @@ local function fn()
 
     inst:AddComponent("container")
     inst.components.container:WidgetSetup("wheeler_tracker")
-    inst.components.container.canbeopened = false
-    inst.components.container.stay_open_on_hide = true
     inst:ListenForEvent("itemget", OnItemGet)
     inst:ListenForEvent("itemlose", OnItemLose)
 

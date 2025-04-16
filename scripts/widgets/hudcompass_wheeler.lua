@@ -58,6 +58,8 @@ local HudCompass_Wheeler = Class(Widget, function(self, owner, isattached)
 
     --self.currentcompass = nil
 
+    self.basepos = Vector3(0, 0, 0)
+
     self.inst:ListenForEvent("refreshinventory", function(inst)
         TryCompass(self)
     end, self.owner)
@@ -92,7 +94,7 @@ local HudCompass_Wheeler = Class(Widget, function(self, owner, isattached)
         self.istransitioning = false
         self.bg:GetAnimState():PlayAnimation("idle")
         self.needle:Show()
-        self:StartUpdating()
+        self:StartUpdateNeedle()
     end
 
     self.ontransin = function(bginst)
@@ -100,6 +102,7 @@ local HudCompass_Wheeler = Class(Widget, function(self, owner, isattached)
         self.istransitioning = false
         self.bg:GetAnimState():PlayAnimation("hidden")
         self:Hide()
+        self:StopUpdating()
     end
 
     TryCompass(self)
@@ -177,6 +180,7 @@ function HudCompass_Wheeler:OpenCompass()
     self.bg:GetAnimState():PlayAnimation("trans_out")
     self.inst:ListenForEvent("animover", self.ontransout, self.bg.inst)
     self:Show()
+    self:StartUpdating()
 end
 
 function HudCompass_Wheeler:CloseCompass()
@@ -203,7 +207,7 @@ function HudCompass_Wheeler:CloseCompass()
         self.istransitioning = true
     end
 
-    self:StopUpdating()
+    self:StopUpdateNeedle()
     self.needle:Hide()
     self.bg:GetAnimState():PlayAnimation("trans_in")
     self.inst:ListenForEvent("animover", self.ontransin, self.bg.inst)
@@ -248,7 +252,42 @@ function HudCompass_Wheeler:GetCompassHeading()
     return TheCamera ~= nil and (TheCamera:GetHeading() - 45) or 0
 end
 
+function HudCompass_Wheeler:UpdatePosition(dt)
+    local target_y = self.basepos.y
+    if self.compass_item then
+        if self.compass_item.replica.container:IsOpenedBy(self.owner) then
+            target_y = target_y + 120
+        end
+    end
+    local current_y = self:GetPosition().y
+    if target_y > current_y then
+        current_y = math.min(current_y + 600 * dt, target_y)
+    elseif target_y < current_y then
+        current_y = math.max(current_y - 600 * dt, target_y)
+    end
+    self:SetPosition(self.basepos.x, current_y, self.basepos.z)
+end
+
+function HudCompass_Wheeler:SetBasePosition(x, y, z)
+    self.basepos = Vector3(x, y, z)
+    self:UpdatePosition(10000)
+end
+
+function HudCompass_Wheeler:StartUpdateNeedle()
+    self.needle_update = true
+end
+
+function HudCompass_Wheeler:StopUpdateNeedle()
+    self.needle_update = false
+end
+
 function HudCompass_Wheeler:OnUpdate(dt)
+    self:UpdatePosition(dt)
+
+    if self.needle_update ~= true then
+        return
+    end
+
     if mastercompass ~= nil and mastercompass ~= self then
         self:CopyMasterNeedle()
         self.needle:SetRotation(self.displayheading)
@@ -300,7 +339,7 @@ function HudCompass_Wheeler:OnUpdate(dt)
     end
 
     -- Offset from wobble
-    local wobble_offset = math.floor(math.sin(t)*2 + 0.5) * 3
+    local wobble_offset = math.sin(t) * 5
 
     self.offsetheading = EaseHeading(self.offsetheading, wobble_offset + fullmoon_offset + sanity_offset, .5)
 

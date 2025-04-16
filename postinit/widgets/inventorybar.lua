@@ -54,7 +54,7 @@ local function RebuildLayout(self, inventory, overflow, do_integrated_backpack, 
 	local x = (W - total_w) * .5 + num_slots * W + (num_slots - num_slotintersep) * SEP + num_slotintersep * INTERSEP
     for k, v in ipairs(self.equipslotinfo) do
         if v.slot == EQUIPSLOTS.HANDS then
-            self.hudcompass_wheeler:SetPosition(x, do_integrated_backpack and 190 or 150, 0)
+            self.hudcompass_wheeler:SetBasePosition(x, do_integrated_backpack and 80 or 40, 0)
         end
 
         x = x + W + SEP
