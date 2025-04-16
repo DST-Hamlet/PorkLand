@@ -30,6 +30,9 @@ local function SetBroken(inst)
 
     inst.components.workable:SetWorkable(false)
     inst.components.lootdropper:ClearRandomLoot()
+
+    inst.components.lootdropper.chanceloot = nil
+    inst.destroyloots = nil
 end
 
 local function OnHammered(inst, worker)
@@ -52,40 +55,28 @@ local function OnSave(inst, data)
     if inst.broken then
         data.broken = true
     end
+
+    data.destroyloots = inst.destroyloots
 end
 
 local function OnLoad(inst, data)
-    if data and data.broken then
+    if not data then
+        return
+    end
+
+    if data.broken then
        SetBroken(inst)
+    end
+
+    if data.destroyloots then
+        inst.destroyloots = data.destroyloots
+        for k, v in pairs(data.destroyloots) do
+            inst.components.lootdropper:AddChanceLoot(v, 1)
+        end
     end
 end
 
-local function fn()
-    local inst = CreateEntity()
-
-    inst.entity:AddTransform()
-    inst.entity:AddAnimState()
-    inst.entity:AddMiniMapEntity()
-    inst.entity:AddSoundEmitter()
-    inst.entity:AddNetwork()
-
-    MakeObstaclePhysics(inst, 0.25)
-
-    inst.hammer_sound = "dontstarve_DLC003/common/harvested/claypot/hit"
-
-    inst.AnimState:SetBank("pig_ruins_pot")
-    inst.AnimState:SetBuild("pig_ruins_pot")
-    inst.AnimState:PlayAnimation("idle", true)
-
-    inst.MiniMapEntity:SetIcon("pig_ruins_pot.tex")
-
-    inst.entity:SetPristine()
-
-    if not TheWorld.ismastersim then
-        return inst
-    end
-
-    inst:AddComponent("lootdropper")
+local function setloot(inst)
     inst.components.lootdropper:AddRandomLoot("thulecite", rarity.extreeme)
 
     inst.components.lootdropper:AddRandomLoot("bluegem", rarity.veryhigh)
@@ -127,6 +118,56 @@ local function fn()
     elseif math.random() < 0.3 then
        inst.components.lootdropper.numrandomloot = 2
     end
+
+    inst.components.lootdropper.chanceloot = nil
+    inst.destroyloots = nil
+
+    local lootdropper = inst.components.lootdropper
+    if lootdropper.numrandomloot and math.random() <= (lootdropper.chancerandomloot or 1) then
+        for k = 1, lootdropper.numrandomloot do
+            local loot = lootdropper:PickRandomLoot()
+            if loot then
+                lootdropper:AddChanceLoot(loot, 1)
+            end
+        end
+    end
+    inst.components.lootdropper:ClearRandomLoot()
+
+    if inst.components.lootdropper.chanceloot then
+        inst.destroyloots = {}
+        for k, v in pairs(inst.components.lootdropper.chanceloot) do
+            table.insert(inst.destroyloots, v.prefab)
+        end
+    end
+end
+
+local function fn()
+    local inst = CreateEntity()
+
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
+    inst.entity:AddMiniMapEntity()
+    inst.entity:AddSoundEmitter()
+    inst.entity:AddNetwork()
+
+    MakeObstaclePhysics(inst, 0.25)
+
+    inst.hammer_sound = "dontstarve_DLC003/common/harvested/claypot/hit"
+
+    inst.AnimState:SetBank("pig_ruins_pot")
+    inst.AnimState:SetBuild("pig_ruins_pot")
+    inst.AnimState:PlayAnimation("idle", true)
+
+    inst.MiniMapEntity:SetIcon("pig_ruins_pot.tex")
+
+    inst.entity:SetPristine()
+
+    if not TheWorld.ismastersim then
+        return inst
+    end
+
+    inst:AddComponent("lootdropper")
+    setloot(inst)
 
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.HAMMER)

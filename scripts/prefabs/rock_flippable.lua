@@ -33,7 +33,8 @@ end
 local function setloot(inst)
     local tile = TheWorld.Map:GetTileAtPoint(inst.Transform:GetWorldPosition())
 
-    -- inst.components.lootdropper:AddExternalLoot("rocks") -- for wheeler tracker
+    inst.components.lootdropper.numrandomloot = 1
+    inst.components.lootdropper.chancerandomloot = 1.0 -- drop some random item X% of the time
 
     if tile == WORLD_TILES.PLAINS then
         inst.components.lootdropper:AddRandomLoot("jellybug", 2) -- Weighted average
@@ -88,11 +89,7 @@ local function makefullfn(inst)
     inst.AnimState:PushAnimation("idle")
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/harvested/flipping_rock/open")
 
-    inst:DoTaskInTime(0, function()
-        if inst.pickloot == nil then
-            setloot(inst)
-        end
-    end)
+    setloot(inst)
 end
 
 local function makeemptyfn(inst)
@@ -135,11 +132,9 @@ local function OnLoad(inst, data)
         return
     end
     
-    if data.pickloot then
-        inst.components.pickable.product = data.pickloot
+    inst.components.pickable.product = data.pickloot
 
-        inst.pickloot = data.pickloot
-    end
+    inst.pickloot = data.pickloot
 end
 
 local function OnSave(inst, data)
@@ -186,15 +181,9 @@ local function fn(Sim)
     inst.components.workable:SetOnWorkCallback(OnWorked)
 
     inst:AddComponent("lootdropper")
-    inst.components.lootdropper.numrandomloot = 1
-    inst.components.lootdropper.chancerandomloot = 1.0 -- drop some random item X% of the time
     inst.components.lootdropper:SetChanceLootTable("rock_flippable")
     -- inst.components.lootdropper.alwaysinfront = true
-    inst:DoTaskInTime(0, function()
-        if inst.pickloot == nil then
-            setloot(inst)
-        end
-    end)
+    setloot(inst)
 
     inst:AddComponent("inspectable")
 
