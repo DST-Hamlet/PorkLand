@@ -8,6 +8,8 @@ local total_day_time = TUNING.TOTAL_DAY_TIME
 
 local wilson_attack = TUNING.SPEAR_DAMAGE
 local wilson_health = TUNING.WILSON_HEALTH
+local wilson_hunger = TUNING.WILSON_HUNGER
+local wilson_sanity = TUNING.WILSON_SANITY
 
 local tuning = {
     MAPWRAPPER_WARN_RANGE = 14,
@@ -728,6 +730,14 @@ local tuning = {
     WILLOW_CHILL_END = 0,
 
     WOLFGANG_HUNGER = 300,
+
+    -- for character selection screen
+    WX78_HEALTH = wilson_health,
+    WX78_HUNGER = wilson_health,
+    WICKERBOTTOM_HEALTH = wilson_health,
+    WES_HEALTH = math.ceil(wilson_health * 0.75),
+    WES_HUNGER = math.ceil(wilson_hunger * 0.75),
+    WES_SANITY = math.ceil(wilson_sanity * 0.75),
 
     PL_BEAVER_DRAIN_TIME = 5 * total_day_time, -- time it takes the log meter to drain to transform threshold
 }
