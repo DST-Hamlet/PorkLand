@@ -16,6 +16,33 @@ SetSharedLootTable("dungbeetle", {
     {"chitin", 0.5},
 })
 
+local function MountDungBall(inst, ball)
+    inst:AddTag("hasdung")
+    inst.mountball = ball
+    ball.bettle = inst
+
+    ball:RemoveFromScene()
+    ball:AddTag("hasbettle")
+    inst:AddChild(ball)
+    ball.Transform:SetPosition(0, 0, 0)
+end
+
+local function LoseDungBall(inst)
+    inst:RemoveTag("hasdung")
+
+    local ball = inst.mountball
+    inst.mountball = nil
+
+    if ball and ball:IsValid() then
+        ball.bettle = nil
+        ball:RemoveTag("hasbettle")
+        inst:RemoveChild(ball)
+        ball:ReturnToScene()
+        ball.Physics:Teleport(inst.Transform:GetWorldPosition())
+        ball.AnimState:PlayAnimation("idle")
+    end
+end
+
 local function FalloffDung(inst)
     inst:PushEvent("bumped")
 end
@@ -41,15 +68,24 @@ local function ShouldSleep(inst)
 end
 
 local function OnSave(inst, data)
-    if not inst:HasTag("hasdung") then
+    if inst:HasTag("hasdung") and inst.mountball then
+        data.ballguid = inst.mountball.GUID
+    else
         data.lost_dung = true
     end
 end
 
-local function OnLoad(inst, data)
+local function OnLoadPostPass(inst, data)
     if data.lost_dung then
         inst:RemoveTag("hasdung")
-        inst.AnimState:PlayAnimation("ball_idle")
+    elseif data.ballguid then
+        local ball = ents[data.ballguid].entity
+        if ball then
+            inst:MountDungBall(ball)
+        else
+            local ball = SpawnPrefab("dungball")
+            inst:MountDungBall(ball)
+        end
     end
 end
 
@@ -82,14 +118,13 @@ local function fn()
     MakeCharacterPhysics(inst, 10, 0.5)
 
     inst:AddTag("smallcreature")
-    inst:AddTag("hasdung")
     inst:AddTag("animal")
     inst:AddTag("dungbeetle")
     inst:AddTag("insect")
 
     inst.AnimState:SetBank("dung_beetle")
     inst.AnimState:SetBuild("dung_beetle_build")
-    inst.AnimState:PlayAnimation("ball_idle")
+    inst.AnimState:PlayAnimation("idle")
 
     inst.entity:SetPristine()
 
@@ -131,8 +166,11 @@ local function fn()
     MakeTinyFreezableCharacter(inst, "body")
     MakePoisonableCharacter(inst, "body")
 
+    inst.MountDungBall = MountDungBall
+    inst.LoseDungBall = LoseDungBall
+
     inst.OnSave = OnSave
-    inst.OnLoad = OnLoad
+    inst.OnLoadPostPass = OnLoadPostPass
 
     return inst
 end

@@ -170,20 +170,21 @@ end
 ACTIONS.DIGDUNG.validfn = function(act)
     if act.doer and act.target and act.doer:IsValid() and act.target:IsValid() then
         return not act.doer:HasTag("hasdung") and act.target:HasTag("dungpile")
+            and not (act.target.components.burnable and act.target.components.burnable:IsBurning())
     end
 end
 
 ACTIONS.MOUNTDUNG.fn = function(act)
     if act.doer and act.target and act.doer:IsValid() and act.target:IsValid() then
-        act.target:Remove()
-        act.doer:AddTag("hasdung")
+        act.doer:MountDungBall(act.target)
         return true
     end
 end
 
 ACTIONS.MOUNTDUNG.validfn = function(act)
     if act.doer and act.target and act.doer:IsValid() and act.target:IsValid() then
-        return not act.doer:HasTag("hasdung") and act.target:HasTag("dungball")
+        return not act.doer:HasTag("hasdung") and not act.target:HasTag("hasbettle") and act.target:HasTag("dungball")
+            and not (act.target.components.burnable and act.target.components.burnable:IsBurning())
     end
 end
 
