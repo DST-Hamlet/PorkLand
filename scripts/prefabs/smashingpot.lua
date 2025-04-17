@@ -30,13 +30,13 @@ local function SetBroken(inst)
 
     inst.components.workable:SetWorkable(false)
     inst.components.lootdropper:ClearRandomLoot()
-
-    inst.components.lootdropper.chanceloot = nil
-    inst.destroyloots = nil
 end
 
 local function OnHammered(inst, worker)
-    inst.components.lootdropper:DropLoot()
+    local loots = inst.components.storageloot:TakeAllLoots()
+    for i, v in ipairs(loots) do
+        inst.components.lootdropper:SpawnLootPrefab(v)
+    end
 
     local fx = SpawnPrefab("collapse_small")
     fx.Transform:SetPosition(inst.Transform:GetWorldPosition())
@@ -55,8 +55,6 @@ local function OnSave(inst, data)
     if inst.broken then
         data.broken = true
     end
-
-    data.destroyloots = inst.destroyloots
 end
 
 local function OnLoad(inst, data)
@@ -66,13 +64,6 @@ local function OnLoad(inst, data)
 
     if data.broken then
        SetBroken(inst)
-    end
-
-    if data.destroyloots then
-        inst.destroyloots = data.destroyloots
-        for k, v in pairs(data.destroyloots) do
-            inst.components.lootdropper:AddChanceLoot(v, 1)
-        end
     end
 end
 
@@ -119,26 +110,16 @@ local function setloot(inst)
        inst.components.lootdropper.numrandomloot = 2
     end
 
-    inst.components.lootdropper.chanceloot = nil
-    inst.destroyloots = nil
-
     local lootdropper = inst.components.lootdropper
     if lootdropper.numrandomloot and math.random() <= (lootdropper.chancerandomloot or 1) then
         for k = 1, lootdropper.numrandomloot do
             local loot = lootdropper:PickRandomLoot()
             if loot then
-                lootdropper:AddChanceLoot(loot, 1)
+                inst.components.storageloot:AddLoot(loot)
             end
         end
     end
     inst.components.lootdropper:ClearRandomLoot()
-
-    if inst.components.lootdropper.chanceloot then
-        inst.destroyloots = {}
-        for k, v in pairs(inst.components.lootdropper.chanceloot) do
-            table.insert(inst.destroyloots, v.prefab)
-        end
-    end
 end
 
 local function fn()
@@ -167,6 +148,8 @@ local function fn()
     end
 
     inst:AddComponent("lootdropper")
+
+    inst:AddComponent("storageloot")
     setloot(inst)
 
     inst:AddComponent("workable")

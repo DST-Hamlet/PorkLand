@@ -33,6 +33,9 @@ local function CanGiveLoot(inst, goal_inst)
         elseif goal_inst.components.deployable and goal_inst.components.deployable.product == inst.prefab then
             return true
 
+        elseif inst.components.storageloot and inst.components.storageloot:HasLoot(prefab) then
+            return true
+
         elseif inst.components.lootdropper then
             local possible_loots = inst.components.lootdropper:GetAllPossibleLoot()
             if possible_loots[prefab] then
