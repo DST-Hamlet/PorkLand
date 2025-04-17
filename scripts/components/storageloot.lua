@@ -27,6 +27,10 @@ function StorageLoot:AddLoots(loots)
     end
 end
 
+function StorageLoot:DestroyLoots()
+    self.loots = {}
+end
+
 function StorageLoot:TakeRandomLoot()
     if #self.loots == 0 then
         return
