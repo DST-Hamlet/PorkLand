@@ -239,8 +239,8 @@ CRAFTING_FILTERS.FISHING.disabled_worlds = { "porkland" }
 
 -- Wheeler --
 
-AddRecipe2("trusty_shooter",  {Ingredient("mosquitosack", 1), Ingredient("twigs", 2), Ingredient("boards", 1)}, TECH.NONE, {builder_tag="trusty_shooter"})
-AddRecipe2("wheeler_tracker", {Ingredient("compass", 1), Ingredient("iron", 1)},                                TECH.NONE, {builder_tag="tracker_user"})
+AddRecipe2("trusty_shooter",  {Ingredient("mosquitosack", 1), Ingredient("twigs", 2), Ingredient("boards", 1)}, TECH.NONE, {builder_tag="trusty_shooter"}, {"CHARACTER", "WEAPONS"})
+AddRecipe2("wheeler_tracker", {Ingredient("compass", 1), Ingredient("iron", 1)},                                TECH.NONE, {builder_tag="tracker_user"}, {"CHARACTER", "TOOLS"})
 
 --- ARCHAEOLOGY ---
 AddRecipe2("disarming_kit", {Ingredient("iron", 2), Ingredient("cutreeds", 2)}, TECH.NONE, {}, {"ARCHAEOLOGY"})
