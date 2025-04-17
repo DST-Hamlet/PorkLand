@@ -253,6 +253,11 @@ function HudCompass_Wheeler:GetCompassHeading()
 end
 
 function HudCompass_Wheeler:UpdatePosition(dt)
+    if not self.isattached then
+        self:SetPosition(self.basepos.x, self.basepos.y, self.basepos.z)
+        return
+    end
+
     local target_y = self.basepos.y
     if self.compass_item then
         if self.compass_item.replica.container:IsOpenedBy(self.owner) then

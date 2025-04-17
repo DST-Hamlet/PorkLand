@@ -97,5 +97,5 @@ AddClassPostConstruct("screens/mapscreen", function(self)
     self.inst:ListenForEvent("refresh_always_shown_interior_minimap", function(_, data) self:RefreshAlwaysShownInteriorMinimap(data) end, self.owner)
 
     self.hudcompass_wheeler = self.bottomright_root:AddChild(HudCompass_Wheeler(self.owner, false))
-    self.hudcompass_wheeler:SetPosition(-160,70,0)
+    self.hudcompass_wheeler:SetBasePosition(-160,70,0)
 end)
