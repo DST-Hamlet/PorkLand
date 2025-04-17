@@ -27,6 +27,9 @@ local function CanGiveLoot(inst, goal_inst)
         elseif inst.components.dislodgeable and inst.components.dislodgeable:CanBeDislodged() and inst.components.dislodgeable.product == prefab then
             return true
 
+        elseif inst.components.mystery and inst.components.mystery.reward == prefab then
+            return true
+
         elseif inst.components.cookable and inst.components.cookable.product == prefab then
             return true
 

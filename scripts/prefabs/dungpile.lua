@@ -14,13 +14,28 @@ local prefabs = {
 }
 
 local loots = {
-    {"poop",        1.00},
-    {"rocks",       1.00},
-    {"cutgrass",    0.05},
+    {"rocks",       0.5},
+    {"cutgrass",    0.1},
     {"boneshard",   0.2},
-    {"flint",       0.05},
-    {"twigs",       0.05},
+    {"flint",       0.5},
+    {"twigs",       0.1},
 }
+
+local function setloot(inst)
+    for k, v in pairs(loots) do
+        inst.components.lootdropper:AddRandomLoot(v[1], v[2])
+    end
+    inst.components.lootdropper.numrandomloot = 1
+
+    local lootdropper = inst.components.lootdropper
+    for k = 1, inst.components.pickable.cycles_left do
+        local loot = lootdropper:PickRandomLoot()
+        if loot then
+            inst.components.storageloot:AddLoot(loot)
+        end
+    end
+    inst.components.lootdropper:ClearRandomLoot()
+end
 
 local function UpdateAnim(inst)
     if inst.components.pickable.cycles_left == 3 then
@@ -50,6 +65,10 @@ local function OnFinishCallback(inst, worker)
         for i = 1, inst.components.pickable.cycles_left do
             inst.components.lootdropper:DropLoot()
         end
+        local loots = inst.components.storageloot:TakeAllLoots()
+        for i, v in ipairs(loots) do
+            inst.components.lootdropper:SpawnLootPrefab(v)
+        end
     end
 
     inst.components.pickable:MakeBarren()
@@ -65,6 +84,7 @@ local function OnPicked(inst, picker)
     inst.AnimState:PlayAnimation("hit", false)
     inst.AnimState:PushAnimation("idle_full")
     inst.components.lootdropper:DropLoot()
+    inst.components.lootdropper:SpawnLootPrefab(inst.components.storageloot:TakeRandomLoot())
 
     if picker then
         if picker.components.talker and picker:HasTag("player") then
@@ -182,13 +202,6 @@ local function fn()
     inst:AddComponent("inspectable")
     inst.components.inspectable.getstatus = GetStatus
 
-    inst:AddComponent("lootdropper")
-    for k, v in pairs(loots) do
-        inst.components.lootdropper:AddRandomLoot(v[1], v[2])
-    end
-    inst.components.lootdropper.numrandomloot = 1
-    inst.components.lootdropper.max_speed = 3
-
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.DIG)
     inst.components.workable:SetWorkLeft(1)
@@ -205,6 +218,14 @@ local function fn()
     inst.components.pickable.getregentimefn = GetRegenTime
     inst.components.pickable.makefullfn = MakeFull
     inst.components.pickable.makebarrenfn = MakeBarren
+
+    inst:AddComponent("lootdropper")
+    inst.components.lootdropper:AddChanceLoot("poop", 1)
+    inst.components.lootdropper.max_speed = 3
+
+    inst:AddComponent("storageloot")
+
+    setloot(inst)
 
     inst:AddComponent("childspawner")
     inst.components.childspawner.childname = "dungbeetle"
