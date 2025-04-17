@@ -176,6 +176,14 @@ local function OnLoad(inst, data)
     UpdateAnim(inst)
 end
 
+local function OnChildSpawned(inst, child)
+    local ball = SpawnPrefab("dungball")
+    if ball then
+        child:MountDungBall(ball)
+        child.sg:GoToState("jump_pst")
+    end
+end
+
 local function fn()
     local inst = CreateEntity()
     inst.entity:AddTransform()
@@ -185,6 +193,8 @@ local function fn()
     inst.entity:AddMiniMapEntity()
 
     inst.MiniMapEntity:SetIcon("dung_pile.tex")
+
+    MakeObstaclePhysics(inst, 0.25)
 
     inst:AddTag("dungpile")
     inst:AddTag("pickable_digin_str")
@@ -233,6 +243,7 @@ local function fn()
     inst.components.childspawner:SetSpawnPeriod(TUNING.DUNGBEETLE_RELEASE_TIME)
     inst.components.childspawner:SetMaxChildren(TUNING.DUNGBEETLE_MAXCHILDREN)
     inst.components.childspawner:StartSpawning()
+    inst.components.childspawner:SetSpawnedFn(OnChildSpawned)
     WorldSettings_ChildSpawner_SpawnPeriod(inst, TUNING.DUNGBEETLE_RELEASE_TIME, TUNING.DUNGBEETLE_ENABLED)
     WorldSettings_ChildSpawner_RegenPeriod(inst, TUNING.DUNGBEETLE_REGEN_TIME, TUNING.DUNGBEETLE_ENABLED)
     if not TUNING.DUNGBEETLE_ENABLED then

@@ -76,6 +76,7 @@ local function fn()
     inst.Physics:SetRestitution(0.5)
 
     inst:AddTag("dungball")
+    inst:AddTag("track_ignore_limbo")
 
     inst.AnimState:SetBank("tumbleweed")
     inst.AnimState:SetBuild("dungball_build")

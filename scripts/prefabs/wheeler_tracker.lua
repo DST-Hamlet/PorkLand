@@ -9,7 +9,7 @@ local assets=
 
 local function CanGiveLoot(inst, goal_inst)
     local prefab = goal_inst.prefab
-    if not (inst.components.inventoryitem and (inst.components.inventoryitem.owner ~= nil)) and not inst:IsInLimbo() then
+    if not (inst.components.inventoryitem and (inst.components.inventoryitem.owner ~= nil)) and (inst:HasTag("track_ignore_limbo") or not inst:IsInLimbo()) then
         if inst.prefab == prefab then
             return true
         elseif inst.components.pickable and inst.components.pickable:CanBePicked() and inst.components.pickable.product == prefab then
@@ -91,7 +91,7 @@ local function ActivateTracking(inst)
             inst.arrow_rotation_update = inst:DoPeriodicTask(FRAMES, function()
                 if not inst.tracked_item
                     or not inst.tracked_item:IsValid()
-                    or inst.tracked_item:IsInLimbo()
+                    or (inst.tracked_item:IsInLimbo() and not inst.tracked_item:HasTag("track_ignore_limbo"))
                     or not CanGiveLoot(inst.tracked_item, inst.components.container:GetItemInSlot(1)) then
 
                     inst.tracked_item = nil

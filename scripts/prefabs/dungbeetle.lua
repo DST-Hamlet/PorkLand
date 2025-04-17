@@ -68,23 +68,17 @@ local function ShouldSleep(inst)
 end
 
 local function OnSave(inst, data)
-    if inst:HasTag("hasdung") and inst.mountball then
-        data.ballguid = inst.mountball.GUID
-    else
-        data.lost_dung = true
+    if inst:HasTag("hasdung") and (inst.mountball and inst.mountball:IsValid()) then
+        data.ballrecord = inst.mountball:GetSaveRecord()
     end
 end
 
-local function OnLoadPostPass(inst, data)
-    if data.lost_dung then
-        inst:RemoveTag("hasdung")
-    elseif data.ballguid then
-        local ball = ents[data.ballguid].entity
+local function OnLoad(inst, data)
+    if data.ballrecord then
+        local ball = SpawnSaveRecord(data.ballrecord)
         if ball then
             inst:MountDungBall(ball)
-        else
-            local ball = SpawnPrefab("dungball")
-            inst:MountDungBall(ball)
+            inst.AnimState:PlayAnimation("ball_idle", true)
         end
     end
 end
@@ -94,7 +88,10 @@ local function HitShake(inst)
 end
 
 local function ValidCollideTarget(inst, other)
-    return inst.sg:HasStateTag("running") and inst:HasTag("hasdung") and other ~= nil and other:IsValid() and other ~= TheWorld
+    return (inst.sg:HasStateTag("running") or inst.sg:HasStateTag("surprise")) 
+        and inst:HasTag("hasdung") 
+        and other ~= nil and other:IsValid() 
+        and other ~= TheWorld and not other:HasTag("dungpile")
 end
 
 local function OnCollide(inst, other)
@@ -170,7 +167,7 @@ local function fn()
     inst.LoseDungBall = LoseDungBall
 
     inst.OnSave = OnSave
-    inst.OnLoadPostPass = OnLoadPostPass
+    inst.OnLoad = OnLoad
 
     return inst
 end
