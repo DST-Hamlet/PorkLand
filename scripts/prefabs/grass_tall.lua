@@ -104,6 +104,7 @@ local function OnHack(inst, worker, hacksleft)
         if not from_shears then
             inst.components.lootdropper:DropLoot()
         end
+        inst.components.lootdropper:SetLoot({})
     else
         inst.AnimState:PlayAnimation("chop")
         inst.AnimState:PushAnimation("idle", true)
@@ -140,6 +141,7 @@ local GROWTH_STAGES = {
             end
             inst.AnimState:PlayAnimation("grow")
             inst.AnimState:PushAnimation("idle", true)
+            inst.components.lootdropper:SetLoot({"cutgrass"})
             inst.components.hackable:SetWorkLeft(2.5)
             inst.components.shearable:SetCanShear(true)
             WeevoleNestTest(inst)

@@ -109,7 +109,7 @@ local function fn()
     inst.components.propagator.flashpoint = 5 + math.random() * 3
     -- inst.components.propagator.propagaterange = 5
 
-    inst:ListenForEvent("onremove" function()
+    inst:ListenForEvent("onremove", function()
         if inst.beetle and inst.beetle:IsValid() then
             inst.bettle:PushEvent("bumped")
         end
