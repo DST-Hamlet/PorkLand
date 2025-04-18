@@ -25,11 +25,11 @@ end
 local prefabs = FlattenTree(start_inv, true)
 
 local function OnMounted(inst)
-    inst.components.locomotor:SetExternalSpeedMultiplier(inst, "mounted_mightiness", 1 / inst._mightiness_scale)
+    inst:ApplyAnimScale("mightiness", 1)
 end
 
 local function OnDismounted(inst)
-    inst.components.locomotor:RemoveExternalSpeedMultiplier(inst, "mounted_mightiness")
+    inst:ApplyAnimScale("mightiness", 1)
 end
 
 local function ApplyMightiness(inst)
@@ -60,17 +60,18 @@ local function ApplyMightiness(inst)
         inst._mightiness_scale = 1
     end
 
-    inst:ApplyScale("mightiness", inst._mightiness_scale)
+    if inst.components.rider:IsRiding() then
+        inst:ApplyAnimScale("mightiness", 1)
+    else
+        inst:ApplyAnimScale("mightiness", inst._mightiness_scale)
+    end
+    inst.components.locomotor:SetExternalSpeedMultiplier(inst, "mounted_mightiness", inst._mightiness_scale)
     inst.components.hunger:SetRate(hunger_rate*TUNING.WILSON_HUNGER_RATE)
     inst.components.combat.damagemultiplier = damage_mult
 
     local health_percent = inst.components.health:GetPercent()
     inst.components.health:SetMaxHealth(health_max)
     inst.components.health:SetPercent(health_percent, true)
-
-    if inst.components.rider:IsRiding() then
-        OnMounted(inst)
-    end
 end
 
 local function BecomeWimpy(inst, silent)
