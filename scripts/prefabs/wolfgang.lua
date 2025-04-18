@@ -37,7 +37,6 @@ local function ApplyMightiness(inst)
 
     local damage_mult = TUNING.WOLFGANG_ATTACKMULT_NORMAL
     local hunger_rate = TUNING.WOLFGANG_HUNGER_RATE_MULT_NORMAL
-    local health_max = TUNING.WOLFGANG_HEALTH_NORMAL
 
     local mighty_scale = 1.25
     local wimpy_scale = .9
@@ -50,8 +49,7 @@ local function ApplyMightiness(inst)
         mighty_percent = math.min((mighty_percent * (TUNING.WOLFGANG_HUNGER - TUNING.WOLFGANG_START_MIGHTY_THRESH) / (TUNING.WOLFGANG_HUNGER - TUNING.WOLFGANG_START_MIGHTY_THRESH - redundancy)), 1) -- 最大10(redundancy)点饱食度为冗余
 
         damage_mult = easing.linear(mighty_percent, TUNING.WOLFGANG_ATTACKMULT_MIGHTY_MIN, TUNING.WOLFGANG_ATTACKMULT_MIGHTY_MAX - TUNING.WOLFGANG_ATTACKMULT_MIGHTY_MIN, 1)
-        health_max = easing.linear(mighty_percent, TUNING.WOLFGANG_HEALTH_NORMAL, TUNING.WOLFGANG_HEALTH_MIGHTY - TUNING.WOLFGANG_HEALTH_NORMAL, 1)
-        hunger_rate = easing.linear(mighty_percent, TUNING.WOLFGANG_HUNGER_RATE_MULT_NORMAL, TUNING.WOLFGANG_HUNGER_RATE_MULT_MIGHTY - TUNING.WOLFGANG_HUNGER_RATE_MULT_NORMAL, 1)
+        hunger_rate = easing.linear(mighty_percent, TUNING.WOLFGANG_HUNGER_RATE_MULT_MIGHTY_START, TUNING.WOLFGANG_HUNGER_RATE_MULT_MIGHTY - TUNING.WOLFGANG_HUNGER_RATE_MULT_MIGHTY_START, 1)
         inst._mightiness_scale = easing.linear(mighty_percent, 1, mighty_scale - 1, 1)
         inst.components.combat:SetRange(TUNING.DEFAULT_ATTACK_RANGE * mighty_scale)
     elseif inst.strength == "wimpy" then
@@ -60,8 +58,7 @@ local function ApplyMightiness(inst)
         wimpy_percent = math.max((wimpy_percent * (TUNING.WOLFGANG_START_WIMPY_THRESH + redundancy) /TUNING.WOLFGANG_START_WIMPY_THRESH - (redundancy / TUNING.WOLFGANG_START_WIMPY_THRESH)), 0) -- 最小10(redundancy)点饱食度为冗余
 
         damage_mult = easing.linear(wimpy_percent, TUNING.WOLFGANG_ATTACKMULT_WIMPY_MIN, TUNING.WOLFGANG_ATTACKMULT_WIMPY_MAX - TUNING.WOLFGANG_ATTACKMULT_WIMPY_MIN, 1)
-        health_max = easing.linear(wimpy_percent, TUNING.WOLFGANG_HEALTH_WIMPY, TUNING.WOLFGANG_HEALTH_NORMAL - TUNING.WOLFGANG_HEALTH_WIMPY, 1)
-        hunger_rate = easing.linear(wimpy_percent, TUNING.WOLFGANG_HUNGER_RATE_MULT_WIMPY, TUNING.WOLFGANG_HUNGER_RATE_MULT_NORMAL - TUNING.WOLFGANG_HUNGER_RATE_MULT_WIMPY, 1)
+        hunger_rate = easing.linear(wimpy_percent, TUNING.WOLFGANG_HUNGER_RATE_MULT_WIMPY, TUNING.WOLFGANG_HUNGER_RATE_MULT_WIMPY_START - TUNING.WOLFGANG_HUNGER_RATE_MULT_WIMPY, 1)
         inst._mightiness_scale = easing.linear(wimpy_percent, wimpy_scale, 1 - wimpy_scale, 1)
         inst.components.combat:SetRange(TUNING.DEFAULT_ATTACK_RANGE * wimpy_scale)
     else
@@ -78,10 +75,6 @@ local function ApplyMightiness(inst)
 
     inst.components.hunger:SetRate(hunger_rate*TUNING.WILSON_HUNGER_RATE)
     inst.components.combat.damagemultiplier = damage_mult
-
-    local health_percent = inst.components.health:GetPercent()
-    inst.components.health:SetMaxHealth(health_max)
-    inst.components.health:SetPercent(health_percent, true)
 end
 
 local function BecomeWimpy(inst, silent)
@@ -218,10 +211,6 @@ local function OnLoad(inst)
     inst:ListenForEvent("ms_respawnedfromghost", OnBecameHuman)
     inst:ListenForEvent("ms_becameghost", OnBecameGhost)
 
-    --Restore absolute health value from loading after mightiness scaling
-    local loadhealth = inst._loadhealth or inst.components.health.currenthealth
-    inst._loadhealth = nil
-
     if inst:HasTag("playerghost") then
         OnBecameGhost(inst)
     elseif inst:HasTag("corpse") then
@@ -229,14 +218,10 @@ local function OnLoad(inst)
     else
         OnBecameHuman(inst)
     end
-
-    inst.components.health:SetPercent(loadhealth / inst.components.health.maxhealth, true)
 end
 
 local function OnPreLoad(inst, data)
-    if data ~= nil and data.health ~= nil then
-        inst._loadhealth = data.health.health
-    end
+
 end
 
 local function master_postinit(inst)
