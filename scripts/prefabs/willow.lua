@@ -91,7 +91,6 @@ local function master_postinit(inst)
     inst.customidleanim = customidleanimfn
 
     inst.components.health.fire_damage_scale = TUNING.WILLOW_FIRE_DAMAGE
-    inst.components.health.fire_timestart = TUNING.WILLOW_FIRE_IMMUNITY
 
     inst.components.sanity:SetMax(TUNING.WILLOW_SANITY)
     inst.components.sanity.custom_rate_fn = sanityfn
