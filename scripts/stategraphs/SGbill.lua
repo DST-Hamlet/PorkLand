@@ -162,6 +162,26 @@ local states =
     },
 
     State{
+        name = "taunt",
+        tags = {"busy"},
+
+        onenter = function(inst)
+            inst.Physics:Stop()
+            inst.AnimState:PlayAnimation("threathen")
+        end,
+
+        timeline =
+        {
+            TimeEvent(0 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/platapine_bill/attack") end),
+        },
+
+        events=
+        {
+            EventHandler("animover", function(inst) inst.sg:GoToState("idle") end),
+        },
+    },
+
+    State{
         name = "eat",
         tags = {"busy"},
 

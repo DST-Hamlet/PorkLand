@@ -25,15 +25,9 @@ local function CanEat(item)
     return item:HasTag("billfood")
 end
 
-local THEIF_MUST_TAGS = {"player"}
-local THEIF_NO_TAGS = {"playerghost"}
 local function UpdateAggro(inst)
-    local lotus_theif = FindClosestEntity(inst, TUNING.BILL_TARGET_DIST, true, THEIF_MUST_TAGS, THEIF_NO_TAGS, nil, function(player, _inst)
-        return player.components.inventory:FindItem(CanEat) ~= nil
-    end)
-
-    -- If the threat level changes then modify the build.
-    inst.AnimState:SetBuild(lotus_theif and "bill_agro_build" or "bill_calm_build")
+    local hastarget = inst.components.combat.target ~= nil
+    inst.AnimState:SetBuild(hastarget and "bill_agro_build" or "bill_calm_build")
 end
 
 local function KeepTarget(inst, target)
@@ -148,11 +142,12 @@ local function fn()
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
 
-    inst:DoPeriodicTask(1, UpdateAggro)
-
     inst:ListenForEvent("attacked", OnAttacked)
     inst:ListenForEvent("itemget", OnItemGet)
     inst:ListenForEvent("timerdone", OnTimerDone)
+
+    inst:ListenForEvent("droppedtarget", UpdateAggro)
+    inst:ListenForEvent("newcombattarget", UpdateAggro)
 
     inst.can_tumble = false
 
