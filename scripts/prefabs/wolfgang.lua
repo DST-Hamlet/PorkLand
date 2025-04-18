@@ -42,20 +42,28 @@ local function ApplyMightiness(inst)
     local mighty_scale = 1.25
     local wimpy_scale = .9
 
+    local redundancy = TUNING.WOLFGANG_MIGHTNESS_REDUNDANCY
+
     if inst.strength == "mighty" then
         local mighty_start = (TUNING.WOLFGANG_START_MIGHTY_THRESH/TUNING.WOLFGANG_HUNGER)
         local mighty_percent = math.max(0, (percent - mighty_start) / (1 - mighty_start))
+        mighty_percent = math.min((mighty_percent * (TUNING.WOLFGANG_HUNGER - TUNING.WOLFGANG_START_MIGHTY_THRESH) / (TUNING.WOLFGANG_HUNGER - TUNING.WOLFGANG_START_MIGHTY_THRESH - redundancy)), 1) -- 最大10(redundancy)点饱食度为冗余
+
         damage_mult = easing.linear(mighty_percent, TUNING.WOLFGANG_ATTACKMULT_MIGHTY_MIN, TUNING.WOLFGANG_ATTACKMULT_MIGHTY_MAX - TUNING.WOLFGANG_ATTACKMULT_MIGHTY_MIN, 1)
         health_max = easing.linear(mighty_percent, TUNING.WOLFGANG_HEALTH_NORMAL, TUNING.WOLFGANG_HEALTH_MIGHTY - TUNING.WOLFGANG_HEALTH_NORMAL, 1)
         hunger_rate = easing.linear(mighty_percent, TUNING.WOLFGANG_HUNGER_RATE_MULT_NORMAL, TUNING.WOLFGANG_HUNGER_RATE_MULT_MIGHTY - TUNING.WOLFGANG_HUNGER_RATE_MULT_NORMAL, 1)
         inst._mightiness_scale = easing.linear(mighty_percent, 1, mighty_scale - 1, 1)
+        inst.components.combat:SetRange(TUNING.DEFAULT_ATTACK_RANGE * mighty_scale)
     elseif inst.strength == "wimpy" then
         local wimpy_start = (TUNING.WOLFGANG_START_WIMPY_THRESH/TUNING.WOLFGANG_HUNGER)
         local wimpy_percent = math.min(1, percent / wimpy_start)
+        wimpy_percent = math.max((wimpy_percent * (TUNING.WOLFGANG_START_WIMPY_THRESH + redundancy) /TUNING.WOLFGANG_START_WIMPY_THRESH - (redundancy / TUNING.WOLFGANG_START_WIMPY_THRESH)), 0) -- 最小10(redundancy)点饱食度为冗余
+
         damage_mult = easing.linear(wimpy_percent, TUNING.WOLFGANG_ATTACKMULT_WIMPY_MIN, TUNING.WOLFGANG_ATTACKMULT_WIMPY_MAX - TUNING.WOLFGANG_ATTACKMULT_WIMPY_MIN, 1)
         health_max = easing.linear(wimpy_percent, TUNING.WOLFGANG_HEALTH_WIMPY, TUNING.WOLFGANG_HEALTH_NORMAL - TUNING.WOLFGANG_HEALTH_WIMPY, 1)
         hunger_rate = easing.linear(wimpy_percent, TUNING.WOLFGANG_HUNGER_RATE_MULT_WIMPY, TUNING.WOLFGANG_HUNGER_RATE_MULT_NORMAL - TUNING.WOLFGANG_HUNGER_RATE_MULT_WIMPY, 1)
         inst._mightiness_scale = easing.linear(wimpy_percent, wimpy_scale, 1 - wimpy_scale, 1)
+        inst.components.combat:SetRange(TUNING.DEFAULT_ATTACK_RANGE * wimpy_scale)
     else
         inst._mightiness_scale = 1
     end
@@ -66,6 +74,8 @@ local function ApplyMightiness(inst)
         inst:ApplyAnimScale("mightiness", inst._mightiness_scale)
     end
     inst.components.locomotor:SetExternalSpeedMultiplier(inst, "mounted_mightiness", inst._mightiness_scale)
+    MakeCharacterPhysics(inst, 75, .5 * inst._mightiness_scale)
+
     inst.components.hunger:SetRate(hunger_rate*TUNING.WILSON_HUNGER_RATE)
     inst.components.combat.damagemultiplier = damage_mult
 

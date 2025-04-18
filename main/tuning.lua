@@ -725,25 +725,28 @@ local tuning = {
     ANIMSHADE_MIN_STRENGTH = 0.1429,           -- blend min strength - modulated with avg ambient
     ANIMSHADE_MAX_STRENGTH = 0.5,           -- blend max strength - modulated with avg ambient
 
-    WILLOW_SANITY_CHILLING = -20,
-    WILLOW_CHILL_START = 0.4,
-    WILLOW_CHILL_END = 0,
-
-    WOLFGANG_HUNGER = 300,
-
-    -- for character selection screen
-    WX78_HEALTH = wilson_health,
-    WX78_HUNGER = wilson_health,
-    WICKERBOTTOM_HEALTH = wilson_health,
-    WES_HEALTH = math.ceil(wilson_health * 0.75),
-    WES_HUNGER = math.ceil(wilson_hunger * 0.75),
-    WES_SANITY = math.ceil(wilson_sanity * 0.75),
-
     PL_BEAVER_DRAIN_TIME = 5 * total_day_time, -- time it takes the log meter to drain to transform threshold
 }
 
 
 --修改原版数值，不知道是否应该放这里
+
+-- 角色倒车相关的数值
+
+TUNING.WOLFGANG_HUNGER = 300
+
+-- for character selection screen
+TUNING.WX78_HEALTH = wilson_health
+TUNING.WX78_HUNGER = wilson_health
+TUNING.WICKERBOTTOM_HEALTH = wilson_health
+TUNING.WES_HEALTH = math.ceil(wilson_health * 0.75)
+TUNING.WES_HUNGER = math.ceil(wilson_hunger * 0.75)
+TUNING.WES_SANITY = math.ceil(wilson_sanity * 0.75)
+
+TUNING.WOLFGANG_ATTACKMULT_MIGHTY_MAX = 1.5
+TUNING.WOLFGANG_HUNGER_RATE_MULT_MIGHTY = 2.25
+
+TUNING.WOLFGANG_MIGHTNESS_REDUNDANCY = 10
 
 --使得黑暗范围更符合视觉效果
 TUNING.DARK_CUTOFF = 0.02
