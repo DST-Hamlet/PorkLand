@@ -151,6 +151,7 @@ local function SetShapeScale(inst, source, param_scale)
 
     if param_scale == 1 then
         inst.components.combat.externaldamagemultipliers:RemoveModifier(inst)
+        inst.components.combat:SetAttackPeriod(TUNING.WILSON_ATTACK_PERIOD)
         inst.components.efficientuser:RemoveMultiplier(ACTIONS.ATTACK, inst)
 
         inst.components.workmultiplier:RemoveMultiplier(ACTIONS.CHOP,   inst)
@@ -164,6 +165,7 @@ local function SetShapeScale(inst, source, param_scale)
         inst.components.efficientuser:RemoveMultiplier(ACTIONS.HAMMER,  inst)
     else
         inst.components.combat.externaldamagemultipliers:SetModifier(inst, param_scale)
+        inst.components.combat:SetAttackPeriod(TUNING.WILSON_ATTACK_PERIOD * param_scale)
         inst.components.efficientuser:AddMultiplier(ACTIONS.ATTACK, param_scale, inst)
 
         inst.components.workmultiplier:AddMultiplier(ACTIONS.CHOP,    param_scale, inst)
@@ -177,13 +179,13 @@ local function SetShapeScale(inst, source, param_scale)
         inst.components.efficientuser:AddMultiplier(ACTIONS.HAMMER,   param_scale, inst)
     end
 
-    local physics_scale = (scale ^ (1 / 2))
+    local physics_scale = (scale ^ (1/2))
     inst._physics_scale = physics_scale
 
-    if scale > 1 then
-        inst._actionspeed = (scale ^ (1 / 4)) / (scale ^ (1 / 2))
+    if scale > 1 then -- 补偿：体型变大时动作速度的减少并不明显
+        inst._actionspeed = (scale ^ (1/4)) / (scale ^ (1/2))
     elseif scale < 1 then
-        inst._actionspeed = 1 + (1 - scale) * 2
+        inst._actionspeed = (2 - scale)
     else -- scale == 0
         inst._actionspeed = 1
     end
@@ -198,7 +200,11 @@ local function SetShapeScale(inst, source, param_scale)
         inst:ApplyAnimScale(source, physics_scale)
     end
 
-    inst.components.locomotor:SetExternalSpeedMultiplier(inst, source, inst._actionspeed * physics_scale)
+    if physics_scale >= 1 then
+        inst.components.locomotor:SetExternalSpeedMultiplier(inst, source, inst._actionspeed * physics_scale)
+    else -- 补偿：体型变小时移动速度的减少并不明显
+        inst.components.locomotor:SetExternalSpeedMultiplier(inst, source, (2.5 - scale * 1.5) * physics_scale)
+    end
 end
 
 local function ApplyShapeScale(inst, source, scale)
