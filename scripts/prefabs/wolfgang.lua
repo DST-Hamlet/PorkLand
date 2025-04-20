@@ -24,57 +24,30 @@ end
 
 local prefabs = FlattenTree(start_inv, true)
 
-local function OnMounted(inst)
-    inst:ApplyAnimScale("mightiness", 1)
-end
-
-local function OnDismounted(inst)
-    inst:ApplyAnimScale("mightiness", 1)
-end
-
 local function ApplyMightiness(inst)
     local percent = inst.components.hunger:GetPercent()
 
-    local damage_mult = TUNING.WOLFGANG_ATTACKMULT_NORMAL
     local hunger_rate = TUNING.WOLFGANG_HUNGER_RATE_MULT_NORMAL
-
-    local mighty_scale = 1.25
-    local wimpy_scale = .9
-
-    local redundancy = TUNING.WOLFGANG_MIGHTNESS_REDUNDANCY
+    local sanity_rate = TUNING.WOLFGANG_SANITY_MULT_NORMAL
 
     if inst.strength == "mighty" then
-        local mighty_start = (TUNING.WOLFGANG_START_MIGHTY_THRESH/TUNING.WOLFGANG_HUNGER)
-        local mighty_percent = math.max(0, (percent - mighty_start) / (1 - mighty_start))
-        mighty_percent = math.min((mighty_percent * (TUNING.WOLFGANG_HUNGER - TUNING.WOLFGANG_START_MIGHTY_THRESH) / (TUNING.WOLFGANG_HUNGER - TUNING.WOLFGANG_START_MIGHTY_THRESH - redundancy)), 1) -- 最大10(redundancy)点饱食度为冗余
-
-        damage_mult = easing.linear(mighty_percent, TUNING.WOLFGANG_ATTACKMULT_MIGHTY_MIN, TUNING.WOLFGANG_ATTACKMULT_MIGHTY_MAX - TUNING.WOLFGANG_ATTACKMULT_MIGHTY_MIN, 1)
-        hunger_rate = easing.linear(mighty_percent, TUNING.WOLFGANG_HUNGER_RATE_MULT_MIGHTY_START, TUNING.WOLFGANG_HUNGER_RATE_MULT_MIGHTY - TUNING.WOLFGANG_HUNGER_RATE_MULT_MIGHTY_START, 1)
-        inst._mightiness_scale = easing.linear(mighty_percent, 1, mighty_scale - 1, 1)
-        inst.components.combat:SetRange(TUNING.DEFAULT_ATTACK_RANGE * mighty_scale)
+        inst._mightiness_scale = TUNING.WOLFGANG_MIGHTY_SHAPE_SCALE
+        hunger_rate = hunger_rate * inst._mightiness_scale -- 变大消耗额外饥饿
+        sanity_rate = sanity_rate / inst._mightiness_scale -- 变大更不容易受到降精神光环影响
     elseif inst.strength == "wimpy" then
-        local wimpy_start = (TUNING.WOLFGANG_START_WIMPY_THRESH/TUNING.WOLFGANG_HUNGER)
-        local wimpy_percent = math.min(1, percent / wimpy_start)
-        wimpy_percent = math.max((wimpy_percent * (TUNING.WOLFGANG_START_WIMPY_THRESH + redundancy) /TUNING.WOLFGANG_START_WIMPY_THRESH - (redundancy / TUNING.WOLFGANG_START_WIMPY_THRESH)), 0) -- 最小10(redundancy)点饱食度为冗余
-
-        damage_mult = easing.linear(wimpy_percent, TUNING.WOLFGANG_ATTACKMULT_WIMPY_MIN, TUNING.WOLFGANG_ATTACKMULT_WIMPY_MAX - TUNING.WOLFGANG_ATTACKMULT_WIMPY_MIN, 1)
-        hunger_rate = easing.linear(wimpy_percent, TUNING.WOLFGANG_HUNGER_RATE_MULT_WIMPY, TUNING.WOLFGANG_HUNGER_RATE_MULT_WIMPY_START - TUNING.WOLFGANG_HUNGER_RATE_MULT_WIMPY, 1)
-        inst._mightiness_scale = easing.linear(wimpy_percent, wimpy_scale, 1 - wimpy_scale, 1)
-        inst.components.combat:SetRange(TUNING.DEFAULT_ATTACK_RANGE * wimpy_scale)
+        inst._mightiness_scale = TUNING.WOLFGANG_WIMPY_SHAPE_SCALE
+        hunger_rate = hunger_rate * inst._mightiness_scale -- 变大消耗更少饥饿
+        sanity_rate = sanity_rate / inst._mightiness_scale -- 变小更容易受到降精神光环影响
     else
         inst._mightiness_scale = 1
     end
 
-    if inst.components.rider:IsRiding() then
-        inst:ApplyAnimScale("mightiness", 1)
-    else
-        inst:ApplyAnimScale("mightiness", inst._mightiness_scale)
-    end
-    inst.components.locomotor:SetExternalSpeedMultiplier(inst, "mounted_mightiness", inst._mightiness_scale)
-    MakeCharacterPhysics(inst, 75, .5 * inst._mightiness_scale)
+    inst:ApplyShapeScale("mightiness", inst._mightiness_scale)
 
-    inst.components.hunger:SetRate(hunger_rate*TUNING.WILSON_HUNGER_RATE)
-    inst.components.combat.damagemultiplier = damage_mult
+    inst.components.hunger:SetRate(hunger_rate * TUNING.WILSON_HUNGER_RATE)
+
+    inst.components.sanity.night_drain_mult = sanity_rate
+    inst.components.sanity.neg_aura_mult = sanity_rate
 end
 
 local function BecomeWimpy(inst, silent)
@@ -239,15 +212,12 @@ local function master_postinit(inst)
     inst.components.health:SetMaxHealth(TUNING.WOLFGANG_HEALTH_NORMAL)
     inst.components.hunger.current = TUNING.WOLFGANG_START_HUNGER
 
-    inst.components.sanity.night_drain_mult = 1.1
-    inst.components.sanity.neg_aura_mult = 1.1
+    inst.components.sanity.night_drain_mult = TUNING.WOLFGANG_SANITY_MULT_NORMAL
+    inst.components.sanity.neg_aura_mult = TUNING.WOLFGANG_SANITY_MULT_NORMAL
 
     inst.OnPreLoad = OnPreLoad
     inst.OnLoad = OnLoad
     inst.OnNewSpawn = OnLoad
-
-    inst:ListenForEvent("mounted", OnMounted)
-    inst:ListenForEvent("dismounted", OnDismounted)
 end
 
 return MakePlayerCharacter("wolfgang", prefabs, assets, nil, master_postinit)

@@ -136,11 +136,85 @@ local function OnInteriorChange(inst, data)
     end
 end
 
+local function OnMounted(inst)
+    inst:ApplyAnimScale("mightiness", 1)
+end
+
+local function OnDismounted(inst)
+    inst:ApplyAnimScale("mightiness", inst._physics_scale)
+end
+
+local function SetShapeScale(inst, source, param_scale)
+    local scale = param_scale
+    scale = math.min(scale, 4)
+    scale = math.max(scale, 0.25)
+
+    inst.components.combat.damagemultiplier = scale
+
+    local physics_scale = (scale ^ (1 / 2))
+    inst._physics_scale = physics_scale
+
+    if scale > 1 then
+        inst._actionspeed = (scale ^ (1 / 4)) / (scale ^ (1 / 2))
+    elseif scale < 1 then
+        inst._actionspeed = 1 + (1 - scale) * 2
+    else -- scale == 0
+        inst._actionspeed = 1
+    end
+
+    inst._actionspeed_client:set(inst._actionspeed)
+
+    inst.components.combat:SetRange(TUNING.DEFAULT_ATTACK_RANGE * physics_scale)
+    MakeCharacterPhysics(inst, 75, .5 * physics_scale)
+    if inst.components.rider:IsRiding() then
+        inst:ApplyAnimScale(source, 1)
+    else
+        inst:ApplyAnimScale(source, physics_scale)
+    end
+
+    inst.components.locomotor:SetExternalSpeedMultiplier(inst, source, inst._actionspeed * physics_scale)
+end
+
+local function ApplyShapeScale(inst, source, scale)
+    if TheWorld.ismastersim and source ~= nil then
+        if scale ~= 1 and scale ~= nil then
+            if inst._shapescalesource == nil then
+                inst._shapescalesource = { [source] = scale }
+                SetShapeScale(inst, source, scale)
+            elseif inst._shapescalesource[source] ~= scale then
+                inst._shapescalesource[source] = scale
+                local scale = 1
+                for k, v in pairs(inst._shapescalesource) do
+                    scale = scale * v
+                end
+                SetShapeScale(inst, source, scale)
+            end
+        elseif inst._shapescalesource ~= nil and inst._shapescalesource[source] ~= nil then
+            inst._shapescalesource[source] = nil
+            if next(inst._shapescalesource) == nil then
+                inst._shapescalesource = nil
+                SetShapeScale(inst, source, 1)
+            else
+                local scale = 1
+                for k, v in pairs(inst._shapescalesource) do
+                    scale = scale * v
+                end
+                SetShapeScale(inst, source, scale)
+            end
+        end
+    end
+end
+
+function ActionSpeedDirty(inst)
+    inst._actionspeed = inst._actionspeed_client:value()
+end
+
 AddPlayerPostInit(function(inst)
     if not TheNet:IsDedicated() then
         inst:DoTaskInTime(0, function()
             if inst == ThePlayer then -- only do this for the local player character
                 inst:ListenForEvent("oincsounddirty", PlayOincSound)
+                inst:ListenForEvent("actionspeed_clientdirty", ActionSpeedDirty)
                 if TheWorld:HasTag("porkland") then
                     inst:AddComponent("windvisuals")
                     inst:AddComponent("cloudpuffmanager")
@@ -196,6 +270,9 @@ AddPlayerPostInit(function(inst)
 
     inst.components.lightwatcherproxy:UseHighPrecision()
 
+    inst._actionspeed_client = net_float(inst.GUID, "player._actionspeed_client", "actionspeed_clientdirty")
+    inst._actionspeed_client:set(1)
+
     if not TheWorld.ismastersim then
         return
     end
@@ -221,6 +298,11 @@ AddPlayerPostInit(function(inst)
 
     inst:ListenForEvent("enterinterior", OnInteriorChange)
     inst:ListenForEvent("leaveinterior", OnInteriorChange)
+
+    inst.ApplyShapeScale = ApplyShapeScale
+
+    inst:ListenForEvent("mounted", OnMounted)
+    inst:ListenForEvent("dismounted", OnDismounted)
 
     if inst.OnLoad then
         inst.__OnLoad = inst.OnLoad
