@@ -149,7 +149,33 @@ local function SetShapeScale(inst, source, param_scale)
     scale = math.min(scale, 4)
     scale = math.max(scale, 0.25)
 
-    inst.components.combat.damagemultiplier = scale
+    if param_scale == 1 then
+        inst.components.combat.externaldamagemultipliers:RemoveModifier(inst)
+        inst.components.efficientuser:RemoveMultiplier(ACTIONS.ATTACK, inst)
+
+        inst.components.workmultiplier:RemoveMultiplier(ACTIONS.CHOP,   inst)
+        inst.components.workmultiplier:RemoveMultiplier(ACTIONS.HACK,   inst)
+        inst.components.workmultiplier:RemoveMultiplier(ACTIONS.MINE,   inst)
+        inst.components.workmultiplier:RemoveMultiplier(ACTIONS.HAMMER, inst)
+
+        inst.components.efficientuser:RemoveMultiplier(ACTIONS.CHOP,    inst)
+        inst.components.efficientuser:RemoveMultiplier(ACTIONS.HACK,    inst)
+        inst.components.efficientuser:RemoveMultiplier(ACTIONS.MINE,    inst)
+        inst.components.efficientuser:RemoveMultiplier(ACTIONS.HAMMER,  inst)
+    else
+        inst.components.combat.externaldamagemultipliers:SetModifier(inst, param_scale)
+        inst.components.efficientuser:AddMultiplier(ACTIONS.ATTACK, param_scale, inst)
+
+        inst.components.workmultiplier:AddMultiplier(ACTIONS.CHOP,    param_scale, inst)
+        inst.components.workmultiplier:AddMultiplier(ACTIONS.HACK,    param_scale, inst)
+        inst.components.workmultiplier:AddMultiplier(ACTIONS.MINE,    param_scale, inst)
+        inst.components.workmultiplier:AddMultiplier(ACTIONS.HAMMER,  param_scale, inst)
+
+        inst.components.efficientuser:AddMultiplier(ACTIONS.CHOP,     param_scale, inst)
+        inst.components.efficientuser:AddMultiplier(ACTIONS.HACK,     param_scale, inst)
+        inst.components.efficientuser:AddMultiplier(ACTIONS.MINE,     param_scale, inst)
+        inst.components.efficientuser:AddMultiplier(ACTIONS.HAMMER,   param_scale, inst)
+    end
 
     local physics_scale = (scale ^ (1 / 2))
     inst._physics_scale = physics_scale
@@ -289,6 +315,10 @@ AddPlayerPostInit(function(inst)
     inst:AddComponent("shopper")
 
     inst:AddComponent("uniqueidentity")
+
+    if inst.components.efficientuser == nil then
+		inst:AddComponent("efficientuser")
+	end
 
     inst:ListenForEvent("death", OnDeath)
     inst:ListenForEvent("respawnfromghost", OnRespawnFromGhost)
