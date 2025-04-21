@@ -177,6 +177,7 @@ local function OnBecameGhost(inst, data)
         inst.hurtsoundoverride = nil
         inst:RemoveEventCallback("hungerdelta", OnHungerChange)
         inst:RemoveEventCallback("newstate", OnNewState)
+        ApplyMightiness(inst)
     end
 end
 

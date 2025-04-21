@@ -48,7 +48,7 @@ end
 local _SetTimeout = StateGraphInstance.SetTimeout
 function StateGraphInstance:SetTimeout(time, ...)
     if self.inst._actionspeed and self.has_timescale_tag then
-        local newtime = (math.floor((time / self.inst._actionspeed) / FRAMES) + 1) * FRAMES
+        local newtime = (math.floor((time / self.inst._actionspeed) / FRAMES)) * FRAMES
         return _SetTimeout(self, newtime)
     end
     return _SetTimeout(self, time, ...)

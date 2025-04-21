@@ -79,6 +79,14 @@ local function OnDeath(inst, data)
     if inst.components.hayfever ~= nil then
         inst.components.hayfever:Disable(true)
     end
+
+    local health = inst.components.health
+    if health.currenthealth > 0 then
+		-- 方便t键测试
+		health._ignore_maxdamagetakenperhit = true
+        health:DoDelta(-health.currenthealth, nil, nil, nil, nil, true)
+		health._ignore_maxdamagetakenperhit = nil
+    end
 end
 
 local function OnRespawnFromGhost(inst, data)
@@ -151,7 +159,6 @@ local function SetShapeScale(inst, source, param_scale)
 
     if param_scale == 1 then
         inst.components.combat.externaldamagemultipliers:RemoveModifier(inst)
-        inst.components.combat:SetAttackPeriod(TUNING.WILSON_ATTACK_PERIOD)
         inst.components.efficientuser:RemoveMultiplier(ACTIONS.ATTACK, inst)
 
         inst.components.workmultiplier:RemoveMultiplier(ACTIONS.CHOP,   inst)
@@ -165,7 +172,6 @@ local function SetShapeScale(inst, source, param_scale)
         inst.components.efficientuser:RemoveMultiplier(ACTIONS.HAMMER,  inst)
     else
         inst.components.combat.externaldamagemultipliers:SetModifier(inst, param_scale)
-        inst.components.combat:SetAttackPeriod(TUNING.WILSON_ATTACK_PERIOD * param_scale)
         inst.components.efficientuser:AddMultiplier(ACTIONS.ATTACK, param_scale, inst)
 
         inst.components.workmultiplier:AddMultiplier(ACTIONS.CHOP,    param_scale, inst)
@@ -192,7 +198,11 @@ local function SetShapeScale(inst, source, param_scale)
 
     inst._actionspeed_client:set(inst._actionspeed)
 
+    inst.DynamicShadow:SetSize(1.3 * physics_scale, .6 * physics_scale)
+
     inst.components.combat:SetRange(TUNING.DEFAULT_ATTACK_RANGE * physics_scale)
+    inst.components.combat:SetAttackPeriod(TUNING.WILSON_ATTACK_PERIOD / inst._actionspeed)
+
     MakeCharacterPhysics(inst, 75, .5 * physics_scale)
     if inst.components.rider:IsRiding() then
         inst:ApplyAnimScale(source, 1)
@@ -204,6 +214,10 @@ local function SetShapeScale(inst, source, param_scale)
         inst.components.locomotor:SetExternalSpeedMultiplier(inst, source, inst._actionspeed * physics_scale)
     else -- 补偿：体型变小时移动速度的减少并不明显
         inst.components.locomotor:SetExternalSpeedMultiplier(inst, source, (2.5 - scale * 1.5) * physics_scale)
+    end
+
+    if inst._actionspeed == 1 then
+        inst._actionspeed = nil
     end
 end
 
