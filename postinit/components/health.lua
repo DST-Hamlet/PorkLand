@@ -11,6 +11,18 @@ function Health:DoPoisonDamage(amount, doer)
     end
 end
 
+function Health:SetBaseHealth(amount) -- 每个角色都需要这个
+    self.basehealth = amount
+end
+
+local _SetMaxHealth = Health.SetMaxHealth
+function Health:SetMaxHealth(amount, ...)
+    if self.basehealth == nil and self.inst:HasTag("player") then -- basehealth是用于体型缩放机制的变量，玩家
+        self.basehealth = amount
+    end
+    return _SetMaxHealth(self, amount, ...)
+end
+
 AddComponentPostInit("health", function(self)
     self.vulnerabletopoisondamage = true
     self.poison_damage_scale = 1

@@ -99,12 +99,23 @@ local function OnRespawnFromGhost(inst, data)
     end
 end
 
+local function OnSave(inst, data)
+    if inst._shapescale then
+        data.shapescale = inst._shapescale
+    end
+
+    return inst:__OnSave(data)
+end
+
 local function OnLoad(inst, data, ...)
     if data ~= nil then
-        if data.is_ghost then
-            --blockPoison(inst)
+        if data.shapescale then
+            local health_percent = inst.components.health:GetPercent()
+            inst.components.health:SetPercent(health_percent / data.shapescale, true)
         end
     end
+
+    -- 下面的这堆屎山是为了在船上载入游戏不会触发回岸保护机制
     -- Well this really sucks, thanks for making my life hell klei :) (I blame Zarklord specifically because funi)
     local _DoTaskInTime = inst.DoTaskInTime
     function inst:DoTaskInTime(time, fn, ...)
@@ -157,32 +168,38 @@ local function SetShapeScale(inst, source, param_scale)
     scale = math.min(scale, 4)
     scale = math.max(scale, 0.25)
 
+    inst._shapescale = scale
+
+    local health_percent = inst.components.health:GetPercent()
+    inst.components.health:SetMaxHealth(inst.components.health.basehealth * scale)
+    inst.components.health:SetPercent(health_percent, true)
+
     if param_scale == 1 then
-        inst.components.combat.externaldamagemultipliers:RemoveModifier(inst)
-        inst.components.efficientuser:RemoveMultiplier(ACTIONS.ATTACK, inst)
+        inst.components.combat.externaldamagemultipliers:RemoveModifier(source)
+        inst.components.efficientuser:RemoveMultiplier(ACTIONS.ATTACK, source)
 
-        inst.components.workmultiplier:RemoveMultiplier(ACTIONS.CHOP,   inst)
-        inst.components.workmultiplier:RemoveMultiplier(ACTIONS.HACK,   inst)
-        inst.components.workmultiplier:RemoveMultiplier(ACTIONS.MINE,   inst)
-        inst.components.workmultiplier:RemoveMultiplier(ACTIONS.HAMMER, inst)
+        inst.components.workmultiplier:RemoveMultiplier(ACTIONS.CHOP,   source)
+        inst.components.workmultiplier:RemoveMultiplier(ACTIONS.HACK,   source)
+        inst.components.workmultiplier:RemoveMultiplier(ACTIONS.MINE,   source)
+        inst.components.workmultiplier:RemoveMultiplier(ACTIONS.HAMMER, source)
 
-        inst.components.efficientuser:RemoveMultiplier(ACTIONS.CHOP,    inst)
-        inst.components.efficientuser:RemoveMultiplier(ACTIONS.HACK,    inst)
-        inst.components.efficientuser:RemoveMultiplier(ACTIONS.MINE,    inst)
-        inst.components.efficientuser:RemoveMultiplier(ACTIONS.HAMMER,  inst)
+        inst.components.efficientuser:RemoveMultiplier(ACTIONS.CHOP,    source)
+        inst.components.efficientuser:RemoveMultiplier(ACTIONS.HACK,    source)
+        inst.components.efficientuser:RemoveMultiplier(ACTIONS.MINE,    source)
+        inst.components.efficientuser:RemoveMultiplier(ACTIONS.HAMMER,  source)
     else
-        inst.components.combat.externaldamagemultipliers:SetModifier(inst, param_scale)
-        inst.components.efficientuser:AddMultiplier(ACTIONS.ATTACK, param_scale, inst)
+        inst.components.combat.externaldamagemultipliers:SetModifier(source, scale)
+        inst.components.efficientuser:AddMultiplier(ACTIONS.ATTACK, scale, source)
 
-        inst.components.workmultiplier:AddMultiplier(ACTIONS.CHOP,    param_scale, inst)
-        inst.components.workmultiplier:AddMultiplier(ACTIONS.HACK,    param_scale, inst)
-        inst.components.workmultiplier:AddMultiplier(ACTIONS.MINE,    param_scale, inst)
-        inst.components.workmultiplier:AddMultiplier(ACTIONS.HAMMER,  param_scale, inst)
+        inst.components.workmultiplier:AddMultiplier(ACTIONS.CHOP,    scale, source)
+        inst.components.workmultiplier:AddMultiplier(ACTIONS.HACK,    scale, source)
+        inst.components.workmultiplier:AddMultiplier(ACTIONS.MINE,    scale, source)
+        inst.components.workmultiplier:AddMultiplier(ACTIONS.HAMMER,  scale, source)
 
-        inst.components.efficientuser:AddMultiplier(ACTIONS.CHOP,     param_scale, inst)
-        inst.components.efficientuser:AddMultiplier(ACTIONS.HACK,     param_scale, inst)
-        inst.components.efficientuser:AddMultiplier(ACTIONS.MINE,     param_scale, inst)
-        inst.components.efficientuser:AddMultiplier(ACTIONS.HAMMER,   param_scale, inst)
+        inst.components.efficientuser:AddMultiplier(ACTIONS.CHOP,     scale, source)
+        inst.components.efficientuser:AddMultiplier(ACTIONS.HACK,     scale, source)
+        inst.components.efficientuser:AddMultiplier(ACTIONS.MINE,     scale, source)
+        inst.components.efficientuser:AddMultiplier(ACTIONS.HAMMER,   scale, source)
     end
 
     local physics_scale = (scale ^ (1/2))
@@ -353,6 +370,11 @@ AddPlayerPostInit(function(inst)
 
     inst:ListenForEvent("mounted", OnMounted)
     inst:ListenForEvent("dismounted", OnDismounted)
+
+    if inst.OnSave then
+        inst.__OnSave = inst.OnSave
+        inst.OnSave = OnSave
+    end
 
     if inst.OnLoad then
         inst.__OnLoad = inst.OnLoad

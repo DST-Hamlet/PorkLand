@@ -77,6 +77,8 @@ local function master_postinit(inst)
 
     inst.customidleanim = "idle_wilson"
 
+    inst.components.health:SetBaseHealth(TUNING.WILSON_HEALTH)
+
     inst:AddComponent("beard")
     inst.components.beard.onreset = OnResetBeard
     inst.components.beard.prize = "beardhair"

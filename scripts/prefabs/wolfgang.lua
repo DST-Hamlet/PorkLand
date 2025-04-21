@@ -209,8 +209,10 @@ local function master_postinit(inst)
     inst.talksoundoverride = nil
     inst.hurtsoundoverride = nil
 
-    inst.components.hunger:SetMax(TUNING.WOLFGANG_HUNGER)
     inst.components.health:SetMaxHealth(TUNING.WOLFGANG_HEALTH_NORMAL)
+    inst.components.health:SetBaseHealth(TUNING.WOLFGANG_HEALTH_NORMAL)
+
+    inst.components.hunger:SetMax(TUNING.WOLFGANG_HUNGER)
     inst.components.hunger.current = TUNING.WOLFGANG_START_HUNGER
 
     inst.components.sanity.night_drain_mult = TUNING.WOLFGANG_SANITY_MULT_NORMAL
