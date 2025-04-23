@@ -100,21 +100,14 @@ local function OnRespawnFromGhost(inst, data)
 end
 
 local function OnSave(inst, data)
-    if inst._shapescale then
-        data.shapescale = inst._shapescale
+    if inst._shapescale and data.health.health then
+        data.health.health = data.health.health / inst._shapescale
     end
 
     return inst:__OnSave(data)
 end
 
 local function OnLoad(inst, data, ...)
-    if data ~= nil then
-        if data.shapescale then
-            local health_percent = inst.components.health:GetPercent()
-            inst.components.health:SetPercent(health_percent / data.shapescale, true)
-        end
-    end
-
     -- 下面的这堆屎山是为了在船上载入游戏不会触发回岸保护机制
     -- Well this really sucks, thanks for making my life hell klei :) (I blame Zarklord specifically because funi)
     local _DoTaskInTime = inst.DoTaskInTime

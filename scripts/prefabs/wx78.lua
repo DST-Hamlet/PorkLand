@@ -35,9 +35,10 @@ local function ApplyUpgrades(inst)
     local health_percent = inst.components.health:GetPercent()
     local sanity_percent = inst.components.sanity:GetPercent()
 
-    inst.components.hunger.max = math.ceil(TUNING.WX78_MIN_HUNGER + inst.level * (TUNING.WX78_MAX_HUNGER - TUNING.WX78_MIN_HUNGER) / max_upgrades)
-    inst.components.health.maxhealth = math.ceil(TUNING.WX78_MIN_HEALTH + inst.level * (TUNING.WX78_MAX_HEALTH - TUNING.WX78_MIN_HEALTH) / max_upgrades)
-    inst.components.sanity.max = math.ceil(TUNING.WX78_MIN_SANITY + inst.level * (TUNING.WX78_MAX_SANITY - TUNING.WX78_MIN_SANITY) / max_upgrades)
+    inst.components.hunger:SetMax(TUNING.WX78_MIN_HUNGER + inst.level * (TUNING.WX78_MAX_HUNGER - TUNING.WX78_MIN_HUNGER) / max_upgrades)
+    inst.components.health:SetBaseHealth(TUNING.WX78_MIN_HEALTH + inst.level * (TUNING.WX78_MAX_HEALTH - TUNING.WX78_MIN_HEALTH) / max_upgrades)
+    inst.components.health:SetMaxHealth(inst.components.health.basehealth * (inst._shapescale or 1)) -- 考虑可能的体型机制
+    inst.components.sanity:SetMax(TUNING.WX78_MIN_SANITY + inst.level * (TUNING.WX78_MAX_SANITY - TUNING.WX78_MIN_SANITY) / max_upgrades)
 
     inst.components.hunger:SetPercent(hunger_percent)
     inst.components.health:SetPercent(health_percent)
@@ -216,6 +217,7 @@ local function OnBecameGhost(inst)
         inst:RemoveTag("overcharge")
         inst.components.temperature.mintemp = -20
         inst.components.bloomer:PopBloom("overcharge")
+        inst.components.locomotor:RemoveExternalSpeedMultiplier(inst, SPEED_BONUS_NAME)
         --Ghost mode already sets light and bloom
     end
 
@@ -240,7 +242,11 @@ local function OnDeath(inst)
                 local speed = 2 + math.random()
                 local angle = math.random() * 2 * PI
                 gear.Transform:SetPosition(x, y + 1, z)
-                gear.Physics:SetVel(speed * math.cos(angle), speed * 3, speed * math.sin(angle))
+                if gear.components.inventoryitem then
+                    gear.components.inventoryitem:Launch(Vector3(speed * math.cos(angle), speed * 3, speed * math.sin(angle)))
+                else
+                    gear.Physics:SetVel(speed * math.cos(angle), speed * 3, speed * math.sin(angle))
+                end
             else
                 gear.Transform:SetPosition(x, y, z)
             end

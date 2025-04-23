@@ -17,7 +17,7 @@ end
 
 local _SetMaxHealth = Health.SetMaxHealth
 function Health:SetMaxHealth(amount, ...)
-    if self.basehealth == nil and self.inst:HasTag("player") then -- basehealth是用于体型缩放机制的变量，玩家
+    if self.basehealth == nil and self.inst:HasTag("player") then -- basehealth是用于体型缩放机制的变量，玩家默认添加
         self.basehealth = amount
     end
     return _SetMaxHealth(self, amount, ...)
