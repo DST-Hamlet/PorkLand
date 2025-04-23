@@ -286,7 +286,7 @@ local function master_postinit(inst)
     inst.watching_rain = false
 
     if inst.components.eater ~= nil then
-        inst.components.eater.ignoresspoilage = true
+        inst.components.eater:SetIgnoresSpoilage(true)
         inst.components.eater:SetCanEatGears()
         inst.components.eater:SetOnEatFn(OnEat)
     end
