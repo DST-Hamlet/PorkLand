@@ -14,9 +14,9 @@ assert(TheWorld.ismastersim, "HippoSpawner should not exist on client")
 --------------------------------------------------------------------------
 
 local SPAWN_DELAY = 60
-local FIND_HIPPO_MATE_RANGE = 28
-local FIND_HIPPO_MEMBER_RANGE = 32
-local SPAWN_HIPPO_RADIUS = 20
+local FIND_HIPPO_MATE_RANGE = 32
+local FIND_HIPPO_MEMBER_RANGE = 40
+local SPAWN_HIPPO_RADIUS = 24
 local MIN_HIPPO_DISTANCE = 16
 local MIN_PLAYER_DISTANCE = 64 * 1.2 -- this is our "outer" sleep radius
 local HIPPO_TIMERNAME = "HIPPO_REPRODUCE_TIMER_"
@@ -87,6 +87,8 @@ local function CanSpawnNewHippo(hippo)
         function(_x, _y, _z, map)
             return TheWorld.Map:GetTileAtPoint(_x, _y, _z) == WORLD_TILES.LILYPOND
         end)
+    hippos_num = math.max(hippos_num, 3)
+
     if #ents >= hippos_num then
         return false, nil, nil
     end
@@ -131,7 +133,7 @@ function self:SpawnHippo(hippo)
         _worldsettingstimer:StartTimer(GetTimerName(hippo), GetRandomWithVariance(TUNING.HIPPO_MATING_SEASON_BABYDELAY, TUNING.HIPPO_MATING_SEASON_BABYDELAY_VARIANCE))
     else
         _worldsettingstimer:StopTimer(GetTimerName(hippo))
-        _worldsettingstimer:StartTimer(GetTimerName(hippo), SPAWN_DELAY)
+        _worldsettingstimer:StartTimer(GetTimerName(hippo), SPAWN_DELAY * (0.5 + math.random() * 0.5))
     end
 end
 
