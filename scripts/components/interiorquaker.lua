@@ -155,7 +155,11 @@ local _GroundDetectionUpdate = _ismastersim and function(debris)
                 local speed = 3.2 + math.random()
                 local angle = math.random() * TWOPI
                 debris.Physics:SetMotorVel(0, 0, 0)
-                debris.Physics:SetVel(speed * math.cos(angle), speed * 2.3, speed * math.sin(angle))
+                if debris.components.inventoryitem ~= nil then
+                    debris.components.inventoryitem:Launch(Vector3(speed * math.cos(angle), speed * 2.3, speed * math.sin(angle)))
+                else
+                    debris.Physics:SetVel(speed * math.cos(angle), speed * 2.3, speed * math.sin(angle))
+                end
             end
 
             debris.shadow:Remove()

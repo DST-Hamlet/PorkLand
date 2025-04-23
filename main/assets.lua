@@ -282,6 +282,8 @@ PrefabFiles = {
     "cloud_fx",
     "group_parent",
     "group_child",
+
+    "tile_fx",
 }
 
 Assets = {

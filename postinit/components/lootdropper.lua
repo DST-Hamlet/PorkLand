@@ -52,23 +52,26 @@ function LootDropper:DropLootPrefab(loot, pt, setangle, arc, alwaysinfront, drop
 
         loot.Transform:SetPosition(pt:Get())
 
-        if self.inst.Physics ~= nil and loot.Physics ~= nil then
+        local angle = math.random()*2*PI
+        local speed = self.speed or 1
+        local dir = dropdir ~= nil and dropdir or Vector3(math.cos(angle), 0, math.sin(angle))
 
-            local angle = math.random()*2*PI
-            local speed = self.speed or 1
-            local dir = dropdir ~= nil and dropdir or Vector3(math.cos(angle), 0, math.sin(angle))
+        if setangle and arc then
+            arc = arc * DEGREES
+            angle = setangle * DEGREES + (math.random()*arc - arc/2)
+        elseif setangle then
+            angle = setangle / DEGREES
+        end
 
-            if setangle and arc then
-                arc = arc * DEGREES
-                angle = setangle * DEGREES + (math.random()*arc - arc/2)
-            elseif setangle then
-                angle = setangle / DEGREES
-            end
-
-            speed = speed * math.random()
-            loot.Physics:SetVel(speed*math.cos(angle), GetRandomWithVariance(8, 4), speed*math.sin(angle))
+        speed = speed * math.random()
+        if loot.components.inventoryitem ~= nil then
             pt = pt + dir*((loot.Physics:GetRadius() or 1) + (self.inst.Physics:GetRadius() or 0))
-            loot.Transform:SetPosition(pt.x,pt.y,pt.z)
+            loot.Transform:SetPosition(pt:Get())
+            loot.components.inventoryitem:Launch(Vector3(speed*math.cos(angle), GetRandomWithVariance(8, 4), speed*math.sin(angle)))
+        elseif self.inst.Physics ~= nil and loot.Physics ~= nil then
+            pt = pt + dir*((loot.Physics:GetRadius() or 1) + (self.inst.Physics:GetRadius() or 0))
+            loot.Transform:SetPosition(pt:Get())
+            loot.Physics:SetVel(speed*math.cos(angle), GetRandomWithVariance(8, 4), speed*math.sin(angle))
         end
 
         return loot
