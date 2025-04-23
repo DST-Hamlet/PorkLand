@@ -39,6 +39,17 @@ local function customidleanimfn(inst)
     return inst.AnimState:CompareSymbolBuilds("hand", "hand_wickerbottom") and "idle_wickerbottom" or nil
 end
 
+local function TestFoodFn(inst, food)
+    if food:HasTag("show_spoiled") then
+        return false
+    end
+    return true
+end
+
+local function OnRespawnedFromGhost(inst)
+    inst.components.grogginess:SetResistance(9)
+end
+
 local function common_postinit(inst)
     inst:AddTag("insomniac")
     inst:AddTag("bookbuilder")
@@ -56,11 +67,17 @@ local function master_postinit(inst)
     if inst.components.eater ~= nil then
         inst.components.eater.stale_hunger = TUNING.WICKERBOTTOM_STALE_FOOD_HUNGER
         inst.components.eater.stale_health = TUNING.WICKERBOTTOM_STALE_FOOD_HEALTH
-        inst.components.eater.spoiled_hunger = TUNING.WICKERBOTTOM_SPOILED_FOOD_HUNGER
-        inst.components.eater.spoiled_health = TUNING.WICKERBOTTOM_SPOILED_FOOD_HEALTH
+
+        inst.components.eater:SetRefusesSpoiledFood(true)
+        inst.components.eater.testfoodfn = TestFoodFn
     end
 
+    inst.components.health:SetMaxHealth(TUNING.WICKERBOTTOM_HEALTH)
+
     inst.components.sanity:SetMax(TUNING.WICKERBOTTOM_SANITY)
+
+    inst:ListenForEvent("ms_respawnedfromghost", OnRespawnedFromGhost)
+    OnRespawnedFromGhost(inst)
 
     inst.components.builder.science_bonus = 1
 end

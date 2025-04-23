@@ -34,6 +34,7 @@ local component_posts = {
     "dest",
     "drownable",
     "dryer",
+    "eater",
     "edible",
     "equippable_replica",
     "equippable",

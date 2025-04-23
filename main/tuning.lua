@@ -738,7 +738,6 @@ TUNING.WOLFGANG_HUNGER = 300
 -- for character selection screen
 TUNING.WX78_HEALTH = wilson_health
 TUNING.WX78_HUNGER = wilson_health
-TUNING.WICKERBOTTOM_HEALTH = wilson_health
 TUNING.WES_HEALTH = math.ceil(wilson_health * 0.75)
 TUNING.WES_HUNGER = math.ceil(wilson_hunger * 0.75)
 TUNING.WES_SANITY = math.ceil(wilson_sanity * 0.75)
