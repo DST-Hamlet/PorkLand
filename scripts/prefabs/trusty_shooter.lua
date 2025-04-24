@@ -205,6 +205,11 @@ local function OnProjectileLaunched(inst, attacker, target, proj)
     inst.components.finiteuses:Use(1)
 end
 
+local function OnFinished(inst)
+    inst.components.container:DropEverything(inst:GetPosition())
+    inst:Remove()
+end
+
 local function fn()
     local inst = CreateEntity()
     inst.entity:AddTransform()
@@ -260,7 +265,7 @@ local function fn()
     inst.override_bank = "swap_trusty_shooter"
 
     inst:AddComponent("finiteuses")
-    inst.components.finiteuses:SetOnFinished(inst.Remove)
+    inst.components.finiteuses:SetOnFinished(OnFinished)
     inst.components.finiteuses:SetMaxUses(TUNING.TRUSTY_SHOOTER_USES)
     inst.components.finiteuses:SetUses(TUNING.TRUSTY_SHOOTER_USES)
 

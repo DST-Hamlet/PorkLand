@@ -1,4 +1,4 @@
-local assets=
+local assets =
 {
     Asset("ANIM", "anim/tracker.zip"),
     Asset("INV_IMAGE", "tracker"),
@@ -7,18 +7,18 @@ local assets=
     Asset("MINIMAP_IMAGE", "tracker"),
 }
 
-local SPECIAL_LOOT_TABLE =
-{
-    ["dug_grass"] = 
-    {
-        grass = true,
-        grass_tall = true,
-    },
-    ["dug_saping"] = 
-    {
-        saping = true,
-    },
-}
+-- local SPECIAL_LOOT_TABLE =
+-- {
+--     ["dug_grass"] =
+--     {
+--         grass = true,
+--         grass_tall = true,
+--     },
+--     ["dug_saping"] =
+--     {
+--         saping = true,
+--     },
+-- }
 
 local function CanGiveLoot(inst, goal_inst)
     local prefab = goal_inst.prefab
@@ -232,6 +232,7 @@ local function ondepleted(inst)
         }
         inst.components.inventoryitem.owner:PushEvent("itemranout", data)
     end
+    inst.components.container:DropEverything(inst:GetPosition())
     inst:Remove()
 end
 
