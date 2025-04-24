@@ -43,8 +43,7 @@ SetSharedLootTable("teatree_tall",
 
 SetSharedLootTable("teatree_burnt",
 {
-    {"charcoal", 1.0},
-    {"teatree_nut_cooked", 0.1}
+    {"log", 1.0},
 })
 
 local function MakeAnims(stage)
@@ -265,7 +264,7 @@ local function OnWorkCallback(inst, chopper)
 end
 
 local function OnFinishCallbackStump(inst, digger)
-    inst.components.lootdropper:SpawnLootPrefab("log")
+    inst.components.lootdropper:DropLoot()
     inst:Remove()
 end
 
@@ -290,6 +289,9 @@ local function MakeStump(inst)
     inst.AnimState:PushAnimation(anims[inst.stage].stump)
 
     inst.MiniMapEntity:SetIcon("teatree_stump.tex")
+
+    inst.components.lootdropper:SetLoot({})
+    inst.components.lootdropper:SetChanceLootTable("teatree_stump")
 
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.DIG)
@@ -354,7 +356,8 @@ local function OnBurntChanges(inst)
     MakeHauntableWork(inst)
     -- inst:RemoveComponent("blowinwindgust")
 
-    inst.components.lootdropper:SetChanceLootTable("palmconetree_burnt")
+    inst.components.lootdropper:SetLoot({})
+    inst.components.lootdropper:SetChanceLootTable("teatree_burnt")
 
     if inst.components.workable then
         inst.components.workable:SetWorkLeft(1)
