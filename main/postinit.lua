@@ -93,6 +93,7 @@ local component_posts = {
 
 local prefab_posts = {
     "batwing",
+    "abigail_flower",
     "birdcage",
     "boomerang",
     "buff_workeffectiveness",
@@ -176,6 +177,7 @@ local widget_posts = {
     "mapwidget",
     "recipepopup",
     "itemtile",
+    "invslot",
     "controls",
 }
 

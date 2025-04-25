@@ -37,27 +37,3 @@ function Inventory:GetItem(prefab)
     end
 
 end
-
-local SUPPORTED_ITEMS = {
-    ["abigail_flower"] = true,
-}
-
-local use_item_from_inv_tile = Inventory.UseItemFromInvTile
-function Inventory:UseItemFromInvTile(item, ...)
-    if not (item and item:IsValid()) then
-        return
-    end
-
-    if not TheInput:ControllerAttached() and SUPPORTED_ITEMS[item.prefab] then
-        local action = self.inst.components.playeractionpicker:GetInventoryActions(item)[1]
-        if action == ACTIONS.USESPELLBOOK then
-            self.inst.HUD.controls.spellcontrols:Open()
-            return
-        end
-        -- if action == ACTIONS.CLOSESPELLBOOK then
-
-        -- end
-    end
-
-    return use_item_from_inv_tile(self, item, ...)
-end

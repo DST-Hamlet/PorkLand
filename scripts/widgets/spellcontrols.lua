@@ -1,10 +1,8 @@
 local Widget = require "widgets/widget"
-local Text = require "widgets/text"
 local ImageButton = require "widgets/imagebutton"
 local UIAnimButton = require("widgets/uianimbutton")
 local UIAnim = require("widgets/uianim")
 
--------------------------------------------------------------------------------
 local SpellControls = Class(Widget, function(self, owner)
     Widget._ctor(self, "SpellControls")
 
@@ -18,7 +16,14 @@ function SpellControls:IsOpen()
     return self.isopen
 end
 
-function SpellControls:SetItems(items_data)
+local function UnpackAnimData(data_in, owner)
+    local data_out = FunctionOrValue(data_in, owner)
+    if data_out then
+        return data_out.anim, data_out.loop
+    end
+end
+
+function SpellControls:SetItems(source_item, anchor_position, items_data)
     for _, item in ipairs(self.items) do
         item.button:Kill()
     end
@@ -26,33 +31,23 @@ function SpellControls:SetItems(items_data)
 
     self.numspacers = 0
 
-    for _, item_data in ipairs(items_data) do
+    local amount_of_items = #items_data
+    local item_width = 60
+    local totol_width = item_width * amount_of_items
+    local initial_position = anchor_position + Vector3(-totol_width / 2, 100)
+
+    for i, item_data in ipairs(items_data) do
         local button
         if item_data.anims then
             button = self:AddChild(UIAnimButton(item_data.bank, item_data.build))
             button.animstate:Hide("mouseover")
             button.overrideclicksound = item_data.clicksound
 
-            local anim_data = FunctionOrValue(item_data.anims.idle, self.owner)
-            if anim_data then
-                button:SetIdleAnim(anim_data)
-            end
-            local anim_data = FunctionOrValue(item_data.anims.focus, self.owner)
-            if anim_data then
-                button:SetFocusAnim(anim_data)
-            end
-            local anim_data = FunctionOrValue(item_data.anims.disabled, self.owner)
-            if anim_data then
-                button:SetDisabledAnim(anim_data)
-            end
-            local anim_data = FunctionOrValue(item_data.anims.down, self.owner)
-            if anim_data then
-                button:SetDownAnim(anim_data)
-            end
-            local anim_data = FunctionOrValue(item_data.anims.selected, self.owner)
-            if anim_data then
-                button:SetSelectedAnim(anim_data)
-            end
+            button:SetIdleAnim(UnpackAnimData(item_data.anims.idle, self.owner))
+            button:SetDisabledAnim(UnpackAnimData(item_data.anims.focus, self.owner))
+            button:SetSelectedAnim(UnpackAnimData(item_data.anims.disabled, self.owner))
+            button:SetFocusAnim(UnpackAnimData(item_data.anims.down, self.owner))
+            button:SetDownAnim(UnpackAnimData(item_data.anims.selected, self.owner))
 
             if item_data.checkcooldown then
                 button.cooldown = button:AddChild(UIAnim())
@@ -81,34 +76,28 @@ function SpellControls:SetItems(items_data)
 
         if item_data.execute then
             button.onclick = function()
-                item_data.execute()
+                item_data.execute(source_item)
             end
         end
 
-        if item_data.ondown then
-            button.ondown = function()
-                item_data.ondown()
-            end
-        end
+        -- button.ongainfocus = function()
+        --     if button:IsEnabled() and not (button:IsSelected() or button:IsDisabledState()) then
+        --         if item_data.onfocus and item_data.onfocus() then
+        --             return -- callback returned true: halt operation
+        --         end
+        --         -- button:MoveTo(item_data.pos, item_data.focus_pos, 0.1)
+        --     end
+        -- end
 
-        button.ongainfocus = function()
-            if button:IsEnabled() and not (button:IsSelected() or button:IsDisabledState()) then
-                if item_data.onfocus and item_data.onfocus() then
-                    return -- callback returned true: halt operation
-                end
-                button:MoveTo(item_data.pos, item_data.focus_pos, 0.1)
-            end
-        end
+        -- button.onlosefocus = function()
+        --     if button:IsEnabled() and not (button:IsSelected() or button:IsDisabledState()) then
+        --         -- button:MoveTo(item_data.focus_pos, item_data.pos, 0.25)
+        --     end
+        -- end
 
-        button.onlosefocus = function()
-            if button:IsEnabled() and not (button:IsSelected() or button:IsDisabledState()) then
-                button:MoveTo(item_data.focus_pos, item_data.pos, 0.25)
-            end
-        end
-
-        if item_data.helptext ~= nil then
-            button:SetHelpTextMessage(item_data.helptext)
-        end
+        -- if item_data.helptext ~= nil then
+        --     button:SetHelpTextMessage(item_data.helptext)
+        -- end
 
         if item_data.postinit then
             item_data.postinit(button)
@@ -118,21 +107,25 @@ function SpellControls:SetItems(items_data)
             self.numspacers = self.numspacers + 1
         end
 
-        tablel.insert(self.items, {
+        button:SetPosition(initial_position + Vector3(item_width * (i - 1)))
+
+        table.insert(self.items, {
             button = button,
             data = item_data,
         })
     end
 end
 
-function SpellControls:Open(items_data)
+function SpellControls:Open(source_item, anchor_position, items_data)
     self.isopen = true
 
     self:Show()
-    self:Disable()
-    self:SetClickable(false)
+    -- self:Disable()
+    -- self:SetClickable(false)
+    self:SetClickable(true)
+    self:Enable()
 
-    self:SetItems(items_data)
+    self:SetItems(source_item, anchor_position, items_data)
 
     local selected
     for _, item in ipairs(self.items) do
@@ -165,17 +158,17 @@ function SpellControls:Open(items_data)
             item.button:Enable()
         end
         if (item.button.selected or selected == nil) and item.button.enabled then
-            selected = item.button
+            selected = item
         end
-        item.button:MoveTo(Vector3(0, 0, 0), item.button.pos, 0.25)
+        -- item.button:MoveTo(Vector3(0, 0, 0), item.data.pos, 0.25)
         item.button:Show()
     end
 
     if selected then
-        selected.widget:MoveTo(Vector3(0, 0, 0), selected.pos, 0.25, function()
-            self:SetClickable(true)
-            self:Enable()
-        end)
+        -- selected.button:MoveTo(Vector3(0, 0, 0), selected.data.pos, 0.25, function()
+        --     self:SetClickable(true)
+        --     self:Enable()
+        -- end)
     end
 end
 
