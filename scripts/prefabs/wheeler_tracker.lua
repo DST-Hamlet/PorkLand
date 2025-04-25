@@ -7,24 +7,28 @@ local assets =
     Asset("MINIMAP_IMAGE", "tracker"),
 }
 
--- local SPECIAL_LOOT_TABLE =
--- {
---     ["dug_grass"] =
---     {
---         grass = true,
---         grass_tall = true,
---     },
---     ["dug_saping"] =
---     {
---         saping = true,
---     },
--- }
+local SPECIAL_LOOT_TABLE =
+{
+    ["dug_grass"] =
+    {
+        grass = true,
+        grass_tall = true,
+    },
+    ["dug_saping"] =
+    {
+        saping = true,
+    },
+}
 
 local function CanGiveLoot(inst, goal_inst)
     local prefab = goal_inst.prefab
     if not (inst.components.inventoryitem and (inst.components.inventoryitem.owner ~= nil)) and (inst:HasTag("track_ignore_limbo") or not inst:IsInLimbo()) then
         if inst.prefab == prefab then
             return true
+            
+        elseif SPECIAL_LOOT_TABLE[prefab] and SPECIAL_LOOT_TABLE[prefab][inst.prefab] then
+            return true
+
         elseif inst.components.pickable and inst.components.pickable:CanBePicked() and inst.components.pickable.product == prefab then
             return true
 
