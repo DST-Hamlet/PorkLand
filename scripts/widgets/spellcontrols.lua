@@ -8,6 +8,8 @@ local SpellControls = Class(Widget, function(self, owner)
 
     self.owner = owner
 
+    self.source_item = nil
+    self.anchor_position = Vector3()
     self.items = {}
     self.isopen = false
 end)
@@ -23,7 +25,14 @@ local function UnpackAnimData(data_in, owner)
     end
 end
 
-function SpellControls:SetItems(source_item, anchor_position, items_data)
+function SpellControls:SetItems(items_data, source_item, anchor_position)
+    if source_item then
+        self.source_item = source_item
+    end
+    if anchor_position then
+        self.anchor_position = anchor_position
+    end
+
     for _, item in ipairs(self.items) do
         item.button:Kill()
     end
@@ -34,7 +43,7 @@ function SpellControls:SetItems(source_item, anchor_position, items_data)
     local amount_of_items = #items_data
     local item_width = 60
     local totol_width = item_width * amount_of_items
-    local initial_position = anchor_position + Vector3(-totol_width / 2, 100)
+    local initial_position = self.anchor_position + Vector3(-totol_width / 2, 100)
 
     for i, item_data in ipairs(items_data) do
         local button
@@ -76,7 +85,8 @@ function SpellControls:SetItems(source_item, anchor_position, items_data)
 
         if item_data.execute then
             button.onclick = function()
-                item_data.execute(source_item)
+                item_data.onselect(self.source_item)
+                item_data.execute(self.source_item)
             end
         end
 
@@ -116,7 +126,7 @@ function SpellControls:SetItems(source_item, anchor_position, items_data)
     end
 end
 
-function SpellControls:Open(source_item, anchor_position, items_data)
+function SpellControls:Open(items_data, source_item, anchor_position)
     self.isopen = true
 
     self:Show()
@@ -125,7 +135,7 @@ function SpellControls:Open(source_item, anchor_position, items_data)
     self:SetClickable(true)
     self:Enable()
 
-    self:SetItems(source_item, anchor_position, items_data)
+    self:SetItems(items_data, source_item, anchor_position)
 
     local selected
     for _, item in ipairs(self.items) do
@@ -177,21 +187,18 @@ function SpellControls:Close()
         return
     end
 
-    self:StopUpdating()
-
-    for _, item in ipairs(self.items) do
-        if item.button.cooldown then
-            item.button.cooldown:StopUpdating()
-        end
-        item.button:CancelMoveTo()
-        item.button:Hide()
-    end
+    -- for _, item in ipairs(self.items) do
+    --     if item.button.cooldown then
+    --         item.button.cooldown:StopUpdating()
+    --     end
+    --     item.button:CancelMoveTo()
+    --     item.button:Hide()
+    -- end
     self:SetClickable(true)
     self:ClearFocus()
     self:Disable()
     self:Hide()
     self.isopen = false
-    TheFrontEnd:LockFocus(false)
 end
 
 return SpellControls

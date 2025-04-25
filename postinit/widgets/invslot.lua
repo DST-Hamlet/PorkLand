@@ -16,7 +16,7 @@ function InvSlot:UseItem(...)
                 -- print(action)
                 if action.action == ACTIONS.USESPELLBOOK then
                     -- print("ThePlayer.HUD.controls.spellcontrols:Open()")
-                    ThePlayer.HUD.controls.spellcontrols:Open(item, self.tile:GetWorldPosition(), item.components.spellbook.items)
+                    ThePlayer.HUD.controls.spellcontrols:Open(item.components.spellbook.items, item, self.tile:GetWorldPosition())
                     return
                 end
                 if action.action == ACTIONS.CLOSESPELLBOOK then
@@ -26,7 +26,6 @@ function InvSlot:UseItem(...)
             end
 
             -- inventory:UseItemFromInvTile(item)
-            return
         end
     end
     return use_item(self, ...)
