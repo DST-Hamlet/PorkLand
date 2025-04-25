@@ -29,6 +29,8 @@ local Projectile_gun = Class(function(self, inst)
 
     self.stimuli = nil
 
+    self.pvp_mult = 1
+
     --self.has_damage_set = nil -- set to true if the projectile has its own damage set, instead of needed to get it from the launching weapon
 
     --self.delaytask = nil
@@ -150,6 +152,9 @@ function Projectile_gun:Throw(owner, target, attacker)
         local x, y, z = self.inst.Transform:GetWorldPosition()
         local facing_angle = attacker.Transform:GetRotation() * DEGREES
         self.inst.Transform:SetPosition(x + self.launchoffset.x * math.cos(facing_angle), y + self.launchoffset.y, z - self.launchoffset.x * math.sin(facing_angle))
+        if attacker:HasTag("player") and target:HasTag("player") then
+            self.pvp_mult = 0.5
+        end
     end
 
     self:RotateToTarget(self.dest)
@@ -206,7 +211,7 @@ function Projectile_gun:Hit(target)
     self:Stop()
     self.inst.Physics:Stop()
 
-    if attacker.components.combat == nil and attacker.components.weapon ~= nil and attacker.components.inventoryitem ~= nil then
+    if attacker ~= nil and attacker.components.combat == nil and attacker.components.weapon ~= nil and attacker.components.inventoryitem ~= nil then
         weapon = (self.has_damage_set and weapon.components.weapon ~= nil) and weapon or attacker
         attacker = attacker.components.inventoryitem.owner
     end
@@ -215,12 +220,7 @@ function Projectile_gun:Hit(target)
         self.onprehit(self.inst, attacker, target)
     end
 
-    local pvp_mult = 1
-    if attacker:HasTag("player") and target:HasTag("player") then
-        pvp_mult = 0.5
-    end
-
-    target.components.combat:GetAttacked(attacker, self.damage * pvp_mult, weapon)
+    target.components.combat:GetAttacked(attacker, self.damage * self.pvp_mult, weapon)
     if self.onhit ~= nil then
         self.onhit(self.inst, attacker, target)
     end
