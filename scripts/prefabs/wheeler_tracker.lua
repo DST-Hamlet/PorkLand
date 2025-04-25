@@ -18,6 +18,18 @@ local SPECIAL_LOOT_TABLE =
     {
         saping = true,
     },
+    ["dug_nettle"] =
+    {
+        nettle = true,
+    },
+    ["iron"] =
+    {
+        ancient_robot_ribs = true,
+        ancient_robot_claw = true,
+        ancient_robot_leg = true,
+        ancient_robot_head = true,
+        ancient_robots_assembly = true,
+    },
 }
 
 local function CanGiveLoot(inst, goal_inst)
