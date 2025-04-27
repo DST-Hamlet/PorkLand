@@ -681,21 +681,9 @@ local function OnFinishCallback(inst, worker)
 
     SpawnPrefab("collapse_small").Transform:SetPosition(inst.Transform:GetWorldPosition())
 
-    if worker then
-        -- figure out which side to drop the loot
-        local pt = inst:GetPosition()
-        local hispos = Vector3(worker.Transform:GetWorldPosition())
+    inst.components.lootdropper:DropLoot()
 
-        local he_right = ((hispos - pt):Dot(TheCamera:GetRightVec()) > 0)
-
-        if he_right then
-            inst.components.lootdropper:DropLoot(pt - (TheCamera:GetRightVec() * (math.random() + 1)))
-        else
-            inst.components.lootdropper:DropLoot(pt + (TheCamera:GetRightVec() * (math.random() + 1)))
-        end
-
-        inst:Remove()
-    end
+    inst:Remove()
 end
 
 local function corpsefn()
