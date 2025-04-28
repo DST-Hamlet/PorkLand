@@ -2468,10 +2468,11 @@ local states = {
             end
 
             local buffaction = inst:GetBufferedAction()
-            local target = buffaction and buffaction.target
+            local target = buffaction and buffaction.target or nil
             inst.sg.statemem.target = target
-            inst.sg.statemem.target_position = target and target:GetPosition()
+            inst.sg.statemem.target_position = target and target:IsValid() and target:GetPosition()
 
+            inst.components.combat:SetTarget(target)
             inst.components.combat:StartAttack()
             inst.components.locomotor:Stop()
             inst.AnimState:PlayAnimation("speargun")
@@ -2496,9 +2497,6 @@ local states = {
         {
             TimeEvent(12 * FRAMES, function(inst)
                 inst.sg:RemoveStateTag("abouttoattack")
-                inst.components.combat:DoAttack(inst.sg.statemem.target)
-
-                inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/items/weapon/blunderbuss_shoot", nil, nil, true)
 
                 local target_position
                 if inst.sg.statemem.target and inst.sg.statemem.target:IsValid() then
@@ -2507,18 +2505,23 @@ local states = {
                     target_position = inst.sg.statemem.target_position
                 end
 
-                local angle =  target_position and (inst:GetAngleToPoint(target_position.x, target_position.y, target_position.z) - 90) * DEGREES
+                if target_position then
+                    inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/items/weapon/blunderbuss_shoot")
+                    inst.components.combat:DoAttack(inst.sg.statemem.target)
 
-                inst.sg.statemem.target = nil
-                inst.sg.statemem.target_position = nil
+                    local angle =  target_position and (inst:GetAngleToPoint(target_position.x, target_position.y, target_position.z) - 90) * DEGREES
 
-                local DIST = 1.5
-                local pt = Vector3(inst.Transform:GetWorldPosition())
-                local offset = Vector3(math.cos(angle + PI / 2), 0, -math.sin(angle + PI / 2)) * DIST
-                local y = inst.components.rider:IsRiding() and 4.5 or 2
+                    inst.sg.statemem.target = nil
+                    inst.sg.statemem.target_position = nil
 
-                local cloud = SpawnPrefab("cloudpuff")
-                cloud.Transform:SetPosition(pt.x + offset.x, y, pt.z + offset.z)
+                    local DIST = 1.5
+                    local pt = Vector3(inst.Transform:GetWorldPosition())
+                    local offset = Vector3(math.cos(angle + PI / 2), 0, -math.sin(angle + PI / 2)) * DIST
+                    local y = inst.components.rider:IsRiding() and 4.5 or 2
+
+                    local cloud = SpawnPrefab("cloudpuff")
+                    cloud.Transform:SetPosition(pt.x + offset.x, y, pt.z + offset.z)
+                end
             end),
             TimeEvent(20 * FRAMES, function(inst) inst.sg:RemoveStateTag("attack") end),
         },

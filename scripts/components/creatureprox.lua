@@ -2,6 +2,12 @@ local CANT_TAGS = {"FX", "NOCLICK", "DECOR", "INLIMBO"}
 local CREATURE_MUST_ONE_TAGS = {"character", "animal", "monster", "stationarymonster", "insect", "smallcreature", "structure", "oceanfish", "smalloceancreature"}
 local INVENTORY_MUST_ONE_TAGS = {"character", "animal", "monster","smallcreature", "insect", "_inventoryitem"}
 local function OnUpdate(inst, self)
+    -- I have no idea why `inst` here can be invalid, but let's just fix it
+    -- https://github.com/DST-Hamlet/PorkLand/issues/819
+    if not inst:IsValid() then
+        return
+    end
+
     if not self.enabled then
         return
     end

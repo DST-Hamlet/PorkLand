@@ -364,11 +364,6 @@ local function OnBurnt(inst)
 
     inst.seed_task = inst:DoTaskInTime(10, function()
         local pt = inst:GetPosition()
-        if math.random(0, 1) == 1 then -- ...why?
-            pt = pt + TheCamera:GetRightVec()
-        else
-            pt = pt - TheCamera:GetRightVec()
-        end
 
         inst.seed_task = nil
     end)
@@ -377,12 +372,6 @@ end
 local function drop_critter(inst, prefab)
     local critter = SpawnPrefab(prefab)
     local pt = Vector3(inst.Transform:GetWorldPosition())
-
-    if math.random(0, 1) == 1 then -- why?
-        pt = pt + (TheCamera:GetRightVec() * (math.random() + 1))
-    else
-        pt = pt - (TheCamera:GetRightVec() * (math.random() + 1))
-    end
 
     critter.sg:GoToState("fall")
     pt.y = pt.y + (2 * inst.stage)
@@ -434,12 +423,6 @@ local function DoBloom(inst)
 
     local burr = SpawnPrefab("burr")
     local pt = inst:GetPosition()
-
-    if math.random(0, 1) == 1 then -- why?
-        pt = pt + (TheCamera:GetRightVec() * (math.random() + 1))
-    else
-        pt = pt - (TheCamera:GetRightVec() * (math.random() + 1))
-    end
 
     burr.AnimState:PlayAnimation("drop")
     burr.AnimState:PushAnimation("idle")
