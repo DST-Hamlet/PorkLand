@@ -255,7 +255,6 @@ function InteriorSpawner:GetInteriorDefinition(position_or_id)
 end
 
 function InteriorSpawner:AddExterior(entity)
-    entity:AddTag("exterior_door")
     local interior_id = entity.interiorID
     self.exteriors[interior_id] = entity
     entity.interiorspawner_exterior_on_remove_listener = function()
@@ -272,7 +271,6 @@ function InteriorSpawner:TransferExterior(from_entity, to_entity)
         from_entity:RemoveEventCallback("onremove", from_entity.interiorspawner_exterior_on_remove_listener)
         from_entity.interiorspawner_exterior_on_remove_listener = nil
     end
-    from_entity:RemoveTag("exterior_door")
     self.exteriors[from_entity.interiorID] = nil
 
     self:AddExterior(to_entity)

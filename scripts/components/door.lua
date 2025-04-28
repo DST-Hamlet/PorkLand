@@ -14,6 +14,14 @@ local function onhidden(self, value, old_value)
     end
 end
 
+local function onoutside(self, value)
+    if value then
+        self.inst:AddTag("exterior_door")
+    else
+        self.inst:RemoveTag("exterior_door")
+    end
+end
+
 local function ontarget(self, value)
     if value == "EXTERIOR" then
         self.inst:AddTag("door_exit")
@@ -26,11 +34,13 @@ local Door = Class(function(self, inst)
     self.inst = inst
     self.disabled = false
     self.hidden = false
+    self.outside = false
     self.disable_causes = {}
 end, nil,
 {
     disabled = ondisabled,
     hidden = onhidden,
+    outside = onoutside,
     target_interior = ontarget,
 })
 
