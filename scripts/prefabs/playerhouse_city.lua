@@ -303,7 +303,6 @@ local function fn()
     inst.components.workable:SetOnWorkCallback(onhit)
 
     inst:AddComponent("door")
-    inst.components.door.outside = true
     inst.components.door:SetDoorDisabled(true, "bought_state")
 
     inst:AddComponent("inspectable")

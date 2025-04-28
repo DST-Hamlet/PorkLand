@@ -730,7 +730,6 @@ local function MakeEntrance(name, is_entrance, dungeon_name)
         inst.components.inspectable.getstatus = GetStatus
 
         inst:AddComponent("door")
-        inst.components.door.outside = true
 
         if is_entrance then -- this prefab is the entrance. Makes the maze
             inst.is_entrance = true

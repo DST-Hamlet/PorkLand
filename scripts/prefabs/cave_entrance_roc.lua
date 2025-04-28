@@ -393,7 +393,6 @@ local function fn()
     end
 
     inst:AddComponent("door")
-    inst.components.door.outside = true
 
     inst:AddComponent("inspectable")
     inst.components.inspectable.getstatus = GetStatus

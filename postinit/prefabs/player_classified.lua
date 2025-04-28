@@ -15,7 +15,7 @@ local function OnPoisonPulseDirty(inst)
 end
 
 local ACTION_BUTTON_NO_TAGS = {"DECOR", "INLIMBO", "fire", "burnt", "FX"}
-local ACTION_BUTTON_ONE_OF_TAGS = {"exterior_door", "interior_door", "pickable", "CHOP_workable", "HAMMER_workable", "MINE_workable", "DIG_workable", "HACK_workable"}
+local ACTION_BUTTON_ONE_OF_TAGS = {"door", "interior_door", "pickable", "CHOP_workable", "HAMMER_workable", "MINE_workable", "DIG_workable", "HACK_workable"}
 local WORK_ACTIONS = {"CHOP", "DIG", "HAMMER", "MINE", "HACK"}
 
 local function ActionStringOverride(inst, action)

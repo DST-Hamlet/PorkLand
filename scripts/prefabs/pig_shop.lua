@@ -743,7 +743,6 @@ local function MakeShop(name, build, bank, data)
         inst:AddComponent("lootdropper")
 
         inst:AddComponent("door")
-        inst.components.door.outside = true
 
         inst:AddComponent("fixable")
         inst.components.fixable:AddReconstructionStageData("rubble", inst.bank, inst.build)

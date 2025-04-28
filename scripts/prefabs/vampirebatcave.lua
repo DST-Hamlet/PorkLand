@@ -114,7 +114,6 @@ local function fn()
     inst:AddComponent("inspectable")
 
     inst:AddComponent("door")
-    inst.components.door.outside = true
 
     MakeSnowCovered(inst)
 

@@ -557,7 +557,6 @@ local function makefn(is_entrance)
         inst.components.inspectable.nameoverride = "anthill"
 
         inst:AddComponent("door")
-        inst.components.door.outside = true
 
         MakeSnowCovered(inst, 0.01)
 
