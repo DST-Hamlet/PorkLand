@@ -650,8 +650,7 @@ local function MakeTree(name, build, stage, data)
 
         if not TheWorld.ismastersim then
             inst:ListenForEvent("fallangledirty", function()
-                PostUpdateFunctionData[1] =
-                {
+                local data = {
                     ent = inst,
                     fn = function(inst)
                         local anim = anims[inst._stage:value()]
@@ -675,6 +674,7 @@ local function MakeTree(name, build, stage, data)
                         end
                     end
                 }
+                table.insert(PostUpdateFunctionData, data)
             end)
             return inst
         end
