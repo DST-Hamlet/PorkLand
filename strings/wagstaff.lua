@@ -97,7 +97,6 @@ return {
 		INVALID = "I wouldn't classify that as edible.",
 		YUCKY = "Absolutely horrid!",
 	},
-	ANNOUNCE_BAD_STOMACH = {"Oooh...My delicate constitution.", "...experiencing...abdominal...pain...","ugh...My digestive tract is protesting."},
 	ANNOUNCE_NOSLEEPONFIRE = "Sleep would hardly combat this blaze.",
 	ANNOUNCE_NODANGERSIESTA = "No nap until I deal with what hunts me!",
 	ANNOUNCE_NONIGHTSIESTA = "I need something more restorative than a nap.",
@@ -195,8 +194,14 @@ return {
 	ANNOUNCE_MYSTERY_DOOR_FOUND = "Let us see where this leads.",
     ANNOUNCE_MYSTERY_DOOR_NOT_FOUND = "No door this time, but I won't give up!",
 
-    ANNOUNCE_BAD_STOMACH = {"Ugh. Too unrefined for my intestines.", "Oooh... an assault on my alimentary canal.", "Gah! My abdominal region is in distress."},
-
+    ANNOUNCE_BAD_STOMACH = {
+		"Ugh. Too unrefined for my intestines.",
+		"Oooh... an assault on my alimentary canal.",
+		"Gah! My abdominal region is in distress."
+		"Oooh...My delicate constitution.",
+		"...Experiencing...abdominal...pain...",
+		"Ugh...My digestive tract is protesting."
+	},
     ANNOUNCE_HOUSE_DOOR = "A lack of permit is preventing me from building an extension.",
     ANNOUNCE_ROOM_STUCK = "Inadvisable as I'd be prevented from exploring this world.",
 
@@ -667,9 +672,6 @@ return {
         SPORE_TALL_INV = "Their chemiluminescence could be put to good use.",
         SPORE_MEDIUM_INV = "There's a soft glow radiating from it.",
         SPORE_SMALL_INV = "Radiating light in the 600 THz range.",
-		MUSHTREE_TALL="I believe that fungus is assaulting that tree.",
-		MUSHTREE_MEDIUM="Fungal parasites are taking over.",
-		MUSHTREE_SMALL="Fascinating! Fungus camouflaged as a tree!",
 
 		SLURTLE="Has a frustrating trait of not wanting to be dissected.",
 		SLURTLE_SHELLPIECES="Perhaps they can be re-fused somehow.",
@@ -710,11 +712,6 @@ return {
 		TURKEYDINNER = "I do hope my stomach can take it.",
 		TWIGS = "A common resource with a remarkable amount of applications.",
 		POWCAKE = "This would give my stomach a turn. I dare not eat it.",
-        CAVE_ENTRANCE = 
-        {
-            GENERIC="There is something down there. I must investigate.",
-            OPEN = "Its dark dampness intrigues me.",
-        },
         CAVE_EXIT = "Intriguing. But perhaps later.",
 		CAVE_REGENERATOR = "I hypothesize it will have an interesting reaction with the caves' entrance.",
         CAVE_ENTRANCE = "There is something strange about that rock.",
@@ -1264,7 +1261,6 @@ return {
 		},
 		SMALLMEAT = "A tiny bit of protein. I will need to cook it though.",
 		SMALLMEAT_DRIED = "Ah, this should tide me over for a while.",
-		SPAT = "A harsh and phlegmatic creature.",
 		SPEAR = "Not incredibly effective weapon, but it has other uses.",
 		SPIDER =
 		{
@@ -1286,7 +1282,6 @@ return {
 		SPOILED_FOOD = "No longer ideal for consuming.",
 		STATUEHARP = "Who could this be modeled after? And where is his head?",
 		STATUEMAXWELL = "I would very much like to talk to him.",
-		STEAMEDHAMSANDWICH = "Delightfully devilish.",
 		STEELWOOL = "Compositionally unique from wool I'm used to.",
 		STINGER = "Its small size and sharp point will come in handy.",
 		STRAWHAT = "Required a large amount of grass to construct. But fairly worth the effort.",
@@ -1408,10 +1403,8 @@ return {
 		ARMOROBSIDIAN = "The reptilian heart and obsidian have imbued it with incendiary properties.",
 		ARMORSEASHELL = "A rudimentary design but moderately effective.",
 		ARMOUREDBOAT = "Sometimes the simplest designs are the most impressive.",
-		BABYOX = "I deduce it is a juvenile.",
 		BALLPHIN = "Theoretically they can be manipulated with food.",
 		BALLPHINPOD = "A rudimentary water borne society. But a friendly one.",
-		BAMBOOTREE = "Ah, excellent! Bamboo can easily be bent to my will.",
 		BERRYBUSH2_SNAKE = "I detect a slight smell of primrose.",--I don't think these should have diff name or examine text
 		BERRYBUSH_SNAKE = "I detect a slight smell of primrose.",--I don't think these should have diff name or examine text
 		BIOLUMINESCENCE = "An intriguing instance of chemiluminescence. And a tiny one at that!",
@@ -1419,8 +1412,6 @@ return {
 		BOAT_LANTERN = "An exemplary application for bioluminescence.",
 		BOTTLELANTERN = "Miniscule lighting in a bottle.",
 		BURIEDTREASURE = "I would very much like to talk to whoever buried that treasure.",
-		BUSH_VINE = "Ah! Those gnarled branches look very useful.",
-		SNAKEDEN = "Ah! Those gnarled branches look very useful.",--I don't think these should have diff name or examine text
 		CANNONSHOT = "Explosive! I shall endeavor to use it frequently. ",
 		CAPTAINHAT = "Curious. It appears to have an affect on my sailing competency.",
 		BOAT_CARGO = "A top-notch transporter of goods across bodies of water.",
@@ -1436,7 +1427,6 @@ return {
 		COFFEE = "Interesting. Caffeinated beverages have a heightened effect here.",
 		COFFEEBEANS = "I will need to roast it before I can consume it without ill effect.",
 		COFFEEBEANS_COOKED = "Has an ephemeral effect on my adrenal gland.",
-		COFFEEBUSH = "Fascinating! It's immune to the effects of combustion!",
 		CORAL = "Ah! Marine invertebrates I can use in inventions!",
 		CORALREEF = "A colorful collection of Cnidaria.",
 		CUTLASS = "An excellent killing implement.",
@@ -1463,7 +1453,6 @@ return {
 		FISHINHOLE = "Preliminary observations indicate there are fish contained within.",
 		GASHAT = "Amazing! It functions without requiring a sealed cover over the mouth!",
 		GOLDENMACHETE = "Gold is so plentiful here I can use it in household tools.",
-		ICEMAKER = "A practical electric refrigeration unit that doesn't require electricity!",
 		IRONWIND = "Yet another contrivance which makes use of those versatile gears!",
 		JELLYFISH = "Extraordinary! Its cranial nerves appears to be smiling!",
 		JELLYFISH_DEAD = "Based on past experience, I should not consume this raw.",
@@ -1508,7 +1497,6 @@ return {
 		PALMTREE_STUMP = "Presumably, it won't grow again.",
 		PARROT = "A brightly colored bird, native to this region.",
 		PIRATEHAT = "Effects the probability of my success as a sea captain.",
-		PIRATIHATITATOR = "The schematics in this machine could revolutionize the world!",
 		POISONHOLE = "An alluring landmark of lurid effluvium.",
 		RAFT = "A moderately manufactured buoyant craft.",
 		BOAT_ROW = "A sufficient ship for my mundane explorative tasks.",
@@ -1529,7 +1517,6 @@ return {
 		SHARX = "What a terrifically streamlined killing machine!",
 		SLOTMACHINE = "It appears to work by misinterpreting probabilities of success.",
 		SNAKE = "A fantastically vile reptile.",
-		SNAKE_FIRE = "Fascinating! A serpent with exothermic composition.",
 		SNAKESKIN = "The repellant properties of this skin are inspiring!",
 		SNAKESKINHAT = "Smells not unlike wet snake.",
 		SPEAR_POISON = "Luckily the venom gland doesn't weigh down the tip of the spear.",
@@ -1543,7 +1530,6 @@ return {
 		TIGERSHARKSHADOW = "What magnificent mystery could be hiding down there?",
 		TOUCAN = "How does its unusually tiny neck support such a bulbous beak.",
 		TRAWLNET = "What enigmas of the deep can I uncover!",
-		TRAWLNETDROPPED = "Full of the wonders of the sea!",
 		TREEGUARD = "If I could only take such possessed topiaries home with me!",
 		TRIDENT = "Its incredible effectiveness increases threefold when used in the water!",
 		TRINKET_13 = "I've never seen such an ingenious opening device on a tin can!",
@@ -1559,7 +1545,6 @@ return {
 		VENOMGLAND = "Excellent! A sack of zootoxin.",
 		VINE = "A ropey branch. I can think of nine good uses for it already.",
 		VOLCANO = "Certainly implies there is a molten core to this world.",
-		VOLCANO_ALTAR = "Such magnificent power! I must learn its secrets!",
 		VOLCANO_ALTAR_BROKEN = "No! I must fix this magnificent equipment!",
 		VOLCANO_EXIT = "An egress to the outside.",
 		VOLCANOSTAFF = "Such power focused into a portable staff! Magnificent!",
@@ -1583,7 +1568,6 @@ return {
 		DRAGOON = "Fascinating! I would very much like to examine his heart.",
 		ANTIVENOM = "A tincture of antibodies.",
 		BAMBOO = "A versatile and pliable perennial plant I can use to make stuff.",
-		FROG_POISON = "A quick study of its colorful markings reveals it means to do me harm.",
 		OX = "A water dwelling bovine. And an excellent source of poop.",
 		PEACOCK = "Its vibrant feathers are a distraction to allow for more effective pilfering.",
 		SEAGULL_WATER = "A little more hostile than the ones I'm used to.",
@@ -1617,20 +1601,20 @@ return {
 		},
 		WOODLEGS_CAGE = "I would very much like to know how he got in there.",
 
-		 PIRATIHATITATOR =
-		 {
+		PIRATIHATITATOR =
+		{
 		 	GENERIC = "If I could return home with this machine, I could revolutionize the world!",
 		 	BURNT = "My plans for a scientific revolution have gone up in flames.",
-		 },
-		 COFFEEBUSH =
-		 {
+		},
+		COFFEEBUSH =
+		{
 		 	BARREN = "I can reasonably deduce that it needs fertilization.",
 		 	PICKED = "Theoretically, it will grow back.",
 		 	WITHERED = "Theoretically, it's too hot out.",
 		 	GENERIC = "Fascinating! It's immune to the effects of combustion!",
-		 },
-		 DUG_ELEPHANTCACTUS = "I presume it will need to be planted.",
-		 WHALE_BUBBLES = "The circumference and arrangement of those bubbles indicate that it's a whopper!",
+		},
+		DUG_ELEPHANTCACTUS = "I presume it will need to be planted.",
+		WHALE_BUBBLES = "The circumference and arrangement of those bubbles indicate that it's a whopper!",
 
 		ARMORCACTUS = "Defensive clothing constructed from contentious cactus projectiles.",
 		BAMBOOTREE =
@@ -1753,7 +1737,6 @@ return {
 		PRIMEAPEBARREL = "What treasures have these curious creatures amassed!",
 		RAWLING = "Is there any non-basketball related knowledge you can bestow upon me?",
 		REDBARREL = "A large barrel of incendiary ammunition. Presumably, it goes boom!",
-		ROCK_CHARCOAL = "It appears to have been part of a fire in the past. Curious.",
 		ROCK_OBSIDIAN = "Breaking apart that invaluable obsidian will require severe firepower.",
 		SAIL_STICK = "A superlative utilization of dark fuel. The world will be better for its introduction!",
 		SANDBAGSMALL = "Theoretically, it will stem the tide. For a little while.",
@@ -1824,7 +1807,6 @@ return {
 		TURF_VOLCANO = "Amazing! I can still see the lava underneath.",
 		TWISTER_SEAL = "What an adorably destructive creature! I want to take it home with me.",
 		VOLCANO_ALTAR_TOWER = "A magnificent monument to mass destruction!",
-		VOLCANO_SHRUB = "A tree that has been touched by combustion.",
 		WALLYINTRO_DEBRIS = "Evidently, there were others here before me.",
 		WATERYGRAVE = "The deceased won't mind if I raid their graves.",
 		WHALE_TRACK = "Bubbles. No doubt made by a large mammal.",
@@ -1852,7 +1834,6 @@ return {
 		LOBSTERBISQUE = "Its exoskeleton is still a marvelous shade of blue.",
 		JELLYOPOP = "Strangely enough, this does not cause me stomach upset.",
 		VOLCANO_SHRUB = "A tree that has been touched by combustion.",
-		ROCK_OBSIDIAN = "Breaking apart that invaluable obsidian will require severe firepower.",
 		ROCK_CHARCOAL = "Theoretically, it has undergone some form of combustion already.",
 
 
@@ -2571,7 +2552,6 @@ return {
         DECO_RUINS_BEAM_ROOM_BLUE = "Practical.",
 
         SWINGING_LIGHT_BASIC_BULB = "Revolutionary!",
-        SWINGING_LIGHT_FLORAL_BLOOMER = "Charming.",
         SWINGING_LIGHT_CHANDALIER_CANDLES = "Incendiary.",
         SWINGING_LIGHT_ROPE_1 = "Inspired!",
         SWINGING_LIGHT_ROPE_2 = "Entwined.",
@@ -2935,7 +2915,6 @@ return {
         MINISIGN_ITEM = "Its function is better realized when it is stuck in the ground.",
         FEATHERPENCIL = "A lightweight writing implement for use on signage.",
 
-        STEELWOOL = "Compositionally unique from wool I'm used to.",
         SPAT = "A harsh and phlegmatic creature.",
         PHLEGM = "Based on past experience, I hope I do not have to consume this.",
 

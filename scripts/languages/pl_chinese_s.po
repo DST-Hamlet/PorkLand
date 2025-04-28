@@ -4040,6 +4040,21 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_BAD_STOMACH.3"
 msgid "Gah! My abdominal region is in distress."
 msgstr "啊！我的腹部很不舒服。"
 
+#. STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_BAD_STOMACH.4
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_BAD_STOMACH.4"
+msgid "Oooh...My delicate constitution."
+msgstr "噢啊...我身体不太好"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_BAD_STOMACH.5
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_BAD_STOMACH.5"
+msgid "...Experiencing...abdominal...pain..."
+msgstr "...正在...经历...腹痛..."
+
+#. STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_BAD_STOMACH.6
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_BAD_STOMACH.6"
+msgid "Ugh...My digestive tract is protesting."
+msgstr "呃...我的消化道在抗议。"
+
 #. STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_BEES
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_BEES"
 msgid "Those sadistic bees are lingering!"
@@ -9475,15 +9490,30 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.MUSHTREE_MEDIUM"
 msgid "Fungal parasites are taking over."
 msgstr "真菌完全寄生在那儿了。"
 
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.MUSHTREE_MEDIUM.BLOOM
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.MUSHTREE_MEDIUM.BLOOM"
+msgid "Parasitic possessions are really quite fascinating."
+msgstr "寄生物真的很迷人。"
+
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.MUSHTREE_SMALL
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.MUSHTREE_SMALL"
 msgid "Fascinating! Fungus camouflaged as a tree!"
 msgstr "真迷人！伪装成树的真菌！"
 
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.MUSHTREE_SMALL.BLOOM
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.MUSHTREE_SMALL.BLOOM"
+msgid "It's turning itself inside out. I'm absolutely riveted."
+msgstr "它把自己翻过来了。我完全被吸引住了。"
+
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.MUSHTREE_TALL
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.MUSHTREE_TALL"
 msgid "I believe that fungus is assaulting that tree."
 msgstr "我认为那些真菌正在侵袭树木。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.MUSHTREE_TALL.BLOOM
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.MUSHTREE_TALL.BLOOM"
+msgid "A full scale fungal assault."
+msgstr "全面的真菌侵袭。"
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.MUSHTREE_TALL_WEBBED
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.MUSHTREE_TALL_WEBBED"
