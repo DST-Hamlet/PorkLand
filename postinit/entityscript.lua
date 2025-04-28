@@ -270,3 +270,11 @@ function EntityScript:IsInSameIsland(target)
 
     return current_island == target_island
 end
+
+function EntityScript:RunOnPostUpdate(fn)
+    RunOnPostUpdate(function()
+        if self:IsValid() then
+            fn(self)
+        end
+    end)
+end

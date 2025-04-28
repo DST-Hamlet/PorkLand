@@ -116,21 +116,18 @@ function Update(dt, ...)
     NewFrameEnts = {}
 end
 
-PostUpdateFunctionData = {}
+local scheduled_post_update_functions = {}
 
-local _PostUpdate = PostUpdate
+local post_update = PostUpdate
 function PostUpdate(dt, ...)
-    _PostUpdate(dt, ...)
+    post_update(dt, ...)
 
-    for k, data in pairs(PostUpdateFunctionData) do
-
-        if data.ent and data.ent:IsValid()
-            and data.fn and type(data.fn) == "function" then
-
-            data.fn(data.ent)
-        end
-        PostUpdateFunctionData[k] = nil
+    for _, fn in ipairs(scheduled_post_update_functions) do
+        fn()
     end
+    scheduled_post_update_functions = {}
+end
 
-    PostUpdateFunctionData = {}
+function RunOnPostUpdate(fn)
+    table.insert(scheduled_post_update_functions, fn)
 end
