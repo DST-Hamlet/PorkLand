@@ -285,9 +285,6 @@ local function OnFinishCallback(inst, chopper)
     drop_burr(inst, pt)
 
     local angle = math.atan2(pt.z - hispos.z, hispos.x - pt.x) * RADIANS
-    if angle == 0 then
-        angle = 0.00001 --保证数值必定发生变化
-    end
     inst._stage:set(inst.stage)
     inst._fallangle:set(angle)
 
@@ -353,8 +350,6 @@ local function OnBurnt(inst)
     -- inst.AnimState:SetRayTestOnBB(true) -- 这个会影响鼠标选取判定
 
     inst.seed_task = inst:DoTaskInTime(10, function()
-        local pt = inst:GetPosition()
-
         inst.seed_task = nil
     end)
 end
@@ -645,36 +640,33 @@ local function MakeTree(name, build, stage, data)
 
         inst._stage = net_byte(inst.GUID, "_stage")
         inst._fallangle = net_float(inst.GUID, "_fallangle", "fallangledirty")
+        inst._fallangle:set_local(0)
 
         inst.entity:SetPristine()
 
         if not TheWorld.ismastersim then
             inst:ListenForEvent("fallangledirty", function()
-                local data = {
-                    ent = inst,
-                    fn = function(inst)
-                        local anim = anims[inst._stage:value()]
-                        local he_right = false
-    
-                        local dif = inst._fallangle:value() + 180 + TheCamera.heading
-                        while dif > 180 do
-                            dif = dif - 360
-                        end
-                        while dif < -180 do
-                            dif = dif + 360
-                        end
-                        if dif > 0 then
-                            he_right = true
-                        end
-    
-                        if he_right then
-                            inst.AnimState:PlayAnimation(anim.fallleft)
-                        else
-                            inst.AnimState:PlayAnimation(anim.fallright)
-                        end
+                inst:RunOnPostUpdate(function(inst)
+                    local anim = anims[inst._stage:value()]
+                    local he_right = false
+
+                    local dif = inst._fallangle:value() + 180 + TheCamera.heading
+                    while dif > 180 do
+                        dif = dif - 360
                     end
-                }
-                table.insert(PostUpdateFunctionData, data)
+                    while dif < -180 do
+                        dif = dif + 360
+                    end
+                    if dif > 0 then
+                        he_right = true
+                    end
+
+                    if he_right then
+                        inst.AnimState:PlayAnimation(anim.fallleft)
+                    else
+                        inst.AnimState:PlayAnimation(anim.fallright)
+                    end
+                end)
             end)
             return inst
         end
