@@ -11265,13 +11265,8 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.REFLECTIVEVEST"
 msgid "Quite effective in reflecting thermal waves."
 msgstr "这件衣服反射热能很有效。"
 
-#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RELIC.BROKEN
-msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RELIC.BROKEN"
-msgid "I must know more about these relics! Its mysteries are preoccupying!"
-msgstr "我得更了解这些古物！它的奥秘让人日夜思索！"
-
-#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RELIC.GENERIC
-msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RELIC.GENERIC"
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RELIC
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RELIC"
 msgid "Where has this civilization gone? I must find them!"
 msgstr "这个文明去哪儿了？我得找到它们！"
 

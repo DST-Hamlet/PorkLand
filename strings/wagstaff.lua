@@ -197,7 +197,7 @@ return {
     ANNOUNCE_BAD_STOMACH = {
 		"Ugh. Too unrefined for my intestines.",
 		"Oooh... an assault on my alimentary canal.",
-		"Gah! My abdominal region is in distress."
+		"Gah! My abdominal region is in distress.",
 		"Oooh...My delicate constitution.",
 		"...Experiencing...abdominal...pain...",
 		"Ugh...My digestive tract is protesting."
@@ -483,7 +483,6 @@ return {
 			GENERIC = "Sufficient for the short term.",
 			BURNT = "Unsurprising. Wood is combustible.",
 		},
-		WARG = "Curious. Does it control the hounds with hypnosis?",
 		WATERMELON = "Too sweet for my stomach.",
 		WATERMELON_COOKED = "I am able to consume it in this form.",
 		WATERMELONHAT = "It's sticky and made with sticks. Fascinating!",
@@ -575,7 +574,7 @@ return {
 		SPIDER_DROPPER = "Fascinating. They make gravity work for them.",	--White spider that comes from the roof
 		NIGHTMARELIGHT = "Yet another ingenious use of that fascinating dark fuel.",	--Lights that activate during nightmare.
 		GREENGEM = "Geometric optics at work.",
-		RELIC = "An exquisite channeler of dark fuel.",	--Fixed relic
+		RELIC = "Where has this civilization gone? I must find them!",
 		RUINS_RUBBLE = "In need of repair. Obviously, I'm up for the task.",	--Broken relic
 		MULTITOOL_AXE_PICKAXE = "A revelation! Two tools have been merged into one!",	--Works as axe and pickaxe
 		ORANGESTAFF = "Quite similar to my Telebrella but it uses that fascinating dark fuel!",	--Teleports player.
@@ -712,7 +711,6 @@ return {
 		TURKEYDINNER = "I do hope my stomach can take it.",
 		TWIGS = "A common resource with a remarkable amount of applications.",
 		POWCAKE = "This would give my stomach a turn. I dare not eat it.",
-        CAVE_EXIT = "Intriguing. But perhaps later.",
 		CAVE_REGENERATOR = "I hypothesize it will have an interesting reaction with the caves' entrance.",
         CAVE_ENTRANCE = "There is something strange about that rock.",
         CAVE_ENTRANCE_RUINS = "Aha! I'm certain this will lead to knowledge.",
@@ -1204,11 +1202,6 @@ return {
 			GENERIC = "Good for paper, if it is anything like its earthly counterparts.",
 			PICKED = "Theoretically, they will grow back.",
 		},
-        RELIC = 
-        {
-            GENERIC = "Where has this civilization gone? I must find them!",
-            BROKEN = "I must know more about these relics! Its mysteries are preoccupying!",
-        },
         RUBBLE = "More hints of the abandoned civilization.",
 		RESURRECTIONSTONE = "Another chance to fulfill my destiny!",
 		ROBIN =
@@ -1676,7 +1669,6 @@ return {
 		FRESHFRUITCREPES = "Buttery bounty of a berry blintz!",
 		GRASS_WATER = "I can reasonably presume this is a type of grass.",
 		HAIL_ICE = "Let's see if I can find a purpose for this precipitation.",
-		HOME = "It appears to be a cozy domicile.",
 		ICEMAKER =
 		{
 			HIGH = "Producing endothermic reactions at an alarming rate!",
