@@ -296,8 +296,7 @@ local function CreateRegularRooms(inst)
             local room_type = room_types[room_id_list[current_room_setup_index]]
             current_room_setup_index = current_room_setup_index + 1
 
-            local addprops = GenerateProps(room_type, ANT_CAVE_DEPTH, ANT_CAVE_WIDTH, room, doorway_count,
-                doorway_prefabs)
+            local addprops = GenerateProps(room_type, ANT_CAVE_DEPTH, ANT_CAVE_WIDTH, room, doorway_count, doorway_prefabs)
 
             if room.is_entrance then
                 local exterior_door_def = {
