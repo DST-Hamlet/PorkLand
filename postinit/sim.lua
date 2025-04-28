@@ -1,7 +1,5 @@
 GLOBAL.setfenv(1, GLOBAL)
 
-NewFrameEnts = {}
-
 local function GetLight(light, dist)
     -- thanks to HalfEnder776
     local A = math.log(light:GetIntensity())
@@ -84,6 +82,8 @@ function OnEntityWake(guid, ...)
     end
 end
 
+NewFrameEnts = {}
+
 local _SpawnPrefab = SpawnPrefab
 function SpawnPrefab(...)
     local inst = _SpawnPrefab(...)
@@ -114,4 +114,23 @@ function Update(dt, ...)
     end
 
     NewFrameEnts = {}
+end
+
+PostUpdateFunctionData = {}
+
+local _PostUpdate = PostUpdate
+function PostUpdate(dt, ...)
+    _PostUpdate(dt, ...)
+
+    for k, data in pairs(PostUpdateFunctionData) do
+
+        if data.ent and data.ent:IsValid()
+            and data.fn and type(data.fn) == "function" then
+
+            data.fn(data.ent)
+        end
+        PostUpdateFunctionData[k] = nil
+    end
+
+    PostUpdateFunctionData = {}
 end

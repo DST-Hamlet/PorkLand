@@ -284,6 +284,13 @@ local function OnFinishCallback(inst, chopper)
     end
     drop_burr(inst, pt)
 
+    local angle = math.atan2(pt.z - hispos.z, hispos.x - pt.x) * RADIANS
+    if angle == 0 then
+        angle = 0.00001 --保证数值必定发生变化
+    end
+    inst._stage:set(inst.stage)
+    inst._fallangle:set(angle)
+
     MakeStump(inst)
 
     local fx = SpawnPrefab("fall_mangrove_pink")
@@ -636,9 +643,39 @@ local function MakeTree(name, build, stage, data)
             inst:SetPrefabName("rainforesttree")
         end
 
+        inst._stage = net_byte(inst.GUID, "_stage")
+        inst._fallangle = net_float(inst.GUID, "_fallangle", "fallangledirty")
+
         inst.entity:SetPristine()
 
         if not TheWorld.ismastersim then
+            inst:ListenForEvent("fallangledirty", function()
+                PostUpdateFunctionData[1] =
+                {
+                    ent = inst,
+                    fn = function(inst)
+                        local anim = anims[inst._stage:value()]
+                        local he_right = false
+    
+                        local dif = inst._fallangle:value() + 180 + TheCamera.heading
+                        while dif > 180 do
+                            dif = dif - 360
+                        end
+                        while dif < -180 do
+                            dif = dif + 360
+                        end
+                        if dif > 0 then
+                            he_right = true
+                        end
+    
+                        if he_right then
+                            inst.AnimState:PlayAnimation(anim.fallleft)
+                        else
+                            inst.AnimState:PlayAnimation(anim.fallright)
+                        end
+                    end
+                }
+            end)
             return inst
         end
 
