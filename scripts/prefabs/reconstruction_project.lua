@@ -224,8 +224,6 @@ local function fn()
     -- inst.entity:AddPhysics()
     -- MakeObstaclePhysics(inst, .25)
 
-    inst:AddTag("door_disabled")
-
     inst.AnimState:SetBank("pighouse_rubble")
     inst.AnimState:SetBuild("pighouse_rubble")
     inst.AnimState:PlayAnimation("unbuilt")

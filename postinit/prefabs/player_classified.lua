@@ -31,7 +31,9 @@ local function ActionButtonOverride(inst, force_target)
     end
 
     local function get_action(target)
-        if (target:HasTag("interior_door") or target:HasTag("exterior_door")) and not target:HasTag("door_hidden") and not target:HasTag("door_disabled") then
+        if target:HasActionComponent("door")
+            and not target:HasTag("disabled")
+            and not (target:HasTag("burnt") or target:HasTag("fire")) then
 
             return ACTIONS.USEDOOR
         end
@@ -65,7 +67,9 @@ local function LeftClickPicker(inst, target, pos)
         return
     end
 
-    if (target:HasTag("interior_door") or target:HasTag("exterior_door")) and not target:HasTag("door_hidden") and not target:HasTag("door_disabled") then
+    if target:HasActionComponent("door")
+        and not target:HasTag("disabled")
+        and not (target:HasTag("burnt") or target:HasTag("fire")) then
 
         return inst.components.playeractionpicker:SortActionList({ACTIONS.USEDOOR}, target, nil)
     end
