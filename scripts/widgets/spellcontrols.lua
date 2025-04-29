@@ -72,6 +72,8 @@ function SpellControls:SetItems(items_data, source_item, anchor_position)
             button:SetImageDisabledColour(0.7, 0.7, 0.7, 0.7)
         end
 
+        button:SetHoverText(item_data.label, { offset_y = 60 })
+
         if item_data.widget_scale ~= nil then
             button:SetScale(item_data.widget_scale)
         end
@@ -126,7 +128,7 @@ function SpellControls:SetItems(items_data, source_item, anchor_position)
     end
 
     local screen_width, _ = TheSim:GetScreenSize()
-    local button_width = 60
+    local button_width = 70
     local total_width = button_width * (#visible_buttons - 1)
     local initial_position = self.anchor_position + Vector3(-total_width / 2, 100)
     initial_position.x = math.min(initial_position.x, screen_width - total_width)
