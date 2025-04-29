@@ -201,6 +201,8 @@ local function OnFinishCallback(inst, chopper)
         inst.components.lootdropper:DropLoot(pt + TheCamera:GetRightVec())
     end
 
+    PushTreeFallServer(inst, pt, hispos)
+
     MakeStump(inst)
 
     local fx = SpawnPrefab("fall_mangrove_blue")
@@ -356,6 +358,8 @@ local function MakeTree(name, stage, data)
         inst:AddTag("plainstree")
 
         inst:SetPrefabName("clawpalmtree")
+
+        MakeTreeClientFallAnim(inst, anims)
 
         inst.entity:SetPristine()
 

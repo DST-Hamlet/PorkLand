@@ -284,9 +284,7 @@ local function OnFinishCallback(inst, chopper)
     end
     drop_burr(inst, pt)
 
-    local angle = math.atan2(pt.z - hispos.z, hispos.x - pt.x) * RADIANS
-    inst._stage:set(inst.stage)
-    inst._fallangle:set(angle)
+    PushTreeFallServer(inst, pt, hispos)
 
     MakeStump(inst)
 
@@ -638,36 +636,11 @@ local function MakeTree(name, build, stage, data)
             inst:SetPrefabName("rainforesttree")
         end
 
-        inst._stage = net_byte(inst.GUID, "_stage")
-        inst._fallangle = net_float(inst.GUID, "_fallangle", "fallangledirty")
-        inst._fallangle:set_local(0)
+        MakeTreeClientFallAnim(inst, anims)
 
         inst.entity:SetPristine()
 
         if not TheWorld.ismastersim then
-            inst:ListenForEvent("fallangledirty", function()
-                inst:RunOnPostUpdate(function(inst)
-                    local anim = anims[inst._stage:value()]
-                    local he_right = false
-
-                    local dif = inst._fallangle:value() + 180 + TheCamera.heading
-                    while dif > 180 do
-                        dif = dif - 360
-                    end
-                    while dif < -180 do
-                        dif = dif + 360
-                    end
-                    if dif > 0 then
-                        he_right = true
-                    end
-
-                    if he_right then
-                        inst.AnimState:PlayAnimation(anim.fallleft)
-                    else
-                        inst.AnimState:PlayAnimation(anim.fallright)
-                    end
-                end)
-            end)
             return inst
         end
 
