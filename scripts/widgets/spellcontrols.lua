@@ -130,7 +130,6 @@ function SpellControls:SetItems(items_data, source_item, anchor_position)
     local initial_position = self.anchor_position + Vector3(-total_width / 2, 100)
 
     for i, button in ipairs(visible_buttons) do
-        print(initial_position + Vector3(button_width * (i - 1)))
         button:SetPosition(initial_position + Vector3(button_width * (i - 1)))
     end
 end

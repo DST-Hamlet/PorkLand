@@ -345,9 +345,18 @@ end)
 AddSimPostInit(function()
     local constructor = Prefabs["abigail_flower"].fn
     ToolUtil.SetUpvalue(constructor, function(inst, owner)
-        inst.components.spellbook:SetItems(COMMANDS)
-        if owner and owner.HUD and owner.HUD.controls.spellcontrols:IsOpen() then
-            owner.HUD.controls.spellcontrols:Open(inst.components.spellbook.items)
+        if not owner then
+            return
+        end
+        if owner:HasTag("ghostfriend_summoned") then
+            inst.components.spellbook:SetItems(COMMANDS)
+            if owner.HUD and owner.HUD.controls.spellcontrols:IsOpen() then
+                owner.HUD.controls.spellcontrols:Open(inst.components.spellbook.items)
+            end
+        else
+            if owner.HUD and owner.HUD.controls.spellcontrols:IsOpen() then
+                owner.HUD.controls.spellcontrols:Close()
+            end
         end
     end, "updatespells")
 end)
