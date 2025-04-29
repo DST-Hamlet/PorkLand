@@ -9,7 +9,7 @@ local behaviour_posts = {
 }
 
 local brain_posts = {
-    "abigailbrain",
+
 }
 
 local camera_posts = {
