@@ -38,12 +38,9 @@ function SpellControls:SetItems(items_data, source_item, anchor_position)
     end
     self.items = {}
 
-    self.numspacers = 0
+    -- self.numspacers = 0
 
-    local amount_of_items = #items_data
-    local item_width = 60
-    local totol_width = item_width * amount_of_items
-    local initial_position = self.anchor_position + Vector3(-totol_width / 2, 100)
+    local visible_buttons = {}
 
     for i, item_data in ipairs(items_data) do
         local button
@@ -74,7 +71,6 @@ function SpellControls:SetItems(items_data, source_item, anchor_position)
             button:SetImageFocusColour(1, 1, 1, 1)
             button:SetImageDisabledColour(0.7, 0.7, 0.7, 0.7)
         end
-        button:Hide()
 
         if item_data.widget_scale ~= nil then
             button:SetScale(item_data.widget_scale)
@@ -113,16 +109,29 @@ function SpellControls:SetItems(items_data, source_item, anchor_position)
             item_data.postinit(button)
         end
 
-        if item_data.spacer then
-            self.numspacers = self.numspacers + 1
-        end
+        -- if item_data.spacer then
+        --     self.numspacers = self.numspacers + 1
+        -- end
 
-        button:SetPosition(initial_position + Vector3(item_width * (i - 1)))
+        if not item_data.should_show or item_data.should_show(self.source_item) then
+            table.insert(visible_buttons, button)
+        else
+            button:Hide()
+        end
 
         table.insert(self.items, {
             button = button,
             data = item_data,
         })
+    end
+
+    local button_width = 60
+    local total_width = button_width * (#visible_buttons - 1)
+    local initial_position = self.anchor_position + Vector3(-total_width / 2, 100)
+
+    for i, button in ipairs(visible_buttons) do
+        print(initial_position + Vector3(button_width * (i - 1)))
+        button:SetPosition(initial_position + Vector3(button_width * (i - 1)))
     end
 end
 
@@ -171,7 +180,6 @@ function SpellControls:Open(items_data, source_item, anchor_position)
             selected = item
         end
         -- item.button:MoveTo(Vector3(0, 0, 0), item.data.pos, 0.25)
-        item.button:Show()
     end
 
     if selected then
