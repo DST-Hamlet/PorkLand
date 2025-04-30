@@ -58,21 +58,10 @@ function PlayerHud:UpdateClouds(camera)
     end
 end
 
-local is_spell_wheel_open = PlayerHud.IsSpellWheelOpen
-function PlayerHud:IsSpellWheelOpen(...)
-    return is_spell_wheel_open(self, ...) or self.controls.spellcontrols:IsOpen()
-end
-
 local get_current_open_spell_book = PlayerHud.GetCurrentOpenSpellBook
 function PlayerHud:GetCurrentOpenSpellBook(...)
     return get_current_open_spell_book(self, ...)
         or (self.controls.spellcontrols:IsOpen() and self.controls.spellcontrols.source_item or nil)
-end
-
-local close_spell_wheel = PlayerHud.CloseSpellWheel
-function PlayerHud:CloseSpellWheel(is_execute, ...)
-    self.controls.spellcontrols:Close()
-    return close_spell_wheel(self, is_execute, ...)
 end
 
 function PlayerHud:UpdateFogClouds(camera)
