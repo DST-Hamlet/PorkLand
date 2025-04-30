@@ -83,7 +83,10 @@ function SpellControls:SetItems(items_data, source_item, anchor_position)
 
         if item_data.execute then
             button.onclick = function()
-                item_data.onselect(self.source_item)
+                if self.source_item.components.spellbook then
+                    self.source_item.components.spellbook:SelectSpell(i)
+                end
+                -- item_data.onselect(self.source_item)
                 item_data.execute(self.source_item)
             end
         end

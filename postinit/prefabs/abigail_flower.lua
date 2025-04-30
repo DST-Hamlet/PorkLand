@@ -81,13 +81,13 @@ local function GhostUnsummonSpell(inst, doer)
 	end
 end
 
+-- Keep in sync with the hook in postinit/components/playeractionpicker.lua
 local COMMANDS = {
 	{
 		label = STRINGS.GHOSTCOMMANDS.UNSUMMON,
 		onselect = function(inst)
 			local spellbook = inst.components.spellbook
 			spellbook:SetSpellName(STRINGS.GHOSTCOMMANDS.UNSUMMON)
-			spellbook:SetSpellAction(nil)
 
 			inst:AddTag("unsummoning_spell")
 			if TheWorld.ismastersim then
@@ -115,7 +115,6 @@ local COMMANDS = {
         onselect = function(inst)
             local spellbook = inst.components.spellbook
             spellbook:SetSpellName(STRINGS.ACTIONS.COMMUNEWITHSUMMONED.MAKE_AGGRESSIVE)
-            spellbook:SetSpellAction(nil)
 
             if TheWorld.ismastersim then
                 inst.components.aoespell:SetSpellFn(nil)
@@ -145,7 +144,6 @@ local COMMANDS = {
         onselect = function(inst)
             local spellbook = inst.components.spellbook
             spellbook:SetSpellName(STRINGS.ACTIONS.COMMUNEWITHSUMMONED.MAKE_DEFENSIVE)
-            spellbook:SetSpellAction(nil)
 
             if TheWorld.ismastersim then
                 inst.components.aoespell:SetSpellFn(nil)
@@ -175,7 +173,6 @@ local COMMANDS = {
 	-- 	onselect = function(inst)
 	-- 		local spellbook = inst.components.spellbook
 	-- 		spellbook:SetSpellName(STRINGS.GHOSTCOMMANDS.ESCAPE)
-	-- 		spellbook:SetSpellAction(nil)
 
 	-- 		if TheWorld.ismastersim then
 	-- 			inst.components.aoespell:SetSpellFn(nil)
@@ -214,7 +211,6 @@ local COMMANDS = {
 	-- 		local aoetargeting = inst.components.aoetargeting
 
     --         spellbook:SetSpellName(STRINGS.GHOSTCOMMANDS.ATTACK_AT)
-	-- 		spellbook:SetSpellAction(nil)
     --         aoetargeting:SetDeployRadius(0)
 	-- 		aoetargeting:SetRange(20)
     --         aoetargeting.reticule.reticuleprefab = "reticuleaoeghosttarget"
@@ -260,7 +256,6 @@ local COMMANDS = {
     --     onselect = function(inst)
     --         local spellbook = inst.components.spellbook
     --         spellbook:SetSpellName(STRINGS.GHOSTCOMMANDS.SCARE)
-    --         spellbook:SetSpellAction(nil)
 
     --         if TheWorld.ismastersim then
     --             inst.components.aoespell:SetSpellFn(nil)
@@ -299,10 +294,9 @@ local COMMANDS = {
             local aoetargeting = inst.components.aoetargeting
 
             spellbook:SetSpellName(STRINGS.GHOSTCOMMANDS.HAUNT_AT)
-            spellbook:SetSpellAction(nil)
             aoetargeting:SetDeployRadius(0)
             aoetargeting:SetRange(20)
-            aoetargeting.reticule.reticuleprefab = "reticuleaoeghosttarget"
+            -- aoetargeting.reticule.reticuleprefab = "reticuleaoeghosttarget"
             aoetargeting.reticule.pingprefab = "reticuleaoeghosttarget_ping"
 
             aoetargeting.reticule.mousetargetfn = nil
@@ -311,7 +305,7 @@ local COMMANDS = {
             aoetargeting.reticule.twinstickrange = 15
 
             if TheWorld.ismastersim then
-                aoetargeting:SetTargetFX("reticuleaoeghosttarget")
+                -- aoetargeting:SetTargetFX("reticuleaoeghosttarget")
                 inst.components.aoespell:SetSpellFn(GhostHauntSpell)
                 spellbook:SetSpellFn(nil)
             end
