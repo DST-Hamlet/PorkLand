@@ -134,7 +134,9 @@ function SpellControls:SetItems(items_data, source_item, anchor_position)
     local button_width = 70
     local total_width = button_width * (#visible_buttons - 1)
     local initial_position = self.anchor_position + Vector3(-total_width / 2, 100)
-    initial_position.x = math.min(initial_position.x, screen_width - total_width)
+    -- Limit the x so we can always display all the buttons inside the screen
+    local max_x = screen_width - (total_width + button_width / 2)
+    initial_position.x = math.min(initial_position.x, max_x)
 
     for i, button in ipairs(visible_buttons) do
         button:SetPosition(initial_position + Vector3(button_width * (i - 1)))
