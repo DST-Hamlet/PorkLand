@@ -23,6 +23,20 @@ local function GhostChangeBehaviour(inst, doer)
 	return true
 end
 
+local function FreezeGhostMovements(inst, doer)
+    doer.components.ghostlybond:FreezeMovements(true)
+	doer.refreshflowertooltip:push()
+	inst:PushEvent("spellupdateneeded", doer)
+	return true
+end
+
+local function ResumeGhostMovements(inst, doer)
+    doer.components.ghostlybond:FreezeMovements(false)
+	doer.refreshflowertooltip:push()
+	inst:PushEvent("spellupdateneeded", doer)
+	return true
+end
+
 local function DoGhostSpell(doer, event, state, ...)
 	local spellbookcooldowns = doer.components.spellbookcooldowns
 	local ghostlybond = doer.components.ghostlybond
@@ -157,6 +171,64 @@ local COMMANDS = {
         end,
         should_show = function(inst)
             return ThePlayer:HasTag("has_aggressive_follower")
+        end,
+        bank = "spell_icons_wendy",
+        build = "spell_icons_wendy",
+        anims =
+        {
+            idle = { anim = "soothe" },
+            focus = { anim = "soothe_focus", loop = true },
+            down = { anim = "soothe_pressed" },
+        },
+        widget_scale = ICON_SCALE,
+    },
+    {
+        label = "Freeze Movements",
+        onselect = function(inst)
+            local spellbook = inst.components.spellbook
+            spellbook:SetSpellName("Freeze Movements")
+
+            if TheWorld.ismastersim then
+                inst.components.aoespell:SetSpellFn(nil)
+                spellbook:SetSpellFn(FreezeGhostMovements)
+            end
+        end,
+        execute = function(inst)
+            if ThePlayer.replica.inventory then
+                ThePlayer.replica.inventory:CastSpellBookFromInv(inst)
+            end
+        end,
+        should_show = function(inst)
+            return not ThePlayer:HasTag("has_freeze_movement_follower")
+        end,
+        bank = "spell_icons_wendy",
+        build = "spell_icons_wendy",
+        anims =
+        {
+            idle = { anim = "soothe" },
+            focus = { anim = "soothe_focus", loop = true },
+            down = { anim = "soothe_pressed" },
+        },
+        widget_scale = ICON_SCALE,
+    },
+    {
+        label = "Resume Movements",
+        onselect = function(inst)
+            local spellbook = inst.components.spellbook
+            spellbook:SetSpellName("Resume Movements")
+
+            if TheWorld.ismastersim then
+                inst.components.aoespell:SetSpellFn(nil)
+                spellbook:SetSpellFn(ResumeGhostMovements)
+            end
+        end,
+        execute = function(inst)
+            if ThePlayer.replica.inventory then
+                ThePlayer.replica.inventory:CastSpellBookFromInv(inst)
+            end
+        end,
+        should_show = function(inst)
+            return ThePlayer:HasTag("has_freeze_movement_follower")
         end,
         bank = "spell_icons_wendy",
         build = "spell_icons_wendy",
