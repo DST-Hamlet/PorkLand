@@ -2,12 +2,8 @@ local AddPrefabPostInit = AddPrefabPostInit
 GLOBAL.setfenv(1, GLOBAL)
 
 local function FreezeMovements(inst, should_freeze)
-    inst._playerlink:AddOrRemoveTag("has_freeze_movement_follower", should_freeze)
-    if should_freeze then
-        inst.components.locomotor:SetExternalSpeedMultiplier(inst, "FreezeMovements", 0)
-    else
-        inst.components.locomotor:RemoveExternalSpeedMultiplier(inst, "FreezeMovements")
-    end
+    inst._playerlink:AddOrRemoveTag("has_movements_frozen_follower", should_freeze)
+    inst:AddOrRemoveTag("movements_frozen", should_freeze)
 end
 
 AddPrefabPostInit("abigail", function(inst)

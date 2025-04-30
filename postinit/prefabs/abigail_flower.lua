@@ -199,7 +199,7 @@ local COMMANDS = {
             end
         end,
         should_show = function(inst)
-            return not ThePlayer:HasTag("has_freeze_movement_follower")
+            return not ThePlayer:HasTag("has_movements_frozen_follower")
         end,
         bank = "spell_icons_wendy",
         build = "spell_icons_wendy",
@@ -228,7 +228,7 @@ local COMMANDS = {
             end
         end,
         should_show = function(inst)
-            return ThePlayer:HasTag("has_freeze_movement_follower")
+            return ThePlayer:HasTag("has_movements_frozen_follower")
         end,
         bank = "spell_icons_wendy",
         build = "spell_icons_wendy",
