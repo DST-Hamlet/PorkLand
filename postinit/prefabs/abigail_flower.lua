@@ -79,8 +79,17 @@ end
 -- 	return DoGhostSpell(doer, nil, "scare")
 -- end
 
-local function GhostHauntSpell(inst, doer, pos)
-	return DoGhostSpell(doer, "do_ghost_hauntat", nil, pos)
+-- local function GhostHauntSpell(inst, doer, pos)
+--     doer.components.playeractionpicker.leftclickoverride = nil
+--     doer.components.playeractionpicker.rightclickoverride = nil
+--     doer.components.playercontroller.casting_action_override_spell = false
+--     return DoGhostSpell(doer, "do_ghost_hauntat", nil, pos)
+-- end
+
+local function GhostHauntSpellCommand(inst, buffered_action)
+    local doer = buffered_action.doer
+    doer.components.playercontroller:CancelCastingActionOverrideSpell()
+    return DoGhostSpell(doer, "do_ghost_haunt_target", nil, buffered_action.target)
 end
 
 local function GhostUnsummonSpell(inst, doer)
@@ -94,6 +103,24 @@ local function GhostUnsummonSpell(inst, doer)
 		return true
 	end
 end
+
+local function LeftClickPicker(inst, target, position)
+    local actions = {}
+    if target and target ~= inst then
+        target:CollectActions("SCENE", inst, actions, false)
+    end
+    for _, action in ipairs(actions) do
+        if action == ACTIONS.HAUNT then
+            local distance = 40
+            local spellbook = inst.HUD:GetCurrentOpenSpellBook()
+            return { BufferedAction(inst, target, ACTIONS.SPELL_COMMAND, spellbook, nil, nil, distance) }
+        end
+    end
+end
+
+-- local function RightClickPicker(inst, target, position)
+--     return {}
+-- end
 
 -- Keep in sync with the hook in postinit/components/playeractionpicker.lua
 local COMMANDS = {
@@ -363,26 +390,20 @@ local COMMANDS = {
         label = STRINGS.GHOSTCOMMANDS.HAUNT_AT,
         onselect = function(inst)
             local spellbook = inst.components.spellbook
-            local aoetargeting = inst.components.aoetargeting
-
             spellbook:SetSpellName(STRINGS.GHOSTCOMMANDS.HAUNT_AT)
-            aoetargeting:SetDeployRadius(0)
-            aoetargeting:SetRange(20)
-            -- aoetargeting.reticule.reticuleprefab = "reticuleaoeghosttarget"
-            aoetargeting.reticule.pingprefab = "reticuleaoeghosttarget_ping"
-
-            aoetargeting.reticule.mousetargetfn = nil
-            aoetargeting.reticule.targetfn = ReticuleGhostTargetFn
-            aoetargeting.reticule.updatepositionfn = nil
-            aoetargeting.reticule.twinstickrange = 15
 
             if TheWorld.ismastersim then
-                -- aoetargeting:SetTargetFX("reticuleaoeghosttarget")
-                inst.components.aoespell:SetSpellFn(GhostHauntSpell)
-                spellbook:SetSpellFn(nil)
+                -- spellbook:SetSpellFn(GhostHauntSpell)
+                inst.components.spellcommand:SetOnRun(GhostHauntSpellCommand)
             end
         end,
-        execute = StartAOETargeting,
+        execute = function(inst)
+            if ThePlayer then
+                ThePlayer.components.playeractionpicker.leftclickoverride = LeftClickPicker
+                ThePlayer.components.playeractionpicker.disable_right_click = true
+                ThePlayer.components.playercontroller:StartCastingActionOverrideSpell()
+            end
+        end,
         bank = "spell_icons_wendy",
         build = "spell_icons_wendy",
         anims =
@@ -406,6 +427,12 @@ local COMMANDS = {
 
 AddPrefabPostInit("abigail_flower", function(inst)
     inst.components.spellbook:SetItems(COMMANDS)
+
+    if not TheWorld.ismastersim then
+        return inst
+    end
+
+    inst:AddComponent("spellcommand")
 end)
 
 AddSimPostInit(function()

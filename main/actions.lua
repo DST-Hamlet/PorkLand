@@ -58,6 +58,8 @@ if not rawget(_G, "HotReloading") then
         SEARCH_MYSTERY = Action({priority = -1, distance = 1}),
 
         THROW = Action({priority = 0, instant = false, rmb = true, distance = 20, mount_valid = true}),
+
+        SPELL_COMMAND = Action({mount_valid = true}),
     }
 
     for name, ACTION in pairs(_G.PL_ACTIONS) do
@@ -597,6 +599,20 @@ ACTIONS.THROW.fn = function(act)
         local pos = act.GetActionPoint and act:GetActionPoint() or act.pos or act.doer:GetPosition()  --act.doer:GetPosition() Prevent error from monkey when throwing  -jerry
         thrown.components.throwable:Throw(pos, act.doer)
         return true
+    end
+end
+
+ACTIONS.SPELL_COMMAND.stroverridefn = function(act)
+	return act.invobject and act.invobject.components.spellbook and act.invobject.components.spellbook:GetSpellName() or nil
+end
+
+ACTIONS.SPELL_COMMAND.strfn = function(act)
+    return act.invobject and string.upper(act.invobject.prefab) or nil
+end
+
+ACTIONS.SPELL_COMMAND.fn = function(act)
+    if act.invobject.components.spellcommand then
+        return act.invobject.components.spellcommand:Run(act)
     end
 end
 

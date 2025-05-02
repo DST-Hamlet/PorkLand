@@ -55,6 +55,41 @@ function PlayerController:GetActionButtonAction(force_target, ...)
     return buffaction
 end
 
+local on_left_click = PlayerController.OnLeftClick
+function PlayerController:OnLeftClick(down, ...)
+    local ret = { on_left_click(self, down, ...) }
+    if down then
+        self:CancelCastingActionOverrideSpell()
+    end
+    return unpack(ret)
+end
+
+local on_right_click = PlayerController.OnRightClick
+function PlayerController:OnRightClick(down, ...)
+    local ret = { on_right_click(self, down, ...) }
+    if down then
+        self:CancelCastingActionOverrideSpell()
+    end
+    return unpack(ret)
+end
+
+local has_aoe_targeting = PlayerController.HasAOETargeting
+function PlayerController:HasAOETargeting(...)
+    return self.casting_action_override_spell or has_aoe_targeting(self, ...)
+end
+
+function PlayerController:StartCastingActionOverrideSpell()
+    self.casting_action_override_spell = true
+end
+
+function PlayerController:CancelCastingActionOverrideSpell()
+    if self.casting_action_override_spell then
+        self.inst.components.playeractionpicker.leftclickoverride = nil
+        self.inst.components.playeractionpicker.rightclickoverride = nil
+        self.casting_action_override_spell = false
+    end
+end
+
 -- local _GetGroundUseAction = PlayerController.GetGroundUseAction
 -- function PlayerController:GetGroundUseAction(position, ...)
 --     if self.inst:IsSailing() then
@@ -200,4 +235,5 @@ end
 
 AddComponentPostInit("playercontroller", function(self)
     self.lasttick_controlpressed = {}
+    self.casting_action_override_spell = false
 end)

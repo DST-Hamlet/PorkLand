@@ -74,6 +74,8 @@ local actionhandlers = {
     ActionHandler(ACTIONS.BUILD_ROOM, "doshortaction"),
     ActionHandler(ACTIONS.DEMOLISH_ROOM, "doshortaction"),
     ActionHandler(ACTIONS.THROW, "throw"),
+    -- We later override it to match ACTION.CASTAOE's action handler
+    ActionHandler(ACTIONS.SPELL_COMMAND, "dolongaction"),
 }
 
 local eventhandlers = {
@@ -930,6 +932,8 @@ end
 AddStategraphPostInit("wilson_client", function(sg)
     local _run_start_timeevent_2 = sg.states["run_start"].timeline[2].fn
     DoFoleySounds = ToolUtil.GetUpvalue(_run_start_timeevent_2, "DoFoleySounds")
+
+    sg.actionhandlers[ACTIONS.SPELL_COMMAND].deststate = sg.actionhandlers[ACTIONS.CASTAOE].deststate
 
     local _locomote_eventhandler = sg.events.locomote.fn
     sg.events.locomote.fn = function(inst, data)

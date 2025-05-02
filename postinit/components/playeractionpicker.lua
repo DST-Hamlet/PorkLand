@@ -85,25 +85,25 @@ function PlayerActionPicker:GetLeftClickActions(position, target, ...)
     return actions or {}
 end
 
-local get_right_click_actions = PlayerActionPicker.GetRightClickActions
-function PlayerActionPicker:GetRightClickActions(position, target, ...)
-    local actions = get_right_click_actions(self, position, target, ...)
+-- local get_right_click_actions = PlayerActionPicker.GetRightClickActions
+-- function PlayerActionPicker:GetRightClickActions(position, target, ...)
+--     local actions = get_right_click_actions(self, position, target, ...)
 
-    if TheInput:ControllerAttached() then
-        return actions
-    end
+--     if TheInput:ControllerAttached() then
+--         return actions
+--     end
 
-    local first_action = actions[1]
-    if first_action
-        and first_action.action == ACTIONS.CASTAOE
-        and first_action.invobject
-        and first_action.invobject.prefab == "abigail_flower"
-        and first_action.invobject.components.spellbook
-        -- The `spell_id` is actually an index, keep this in sync with the commands defined in postinit/prefabs/abigail_flower.lua
-        and first_action.invobject.components.spellbook:GetSelectedSpell() == 4
-    then
-        first_action.target = target or TheInput:GetWorldEntityUnderMouse()
-    end
+--     local first_action = actions[1]
+--     if first_action
+--         and first_action.action == ACTIONS.CASTAOE
+--         and first_action.invobject
+--         and first_action.invobject.prefab == "abigail_flower"
+--         and first_action.invobject.components.spellbook
+--         -- The `spell_id` is actually an index, keep this in sync with the commands defined in postinit/prefabs/abigail_flower.lua
+--         and first_action.invobject.components.spellbook:GetSelectedSpell() == 4
+--     then
+--         first_action.target = target or TheInput:GetWorldEntityUnderMouse()
+--     end
 
-    return actions
-end
+--     return actions
+-- end

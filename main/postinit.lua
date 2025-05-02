@@ -181,6 +181,7 @@ local widget_posts = {
     "itemtile",
     "invslot",
     "controls",
+    "hoverer",
 }
 
 local module_posts = {

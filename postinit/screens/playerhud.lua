@@ -147,6 +147,29 @@ function PlayerHud:OpenBoat(boat, sailing)
     end
 end
 
+local on_control = PlayerHud.OnControl
+function PlayerHud:OnControl(...)
+    local is_aoe_targeting
+    local cancel_aoe_targeting
+    if self.owner.components.playercontroller then
+        is_aoe_targeting = self.owner.components.playercontroller.IsAOETargeting
+        self.owner.components.playercontroller.IsAOETargeting = function(self, ...)
+            return is_aoe_targeting(self, ...) or self.casting_action_override_spell
+        end
+        cancel_aoe_targeting = self.owner.components.playercontroller.CancelAOETargeting
+        self.owner.components.playercontroller.CancelAOETargeting = function(self, ...)
+            self:CancelCastingActionOverrideSpell()
+            return cancel_aoe_targeting(self, ...)
+        end
+    end
+    local ret = on_control(self, ...)
+    if is_aoe_targeting then
+        self.owner.components.playercontroller.IsAOETargeting = is_aoe_targeting
+        self.owner.components.playercontroller.CancelAOETargeting = cancel_aoe_targeting
+    end
+    return ret
+end
+
 local _OnUpdate = PlayerHud.OnUpdate
 function PlayerHud:OnUpdate(dt, ...)
     _OnUpdate(self, dt, ...)
