@@ -1,3 +1,4 @@
+local AddSimPostInit = AddSimPostInit
 GLOBAL.setfenv(1, GLOBAL)
 
 local function GetLight(light, dist)
@@ -131,3 +132,9 @@ end
 function RunOnPostUpdate(fn)
     table.insert(scheduled_post_update_functions, fn)
 end
+
+AddSimPostInit(function()
+    if not TheShard:IsSecondary() then
+        ShardIndex:GeneratePorklandWorldgenOverride()
+    end
+end)

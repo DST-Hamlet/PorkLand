@@ -210,6 +210,7 @@ modimport("postinit/soundemitter")
 modimport("postinit/preparedfoods")
 modimport("postinit/skilltrees")
 modimport("postinit/lightwatcher")
+modimport("postinit/shardindex")
 
 for _, file_name in ipairs(behaviour_posts) do
     modimport("postinit/behaviours/" .. file_name)
