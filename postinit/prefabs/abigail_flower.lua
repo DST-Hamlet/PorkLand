@@ -80,9 +80,6 @@ end
 -- end
 
 -- local function GhostHauntSpell(inst, doer, pos)
---     doer.components.playeractionpicker.leftclickoverride = nil
---     doer.components.playeractionpicker.rightclickoverride = nil
---     doer.components.playercontroller.casting_action_override_spell = false
 --     return DoGhostSpell(doer, "do_ghost_hauntat", nil, pos)
 -- end
 
@@ -399,9 +396,7 @@ local COMMANDS = {
         end,
         execute = function(inst)
             if ThePlayer then
-                ThePlayer.components.playeractionpicker.leftclickoverride = LeftClickPicker
-                ThePlayer.components.playeractionpicker.disable_right_click = true
-                ThePlayer.components.playercontroller:StartCastingActionOverrideSpell()
+                ThePlayer.components.playercontroller:StartCastingActionOverrideSpell(LeftClickPicker)
             end
         end,
         bank = "spell_icons_wendy",

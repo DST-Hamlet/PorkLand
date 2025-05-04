@@ -154,7 +154,7 @@ function PlayerHud:OnControl(...)
     if self.owner.components.playercontroller then
         is_aoe_targeting = self.owner.components.playercontroller.IsAOETargeting
         self.owner.components.playercontroller.IsAOETargeting = function(self, ...)
-            return is_aoe_targeting(self, ...) or self.casting_action_override_spell
+            return is_aoe_targeting(self, ...) or self.casting_action_override_spell ~= nil
         end
         cancel_aoe_targeting = self.owner.components.playercontroller.CancelAOETargeting
         self.owner.components.playercontroller.CancelAOETargeting = function(self, ...)

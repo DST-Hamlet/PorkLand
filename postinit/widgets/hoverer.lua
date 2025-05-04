@@ -7,7 +7,7 @@ function HoverText:OnUpdate(...)
     if self.owner.components.playercontroller then
         is_aoe_targeting = self.owner.components.playercontroller.IsAOETargeting
         self.owner.components.playercontroller.IsAOETargeting = function(self, ...)
-            return is_aoe_targeting(self, ...) or self.casting_action_override_spell
+            return is_aoe_targeting(self, ...) or self.casting_action_override_spell ~= nil
         end
     end
     on_update(self, ...)

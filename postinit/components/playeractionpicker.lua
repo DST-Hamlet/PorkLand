@@ -68,6 +68,11 @@ end
 
 local _GetLeftClickActions = PlayerActionPicker.GetLeftClickActions
 function PlayerActionPicker:GetLeftClickActions(position, target, ...)
+    local playercontroller = self.inst.components.playercontroller
+    if playercontroller.casting_action_override_spell and self.leftclickoverride ~= playercontroller.casting_action_override_spell then
+        playercontroller:CancelCastingActionOverrideSpell()
+    end
+
     local actions = _GetLeftClickActions(self, position, target, ...)
 
     if TheInput:ControllerAttached() then
@@ -85,25 +90,10 @@ function PlayerActionPicker:GetLeftClickActions(position, target, ...)
     return actions or {}
 end
 
--- local get_right_click_actions = PlayerActionPicker.GetRightClickActions
--- function PlayerActionPicker:GetRightClickActions(position, target, ...)
---     local actions = get_right_click_actions(self, position, target, ...)
-
---     if TheInput:ControllerAttached() then
---         return actions
---     end
-
---     local first_action = actions[1]
---     if first_action
---         and first_action.action == ACTIONS.CASTAOE
---         and first_action.invobject
---         and first_action.invobject.prefab == "abigail_flower"
---         and first_action.invobject.components.spellbook
---         -- The `spell_id` is actually an index, keep this in sync with the commands defined in postinit/prefabs/abigail_flower.lua
---         and first_action.invobject.components.spellbook:GetSelectedSpell() == 4
---     then
---         first_action.target = target or TheInput:GetWorldEntityUnderMouse()
---     end
-
---     return actions
--- end
+local get_right_click_actions = PlayerActionPicker.GetRightClickActions
+function PlayerActionPicker:GetRightClickActions(position, target, ...)
+    if self.inst.components.playercontroller.casting_action_override_spell then
+        return {}
+    end
+    return get_right_click_actions(self, position, target, ...)
+end
