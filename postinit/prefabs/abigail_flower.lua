@@ -38,12 +38,12 @@ local function ResumeGhostMovements(inst, doer)
 end
 
 local function DoGhostSpell(doer, event, state, ...)
-	local spellbookcooldowns = doer.components.spellbookcooldowns
+	-- local spellbookcooldowns = doer.components.spellbookcooldowns
 	local ghostlybond = doer.components.ghostlybond
 
-	if spellbookcooldowns ~= nil and (spellbookcooldowns:IsInCooldown("ghostcommand") or spellbookcooldowns:IsInCooldown(event or state)) then
-        return false
-	end
+	-- if spellbookcooldowns and (spellbookcooldowns:IsInCooldown("ghostcommand") or spellbookcooldowns:IsInCooldown(event or state)) then
+    --     return false
+	-- end
 
 	if ghostlybond == nil or ghostlybond.ghost == nil then
 		return false
@@ -53,16 +53,16 @@ local function DoGhostSpell(doer, event, state, ...)
 		return false
 	end
 
-	if event ~= nil then
+	if event then
 		ghostlybond.ghost:PushEvent(event, ...)
 
-	elseif state ~= nil then
+	elseif state then
 		ghostlybond.ghost.sg:GoToState(state, ...)
 	end
 
-	if spellbookcooldowns ~= nil then
-		spellbookcooldowns:RestartSpellCooldown("ghostcommand", TUNING.WENDYSKILL_COMMAND_COOLDOWN)
-	end
+	-- if spellbookcooldowns then
+	-- 	spellbookcooldowns:RestartSpellCooldown("ghostcommand", TUNING.WENDYSKILL_COMMAND_COOLDOWN)
+	-- end
 
 	return true
 end
