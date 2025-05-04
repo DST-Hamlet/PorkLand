@@ -59,7 +59,7 @@ if not rawget(_G, "HotReloading") then
 
         THROW = Action({priority = 0, instant = false, rmb = true, distance = 20, mount_valid = true}),
 
-        SPELL_COMMAND = Action({mount_valid = true}),
+        SPELL_COMMAND = Action({mount_valid = true, distance = 35}),
     }
 
     for name, ACTION in pairs(_G.PL_ACTIONS) do

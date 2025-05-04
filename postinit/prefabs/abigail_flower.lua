@@ -85,7 +85,6 @@ end
 
 local function GhostHauntSpellCommand(inst, buffered_action)
     local doer = buffered_action.doer
-    doer.components.playercontroller:CancelCastingActionOverrideSpell()
     return DoGhostSpell(doer, "do_ghost_haunt_target", nil, buffered_action.target)
 end
 
@@ -396,7 +395,7 @@ local COMMANDS = {
         end,
         execute = function(inst)
             if ThePlayer then
-                ThePlayer.components.playercontroller:StartCastingActionOverrideSpell(LeftClickPicker)
+                ThePlayer.components.playercontroller:StartCastingActionOverrideSpell(inst, LeftClickPicker)
             end
         end,
         bank = "spell_icons_wendy",
