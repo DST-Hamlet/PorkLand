@@ -88,6 +88,10 @@ local function GhostHauntSpellCommand(inst, buffered_action)
     return DoGhostSpell(doer, "do_ghost_haunt_target", nil, buffered_action.target)
 end
 
+local function GhostGotoSpellCommand(inst, doer, pos)
+    return DoGhostSpell(doer, "do_ghost_goto_position", nil, pos)
+end
+
 local function GhostUnsummonSpell(inst, doer)
 	inst:RemoveTag("unsummoning_spell")
 
@@ -117,6 +121,10 @@ end
 -- local function RightClickPicker(inst, target, position)
 --     return {}
 -- end
+
+local function AlwaysTrue()
+    return true
+end
 
 local COMMANDS = {
 	{
@@ -415,6 +423,41 @@ local COMMANDS = {
         --         or nil
         -- end,
         -- cooldowncolor = { 0.65, 0.65, 0.65, 0.75 },
+    },
+    {
+        label = "Goto",
+        onselect = function(inst)
+			local spellbook = inst.components.spellbook
+			local aoetargeting = inst.components.aoetargeting
+
+            spellbook:SetSpellName("Goto")
+            aoetargeting:SetDeployRadius(0)
+			aoetargeting:SetRange(20)
+			aoetargeting:SetShouldRepeatCastFn(AlwaysTrue)
+            -- aoetargeting.reticule.reticuleprefab = "reticuleaoeghosttarget"
+            aoetargeting.reticule.pingprefab = "reticuleaoeghosttarget_ping"
+
+            aoetargeting.reticule.mousetargetfn = nil
+            aoetargeting.reticule.targetfn = ReticuleGhostTargetFn
+            aoetargeting.reticule.updatepositionfn = nil
+			aoetargeting.reticule.twinstickrange = 15
+
+            if TheWorld.ismastersim then
+                aoetargeting:SetTargetFX("reticuleaoeghosttarget")
+                inst.components.aoespell:SetSpellFn(GhostGotoSpellCommand)
+                spellbook:SetSpellFn(nil)
+            end
+        end,
+        execute = StartAOETargeting,
+        bank = "spell_icons_wendy",
+        build = "spell_icons_wendy",
+        anims =
+        {
+            idle = { anim = "haunt" },
+            focus = { anim = "haunt_focus", loop = true },
+            down = { anim = "haunt_pressed" },
+        },
+        widget_scale = ICON_SCALE,
     },
 }
 

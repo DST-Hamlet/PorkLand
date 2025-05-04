@@ -136,6 +136,12 @@ function PlayerController:OnRightClick(down, ...)
     return unpack(ret)
 end
 
+local start_aoe_targeting_using = PlayerController.StartAOETargetingUsing
+function PlayerController:StartAOETargetingUsing(item, ...)
+    self:CancelCastingActionOverrideSpell()
+    return start_aoe_targeting_using(self, item, ...)
+end
+
 local has_aoe_targeting = PlayerController.HasAOETargeting
 function PlayerController:HasAOETargeting(...)
     return self.casting_action_override_spell ~= nil or has_aoe_targeting(self, ...)
@@ -143,6 +149,7 @@ end
 
 function PlayerController:StartCastingActionOverrideSpell(item, leftclickoverride)
     self:CancelCastingActionOverrideSpell()
+    self:CancelAOETargeting()
 
     self.inst.components.playeractionpicker.leftclickoverride = leftclickoverride
     self.casting_action_override_spell = {

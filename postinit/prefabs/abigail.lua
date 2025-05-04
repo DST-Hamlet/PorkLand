@@ -6,6 +6,10 @@ local function FreezeMovements(inst, should_freeze)
     inst:AddOrRemoveTag("movements_frozen", should_freeze)
 end
 
+local function OnGotoCommand(inst, position)
+    inst._goto_position = position
+end
+
 local HAUNT_CANT_TAGS = {"catchable", "DECOR", "FX", "haunted", "INLIMBO", "NOCLICK"}
 local function DoGhostHauntTarget(inst, target)
     if (inst.sg and inst.sg:HasStateTag("nocommand"))
@@ -29,5 +33,7 @@ AddPrefabPostInit("abigail", function(inst)
     end
 
     inst:ListenForEvent("do_ghost_haunt_target", DoGhostHauntTarget)
+    inst:ListenForEvent("do_ghost_goto_position", OnGotoCommand)
     inst.FreezeMovements = FreezeMovements
+    inst.OnGotoCommand = OnGotoCommand
 end)
