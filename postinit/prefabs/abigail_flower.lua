@@ -409,14 +409,14 @@ local COMMANDS = {
             cooldown = { anim = "haunt_cooldown" },
         },
         widget_scale = ICON_SCALE,
-        checkcooldown = function(doer)
-            --client safe
-            return (doer ~= nil
-                and doer.components.spellbookcooldowns
-                and doer.components.spellbookcooldowns:GetSpellCooldownPercent("ghostcommand"))
-                or nil
-        end,
-        cooldowncolor = { 0.65, 0.65, 0.65, 0.75 },
+        -- checkcooldown = function(doer)
+        --     --client safe
+        --     return (doer ~= nil
+        --         and doer.components.spellbookcooldowns
+        --         and doer.components.spellbookcooldowns:GetSpellCooldownPercent("ghostcommand"))
+        --         or nil
+        -- end,
+        -- cooldowncolor = { 0.65, 0.65, 0.65, 0.75 },
     },
 }
 
