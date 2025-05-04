@@ -100,6 +100,17 @@ function PlayerController:OnLeftClick(down, ...)
         end
     end
 
+    if down
+        and not TheInput:GetHUDEntityUnderMouse()
+        and self:IsEnabled()
+        and self:IsAOETargeting()
+    then
+        local spellbook = self:GetActiveSpellBook()
+        if spellbook and spellbook.components.spellcommand then
+            spellbook.components.spellcommand:ReselectSelectedSpellInSpellBook()
+        end
+    end
+
     local ret = { on_left_click(self, down, ...) }
 
     -- if down and not TheInput:GetHUDEntityUnderMouse() then

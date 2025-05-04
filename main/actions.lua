@@ -875,6 +875,14 @@ ACTIONS.ROTATE_FENCE.fn = function(act)
     return _ROTATE_FENCEfn(act)
 end
 
+local castaoe_stroverridefn = ACTIONS.CASTAOE.stroverridefn
+ACTIONS.CASTAOE.stroverridefn = function(act, ...)
+    return act.invobject
+        and act.invobject.components.spellcommand
+        and act.invobject.components.spellcommand:GetSpellName()
+        or castaoe_stroverridefn(act, ...)
+end
+
 -- SCENE        using an object in the world
 -- USEITEM      using an inventory item on an object in the world
 -- POINT        using an inventory item on a point in the world

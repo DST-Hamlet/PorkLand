@@ -128,6 +128,7 @@ end
 
 local COMMANDS = {
 	{
+        id = "unsummon",
 		label = STRINGS.GHOSTCOMMANDS.UNSUMMON,
 		onselect = function(inst)
 			local spellbook = inst.components.spellbook
@@ -155,6 +156,7 @@ local COMMANDS = {
 		widget_scale = ICON_SCALE,
 	},
     {
+        id = "make_aggressive",
         label = STRINGS.ACTIONS.COMMUNEWITHSUMMONED.MAKE_AGGRESSIVE,
         onselect = function(inst)
             local spellbook = inst.components.spellbook
@@ -184,6 +186,7 @@ local COMMANDS = {
         widget_scale = ICON_SCALE,
     },
     {
+        id = "make_defensive",
         label = STRINGS.ACTIONS.COMMUNEWITHSUMMONED.MAKE_DEFENSIVE,
         onselect = function(inst)
             local spellbook = inst.components.spellbook
@@ -213,6 +216,7 @@ local COMMANDS = {
         widget_scale = ICON_SCALE,
     },
     {
+        id = "freeze_movements",
         label = "Freeze Movements",
         onselect = function(inst)
             local spellbook = inst.components.spellbook
@@ -242,6 +246,7 @@ local COMMANDS = {
         widget_scale = ICON_SCALE,
     },
     {
+        id = "resume_movements",
         label = "Resume Movements",
         onselect = function(inst)
             local spellbook = inst.components.spellbook
@@ -390,15 +395,10 @@ local COMMANDS = {
     --     cooldowncolor = { 0.65, 0.65, 0.65, 0.75 },
     -- },
     {
+        id = "haunt_at",
         label = STRINGS.GHOSTCOMMANDS.HAUNT_AT,
         onselect = function(inst)
-            local spellbook = inst.components.spellbook
-            spellbook:SetSpellName(STRINGS.GHOSTCOMMANDS.HAUNT_AT)
-
-            if TheWorld.ismastersim then
-                -- spellbook:SetSpellFn(GhostHauntSpell)
-                inst.components.spellcommand:SetSpell(STRINGS.GHOSTCOMMANDS.HAUNT_AT, GhostHauntSpellCommand)
-            end
+            inst.components.spellcommand:SetSpell(STRINGS.GHOSTCOMMANDS.HAUNT_AT, GhostHauntSpellCommand)
         end,
         execute = function(inst)
             if ThePlayer then
@@ -425,12 +425,16 @@ local COMMANDS = {
         -- cooldowncolor = { 0.65, 0.65, 0.65, 0.75 },
     },
     {
+        id = "goto",
         label = "Goto",
         onselect = function(inst)
 			local spellbook = inst.components.spellbook
 			local aoetargeting = inst.components.aoetargeting
 
             spellbook:SetSpellName("Goto")
+            inst.components.spellcommand:SetSpellName("Goto")
+            inst.components.spellcommand:SetSelectedSpell("goto")
+
             aoetargeting:SetDeployRadius(0)
 			aoetargeting:SetRange(20)
 			aoetargeting:SetShouldRepeatCastFn(AlwaysTrue)
