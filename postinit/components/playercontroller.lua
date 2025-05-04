@@ -142,6 +142,8 @@ function PlayerController:HasAOETargeting(...)
 end
 
 function PlayerController:StartCastingActionOverrideSpell(item, leftclickoverride)
+    self:CancelCastingActionOverrideSpell()
+
     self.inst.components.playeractionpicker.leftclickoverride = leftclickoverride
     self.casting_action_override_spell = {
         item = item,

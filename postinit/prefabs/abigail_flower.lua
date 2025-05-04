@@ -118,7 +118,6 @@ end
 --     return {}
 -- end
 
--- Keep in sync with the hook in postinit/components/playeractionpicker.lua
 local COMMANDS = {
 	{
 		label = STRINGS.GHOSTCOMMANDS.UNSUMMON,
@@ -390,7 +389,7 @@ local COMMANDS = {
 
             if TheWorld.ismastersim then
                 -- spellbook:SetSpellFn(GhostHauntSpell)
-                inst.components.spellcommand:SetOnRun(GhostHauntSpellCommand)
+                inst.components.spellcommand:SetSpell(STRINGS.GHOSTCOMMANDS.HAUNT_AT, GhostHauntSpellCommand)
             end
         end,
         execute = function(inst)

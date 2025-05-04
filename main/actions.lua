@@ -59,6 +59,7 @@ if not rawget(_G, "HotReloading") then
 
         THROW = Action({priority = 0, instant = false, rmb = true, distance = 20, mount_valid = true}),
 
+        -- Replacing CASTAOE for custom controls
         SPELL_COMMAND = Action({mount_valid = true, distance = 35}),
     }
 
@@ -603,7 +604,10 @@ ACTIONS.THROW.fn = function(act)
 end
 
 ACTIONS.SPELL_COMMAND.stroverridefn = function(act)
-	return act.invobject and act.invobject.components.spellbook and act.invobject.components.spellbook:GetSpellName() or nil
+	return act.invobject
+        and act.invobject.components.spellcommand
+        and act.invobject.components.spellcommand:GetSpellName()
+        or nil
 end
 
 ACTIONS.SPELL_COMMAND.strfn = function(act)
