@@ -68,6 +68,11 @@ end
 
 local _GetLeftClickActions = PlayerActionPicker.GetLeftClickActions
 function PlayerActionPicker:GetLeftClickActions(position, target, ...)
+    local playercontroller = self.inst.components.playercontroller
+    if playercontroller.casting_action_override_spell and self.leftclickoverride ~= playercontroller.casting_action_override_spell.leftclickoverride then
+        playercontroller:CancelCastingActionOverrideSpell()
+    end
+
     local actions = _GetLeftClickActions(self, position, target, ...)
 
     if TheInput:ControllerAttached() then
@@ -83,4 +88,12 @@ function PlayerActionPicker:GetLeftClickActions(position, target, ...)
     end
 
     return actions or {}
+end
+
+local get_right_click_actions = PlayerActionPicker.GetRightClickActions
+function PlayerActionPicker:GetRightClickActions(position, target, ...)
+    if self.inst.components.playercontroller.casting_action_override_spell then
+        return {}
+    end
+    return get_right_click_actions(self, position, target, ...)
 end

@@ -55,6 +55,129 @@ function PlayerController:GetActionButtonAction(force_target, ...)
     return buffaction
 end
 
+local on_left_click = PlayerController.OnLeftClick
+function PlayerController:OnLeftClick(down, ...)
+    if down
+        and self.casting_action_override_spell
+        and not self.ismastersim
+        and not TheInput:GetHUDEntityUnderMouse()
+        and self:IsEnabled()
+    then
+        local act = self:GetLeftMouseAction()
+        if act then
+            local platform
+            local pos_x
+            local pos_z
+            if act.pos then
+                platform = act.pos.walkable_platform
+                pos_x = act.pos.local_pt.x
+                pos_z = act.pos.local_pt.z
+            else
+                local position = TheInput:GetWorldPosition()
+                platform, pos_x, pos_z = self:GetPlatformRelativePosition(position.x, position.z)
+            end
+            local target = act.target or TheInput:GetWorldEntityUnderMouse()
+
+            local spellbook = self.inst.HUD:GetCurrentOpenSpellBook()
+            local spell_id
+            if spellbook then
+                spell_id = spellbook.components.spellbook:GetSelectedSpell()
+            end
+
+            local controlmods = self:EncodeControlMods()
+            if self.locomotor == nil then
+                self.remote_controls[CONTROL_PRIMARY] = 0
+                SendRPCToServer(RPC.LeftClick, act.action.code, pos_x, pos_z, target, nil, controlmods, act.action.canforce, act.action.mod_name, platform, platform ~= nil, spellbook, spell_id)
+            elseif act.action ~= ACTIONS.WALKTO and self:CanLocomote() then
+                act.preview_cb = function()
+                    self.remote_controls[CONTROL_PRIMARY] = 0
+                    local isreleased = not TheInput:IsControlPressed(CONTROL_PRIMARY)
+                    SendRPCToServer(RPC.LeftClick, act.action.code, pos_x, pos_z, target, isreleased, controlmods, nil, act.action.mod_name, platform, platform ~= nil, spellbook, spell_id)
+                end
+            end
+            self:DoAction(act, spellbook)
+            return
+        end
+    end
+
+    if down
+        and not TheInput:GetHUDEntityUnderMouse()
+        and self:IsEnabled()
+        and self:IsAOETargeting()
+    then
+        local spellbook = self:GetActiveSpellBook()
+        if spellbook and spellbook.components.spellcommand then
+            spellbook.components.spellcommand:ReselectSelectedSpellInSpellBook()
+        end
+    end
+
+    local ret = { on_left_click(self, down, ...) }
+
+    -- if down and not TheInput:GetHUDEntityUnderMouse() then
+    --     self:CancelCastingActionOverrideSpell()
+    -- end
+
+    return unpack(ret)
+end
+
+local on_remote_left_click = PlayerController.OnRemoteLeftClick
+function PlayerController:OnRemoteLeftClick(actioncode, position, target, isreleased, controlmodscode, noforce, mod_name, spellbook, spell_id, ...)
+    if self.ismastersim and self:IsEnabled() and self.handler == nil then
+        if actioncode == ACTIONS.SPELL_COMMAND.code then
+            if spellbook
+                and spellbook.components.inventoryitem
+                and spellbook.components.inventoryitem:GetGrandOwner() == self.inst
+                and spellbook.components.spellbook
+            then
+                spellbook.components.spellbook:SelectSpell(spell_id)
+            end
+			self:DoAction(BufferedAction(self.inst, target, ACTIONS.SPELL_COMMAND, spellbook, position), spellbook)
+            return
+        end
+    end
+    return on_remote_left_click(self, actioncode, position, target, isreleased, controlmodscode, noforce, mod_name, spellbook, spell_id, ...)
+end
+
+local on_right_click = PlayerController.OnRightClick
+function PlayerController:OnRightClick(down, ...)
+    local ret = { on_right_click(self, down, ...) }
+    if down then
+        self:CancelCastingActionOverrideSpell()
+    end
+    return unpack(ret)
+end
+
+local start_aoe_targeting_using = PlayerController.StartAOETargetingUsing
+function PlayerController:StartAOETargetingUsing(item, ...)
+    self:CancelCastingActionOverrideSpell()
+    return start_aoe_targeting_using(self, item, ...)
+end
+
+local has_aoe_targeting = PlayerController.HasAOETargeting
+function PlayerController:HasAOETargeting(...)
+    return self.casting_action_override_spell ~= nil or has_aoe_targeting(self, ...)
+end
+
+function PlayerController:StartCastingActionOverrideSpell(item, leftclickoverride)
+    self:CancelCastingActionOverrideSpell()
+    self:CancelAOETargeting()
+
+    self.inst.components.playeractionpicker.leftclickoverride = leftclickoverride
+    self.casting_action_override_spell = {
+        item = item,
+        leftclickoverride = leftclickoverride,
+    }
+end
+
+function PlayerController:CancelCastingActionOverrideSpell()
+    if self.casting_action_override_spell then
+        if self.inst.components.playeractionpicker.leftclickoverride == self.casting_action_override_spell.leftclickoverride then
+            self.inst.components.playeractionpicker.leftclickoverride = nil
+        end
+        self.casting_action_override_spell = nil
+    end
+end
+
 -- local _GetGroundUseAction = PlayerController.GetGroundUseAction
 -- function PlayerController:GetGroundUseAction(position, ...)
 --     if self.inst:IsSailing() then
@@ -154,6 +277,17 @@ function PlayerController:OnUpdate(dt)
             self:ReleaseControlSecondary(x, z)
         end
         self.lasttick_controlpressed[CONTROL_SECONDARY] = self:IsControlPressed(CONTROL_SECONDARY)
+
+        if self.casting_action_override_spell then
+            if not self.casting_action_override_spell.item:IsValid() then
+                self:CancelCastingActionOverrideSpell()
+            else
+                local inventoryitem = self.casting_action_override_spell.item.replica.inventoryitem
+                if inventoryitem and not inventoryitem:IsGrandOwner(self.inst) then
+                    self:CancelCastingActionOverrideSpell()
+                end
+            end
+        end
     end
 
     return unpack(ret)
@@ -200,4 +334,5 @@ end
 
 AddComponentPostInit("playercontroller", function(self)
     self.lasttick_controlpressed = {}
+    self.casting_action_override_spell = nil
 end)

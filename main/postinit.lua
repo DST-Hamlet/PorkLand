@@ -41,6 +41,7 @@ local component_posts = {
     "explosive",
     "fishingrod",
     "floater",
+    "ghostlybond",
     "grogginess",
     "grower",
     "grue",
@@ -92,6 +93,8 @@ local component_posts = {
 }
 
 local prefab_posts = {
+    "abigail",
+    "abigail_flower",
     "batwing",
     "birdcage",
     "boomerang",
@@ -176,6 +179,9 @@ local widget_posts = {
     "mapwidget",
     "recipepopup",
     "itemtile",
+    "invslot",
+    "controls",
+    "hoverer",
 }
 
 local module_posts = {
