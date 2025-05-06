@@ -294,6 +294,8 @@ local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, on_r
             inst.components.shopped:SetOnRobbed(on_robbed)
         end
 
+        MakeHauntable(inst)
+
         inst:ListenForEvent("onbuilt", SetPlayerCraftable)
         inst.initInteriorPrefab = InitInteriorPrefab
 

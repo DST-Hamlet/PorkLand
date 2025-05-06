@@ -788,7 +788,7 @@ local function MakeShop(name, build, bank, data)
         end
 
         MakeSnowCovered(inst, 0.01)
-        MakeHauntableWork(inst)
+        MakeHauntable(inst)
 
         if data.master_init_fn then
             data.master_init_fn(inst)

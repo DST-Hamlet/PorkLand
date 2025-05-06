@@ -179,6 +179,8 @@ local function fn()
     inst.components.workable:SetWorkLeft(TUNING.ROCKS_MINE_GIANT)
     inst.components.workable:SetOnWorkCallback(OnWorkCallback)
 
+    MakeHauntable(inst)
+
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
     inst.ShootDart = Shoot

@@ -468,8 +468,6 @@ local function fn()
 
     inst.initInteriorPrefab = InitInteriorPrefab
 
-    MakeHauntableDoor(inst) -- 门关上时，鬼魂玩家仍然可以通过
-
     inst.opendoor = OpenDoor
     inst.closedoor = CloseDoor
     inst.disableDoor = DisableDoor

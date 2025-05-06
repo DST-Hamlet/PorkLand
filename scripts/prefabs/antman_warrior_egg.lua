@@ -102,6 +102,14 @@ local function OnEntityWake(inst)
     -- end
 end
 
+local function OnHaunt(inst, haunter)
+    if math.random() < TUNING.HAUNT_CHANCE_HALF then
+        inst.components.health:Kill()
+        return true
+    end
+    return false
+end
+
 local function fn()
     local inst = CreateEntity()
 
@@ -156,7 +164,8 @@ local function fn()
         dohatch(inst, 1, home)
     end
 
-    MakeHauntable(inst)
+    inst:AddComponent("hauntable")
+    inst.components.hauntable:SetOnHauntFn(OnHaunt)
 
     inst.OnSave = OnSave
     inst.OnLoadPostPass = OnLoadPostPass

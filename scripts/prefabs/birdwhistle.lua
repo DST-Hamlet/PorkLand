@@ -60,6 +60,8 @@ local function CommonFn()
 
     inst:AddComponent("inventoryitem")
 
+    MakeHauntableLaunch(inst)
+
     return inst
 end
 

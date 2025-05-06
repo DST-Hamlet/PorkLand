@@ -220,7 +220,7 @@ local function MakeRuin(name, data)
         inst.OnLoad = OnLoad
 
         MakeSnowCovered(inst)
-        MakeHauntableWork(inst)
+        MakeHauntable(inst)
 
         if data.master_postinit ~= nil then
             data.master_postinit(inst)

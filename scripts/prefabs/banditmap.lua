@@ -104,6 +104,8 @@ local function banditmapfn()
 
     inst:AddComponent("erasablepaper")
 
+    MakeHauntableLaunch(inst)
+
     inst.treasure = nil
 
     inst.OnSave = MapOnSave
@@ -261,6 +263,8 @@ local function bandittreasurefn()
         inst:RemoveTag("NOCLICK")
         inst.revealed = true
     end)
+
+    MakeHauntable(inst)
 
     inst.revealed = false
 
