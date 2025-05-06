@@ -343,7 +343,9 @@ function InteriorVisitor:UpdateExteriorPos()
         if not self.inst:HasTag("inside_interior") then
             self.inst:AddTag("inside_interior")
         end
-        self.inst:PushEvent("enterinterior", {from = last_center_ent, to = ent})
+        if last_center_ent ~= ent then
+            self.inst:PushEvent("enterinterior", {from = last_center_ent, to = ent})
+        end
         self.interior_cc = ent.interior_cc
         self:UpdatePlayerAndCreaturePhysics(ent)
 
