@@ -83,7 +83,7 @@ function InventoryItem:OnUpdate(dt, ...)
                 self.inst.AnimState:SetLayer(LAYER_WORLD)  -- 虽然inventoryitem基本上都属于这个显示层级，但是保险起见，最好在改变显示层级的时候保存旧的显示层级
                 self.inst.Physics:ClearCollidesWith(COLLISION.VOID_LIMITS)
             end
-            if y < -2 then
+            if y < -3 then
                 self:TryToSink()
                 if not self.inst:HasTag("irreplaceable") then
                     self.inst:StopUpdatingComponent(self)
