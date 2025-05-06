@@ -211,6 +211,7 @@ end
 function RotatingBillboard:OnRemoveFromEntity()
     if self.mask and self.mask:IsValid() then
         self.mask:Remove()
+        self.mask = nil
     end
 
     self.inst.AnimState:SetOrientation(ANIM_ORIENTATION.BillBoard)
