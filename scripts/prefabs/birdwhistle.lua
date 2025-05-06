@@ -25,6 +25,7 @@ local function OnPlayedCorrupted(inst, musician)
     local rocmanager = TheWorld.components.rocmanager
     if rocmanager then
         rocmanager:Disable()
+        rocmanager:ForceLeftPos(inst:GetPosition())
     end
 
     inst:Remove()

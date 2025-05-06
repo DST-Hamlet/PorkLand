@@ -57,6 +57,12 @@ function GlideMotor:OnUpdate(dt)
                 anglediff = anglediff + 360
             end
 
+            if (anglediff > 135 or anglediff < -135) 
+                and self.inst:GetDistanceSqToPoint(pt) < self.currentspeed * self.currentspeed * 2 * 2 then -- 离目标太近且角度差过大时不转向
+                
+                anglediff = 0
+            end
+
             turnspeed = turnspeed * dt
 
             anglediff = math.clamp(anglediff, - turnspeed, turnspeed)

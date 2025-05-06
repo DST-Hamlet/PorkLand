@@ -2532,7 +2532,7 @@ local states = {
 
     State{
         name = "cower",
-        tags = {"busy", "cower", "pausepredict"},
+        tags = {"busy", "cower", "canrotate", "nopredict", "nomorph", "nointerrupt"},
 
         onenter = function(inst, data)
             inst.components.locomotor:Stop()
@@ -2556,9 +2556,11 @@ local states = {
 
     State{
         name = "grabbed",
-        tags = {"busy", "pausepredict"},
+        tags = {"busy", "canrotate", "nopredict", "nomorph", "nointerrupt"},
 
         onenter = function(inst, data)
+            inst.components.locomotor:Stop()
+            inst:ClearBufferedAction()
             inst:ShowHUD(false)
             if inst.components.playercontroller then
                 inst.components.playercontroller:EnableMapControls(false)
