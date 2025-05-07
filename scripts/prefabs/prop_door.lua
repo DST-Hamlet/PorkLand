@@ -98,6 +98,48 @@ local function MakeTimeChanger(inst)
     inst.timechanger = true
 end
 
+local function UpdateDoorLight(inst)
+    if inst.components.door then
+        local interior_spawner = TheWorld.components.interiorspawner
+        local targetdoor = interior_spawner.doors[inst.components.door.target_door_id].inst
+        local r, g, b, light = targetdoor:GetColourAndLight()
+        if light > TUNING.DARK_CUTOFF then
+            inst.Light:Enable(true)
+            inst.Light:SetFalloff(0.8)
+            inst.Light:SetIntensity(TUNING.DARK_CUTOFF + (light - TUNING.DARK_CUTOFF) / 2)
+            inst.Light:SetRadius(3 + light)
+            inst.Light:SetColour(r,g,b)
+        else
+            inst.Light:Enable(false)
+        end
+    end
+end
+
+local function StartDoorLightUpdate(inst)
+    if not inst.doorlighttask then
+        inst.doorlighttask = inst:DoPeriodicTask(0, UpdateDoorLight)
+    end
+end
+
+local function StopDoorLightUpdate(inst)
+    if inst.doorlighttask then
+        inst.doorlighttask:Cancel()
+        inst.doorlighttask = nil
+        inst.Light:Enable(false)
+    end
+end
+
+local function EnableDoorLightUpdate(inst, enable)
+    inst.doorlightenable = enable
+    if enable then
+        if not inst:IsAsleep() then
+            inst:StartDoorLightUpdate()
+        end
+    else
+        inst:StopDoorLightUpdate()
+    end
+end
+
 -- TODO: Combine these two and add a getter
 local function SetMinimapIcon(inst, icon)
     inst.minimapicon = icon
@@ -166,6 +208,8 @@ local function InitInteriorPrefab(inst, doer, prefab_definition, interior_defini
 
     if animdata.light then
         MakeTimeChanger(inst)
+    else
+        EnableDoorLightUpdate(inst, true)
     end
 
     if animdata.minimapicon then
@@ -250,6 +294,8 @@ local function OnLoad(inst, data)
     end
     if data.timechanger then
         MakeTimeChanger(inst)
+    else
+        EnableDoorLightUpdate(inst, true)
     end
     if data.timechange_anims then
         inst:AddTag("timechange_anims")
@@ -413,14 +459,24 @@ local function GetMinimapIcon(inst)
 end
 
 local function OnEntitySleep(inst)
-    if inst.sg:HasStateTag("moving") or inst.sg:HasStateTag("shut") then
+    if inst.sg and 
+        (inst.sg:HasStateTag("moving") or inst.sg:HasStateTag("shut")) then
+
         door.sg:GoToState("idle")
     end
+    
+    inst:StopDoorLightUpdate()
 end
 
 local function OnEntityWake(inst)
-    if inst.sg:HasStateTag("moving") or inst.sg:HasStateTag("shut") then
+    if inst.sg and 
+        (inst.sg:HasStateTag("moving") or inst.sg:HasStateTag("shut")) then
+
         door.sg:GoToState("idle")
+    end
+    
+    if inst.doorlightenable then
+        inst:StartDoorLightUpdate()
     end
 end
 
@@ -476,8 +532,14 @@ local function fn()
     inst:ListenForEvent("close", CloseDoor)
     inst:ListenForEvent("usedoor", UseDoor)
 
+    inst.StartDoorLightUpdate = StartDoorLightUpdate
+    inst.StopDoorLightUpdate = StopDoorLightUpdate
+
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
+
+    inst.OnEntitySleep = OnEntitySleep
+    inst.OnEntityWake = OnEntityWake
 
     return inst
 end
