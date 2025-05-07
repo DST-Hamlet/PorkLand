@@ -364,6 +364,7 @@ local function circlingbatfn()
     inst.AnimState:SetLayer(LAYER_BACKGROUND)
     inst.AnimState:SetSortOrder(3)
     inst.AnimState:SetMultColour(1, 1, 1, 0)
+    inst.AnimState:SetScale(0.8, 0.8, 0.8)
 
     inst:AddTag("FX")
 
@@ -394,7 +395,7 @@ local function circlingbatfn()
         end
     end)
 
-    inst:DoPeriodicTask(5 * FRAMES, UpdateTraget, math.random() * 0.167)
+    inst:DoPeriodicTask(FRAMES, UpdateTraget)
 
     inst.task, inst.taskinfo = inst:ResumeTask(20 + math.random() * 2, DoDive)
 
