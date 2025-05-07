@@ -532,6 +532,8 @@ local function fn()
     inst:ListenForEvent("close", CloseDoor)
     inst:ListenForEvent("usedoor", UseDoor)
 
+    MakeHauntableDoor(inst)
+
     inst.StartDoorLightUpdate = StartDoorLightUpdate
     inst.StopDoorLightUpdate = StopDoorLightUpdate
 
