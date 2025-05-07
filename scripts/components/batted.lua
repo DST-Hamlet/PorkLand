@@ -16,7 +16,7 @@ local SourceModifierList = require("util/sourcemodifierlist")
 --[[ Constants ]]
 --------------------------------------------------------------------------
 
-local BAT_SPAWN_DIST = 8
+local BAT_SPAWN_DIST = 10
 local BAT_SPAWN_DIST_DEVIATION = 4
 local MAX_BAT_COUNT = 25
 local BAT_ATTACK_TIME = {base = 4 * TUNING.TOTAL_DAY_TIME, random = 0.5 * TUNING.TOTAL_DAY_TIME}

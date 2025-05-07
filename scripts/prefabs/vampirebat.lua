@@ -291,6 +291,7 @@ end
 local function SetUp(inst, target)
     inst.hunttarget = target
     inst.components.glidemotor:SetTargetPos(target:GetPosition())
+    inst.components.glidemotor.currentspeed = inst.components.glidemotor.runspeed
     inst.components.glidemotor:EnableMove(true)
 end
 
