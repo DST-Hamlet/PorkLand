@@ -21,7 +21,6 @@ local component_posts = {
     "builder_replica",
     "builder",
     "burnable",
-    "circler",
     "clock",
     "colourcube",
     "combat",

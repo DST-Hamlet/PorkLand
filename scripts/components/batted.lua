@@ -16,7 +16,8 @@ local SourceModifierList = require("util/sourcemodifierlist")
 --[[ Constants ]]
 --------------------------------------------------------------------------
 
-local BAT_SPAWN_DIST = 5
+local BAT_SPAWN_DIST = 8
+local BAT_SPAWN_DIST_DEVIATION = 4
 local MAX_BAT_COUNT = 25
 local BAT_ATTACK_TIME = {base = 4 * TUNING.TOTAL_DAY_TIME, random = 0.5 * TUNING.TOTAL_DAY_TIME}
 local MODIFIER_SOURCE_WORLDSETTINGS = "worldsettings"
@@ -34,7 +35,6 @@ self.inst = inst
 
 -- Private
 local _spawnmode = "normal"
-local target_players = {}
 local _batcaves = {}
 local _bats = {}
 local _bats_to_attack = {}
@@ -149,7 +149,7 @@ local function IsBatSuitableForAttack(bat)
 end
 
 local function CollectBatsForAttack()
-    target_players = {}
+    local target_players = {}
 
     for _, player in pairs(AllPlayers) do
         if not player:GetIsInInterior() then
@@ -172,13 +172,16 @@ local function CollectBatsForAttack()
     _bat_remainder = suitable_bat_count % math.max(GetTableSize(target_players), 1)
 
     print("_bat_per_player", _bat_per_player, suitable_bat_count)
+
+    return target_players
 end
 
 local function GetSpawnPointForPlayer(player)
     local pt = player:GetPosition()
-    local radius = BAT_SPAWN_DIST
+    local theta = math.random() * TWOPI
+    local radius = BAT_SPAWN_DIST + math.random() * BAT_SPAWN_DIST_DEVIATION
 
-    local targetpt = FindNearbyLand(pt, math.random() * radius, 12)
+    local targetpt = FindValidPositionByFan(theta, radius, 12, function() return true end) + pt
 
     if targetpt then
         return targetpt
@@ -215,10 +218,16 @@ local function SpawnBatsForPlayer(player)
             -- TODO inherit health and such
 
             bat_shadow.Transform:SetPosition(spawn_point.x, spawn_point.y, spawn_point.z)
+            bat_shadow:FacePoint(player.Transform:GetWorldPosition())
+            local rotation = bat_shadow.Transform:GetRotation()
+            if math.random() < 0.5 then
+                rotation = rotation + 90
+            else
+                rotation = rotation - 90
+            end
+            bat_shadow.Transform:SetRotation(rotation)
 
-            bat_shadow.components.circler:SetCircleTarget(player)
-            bat_shadow.components.circler.dontfollowinterior = true
-            bat_shadow.components.circler:Start()
+            bat_shadow:SetUp(player)
 
             -- Don't remove/append values when iterating through a table
             mark_for_remove[#mark_for_remove + 1] = key
@@ -361,7 +370,7 @@ function self:LongUpdate(dt)
             dt_bat_attack = 0
         else
             dt_bat_attack = dt_bat_attack - _bat_attack_time
-            CollectBatsForAttack()
+            local target_players = CollectBatsForAttack()
             local spawnfailed = false
 
             if next(_bats_to_attack) then

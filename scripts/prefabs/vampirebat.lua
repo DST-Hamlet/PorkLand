@@ -235,7 +235,7 @@ end
 -----------------------------------------------------------------------------------
 
 local function DoDive(inst)
-    local player = inst.components.circler.circleTarget
+    local player = inst.hunttarget
 
     -- The player has left the game, spawn anyways
     if not player or not player:IsValid() then
@@ -249,7 +249,7 @@ local function DoDive(inst)
         inst.task = nil
         inst.taskinfo = nil
         inst.components.colourtweener:StartTween({1,1,1,0}, 0.3)
-        inst.components.circler:Stop()
+        inst.components.glidemotor:EnableMove(false)
         inst:DoTaskInTime(1,inst.Remove)
         return
     end
@@ -272,7 +272,7 @@ local function DoDive(inst)
         inst.task = nil
         inst.taskinfo = nil
         inst.components.colourtweener:StartTween({1,1,1,0}, 0.3)
-        inst.components.circler:Stop()
+        inst.components.glidemotor:EnableMove(false)
         inst:DoTaskInTime(1,inst.Remove)
     else
         inst.task, inst.taskinfo = inst:ResumeTask(5 + math.random() * 2, DoDive)
@@ -288,11 +288,32 @@ local function UpdateColourTweener(inst)
     end
 end
 
+local function SetUp(inst, target)
+    inst.hunttarget = target
+    inst.components.glidemotor:SetTargetPos(target:GetPosition())
+    inst.components.glidemotor:EnableMove(true)
+end
+
+local function UpdateTraget(inst)
+    local target = inst.hunttarget
+    if target then
+        if not target:IsValid() then
+            inst.hunttarget = nil
+        elseif inst:GetDistanceSqToInst(target) > 100 * 100 then
+            inst.hunttarget = nil
+        end
+    end
+
+    if inst.hunttarget then
+        inst.components.glidemotor:SetTargetPos(inst.hunttarget:GetPosition())
+    end
+end
+
 local function OnSaveShadow(inst, data)
     if inst.taskinfo then
         data.time = inst:TimeRemainingInTask(inst.taskinfo)
-        data.player = inst.components.circler.circleTarget.GUID
-        return {player = inst.components.circler.circleTarget.GUID}
+        data.player = inst.hunttarget.GUID
+        return {player = inst.hunttarget.GUID}
     end
 end
 
@@ -309,11 +330,8 @@ end
 
 local function OnLoadPostPassShadow(inst, ents, data)
     if data and data.player and ents[data.player] then
-        inst.components.circler:SetCircleTarget(ents[data.player].entity)
+        inst:SetUp(ents[data.player].entity)
     end
-
-    inst.components.circler.dontfollowinterior = true
-    inst.components.circler:Start()
 end
 
 local function circlingbatfn()
@@ -323,6 +341,20 @@ local function circlingbatfn()
     inst.entity:AddAnimState()
     inst.entity:AddSoundEmitter()
     inst.entity:AddNetwork()
+
+    -- Custom physics settings
+    local phys = inst.entity:AddPhysics()
+    phys:SetMass(1)
+    phys:SetFriction(0)
+    phys:SetDamping(5)
+    phys:SetCollisionGroup(COLLISION.FLYERS)
+    phys:ClearCollisionMask()
+    phys:CollidesWith(COLLISION.GROUND)
+    if TheWorld:HasTag("porkland") then
+        phys:ClearCollidesWith(COLLISION.LIMITS)
+        phys:ClearCollidesWith(COLLISION.VOID_LIMITS)
+    end
+    phys:SetCapsule(0.5, 1)
 
     inst.AnimState:SetBank("bat_vamp_shadow")
     inst.AnimState:SetBuild("bat_vamp_shadow")
@@ -340,9 +372,12 @@ local function circlingbatfn()
         return inst
     end
 
-    inst:AddComponent("circler")
-    inst.components.circler.minScale = 10
-    inst.components.circler.maxScale = 8
+    inst:AddComponent("glidemotor")
+    inst.components.glidemotor.runspeed = 8
+    inst.components.glidemotor.runspeed_turnfast = 8
+    inst.components.glidemotor.turnspeed = 40
+    inst.components.glidemotor.turnspeed_fast = 40
+    inst.components.glidemotor:EnableMove(false)
 
     inst:AddComponent("colourtweener")
     UpdateColourTweener(inst)
@@ -358,7 +393,11 @@ local function circlingbatfn()
         end
     end)
 
+    inst:DoPeriodicTask(5 * FRAMES, UpdateTraget, math.random() * 0.167)
+
     inst.task, inst.taskinfo = inst:ResumeTask(20 + math.random() * 2, DoDive)
+
+    inst.SetUp = SetUp
 
     inst.OnSave = OnSaveShadow
     inst.OnLoad = OnLoadShadow
