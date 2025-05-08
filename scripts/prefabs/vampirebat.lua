@@ -277,7 +277,7 @@ local function DoDive(inst)
         inst.components.glidemotor:EnableMove(false)
         inst:DoTaskInTime(1,inst.Remove)
     else
-        inst.task, inst.taskinfo = inst:ResumeTask(5 + math.random() * 2, DoDive)
+        inst.task, inst.taskinfo = inst:ResumeTask(2 + math.random() * 1, DoDive)
     end
 end
 
@@ -437,5 +437,5 @@ local function circlingbatfn()
     return inst
 end
 
-return Prefab("vampirebat", fn, assets, prefabs) ,
+return Prefab("vampirebat", fn, assets, prefabs),
        Prefab("circlingbat", circlingbatfn, assets, prefabs)
