@@ -109,16 +109,18 @@ end
 
 local _Apply = FollowCamera.Apply
 function FollowCamera:Apply(...)
+    local ret
+
+    if self.inside_interior then
+        ret = {self:ApplyInteriorCamera()}
+    else
+        ret = {_Apply(self, ...)}
+    end
+
     if TheWorld and TheWorld.components.cloudmanager then
         TheWorld.components.cloudmanager:UpdatePos()
     end
-
-    if self.inside_interior then
-        self:ApplyInteriorCamera()
-        return
-    end
-    local ret = {_Apply(self, ...)}
-
+    
     return unpack(ret)
 end
 
