@@ -227,6 +227,7 @@ local function SpawnBatsForPlayer(player)
             end
             bat_shadow.Transform:SetRotation(rotation)
 
+            bat_shadow.scale = 0.8
             bat_shadow:SetUp(player)
 
             -- Don't remove/append values when iterating through a table

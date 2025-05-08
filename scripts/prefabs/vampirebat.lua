@@ -308,6 +308,11 @@ local function UpdateTraget(inst)
     if inst.hunttarget then
         inst.components.glidemotor:SetTargetPos(inst.hunttarget:GetPosition())
     end
+
+    if inst.scale then
+        inst.scale = math.min(inst.scale + 0.02 * FRAMES, 1.2)
+        inst.AnimState:SetScale(inst.scale, inst.scale, inst.scale)
+    end
 end
 
 local function OnSaveShadow(inst, data)
@@ -316,6 +321,8 @@ local function OnSaveShadow(inst, data)
         data.player = inst.hunttarget.GUID
         return {player = inst.hunttarget.GUID}
     end
+
+    data.scale = inst.scale
 end
 
 local function OnLoadShadow(inst, data)
@@ -326,6 +333,10 @@ local function OnLoadShadow(inst, data)
 
     if data.time then
         inst.task, inst.taskinfo = inst:ResumeTask(data.time, DoDive)
+    end
+
+    if data.scale then
+        inst.scale = data.scale
     end
 end
 
@@ -395,6 +406,7 @@ local function circlingbatfn()
         end
     end)
 
+    inst.scale = 0.8
     inst:DoPeriodicTask(FRAMES, UpdateTraget)
 
     inst.task, inst.taskinfo = inst:ResumeTask(20 + math.random() * 2, DoDive)
