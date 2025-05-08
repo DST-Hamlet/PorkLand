@@ -388,6 +388,7 @@ local function circlingbatfn()
     inst.AnimState:SetScale(0.8, 0.8, 0.8)
 
     inst:AddTag("FX")
+    inst:AddTag("vampirebat_shadow")
 
     inst.entity:SetPristine()
 
@@ -402,6 +403,9 @@ local function circlingbatfn()
     inst.components.glidemotor.turnspeed_fast = 40
     inst.components.glidemotor:EnableMove(true)
     inst.components.glidemotor.avoid = true
+    inst.components.glidemotor.avoidother = true
+    inst.components.glidemotor.avoid_must_tags = {"vampirebat_shadow"}
+    inst.components.glidemotor.avoid_cant_tags = {"INLIMBO", "NOCLICK"}
 
     inst:AddComponent("colourtweener")
     UpdateColourTweener(inst)

@@ -229,7 +229,7 @@ local function SpawnBatsForPlayer(player)
 
             bat_shadow.scale = 0.8
             bat_shadow:SetUp(player)
-            bat_shadow.components.glidemotor.currentspeed = inst.components.glidemotor.runspeed
+            bat_shadow.components.glidemotor.currentspeed = bat_shadow.components.glidemotor.runspeed
 
             -- Don't remove/append values when iterating through a table
             mark_for_remove[#mark_for_remove + 1] = key
