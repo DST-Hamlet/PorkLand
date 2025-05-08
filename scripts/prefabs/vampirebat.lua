@@ -391,6 +391,7 @@ local function circlingbatfn()
     inst.components.glidemotor.turnspeed = 40
     inst.components.glidemotor.turnspeed_fast = 40
     inst.components.glidemotor:EnableMove(false)
+    inst.components.glidemotor.avoid = true
 
     inst:AddComponent("colourtweener")
     UpdateColourTweener(inst)
