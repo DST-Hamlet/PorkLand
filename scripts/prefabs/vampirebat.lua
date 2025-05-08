@@ -248,6 +248,7 @@ local function DoDive(inst)
         end
         inst.task = nil
         inst.taskinfo = nil
+        inst.persists = false
         inst.components.colourtweener:StartTween({1,1,1,0}, 0.3)
         inst.components.glidemotor:EnableMove(false)
         inst:DoTaskInTime(1,inst.Remove)
@@ -271,6 +272,7 @@ local function DoDive(inst)
         end
         inst.task = nil
         inst.taskinfo = nil
+        inst.persists = false
         inst.components.colourtweener:StartTween({1,1,1,0}, 0.3)
         inst.components.glidemotor:EnableMove(false)
         inst:DoTaskInTime(1,inst.Remove)
@@ -291,8 +293,6 @@ end
 local function SetUp(inst, target)
     inst.hunttarget = target
     inst.components.glidemotor:SetTargetPos(target:GetPosition())
-    inst.components.glidemotor.currentspeed = inst.components.glidemotor.runspeed
-    inst.components.glidemotor:EnableMove(true)
 end
 
 local function UpdateTraget(inst)
@@ -300,9 +300,19 @@ local function UpdateTraget(inst)
     if target then
         if not target:IsValid() then
             inst.hunttarget = nil
-        elseif inst:GetDistanceSqToInst(target) > 100 * 100 then
+        elseif inst:GetDistanceSqToInst(target) > 64 * 64 then
+            inst.hunttarget = nil
+        elseif IsEntityDeadOrGhost(target) then
+            inst.hunttarget = nil
+        elseif target.entity:IsVisible() then
             inst.hunttarget = nil
         end
+    end
+
+    if inst.hunttarget == nil then
+        local x, y, z = inst.Transform:GetWorldPosition()
+        local newtarget = FindClosestPlayerInRange(x, y, z, 64, true)
+        inst.hunttarget = newtarget
     end
 
     if inst.hunttarget then
@@ -390,7 +400,7 @@ local function circlingbatfn()
     inst.components.glidemotor.runspeed_turnfast = 8
     inst.components.glidemotor.turnspeed = 40
     inst.components.glidemotor.turnspeed_fast = 40
-    inst.components.glidemotor:EnableMove(false)
+    inst.components.glidemotor:EnableMove(true)
     inst.components.glidemotor.avoid = true
 
     inst:AddComponent("colourtweener")
@@ -419,8 +429,6 @@ local function circlingbatfn()
     inst.OnLoadPostPass = OnLoadPostPassShadow
 
     inst.DoDive = DoDive
-
-    inst.persists = false
 
     return inst
 end
