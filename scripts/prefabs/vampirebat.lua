@@ -27,14 +27,6 @@ local MAX_TARGET_SHARES = 5
 local SHARE_TARGET_DIST = 40
 local KEEP_TARGET_DIST = 40
 
-local function MakeTeam(inst, attacker)
-    local leader = SpawnPrefab("teamleader")
-    leader:AddTag("vampirebat")
-    leader.components.teamleader.mult = 1.5
-    leader.components.teamleader:SetUp(attacker, inst)
-    leader.components.teamleader:BroadcastDistress(inst)
-end
-
 local function OnWingDown(inst)
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/vampire_bat/flap")
 end
@@ -208,7 +200,6 @@ local function fn()
     MakeHauntablePanic(inst)
 
     inst.cavebat = false
-    inst.MakeTeam = MakeTeam
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
 

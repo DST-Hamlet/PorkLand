@@ -2,6 +2,7 @@ require("behaviours/attackwall")
 require("behaviours/chaseandattack")
 require("behaviours/leash")
 require("behaviours/panic")
+require("behaviours/followpoint")
 
 local BrainCommon = require("brains/braincommon")
 
@@ -12,10 +13,10 @@ local function GetWanderPos(inst)
     return inst.components.knownlocations:GetLocation("home")
 end
 
-local function StandOffAction(inst)
+local function GetStandOffPoint(inst)
     local pos = inst.components.teamcombat:GetStandOffPoint()
     if pos then
-        return BufferedAction(inst, nil, ACTIONS.WALKTO, nil, pos)
+        return pos
     end
 end
 
@@ -35,7 +36,7 @@ function VampireBatBrain:OnStart()
                 WhileNode(function() return self.inst.components.teamcombat:CanAttack() end, "Attack",
                     ChaseAndAttack(self.inst, MAX_CHASE_TIME, MAX_CHASE_DIST)),
 
-                DoAction(self.inst, StandOffAction, "Go To Point", true ),
+                FollowPoint(self.inst, GetStandOffPoint, nil, nil, true),
 
                 Wander(self.inst, GetWanderPos, 8),
             }, 0.25)
