@@ -33,7 +33,6 @@ function TeamManager:DeleteAttacker(attacker, teamtype)
 	end
 
 	for target, team in pairs(self.teams[teamtype]) do
-
 		local attackers = team.members
 		for i, v in ipairs(attackers) do
 			if v == attacker then

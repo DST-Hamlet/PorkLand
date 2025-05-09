@@ -39,7 +39,11 @@ local STANDOFF_CIRCLE_DATA =
 }
 
 function TeamCombat:OnRemoveEntity()
-    UpdateTeam(self.inst)
+    if not TheWorld.components.teammanager then
+        return
+    end
+
+    TheWorld.components.teammanager:DeleteAttacker(self.inst, self.inst.components.teamcombat.teamtype)
 end
 
 function TeamCombat:OnEntityWake()
