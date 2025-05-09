@@ -72,12 +72,8 @@ function FollowPoint:Visit()
             else
                 self.inst.components.locomotor:GoToPoint(self.currentpt)
             end
-
-            if self.inst:HasTag("debug_ent") then
-                print("vampirebat try follow point", self.currentpt)
-            end
         end
 
-        self:Sleep(.25)
+        self:Sleep(0.1)
     end
 end

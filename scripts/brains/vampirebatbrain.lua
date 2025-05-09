@@ -39,7 +39,7 @@ function VampireBatBrain:OnStart()
                 FollowPoint(self.inst, GetStandOffPoint, nil, nil, true),
 
                 Wander(self.inst, GetWanderPos, 8),
-            }, 0.25)
+            }, 0.1)
         )
     })
 
