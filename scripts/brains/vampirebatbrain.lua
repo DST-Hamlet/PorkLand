@@ -9,7 +9,14 @@ local MAX_CHASE_TIME = 60
 local MAX_CHASE_DIST = 40
 
 local function GetWanderPos(inst)
-    return inst.components.teamattacker.teamleader == nil and inst.components.knownlocations:GetLocation("home")
+    return inst.components.knownlocations:GetLocation("home")
+end
+
+local function StandOffAction(inst)
+    local pos = inst.components.teamcombat:GetStandOffPoint()
+    if pos then
+        return BufferedAction(inst, nil, ACTIONS.WALKTO, nil, pos)
+    end
 end
 
 local VampireBatBrain = Class(Brain, function(self, inst)
@@ -25,7 +32,10 @@ function VampireBatBrain:OnStart()
             {
                 BrainCommon.PanicTrigger(self.inst),
 
-                ChaseAndAttack(self.inst, MAX_CHASE_TIME, MAX_CHASE_DIST),
+                WhileNode(function() return self.inst.components.teamcombat:CanAttack() end, "Attack",
+                    ChaseAndAttack(self.inst, MAX_CHASE_TIME, MAX_CHASE_DIST)),
+
+                DoAction(self.inst, StandOffAction, "Go To Point", true ),
 
                 Wander(self.inst, GetWanderPos, 8),
             }, 0.25)

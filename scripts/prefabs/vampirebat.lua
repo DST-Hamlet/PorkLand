@@ -25,6 +25,7 @@ SetSharedLootTable("vampirebat",
 
 local MAX_TARGET_SHARES = 5
 local SHARE_TARGET_DIST = 40
+local KEEP_TARGET_DIST = 40
 
 local function MakeTeam(inst, attacker)
     local leader = SpawnPrefab("teamleader")
@@ -43,22 +44,19 @@ local function OnWingDownShadow(inst)
 end
 
 local function KeepTarget(inst, target)
-    if inst.components.teamattacker.teamleader == nil or
-        (inst.components.teamattacker.teamleader and not inst.components.teamattacker.teamleader:CanAttack()) or
-        inst.components.teamattacker.orders == "ATTACK" then
-        return true
+    if inst.components.combat:CanTarget(target) then
+        local distsq = target:GetDistanceSqToInst(inst)
+        return distsq < KEEP_TARGET_DIST * KEEP_TARGET_DIST
     else
         return false
     end
 end
 
-local RETARGET_DIST = 12
+local RETARGET_DIST = 16
 local RETARGET_DIST_SLEEP = 3
 local RETARGET_CANT_TAGS = {"vampirebat"}
 local RETARGET_ONEOF_TAGS = {"character", "monster"}
 local function Retarget(inst)
-    local ta = inst.components.teamattacker
-
     local newtarget = nil
     if not inst.components.sleeper:IsAsleep() then
         newtarget = FindEntity(inst, RETARGET_DIST, function(ent)
@@ -70,29 +68,19 @@ local function Retarget(inst)
         end, nil, RETARGET_CANT_TAGS, RETARGET_ONEOF_TAGS)
     end
 
-    if newtarget and not ta.inteam and not ta:SearchForTeam() then
-        MakeTeam(inst, newtarget)
-    end
-
-    if ta.inteam and not ta.teamleader:CanAttack() then
-        return newtarget
-    end
+    return newtarget
 end
 
 local function OnAttacked(inst, data)
-    if not inst.components.teamattacker.inteam and not inst.components.teamattacker:SearchForTeam() then
-        MakeTeam(inst, data.attacker)
-    elseif inst.components.teamattacker.teamleader then
-        inst.components.teamattacker.teamleader:BroadcastDistress() --Ask for help!
+    local attacker = data and data.attacker
+    if attacker == nil then
+        return
     end
 
-    if inst.components.teamattacker.inteam and not inst.components.teamattacker.teamleader:CanAttack() then
-        local attacker = data and data.attacker
-        inst.components.combat:SetTarget(attacker)
-        inst.components.combat:ShareTarget(attacker, SHARE_TARGET_DIST, function(ent)
-            return ent:HasTag("vampirebat") and not ent.components.health:IsDead()
-        end, MAX_TARGET_SHARES)
-    end
+    inst.components.combat:SetTarget(attacker)
+    inst.components.combat:ShareTarget(attacker, SHARE_TARGET_DIST, function(ent)
+        return ent:HasTag("vampirebat") and not ent.components.health:IsDead()
+    end, MAX_TARGET_SHARES)
 end
 
 local function OnAttackOther(inst, data)
@@ -208,8 +196,8 @@ local function fn()
 
     inst:AddComponent("knownlocations")
 
-    inst:AddComponent("teamattacker")
-    inst.components.teamattacker.team_type = "vampirebat"
+    inst:AddComponent("teamcombat")
+    inst.components.teamcombat.teamtype = "vampirebat"
 
     inst:SetBrain(brain)
     inst:SetStateGraph("SGvampirebat")
