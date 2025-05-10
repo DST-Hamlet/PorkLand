@@ -18,7 +18,7 @@ local function IsClearPath(start_x, start_y, end_x, end_y, map, width, depth, ig
     if not IsInBounds(start_x, start_y, map, width, depth) then
         return false, true
     end
-    if not IsInBounds(start_x, start_y, map, width, depth) then
+    if not IsInBounds(end_x, end_y, map, width, depth) then
         return false, true
     end
     -- 使用简单的直线插值检查路径上的每个点
