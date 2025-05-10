@@ -670,8 +670,10 @@ local function OnLoadPostPass(inst, data) -- 出口的连接写在 OnLoadPostPas
             target_interior = exit_room_id,
         }
         inst.interiorID = exit_room_id
-        TheWorld.components.interiorspawner:AddDoor(inst, exterior_door_def2)
-        TheWorld.components.interiorspawner:AddExterior(inst)
+        if inst.interiorID then
+            TheWorld.components.interiorspawner:AddDoor(inst, exterior_door_def2)
+            TheWorld.components.interiorspawner:AddExterior(inst)
+        end
     end
 end
 
