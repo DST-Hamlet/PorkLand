@@ -6,6 +6,7 @@ local assets =
     Asset("ANIM", "anim/player_idles_wes.zip"),
     Asset("ANIM", "anim/player_mount_wes.zip"),
     Asset("ANIM", "anim/player_mime.zip"),
+    Asset("ANIM", "anim/player_mime2.zip"),
 }
 
 local start_inv =
