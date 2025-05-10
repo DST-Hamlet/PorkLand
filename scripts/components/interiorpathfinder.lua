@@ -15,6 +15,12 @@ end
 
 -- 检查路径是否没有障碍
 local function IsClearPath(start_x, start_y, end_x, end_y, map, width, depth, ignorewalls)
+    if not IsInBounds(start_x, start_y, map, width, depth) then
+        return false, true
+    end
+    if not IsInBounds(start_x, start_y, map, width, depth) then
+        return false, true
+    end
     -- 使用简单的直线插值检查路径上的每个点
     local dx = end_x - start_x
     local dy = end_y - start_y
@@ -85,62 +91,125 @@ local function get_neighbors(node, grid, width, depth, ignorewalls)
     return neighbors
 end
 
--- Check if a node is in a set
-local function is_in_set(set, node)
-    for _, n in ipairs(set) do
-        if n.x == node.x and n.y == node.y then
-            return true
+local function create_min_heap()
+    return {
+        data = {},
+        size = 0,
+        push = function(self, item)
+            self.size = self.size + 1
+            self.data[self.size] = item
+            self:bubble_up(self.size)
+        end,
+        pop = function(self)
+            if self.size == 0 then return nil end
+            local result = self.data[1]
+            self.data[1] = self.data[self.size]
+            self.data[self.size] = nil
+            self.size = self.size - 1
+            if self.size > 0 then
+                self:bubble_down(1)
+            end
+            return result
+        end,
+        bubble_up = function(self, index)
+            local parent = math.floor(index / 2)
+            while index > 1 and self.data[parent].f > self.data[index].f do
+                self.data[parent], self.data[index] = self.data[index], self.data[parent]
+                index = parent
+                parent = math.floor(index / 2)
+            end
+        end,
+        bubble_down = function(self, index)
+            local smallest = index
+            while true do
+                local left = 2 * index
+                local right = 2 * index + 1
+                if left <= self.size and self.data[left].f < self.data[smallest].f then
+                    smallest = left
+                end
+                if right <= self.size and self.data[right].f < self.data[smallest].f then
+                    smallest = right
+                end
+                if smallest == index then break end
+                self.data[index], self.data[smallest] = self.data[smallest], self.data[index]
+                index = smallest
+            end
         end
-    end
-    return false
+    }
 end
 
--- A* algorithm
-local function a_star(start, goal, grid, width, depth, ignorewalls) -- 亚丹：A星寻路算法
-    local open_set = {start}
-    local closed_set = {}
+-- 优化2: 使用哈希表来加速节点查找
+local function create_node_set()
+    return {
+        data = {},
+        add = function(self, node)
+            local key = node.x .. "," .. node.y
+            self.data[key] = node
+        end,
+        contains = function(self, node)
+            local key = node.x .. "," .. node.y
+            return self.data[key] ~= nil
+        end,
+        get = function(self, node)
+            local key = node.x .. "," .. node.y
+            return self.data[key]
+        end
+    }
+end
+
+-- 优化后的A*算法
+local function a_star(start, goal, grid, width, depth, ignorewalls)
+    local open_set = create_min_heap()
+    local closed_set = create_node_set()
+    local open_set_hash = create_node_set()
+
+    open_set:push(start)
+    open_set_hash:add(start)
 
     local max_search_times = 512
 
-    while #open_set > 0 and max_search_times > 0 do
+    while open_set.size > 0 and max_search_times > 0 do
         max_search_times = max_search_times - 1
-        -- Find the node with the lowest f score
-        table.sort(open_set, function(a, b) return a.f < b.f end)
-        local current = table.remove(open_set, 1)
 
-        -- If the goal is reached, reconstruct the path
+        local current = open_set:pop()
+        open_set_hash.data[current.x .. "," .. current.y] = nil
+
         if current.x == goal.x and current.y == goal.y then
             local path = {}
             while current do
                 table.insert(path, 1, {current.x, current.y})
                 current = current.parent
             end
-            -- print("searchtimes", 512 - max_search_times)
             return path
         end
 
-        table.insert(closed_set, current)
+        closed_set:add(current)
 
-        -- Get neighbors
         local neighbors = get_neighbors(current, grid, width, depth, ignorewalls)
         for _, neighbor in ipairs(neighbors) do
-            -- If the neighbor is in the closed set, skip it
-            if not is_in_set(closed_set, neighbor) then
+            if not closed_set:contains(neighbor) then
+                local tentative_g = current.g + 1
 
-                -- Calculate g, h, and f scores
-                neighbor.g = current.g + 1
-                neighbor.h = GetGridDist(neighbor, goal)
-                neighbor.f = neighbor.g + neighbor.h
-
-                -- If the neighbor is in the open set with a higher g score, skip it
-                if not is_in_set(open_set, neighbor) then
-                    table.insert(open_set, neighbor)
+                local neighbor_in_open = open_set_hash:get(neighbor)
+                if neighbor_in_open then
+                    if tentative_g < neighbor_in_open.g then
+                        neighbor_in_open.g = tentative_g
+                        neighbor_in_open.f = tentative_g + neighbor_in_open.h
+                        neighbor_in_open.parent = current
+                    end
+                else
+                    neighbor.g = tentative_g
+                    neighbor.h = GetGridDist(neighbor, goal)
+                    neighbor.f = neighbor.g + neighbor.h
+                    neighbor.parent = current
+                    open_set:push(neighbor)
+                    open_set_hash:add(neighbor)
                 end
             end
         end
     end
 
-    return nil -- No path found
+    return nil
 end
 
 -- Smooth the path by removing unnecessary nodes
@@ -245,9 +314,25 @@ function InteriorPathfinder:IsClear(x, y, z, tx, ty, tz, data) -- 检测两点�
     return IsClearPath(_x, _z, _tx, _tz, self.interior_physicswall, self:GetWidth(), self:GetDepth(), ignorewalls)
 end
 
+local function _distsq(x, y, z, x1, y1, z1)
+    local dx = x1 - x
+    local dy = y1 - y
+    local dz = z1 - z
+    --Note: Currently, this is 3D including y-component
+    return dx * dx + dy * dy + dz * dz
+end
+
 function InteriorPathfinder:CalculateSearch(x, y, z, tx, ty, tz, data) -- 计算寻路
-    local isclear = self:IsClear(x, y, z, tx, ty, tz, data)
-    if isclear then
+    if _distsq(x, y, z, tx, ty, tz) <= 1 then
+        return {
+            isinterior = true,
+            path = {steps = {}},
+            status = STATUS_NOPATH,
+        }
+    end
+
+    local isclear, cantfindpath = self:IsClear(x, y, z, tx, ty, tz, data)
+    if isclear or cantfindpath then
         return {
             isinterior = true,
             path = {steps = {}},
