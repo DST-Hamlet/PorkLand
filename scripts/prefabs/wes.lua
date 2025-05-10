@@ -49,6 +49,14 @@ local function master_postinit(inst)
     inst.components.hunger:SetRate(TUNING.WILSON_HUNGER_RATE * 1.25)
     inst.components.sanity:SetMax(TUNING.WILSON_SANITY * 0.75)
     inst.components.combat.damagemultiplier = TUNING.WES_DAMAGE_MULT
+
+    if inst.components.houndedtarget == nil then
+		inst:AddComponent("houndedtarget")
+	end
+	inst.components.houndedtarget.target_weight_mult:SetModifier(inst, TUNING.WES_HOUND_TARGET_MULT, "misfortune")
+	inst.components.houndedtarget.hound_thief = true
+
+    inst.components.playerlightningtarget:SetHitChance(TUNING.WES_LIGHTNING_TARGET_CHANCE)
 end
 
 return MakePlayerCharacter("wes", prefabs, assets, common_postinit, master_postinit, prefabs)
