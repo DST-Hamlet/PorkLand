@@ -163,7 +163,7 @@ local function fn()
     inst.entity:AddTransform()
 
     inst:AddTag("FX")
-    inst:AddTag("no_remove")
+    inst:AddTag("CLASSIFIED")
     --[[Non-networked entity]]
     inst.entity:SetCanSleep(false)
     inst.persists = false

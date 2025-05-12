@@ -45,7 +45,7 @@ local function fn_fx()
     inst.entity:AddTransform()
 
     inst:AddTag("FX")
-    inst:AddTag("no_remove")
+    inst:AddTag("CLASSIFIED")
     --[[Non-networked entity]]
     inst.entity:SetCanSleep(false)
     inst.persists = false
@@ -126,14 +126,14 @@ local function fn()
     inst.entity:AddTransform()
 
     inst:AddTag("FX")
-    inst:AddTag("no_remove")
+    inst:AddTag("CLASSIFIED")
     --[[Non-networked entity]]
     inst.entity:SetCanSleep(false)
     inst.persists = false
 
     inst.child_effects = {}
 
-    inst:ListenForEvent("onremove", function()    
+    inst:ListenForEvent("onremove", function()
         for k, v in pairs(inst.child_effects) do
             v:Remove()
             inst.child_effects[k] = nil

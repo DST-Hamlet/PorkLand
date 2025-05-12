@@ -42,7 +42,7 @@ local function fn()
     inst:AddTag("FX")
     inst:AddTag("NOCLICK")
     inst:AddTag("NOBLOCK")
-    inst:AddTag("no_remove")
+    inst:AddTag("CLASSIFIED")
 
     inst.persists = false
 
