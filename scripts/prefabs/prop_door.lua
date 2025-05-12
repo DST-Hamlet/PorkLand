@@ -103,6 +103,16 @@ local function UpdateDoorLight(inst)
         local interior_spawner = TheWorld.components.interiorspawner
         local targetdoor = interior_spawner.doors[inst.components.door.target_door_id].inst
         local r, g, b, light = targetdoor:GetColourAndLight()
+
+        local door_percent = 1
+        if inst.animchangetime then
+            door_percent = math.max(0, math.min(1, (GetTime() - inst.animchangetime) * 7))
+        end
+        if inst.dooranimclosed then
+            door_percent = 1 - door_percent
+        end
+        light = light * door_percent
+
         if light > TUNING.DARK_CUTOFF then
             inst.Light:Enable(true)
             inst.Light:SetFalloff(0.8)
@@ -312,6 +322,7 @@ local function OnLoad(inst, data)
     end
     if data.dooranimclosed then
         inst.AnimState:PushAnimation(inst.baseanimname.."_closed")
+        inst.dooranimclosed = true
     end
     if data.minimapicon then
         inst:SetMinimapIcon(data.minimapicon)
@@ -395,6 +406,9 @@ local function OpenDoor(inst, nospread)
         inst.opentask = nil
     end
     if inst.baseanimname and inst.components.door.disable_causes and inst.components.door.disable_causes["door"] then
+
+        inst.animchangetime = GetTime()
+
         if not inst:IsAsleep() then
             inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/stone_door/slide")
             inst.AnimState:PlayAnimation(inst.baseanimname .. "_open")
@@ -430,6 +444,8 @@ local function CloseDoor(inst, nospread)
     if not inst.baseanimname or (inst.components.door.disable_causes and inst.components.door.disable_causes["door"]) then
         return
     end
+
+    inst.animchangetime = GetTime()
 
     if not inst:IsAsleep() then
         inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/stone_door/close")
