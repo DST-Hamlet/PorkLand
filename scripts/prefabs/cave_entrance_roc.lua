@@ -393,13 +393,10 @@ local function fn()
     end
 
     inst:AddComponent("door")
-    inst.components.door.outside = true
 
     inst:AddComponent("inspectable")
     inst.components.inspectable.getstatus = GetStatus
     inst.components.inspectable.nameoverride = "CAVE_ENTRANCE"
-
-    -- MakeHauntableDoor(inst) -- 这部分功能在action中处理了
 
     Close(inst)
 

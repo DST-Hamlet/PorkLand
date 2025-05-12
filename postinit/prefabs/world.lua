@@ -39,4 +39,8 @@ AddPrefabPostInit("world", function(inst)
     if not TheWorld.components.worldtimetracker then
         inst:AddComponent("worldtimetracker")
     end
+
+    if not TheWorld.components.teammanager then
+        inst:AddComponent("teammanager")
+    end
 end)

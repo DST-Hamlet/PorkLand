@@ -88,6 +88,9 @@ function WorldGenScreen:_ctor(profile, cb, world_gen_data, hidden, ...)
 
     local location = world_gen_data and world_gen_data.level_data and world_gen_data.level_data and world_gen_data.level_data.location or nil
     print("TESTING WORLDGENSCREEN", location)
+    if location == nil then -- 一般发生在客机
+        location = "porkland"
+    end
 
     local location_data = location and PL_LOCATION_DATA[location] or nil
     if not location_data then return end

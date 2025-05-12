@@ -284,6 +284,8 @@ local function OnFinishCallback(inst, chopper)
     end
     drop_burr(inst, pt)
 
+    PushTreeFallServer(inst, pt, hispos)
+
     MakeStump(inst)
 
     local fx = SpawnPrefab("fall_mangrove_pink")
@@ -346,13 +348,6 @@ local function OnBurnt(inst)
     -- inst.AnimState:SetRayTestOnBB(true) -- 这个会影响鼠标选取判定
 
     inst.seed_task = inst:DoTaskInTime(10, function()
-        local pt = inst:GetPosition()
-        if math.random(0, 1) == 1 then -- ...why?
-            pt = pt + TheCamera:GetRightVec()
-        else
-            pt = pt - TheCamera:GetRightVec()
-        end
-
         inst.seed_task = nil
     end)
 end
@@ -360,12 +355,6 @@ end
 local function drop_critter(inst, prefab)
     local critter = SpawnPrefab(prefab)
     local pt = Vector3(inst.Transform:GetWorldPosition())
-
-    if math.random(0, 1) == 1 then -- why?
-        pt = pt + (TheCamera:GetRightVec() * (math.random() + 1))
-    else
-        pt = pt - (TheCamera:GetRightVec() * (math.random() + 1))
-    end
 
     critter.sg:GoToState("fall")
     pt.y = pt.y + (2 * inst.stage)
@@ -417,12 +406,6 @@ local function DoBloom(inst)
 
     local burr = SpawnPrefab("burr")
     local pt = inst:GetPosition()
-
-    if math.random(0, 1) == 1 then -- why?
-        pt = pt + (TheCamera:GetRightVec() * (math.random() + 1))
-    else
-        pt = pt - (TheCamera:GetRightVec() * (math.random() + 1))
-    end
 
     burr.AnimState:PlayAnimation("drop")
     burr.AnimState:PushAnimation("idle")
@@ -652,6 +635,8 @@ local function MakeTree(name, build, stage, data)
         else
             inst:SetPrefabName("rainforesttree")
         end
+
+        MakeTreeClientFallAnim(inst, anims)
 
         inst.entity:SetPristine()
 

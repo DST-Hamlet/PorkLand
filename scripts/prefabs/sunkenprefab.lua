@@ -3,7 +3,7 @@ local SHADER = "shaders/anim_sunken.ksh"
 local assets =
 {
     Asset("ANIM", "anim/bubbles_sunk.zip"),
-    -- Asset("ANIM", "anim/sunken_visual_slot.zip"),
+    Asset("ANIM", "anim/sunken_visual_slot.zip"),
     Asset("SHADER", SHADER),
 }
 

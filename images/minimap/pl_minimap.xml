@@ -80,7 +80,7 @@
         <Element name="chiminea.tex" u1="0.5" u2="0.53125" v1="0.625" v2="0.6875"/>
         <Element name="cookpotwarly.tex" u1="0.53125" u2="0.5625" v1="0.625" v2="0.6875"/>
         <Element name="coral_rock.tex" u1="0.5625" u2="0.59375" v1="0.625" v2="0.6875"/>
-        <Element name="cork_chest.tex" u1="0.59375" u2="0.625" v1="0.625" v2="0.6875"/>
+        <Element name="corkchest.tex" u1="0.59375" u2="0.625" v1="0.625" v2="0.6875"/>
         <Element name="crate.tex" u1="0.625" u2="0.65625" v1="0.625" v2="0.6875"/>
         <Element name="doydoynest.tex" u1="0.65625" u2="0.6875" v1="0.625" v2="0.6875"/>
         <Element name="dragoon_den.tex" u1="0.6875" u2="0.71875" v1="0.625" v2="0.6875"/>

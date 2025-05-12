@@ -271,7 +271,7 @@ end
 
 
 local function OnNear(inst)
-    if inst:HasTag("readytohatch") then
+    if TheWorld.state.ishumid then
         inst:DoTaskInTime(5 + math.random() * 3, inst.PushEvent, "hatch")
     end
 end
@@ -287,26 +287,16 @@ end
 local function OnChangeSeason(inst, season)
     if season ~= SEASONS.HUMID then
         inst.expiretask, inst.expiretaskinfo = inst:ResumeTask(2 * TUNING.SEG_TIME + math.random() * 3, CocoonExpire)
-    else
-        inst:AddTag("readytohatch")
     end
 end
 
 local function OnCocoonSave(inst, data)
-    if inst:HasTag("readytohatch") then
-        data.readytohatch = true
-    end
-
     if inst.expiretaskinfo ~= nil then
         data.expiretasktime = inst:TimeRemainingInTask(inst.expiretaskinfo)
     end
 end
 
 local function OnCocoonLoad(inst, data)
-    if data.readytohatch then
-        inst:AddTag("readytohatch")
-    end
-
     if data.expiretasktime ~= nil then
         inst.expiretask, inst.expiretaskinfo = inst:ResumeTask(data.expiretasktime, CocoonExpire(inst))
     end

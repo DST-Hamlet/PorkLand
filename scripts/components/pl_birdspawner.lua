@@ -12,21 +12,21 @@ return Class(function(self, inst)
 
     local BIRD_TYPES_LAND =
     {
-        [WORLD_TILES.ROCKY] = {"crow"},
-        [WORLD_TILES.DIRT] = {"crow"},
-        [WORLD_TILES.SAVANNA] = {"robin", "crow"},
-        [WORLD_TILES.GRASS] = {"robin"},
-        [WORLD_TILES.FOREST] = {"robin", "crow"},
-        [WORLD_TILES.MARSH] = {"crow"},
+        [WORLD_TILES.ROCKY] = {"pl_crow"},
+        [WORLD_TILES.DIRT] = {"pl_crow"},
+        [WORLD_TILES.SAVANNA] = {"pl_robin", "pl_crow"},
+        [WORLD_TILES.GRASS] = {"pl_robin"},
+        [WORLD_TILES.FOREST] = {"pl_robin", "pl_crow"},
+        [WORLD_TILES.MARSH] = {"pl_crow"},
 
         [WORLD_TILES.RAINFOREST] = {"toucan", "kingfisher", "parrot_blue"},
         [WORLD_TILES.DEEPRAINFOREST] = {"parrot_blue", "kingfisher"},
         [WORLD_TILES.GASJUNGLE]    = {},
-        [WORLD_TILES.FOUNDATION] = {"pigeon", "pigeon_swarm", "pigeon_swarm", "crow"},
-        [WORLD_TILES.FIELDS] = {"robin", "crow"},
-        [WORLD_TILES.SUBURB] = {"robin", "crow", "pigeon"},
-        [WORLD_TILES.PLAINS] = {"robin", "crow", "kingfisher"},
-        [WORLD_TILES.PAINTED] =  {"kingfisher", "crow"},
+        [WORLD_TILES.FOUNDATION] = {"pigeon", "pigeon_swarm", "pigeon_swarm", "pl_crow"},
+        [WORLD_TILES.FIELDS] = {"pl_robin", "pl_crow"},
+        [WORLD_TILES.SUBURB] = {"pl_robin", "pl_crow", "pigeon"},
+        [WORLD_TILES.PLAINS] = {"pl_robin", "pl_crow", "kingfisher"},
+        [WORLD_TILES.PAINTED] =  {"kingfisher", "pl_crow"},
         [WORLD_TILES.INTERIOR] = {},
         [WORLD_TILES.LILYPOND] = {},
     }
@@ -118,19 +118,20 @@ return Class(function(self, inst)
 
     local SCARECROW_TAGS = {"scarecrow"}
     local function PickBird(spawnpoint)
-        local bird = "crow"
+        local bird = "pl_crow"
 
         local tile = _map:GetTileAtPoint(spawnpoint:Get())
         if BIRD_TYPES_LAND[tile] ~= nil then
             bird = GetRandomItem(BIRD_TYPES_LAND[tile])
         end
 
-        if bird == "crow" then
-            local x, y, z = spawnpoint:Get()
-            if TheSim:CountEntities(x, y, z, TUNING.BIRD_CANARY_LURE_DISTANCE, SCARECROW_TAGS) > 0 then
-                bird = "canary"
-            end
-        end
+        -- 暂时禁用金丝雀生成
+        -- if bird == "pl_crow" then
+            -- local x, y, z = spawnpoint:Get()
+            -- if TheSim:CountEntities(x, y, z, TUNING.BIRD_CANARY_LURE_DISTANCE, SCARECROW_TAGS) > 0 then
+                -- bird = "canary"
+            -- end
+        -- end
 
         if not _map:IsSurroundedByLand(spawnpoint.x, spawnpoint.y, spawnpoint.z, 4) then
             bird = nil

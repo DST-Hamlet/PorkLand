@@ -83,14 +83,9 @@ local GroundTiles = require "worldtiledefs"
 
 local function common_preinit(inst)
     mod_protect_TileManager = false
-    TileManager.AddFalloffTexture(3, {
-        name = "black_falloff",
-        noise_texture = "images/square.tex",
-        should_have_falloff = TileGroups.LandTilesNotDock,
-        should_have_falloff_result = true,
-        neighbor_needs_falloff = TileGroups.LandTilesNotDock,
-        neighbor_needs_falloff_result = false
-    })
+    for k, v in pairs(GroundTiles.falloff) do
+        GroundTiles.falloff[k] = nil
+    end
     mod_protect_TileManager = true
 end
 

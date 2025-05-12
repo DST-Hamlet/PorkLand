@@ -27,7 +27,11 @@ local GetPickupAction = function(self, target, tool, ...)
         and not TheWorld.Map:IsLandTileAtPoint(target.Transform:GetWorldPosition()) then --让物品在靠近岸边时被捡起而不是回收
         action = ACTIONS.RETRIEVE
     end
-    if (target:HasTag("interior_door") or target:HasTag("exterior_door")) and not target:HasTag("door_hidden") and not target:HasTag("door_disabled") then
+    if target:HasActionComponent("door")
+        and not target:HasTag("door_hidden")
+        and not target:HasTag("disabled")
+        and not (target:HasTag("burnt") or target:HasTag("fire")) then
+
         action = ACTIONS.USEDOOR
     end
     if action == ACTIONS.PICK and target:HasTag("pickable") and target:HasTag("unsuited") then
@@ -46,7 +50,12 @@ function PlayerController:GetActionButtonAction(force_target, ...)
     local buffaction = _GetActionButtonAction(self, force_target, ...)
     if buffaction then
         local target = buffaction.target
-        if target and (target:HasTag("interior_door") or target:HasTag("exterior_door")) and not target:HasTag("door_hidden") and not target:HasTag("door_disabled") then
+        if target
+            and target:HasActionComponent("door")
+            and not target:HasTag("door_hidden")
+            and not target:HasTag("disabled")
+            and not (target:HasTag("burnt") or target:HasTag("fire")) then
+
             if buffaction.action.code == ACTIONS.HAUNT.code then
                 return BufferedAction(self.inst, target, ACTIONS.USEDOOR)
             end

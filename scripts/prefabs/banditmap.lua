@@ -104,6 +104,8 @@ local function banditmapfn()
 
     inst:AddComponent("erasablepaper")
 
+    MakeHauntableLaunch(inst)
+
     inst.treasure = nil
 
     inst.OnSave = MapOnSave
@@ -186,15 +188,7 @@ local function OnFinishCallback(inst, worker)
         local pt = Vector3(inst.Transform:GetWorldPosition())
         local hispos = Vector3(worker.Transform:GetWorldPosition())
 
-        local he_right = ((hispos - pt):Dot(TheCamera:GetRightVec()) > 0)
-
-        if he_right then
-            inst.components.lootdropper:DropLoot(pt - (TheCamera:GetRightVec() * (math.random() + 1)))
-            inst.components.lootdropper:DropLoot(pt - (TheCamera:GetRightVec() * (math.random() + 1)))
-        else
-            inst.components.lootdropper:DropLoot(pt + (TheCamera:GetRightVec() * (math.random() + 1)))
-            inst.components.lootdropper:DropLoot(pt + (TheCamera:GetRightVec() * (math.random() + 1)))
-        end
+        inst.components.lootdropper:DropLoot()
 
         SpawnTreasureChest(Point(inst.Transform:GetWorldPosition()))
         inst:Remove()
@@ -269,6 +263,8 @@ local function bandittreasurefn()
         inst:RemoveTag("NOCLICK")
         inst.revealed = true
     end)
+
+    MakeHauntable(inst)
 
     inst.revealed = false
 

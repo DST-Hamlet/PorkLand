@@ -116,6 +116,10 @@ local function OnLoadPostPass(inst, ents, data)
 end
 
 local function OnIsAporkalypse(inst, isaporkalypse)
+    if (not inst:IsValid()) or inst.components.health:IsDead() then
+        return
+    end
+
     if isaporkalypse then
         inst.Light:Enable(true)
         inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")

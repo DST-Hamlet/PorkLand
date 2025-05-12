@@ -97,7 +97,7 @@ local function OnGetItemFromPlayer_Vortex(inst, giver, item)
 
             local gem = SpawnPrefab("purplegem")
             gem.Transform:SetPosition(x, y, z)
-            gem.Physics:SetVel(speed * math.cos(angle), math.random() * 2 + 8, speed * math.sin(angle))
+            gem.components.inventoryitem:Launch(Vector3(speed * math.cos(angle), math.random() * 2 + 8, speed * math.sin(angle)))
             -- gem.components.inventoryitem:OnStartFalling()
         end
     end)

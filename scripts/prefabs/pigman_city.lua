@@ -522,6 +522,9 @@ local function OnAttacked(inst, data)
         inst.components.combat:SetTarget(attacker)
 
         if inst:HasTag("guard") then
+            inst:PushEvent("onalarmed", {
+                attacker = attacker,
+            })
             inst.components.combat:ShareTarget(attacker, SHARE_TARGET_GUARD_DIST, function(dude) -- 守卫被非守卫打,大范围的守卫都会立刻注意
                 local canshare = dude:HasTag("civilizedpig") and dude:HasTag("guard") and not attacker:HasTag("guard")
                 if canshare then

@@ -265,6 +265,8 @@ local function OnHackedFinal(inst, worker)
         inst.components.lootdropper:DropLoot(pt + TheCamera:GetRightVec())
     end
 
+    PushTreeFallServer(inst, pt, hispos)
+
     MakeStump(inst, true)
 
     inst:AddTag("NOCLICK")
@@ -426,6 +428,8 @@ local function MakeTree(name, build, stage, data)
         inst:AddTag("tubertree")
 
         inst:SetPrefabName("tubertree")
+
+        MakeTreeClientFallAnim(inst, anims)
 
         inst.entity:SetPristine()
 

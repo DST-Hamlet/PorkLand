@@ -132,7 +132,7 @@ local function UpdateSpray(inst)
         end
 
         if v.components.crop and v.components.crop.task then
-            v.components.crop.growthpercent = v.components.crop.growthpercent + (0.001)
+            v.components.crop:DoGrow(UPDATE_TIME)
         end
 
         if v.components.burnable then

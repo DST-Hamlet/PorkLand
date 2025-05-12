@@ -317,6 +317,8 @@ local function OnFinishCallback(inst, chopper)
 
     inst.components.inventory:DropEverything(false, false)
 
+    PushTreeFallServer(inst, pt, hispos)
+
     MakeStump(inst)
 
     inst:DoTaskInTime(0.4, function()
@@ -524,6 +526,8 @@ local function MakeTeaTree(name, stage, state)
         inst.AnimState:SetMultColour(color, color, color, 1)
 
         inst:SetPrefabName("teatree")
+
+        MakeTreeClientFallAnim(inst, anims)
 
         inst.entity:SetPristine()
 
