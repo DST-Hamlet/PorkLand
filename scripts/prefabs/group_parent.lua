@@ -8,6 +8,7 @@ local function fn()
     inst:AddTag("FX")
     inst:AddTag("NOCLICK")
     inst:AddTag("NOBLOCK")
+    inst:AddTag("no_remove") -- 不应被非自身机制移除的实体
 
     inst.persists = false
 

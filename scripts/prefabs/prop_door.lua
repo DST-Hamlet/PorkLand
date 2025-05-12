@@ -103,6 +103,12 @@ local function UpdateDoorLight(inst)
     if inst.components.door then
         local interior_spawner = TheWorld.components.interiorspawner
         local targetdoor = interior_spawner.doors[inst.components.door.target_door_id].inst
+        if not (targetdoor and targetdoor:IsValid()) then
+            return
+        end
+        if not (targetdoor.prefab == "prop_door") then
+            return
+        end
         local r, g, b, light = targetdoor:GetColourAndLight()
 
         local door_percent = 1

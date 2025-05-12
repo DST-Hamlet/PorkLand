@@ -781,7 +781,7 @@ function InteriorSpawner:ClearInteriorContents(pos, exterior_pos)
                     SinkEntity(v)
                 end
                 v.components.combat:GetAttacked(nil, 20, nil)
-            elseif v:IsValid() then
+            elseif v:IsValid() and not v:HasTag("no_remove") then
                 v:Remove()
             end
         end
@@ -1158,7 +1158,7 @@ function InteriorSpawner:DemolishPlayerRoom(room_id, exit_pos)
                 v.components.health:DoDelta(-math.random(10, 50))
                 teleport(v, exit_pos)
             end
-        elseif v:IsValid() then
+        elseif v:IsValid() and not v:HasTag("no_remove") then
             v:Remove()
         end
     end

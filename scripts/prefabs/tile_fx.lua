@@ -163,6 +163,7 @@ local function fn()
     inst.entity:AddTransform()
 
     inst:AddTag("FX")
+    inst:AddTag("no_remove")
     --[[Non-networked entity]]
     inst.entity:SetCanSleep(false)
     inst.persists = false
