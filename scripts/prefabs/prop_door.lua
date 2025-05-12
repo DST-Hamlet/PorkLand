@@ -87,6 +87,7 @@ local function OnPhaseChange(inst, phase)
 end
 
 local function MakeTimeChanger(inst)
+    inst:AddTag("daylight")
     inst:AddComponent("lighttweener")
     inst.components.lighttweener:StartTween(inst.Light, lights.day.rad, lights.day.intensity, lights.day.falloff,
         {lights.day.color[1], lights.day.color[2], lights.day.color[3]}, 0)
