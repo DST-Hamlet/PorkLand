@@ -28,6 +28,7 @@ local STANDOFF_CIRCLE_DATA =
 		radius = 5,
 		addition = 6,
         angular_speed = 1.5,
+        start_circle = 0,
 	},
 
 	["vampirebat"] =
@@ -35,6 +36,7 @@ local STANDOFF_CIRCLE_DATA =
 		radius = 5,
 		addition = 6,
         angular_speed = 1.8,
+        start_circle = 0.5,
 	},
 }
 
@@ -67,14 +69,15 @@ function TeamCombat:CanAttack()
     end
 
     local index, num = data.index, data.num
-    local num_circle = 0
     local circle_data = STANDOFF_CIRCLE_DATA[self.teamtype] or STANDOFF_CIRCLE_DATA["default"]
+    
+    local num_circle = circle_data.start_circle
     num = num - 1
-    while num >= 1 do
+    while num > 0 do
         num_circle = num_circle + 1
         num = num - circle_data.addition * num_circle - 1
     end
-    local max_active_attackers = num_circle + 1
+    local max_active_attackers = math.floor(num_circle + 1)
 
     return index and (index <= max_active_attackers)
 end
@@ -96,17 +99,17 @@ function TeamCombat:GetStandOffPoint()
     local index, num, angle = data.index, data.num, data.angle
     local circle_data = STANDOFF_CIRCLE_DATA[self.teamtype] or STANDOFF_CIRCLE_DATA["default"]
 
-    local num_circle = 0
+    local num_circle = circle_data.start_circle
     num = num - 1
-    while num >= 1 do
+    while num > 0 do
         num_circle = num_circle + 1
         num = num - circle_data.addition * num_circle - 1
     end
-    local max_active_attackers = num_circle + 1
+    local max_active_attackers = math.floor(num_circle + 1)
 
     index = index - max_active_attackers
 
-    local circle = 0
+    local circle = circle_data.start_circle
     while index >= 1 do
         circle = circle + 1
         index = index - circle_data.addition * circle
@@ -115,6 +118,8 @@ function TeamCombat:GetStandOffPoint()
     if circle < 1 then
         return
     end
+
+    index = index + circle_data.addition * circle
 
     local current_circle_num = 0
     if circle == num_circle then
@@ -126,7 +131,7 @@ function TeamCombat:GetStandOffPoint()
     local radius = circle * circle_data.radius
     -- 平均分配最外圈的环绕者
     angle = angle + PI2 * (- (index - 1) / current_circle_num + (GetTime() * circle_data.angular_speed) / (circle_data.addition * circle))
-    if circle % 2 == 0 then
+    if math.floor(circle) % 2 == 0 then
         angle = - angle
     end
     local offset = Vector3(radius * math.cos(angle), 0, radius * math.sin(angle))
