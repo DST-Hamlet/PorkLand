@@ -29,7 +29,7 @@ local GetPickupAction = function(self, target, tool, ...)
     end
     if target:HasActionComponent("door")
         and not target:HasTag("door_hidden")
-        and not target:HasTag("disabled")
+        and not target:HasTag("door_disabled")
         and not (target:HasTag("burnt") or target:HasTag("fire")) then
 
         action = ACTIONS.USEDOOR
@@ -53,7 +53,7 @@ function PlayerController:GetActionButtonAction(force_target, ...)
         if target
             and target:HasActionComponent("door")
             and not target:HasTag("door_hidden")
-            and not target:HasTag("disabled")
+            and not target:HasTag("door_disabled")
             and not (target:HasTag("burnt") or target:HasTag("fire")) then
 
             if buffaction.action.code == ACTIONS.HAUNT.code then
