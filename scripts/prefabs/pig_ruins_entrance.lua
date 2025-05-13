@@ -657,16 +657,12 @@ local function OnLoadPostPass(inst, data) -- 出口的连接写在 OnLoadPostPas
     -- Run on initial load only
     if not inst.interiorID then
         -- Set our interior id to the interior id of the door that points to us
-        local exit_room_id
-        for _, ent in pairs(Ents) do
-            if ent.components.door and ent.components.door.target_door_id == inst.dungeon_name .. "_ENTRANCE2" then
-                exit_room_id = ent.components.door.interior_name
-                break
-            end
-        end
+        local target_door_id = inst.dungeon_name .. "_EXIT2"
+        local target_door_definition = TheWorld.components.interiorspawner.doors[target_door_id]
+        local exit_room_id = target_door_definition.my_interior_name
         local exterior_door_def2 = {
             my_door_id = inst.dungeon_name .. "_ENTRANCE2",
-            target_door_id = inst.dungeon_name .. "_EXIT2",
+            target_door_id = target_door_id,
             target_interior = exit_room_id,
         }
         inst.interiorID = exit_room_id
@@ -765,6 +761,12 @@ local function MakeEntrance(name, is_entrance, dungeon_name)
     return Prefab(name, fn, assets, prefabs)
 end
 
+-- A pig ruin can contain 2 entrances/exits,
+-- and we call the first one `entrance` and the second one `exit`
+--
+-- We will generate the pig ruin in entrace's OnLoad,
+-- and the exit will link to the `prop_door` generated in the pig ruin in OnLoadPostPass
+
 return MakeEntrance("pig_ruins_entrance", true, "RUINS_1"),
        MakeEntrance("pig_ruins_exit", false, "RUINS_1"),
 
@@ -772,10 +774,13 @@ return MakeEntrance("pig_ruins_entrance", true, "RUINS_1"),
        MakeEntrance("pig_ruins_exit2", false, "RUINS_2"),
 
        MakeEntrance("pig_ruins_entrance3", true, "RUINS_3"),
+      -- No second exit
 
        MakeEntrance("pig_ruins_entrance4", true, "RUINS_4"),
        MakeEntrance("pig_ruins_exit4", false, "RUINS_4"),
 
        MakeEntrance("pig_ruins_entrance5", true, "RUINS_5"),
+      -- No second exit
 
        MakeEntrance("pig_ruins_entrance_small", true, "RUINS_SMALL")
+      -- No second exit

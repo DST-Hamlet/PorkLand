@@ -7,7 +7,12 @@ local assets =
 
 local function GetRevealTarget(inst, doer)
     if not inst.treasure and inst.unique_id then
-        inst.treasure = TheWorld.components.globalidentityinfo:GetRuntimeIndentityInfo(inst.unique_id).bandit_treasure
+        local unique_ents = TheWorld.components.globalentityregistry:Get("unique_"..tostring(inst.unique_id))
+        for k, ent in pairs(unique_ents) do
+            if ent.prefab == "bandittreasure" then
+                inst.treasure = ent
+            end
+        end
     end
     if inst.treasure and inst.treasure:IsValid() then
         return inst.treasure:GetPosition()
@@ -32,7 +37,6 @@ local function MapOnSave(inst, data)
         data.treasure = inst.treasure.GUID
         table.insert(refs, inst.treasure.GUID)
     end
-    data.message = inst.message
 
     return refs
 end
@@ -45,7 +49,6 @@ local function MapOnLoadPostPass(inst, newents, data)
     if data.treasure and newents[data.treasure] then
         inst.treasure = newents[data.treasure].entity
     end
-    inst.message = data.message
 end
 
 local function MapOnLoad(inst, data)
@@ -144,7 +147,7 @@ end
 local function TreasureOnLoad(inst, data)
     if data and data.unique_id then
         inst.unique_id = data.unique_id
-        TheWorld.components.globalidentityinfo:GetRuntimeIndentityInfo(inst.unique_id).bandit_treasure = inst
+        TheWorld.components.globalentityregistry:Register("unique_"..tostring(inst.unique_id), inst)
     end
 
     if data and data.dug or not inst.components.workable then
@@ -242,7 +245,7 @@ local function bandittreasurefn()
 
     inst:DoTaskInTime(0, function()
         if inst.unique_id then
-            TheWorld.components.globalidentityinfo:GetRuntimeIndentityInfo(inst.unique_id).bandit_treasure = inst
+            TheWorld.components.globalentityregistry:Register("unique_"..tostring(inst.unique_id), inst)
         end
     end)
 

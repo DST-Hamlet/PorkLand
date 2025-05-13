@@ -16,28 +16,28 @@ local function UpdateTeam(inst)
 end
 
 local TeamCombat = Class(function(self, inst)
-	self.inst = inst
+    self.inst = inst
 
     self.inst:ListenForEvent("death", UpdateTeam, self.inst)
 end)
 
 local STANDOFF_CIRCLE_DATA =
 {
-	["default"] =
-	{
-		radius = 5,
-		addition = 6,
+    ["default"] =
+    {
+        radius = 5,
+        addition = 6,
         angular_speed = 1.5,
         start_circle = 0,
-	},
+    },
 
-	["vampirebat"] =
-	{
-		radius = 5,
-		addition = 6,
+    ["vampirebat"] =
+    {
+        radius = 5,
+        addition = 6,
         angular_speed = 1.8,
         start_circle = 0.5,
-	},
+    },
 }
 
 function TeamCombat:OnRemoveEntity()
@@ -70,7 +70,7 @@ function TeamCombat:CanAttack()
 
     local index, num = data.index, data.num
     local circle_data = STANDOFF_CIRCLE_DATA[self.teamtype] or STANDOFF_CIRCLE_DATA["default"]
-    
+
     local num_circle = circle_data.start_circle
     num = num - 1
     while num > 0 do

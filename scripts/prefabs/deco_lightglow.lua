@@ -141,6 +141,7 @@ local function fn()
 
     inst:AddTag("swinglight")
     inst:AddTag("NOBLOCK")
+    inst:AddTag("daylight")
 
     inst.entity:SetPristine()
 

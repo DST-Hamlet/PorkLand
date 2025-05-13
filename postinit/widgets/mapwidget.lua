@@ -76,7 +76,7 @@ local function get_door_id(current_room_id, target_interior_id)
     end
 end
 
-local INACTIVE_TINT = GREY
+local INACTIVE_TINT = BGCOLOURS.GREY
 
 -- For data's structure, see scripts/prefabs/interiorworkblank.lua
 -- also note that interior_id is added from scripts/components/interiorvisitor_replica.lua when receiving the data from server

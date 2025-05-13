@@ -58,9 +58,6 @@ function Vineable:UpdateVineVisual()
             self.vines.regrow(self.vines)
         end
     end
-    if self.inst.components.rotatingbillboard then
-        self.inst.components.rotatingbillboard:SyncMaskAnimation()
-    end
 end
 
 function Vineable:InitInteriorPrefab()

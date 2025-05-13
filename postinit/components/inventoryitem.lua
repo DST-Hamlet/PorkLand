@@ -155,10 +155,9 @@ function SinkEntity(entity, ...)
             entity.Transform:SetPosition(sx, 5, sz)
         else
             -- Our reasonable cases are out... so let's loop to find the portal and respawn there.
-            for k, v in pairs(Ents) do
-                if v:IsValid() and v:HasTag("multiplayer_portal") then
-                    entity.Transform:SetPosition(v.Transform:GetWorldPosition())
-                end
+            local portal = TheSim:FindFirstEntityWithTag("multiplayer_portal")
+            if portal and portal:IsValid() then
+                entity.Transform:SetPosition(portal.Transform:GetWorldPosition())
             end
         end
     else
