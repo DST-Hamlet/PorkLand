@@ -3,9 +3,9 @@ FollowPoint = Class(BehaviourNode, function(self, inst, pt, min_dist, max_dist, 
     self.inst = inst
     self.pt = pt
 
-	self.min_dist = min_dist or 0.1
+    self.min_dist = min_dist or 0.1
 
-	self.max_dist = max_dist or 0.25
+    self.max_dist = max_dist or 0.25
 
     self.canrun = canrun ~= false
     self.alwayseval = alwayseval ~= false
