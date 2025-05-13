@@ -9,7 +9,7 @@ local function GetRevealTarget(inst, doer)
     if not inst.treasure and inst.unique_id then
         local unique_ents = TheWorld.components.globalentityregistry:Get("unique_"..tostring(inst.unique_id))
         for k, ent in pairs(unique_ents) do
-            if ent.prefab == bandittreasure then
+            if ent.prefab == "bandittreasure" then
                 inst.treasure = ent
             end
         end
@@ -37,7 +37,6 @@ local function MapOnSave(inst, data)
         data.treasure = inst.treasure.GUID
         table.insert(refs, inst.treasure.GUID)
     end
-    data.message = inst.message
 
     return refs
 end
@@ -50,7 +49,6 @@ local function MapOnLoadPostPass(inst, newents, data)
     if data.treasure and newents[data.treasure] then
         inst.treasure = newents[data.treasure].entity
     end
-    inst.message = data.message
 end
 
 local function MapOnLoad(inst, data)
