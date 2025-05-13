@@ -32,10 +32,6 @@ AddPrefabPostInit("world", function(inst)
         inst:AddComponent("globalidentity")
     end
 
-    if not TheWorld.components.globalidentityinfo then
-        inst:AddComponent("globalidentityinfo")
-    end
-
     if not TheWorld.components.globalentityregistry then
         inst:AddComponent("globalentityregistry")
     end
