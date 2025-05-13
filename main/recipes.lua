@@ -754,7 +754,7 @@ AddRecipe2("shadowduelist_builder", {Ingredient("nightmarefuel", 2), Ingredient(
 
 -- Wathgrithr
 AllRecipes["spear_wathgrithr"].ingredients = {Ingredient("twigs", 2), Ingredient("flint", 2), Ingredient("iron", 2)} -- TODO: 检测世界来修改配方
-AllRecipes["spear_wathgrithr"].ingredients = {Ingredient("goldnugget", 2), Ingredient("iron", 2)} -- TODO: 检测世界来修改配方
+AllRecipes["wathgrithrhat"].ingredients = {Ingredient("goldnugget", 2), Ingredient("iron", 2)} -- TODO: 检测世界来修改配方
 
 -- Deconstruct ---
 AddDeconstructRecipe("pig_guard_tower_palace", {Ingredient("cutstone", 3), Ingredient("halberd", 2), Ingredient("pigskin", 4)})
