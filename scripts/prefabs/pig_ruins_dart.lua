@@ -13,13 +13,9 @@ local prefabs =
 local function OnCollide(inst, other)
     if other and other.prefab ~= inst.prefab then
         inst.components.combat:DoAttack(other, nil, nil, nil, nil) --2*25 dmg
-
-        local x, y, z = inst.Transform:GetWorldPosition()
+        local x, y, z = other.Transform:GetWorldPosition()
         local impactfx = SpawnPrefab("impact")
-        impactfx:FacePoint(x, y, z)
-
-        local fx = SpawnPrefab("circle_puff_fx")
-        fx.Transform:SetPosition(x, y, z)
+        impactfx.Transform:SetPosition(x, y, z)
     end
     inst:Remove()
 end
@@ -33,12 +29,12 @@ local function fn()
     inst.entity:AddNetwork()
 
     MakeCharacterPhysics(inst, 1, 0.5)
+    inst.Physics:SetCollides(false)
 
     inst.AnimState:SetBank("dart")
     inst.AnimState:SetBuild("ruins_blow_dart")
     inst.AnimState:PlayAnimation("idle")
-
-    inst.Transform:SetEightFaced()
+    inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
 
     inst:AddTag("projectile")
     inst:AddTag("NOBLOCK")
@@ -49,6 +45,8 @@ local function fn()
     if not TheWorld.ismastersim then
         return inst
     end
+
+    inst:DoTaskInTime(3, inst.Remove)
 
     inst.Physics:SetCollisionCallback(OnCollide)
 
@@ -85,7 +83,7 @@ local function LaunchDart(inst, angle, xmod, zmod)
         local x, y, z = inst.Transform:GetWorldPosition()
 
         local projectile = SpawnPrefab("pig_ruins_dart")
-        projectile.Transform:SetPosition(x + xmod, y, z + zmod)
+        projectile.Transform:SetPosition(x + xmod, y + 0.95, z + zmod)
         projectile.Transform:SetRotation(angle)
         projectile.Physics:SetMotorVel(30, 0, 0)
         projectile.SoundEmitter:PlaySound("dontstarve_DLC003/common/traps/blowdart_fire")
@@ -117,6 +115,14 @@ local function Disarm(inst, doer)
     inst.components.lootdropper:SpawnLootPrefab("blowdart_pipe", pt)
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/traps/disarm_wall")
     UpdateArt(inst)
+end
+
+local function OnHaunt(inst, haunter)
+    if math.random() < TUNING.HAUNT_CHANCE_HALF then
+        inst:shoot()
+        return true
+    end
+    return false
 end
 
 local function MakeDart(name, build, bank, animframe, facing)
@@ -173,6 +179,9 @@ local function MakeDart(name, build, bank, animframe, facing)
 
         inst:AddComponent("hiddendanger")
         inst.components.hiddendanger.offset = {x = 0, y = 1.7, z = 0}
+
+        inst:AddComponent("hauntable")
+        inst.components.hauntable:SetOnHauntFn(OnHaunt)
 
         inst.OnSave = OnSave
         inst.OnLoad = OnLoad

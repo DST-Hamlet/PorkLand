@@ -34,7 +34,7 @@ local function UpdateArt(inst)
 end
 
 local function LaunchdArt(inst, angle)
-    inst:DoTaskInTime(math.random() * 0.3, function()
+    inst:DoTaskInTime(4 * FRAMES - 0.001, function()
         local x, y, z = inst.Transform:GetWorldPosition()
         local theta = angle * DEGREES
         local pt = Vector3(math.cos(theta), 0, math.sin(-theta))
@@ -135,6 +135,18 @@ local function OnLoad(inst, data)
     UpdateArt(inst)
 end
 
+local function OnHaunt(inst, haunter)
+    if inst.components.disarmable.armed and math.random() < TUNING.HAUNT_CHANCE_HALF then
+        if inst.components.autodartthrower.on then
+            inst.components.autodartthrower:TurnOff()
+        else
+            inst.components.autodartthrower:TurnOn()
+        end
+        return true
+    end
+    return false
+end
+
 local function fn()
     local inst = CreateEntity()
 
@@ -179,7 +191,8 @@ local function fn()
     inst.components.workable:SetWorkLeft(TUNING.ROCKS_MINE_GIANT)
     inst.components.workable:SetOnWorkCallback(OnWorkCallback)
 
-    MakeHauntable(inst)
+    inst:AddComponent("hauntable")
+    inst.components.hauntable:SetOnHauntFn(OnHaunt)
 
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
@@ -191,7 +204,7 @@ local function fn()
         inst.ccw = true
     end
     inst.darttimer = 0
-    inst.shoottime = 0.4
+    inst.shoottime = 15 * FRAMES - 0.001
 
     UpdateArt(inst)
     SetRotation(inst, math.random() * 360)
