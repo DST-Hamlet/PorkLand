@@ -16,6 +16,10 @@ local prefabs =
     "antman_warrior_egg"
 }
 
+local function GenerateAntmanWarriorName()
+    return STRINGS.NAMES.ANTWARRIORNAMES_PREFIX..math.random(100000,999999)
+end
+
 local MAX_TARGET_SHARES = 5
 local SHARE_TARGET_DIST = 30
 
@@ -199,8 +203,7 @@ local function fn()
     inst.components.combat.debris_immune = true
 
     inst:AddComponent("named")
-    inst.components.named.possiblenames = STRINGS.ANTWARRIORNAMES
-    inst.components.named:PickNewName()
+    inst.components.named:SetName(GenerateAntmanWarriorName())
 
     inst:AddComponent("health")
     inst.components.health:SetMaxHealth(TUNING.ANTMAN_WARRIOR_HEALTH)
