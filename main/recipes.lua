@@ -752,6 +752,10 @@ AddRecipe2("shadowminer_builder",   {Ingredient("nightmarefuel", 2), Ingredient(
 AddRecipe2("shadowdigger_builder",  {Ingredient("nightmarefuel", 2), Ingredient("shovel", 1),  Ingredient(CHARACTER_INGREDIENT.MAX_SANITY, TUNING.SHADOWWAXWELL_SANITY_PENALTY.SHADOWDIGGER)},	TECH.WAXWELLJOURNAL, {builder_tag = "shadowmagic", nounlock = true}, {"character"})
 AddRecipe2("shadowduelist_builder", {Ingredient("nightmarefuel", 2), Ingredient("spear", 1),   Ingredient(CHARACTER_INGREDIENT.MAX_SANITY, TUNING.SHADOWWAXWELL_SANITY_PENALTY.SHADOWDUELIST)},	TECH.WAXWELLJOURNAL, {builder_tag = "shadowmagic", nounlock = true}, {"character"})
 
+-- Wathgrithr
+AllRecipes["spear_wathgrithr"].ingredients = {Ingredient("twigs", 2), Ingredient("flint", 2), Ingredient("iron", 2)} -- TODO: 检测世界来修改配方
+AllRecipes["spear_wathgrithr"].ingredients = {Ingredient("goldnugget", 2), Ingredient("iron", 2)} -- TODO: 检测世界来修改配方
+
 -- Deconstruct ---
 AddDeconstructRecipe("pig_guard_tower_palace", {Ingredient("cutstone", 3), Ingredient("halberd", 2), Ingredient("pigskin", 4)})
 AddDeconstructRecipe("pig_shop_academy", {Ingredient("boards", 4), Ingredient("relic_1", 1), Ingredient("relic_2", 1), Ingredient("pigskin", 4)})
