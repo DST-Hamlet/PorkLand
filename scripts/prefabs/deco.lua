@@ -190,15 +190,15 @@ return  DecoCreator:Create("window_round",                 "interior_window", "i
         DecoCreator:Create("deco_ruins_roots2", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "vines_2",                 {decal=true, background=2}),
         DecoCreator:Create("deco_ruins_roots3", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "vines_3",                 {decal=true, background=2}),
 
-        DecoCreator:Create("deco_ruins_pigking_relief", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "relief_king",     {decal=true, background=1}),
-        DecoCreator:Create("deco_ruins_pigman_relief2", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "relief_happy",    {decal=true, background=1}),
-        DecoCreator:Create("deco_ruins_pigqueen_relief", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "relief_queen",   {decal=true, background=1}),
-        DecoCreator:Create("deco_ruins_pigman_relief1", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "relief_confused", {decal=true, background=1}),
-        DecoCreator:Create("deco_ruins_pigman_relief3", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "relief_surprise", {decal=true, background=1}),
+        DecoCreator:Create("deco_ruins_pigking_relief", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "relief_king",     {decal=true, background=1, name_override="pig_ruins_dart_trap"}),
+        DecoCreator:Create("deco_ruins_pigman_relief2", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "relief_happy",    {decal=true, background=1, name_override="pig_ruins_dart_trap"}),
+        DecoCreator:Create("deco_ruins_pigqueen_relief", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "relief_queen",   {decal=true, background=1, name_override="pig_ruins_dart_trap"}),
+        DecoCreator:Create("deco_ruins_pigman_relief1", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "relief_confused", {decal=true, background=1, name_override="pig_ruins_dart_trap"}),
+        DecoCreator:Create("deco_ruins_pigman_relief3", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "relief_surprise", {decal=true, background=1, name_override="pig_ruins_dart_trap"}),
 
-        DecoCreator:Create("deco_ruins_pigman_relief_side", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "relief_sidewall",  {decal=true, background=1}),
+        DecoCreator:Create("deco_ruins_pigman_relief_side", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "relief_sidewall",  {decal=true, background=1, name_override="pig_ruins_dart_trap"}),
 
-        DecoCreator:Create("deco_ruins_pigman_relief4", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "relief_head",        {decal=true, background=1}),
+        DecoCreator:Create("deco_ruins_pigman_relief4", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "relief_head",        {decal=true, background=1, name_override="pig_ruins_dart_trap"}),
 
         DecoCreator:Create("deco_ruins_cornerbeam", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "pillar_corner",          {decal=true, background=3, tags={"cornerpost"}}),
         DecoCreator:Create("deco_ruins_cornerbeam_heavy", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "pillar_corner_lg", {decal=true, background=3, tags={"cornerpost"}}),
@@ -215,15 +215,15 @@ return  DecoCreator:Create("window_round",                 "interior_window", "i
 
 
                     -- THE BLUE RUINS ART
-        DecoCreator:Create("deco_ruins_pigking_relief_blue", "interior_wall_decals_ruins_blue", "interior_wall_decals_ruins", "relief_king",     {decal=true, background=1}),
-        DecoCreator:Create("deco_ruins_pigman_relief2_blue", "interior_wall_decals_ruins_blue", "interior_wall_decals_ruins", "relief_happy",    {decal=true, background=1}),
-        DecoCreator:Create("deco_ruins_pigqueen_relief_blue", "interior_wall_decals_ruins_blue", "interior_wall_decals_ruins", "relief_queen",   {decal=true, background=1}),
-        DecoCreator:Create("deco_ruins_pigman_relief1_blue", "interior_wall_decals_ruins_blue", "interior_wall_decals_ruins", "relief_confused", {decal=true, background=1}),
-        DecoCreator:Create("deco_ruins_pigman_relief3_blue", "interior_wall_decals_ruins_blue", "interior_wall_decals_ruins", "relief_surprise", {decal=true, background=1}),
+        DecoCreator:Create("deco_ruins_pigking_relief_blue", "interior_wall_decals_ruins_blue", "interior_wall_decals_ruins", "relief_king",     {decal=true, background=1, name_override="pig_ruins_dart_trap"}),
+        DecoCreator:Create("deco_ruins_pigman_relief2_blue", "interior_wall_decals_ruins_blue", "interior_wall_decals_ruins", "relief_happy",    {decal=true, background=1, name_override="pig_ruins_dart_trap"}),
+        DecoCreator:Create("deco_ruins_pigqueen_relief_blue", "interior_wall_decals_ruins_blue", "interior_wall_decals_ruins", "relief_queen",   {decal=true, background=1, name_override="pig_ruins_dart_trap"}),
+        DecoCreator:Create("deco_ruins_pigman_relief1_blue", "interior_wall_decals_ruins_blue", "interior_wall_decals_ruins", "relief_confused", {decal=true, background=1, name_override="pig_ruins_dart_trap"}),
+        DecoCreator:Create("deco_ruins_pigman_relief3_blue", "interior_wall_decals_ruins_blue", "interior_wall_decals_ruins", "relief_surprise", {decal=true, background=1, name_override="pig_ruins_dart_trap"}),
 
-        DecoCreator:Create("deco_ruins_pigman_relief_side_blue", "interior_wall_decals_ruins_blue", "interior_wall_decals_ruins", "relief_sidewall",  {decal=true, background=1}),
+        DecoCreator:Create("deco_ruins_pigman_relief_side_blue", "interior_wall_decals_ruins_blue", "interior_wall_decals_ruins", "relief_sidewall",  {decal=true, background=1, name_override="pig_ruins_dart_trap"}),
 
-        DecoCreator:Create("deco_ruins_pigman_relief4_blue", "interior_wall_decals_ruins_blue", "interior_wall_decals_ruins", "relief_head",        {decal=true, background=1}),
+        DecoCreator:Create("deco_ruins_pigman_relief4_blue", "interior_wall_decals_ruins_blue", "interior_wall_decals_ruins", "relief_head",        {decal=true, background=1, name_override="pig_ruins_dart_trap"}),
 
         DecoCreator:Create("deco_ruins_cornerbeam_blue", "interior_wall_decals_ruins_blue", "interior_wall_decals_ruins", "pillar_corner",          {decal=true, background=3, tags={"cornerpost"}}),
         DecoCreator:Create("deco_ruins_cornerbeam_heavy_blue", "interior_wall_decals_ruins_blue", "interior_wall_decals_ruins", "pillar_corner_lg", {decal=true, background=3, tags={"cornerpost"}}),

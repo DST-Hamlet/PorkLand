@@ -641,6 +641,11 @@ local function MakeDeco(build, bank, animframe, data, name)
                 inst.Transform:SetTwoFaced()
             end
         end
+        
+        if name_override then
+            inst.name = STRINGS.NAMES[name_override:upper()]
+            inst:SetPrefabNameOverride(name_override)
+        end
 
         if TheWorld.ismastersim then
             if STRINGS.NAMES[string.upper(name)] then
@@ -652,12 +657,7 @@ local function MakeDeco(build, bank, animframe, data, name)
                     inst:AddComponent("inspectable")
                 end
                 -- this way the backwall windows will show the right prefab name (with controller)
-                inst.name = STRINGS.NAMES[name_override:upper()]
                 inst.components.inspectable.nameoverride = name_override
-            end
-        else
-            if name_override then
-                inst:SetPrefabNameOverride(name_override)
             end
         end
 
