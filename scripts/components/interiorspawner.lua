@@ -521,7 +521,6 @@ function InteriorSpawner:CreateRoom(params)
         minimaptexture = minimaptexture,
         cityID = cityID,
         cc = colour_cube,
-        visited = false,
         batted = batted,
         playerroom = playerroom,
         enigma = false,
@@ -538,7 +537,7 @@ function InteriorSpawner:CreateRoom(params)
 
     for _, prefab in ipairs(addprops) do
         if not prefab.chance or math.random() < prefab.chance then
-            interior_def.prefabs[#interior_def.prefabs + 1] = prefab
+            table.insert(interior_def.prefabs, prefab)
         end
     end
 
@@ -985,8 +984,6 @@ function InteriorSpawner:SpawnInterior(interior)
             end
         end
     end
-
-    interior.visited = true
 end
 
 function InteriorSpawner:GetAllConnectedRooms(center, allrooms)

@@ -36,6 +36,10 @@ AddPrefabPostInit("world", function(inst)
         inst:AddComponent("globalidentityinfo")
     end
 
+    if not TheWorld.components.globalentityregistry then
+        inst:AddComponent("globalentityregistry")
+    end
+
     if not TheWorld.components.worldtimetracker then
         inst:AddComponent("worldtimetracker")
     end

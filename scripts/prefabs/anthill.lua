@@ -283,12 +283,7 @@ local function CreateRegularRooms(inst)
 
     local doorway_count = 1
     local current_room_setup_index = 1
-    local doorways = {inst}
-    for _, ent in pairs(Ents) do
-        if ent:HasTag("ant_hill_exit") then
-            table.insert(doorways, ent)
-        end
-    end
+    local doorways = JoinArrays({inst}, TheWorld.components.globalentityregistry:Get("ant_hill_exit"))
 
     for i = 1, NUM_ROWS do
         for j = 1, NUM_COLS do
@@ -530,6 +525,7 @@ local function makefn(is_entrance)
             inst:AddTag("ant_hill_entrance")
         else
             inst:AddTag("ant_hill_exit")
+            TheWorld.components.globalentityregistry:Register("ant_hill_exit", inst)
         end
 
         inst.name = STRINGS.NAMES.ANTHILL
