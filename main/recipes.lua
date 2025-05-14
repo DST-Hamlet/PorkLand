@@ -23,8 +23,6 @@ for i, recipe_name in ipairs(LOST_RECIPES) do
     end)
 end
 
-AllRecipes["cookbook"].ingredients = {Ingredient("papyrus", 1), Ingredient("radish", 1)} -- TODO: 检测世界来修改配方
-
 local _telebase_testfn = AllRecipes["telebase"].testfn
 AllRecipes["telebase"].testfn = function(pt, rot, ...)
     if TheWorld.components.interiorspawner:IsInInterior(pt.x, pt.z) then
@@ -751,10 +749,6 @@ AddRecipe2("shadowlumber_builder",  {Ingredient("nightmarefuel", 2), Ingredient(
 AddRecipe2("shadowminer_builder",   {Ingredient("nightmarefuel", 2), Ingredient("pickaxe", 1), Ingredient(CHARACTER_INGREDIENT.MAX_SANITY, TUNING.SHADOWWAXWELL_SANITY_PENALTY.SHADOWMINER)},	TECH.WAXWELLJOURNAL, {builder_tag = "shadowmagic", nounlock = true}, {"character"})
 AddRecipe2("shadowdigger_builder",  {Ingredient("nightmarefuel", 2), Ingredient("shovel", 1),  Ingredient(CHARACTER_INGREDIENT.MAX_SANITY, TUNING.SHADOWWAXWELL_SANITY_PENALTY.SHADOWDIGGER)},	TECH.WAXWELLJOURNAL, {builder_tag = "shadowmagic", nounlock = true}, {"character"})
 AddRecipe2("shadowduelist_builder", {Ingredient("nightmarefuel", 2), Ingredient("spear", 1),   Ingredient(CHARACTER_INGREDIENT.MAX_SANITY, TUNING.SHADOWWAXWELL_SANITY_PENALTY.SHADOWDUELIST)},	TECH.WAXWELLJOURNAL, {builder_tag = "shadowmagic", nounlock = true}, {"character"})
-
--- Wathgrithr
-AllRecipes["spear_wathgrithr"].ingredients = {Ingredient("twigs", 2), Ingredient("flint", 2), Ingredient("iron", 2)} -- TODO: 检测世界来修改配方
-AllRecipes["wathgrithrhat"].ingredients = {Ingredient("goldnugget", 2), Ingredient("iron", 2)} -- TODO: 检测世界来修改配方
 
 -- Deconstruct ---
 AddDeconstructRecipe("pig_guard_tower_palace", {Ingredient("cutstone", 3), Ingredient("halberd", 2), Ingredient("pigskin", 4)})
