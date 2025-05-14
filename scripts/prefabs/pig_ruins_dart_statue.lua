@@ -34,7 +34,7 @@ local function UpdateArt(inst)
 end
 
 local function LaunchdArt(inst, angle)
-    inst:DoTaskInTime(4 * FRAMES - 0.001, function()
+    inst:DoTaskInTime(2 * FRAMES - 0.001, function()
         local x, y, z = inst.Transform:GetWorldPosition()
         local theta = angle * DEGREES
         local pt = Vector3(math.cos(theta), 0, math.sin(-theta))
@@ -46,7 +46,7 @@ local function LaunchdArt(inst, angle)
         projectile.SoundEmitter:PlaySound("dontstarve_DLC003/common/traps/blowdart_fire")
 
         local fx = SpawnPrefab("circle_puff_fx")
-        fx.Transform:SetPosition(x + pt.x, y + 2, z + pt.z)
+        fx.Transform:SetPosition(x + pt.x, y + 2.5, z + pt.z)
     end)
 end
 

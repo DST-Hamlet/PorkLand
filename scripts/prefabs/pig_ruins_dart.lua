@@ -10,31 +10,51 @@ local prefabs =
 
 }
 
+local function dart_fx_fn()
+    local inst = CreateEntity()
+
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
+    inst.entity:AddNetwork()
+
+    inst.AnimState:SetBank("dart")
+    inst.AnimState:SetBuild("ruins_blow_dart")
+    inst.AnimState:PlayAnimation("idle")
+    inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
+
+    inst:AddTag("FX")
+    inst:AddTag("NOBLOCK")
+    inst:AddTag("NOCLICK")
+
+    inst.entity:SetPristine()
+
+    if not TheWorld.ismastersim then
+        return inst
+    end
+
+    inst.persists = false
+    return inst
+end
+
 local function OnCollide(inst, other)
     if other and other.prefab ~= inst.prefab then
         inst.components.combat:DoAttack(other, nil, nil, nil, nil) --2*25 dmg
-        local x, y, z = other.Transform:GetWorldPosition()
+        local x, y, z = inst.Transform:GetWorldPosition()
         local impactfx = SpawnPrefab("impact")
-        impactfx.Transform:SetPosition(x, y, z)
+        impactfx.Transform:SetPosition(x, y + 1.5, z)
+        inst:Remove()
     end
-    inst:Remove()
 end
 
 local function fn()
     local inst = CreateEntity()
 
     inst.entity:AddTransform()
-    inst.entity:AddAnimState()
     inst.entity:AddSoundEmitter()
     inst.entity:AddNetwork()
 
     MakeCharacterPhysics(inst, 1, 0.5)
     inst.Physics:SetCollides(false)
-
-    inst.AnimState:SetBank("dart")
-    inst.AnimState:SetBuild("ruins_blow_dart")
-    inst.AnimState:PlayAnimation("idle")
-    inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
 
     inst:AddTag("projectile")
     inst:AddTag("NOBLOCK")
@@ -45,6 +65,10 @@ local function fn()
     if not TheWorld.ismastersim then
         return inst
     end
+
+    inst._dart_fx = SpawnPrefab("pig_ruins_dart_fx")
+    inst._dart_fx.entity:SetParent(inst.entity)
+    inst._dart_fx.Transform:SetPosition(0, 2, 0)
 
     inst:DoTaskInTime(3, inst.Remove)
 
@@ -89,10 +113,7 @@ local function LaunchDart(inst, angle, xmod, zmod)
         projectile.SoundEmitter:PlaySound("dontstarve_DLC003/common/traps/blowdart_fire")
 
         local fx = SpawnPrefab("circle_puff_fx")
-        if fx then
-            local follower = fx.entity:AddFollower()
-            follower:FollowSymbol(inst.GUID, "fx_marker", 0, 0, 0)
-        end
+        fx.Transform:SetPosition(x + xmod, y + 3, z + zmod)
     end)
 end
 
@@ -198,7 +219,8 @@ local function MakeDart(name, build, bank, animframe, facing)
     return Prefab(name, dartfn, assets, prefabs)
 end
 
-return  Prefab("pig_ruins_dart", fn, assets, prefabs),
+return  Prefab("pig_ruins_dart_fx", dart_fx_fn, assets, prefabs),
+        Prefab("pig_ruins_dart", fn, assets, prefabs),
         MakeDart("pig_ruins_pigman_relief_dart1", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "relief_confused", "down"),
         MakeDart("pig_ruins_pigman_relief_dart2", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "relief_happy", "down"),
         MakeDart("pig_ruins_pigman_relief_dart3", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "relief_surprise", "down"),
