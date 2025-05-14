@@ -798,6 +798,7 @@ local function MakeDeco(build, bank, animframe, data, name)
         if data.dayevents then
             inst:WatchWorldState("phase", OnPhaseChange)
             OnPhaseChange(inst, TheWorld.state.phase)
+            inst.AnimState:FastForward(10)
         end
 
         inst:DoTaskInTime(0, function()
