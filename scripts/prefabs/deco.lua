@@ -1,6 +1,7 @@
 local DecoCreator = require("prefabs/deco_util")
 
 local function on_window_built(inst)
+    print("on_window_built", inst.Transform:GetRotation())
     if DecoCreator:IsBuiltOnBackWall(inst) then
         local bank = inst.bank:sub(1, -6) -- Remove _side
         inst.AnimState:SetBank(bank)
@@ -14,28 +15,6 @@ local function on_window_built(inst)
                     inst.children_to_spawn[i] = children .. "_backwall"
                 end
             end
-        end
-    end
-
-    if inst.components.rotatingbillboard then
-        local position = inst:GetPosition()
-        local current_interior = TheWorld.components.interiorspawner:GetInteriorCenter(position)
-        if current_interior then
-            local originpt = current_interior:GetPosition()
-            if position.z >= originpt.z then
-                inst.Transform:SetRotation(90)
-            else
-                inst.Transform:SetRotation(-90)
-            end
-
-            local animdata = shallowcopy(inst.components.rotatingbillboard.animdata)
-            animdata.bank = inst.bank
-            if DecoCreator:IsBuiltOnBackWall(inst) then
-                animdata.bank = inst.bank
-            end
-
-            inst.animdata = animdata
-            inst.components.rotatingbillboard:SetAnimation_Server(animdata)
         end
     end
 end
@@ -173,7 +152,7 @@ return  DecoCreator:Create("window_round",                 "interior_window", "i
         DecoCreator:Create("deco_marble_cornerbeam", "interior_wall_decals_hoofspa", "wall_decals_hoofspa", "pillar_corner",     {decal=true, loopanim=true, light=DecoCreator:GetLights().SMALL, tags={"NOBLOCK","cornerpost"}, onbuilt=true, name_override = "deco_marble", background=3 }),
 
         DecoCreator:Create("deco_valence", "interior_wall_decals_hoofspa", "wall_decals_hoofspa",  "vallance_1pc",  {decal=true, background=3}),
-        DecoCreator:Create("wall_mirror",  "interior_wall_mirror",         "wall_mirror",          "idle",          {background=3, followlight=true, mirror=true}),
+        DecoCreator:Create("wall_mirror",  "interior_wall_mirror",         "wall_mirror",          "idle",          {background=3, mirror=true}),
         DecoCreator:Create("deco_chaise",  "interior_floor_decor",         "interior_floor_decor", "chaise",        {physics="sofa_physics", tags={"furniture", "rotatableobject", "limited_chair"}, onbuilt=true, cansit = true}),
 
         DecoCreator:Create("wall_light_hoofspa", "interior_wall_decals_hoofspa", "wall_decals_hoofspa", "sconce_sidewall",       {light=DecoCreator:GetLights().SMALL}),
