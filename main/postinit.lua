@@ -119,6 +119,7 @@ local prefab_posts = {
     "world",
     "shard_network",
     "spoiledfood",
+    "spiderqueen",
     "statueruins",
     "shadowcreature",
     "telestaff",

@@ -218,7 +218,7 @@ local DISABLE_RECIPES = {
     "shadowduelist_builder",
     -- Webber --
     "spiderden_bedazzler",
-    "spider_whistle",
+    -- "spider_whistle",
     "spider_repellent",
     "spider_healer_item",
     "mutator_warrior",
@@ -247,7 +247,16 @@ local LOST_RECIPES = {
     -- "trawlnet",
 }
 
+local OVERRIDE_RECIPES = {
+    cookbook = {Ingredient("papyrus", 1), Ingredient("radish", 1)},
+
+    -- Wathgrithr
+    spear_wathgrithr = {Ingredient("twigs", 2), Ingredient("flint", 2), Ingredient("iron", 2)},
+    wathgrithrhat = {Ingredient("goldnugget", 2), Ingredient("iron", 2)},
+}
+
 return {
     DISABLE_RECIPES = DISABLE_RECIPES,
     LOST_RECIPES = LOST_RECIPES,
+    OVERRIDE_RECIPES = OVERRIDE_RECIPES,
 }
