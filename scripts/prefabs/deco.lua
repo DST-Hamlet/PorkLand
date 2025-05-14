@@ -2,7 +2,6 @@ local DecoCreator = require("prefabs/deco_util")
 
 local function on_window_built(inst)
     if DecoCreator:IsBuiltOnBackWall(inst) then
-        print("IsBuiltOnBackWall", inst)
         local bank = inst.bank:sub(1, -6) -- Remove _side
         inst.AnimState:SetBank(bank)
         inst.bank = bank

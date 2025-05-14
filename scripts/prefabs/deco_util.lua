@@ -680,7 +680,7 @@ local function MakeDeco(build, bank, animframe, data, name)
         end
 
         if data.children then
-            inst.children_to_spawn = data.children -- Can be overriden in onbuilt
+            inst.children_to_spawn = shallowcopy(data.children) -- Can be overriden in onbuilt
             inst:DoTaskInTime(0, function()
                 -- don't spawn child in client
                 if inst.childrenspawned then
