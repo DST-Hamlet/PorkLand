@@ -525,7 +525,9 @@ local function makefn(is_entrance)
             inst:AddTag("ant_hill_entrance")
         else
             inst:AddTag("ant_hill_exit")
-            TheWorld.components.globalentityregistry:Register("ant_hill_exit", inst)
+            if TheWorld.ismastersim then
+                TheWorld.components.globalentityregistry:Register("ant_hill_exit", inst)
+            end
         end
 
         inst.name = STRINGS.NAMES.ANTHILL
