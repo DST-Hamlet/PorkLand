@@ -238,7 +238,9 @@ end
 
 function HudCompass_Wheeler:GetCompassHeading()
     if self.compass_item
-        and self.compass_item:IsValid() then
+        and self.compass_item:IsValid()
+        and self.compass_item._istracking:value() then
+            
         if self.compass_item._hastarget:value() then
             local x = self.compass_item._targetpos.x:value()
             local z = self.compass_item._targetpos.z:value()

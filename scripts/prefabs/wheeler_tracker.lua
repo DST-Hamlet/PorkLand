@@ -167,6 +167,7 @@ local function TryTracking(inst)
 
             owner:PushEvent("canttrackitem")
             ReSetTrackingData(inst)
+            inst._istracking:set(true)
         else
             x = x + pos_table[index][1] * SEARCH_RADIUS
             z = z + pos_table[index][2] * SEARCH_RADIUS
