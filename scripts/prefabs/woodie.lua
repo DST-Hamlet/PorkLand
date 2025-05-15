@@ -336,10 +336,6 @@ local function OnResetBeard(inst)
     inst.components.beard.bits = IsWereMode(inst.weremode:value()) and 0 or 3
 end
 
-local function WereSanityFn()
-    return TUNING.WERE_SANITY_PENALTY
-end
-
 local function beaverbonusdamagefn(inst, target, damage, weapon)
     return (target:HasTag("tree") or target:HasTag("beaverchewable")) and TUNING.BEAVER_WOOD_DAMAGE or 0
 end
@@ -589,17 +585,16 @@ local function onbecamehuman(inst)
 
     inst.MiniMapEntity:SetIcon("woodie.png")
 
+    inst.components.sanity.ignore = false
+
     inst.components.locomotor.runspeed = TUNING.WILSON_RUN_SPEED
     inst.components.combat:SetDefaultDamage(TUNING.UNARMED_DAMAGE)
     inst.components.combat.bonusdamagefn = nil
-    inst.components.health:SetAbsorptionAmount(0)
-    inst.components.sanity.custom_rate_fn = nil
     inst.components.pinnable.canbepinned = true
     if not GetGameModeProperty("no_hunger") then
         inst.components.hunger:Resume()
         if IsWereMode(inst.weremode:value()) then
-            local hungerpercent = inst:HasTag("cursemaster") and TUNING.SKILLS.WOODIE.CURSE_MASTER_MIN_HUNGER or 0
-            inst.components.hunger:SetPercent(hungerpercent, true)
+            inst.components.hunger:SetPercent(TUNING.CALORIES_TINY / TUNING.WOODIE_HUNGER, true)
         end
     end
     inst.components.temperature.inherentinsulation = 0
@@ -611,7 +606,6 @@ local function onbecamehuman(inst)
     inst.components.moonstormwatcher:SetMoonstormSpeedMultiplier(TUNING.MOONSTORM_SPEED_MOD)
     inst.components.miasmawatcher:SetMiasmaSpeedMultiplier(TUNING.MIASMA_SPEED_MOD)
     inst.components.carefulwalker:SetCarefulWalkingSpeedMultiplier(TUNING.CAREFUL_SPEED_MOD)
-    inst.components.wereeater:ResetFoodMemory()
     inst.components.wereness:StopDraining()
 
     if inst.components.inspectable.getstatus == GetWereStatus then
@@ -634,6 +628,19 @@ local function onbecamehuman(inst)
     OnResetBeard(inst)
 end
 
+local function woodie_redirect(inst, amount, overtime, cause, ignore_invincible, afflicter, ignore_absorb)
+    if inst:IsWerebeaver() then
+        if amount < 0 then
+            inst.components.wereness:DoDelta(amount * (1 - TUNING.BEAVER_ABSORPTION))
+        else
+            inst.components.wereness:DoDelta(amount)
+        end
+        return true
+    else
+        return false
+    end
+end
+
 local function onbecamebeaver(inst)
     if not inst.sg:HasStateTag("ghostbuild") then
         CustomSetSkinMode(inst, "werebeaver_skin")
@@ -641,16 +648,16 @@ local function onbecamebeaver(inst)
 
     inst.MiniMapEntity:SetIcon("woodie_1.png")
 
+    inst.components.health:SetPercent(0.5)
+    inst.components.sanity:SetPercent(0.5)
+    inst.components.sanity.ignore = true
+
     inst.components.locomotor.runspeed = TUNING.BEAVER_RUN_SPEED
     inst.components.combat:SetDefaultDamage(TUNING.BEAVER_DAMAGE)
     inst.components.combat.bonusdamagefn = beaverbonusdamagefn
-    inst.components.health:SetAbsorptionAmount(TUNING.BEAVER_ABSORPTION)
-    inst.components.sanity.custom_rate_fn = WereSanityFn
     inst.components.pinnable.canbepinned = false
     if not GetGameModeProperty("no_hunger") then
-        if inst.components.hunger:IsStarving() then
-            inst.components.hunger:SetPercent(.001, true)
-        end
+        inst.components.hunger:SetPercent(TUNING.CALORIES_TINY / TUNING.WOODIE_HUNGER, true)
         inst.components.hunger:Pause()
     end
     inst.components.temperature.inherentinsulation = TUNING.INSULATION_LARGE
@@ -662,7 +669,6 @@ local function onbecamebeaver(inst)
     inst.components.moonstormwatcher:SetMoonstormSpeedMultiplier(1)
     inst.components.miasmawatcher:SetMiasmaSpeedMultiplier(1)
     inst.components.carefulwalker:SetCarefulWalkingSpeedMultiplier(1)
-    inst.components.wereeater:ResetFoodMemory()
     inst.components.wereness:SetDrainRate(CalculateWerenessDrainRate(inst, WEREMODES.BEAVER, TheWorld.state.isfullmoon))
     inst.components.wereness:StartDraining()
     inst.components.wereness:SetWereMode(nil)
@@ -766,7 +772,6 @@ local function onbecameghost(inst, data)
         CustomSetSkinMode(inst, "ghost_were"..WEREMODE_NAMES[inst.weremode:value()].."_skin")
     end
 
-    inst.components.wereeater:ResetFoodMemory()
     inst.components.wereness:StopDraining()
     inst.components.wereness:SetWereMode(nil)
 
@@ -916,6 +921,7 @@ local function master_postinit(inst)
     inst.customidleanim = customidleanimfn
 
     inst.components.health:SetMaxHealth(TUNING.WOODIE_HEALTH)
+    inst.components.health.redirect = woodie_redirect
     inst.components.hunger:SetMax(TUNING.WOODIE_HUNGER)
     inst.components.sanity:SetMax(TUNING.WOODIE_SANITY)
 
@@ -929,9 +935,6 @@ local function master_postinit(inst)
     OnResetBeard(inst)
 
     inst:AddComponent("wereness")
-
-    inst:AddComponent("wereeater")
-    inst.components.wereeater:SetForceTransformFn(OnForceTransform)
 
     inst._getstatus = nil
     inst._wasnomorph = nil

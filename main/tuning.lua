@@ -735,6 +735,8 @@ local tuning = {
 
 TUNING.WOLFGANG_HUNGER = 300
 
+TUNING.BEAVER_ABSORPTION = 0.8
+
 -- for character selection screen
 TUNING.WX78_HEALTH = wilson_health
 TUNING.WX78_HUNGER = wilson_health
