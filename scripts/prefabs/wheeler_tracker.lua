@@ -86,14 +86,14 @@ local pos_table =
     {1, -1},
     {-1, -1},
     {-1, 1},
-    {3, 1},
-    {3, -1},
-    {-3, -1},
-    {-3, 1},
-    {1, 3},
-    {1, -3},
-    {-1, -3},
-    {-1, 3},
+    {2, 1},
+    {2, -1},
+    {-2, -1},
+    {-2, 1},
+    {1, 2},
+    {1, -2},
+    {-1, -2},
+    {-1, 2},
 }
 
 local function TrackNext(x, y, z, inst, goal_inst)
@@ -180,7 +180,7 @@ local function TryTracking(inst)
                 inst.track_data.index = 1
                 inst.track_data.start_pos = inst:GetPosition()
             else
-                update_time = 0.3
+                update_time = 8 * FRAMES
             end
         end
     end
