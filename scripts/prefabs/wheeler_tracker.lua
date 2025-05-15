@@ -78,28 +78,48 @@ local function CanGiveLoot(inst, goal_inst)
     return false
 end
 
-local function TrackNext(inst, goal_inst)
-    -- local prefab = goal_inst.prefab
-    -- print("TRACKING A", prefab)
+local SEARCH_RADIUS = 150
+local pos_table =
+{
+    {0, 0},
+    {1, 1},
+    {1, -1},
+    {-1, -1},
+    {-1, 1},
+    {3, 1},
+    {3, -1},
+    {-3, -1},
+    {-3, 1},
+    {1, 3},
+    {1, -3},
+    {-1, -3},
+    {-1, 3},
+}
 
-    -- TODO: Optimize this
-
-    if inst:GetIsInInterior() then
-        return FindEntity(inst, 60, function(entity)
-            return CanGiveLoot(entity, goal_inst)
-        end)
+local function TrackNext(x, y, z, inst, goal_inst)
+    if not goal_inst then
+        return
     end
 
-    return FindEntity(inst, 200, function(entity)
-        return CanGiveLoot(entity, goal_inst)
-    end)
+    local ents = TheSim:FindEntities(x, y, z, SEARCH_RADIUS, nil, {"INLIMBO"}) -- or we could include a flag to the search?
+    for i, v in ipairs(ents) do
+        if v ~= inst and v.entity:IsVisible() and CanGiveLoot(v, goal_inst) and inst:IsInSameIsland(v) then
+            return v
+        end
+    end
 end
 
-local function DeactivateTracking(inst)
-    if inst.arrow_rotation_update then
-        inst.arrow_rotation_update:Cancel()
-        inst.arrow_rotation_update = nil
+local function ReSetTrackingData(inst)
+    if inst.target_item_update then
+        inst.target_item_update:Cancel()
+        inst.target_item_update = nil
     end
+
+    inst.track_data = {}
+    inst.track_data.index = 1
+    inst.track_data.start_pos = inst:GetPosition()
+
+    inst.tracked_item = nil
 
     inst._istracking:set(false)
 end
@@ -109,50 +129,72 @@ local function ServerUpdateTargetPos(inst, x, y, z)
     inst._targetpos.z:set(z)
 end
 
-local function ActivateTracking(inst)
+local function StartTracking(inst)
+    ReSetTrackingData(inst)
+
+    inst:TryTracking()
+end
+
+local function TryTracking(inst)
+    inst.target_item_update = nil
+    local update_time = FRAMES
     local owner = inst.components.inventoryitem.owner
     if not (owner and owner:HasTag("tracker_user")) then
+        ReSetTrackingData(inst)
+        inst.target_item_update = inst:DoTaskInTime(update_time, inst.TryTracking)
         return
     end
 
     if inst.tracked_item then
-        if inst.arrow_rotation_update == nil then
-            inst.arrow_rotation_update = inst:DoPeriodicTask(FRAMES, function()
-                if not inst.tracked_item
-                    or not inst.tracked_item:IsValid()
-                    or (inst.tracked_item:IsInLimbo() and not inst.tracked_item:HasTag("track_ignore_limbo"))
-                    or not CanGiveLoot(inst.tracked_item, inst.components.container:GetItemInSlot(1)) then
+        if not inst.tracked_item:IsValid()
+            or (inst.tracked_item:IsInLimbo() and not inst.tracked_item:HasTag("track_ignore_limbo"))
+            or not CanGiveLoot(inst.tracked_item, inst.components.container:GetItemInSlot(1)) then
 
-                    inst.tracked_item = nil
-                    DeactivateTracking(inst)
-                    inst.tracked_item = TrackNext(inst, inst.components.container:GetItemInSlot(1))
-                    ActivateTracking(inst)
-                else
-                    inst:ServerUpdateTargetPos(inst.tracked_item.Transform:GetWorldPosition())
-                    inst._istracking:set(true)
-                end
-            end)
+            ReSetTrackingData(inst)
+        else
+            inst:ServerUpdateTargetPos(inst.tracked_item.Transform:GetWorldPosition())
+            inst._istracking:set(true)
         end
-    else
-        owner.components.talker:Say(GetString(owner.prefab, "ANNOUNCE_NOTHING_FOUND"))
     end
-end
+    if not inst.tracked_item then
+        local x, y, z = inst.track_data.start_pos:Get()
+        local index = inst.track_data.index
+        local item = inst.components.container:GetItemInSlot(1)
+        
+        if index > #pos_table then
 
-local function RefreshTracking(inst)
-    DeactivateTracking(inst)
+            owner:PushEvent("canttrackitem")
+            ReSetTrackingData(inst)
+        else
+            x = x + pos_table[index][1] * SEARCH_RADIUS
+            z = z + pos_table[index][2] * SEARCH_RADIUS
+            local target_item = TrackNext(x, 0, z, inst, item)
+            inst.track_data.index = index + 1
+            if target_item then
+                inst.tracked_item = target_item
+                owner:PushEvent("trackitem")
 
-    local item = inst.components.container:GetItemInSlot(1)
-    if item then
-        inst.tracked_item = TrackNext(inst, item)
-        ActivateTracking(inst)
+                inst:ServerUpdateTargetPos(inst.tracked_item.Transform:GetWorldPosition())
+                inst._istracking:set(true)
+
+                inst.track_data.index = 1
+                inst.track_data.start_pos = inst:GetPosition()
+            else
+                update_time = 0.3
+            end
+        end
     end
+
+    inst.target_item_update = inst:DoTaskInTime(update_time, inst.TryTracking)
 end
 
 local function OnEquip(inst, owner, force)
     owner.AnimState:ClearOverrideSymbol("swap_object")
 
-    RefreshTracking(inst)
-    inst.refresh_tracking_owner_listener = function() RefreshTracking(inst) end
+    if inst.components.container:GetItemInSlot(1) then
+        StartTracking(inst)
+    end
+    
     inst:ListenForEvent("leaveinterior", inst.refresh_tracking_owner_listener, owner)
     inst:ListenForEvent("enterinterior", inst.refresh_tracking_owner_listener, owner)
 
@@ -169,10 +211,10 @@ local function OnEquip(inst, owner, force)
 end
 
 local function OnUnequip(inst, owner)
-    DeactivateTracking(inst)
+    ReSetTrackingData(inst)
     if inst.refresh_tracking_owner_listener then
-        inst:ListenForEvent("leaveinterior", inst.refresh_tracking_owner_listener, owner)
-        inst:ListenForEvent("enterinterior", inst.refresh_tracking_owner_listener, owner)
+        inst:RemoveEventCallback("leaveinterior", inst.refresh_tracking_owner_listener, owner)
+        inst:RemoveEventCallback("enterinterior", inst.refresh_tracking_owner_listener, owner)
     end
 
     if inst.components.container then
@@ -199,7 +241,7 @@ local function OnEquipToModel(inst, owner, from_ground)
 end
 
 local function OnItemLose(inst, data)
-    DeactivateTracking(inst)
+    ReSetTrackingData(inst)
 
     inst.components.inventoryitem:ChangeImageName("wheeler_tracker_open")
 end
@@ -208,7 +250,7 @@ local function OnItemGet(inst, data)
     inst.components.inventoryitem:ChangeImageName("wheeler_tracker")
 
     if inst.components.equippable:IsEquipped() then
-        RefreshTracking(inst)
+        StartTracking(inst)
     end
 end
 
@@ -314,7 +356,11 @@ local function fn()
     inst.components.fueled:InitializeFuelLevel(TUNING.WHEELER_TRACKER_FUEL)
     inst.components.fueled:SetDepletedFn(ondepleted)
 
+    inst.track_data = {}
+
+    inst.refresh_tracking_owner_listener = function(owner) StartTracking(inst) end
     inst.ServerUpdateTargetPos = ServerUpdateTargetPos
+    inst.TryTracking = TryTracking
     return inst
 end
 
