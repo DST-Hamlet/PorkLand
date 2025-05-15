@@ -1,6 +1,7 @@
 local assets =
 {
     Asset("ANIM", "anim/tracker.zip"),
+    Asset("ANIM", "anim/swap_tracker.zip"),
     Asset("INV_IMAGE", "tracker"),
     Asset("INV_IMAGE", "tracker_open"),
     Asset("ANIM", "anim/tracker_pointer.zip"),
@@ -143,6 +144,7 @@ local function TryTracking(inst)
     local owner = inst.components.inventoryitem.owner
     if not (owner and owner:HasTag("tracker_user")) then
         ReSetTrackingData(inst)
+        inst._istracking:set(true)
         inst.target_item_update = inst:DoTaskInTime(update_time, inst.TryTracking)
         return
     end
@@ -153,6 +155,7 @@ local function TryTracking(inst)
             or not CanGiveLoot(inst.tracked_item, inst.components.container:GetItemInSlot(1)) then
 
             ReSetTrackingData(inst)
+            inst._istracking:set(true)
         else
             inst:ServerUpdateTargetPos(inst.tracked_item.Transform:GetWorldPosition())
             inst._hastarget:set(true)
@@ -164,10 +167,9 @@ local function TryTracking(inst)
         local item = inst.components.container:GetItemInSlot(1)
         
         if index > #pos_table then
-
-            owner:PushEvent("canttrackitem")
             ReSetTrackingData(inst)
             inst._istracking:set(true)
+            inst.track_data.failed = true
         else
             x = x + pos_table[index][1] * SEARCH_RADIUS
             z = z + pos_table[index][2] * SEARCH_RADIUS
@@ -184,6 +186,10 @@ local function TryTracking(inst)
                 inst.track_data.start_pos = inst:GetPosition()
             else
                 update_time = 8 * FRAMES
+                if inst.track_data.failed then
+                    owner:PushEvent("canttrackitem")
+                    inst.track_data.failed = nil
+                end
             end
         end
     end
@@ -192,7 +198,9 @@ local function TryTracking(inst)
 end
 
 local function OnEquip(inst, owner, force)
-    owner.AnimState:ClearOverrideSymbol("swap_object")
+    owner.AnimState:OverrideSymbol("swap_object", "swap_tracker", "swap_tracker")
+    owner.AnimState:Show("ARM_carry")
+    owner.AnimState:Hide("ARM_normal")
 
     if inst.components.container:GetItemInSlot(1) then
         StartTracking(inst)
@@ -213,7 +221,11 @@ local function OnEquip(inst, owner, force)
     owner:AddTag("compassbearer")
 end
 
-local function OnUnequip(inst, owner)
+local function OnUnequip(inst, owner)    
+    owner.AnimState:Hide("ARM_carry")
+    owner.AnimState:Show("ARM_normal")
+    owner.AnimState:ClearOverrideSymbol("swap_object")
+    
     ReSetTrackingData(inst)
     if inst.refresh_tracking_owner_listener then
         inst:RemoveEventCallback("leaveinterior", inst.refresh_tracking_owner_listener, owner)
@@ -359,6 +371,9 @@ local function fn()
     inst.components.fueled.fueltype = FUELTYPE.MAGIC
     inst.components.fueled:InitializeFuelLevel(TUNING.WHEELER_TRACKER_FUEL)
     inst.components.fueled:SetDepletedFn(ondepleted)
+
+    inst:AddComponent("weapon")
+    inst.components.weapon:SetDamage(TUNING.UNARMED_DAMAGE)
 
     inst.track_data = {}
 
