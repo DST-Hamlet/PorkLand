@@ -121,6 +121,7 @@ local function ReSetTrackingData(inst)
 
     inst.tracked_item = nil
 
+    inst._hastarget:set(false)
     inst._istracking:set(false)
 end
 
@@ -132,6 +133,7 @@ end
 local function StartTracking(inst)
     ReSetTrackingData(inst)
 
+    inst._istracking:set(true)
     inst:TryTracking()
 end
 
@@ -153,7 +155,7 @@ local function TryTracking(inst)
             ReSetTrackingData(inst)
         else
             inst:ServerUpdateTargetPos(inst.tracked_item.Transform:GetWorldPosition())
-            inst._istracking:set(true)
+            inst._hastarget:set(true)
         end
     end
     if not inst.tracked_item then
@@ -175,7 +177,7 @@ local function TryTracking(inst)
                 owner:PushEvent("trackitem")
 
                 inst:ServerUpdateTargetPos(inst.tracked_item.Transform:GetWorldPosition())
-                inst._istracking:set(true)
+                inst._hastarget:set(true)
 
                 inst.track_data.index = 1
                 inst.track_data.start_pos = inst:GetPosition()
@@ -324,6 +326,7 @@ local function fn()
     end
 
     inst._istracking = net_bool(inst.GUID, "_istracking")
+    inst._hastarget = net_bool(inst.GUID, "_hastarget")
 
     inst._targetpos = {
         x = net_float(inst.GUID, "_targetpos.x"),

@@ -238,15 +238,17 @@ end
 
 function HudCompass_Wheeler:GetCompassHeading()
     if self.compass_item
-        and self.compass_item:IsValid()
-        and self.compass_item._istracking:value() then
-
-        local x = self.compass_item._targetpos.x:value()
-        local z = self.compass_item._targetpos.z:value()
-        local x1, _, z1 = self.owner.Transform:GetWorldPosition()
-        return x1 == x and z1 == z
-            and 0
-            or math.atan2(z1 - z, x - x1) * RADIANS + TheCamera:GetHeading() +180
+        and self.compass_item:IsValid() then
+        if self.compass_item._hastarget:value() then
+            local x = self.compass_item._targetpos.x:value()
+            local z = self.compass_item._targetpos.z:value()
+            local x1, _, z1 = self.owner.Transform:GetWorldPosition()
+            return x1 == x and z1 == z
+                and 0
+                or math.atan2(z1 - z, x - x1) * RADIANS + TheCamera:GetHeading() +180
+        else
+            return GetTime() * 360
+        end
     end
 
     return TheCamera ~= nil and (TheCamera:GetHeading() - 45) or 0
@@ -336,8 +338,7 @@ function HudCompass_Wheeler:OnUpdate(dt)
     local fullmoon_offset = math.sin(t*0.8) * Lerp(0, 720, fullmoon_t)
 
     if self.compass_item
-        and self.compass_item:IsValid()
-        and self.compass_item._istracking:value() then
+        and self.compass_item:IsValid() then
 
         sanity_offset = 0
         fullmoon_offset = 0
