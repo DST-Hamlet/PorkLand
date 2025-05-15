@@ -10,6 +10,12 @@ local prefabs =
     "slugbug",
 }
 
+SetSharedLootTable("rock_flippable",
+{
+    {"rocks",    1},
+    {"rocks", 0.33},
+})
+
 local function wobble(inst)
     if inst.AnimState:IsCurrentAnimation("idle") then
         inst.AnimState:PlayAnimation("wobble")
@@ -27,7 +33,8 @@ end
 local function setloot(inst)
     local tile = TheWorld.Map:GetTileAtPoint(inst.Transform:GetWorldPosition())
 
-    -- inst.components.lootdropper:AddExternalLoot("rocks") -- for wheeler tracker
+    inst.components.lootdropper.numrandomloot = 1
+    inst.components.lootdropper.chancerandomloot = 1.0 -- drop some random item X% of the time
 
     if tile == WORLD_TILES.PLAINS then
         inst.components.lootdropper:AddRandomLoot("jellybug", 2) -- Weighted average
@@ -61,20 +68,30 @@ local function setloot(inst)
         inst.components.lootdropper:AddRandomLoot("cutgrass", 8) -- Weighted average
         inst.components.lootdropper:AddRandomLoot("goldnugget", 1) -- Weighted average
     end
+
+    local loot = inst.components.lootdropper:PickRandomLoot()
+    inst.components.lootdropper:ClearRandomLoot()
+    inst.components.storageloot:AddLoot(loot)
 end
 
 local function onpickedfn(inst, picker)
     inst.AnimState:PlayAnimation("flip_over", false)
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/harvested/flipping_rock/open")
-    inst.components.lootdropper:DropLoot(inst:GetPosition())
+
+    local loots = inst.components.storageloot:TakeAllLoots()
+    for i, v in ipairs(loots) do
+        inst.components.lootdropper:SpawnLootPrefab(v)
+    end
+end
+
+local function onregenfn(inst)
+    setloot(inst)
 end
 
 local function makefullfn(inst)
     inst.AnimState:PlayAnimation("flip_close")
     inst.AnimState:PushAnimation("idle")
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/harvested/flipping_rock/open")
-
-    inst:DoTaskInTime(0, setloot)
 end
 
 local function makeemptyfn(inst)
@@ -102,14 +119,13 @@ end
 local function OnWorked(inst, worker, workleft)
     if workleft <= 0 then
         inst.SoundEmitter:PlaySound("dontstarve/wilson/rock_break")
-        inst.components.lootdropper:DropLootPrefab(SpawnPrefab("rocks"))
-
-        if math.random() < 0.3 then
-            inst.components.lootdropper:DropLootPrefab(SpawnPrefab("rocks"))
-        end
+        inst.components.lootdropper:DropLoot()
 
         if inst.components.pickable.canbepicked then
-            inst.components.lootdropper:DropLoot()
+            local loots = inst.components.storageloot:TakeAllLoots()
+            for i, v in ipairs(loots) do
+                inst.components.lootdropper:SpawnLootPrefab(v)
+            end
         end
 
         inst:Remove()
@@ -145,9 +161,11 @@ local function fn(Sim)
     inst.components.pickable:SetUp(nil, TUNING.FLIPPABLE_ROCK_REPOPULATE_TIME)
     inst.components.pickable.getregentimefn = getregentimefn
     inst.components.pickable.onpickedfn = onpickedfn
+    inst.components.pickable:SetOnRegenFn(onregenfn)
     inst.components.pickable.makefullfn = makefullfn
     inst.components.pickable.makeemptyfn = makeemptyfn
     inst.components.pickable.quickpick = true
+    inst.components.pickable.droppicked = true
 
     inst:AddComponent("workable")
     inst.components.workable:SetWorkLeft(3)
@@ -155,10 +173,11 @@ local function fn(Sim)
     inst.components.workable:SetOnWorkCallback(OnWorked)
 
     inst:AddComponent("lootdropper")
-    inst.components.lootdropper.numrandomloot = 1
-    inst.components.lootdropper.chancerandomloot = 1.0 -- drop some random item X% of the time
+    inst.components.lootdropper:SetChanceLootTable("rock_flippable")
     -- inst.components.lootdropper.alwaysinfront = true
-    inst:DoTaskInTime(0, setloot)
+
+    inst:AddComponent("storageloot")
+    setloot(inst)
 
     inst:AddComponent("inspectable")
 
