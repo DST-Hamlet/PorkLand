@@ -365,6 +365,9 @@ local function CalculateWerenessDrainRate(inst)
     if inst:HasTag("playerghost") then
         return 0
     else
+        if TheWorld.state.isfullmoon then
+            return 5
+        end
         return -1
     end
 end
@@ -774,12 +777,6 @@ local function onbecameghost(inst, data)
     SetWereVision(inst, WEREMODES.NONE)
 end
 
-local function OnForceTransform(inst, weremode)
-    inst.components.wereness:SetWereMode("beaver")
-    inst.components.wereness:SetPercent(1, true)
-    -- NOTES(JBK): Do not call StartDraining here it is handled by the stategraph callback.
-end
-
 --------------------------------------------------------------------------
 
 --Re-enter idle state right after loading because
@@ -807,7 +804,7 @@ local function OnLoad(inst, data)
         end
         inst.sg:GoToState("idle")
     end
-    
+
     if IsWereMode(inst.weremode:value()) and not inst:HasTag("playerghost") then
         inst.components.inventory:Close()
         if inst.components.wereness:GetPercent() <= 0 then
@@ -890,7 +887,7 @@ local function common_postinit(inst)
 
     if not TheWorld.ismastersim then
         inst.OnEntityReplicated = onentityreplicated
-    end    
+    end
 end
 
 local function master_postinit(inst)
@@ -912,7 +909,7 @@ local function master_postinit(inst)
 
     OnResetBeard(inst)
 
-    inst:AddComponent("wereness")
+    inst:AddReplaceComponent("pl_wereness", "wereness")
     inst.components.wereness:SetDrainRateFn(CalculateWerenessDrainRate)
     inst.components.wereness:StartDraining()
 
@@ -932,9 +929,9 @@ local function master_postinit(inst)
     inst:ListenForEvent("ms_respawnedfromghost", onrespawnedfromghost)
     inst:ListenForEvent("ms_becameghost", onbecameghost)
 
-    inst:DoStaticTaskInTime(0, function() 
+    inst:DoStaticTaskInTime(0, function()
         if not inst:HasTag("playerghost") then
-            onrespawnedfromghost(inst, nil, true) 
+            onrespawnedfromghost(inst, nil, true)
         end
     end)
 
