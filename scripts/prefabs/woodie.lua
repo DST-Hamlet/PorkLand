@@ -365,8 +365,8 @@ local function CalculateWerenessDrainRate(inst)
     if inst:HasTag("playerghost") then
         return 0
     else
-        if TheWorld.state.isfullmoon then
-            return 5
+        if TheWorld.state.isfullmoon and not inst:HasTag("inside_interior") then
+            return 2
         end
         return -1
     end
@@ -625,10 +625,6 @@ local function onbecamehuman(inst)
 
     inst.CanExamine = nil
 
-    --[[if inst.components.playercontroller ~= nil then
-        inst.components.playercontroller:SetCanUseMap(true)
-    end]]
-
     SetWereDrowning(inst, WEREMODES.NONE)
     SetWereWorker(inst, WEREMODES.NONE)
     SetWereActions(inst, WEREMODES.NONE)
@@ -676,7 +672,6 @@ local function onbecamebeaver(inst)
     inst.components.moonstormwatcher:SetMoonstormSpeedMultiplier(1)
     inst.components.miasmawatcher:SetMiasmaSpeedMultiplier(1)
     inst.components.carefulwalker:SetCarefulWalkingSpeedMultiplier(1)
-    inst.components.wereness:SetWereMode(nil)
 
     inst.components.beard:UpdateBeardInventory()
     local beardsack = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.BEARD)
@@ -693,10 +688,6 @@ local function onbecamebeaver(inst)
     end
 
     inst.CanExamine = CannotExamine
-
-    --[[if inst.components.playercontroller ~= nil then
-        inst.components.playercontroller:SetCanUseMap(false)
-    end]]
 
     SetWereDrowning(inst, WEREMODES.BEAVER)
     SetWereWorker(inst, WEREMODES.BEAVER)
@@ -717,28 +708,13 @@ local function onwerenesschange(inst)
         if inst.components.wereness:GetPercent() <= 0 then
             inst:PushEvent("transform_person", { mode = WEREMODE_NAMES[inst.weremode:value()], cb = onbecamehuman })
         end
-    elseif inst.components.wereness:GetPercent() > 0 then
-        local weremode = inst.components.wereness:GetWereMode()
-        if weremode ~= nil then
-            if weremode ~= "fullmoon" then
-                weremode = WEREMODES[string.upper(weremode)]
-            elseif TheWorld.state.isfullmoon then
-                weremode = math.random(#WEREMODE_NAMES)
-            else
-                weremode = WEREMODES.NONE
-                inst.components.wereness:SetWereMode(nil)
-                if not IsWereMode(inst.weremode:value()) then
-                    inst.components.wereness:SetPercent(0, true)
-                end
-            end
-            if IsWereMode(weremode) then
-                inst:PushEvent("transform_wereplayer", {
-                    mode = WEREMODE_NAMES[weremode],
-                    cb = (weremode == WEREMODES.BEAVER and onbecamebeaver) or
-                        nil
-                })
-            end
-        end
+    elseif inst.components.wereness:GetPercent() >= 1 then
+        local weremode = WEREMODES.BEAVER
+        inst:PushEvent("transform_wereplayer", {
+            mode = WEREMODE_NAMES[weremode],
+            cb = (weremode == WEREMODES.BEAVER and onbecamebeaver) or
+                nil
+        })
     end
 end
 
@@ -752,7 +728,6 @@ local function onrespawnedfromghost(inst, data, nofullmoontest)
             onbecamebeaver(inst)
         end
     else
-        inst.components.wereness:SetPercent(0, true)
         onbecamehuman(inst)
     end
 end
@@ -761,8 +736,6 @@ local function onbecameghost(inst, data)
     if IsWereMode(inst.weremode:value()) and not (data and data.corpse) then
         CustomSetSkinMode(inst, "ghost_were"..WEREMODE_NAMES[inst.weremode:value()].."_skin")
     end
-
-    inst.components.wereness:SetWereMode(nil)
 
     inst.components.beard:UpdateBeardInventory()
     local beardsack = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.BEARD)

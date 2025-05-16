@@ -178,6 +178,7 @@ local widget_posts = {
     "mapwidget",
     "recipepopup",
     "itemtile",
+    "werebadge",
 }
 
 local module_posts = {
