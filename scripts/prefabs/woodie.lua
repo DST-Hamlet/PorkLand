@@ -224,7 +224,7 @@ local function SetWereMode(inst, mode, skiphudfx)
     if IsWereMode(mode) then
         TheWorld:PushEvent("enabledynamicmusic", false)
         if not TheFocalPoint.SoundEmitter:PlayingSound("beavermusic") then
-            TheFocalPoint.SoundEmitter:PlaySound("dontstarve/music/music_hoedown")
+            TheFocalPoint.SoundEmitter:PlaySound("dontstarve/music/music_hoedown", "beavermusic")
         end
 
         inst.HUD.controls.status:SetWereMode(true, skiphudfx)
@@ -608,6 +608,16 @@ local function onbecamehuman(inst)
     inst.components.carefulwalker:SetCarefulWalkingSpeedMultiplier(TUNING.CAREFUL_SPEED_MOD)
     inst.components.wereness:StopDraining()
 
+    inst.components.beard:UpdateBeardInventory()
+    local beardsack = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.BEARD)
+    for k, v in pairs(beardsack.components.inventory.itemslots) do
+        if v then
+            v.components.inventoryitem:RemoveFromOwner(true)
+            inst.components.inventory:Equip(v)
+        end
+    end
+    beardsack.components.inventory:DropEverything()
+
     if inst.components.inspectable.getstatus == GetWereStatus then
         inst.components.inspectable.getstatus = inst._getstatus
         inst._getstatus = nil
@@ -657,7 +667,7 @@ local function onbecamebeaver(inst)
     inst.components.combat.bonusdamagefn = beaverbonusdamagefn
     inst.components.pinnable.canbepinned = false
     if not GetGameModeProperty("no_hunger") then
-        inst.components.hunger:SetPercent(TUNING.CALORIES_TINY / TUNING.WOODIE_HUNGER, true)
+        inst.components.hunger:SetPercent(1, true)
         inst.components.hunger:Pause()
     end
     inst.components.temperature.inherentinsulation = TUNING.INSULATION_LARGE
@@ -672,6 +682,15 @@ local function onbecamebeaver(inst)
     inst.components.wereness:SetDrainRate(CalculateWerenessDrainRate(inst, WEREMODES.BEAVER, TheWorld.state.isfullmoon))
     inst.components.wereness:StartDraining()
     inst.components.wereness:SetWereMode(nil)
+
+    inst.components.beard:UpdateBeardInventory()
+    local beardsack = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.BEARD)
+    for k, v in pairs(inst.components.inventory.equipslots) do
+        if v and v ~= beardsack then
+            v.components.inventoryitem:RemoveFromOwner(true)
+            beardsack.components.inventory:GiveItem(v, nil, inst:GetPosition())
+        end
+    end
 
     if inst.components.inspectable.getstatus ~= GetWereStatus then
         inst._getstatus = inst.components.inspectable.getstatus
@@ -774,6 +793,10 @@ local function onbecameghost(inst, data)
 
     inst.components.wereness:StopDraining()
     inst.components.wereness:SetWereMode(nil)
+
+    inst.components.beard:UpdateBeardInventory()
+    local beardsack = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.BEARD)
+    beardsack.components.inventory:DropEverything()
 
     if inst._wasnomorph ~= nil then
         inst._wasnomorph = nil

@@ -21,6 +21,7 @@ local component_posts = {
     "ambientlighting",
     "amphibiouscreature",
     "areaaware",
+    "beard",
     "blinkstaff",
     "builder_replica",
     "builder",

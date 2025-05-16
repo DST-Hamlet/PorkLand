@@ -284,6 +284,7 @@ PrefabFiles = {
     "group_child",
 
     "tile_fx",
+    "woodie_beaver_bag",
 }
 
 Assets = {
