@@ -577,8 +577,6 @@ local function onbecamehuman(inst)
             inst.components.hunger:SetPercent(TUNING.CALORIES_TINY / TUNING.WOODIE_HUNGER, true)
         end
     end
-    inst.components.temperature.inherentinsulation = 0
-    inst.components.temperature.inherentsummerinsulation = 0
     inst.components.moisture:SetInherentWaterproofness(0)
     inst.components.talker:StopIgnoringAll("becamewere")
     inst.components.catcher:SetEnabled(true)
@@ -648,8 +646,6 @@ local function onbecamebeaver(inst)
         inst.components.hunger:SetPercent(1, true)
         inst.components.hunger:Pause()
     end
-    inst.components.temperature.inherentinsulation = TUNING.INSULATION_LARGE
-    inst.components.temperature.inherentsummerinsulation = TUNING.INSULATION_LARGE
     inst.components.moisture:SetInherentWaterproofness(TUNING.WATERPROOFNESS_LARGE)
     inst.components.talker:IgnoreAll("becamewere")
     inst.components.catcher:SetEnabled(false)
