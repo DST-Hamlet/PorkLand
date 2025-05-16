@@ -505,8 +505,6 @@ local function ChangeWereModeValue(inst, newmode)
         end
         inst:RemoveTag(inst.weremode:value() == WEREMODES.BEAVER and "beaver" or ("were"..WEREMODE_NAMES[inst.weremode:value()]))
         inst.Network:RemoveUserFlag(USERFLAGS["CHARACTER_STATE_"..tostring(inst.weremode:value())])
-    else
-        inst:AddTag("wereplayer")
     end
 
     inst.weremode:set(newmode)
@@ -517,6 +515,7 @@ local function ChangeWereModeValue(inst, newmode)
         inst.overrideskinmode = "were"..WEREMODE_NAMES[newmode].."_skin"
         inst.overrideghostskinmode = "ghost_"..inst.overrideskinmode
         inst:PushEvent("startwereplayer") --event for sentientaxe
+        inst:AddTag("wereplayer")
     else
         inst.overrideskinmode = nil
         inst.overrideghostskinmode = nil
