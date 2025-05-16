@@ -340,7 +340,7 @@ local function beaverbonusdamagefn(inst, target, damage, weapon)
     return (target:HasTag("tree") or target:HasTag("beaverchewable")) and TUNING.BEAVER_WOOD_DAMAGE or 0
 end
 
-local function CalculateWerenessDrainRate(inst, mode, isfullmoon)
+local function CalculateWerenessDrainRate(inst, mode)
     return -1
 end
 
@@ -376,27 +376,6 @@ local function onworked(inst, data)
     end
 end
 
-local function OnIsFullmoon(inst, isfullmoon)
-
-    if not isfullmoon then
-        inst.fullmoontriggered = nil
-        if inst.components.wereness:GetWereMode() == "fullmoon" then
-            inst.components.wereness:SetWereMode(nil)
-            if not IsWereMode(inst.weremode:value()) then
-                inst.components.wereness:SetPercent(0, true)
-            end
-        end
-    elseif not inst.fullmoontriggered then
-        local pct = inst.components.wereness:GetPercent()
-        if pct > 0 then
-            inst.components.wereness:SetPercent(1)
-        end
-    end
-    if IsWereMode(inst.weremode:value()) then
-        inst.components.wereness:SetDrainRate(CalculateWerenessDrainRate(inst, inst.weremode:value(), isfullmoon))
-    end
-end
-
 --------------------------------------------------------------------------
 
 local function SetWereDrowning(inst, mode)
@@ -426,7 +405,7 @@ local function OnBeaverWorkingOver(inst)
         inst._beaverworking = nil
         inst._beaverworkinglevel = nil
     end
-    inst.components.wereness:SetDrainRate(CalculateWerenessDrainRate(inst, WEREMODES.BEAVER, TheWorld.state.isfullmoon))
+    inst.components.wereness:SetDrainRate(CalculateWerenessDrainRate(inst, WEREMODES.BEAVER))
 end
 
 local function OnBeaverWorking(inst)
@@ -435,7 +414,7 @@ local function OnBeaverWorking(inst)
     end
     inst._beaverworking = inst:DoTaskInTime(TUNING.BEAVER_WORKING_DRAIN_TIME_DURATION, OnBeaverWorkingOver)
     inst._beaverworkinglevel = 2
-    inst.components.wereness:SetDrainRate(CalculateWerenessDrainRate(inst, WEREMODES.BEAVER, TheWorld.state.isfullmoon))
+    inst.components.wereness:SetDrainRate(CalculateWerenessDrainRate(inst, WEREMODES.BEAVER))
 end
 
 local function OnBeaverFighting(inst, data)
@@ -679,7 +658,7 @@ local function onbecamebeaver(inst)
     inst.components.moonstormwatcher:SetMoonstormSpeedMultiplier(1)
     inst.components.miasmawatcher:SetMiasmaSpeedMultiplier(1)
     inst.components.carefulwalker:SetCarefulWalkingSpeedMultiplier(1)
-    inst.components.wereness:SetDrainRate(CalculateWerenessDrainRate(inst, WEREMODES.BEAVER, TheWorld.state.isfullmoon))
+    inst.components.wereness:SetDrainRate(CalculateWerenessDrainRate(inst, WEREMODES.BEAVER))
     inst.components.wereness:StartDraining()
     inst.components.wereness:SetWereMode(nil)
 
@@ -756,7 +735,7 @@ local function onnewstate(inst)
     end
 
     if IsWereMode(inst.weremode:value()) then
-        inst.components.wereness:SetDrainRate(CalculateWerenessDrainRate(inst, inst.weremode:value(), TheWorld.state.isfullmoon))
+        inst.components.wereness:SetDrainRate(CalculateWerenessDrainRate(inst, inst.weremode:value()))
     end
 end
 
@@ -765,7 +744,6 @@ local function onrespawnedfromghost(inst, data, nofullmoontest)
         inst._wasnomorph = inst.sg:HasStateTag("nomorph") or inst.sg:HasStateTag("silentmorph")
         inst:ListenForEvent("werenessdelta", onwerenesschange)
         inst:ListenForEvent("newstate", onnewstate)
-        inst:WatchWorldState("isfullmoon", OnIsFullmoon)
     end
 
     if IsWereMode(inst.weremode:value()) then
@@ -775,11 +753,6 @@ local function onrespawnedfromghost(inst, data, nofullmoontest)
         end
     else
         onbecamehuman(inst)
-    end
-
-    -- nofullmoontest is an argument passed manually only!
-    if not nofullmoontest then
-        OnIsFullmoon(inst, TheWorld.state.isfullmoon)
     end
 end
 
@@ -802,7 +775,6 @@ local function onbecameghost(inst, data)
         inst._wasnomorph = nil
         inst:RemoveEventCallback("werenessdelta", onwerenesschange)
         inst:RemoveEventCallback("newstate", onnewstate)
-        inst:StopWatchingWorldState("isfullmoon", OnIsFullmoon)
     end
 
     SetWereDrowning(inst, WEREMODES.NONE)
@@ -829,16 +801,13 @@ local function onentityreplicated(inst)
 end
 
 local function onpreload(inst, data)
-    if data ~= nil and data.fullmoontriggered then
-        if inst.fullmoontriggered then
-            inst.components.wereness:SetWereMode(nil)
-            inst.components.wereness:SetPercent(0, true)
-        else
-            inst.fullmoontriggered = true
-        end
-    end
 
+end
+
+local function OnLoad(inst, data)
+    print("woodie OnLoad", data)
     if data ~= nil then
+        print("woodie OnLoad", data.isbeaver)
         if data.isbeaver then
             onbecamebeaver(inst)
         else
@@ -846,26 +815,20 @@ local function onpreload(inst, data)
         end
         inst.sg:GoToState("idle")
     end
-end
-
-local function onload(inst)
+    
     if IsWereMode(inst.weremode:value()) and not inst:HasTag("playerghost") then
         inst.components.inventory:Close()
         if inst.components.wereness:GetPercent() <= 0 then
-            --under these conditions, we won't get a "werenessdelta" event on load
-            --but we do want to trigger a transformation back to human right away.
+
             onwerenesschange(inst)
         end
     end
-
-    OnIsFullmoon(inst, TheWorld.state.isfullmoon)
 end
 
 local function onsave(inst, data)
     if IsWereMode(inst.weremode:value()) then
         data["is"..WEREMODE_NAMES[inst.weremode:value()]] = true
     end
-    data.fullmoontriggered = inst.fullmoontriggered
 end
 
 --------------------------------------------------------------------------
@@ -973,10 +936,14 @@ local function master_postinit(inst)
     inst:ListenForEvent("ms_respawnedfromghost", onrespawnedfromghost)
     inst:ListenForEvent("ms_becameghost", onbecameghost)
 
-    onrespawnedfromghost(inst, nil, true)
+    inst:DoStaticTaskInTime(0, function() 
+        if not inst:HasTag("playerghost") then
+            onrespawnedfromghost(inst, nil, true) 
+        end
+    end)
 
     inst.OnSave = onsave
-    inst.OnLoad = onload
+    inst.OnLoad = OnLoad
     inst.OnPreLoad = onpreload
 end
 

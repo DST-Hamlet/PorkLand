@@ -15,22 +15,15 @@ local function fn(Sim)
 
     MakeInventoryPhysics(inst)
 
-    MakeInventoryFloatable(inst, "med", nil, 0.6)
-
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
         return inst
     end
 
-    MakeHauntableLaunch(inst)
-
     inst:AddComponent("inventoryitem")
     inst.components.inventoryitem.keepondeath = true
     inst.components.inventoryitem.cangoincontainer = false
-
-    MakeSmallBurnable(inst, TUNING.SMALL_BURNTIME)
-    MakeSmallPropagator(inst)
 
     inst:AddComponent("inventory")
     inst.components.inventory.maxslots = 3
@@ -39,7 +32,6 @@ local function fn(Sim)
     inst:AddComponent("equippable")
     inst.components.equippable.equipslot = EQUIPSLOTS.BEARD
     inst.components.equippable:SetPreventUnequipping(true)
-    inst.components.equippable:SetOnUnequip(inst.Remove)
 
     return inst
 end
