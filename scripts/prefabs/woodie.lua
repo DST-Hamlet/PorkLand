@@ -340,8 +340,12 @@ local function beaverbonusdamagefn(inst, target, damage, weapon)
     return (target:HasTag("tree") or target:HasTag("beaverchewable")) and TUNING.BEAVER_WOOD_DAMAGE or 0
 end
 
-local function CalculateWerenessDrainRate(inst, mode)
-    return -1
+local function CalculateWerenessDrainRate(inst)
+    if inst:HasTag("playerghost") then
+        return 0
+    else
+        return -1
+    end
 end
 
 --------------------------------------------------------------------------
@@ -405,7 +409,6 @@ local function OnBeaverWorkingOver(inst)
         inst._beaverworking = nil
         inst._beaverworkinglevel = nil
     end
-    inst.components.wereness:SetDrainRate(CalculateWerenessDrainRate(inst, WEREMODES.BEAVER))
 end
 
 local function OnBeaverWorking(inst)
@@ -414,7 +417,6 @@ local function OnBeaverWorking(inst)
     end
     inst._beaverworking = inst:DoTaskInTime(TUNING.BEAVER_WORKING_DRAIN_TIME_DURATION, OnBeaverWorkingOver)
     inst._beaverworkinglevel = 2
-    inst.components.wereness:SetDrainRate(CalculateWerenessDrainRate(inst, WEREMODES.BEAVER))
 end
 
 local function OnBeaverFighting(inst, data)
@@ -476,33 +478,31 @@ end
 --------------------------------------------------------------------------
 
 local function ChangeWereModeValue(inst, newmode)
-    if inst.weremode:value() ~= newmode then
-        if IsWereMode(inst.weremode:value()) then
-            if not IsWereMode(newmode) then
-                inst:RemoveTag("wereplayer")
-            end
-            inst:RemoveTag(inst.weremode:value() == WEREMODES.BEAVER and "beaver" or ("were"..WEREMODE_NAMES[inst.weremode:value()]))
-            inst.Network:RemoveUserFlag(USERFLAGS["CHARACTER_STATE_"..tostring(inst.weremode:value())])
-        else
-            inst:AddTag("wereplayer")
+    if IsWereMode(inst.weremode:value()) then
+        if not IsWereMode(newmode) then
+            inst:RemoveTag("wereplayer")
         end
-
-        inst.weremode:set(newmode)
-
-        if IsWereMode(newmode) then
-            inst:AddTag(newmode == WEREMODES.BEAVER and "beaver" or ("were"..WEREMODE_NAMES[newmode]))
-            inst.Network:AddUserFlag(USERFLAGS["CHARACTER_STATE_"..tostring(newmode)])
-            inst.overrideskinmode = "were"..WEREMODE_NAMES[newmode].."_skin"
-            inst.overrideghostskinmode = "ghost_"..inst.overrideskinmode
-            inst:PushEvent("startwereplayer") --event for sentientaxe
-        else
-            inst.overrideskinmode = nil
-            inst.overrideghostskinmode = nil
-            inst:PushEvent("stopwereplayer") --event for sentientaxe
-        end
-
-        OnWereModeDirty(inst)
+        inst:RemoveTag(inst.weremode:value() == WEREMODES.BEAVER and "beaver" or ("were"..WEREMODE_NAMES[inst.weremode:value()]))
+        inst.Network:RemoveUserFlag(USERFLAGS["CHARACTER_STATE_"..tostring(inst.weremode:value())])
+    else
+        inst:AddTag("wereplayer")
     end
+
+    inst.weremode:set(newmode)
+
+    if IsWereMode(newmode) then
+        inst:AddTag(newmode == WEREMODES.BEAVER and "beaver" or ("were"..WEREMODE_NAMES[newmode]))
+        inst.Network:AddUserFlag(USERFLAGS["CHARACTER_STATE_"..tostring(newmode)])
+        inst.overrideskinmode = "were"..WEREMODE_NAMES[newmode].."_skin"
+        inst.overrideghostskinmode = "ghost_"..inst.overrideskinmode
+        inst:PushEvent("startwereplayer") --event for sentientaxe
+    else
+        inst.overrideskinmode = nil
+        inst.overrideghostskinmode = nil
+        inst:PushEvent("stopwereplayer") --event for sentientaxe
+    end
+
+    OnWereModeDirty(inst)
 end
 
 --V2C: if the debuff symbol offsets change, then make sure you update the offsets
@@ -537,6 +537,7 @@ local function CustomSetDebuffSymbolForSkinMode(inst, skinmode)
 end
 
 local function CustomSetSkinMode(inst, skinmode)
+    inst.skinmode = skinmode
     local data = SKIN_MODE_DATA[skinmode]
     if data.hideclothing then
         inst.components.skinner:HideAllClothing(inst.AnimState)
@@ -558,7 +559,7 @@ local function onbecamehuman(inst)
         --when entity is being spawned
         CustomSetDebuffSymbolForSkinMode(inst, "normal_skin")
         --CustomSetShadowForSkinMode(inst, "normal_skin") --should be same as default already
-    elseif not inst.sg:HasStateTag("ghostbuild") then
+    elseif not (inst:HasTag("playerghost") or inst.sg:HasStateTag("ghostbuild")) then
         CustomSetSkinMode(inst, "normal_skin")
     end
 
@@ -585,7 +586,6 @@ local function onbecamehuman(inst)
     inst.components.moonstormwatcher:SetMoonstormSpeedMultiplier(TUNING.MOONSTORM_SPEED_MOD)
     inst.components.miasmawatcher:SetMiasmaSpeedMultiplier(TUNING.MIASMA_SPEED_MOD)
     inst.components.carefulwalker:SetCarefulWalkingSpeedMultiplier(TUNING.CAREFUL_SPEED_MOD)
-    inst.components.wereness:StopDraining()
 
     inst.components.beard:UpdateBeardInventory()
     local beardsack = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.BEARD)
@@ -618,7 +618,7 @@ local function onbecamehuman(inst)
 end
 
 local function woodie_redirect(inst, amount, overtime, cause, ignore_invincible, afflicter, ignore_absorb)
-    if inst:IsWerebeaver() then
+    if inst:IsWerebeaver() and cause ~= "drowning" then
         if amount < 0 then
             inst.components.wereness:DoDelta(amount * (1 - TUNING.BEAVER_ABSORPTION))
         else
@@ -631,10 +631,9 @@ local function woodie_redirect(inst, amount, overtime, cause, ignore_invincible,
 end
 
 local function onbecamebeaver(inst)
-    if not inst.sg:HasStateTag("ghostbuild") then
+    if not (inst:HasTag("playerghost") or inst.sg:HasStateTag("ghostbuild")) then
         CustomSetSkinMode(inst, "werebeaver_skin")
     end
-
     inst.MiniMapEntity:SetIcon("woodie_1.png")
 
     inst.components.health:SetPercent(0.5)
@@ -658,8 +657,6 @@ local function onbecamebeaver(inst)
     inst.components.moonstormwatcher:SetMoonstormSpeedMultiplier(1)
     inst.components.miasmawatcher:SetMiasmaSpeedMultiplier(1)
     inst.components.carefulwalker:SetCarefulWalkingSpeedMultiplier(1)
-    inst.components.wereness:SetDrainRate(CalculateWerenessDrainRate(inst, WEREMODES.BEAVER))
-    inst.components.wereness:StartDraining()
     inst.components.wereness:SetWereMode(nil)
 
     inst.components.beard:UpdateBeardInventory()
@@ -726,25 +723,9 @@ local function onwerenesschange(inst)
     end
 end
 
-local function onnewstate(inst)
-    if inst._wasnomorph ~= (inst.sg:HasStateTag("nomorph") or inst.sg:HasStateTag("silentmorph")) then
-        inst._wasnomorph = not inst._wasnomorph
-        if not inst._wasnomorph then
-            onwerenesschange(inst)
-        end
-    end
-
-    if IsWereMode(inst.weremode:value()) then
-        inst.components.wereness:SetDrainRate(CalculateWerenessDrainRate(inst, inst.weremode:value()))
-    end
-end
 
 local function onrespawnedfromghost(inst, data, nofullmoontest)
-    if inst._wasnomorph == nil then
-        inst._wasnomorph = inst.sg:HasStateTag("nomorph") or inst.sg:HasStateTag("silentmorph")
-        inst:ListenForEvent("werenessdelta", onwerenesschange)
-        inst:ListenForEvent("newstate", onnewstate)
-    end
+    inst:ListenForEvent("werenessdelta", onwerenesschange)
 
     if IsWereMode(inst.weremode:value()) then
         inst.components.inventory:Close()
@@ -752,30 +733,23 @@ local function onrespawnedfromghost(inst, data, nofullmoontest)
             onbecamebeaver(inst)
         end
     else
+        inst.components.wereness:SetPercent(0, true)
         onbecamehuman(inst)
     end
 end
 
 local function onbecameghost(inst, data)
-    if not IsWereMode(inst.weremode:value()) then
-        --clear any queued transformations
-        inst.components.wereness:SetPercent(0, true)
-    elseif data == nil or not data.corpse then
+    if IsWereMode(inst.weremode:value()) and not (data and data.corpse) then
         CustomSetSkinMode(inst, "ghost_were"..WEREMODE_NAMES[inst.weremode:value()].."_skin")
     end
 
-    inst.components.wereness:StopDraining()
     inst.components.wereness:SetWereMode(nil)
 
     inst.components.beard:UpdateBeardInventory()
     local beardsack = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.BEARD)
     beardsack.components.inventory:DropEverything()
 
-    if inst._wasnomorph ~= nil then
-        inst._wasnomorph = nil
-        inst:RemoveEventCallback("werenessdelta", onwerenesschange)
-        inst:RemoveEventCallback("newstate", onnewstate)
-    end
+    inst:RemoveEventCallback("werenessdelta", onwerenesschange)
 
     SetWereDrowning(inst, WEREMODES.NONE)
     SetWereWorker(inst, WEREMODES.NONE)
@@ -801,14 +775,16 @@ local function onentityreplicated(inst)
 end
 
 local function onpreload(inst, data)
-
+    if data ~= nil then
+        if data.isbeaver then
+            ChangeWereModeValue(inst, WEREMODES.BEAVER)
+        end
+    end
 end
 
 local function OnLoad(inst, data)
-    print("woodie OnLoad", data)
     if data ~= nil then
-        print("woodie OnLoad", data.isbeaver)
-        if data.isbeaver then
+        if data.isbeaver and not inst:HasTag("playerghost") then
             onbecamebeaver(inst)
         else
             return
@@ -921,9 +897,13 @@ local function master_postinit(inst)
     OnResetBeard(inst)
 
     inst:AddComponent("wereness")
+    inst.components.wereness:SetDrainRateFn(CalculateWerenessDrainRate)
+    inst.components.wereness:StartDraining()
 
     inst._getstatus = nil
     inst._wasnomorph = nil
+
+    inst._last_chop = GetTime()
 
     inst.CustomSetSkinMode = CustomSetSkinMode
     inst.CustomSetShadowForSkinMode = CustomSetShadowForSkinMode

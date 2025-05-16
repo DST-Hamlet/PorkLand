@@ -86,6 +86,7 @@ local component_posts = {
     "waterproofer",
     "wavemanager",
     "weapon",
+    "wereness",
     "wisecracker",
     "witherable",
     "workable",
