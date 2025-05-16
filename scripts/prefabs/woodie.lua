@@ -150,6 +150,12 @@ end
 
 local function BeaverLeftClickPicker(inst, target)
     if target ~= nil and target ~= inst then
+        if target:HasActionComponent("door")
+            and not target:HasTag("disabled")
+            and not (target:HasTag("burnt") or target:HasTag("fire")) then
+
+            return inst.components.playeractionpicker:SortActionList({ACTIONS.USEDOOR}, target, nil)
+        end
         if inst.replica.combat:CanTarget(target) then
             return (not target:HasTag("player") or inst.components.playercontroller:IsControlPressed(CONTROL_FORCE_ATTACK))
                 and inst.components.playeractionpicker:SortActionList({ ACTIONS.ATTACK }, target, nil)
@@ -170,20 +176,35 @@ local function BeaverLeftClickPicker(inst, target)
 end
 
 local function BeaverRightClickPicker(inst, target, pos)
-    return target ~= nil
-        and target ~= inst
-        and (   (   inst:HasTag("on_walkable_plank") and
-                    target:HasTag("walkingplank") and
-                    inst.components.playeractionpicker:SortActionList({ ACTIONS.ABANDON_SHIP }, target, nil)
-                ) or
-                (   target:HasTag("HAMMER_workable") and
-                    inst.components.playeractionpicker:SortActionList({ ACTIONS.HAMMER }, target, nil)
-                ) or
-                (   target:HasTag("DIG_workable") and
-                    target:HasTag("sign") and
-                    inst.components.playeractionpicker:SortActionList({ ACTIONS.DIG }, target, nil)
+    if target ~= nil and target ~= inst then
+        for k, v in pairs(FOODGROUP) do
+            if inst:HasTag(v.name.."_eater") then
+                for i, v2 in ipairs(v.types) do
+                    if target:HasTag("edible_"..v2) then
+                        return inst.components.playeractionpicker:SortActionList({ ACTIONS.EAT }, target, nil)
+                    end
+                end
+            end
+        end
+        for k, v in pairs(FOODTYPE) do
+            if target:HasTag("edible_"..v) and inst:HasTag(v.."_eater") then
+                table.insert(actions, ACTIONS.EAT)
+                return inst.components.playeractionpicker:SortActionList({ ACTIONS.EAT }, target, nil)
+            end
+        end
+        return (   (   inst:HasTag("on_walkable_plank") and
+                        target:HasTag("walkingplank") and
+                        inst.components.playeractionpicker:SortActionList({ ACTIONS.ABANDON_SHIP }, target, nil)
+                    ) or
+                    (   target:HasTag("HAMMER_workable") and
+                        inst.components.playeractionpicker:SortActionList({ ACTIONS.HAMMER }, target, nil)
+                    ) or
+                    (   target:HasTag("DIG_workable") and
+                        target:HasTag("sign") and
+                        inst.components.playeractionpicker:SortActionList({ ACTIONS.DIG }, target, nil)
+                    )
                 )
-            )
+    end
 end
 
 local function Empty()
