@@ -19,6 +19,14 @@ function Inventory:Equip(item, ...)
     end
 end
 
+local _DropEquipped = Inventory.DropEquipped
+function Inventory:DropEquipped(keepBackpack)
+    if keepBackpack and self.inst:HasTag("wereness") then
+        return
+    end
+    return _DropEquipped(self, keepBackpack)
+end
+
 function Inventory:HasPoisonBlockerEquip()
     for k, v in pairs (self.equipslots) do
         if v.components.equippable ~= nil and v.components.equippable:IsPoisonBlocker() then

@@ -992,6 +992,11 @@ local PL_COMPONENT_ACTIONS =
     },
 
     INVENTORY = { -- args: inst, doer, actions, right
+        balloonmaker = function (inst, doer, actions, right)
+            if doer:HasTag("balloonomancer") then
+                table.insert(actions, ACTIONS.MAKEBALLOON)
+            end
+        end,
         livingartifact = function (inst, doer, actions, right)
             if not (inst.replica.inventoryitem and inst.replica.inventoryitem:IsHeldBy(doer)) then
                 return

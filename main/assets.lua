@@ -284,6 +284,7 @@ PrefabFiles = {
     "group_child",
 
     "tile_fx",
+    "woodie_beaver_bag",
 }
 
 Assets = {
@@ -499,4 +500,15 @@ if not TheNet:IsDedicated() then
     for _, asset in ipairs(sounds) do
         table.insert(Assets, asset)
     end
+end
+
+local dst_chracters = {
+    "wortox",
+    "wurt",
+    "walter",
+    "wanda",
+}
+
+for _, v in pairs(dst_chracters) do
+    RemoveDefaultCharacter(v)
 end
