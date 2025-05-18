@@ -258,7 +258,6 @@ local function OnSave(inst, data)
     data.dooranimclosed = inst.dooranimclosed
     data.flipped = inst.flipped
     data.minimapicon = inst.minimapicon
-    data.rotation = inst.Transform:GetRotation()
     data.sg_name = inst.sg_name
     data.startstate = inst.startstate
     data.timechanger = inst.timechanger
@@ -296,9 +295,6 @@ local function OnLoad(inst, data)
         build = data.door_data_build,
         anim = data.door_data_animstate,
     })
-    if data.rotation and inst.components.rotatingbillboard == nil then
-        inst.Transform:SetRotation(data.rotation)
-    end
     if data.door_data_background
         or (data.door_data_animstate and data.door_data_animstate == "day_loop") then -- 第二个条件用于旧存档兼容
 

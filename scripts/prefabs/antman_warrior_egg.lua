@@ -103,7 +103,7 @@ local function OnEntityWake(inst)
 end
 
 local function OnHaunt(inst, haunter)
-    if math.random() < TUNING.HAUNT_CHANCE_HALF then
+    if math.random() < TUNING.HAUNT_CHANCE_OCCASIONAL then
         inst.components.health:Kill()
         return true
     end

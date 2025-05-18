@@ -78,9 +78,11 @@ local function SetListenEvents(inst)
 
     inst:WatchWorldState("phase", OnPhaseChange)
     OnPhaseChange(inst, TheWorld.state.phase)
+    inst.components.lighttweener:EndTween()
 
     inst.daytimeevents = true
 end
+
 local function SetLightType(inst, lighttype)
     if lighttypes[lighttype] then
         inst.lighttype = lighttype

@@ -2,23 +2,19 @@ local AutoDartThrower = Class(function(self, inst)
     self.inst = inst
 end)
 
-function AutoDartThrower:OnEntitySleep()
-    self:TurnOff()
-end
-
-function AutoDartThrower:OnEntityWake()
-    if self.on then
-        self:TurnOn()
-    end
-end
-
-function AutoDartThrower:TurnOn()
+function AutoDartThrower:TurnOn(time)
     if self.inst.components.disarmable.armed then
         self.on = true
         self.inst:StartUpdatingComponent(self)
         if self.turnonfn then
             self.turnonfn(self.inst)
         end
+
+        if self.task then
+            self.task:Cancel()
+            self.task, self.taskinfo = nil
+        end
+        self.task, self.taskinfo = self.inst:ResumeTask(time or 15, function() self:TurnOff() end)
     end
 end
 
@@ -27,6 +23,11 @@ function AutoDartThrower:TurnOff()
     self.inst:StopUpdatingComponent(self)
     if self.turnofffn then
         self.turnofffn(self.inst)
+    end
+
+    if self.task then
+        self.task:Cancel()
+        self.task, self.taskinfo = nil
     end
 end
 
@@ -38,14 +39,19 @@ end
 
 function AutoDartThrower:OnSave()
     local data = {}
-        data.on = self.on
+
+    data.on = self.on
+
+    if self.taskinfo ~= nil then
+        data.tasktime = self.inst:TimeRemainingInTask(self.taskinfo)
+    end
     return data
 end
 
 function AutoDartThrower:OnLoad(data)
     if data then
         if data.on then
-            self:TurnOn()
+            self:TurnOn(data.tasktime or 15)
         end
     end
 end

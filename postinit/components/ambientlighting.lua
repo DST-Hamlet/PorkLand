@@ -7,14 +7,30 @@ local PL_NO_LIGHT_INTERIOR_COLOURS =
     {
         default =
         {
-            day = {colour = Point(0, 0, 0), time = 4},
-            dusk = {colour = Point(0, 0, 0), time = 6},
-            night = {colour = Point(0, 0, 0), time = 8},
+            day = {colour = Point(0, 0, 0), time = 0.5},
+            dusk = {colour = Point(0, 0, 0), time = 0.5},
+            night = {colour = Point(0, 0, 0), time = 0.5},
         },
     },
 
     FULL_MOON_COLOUR = {colour = Point(0, 0, 0), time = 8},
     CAVE_COLOUR = {colour = Point(0, 0, 0), time = 2},
+}
+
+local PL_INTERIOR_NIGHTVISION_COLOURS =
+{
+    PHASE_COLOURS =
+    {
+        default =
+        {
+            day = { colour = Point(200 / 255, 200 / 255, 200 / 255), time = 4 },
+            dusk = { colour = Point(200 / 255, 200 / 255, 200 / 255), time = 6 },
+            night = { colour = Point(200 / 255, 200 / 255, 200 / 255), time = 8 },
+        },
+    },
+
+    FULL_MOON_COLOUR = { colour = Point(200 / 255, 200 / 255, 200 / 255), time = 8 },
+    CAVE_COLOUR = { colour = Point(200 / 255, 200 / 255, 200 / 255), time = 2 },
 }
 
 AddComponentPostInit("ambientlighting", function(self, inst)
@@ -34,6 +50,12 @@ AddComponentPostInit("ambientlighting", function(self, inst)
                 -- when player have no nightvision, change to no light mode
                 local temp = _overridecolour.currentcolourset
                 _overridecolour.currentcolourset = PL_NO_LIGHT_INTERIOR_COLOURS
+                ComputeTargetColour(targetsettings, timeoverride, ...)
+                _overridecolour.currentcolourset = temp
+                return
+            else
+                local temp = _overridecolour.currentcolourset
+                _overridecolour.currentcolourset = PL_INTERIOR_NIGHTVISION_COLOURS
                 ComputeTargetColour(targetsettings, timeoverride, ...)
                 _overridecolour.currentcolourset = temp
                 return
