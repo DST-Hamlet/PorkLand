@@ -371,7 +371,7 @@ local function CalculateWerenessDrainRate(inst, old, dt)
         if inst.weremode:value() == WEREMODES.BEAVER then
             return math.min(math.max(old - 0.01 * dt, -10), -0.25)
         else 
-            return math.min(math.max(old + 0.0005 * dt, -10), -0.25)
+            return math.min(math.max(old + 0.001 * dt, -10), -0.25)
         end
     end
 end
@@ -535,7 +535,7 @@ local function ChangeWereModeValue(inst, newmode)
         end
         inst:RemoveTag(inst.weremode:value() == WEREMODES.BEAVER and "beaver" or ("were"..WEREMODE_NAMES[inst.weremode:value()]))
         inst.Network:RemoveUserFlag(USERFLAGS["CHARACTER_STATE_"..tostring(inst.weremode:value())])
-        inst.components.wereness.rate = 2
+        inst.components.wereness.rate = math.min(inst.components.wereness.rate, -2.5)
     end
 
     inst.weremode:set(newmode)
