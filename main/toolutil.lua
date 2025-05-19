@@ -55,7 +55,7 @@ local MAX_UPVALUE_SEARCH_DEPTH = 3
 --- ```
 ---@param fn function
 ---@param path string
----@return any, number, function
+---@return any, function, number
 function ToolUtil.GetUpvalue(fn, path, depth)
     if not depth then
         depth = 1
