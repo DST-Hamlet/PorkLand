@@ -86940,6 +86940,171 @@ msgctxt "STRINGS.CITY_TALK_ANNOUNCE_APORKALYPSE.DEFAULT.7"
 msgid "BE ALL AND END ALL!"
 msgstr "一切都要完了！"
 
+#. STRINGS.LUCY.beaver_down_washigh.1
+msgctxt "STRINGS.LUCY.beaver_down_washigh.1"
+msgid "That was a close one!"
+msgstr "真够悬的！"
+
+#. STRINGS.LUCY.beaver_down_washigh.2
+msgctxt "STRINGS.LUCY.beaver_down_washigh.2"
+msgid "I think we'll be alright."
+msgstr "我想我们不会有事的。"
+
+#. STRINGS.LUCY.beaver_down_washigh.3
+msgctxt "STRINGS.LUCY.beaver_down_washigh.3"
+msgid "You're looking much better now."
+msgstr "你现在看起来好多了。"
+
+#. STRINGS.LUCY.beaver_down_washigh.4
+msgctxt "STRINGS.LUCY.beaver_down_washigh.4"
+msgid "It's passed. For now."
+msgstr "总算过去了。至少是这一次。"
+
+#. STRINGS.LUCY.beaver_down_washigh.5
+msgctxt "STRINGS.LUCY.beaver_down_washigh.5"
+msgid "I was silly to doubt you."
+msgstr "我真笨，不该怀疑你。"
+
+#. STRINGS.LUCY.beaver_down_washigh.6
+msgctxt "STRINGS.LUCY.beaver_down_washigh.6"
+msgid "Wow, I was afraid you were in for it!"
+msgstr "哇，我担心你会喜欢它！"
+
+#. STRINGS.LUCY.beaver_down_washigh.7
+msgctxt "STRINGS.LUCY.beaver_down_washigh.7"
+msgid "I think the colour's returning to your cheeks."
+msgstr "我想，你的脸颊颜色恢复正常了。"
+
+#. STRINGS.LUCY.beaver_down_washigh.8
+msgctxt "STRINGS.LUCY.beaver_down_washigh.8"
+msgid "It's back in the lodge. Phew!"
+msgstr "回复正常了。呼！"
+
+#. STRINGS.LUCY.beaver_up_early.1
+msgctxt "STRINGS.LUCY.beaver_up_early.1"
+msgid "Are you okay?"
+msgstr "你还好吗？"
+
+#. STRINGS.LUCY.beaver_up_early.2
+msgctxt "STRINGS.LUCY.beaver_up_early.2"
+msgid "You alright, big guy?"
+msgstr "你还好么，大个子？"
+
+#. STRINGS.LUCY.beaver_up_early.3
+msgctxt "STRINGS.LUCY.beaver_up_early.3"
+msgid "What's wrong?"
+msgstr "怎么了？"
+
+#. STRINGS.LUCY.beaver_up_early.4
+msgctxt "STRINGS.LUCY.beaver_up_early.4"
+msgid "Are you sure you're feeling alright?"
+msgstr "你确定你还好吗？"
+
+#. STRINGS.LUCY.beaver_up_early.5
+msgctxt "STRINGS.LUCY.beaver_up_early.5"
+msgid "You're looking extra gruff today."
+msgstr "今天你看起来特别粗暴。"
+
+#. STRINGS.LUCY.beaver_up_early.6
+msgctxt "STRINGS.LUCY.beaver_up_early.6"
+msgid "You look distracted."
+msgstr "你看上去魂不守舍。"
+
+#. STRINGS.LUCY.beaver_up_early.7
+msgctxt "STRINGS.LUCY.beaver_up_early.7"
+msgid "Why are you making that face?"
+msgstr "你为什么做一张那样的脸？"
+
+#. STRINGS.LUCY.beaver_up_early.8
+msgctxt "STRINGS.LUCY.beaver_up_early.8"
+msgid "Try to take deep breaths, okay?"
+msgstr "试着深呼吸，好吗？"
+
+#. STRINGS.LUCY.beaver_up_early.9
+msgctxt "STRINGS.LUCY.beaver_up_early.9"
+msgid "It's just a tree! Calm down!"
+msgstr "那只是一棵树！冷静！"
+
+#. STRINGS.LUCY.beaver_up_late.1
+msgctxt "STRINGS.LUCY.beaver_up_late.1"
+msgid "You're overdoing it!"
+msgstr "太过分了！"
+
+#. STRINGS.LUCY.beaver_up_late.2
+msgctxt "STRINGS.LUCY.beaver_up_late.2"
+msgid "You're not pacing yourself!"
+msgstr "调整好节奏！"
+
+#. STRINGS.LUCY.beaver_up_late.3
+msgctxt "STRINGS.LUCY.beaver_up_late.3"
+msgid "You're about to change!"
+msgstr "你快要变身了！"
+
+#. STRINGS.LUCY.beaver_up_late.4
+msgctxt "STRINGS.LUCY.beaver_up_late.4"
+msgid "Take it easy!"
+msgstr "放轻松！"
+
+#. STRINGS.LUCY.beaver_up_late.5
+msgctxt "STRINGS.LUCY.beaver_up_late.5"
+msgid "You've gotta slow down!"
+msgstr "你得慢下来！"
+
+#. STRINGS.LUCY.beaver_up_late.6
+msgctxt "STRINGS.LUCY.beaver_up_late.6"
+msgid "Slow down, I'm worried about you!"
+msgstr "慢点，我担心你！"
+
+#. STRINGS.LUCY.beaver_up_late.7
+msgctxt "STRINGS.LUCY.beaver_up_late.7"
+msgid "Watch out! You're going to turn!"
+msgstr "当心！你正在变身！"
+
+#. STRINGS.LUCY.beaver_up_late.8
+msgctxt "STRINGS.LUCY.beaver_up_late.8"
+msgid "No! Don't chop any more!"
+msgstr "不！别再砍了！"
+
+#. STRINGS.LUCY.beaver_up_late.9
+msgctxt "STRINGS.LUCY.beaver_up_late.9"
+msgid "The transformation is starting!"
+msgstr "变形开始了！"
+
+#. STRINGS.LUCY.beaver_up_late.10
+msgctxt "STRINGS.LUCY.beaver_up_late.10"
+msgid "One more chop and you're in trouble!"
+msgstr "再多砍一下你的麻烦就大了！"
+
+#. STRINGS.LUCY.beaver_up_late.11
+msgctxt "STRINGS.LUCY.beaver_up_late.11"
+msgid "Ease up, you're looking a little bucktoothed!"
+msgstr "放松，你的牙齿在变长！"
+
+#. STRINGS.LUCY.beaver_up_late.12
+msgctxt "STRINGS.LUCY.beaver_up_late.12"
+msgid "Stop chopping, I'm getting nervous!"
+msgstr "别砍了，我要吓死了！"
+
+#. STRINGS.LUCY.beaver_up_mid.1
+msgctxt "STRINGS.LUCY.beaver_up_mid.1"
+msgid "Hello? Can you hear me?"
+msgstr "喂？你能听到我说话吗？"
+
+#. STRINGS.LUCY.beaver_up_mid.2
+msgctxt "STRINGS.LUCY.beaver_up_mid.2"
+msgid "You might want to slow down a bit."
+msgstr "你也许该放慢一点。"
+
+#. STRINGS.LUCY.beaver_up_mid.3
+msgctxt "STRINGS.LUCY.beaver_up_mid.3"
+msgid "Careful, you're getting yourself worked up!"
+msgstr "小心点，你在给自己找麻烦！"
+
+#. STRINGS.LUCY.beaver_up_mid.4
+msgctxt "STRINGS.LUCY.beaver_up_mid.4"
+msgid "Don't chop too fast. You know what will happen!"
+msgstr "别砍太快。你知道会发生什么事！"
+
 #. STRINGS.MANDRAKEMANNAMES.1
 msgctxt "STRINGS.MANDRAKEMANNAMES.1"
 msgid "Bambuseae"
@@ -88592,8 +88757,8 @@ msgstr "矿工"
 
 #. STRINGS.NAMES.PIGMAN_QUEEN
 msgctxt "STRINGS.NAMES.PIGMAN_QUEEN"
-msgid "Pig Queen"
-msgstr "猪女王"
+msgid "Queen Malfalfa"
+msgstr "玛法拉法女王"
 
 #. STRINGS.NAMES.PIGMAN_ROYALGUARD
 msgctxt "STRINGS.NAMES.PIGMAN_ROYALGUARD"
@@ -89854,11 +90019,6 @@ msgstr "椭圆玻璃窗帘"
 msgctxt "STRINGS.NAMES.WOOD_DOOR"
 msgid "Hardwood Door"
 msgstr "硬木门"
-
-#. STRINGS.QUEENPIGNAMES.1
-msgctxt "STRINGS.QUEENPIGNAMES.1"
-msgid "Queen Malfalfa"
-msgstr "玛法拉法女王"
 
 #. STRINGS.RECIPE_DESC.ANTIVENOM
 msgctxt "STRINGS.RECIPE_DESC.ANTIVENOM"
@@ -91125,6 +91285,11 @@ msgctxt "STRINGS.RECIPE_DESC.TRAWLNET"
 msgid "The patient fisher is always rewarded."
 msgstr "耐心的渔夫总会有收获。"
 
+#. STRINGS.RECIPE_DESC.TRUSTY_SHOOTER
+msgctxt "STRINGS.RECIPE_DESC.TRUSTY_SHOOTER"
+msgid "Throw anything at your hand at the enemy."
+msgstr "把你手头的一切东西扔向敌人。"
+
 #. STRINGS.RECIPE_DESC.TURF_COBBLEROAD
 msgctxt "STRINGS.RECIPE_DESC.TURF_COBBLEROAD"
 msgid "The life of a thriving village."
@@ -91154,6 +91319,11 @@ msgstr "一块完全被文明社会驯化了的草地。"
 msgctxt "STRINGS.RECIPE_DESC.VENOMGLAND"
 msgid "Freshly squeezed poison."
 msgstr "鲜榨的毒液。"
+
+#. STRINGS.RECIPE_DESC.WHEELER_TRACKER
+msgctxt "STRINGS.RECIPE_DESC.WHEELER_TRACKER"
+msgid "Never betray it."
+msgstr "不要背叛它。"
 
 #. STRINGS.RECIPE_DESC.WINDOW_GREENHOUSE
 msgctxt "STRINGS.RECIPE_DESC.WINDOW_GREENHOUSE"
