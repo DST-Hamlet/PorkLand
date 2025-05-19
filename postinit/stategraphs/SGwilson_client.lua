@@ -557,6 +557,9 @@ local states = {
             inst.components.locomotor:Stop()
 
             inst.AnimState:PlayAnimation("give")
+            if inst:HasTag("beaver") then
+                inst.AnimState:PlayAnimation("atk")
+            end
 
             inst:PerformPreviewBufferedAction()
             inst.sg:SetTimeout(TIMEOUT)
@@ -574,7 +577,10 @@ local states = {
                     inst.sg:GoToState("idle", "noanim")
                 end
             elseif inst.bufferedaction == nil then
-                inst.AnimState:PlayAnimation("give_pst")
+                inst.AnimState:PlayAnimation("give_pst")            
+                if inst:HasTag("beaver") then
+                    inst.AnimState:PushAnimation("atk_pst")
+                end
                 inst.sg:GoToState("idle")
             end
         end,
@@ -981,6 +987,36 @@ local states = {
             end
         end,
     },
+
+    State{
+        name = "beaver_eat",
+        tags = { "busy" },
+		server_states = { "beaver_eat" },
+
+        onenter = function(inst)
+            inst.components.locomotor:Stop()
+            inst.AnimState:PlayAnimation("eat_pre")
+            inst.AnimState:PushAnimation("eat_lag", false)
+
+            inst:PerformPreviewBufferedAction()
+            inst.sg:SetTimeout(TIMEOUT)
+        end,
+
+        onupdate = function(inst)
+			if inst.sg:ServerStateMatches() then
+                if inst.entity:FlattenMovementPrediction() then
+                    inst.sg:GoToState("idle", "noanim")
+                end
+            elseif inst.bufferedaction == nil then
+                inst.sg:GoToState("idle")
+            end
+        end,
+
+        ontimeout = function(inst)
+            inst:ClearBufferedAction()
+            inst.sg:GoToState("idle")
+        end,
+    },
 }
 
 for _, actionhandler in ipairs(actionhandlers) do
@@ -1154,6 +1190,15 @@ AddStategraphPostInit("wilson_client", function(sg)
             return "ironlord_work"
         else
             return _hammer_deststate and _hammer_deststate(inst, action)
+        end
+    end
+
+    local _eat_deststate = sg.actionhandlers[ACTIONS.EAT].deststate
+    sg.actionhandlers[ACTIONS.EAT].deststate = function(inst, action)
+        if inst:HasTag("beaver") then
+            return "beaver_eat"
+        else
+            return _eat_deststate and _eat_deststate(inst, action)
         end
     end
 end)

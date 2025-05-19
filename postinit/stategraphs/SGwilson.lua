@@ -1723,6 +1723,10 @@ local states = {
             inst.components.locomotor:Stop()
             inst.AnimState:PlayAnimation("give")
             inst.AnimState:PushAnimation("give_pst", false)
+            if inst:HasTag("beaver") then
+                inst.AnimState:PlayAnimation("atk")
+                inst.AnimState:PushAnimation("atk_pst", false)
+            end
             if inst.components.playercontroller then
                 -- inst.components.playercontroller:EnableMapControls(false)
                 inst.components.playercontroller:Enable(false)
@@ -2650,6 +2654,81 @@ local states = {
         end,
     },
 
+    State{
+        name = "beaver_eat",
+		tags = { "busy", "nodangle", "keep_pocket_rummage" },
+
+        onenter = function(inst, foodinfo)
+            inst.components.locomotor:Stop()
+
+            local feed = foodinfo and foodinfo.feed
+            if feed ~= nil then
+                inst.components.locomotor:Clear()
+                inst:ClearBufferedAction()
+                inst.sg.statemem.feed = foodinfo.feed
+                inst.sg.statemem.feeder = foodinfo.feeder
+                inst.sg:AddStateTag("pausepredict")
+                if inst.components.playercontroller ~= nil then
+                    inst.components.playercontroller:RemotePausePrediction()
+                end
+            elseif inst:GetBufferedAction() then
+                feed = inst:GetBufferedAction().invobject
+            end
+
+            inst.AnimState:PlayAnimation("eat_pre")
+            inst.AnimState:PushAnimation("eat", false)
+            inst.SoundEmitter:PlaySound("dontstarve/characters/woodie/eat_beaver") 
+
+            inst.components.hunger:Pause()
+        end,
+
+        timeline =
+        {
+            TimeEvent(9 * FRAMES, function(inst)
+                if inst.sg.statemem.feed == nil then
+                    inst:PerformBufferedAction()
+                else
+                    inst.components.eater:Eat(inst.sg.statemem.feed, inst.sg.statemem.feeder)
+                end
+				--NOTE: "queue_post_eat_state" can be triggered immediately from the eat action
+            end),
+
+            TimeEvent(12 * FRAMES, function(inst)
+				if inst.sg.statemem.queued_post_eat_state == nil then
+					inst.sg:RemoveStateTag("busy")
+					inst.sg:RemoveStateTag("pausepredict")
+				end
+            end),
+        },
+
+        events =
+        {
+			EventHandler("queue_post_eat_state", function(inst, data)
+				--NOTE: this event can trigger instantly instead of buffered
+				if data ~= nil then
+					inst.sg.statemem.queued_post_eat_state = data.post_eat_state
+					if data.nointerrupt then
+						inst.sg:AddStateTag("nointerrupt")
+					end
+				end
+			end),
+            EventHandler("animqueueover", function(inst)
+                if inst.AnimState:AnimDone() then
+					inst.sg:GoToState(inst.sg.statemem.queued_post_eat_state or "idle")
+                end
+            end),
+        },
+
+        onexit = function(inst)
+            inst.SoundEmitter:KillSound("eating")
+            if not GetGameModeProperty("no_hunger") then
+                inst.components.hunger:Resume()
+            end
+            if inst.sg.statemem.feed ~= nil and inst.sg.statemem.feed:IsValid() then
+                inst.sg.statemem.feed:Remove()
+            end
+        end,
+    },
 }
 
 for _, actionhandler in ipairs(actionhandlers) do
@@ -3089,6 +3168,15 @@ AddStategraphPostInit("wilson", function(sg)
             return "ironlord_work"
         else
             return _hammer_deststate and _hammer_deststate(inst, action)
+        end
+    end
+
+    local _eat_deststate = sg.actionhandlers[ACTIONS.EAT].deststate
+    sg.actionhandlers[ACTIONS.EAT].deststate = function(inst, action)
+        if inst:HasTag("beaver") then
+            return "beaver_eat"
+        else
+            return _eat_deststate and _eat_deststate(inst, action)
         end
     end
 end)
