@@ -17,7 +17,7 @@ local function get_tool_action(tool, target)
     end
 end
 
-local _GetPickupAction, i = ToolUtil.GetUpvalue(PlayerController.GetActionButtonAction, "GetPickupAction")
+local _GetPickupAction, scope_fn, i = ToolUtil.GetUpvalue(PlayerController.GetActionButtonAction, "GetPickupAction")
 local GetPickupAction = function(self, target, tool, ...)
     local action = _GetPickupAction(self, target, tool, ...)
     if not action then
@@ -42,7 +42,7 @@ local GetPickupAction = function(self, target, tool, ...)
     end
     return action
 end
-debug.setupvalue(PlayerController.GetActionButtonAction, i, GetPickupAction)
+debug.setupvalue(scope_fn, i, GetPickupAction)
 
 
 local _GetActionButtonAction = PlayerController.GetActionButtonAction

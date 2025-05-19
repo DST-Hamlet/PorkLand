@@ -204,7 +204,7 @@ AddPlayerPostInit(function(inst)
 end)
 
 local MakePlayerCharacter = require("prefabs/player_common")
-local OnGotNewItem, i, RegisterActivePlayerEventListeners = ToolUtil.GetUpvalue(MakePlayerCharacter, "OnSetOwner.RegisterActivePlayerEventListeners.OnGotNewItem")
+local OnGotNewItem, RegisterActivePlayerEventListeners, i = ToolUtil.GetUpvalue(MakePlayerCharacter, "OnSetOwner.RegisterActivePlayerEventListeners.OnGotNewItem")
 if OnGotNewItem then
     debug.setupvalue(RegisterActivePlayerEventListeners, i, function(inst, data, ...)
         if TheWorld:HasTag("porkland") then
