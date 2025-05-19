@@ -42,7 +42,7 @@ AddComponentPostInit("ambientlighting", function(self, inst)
 
     local DoUpdateFlash = ToolUtil.GetUpvalue(self.OnUpdate, "DoUpdateFlash")
     local _overridecolour = ToolUtil.GetUpvalue(DoUpdateFlash, "_overridecolour")
-    local ComputeTargetColour = ToolUtil.GetUpvalue(DoUpdateFlash, "ComputeTargetColour")
+    local ComputeTargetColour, i = ToolUtil.GetUpvalue(DoUpdateFlash, "ComputeTargetColour")
 
     local function Pl_ComputeTargetColour(targetsettings, timeoverride, ...)
         if targetsettings == _overridecolour and ThePlayer and ThePlayer:HasTag("inside_interior") then
@@ -64,7 +64,7 @@ AddComponentPostInit("ambientlighting", function(self, inst)
         ComputeTargetColour(targetsettings, timeoverride, ...)
     end
 
-    ToolUtil.SetUpvalue(DoUpdateFlash, Pl_ComputeTargetColour, "ComputeTargetColour")
+    debug.setupvalue(DoUpdateFlash, i, Pl_ComputeTargetColour)
 
     function self:Pl_Refresh()
         Pl_ComputeTargetColour(_overridecolour, 0.1)
