@@ -535,6 +535,7 @@ local function ChangeWereModeValue(inst, newmode)
         end
         inst:RemoveTag(inst.weremode:value() == WEREMODES.BEAVER and "beaver" or ("were"..WEREMODE_NAMES[inst.weremode:value()]))
         inst.Network:RemoveUserFlag(USERFLAGS["CHARACTER_STATE_"..tostring(inst.weremode:value())])
+        inst.components.wereness.rate = 2
     end
 
     inst.weremode:set(newmode)
