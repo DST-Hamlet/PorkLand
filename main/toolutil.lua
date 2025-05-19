@@ -38,15 +38,24 @@ local function get_upvalue(fn, name)
     end
 end
 
+--- Returns the upvalue, the up index, and the scope function,
+---
+--- ## Examples:
+---
+--- ```lua
+--- local telestaff_constructor = Prefabs["telestaff"].fn
+--- local teleport_start, i, teleport_func = ToolUtil.GetUpvalue(telestaff_constructor, "teleport_func.teleport_start")
+--- debug.setupvalue(teleport_func, i, function(...) print("hooked") return teleport_start(...) end)
+--- ```
 ---@param fn function
 ---@param path string
 ---@return any, number, function
 function ToolUtil.GetUpvalue(fn, path)
     local value, prv, i = fn, nil, nil ---@type any, function | nil, number | nil
     for part in path:gmatch("[^%.]+") do
-        -- print(part)
-        prv = fn
+        prv = value
         value, i = get_upvalue(value, part)
+        if not value then break end
     end
     return value, i, prv
 end

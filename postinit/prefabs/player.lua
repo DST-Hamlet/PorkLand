@@ -164,38 +164,6 @@ AddPlayerPostInit(function(inst)
         inst.components.hudindicatable:SetShouldTrackFunction(ShouldTrackfn)
     end
 
-    local _OnSetOwner = inst:GetEventCallbacks("setowner", inst, "scripts/prefabs/player_common.lua")
-    local _RegisterActivePlayerEventListeners = ToolUtil.GetUpvalue(_OnSetOwner, "RegisterActivePlayerEventListeners")
-
-    local function RegisterActivePlayerEventListeners(inst)
-        _RegisterActivePlayerEventListeners(inst)
-        if inst._PICKUPSOUNDS then
-            for k, v in pairs(inst._PICKUPSOUNDS) do
-                inst._PICKUPSOUNDS[k] = "dontstarve/HUD/collect_resource"
-            end
-        end
-    end
-
-    ToolUtil.SetUpvalue(_OnSetOwner, RegisterActivePlayerEventListeners, "RegisterActivePlayerEventListeners")
-
-    local _OnGotNewItem, i = ToolUtil.GetUpvalue(_RegisterActivePlayerEventListeners, "OnGotNewItem")
-
-    local function OnGotNewItem(inst, data, ...)
-        if TheWorld:HasTag("porkland") then
-            if data.slot ~= nil or data.eslot ~= nil or data.toactiveitem ~= nil then
-                if inst.replica.sailor and inst.replica.sailor:GetBoat() then
-                    TheFocalPoint.SoundEmitter:PlaySound("dontstarve_DLC002/common/HUD_water_collect_resource")
-                    return
-                end
-            end
-        end
-        return _OnGotNewItem(inst, data, ...)
-    end
-
-    if i then
-        debug.setupvalue(_RegisterActivePlayerEventListeners, i, OnGotNewItem)
-    end
-
     inst.components.lightwatcherproxy:UseHighPrecision()
 
     if not TheWorld.ismastersim then
@@ -234,3 +202,19 @@ AddPlayerPostInit(function(inst)
     end
 
 end)
+
+local MakePlayerCharacter = require("prefabs/player_common")
+local OnGotNewItem, i, RegisterActivePlayerEventListeners = ToolUtil.GetUpvalue(MakePlayerCharacter, "OnSetOwner.RegisterActivePlayerEventListeners.OnGotNewItem")
+if OnGotNewItem then
+    debug.setupvalue(RegisterActivePlayerEventListeners, i, function(inst, data, ...)
+        if TheWorld:HasTag("porkland") then
+            if data.slot ~= nil or data.eslot ~= nil or data.toactiveitem ~= nil then
+                if inst.replica.sailor and inst.replica.sailor:GetBoat() then
+                    TheFocalPoint.SoundEmitter:PlaySound("dontstarve_DLC002/common/HUD_water_collect_resource")
+                    return
+                end
+            end
+        end
+        return OnGotNewItem(inst, data, ...)
+    end)
+end
