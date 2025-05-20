@@ -11,24 +11,36 @@ local prefabs = {
     "poop",
 }
 
-local possible_loot = {
+local possible_loots = {
     cutgrass = 1,
     twigs = 1,
     rocks = 10,
     flint = 10,
     seeds = 1,
-    poop = 5,
     relic_1 = 0.1,
 }
 
-local function OnPickUp(inst, picker)
-    local loots = weighted_random_choices(possible_loot, 2)
-    table.insert(loots, "poop")
+local function setloot(inst)
+    for k, v in pairs(possible_loots) do
+        inst.components.lootdropper:AddRandomLoot(k, v)
+    end
+    inst.components.lootdropper.numrandomloot = math.random(1)
 
-    for i, v in ipairs(loots) do
-        if inst.components.lootdropper then
-            inst.components.lootdropper:SpawnLootPrefab(v)
+    local lootdropper = inst.components.lootdropper
+    for k = 1, lootdropper.numrandomloot do
+        local loot = lootdropper:PickRandomLoot()
+        if loot then
+            inst.components.storageloot:AddLoot(loot)
         end
+    end
+    inst.components.lootdropper:ClearRandomLoot()
+end
+
+local function OnPickUp(inst, picker)
+    inst.components.lootdropper:DropLoot()
+    local loots = inst.components.storageloot:TakeAllLoots()
+    for i, v in ipairs(loots) do
+        inst.components.lootdropper:SpawnLootPrefab(v)
     end
 
     inst.AnimState:PlayAnimation("break")
@@ -64,6 +76,7 @@ local function fn()
     inst.Physics:SetRestitution(0.5)
 
     inst:AddTag("dungball")
+    inst:AddTag("track_ignore_limbo")
 
     inst.AnimState:SetBank("tumbleweed")
     inst.AnimState:SetBuild("dungball_build")
@@ -77,6 +90,7 @@ local function fn()
 
     inst:AddComponent("inspectable")
     inst:AddComponent("lootdropper")
+    inst.components.lootdropper:AddChanceLoot("poop", 1)
 
     inst:AddComponent("pickable")
     inst.components.pickable.picksound = "dontstarve/wilson/harvest_sticks"
@@ -84,12 +98,23 @@ local function fn()
     inst.components.pickable.canbepicked = true
     inst.components.pickable.witherable = false
 
+    inst:AddComponent("storageloot")
+
+    setloot(inst)
+
     inst:AddComponent("hauntable")
     inst.components.hauntable:SetOnHauntFn(OnHauntFn)
 
+    MakeSmallBurnable(inst, TUNING.MED_BURNTIME)
     MakeSmallPropagator(inst)
     inst.components.propagator.flashpoint = 5 + math.random() * 3
     -- inst.components.propagator.propagaterange = 5
+
+    inst:ListenForEvent("onremove", function()
+        if inst.beetle and inst.beetle:IsValid() then
+            inst.bettle:PushEvent("bumped")
+        end
+    end)
 
     return inst
 end

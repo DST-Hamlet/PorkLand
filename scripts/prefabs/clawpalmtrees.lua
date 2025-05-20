@@ -33,6 +33,16 @@ SetSharedLootTable("clawpalmtree_tall",
     {"cork", 1.0},
 })
 
+SetSharedLootTable("clawpalmtree_burnt",
+{
+    {"charcoal", 1.00},
+    {"charcoal", 0.33},
+})
+
+SetSharedLootTable("clawtree_stump",
+{
+    {"cork", 1.00},
+})
 
 local function MakeAnims(stage)
     return {
@@ -120,7 +130,7 @@ local growth_stages = {
 }
 
 local function OnFinishCallbackStump(inst, digger)
-    inst.components.lootdropper:SpawnLootPrefab("cork")
+    inst.components.lootdropper:DropLoot()
     inst:Remove()
 end
 
@@ -145,6 +155,9 @@ local function MakeStump(inst)
 
     inst.MiniMapEntity:SetIcon("claw_tree_stump.tex")
 
+    inst.components.lootdropper:SetLoot({})
+    inst.components.lootdropper:SetChanceLootTable("clawtree_stump")
+
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.DIG)
     inst.components.workable:SetOnFinishCallback(OnFinishCallbackStump)
@@ -161,10 +174,7 @@ local function OnFinishCallbackBurnt(inst, chopper)
     inst.persists = false
     inst:ListenForEvent("animover", inst.Remove)
     inst:ListenForEvent("entitysleep", inst.Remove)
-    inst.components.lootdropper:SpawnLootPrefab("charcoal")
-    if math.random() < 0.4 then
-        inst.components.lootdropper:SpawnLootPrefab("charcoal")
-    end
+    inst.components.lootdropper:DropLoot()
 end
 
 local function OnWorkCallback(inst, chopper, chops)
@@ -225,6 +235,7 @@ local function OnBurntChanges(inst)
     MakeHauntableWork(inst)
 
     inst.components.lootdropper:SetLoot({})
+    inst.components.lootdropper:SetChanceLootTable("clawpalmtree_burnt")
 
     if inst.components.workable then
         inst.components.workable:SetWorkLeft(1)
