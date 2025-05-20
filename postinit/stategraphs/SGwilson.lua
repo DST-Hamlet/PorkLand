@@ -2667,9 +2667,9 @@ AddStategraphPostInit("wilson", function(sg)
 
     local _attacked_eventhandler = sg.events.attacked.fn
 
-    local _DoHurtSound, DoHurtSound_i = ToolUtil.GetUpvalue(_attacked_eventhandler, "DoHurtSound")
+    local _DoHurtSound, scope_fn, DoHurtSound_i = ToolUtil.GetUpvalue(_attacked_eventhandler, "DoHurtSound")
     if DoHurtSound_i then
-        debug.setupvalue(_attacked_eventhandler, DoHurtSound_i,function(inst)
+        debug.setupvalue(scope_fn, DoHurtSound_i,function(inst)
             if inst:HasTag("ironlord") then
                 return
             end

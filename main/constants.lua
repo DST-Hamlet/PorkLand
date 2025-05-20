@@ -95,3 +95,10 @@ NAUGHTY_VALUE["pigeon"] = 1
 NAUGHTY_VALUE["piko"] = 1
 
 MAX_PHYSICS_RADIUS = 5.2 -- the biggest lilypad
+
+-- Revert all pickup sounds back
+for k, v in pairs(PICKUPSOUNDS) do
+    if k ~= "NONE" then
+        PICKUPSOUNDS[k] = "dontstarve/HUD/collect_resource"
+    end
+end
