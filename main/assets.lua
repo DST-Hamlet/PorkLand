@@ -349,6 +349,7 @@ Assets = {
     Asset("ANIM", "anim/werebeaver_boat_death.zip"),
     Asset("ANIM", "anim/player_lifeplant.zip"),
     Asset("ANIM", "anim/player_actions_hand_lens.zip"),
+    Asset("ANIM", "anim/player_mount_hand_lens.zip"),
     Asset("ANIM", "anim/player_living_suit_destruct.zip"),
     Asset("ANIM", "anim/player_living_suit_morph.zip"),
     Asset("ANIM", "anim/player_living_suit_punch.zip"),
@@ -362,6 +363,7 @@ Assets = {
     Asset("ANIM", "anim/player_teleport_bfb.zip"),
     Asset("ANIM", "anim/player_teleport_bfb2.zip"),
     Asset("ANIM", "anim/player_pistol.zip"),
+    Asset("ANIM", "anim/player_mount_pistol.zip"),
 
     -- replace_anim
     Asset("ANIM", "anim/replace_anim/player_attacks_old.zip"),

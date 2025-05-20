@@ -843,9 +843,6 @@ local states = {
 			inst.sg:SetTimeout(20 * FRAMES)
             inst.components.locomotor:Stop()
 
-            if inst.replica.rider:IsRiding() then
-                inst.Transform:SetFourFaced()
-            end
             inst.AnimState:PlayAnimation("hand_shoot")
 
 			local buffaction = inst:GetBufferedAction()
@@ -883,9 +880,6 @@ local states = {
         },
 
         onexit = function(inst)
-            if inst.replica.rider:IsRiding() then
-                inst.Transform:SetSixFaced()
-            end
             if inst.sg:HasStateTag("abouttoattack") and inst.replica.combat ~= nil then
                 inst.replica.combat:CancelAttack()
             end
@@ -1135,7 +1129,7 @@ AddStategraphPostInit("wilson_client", function(sg)
         local chair = buffaction ~= nil and buffaction.target or nil
         if chair and chair:HasTag("limited_chair") then
             if chair:HasTag("rotatableobject") then
-                inst.Transform:SetTwoFaced()
+                inst.Transform:SetPredictedNoFaced()
             end
         end
     end
