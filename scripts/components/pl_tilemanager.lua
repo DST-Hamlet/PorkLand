@@ -188,6 +188,9 @@ end
 
 function PL_TileManager:UpdateTiles()
     self:ClearTiles()
+    if self.inst:GetIsInInterior() then
+        return
+    end
     local current_tile_center = self.inst.components.tilechangewatcher.last_tile_center
     for x = -REFRESH_RADIUS, REFRESH_RADIUS do
         for z = -REFRESH_RADIUS, REFRESH_RADIUS do

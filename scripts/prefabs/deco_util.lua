@@ -536,18 +536,11 @@ local function MakeDeco(build, bank, animframe, data, name)
                     if windowlight then
                         inst.swinglight.setListenEvents(inst.swinglight)
                     end
-                    -- NOTE: set arbitrary light position here
-                    if inst.components.rotatingbillboard then
-                        local offset = TUNING.PL_MANUAL_LIGHT_OFFSET[name:upper()] or TUNING.PL_MANUAL_LIGHT_OFFSET.DEFAULT
-                        inst.swinglight.entity:SetParent(inst.entity)
-                        inst.swinglight.offset = Vector3(0.01, offset[1], offset[2])
-                        inst.components.rotatingbillboard:UpdateLightPosition()
-                    else
-                        inst.swinglight.entity:SetParent(inst.entity)
-                        local follower = inst.swinglight.Follower
-                        follower:FollowSymbol(inst.GUID, "light_circle", 0, 0, 0)
-                        inst.swinglight.followobject = {GUID = inst.GUID, symbol = "light_circle", x = 0, y = 0, z = 0}
-                    end
+
+                    inst.swinglight.entity:SetParent(inst.entity)
+                    local follower = inst.swinglight.Follower
+                    follower:FollowSymbol(inst.GUID, "light_circle", 0, 0, 0)
+                    inst.swinglight.followobject = {GUID = inst.GUID, symbol = "light_circle", x = 0, y = 0, z = 0}
                 end)
             else
                 inst.entity:AddLight()
@@ -641,6 +634,11 @@ local function MakeDeco(build, bank, animframe, data, name)
                 inst.Transform:SetTwoFaced()
             end
         end
+        
+        if name_override then
+            inst.name = STRINGS.NAMES[name_override:upper()]
+            inst:SetPrefabNameOverride(name_override)
+        end
 
         if TheWorld.ismastersim then
             if STRINGS.NAMES[string.upper(name)] then
@@ -652,12 +650,7 @@ local function MakeDeco(build, bank, animframe, data, name)
                     inst:AddComponent("inspectable")
                 end
                 -- this way the backwall windows will show the right prefab name (with controller)
-                inst.name = STRINGS.NAMES[name_override:upper()]
                 inst.components.inspectable.nameoverride = name_override
-            end
-        else
-            if name_override then
-                inst:SetPrefabNameOverride(name_override)
             end
         end
 
@@ -680,7 +673,7 @@ local function MakeDeco(build, bank, animframe, data, name)
         end
 
         if data.children then
-            inst.children_to_spawn = data.children -- Can be overriden in onbuilt
+            inst.children_to_spawn = shallowcopy(data.children) -- Can be overriden in onbuilt
             inst:DoTaskInTime(0, function()
                 -- don't spawn child in client
                 if inst.childrenspawned then
@@ -691,11 +684,7 @@ local function MakeDeco(build, bank, animframe, data, name)
                     local child_prop = SpawnPrefab(child)
                     local x, y, z = inst.Transform:GetWorldPosition()
                     child_prop.Transform:SetPosition(x, y, z)
-                    if inst.components.rotatingbillboard and inst.components.rotatingbillboard.rotation_set then -- rotation_set属性用于判断rotatingbillboard组件是否完成初始化
-                        child_prop.Transform:SetRotation(inst.components.rotatingbillboard:GetRotation())
-                    else
-                        child_prop.Transform:SetRotation(inst.Transform:GetRotation())
-                    end
+                    child_prop.Transform:SetRotation(inst.Transform:GetRotation())
                     if not inst.decochildrenToRemove then
                         inst.decochildrenToRemove = {}
                     end
@@ -798,6 +787,7 @@ local function MakeDeco(build, bank, animframe, data, name)
         if data.dayevents then
             inst:WatchWorldState("phase", OnPhaseChange)
             OnPhaseChange(inst, TheWorld.state.phase)
+            inst.AnimState:FastForward(10)
         end
 
         inst:DoTaskInTime(0, function()

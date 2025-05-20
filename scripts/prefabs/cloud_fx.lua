@@ -42,6 +42,7 @@ local function fn()
     inst:AddTag("FX")
     inst:AddTag("NOCLICK")
     inst:AddTag("NOBLOCK")
+    inst:AddTag("CLASSIFIED")
 
     inst.persists = false
 
@@ -57,7 +58,7 @@ local function fn()
     effect:SetColourEnvelope(0, COLOUR_ENVELOPE_NAME)
     effect:SetScaleEnvelope(0, SCALE_ENVELOPE_NAME)
     effect:SetLayer(0, LAYER_BELOW_GROUND)
-    effect:SetSortOrder(0, 2)
+    effect:SetSortOrder(0, -2)
     effect:EnableDepthTest(0, true)
     effect:SetKillOnEntityDeath(0, true)
 

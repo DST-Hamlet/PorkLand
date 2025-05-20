@@ -10,6 +10,7 @@ local assets =
     Asset("ANIM", "anim/python_segment_tail02_build.zip"),
     Asset("ANIM", "anim/python_segment_tail_build.zip"),
     Asset("ANIM", "anim/python_dirt_segment_in_fast_pst.zip"),
+    Asset("ANIM", "anim/python_dirt_segment_out_fast_pre.zip"),
 }
 
 local prefabs =
@@ -360,7 +361,7 @@ local function bodyfn()
 
     if not TheWorld.ismastersim then
         inst.oldpos = inst:GetPosition()
-        inst:DoPeriodicTask(FRAMES, function(inst)
+        inst:DoPeriodicTask(0, function(inst)
             if inst.oldpos == inst:GetPosition() then
                 ClientPerdictPosition(inst, FRAMES, true)
             else

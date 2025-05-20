@@ -2609,7 +2609,7 @@ local states = {
 
     State{
         name = "cower",
-        tags = {"busy", "cower", "pausepredict"},
+        tags = {"busy", "cower", "canrotate", "nopredict", "nomorph", "nointerrupt"},
 
         onenter = function(inst, data)
             inst.components.locomotor:Stop()
@@ -2633,9 +2633,11 @@ local states = {
 
     State{
         name = "grabbed",
-        tags = {"busy", "pausepredict"},
+        tags = {"busy", "canrotate", "nopredict", "nomorph", "nointerrupt"},
 
         onenter = function(inst, data)
+            inst.components.locomotor:Stop()
+            inst:ClearBufferedAction()
             inst:ShowHUD(false)
             if inst.components.playercontroller then
                 inst.components.playercontroller:EnableMapControls(false)
@@ -2817,9 +2819,9 @@ AddStategraphPostInit("wilson", function(sg)
 
     local _attacked_eventhandler = sg.events.attacked.fn
 
-    local _DoHurtSound, DoHurtSound_i = ToolUtil.GetUpvalue(_attacked_eventhandler, "DoHurtSound")
+    local _DoHurtSound, scope_fn, DoHurtSound_i = ToolUtil.GetUpvalue(_attacked_eventhandler, "DoHurtSound")
     if DoHurtSound_i then
-        debug.setupvalue(_attacked_eventhandler, DoHurtSound_i,function(inst)
+        debug.setupvalue(scope_fn, DoHurtSound_i,function(inst)
             if inst:HasTag("ironlord") then
                 return
             end

@@ -34,8 +34,8 @@ function InventoryBar:GetInventoryLists(same_container_only, ...)
     return lists
 end
 
-local _RebuildLayout = ToolUtil.GetUpvalue(InventoryBar.Rebuild, "RebuildLayout")
-local function RebuildLayout(self, inventory, overflow, do_integrated_backpack, do_self_inspect, ...)
+local RebuildLayout, scope_fn, i = ToolUtil.GetUpvalue(InventoryBar.Rebuild, "RebuildLayout")
+debug.setupvalue(scope_fn, i, function(self, inventory, overflow, do_integrated_backpack, do_self_inspect, ...)
     local boatwidget = self.boatwidget
     if boatwidget then
         local x, _, z = boatwidget:GetPosition():Get()
@@ -60,14 +60,12 @@ local function RebuildLayout(self, inventory, overflow, do_integrated_backpack, 
         x = x + W + SEP
     end
 
-    _RebuildLayout(self, inventory, overflow, do_integrated_backpack, do_self_inspect, ...)
+    RebuildLayout(self, inventory, overflow, do_integrated_backpack, do_self_inspect, ...)
 
     local bg_scale = (1.15 * total_w) / (1480) -- This is a bit ugly, the hardcoded 1480 is the standard width for a regular inventory total_w
     self.bg:SetScale(bg_scale, 1, 1)
     self.bgcover:SetScale(bg_scale, 1, 1)
-end
-
-ToolUtil.SetUpvalue(InventoryBar.Rebuild, RebuildLayout, "RebuildLayout")
+end)
 
 AddClassPostConstruct("widgets/inventorybar", function(self)
     self.hudcompass_wheeler = self.root:AddChild(HudCompass_Wheeler(self.owner, true))

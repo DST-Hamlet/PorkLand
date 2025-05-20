@@ -71,7 +71,7 @@ end
 
 ----set up the action functions
 local _ValidToolWork = ToolUtil.GetUpvalue(ACTIONS.CHOP.validfn, "ValidToolWork")
-local _DoToolWork = ToolUtil.GetUpvalue(ACTIONS.CHOP.fn, "DoToolWork")
+local _DoToolWork, scope_fn, do_tool_work_up_index = ToolUtil.GetUpvalue(ACTIONS.CHOP.fn, "DoToolWork")
 local function DoToolWork(act, workaction, ...)
     if act.doer and act.doer.player_classified then
         act.doer.player_classified._last_work_target:set(act.target)
@@ -101,7 +101,7 @@ local function DoToolWork(act, workaction, ...)
     end
     return _DoToolWork(act, workaction, ...)
 end
-ToolUtil.SetUpvalue(ACTIONS.CHOP.fn, DoToolWork, "DoToolWork")
+debug.setupvalue(scope_fn, do_tool_work_up_index, DoToolWork)
 
 ACTIONS.HACK.fn = function(act)
     DoToolWork(act, ACTIONS.HACK)
@@ -1261,7 +1261,7 @@ function PlayerController:DoActionAutoEquip(buffaction, ...)
 end
 
 function PLENV.OnHotReload()
-    ToolUtil.SetUpvalue(ACTIONS.CHOP.fn, _DoToolWork, "DoToolWork")
+    debug.setupvalue(scope_fn, do_tool_work_up_index, DoToolWork)
 
     ACTIONS.FERTILIZE.fn = _FERTILIZE_fn
     ACTIONS.EQUIP.fn = _EQUIP_fn

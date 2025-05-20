@@ -1,15 +1,12 @@
 GLOBAL.setfenv(1, GLOBAL)
 
-NewFrameEnts = {}
-
-local function GetLight(light, dist)
+function CalculateLight(light, dist)
     -- thanks to HalfEnder776
     local A = math.log(light:GetIntensity())
     local B
     local C
     local D
     local r, g, b = light:GetColour()
-    local E = 0.2126 * r + 0.7152 * g + 0.0722 * b
 
     if A == 0 then
         if dist > light:GetRadius() then
@@ -25,32 +22,31 @@ local function GetLight(light, dist)
         D = 0
     end
 
-    return D * E
+    return D * r, D * g, D * b
 end
 
 local Sim = getmetatable(TheSim).__index
 local old_GetLightAtPoint = Sim.GetLightAtPoint
-Sim.GetLightAtPoint = function(sim, x, y, z, light_threshold)
+Sim.GetLightAtPoint = function(sim, x, y, z, light_threshold, ...) -- 和原版GetLightAtPoint的算法还是存在差别
     if TheWorld and TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInterior(x, z, 0.01) then
-        -- ignore ambient light, only check lighters
+        -- 无视全局光，仅计算点光源
         local position = Vector3(x, y, z)
         local center = TheWorld.components.interiorspawner:GetInteriorCenter(position)
         if center then
-            local sum = 0
+            local sum_r, sum_g, sum_b = 0, 0, 0
             local center_position = center:GetPosition()
             for _, v in ipairs(TheSim:FindEntities(center_position.x, 0, center_position.z, TUNING.ROOM_FINDENTITIES_RADIUS, nil, {"INLIMBO"})) do
                 if v.Light and v.Light:IsEnabled() then
-                    local light = GetLight(v.Light, math.sqrt(v:GetPosition():DistSq(position)))
-                    sum = sum + light
-                    if sum > (light_threshold or math.huge) then
-                        return sum
-                    end
+                    local _r, _g, _b = CalculateLight(v.Light, math.sqrt(v:GetPosition():DistSq(position)))
+                    sum_r = sum_r + _r
+                    sum_g = sum_g + _g
+                    sum_b = sum_b + _b
                 end
             end
-            return sum
+            return 0.2126 * sum_r + 0.7152 * sum_g + 0.0722 * sum_b
         end
     end
-    return old_GetLightAtPoint(sim, x, y, z, light_threshold)
+    return old_GetLightAtPoint(sim, x, y, z, light_threshold, ...)
 end
 
 local _CanEntitySeeTarget = CanEntitySeeTarget
@@ -84,6 +80,8 @@ function OnEntityWake(guid, ...)
     end
 end
 
+NewFrameEnts = {}
+
 local _SpawnPrefab = SpawnPrefab
 function SpawnPrefab(...)
     local inst = _SpawnPrefab(...)
@@ -114,4 +112,20 @@ function Update(dt, ...)
     end
 
     NewFrameEnts = {}
+end
+
+local scheduled_post_update_functions = {}
+
+local post_update = PostUpdate
+function PostUpdate(dt, ...)
+    post_update(dt, ...)
+
+    for _, fn in ipairs(scheduled_post_update_functions) do
+        fn()
+    end
+    scheduled_post_update_functions = {}
+end
+
+function RunOnPostUpdate(fn)
+    table.insert(scheduled_post_update_functions, fn)
 end

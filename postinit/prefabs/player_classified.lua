@@ -15,7 +15,7 @@ local function OnPoisonPulseDirty(inst)
 end
 
 local ACTION_BUTTON_NO_TAGS = {"DECOR", "INLIMBO", "fire", "burnt", "FX"}
-local ACTION_BUTTON_ONE_OF_TAGS = {"exterior_door", "interior_door", "pickable", "CHOP_workable", "HAMMER_workable", "MINE_workable", "DIG_workable", "HACK_workable"}
+local ACTION_BUTTON_ONE_OF_TAGS = {"door", "interior_door", "pickable", "CHOP_workable", "HAMMER_workable", "MINE_workable", "DIG_workable", "HACK_workable"}
 local WORK_ACTIONS = {"CHOP", "DIG", "HAMMER", "MINE", "HACK"}
 
 local function ActionStringOverride(inst, action)
@@ -31,7 +31,10 @@ local function ActionButtonOverride(inst, force_target)
     end
 
     local function get_action(target)
-        if (target:HasTag("interior_door") or target:HasTag("exterior_door")) and not target:HasTag("door_hidden") and not target:HasTag("door_disabled") then
+        if target:HasActionComponent("door")
+            and not target:HasTag("door_hidden")
+            and not target:HasTag("door_disabled")
+            and not (target:HasTag("burnt") or target:HasTag("fire")) then
 
             return ACTIONS.USEDOOR
         end
@@ -65,7 +68,10 @@ local function LeftClickPicker(inst, target, pos)
         return
     end
 
-    if (target:HasTag("interior_door") or target:HasTag("exterior_door")) and not target:HasTag("door_hidden") and not target:HasTag("door_disabled") then
+    if target:HasActionComponent("door")
+        and not target:HasTag("door_hidden")
+        and not target:HasTag("door_disabled")
+        and not (target:HasTag("burnt") or target:HasTag("fire")) then
 
         return inst.components.playeractionpicker:SortActionList({ACTIONS.USEDOOR}, target, nil)
     end

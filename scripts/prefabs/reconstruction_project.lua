@@ -224,8 +224,6 @@ local function fn()
     -- inst.entity:AddPhysics()
     -- MakeObstaclePhysics(inst, .25)
 
-    inst:AddTag("door_disabled")
-
     inst.AnimState:SetBank("pighouse_rubble")
     inst.AnimState:SetBuild("pighouse_rubble")
     inst.AnimState:PlayAnimation("unbuilt")
@@ -257,6 +255,8 @@ local function fn()
     inst.components.workable:SetWorkAction(ACTIONS.HAMMER)
     inst.components.workable:SetWorkLeft(4)
     inst.components.workable:SetOnFinishCallback(OnHammered)
+
+    MakeHauntable(inst)
 
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad

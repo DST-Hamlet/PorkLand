@@ -54,7 +54,7 @@ local function OnPickUp(inst, picker)
 end
 
 local function OnHauntFn(inst, haunter)
-    if math.random() <= TUNING.HAUNT_CHANCE_OCCASIONAL then
+    if math.random() <= TUNING.HAUNT_CHANCE_HALF then
         OnPickUp(inst)
     end
     return true

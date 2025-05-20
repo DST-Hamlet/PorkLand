@@ -4,7 +4,7 @@ GLOBAL.setfenv(1, GLOBAL)
 AddComponentPostInit("kramped", function(self, inst)
     local OnPlayerJoined = inst:GetEventCallbacks("ms_playerjoined", TheWorld, "scripts/components/kramped.lua")
     local OnKilledOther = ToolUtil.GetUpvalue(OnPlayerJoined, "OnKilledOther")
-    local OnNaughtyAction, i = ToolUtil.GetUpvalue(OnKilledOther, "OnNaughtyAction")
+    local OnNaughtyAction, scope_fn, i = ToolUtil.GetUpvalue(OnKilledOther, "OnNaughtyAction")
 
     local New_OnNaughtyAction = function(how_naughty, playerdata, ...)
         if playerdata.player:GetIsInInterior() then
@@ -19,7 +19,7 @@ AddComponentPostInit("kramped", function(self, inst)
             OnNaughtyAction(how_naughty, playerdata, ...)
         end
     end
-    debug.setupvalue(OnKilledOther, i, New_OnNaughtyAction)
+    debug.setupvalue(scope_fn, i, New_OnNaughtyAction)
 
     local _activeplayers = ToolUtil.GetUpvalue(self.OnUpdate, "_activeplayers")
 

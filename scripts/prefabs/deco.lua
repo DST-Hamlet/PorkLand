@@ -1,8 +1,8 @@
 local DecoCreator = require("prefabs/deco_util")
 
 local function on_window_built(inst)
+    print("on_window_built", inst.Transform:GetRotation())
     if DecoCreator:IsBuiltOnBackWall(inst) then
-        print("IsBuiltOnBackWall", inst)
         local bank = inst.bank:sub(1, -6) -- Remove _side
         inst.AnimState:SetBank(bank)
         inst.bank = bank
@@ -15,28 +15,6 @@ local function on_window_built(inst)
                     inst.children_to_spawn[i] = children .. "_backwall"
                 end
             end
-        end
-    end
-
-    if inst.components.rotatingbillboard then
-        local position = inst:GetPosition()
-        local current_interior = TheWorld.components.interiorspawner:GetInteriorCenter(position)
-        if current_interior then
-            local originpt = current_interior:GetPosition()
-            if position.z >= originpt.z then
-                inst.Transform:SetRotation(90)
-            else
-                inst.Transform:SetRotation(-90)
-            end
-
-            local animdata = shallowcopy(inst.components.rotatingbillboard.animdata)
-            animdata.bank = inst.bank
-            if DecoCreator:IsBuiltOnBackWall(inst) then
-                animdata.bank = inst.bank
-            end
-
-            inst.animdata = animdata
-            inst.components.rotatingbillboard:SetAnimation_Server(animdata)
         end
     end
 end
@@ -112,8 +90,8 @@ return  DecoCreator:Create("window_round",                 "interior_window", "i
         DecoCreator:Create("window_square_weapons", "window_weapons_build", "interior_window_large_side", "day_loop",            {loopanim=true, decal=true, background=3, dayevents=true, curtains=true, children={"window_round_light"}, tags={"NOBLOCK","wallsection"}, onbuilt=true, on_built_fn = on_window_built}),
         DecoCreator:Create("window_square_weapons_backwall", "window_weapons_build", "interior_window_large", "day_loop",        {loopanim=true, decal=true, background=3, dayevents=true, curtains=true, children={"window_round_light_backwall"}, tags={"NOBLOCK","wallsection"}, onbuilt=true, recipeproxy="window_square_weapons"}),
 
-        DecoCreator:Create("window_greenhouse", "interior_window_greenhouse_build", "interior_window_greenhouse_side", "day_loop",     {loopanim=true, decal=nil, rotatingbillboard = true, background=3, dayevents=true, curtains=true, children={"window_big_light"}, tags={"NOBLOCK","wallsection","fullwallsection"}, onbuilt=true, on_built_fn = on_window_built}),
-        DecoCreator:Create("window_greenhouse_backwall", "interior_window_greenhouse_build", "interior_window_greenhouse", "day_loop", {loopanim=true, decal=nil, rotatingbillboard = true, background=3, dayevents=true, curtains=true, children={"window_big_light_backwall"}, tags={"NOBLOCK","wallsection","fullwallsection"}, onbuilt=true, recipeproxy="window_greenhouse"}),
+        DecoCreator:Create("window_greenhouse", "interior_window_greenhouse_build", "interior_window_greenhouse_side", "day_loop",     {loopanim=true, decal=nil, background=3, dayevents=true, curtains=true, children={"window_big_light"}, tags={"NOBLOCK","wallsection","fullwallsection"}, onbuilt=true, on_built_fn = on_window_built}),
+        DecoCreator:Create("window_greenhouse_backwall", "interior_window_greenhouse_build", "interior_window_greenhouse", "day_loop", {loopanim=true, decal=nil, background=3, dayevents=true, curtains=true, children={"window_big_light_backwall"}, tags={"NOBLOCK","wallsection","fullwallsection"}, onbuilt=true, recipeproxy="window_greenhouse"}),
 
         DecoCreator:Create("window_round_light", "interior_window", "interior_window_light_side", "day_loop",                    {loopanim=true, decal=true, light=true, dayevents=true, followlight ="natural", windowlight =true, dustzmod=1.3, tags={"NOBLOCK","NOCLICK"}}),
         DecoCreator:Create("window_round_light_backwall",  "interior_window", "interior_window_light", "day_loop",               {loopanim=true, decal=true, light=true, dayevents=true, followlight ="natural", windowlight =true, dustxmod=1.3, tags={"NOBLOCK","NOCLICK"}}),
@@ -174,7 +152,7 @@ return  DecoCreator:Create("window_round",                 "interior_window", "i
         DecoCreator:Create("deco_marble_cornerbeam", "interior_wall_decals_hoofspa", "wall_decals_hoofspa", "pillar_corner",     {decal=true, loopanim=true, light=DecoCreator:GetLights().SMALL, tags={"NOBLOCK","cornerpost"}, onbuilt=true, name_override = "deco_marble", background=3 }),
 
         DecoCreator:Create("deco_valence", "interior_wall_decals_hoofspa", "wall_decals_hoofspa",  "vallance_1pc",  {decal=true, background=3}),
-        DecoCreator:Create("wall_mirror",  "interior_wall_mirror",         "wall_mirror",          "idle",          {background=3, followlight=true, mirror=true}),
+        DecoCreator:Create("wall_mirror",  "interior_wall_mirror",         "wall_mirror",          "idle",          {background=3, mirror=true}),
         DecoCreator:Create("deco_chaise",  "interior_floor_decor",         "interior_floor_decor", "chaise",        {physics="sofa_physics", tags={"furniture", "rotatableobject", "limited_chair"}, onbuilt=true, cansit = true}),
 
         DecoCreator:Create("wall_light_hoofspa", "interior_wall_decals_hoofspa", "wall_decals_hoofspa", "sconce_sidewall",       {light=DecoCreator:GetLights().SMALL}),
@@ -190,15 +168,15 @@ return  DecoCreator:Create("window_round",                 "interior_window", "i
         DecoCreator:Create("deco_ruins_roots2", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "vines_2",                 {decal=true, background=2}),
         DecoCreator:Create("deco_ruins_roots3", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "vines_3",                 {decal=true, background=2}),
 
-        DecoCreator:Create("deco_ruins_pigking_relief", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "relief_king",     {decal=true, background=1}),
-        DecoCreator:Create("deco_ruins_pigman_relief2", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "relief_happy",    {decal=true, background=1}),
-        DecoCreator:Create("deco_ruins_pigqueen_relief", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "relief_queen",   {decal=true, background=1}),
-        DecoCreator:Create("deco_ruins_pigman_relief1", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "relief_confused", {decal=true, background=1}),
-        DecoCreator:Create("deco_ruins_pigman_relief3", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "relief_surprise", {decal=true, background=1}),
+        DecoCreator:Create("deco_ruins_pigking_relief", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "relief_king",     {decal=true, background=1, name_override="pig_ruins_dart_trap"}),
+        DecoCreator:Create("deco_ruins_pigman_relief2", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "relief_happy",    {decal=true, background=1, name_override="pig_ruins_dart_trap"}),
+        DecoCreator:Create("deco_ruins_pigqueen_relief", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "relief_queen",   {decal=true, background=1, name_override="pig_ruins_dart_trap"}),
+        DecoCreator:Create("deco_ruins_pigman_relief1", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "relief_confused", {decal=true, background=1, name_override="pig_ruins_dart_trap"}),
+        DecoCreator:Create("deco_ruins_pigman_relief3", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "relief_surprise", {decal=true, background=1, name_override="pig_ruins_dart_trap"}),
 
-        DecoCreator:Create("deco_ruins_pigman_relief_side", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "relief_sidewall",  {decal=true, background=1}),
+        DecoCreator:Create("deco_ruins_pigman_relief_side", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "relief_sidewall",  {decal=true, background=1, name_override="pig_ruins_dart_trap"}),
 
-        DecoCreator:Create("deco_ruins_pigman_relief4", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "relief_head",        {decal=true, background=1}),
+        DecoCreator:Create("deco_ruins_pigman_relief4", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "relief_head",        {decal=true, background=1, name_override="pig_ruins_dart_trap"}),
 
         DecoCreator:Create("deco_ruins_cornerbeam", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "pillar_corner",          {decal=true, background=3, tags={"cornerpost"}}),
         DecoCreator:Create("deco_ruins_cornerbeam_heavy", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "pillar_corner_lg", {decal=true, background=3, tags={"cornerpost"}}),
@@ -215,15 +193,15 @@ return  DecoCreator:Create("window_round",                 "interior_window", "i
 
 
                     -- THE BLUE RUINS ART
-        DecoCreator:Create("deco_ruins_pigking_relief_blue", "interior_wall_decals_ruins_blue", "interior_wall_decals_ruins", "relief_king",     {decal=true, background=1}),
-        DecoCreator:Create("deco_ruins_pigman_relief2_blue", "interior_wall_decals_ruins_blue", "interior_wall_decals_ruins", "relief_happy",    {decal=true, background=1}),
-        DecoCreator:Create("deco_ruins_pigqueen_relief_blue", "interior_wall_decals_ruins_blue", "interior_wall_decals_ruins", "relief_queen",   {decal=true, background=1}),
-        DecoCreator:Create("deco_ruins_pigman_relief1_blue", "interior_wall_decals_ruins_blue", "interior_wall_decals_ruins", "relief_confused", {decal=true, background=1}),
-        DecoCreator:Create("deco_ruins_pigman_relief3_blue", "interior_wall_decals_ruins_blue", "interior_wall_decals_ruins", "relief_surprise", {decal=true, background=1}),
+        DecoCreator:Create("deco_ruins_pigking_relief_blue", "interior_wall_decals_ruins_blue", "interior_wall_decals_ruins", "relief_king",     {decal=true, background=1, name_override="pig_ruins_dart_trap"}),
+        DecoCreator:Create("deco_ruins_pigman_relief2_blue", "interior_wall_decals_ruins_blue", "interior_wall_decals_ruins", "relief_happy",    {decal=true, background=1, name_override="pig_ruins_dart_trap"}),
+        DecoCreator:Create("deco_ruins_pigqueen_relief_blue", "interior_wall_decals_ruins_blue", "interior_wall_decals_ruins", "relief_queen",   {decal=true, background=1, name_override="pig_ruins_dart_trap"}),
+        DecoCreator:Create("deco_ruins_pigman_relief1_blue", "interior_wall_decals_ruins_blue", "interior_wall_decals_ruins", "relief_confused", {decal=true, background=1, name_override="pig_ruins_dart_trap"}),
+        DecoCreator:Create("deco_ruins_pigman_relief3_blue", "interior_wall_decals_ruins_blue", "interior_wall_decals_ruins", "relief_surprise", {decal=true, background=1, name_override="pig_ruins_dart_trap"}),
 
-        DecoCreator:Create("deco_ruins_pigman_relief_side_blue", "interior_wall_decals_ruins_blue", "interior_wall_decals_ruins", "relief_sidewall",  {decal=true, background=1}),
+        DecoCreator:Create("deco_ruins_pigman_relief_side_blue", "interior_wall_decals_ruins_blue", "interior_wall_decals_ruins", "relief_sidewall",  {decal=true, background=1, name_override="pig_ruins_dart_trap"}),
 
-        DecoCreator:Create("deco_ruins_pigman_relief4_blue", "interior_wall_decals_ruins_blue", "interior_wall_decals_ruins", "relief_head",        {decal=true, background=1}),
+        DecoCreator:Create("deco_ruins_pigman_relief4_blue", "interior_wall_decals_ruins_blue", "interior_wall_decals_ruins", "relief_head",        {decal=true, background=1, name_override="pig_ruins_dart_trap"}),
 
         DecoCreator:Create("deco_ruins_cornerbeam_blue", "interior_wall_decals_ruins_blue", "interior_wall_decals_ruins", "pillar_corner",          {decal=true, background=3, tags={"cornerpost"}}),
         DecoCreator:Create("deco_ruins_cornerbeam_heavy_blue", "interior_wall_decals_ruins_blue", "interior_wall_decals_ruins", "pillar_corner_lg", {decal=true, background=3, tags={"cornerpost"}}),

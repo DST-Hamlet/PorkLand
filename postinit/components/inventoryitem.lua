@@ -83,7 +83,7 @@ function InventoryItem:OnUpdate(dt, ...)
                 self.inst.AnimState:SetLayer(LAYER_WORLD)  -- 虽然inventoryitem基本上都属于这个显示层级，但是保险起见，最好在改变显示层级的时候保存旧的显示层级
                 self.inst.Physics:ClearCollidesWith(COLLISION.VOID_LIMITS)
             end
-            if y < -2 then
+            if y < -3 then
                 self:TryToSink()
                 if not self.inst:HasTag("irreplaceable") then
                     self.inst:StopUpdatingComponent(self)
@@ -155,10 +155,9 @@ function SinkEntity(entity, ...)
             entity.Transform:SetPosition(sx, 5, sz)
         else
             -- Our reasonable cases are out... so let's loop to find the portal and respawn there.
-            for k, v in pairs(Ents) do
-                if v:IsValid() and v:HasTag("multiplayer_portal") then
-                    entity.Transform:SetPosition(v.Transform:GetWorldPosition())
-                end
+            local portal = TheSim:FindFirstEntityWithTag("multiplayer_portal")
+            if portal and portal:IsValid() then
+                entity.Transform:SetPosition(portal.Transform:GetWorldPosition())
             end
         end
     else

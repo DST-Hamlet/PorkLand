@@ -87,6 +87,7 @@ local function fn()
     inst.components.glidemotor.runspeed = TUNING.ROC_SPEED
     inst.components.glidemotor.runspeed_turnfast = TUNING.ROC_SPEED * 2 / 3
     inst.components.glidemotor:EnableMove(false)
+    inst.components.glidemotor.accurate = true
 
     inst:AddComponent("roccontroller")
     inst.components.roccontroller:Setup(TUNING.ROC_SPEED, 0.35, 3)

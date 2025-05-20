@@ -80,7 +80,7 @@ local function OnHammered(inst, worker)
         inst.doortask = nil
     end
 
-    if inst.components.spawner then
+    if inst.components.spawner and inst.components.spawner.child then
         inst.components.spawner:ReleaseChild()
     end
 

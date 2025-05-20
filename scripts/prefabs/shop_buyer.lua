@@ -312,6 +312,8 @@ local function fn()
     inst.components.shopped:OnSetCost(OnSetCost)
     inst.components.shopped:SetOnRobbed(OnRobbed)
 
+    MakeHauntable(inst)
+
     inst.MakeShopkeeperSpeech = MakeShopkeeperSpeech
     inst.Restock = Restock
     inst.InitShop = InitShop
