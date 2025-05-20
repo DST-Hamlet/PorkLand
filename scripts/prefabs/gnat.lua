@@ -102,6 +102,12 @@ local function CanBeHit(inst, data)
         or (data.weapon and (data.weapon:HasOneOfTags({"rangedweapon"})))
 end
 
+local function OnEntitySleep(inst)
+    if inst.SoundEmitter:PlayingSound("move") then
+        inst.SoundEmitter:KillSound("move")
+    end
+end
+
 local function fn()
     local inst = CreateEntity()
 
@@ -209,6 +215,8 @@ local function fn()
 
     inst.CanBeAttack = CanBeAttack
     inst.CanBeHit = CanBeHit
+
+    inst.OnEntitySleep = OnEntitySleep
 
     return inst
 end
