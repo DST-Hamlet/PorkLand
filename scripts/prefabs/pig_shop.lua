@@ -743,7 +743,6 @@ local function MakeShop(name, build, bank, data)
         inst:AddComponent("lootdropper")
 
         inst:AddComponent("door")
-        inst.components.door.outside = true
 
         inst:AddComponent("fixable")
         inst.components.fixable:AddReconstructionStageData("rubble", inst.bank, inst.build)
@@ -789,7 +788,7 @@ local function MakeShop(name, build, bank, data)
         end
 
         MakeSnowCovered(inst, 0.01)
-        MakeHauntableWork(inst)
+        MakeHauntable(inst)
 
         if data.master_init_fn then
             data.master_init_fn(inst)

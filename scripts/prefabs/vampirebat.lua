@@ -25,14 +25,7 @@ SetSharedLootTable("vampirebat",
 
 local MAX_TARGET_SHARES = 5
 local SHARE_TARGET_DIST = 40
-
-local function MakeTeam(inst, attacker)
-    local leader = SpawnPrefab("teamleader")
-    leader:AddTag("vampirebat")
-    leader.components.teamleader.mult = 1.5
-    leader.components.teamleader:SetUp(attacker, inst)
-    leader.components.teamleader:BroadcastDistress(inst)
-end
+local KEEP_TARGET_DIST = 40
 
 local function OnWingDown(inst)
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/vampire_bat/flap")
@@ -43,22 +36,19 @@ local function OnWingDownShadow(inst)
 end
 
 local function KeepTarget(inst, target)
-    if inst.components.teamattacker.teamleader == nil or
-        (inst.components.teamattacker.teamleader and not inst.components.teamattacker.teamleader:CanAttack()) or
-        inst.components.teamattacker.orders == "ATTACK" then
-        return true
+    if inst.components.combat:CanTarget(target) then
+        local distsq = target:GetDistanceSqToInst(inst)
+        return distsq < KEEP_TARGET_DIST * KEEP_TARGET_DIST
     else
         return false
     end
 end
 
-local RETARGET_DIST = 12
+local RETARGET_DIST = 16
 local RETARGET_DIST_SLEEP = 3
 local RETARGET_CANT_TAGS = {"vampirebat"}
 local RETARGET_ONEOF_TAGS = {"character", "monster"}
 local function Retarget(inst)
-    local ta = inst.components.teamattacker
-
     local newtarget = nil
     if not inst.components.sleeper:IsAsleep() then
         newtarget = FindEntity(inst, RETARGET_DIST, function(ent)
@@ -70,29 +60,19 @@ local function Retarget(inst)
         end, nil, RETARGET_CANT_TAGS, RETARGET_ONEOF_TAGS)
     end
 
-    if newtarget and not ta.inteam and not ta:SearchForTeam() then
-        MakeTeam(inst, newtarget)
-    end
-
-    if ta.inteam and not ta.teamleader:CanAttack() then
-        return newtarget
-    end
+    return newtarget
 end
 
 local function OnAttacked(inst, data)
-    if not inst.components.teamattacker.inteam and not inst.components.teamattacker:SearchForTeam() then
-        MakeTeam(inst, data.attacker)
-    elseif inst.components.teamattacker.teamleader then
-        inst.components.teamattacker.teamleader:BroadcastDistress() --Ask for help!
+    local attacker = data and data.attacker
+    if attacker == nil then
+        return
     end
 
-    if inst.components.teamattacker.inteam and not inst.components.teamattacker.teamleader:CanAttack() then
-        local attacker = data and data.attacker
-        inst.components.combat:SetTarget(attacker)
-        inst.components.combat:ShareTarget(attacker, SHARE_TARGET_DIST, function(ent)
-            return ent:HasTag("vampirebat") and not ent.components.health:IsDead()
-        end, MAX_TARGET_SHARES)
-    end
+    inst.components.combat:SetTarget(attacker)
+    inst.components.combat:ShareTarget(attacker, SHARE_TARGET_DIST, function(ent)
+        return ent:HasTag("vampirebat") and not ent.components.health:IsDead()
+    end, MAX_TARGET_SHARES)
 end
 
 local function OnAttackOther(inst, data)
@@ -208,8 +188,8 @@ local function fn()
 
     inst:AddComponent("knownlocations")
 
-    inst:AddComponent("teamattacker")
-    inst.components.teamattacker.team_type = "vampirebat"
+    inst:AddComponent("teamcombat")
+    inst.components.teamcombat.teamtype = "vampirebat"
 
     inst:SetBrain(brain)
     inst:SetStateGraph("SGvampirebat")
@@ -220,7 +200,6 @@ local function fn()
     MakeHauntablePanic(inst)
 
     inst.cavebat = false
-    inst.MakeTeam = MakeTeam
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
 
@@ -235,7 +214,7 @@ end
 -----------------------------------------------------------------------------------
 
 local function DoDive(inst)
-    local player = inst.components.circler.circleTarget
+    local player = inst.hunttarget
 
     -- The player has left the game, spawn anyways
     if not player or not player:IsValid() then
@@ -248,8 +227,9 @@ local function DoDive(inst)
         end
         inst.task = nil
         inst.taskinfo = nil
+        inst.persists = false
         inst.components.colourtweener:StartTween({1,1,1,0}, 0.3)
-        inst.components.circler:Stop()
+        inst.components.glidemotor:EnableMove(false)
         inst:DoTaskInTime(1,inst.Remove)
         return
     end
@@ -271,11 +251,12 @@ local function DoDive(inst)
         end
         inst.task = nil
         inst.taskinfo = nil
+        inst.persists = false
         inst.components.colourtweener:StartTween({1,1,1,0}, 0.3)
-        inst.components.circler:Stop()
+        inst.components.glidemotor:EnableMove(false)
         inst:DoTaskInTime(1,inst.Remove)
     else
-        inst.task, inst.taskinfo = inst:ResumeTask(5 + math.random() * 2, DoDive)
+        inst.task, inst.taskinfo = inst:ResumeTask(2 + math.random() * 1, DoDive)
     end
 end
 
@@ -288,12 +269,49 @@ local function UpdateColourTweener(inst)
     end
 end
 
+local function SetUp(inst, target)
+    inst.hunttarget = target
+    inst.components.glidemotor:SetTargetPos(target:GetPosition())
+end
+
+local function UpdateTraget(inst)
+    local target = inst.hunttarget
+    if target then
+        if not target:IsValid() then
+            inst.hunttarget = nil
+        elseif inst:GetDistanceSqToInst(target) > 64 * 64 then
+            inst.hunttarget = nil
+        elseif IsEntityDeadOrGhost(target) then
+            inst.hunttarget = nil
+        elseif target.entity:IsVisible() then
+            inst.hunttarget = nil
+        end
+    end
+
+    if inst.hunttarget == nil then
+        local x, y, z = inst.Transform:GetWorldPosition()
+        local newtarget = FindClosestPlayerInRange(x, y, z, 64, true)
+        inst.hunttarget = newtarget
+    end
+
+    if inst.hunttarget then
+        inst.components.glidemotor:SetTargetPos(inst.hunttarget:GetPosition())
+    end
+
+    if inst.scale then
+        inst.scale = math.min(inst.scale + 0.02 * FRAMES, 1.2)
+        inst.AnimState:SetScale(inst.scale, inst.scale, inst.scale)
+    end
+end
+
 local function OnSaveShadow(inst, data)
     if inst.taskinfo then
         data.time = inst:TimeRemainingInTask(inst.taskinfo)
-        data.player = inst.components.circler.circleTarget.GUID
-        return {player = inst.components.circler.circleTarget.GUID}
+        data.player = inst.hunttarget.GUID
+        return {player = inst.hunttarget.GUID}
     end
+
+    data.scale = inst.scale
 end
 
 local function OnLoadShadow(inst, data)
@@ -305,15 +323,16 @@ local function OnLoadShadow(inst, data)
     if data.time then
         inst.task, inst.taskinfo = inst:ResumeTask(data.time, DoDive)
     end
+
+    if data.scale then
+        inst.scale = data.scale
+    end
 end
 
 local function OnLoadPostPassShadow(inst, ents, data)
     if data and data.player and ents[data.player] then
-        inst.components.circler:SetCircleTarget(ents[data.player].entity)
+        inst:SetUp(ents[data.player].entity)
     end
-
-    inst.components.circler.dontfollowinterior = true
-    inst.components.circler:Start()
 end
 
 local function circlingbatfn()
@@ -324,6 +343,20 @@ local function circlingbatfn()
     inst.entity:AddSoundEmitter()
     inst.entity:AddNetwork()
 
+    -- Custom physics settings
+    local phys = inst.entity:AddPhysics()
+    phys:SetMass(1)
+    phys:SetFriction(0)
+    phys:SetDamping(5)
+    phys:SetCollisionGroup(COLLISION.FLYERS)
+    phys:ClearCollisionMask()
+    phys:CollidesWith(COLLISION.GROUND)
+    if TheWorld:HasTag("porkland") then
+        phys:ClearCollidesWith(COLLISION.LIMITS)
+        phys:ClearCollidesWith(COLLISION.VOID_LIMITS)
+    end
+    phys:SetCapsule(0.5, 1)
+
     inst.AnimState:SetBank("bat_vamp_shadow")
     inst.AnimState:SetBuild("bat_vamp_shadow")
     inst.AnimState:PlayAnimation("shadow_flap_loop", true)
@@ -331,8 +364,10 @@ local function circlingbatfn()
     inst.AnimState:SetLayer(LAYER_BACKGROUND)
     inst.AnimState:SetSortOrder(3)
     inst.AnimState:SetMultColour(1, 1, 1, 0)
+    inst.AnimState:SetScale(0.8, 0.8, 0.8)
 
     inst:AddTag("FX")
+    inst:AddTag("vampirebat_shadow")
 
     inst.entity:SetPristine()
 
@@ -340,9 +375,16 @@ local function circlingbatfn()
         return inst
     end
 
-    inst:AddComponent("circler")
-    inst.components.circler.minScale = 10
-    inst.components.circler.maxScale = 8
+    inst:AddComponent("glidemotor")
+    inst.components.glidemotor.runspeed = 8
+    inst.components.glidemotor.runspeed_turnfast = 8
+    inst.components.glidemotor.turnspeed = 40
+    inst.components.glidemotor.turnspeed_fast = 40
+    inst.components.glidemotor:EnableMove(true)
+    inst.components.glidemotor.avoid = true
+    inst.components.glidemotor.avoidother = true
+    inst.components.glidemotor.avoid_must_tags = {"vampirebat_shadow"}
+    inst.components.glidemotor.avoid_cant_tags = {"INLIMBO", "NOCLICK"}
 
     inst:AddComponent("colourtweener")
     UpdateColourTweener(inst)
@@ -358,7 +400,12 @@ local function circlingbatfn()
         end
     end)
 
+    inst.scale = 0.8
+    inst:DoPeriodicTask(FRAMES, UpdateTraget)
+
     inst.task, inst.taskinfo = inst:ResumeTask(20 + math.random() * 2, DoDive)
+
+    inst.SetUp = SetUp
 
     inst.OnSave = OnSaveShadow
     inst.OnLoad = OnLoadShadow
@@ -366,10 +413,8 @@ local function circlingbatfn()
 
     inst.DoDive = DoDive
 
-    inst.persists = false
-
     return inst
 end
 
-return Prefab("vampirebat", fn, assets, prefabs) ,
+return Prefab("vampirebat", fn, assets, prefabs),
        Prefab("circlingbat", circlingbatfn, assets, prefabs)

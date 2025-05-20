@@ -235,6 +235,11 @@ CRAFTING_FILTERS.WINTER.disabled_worlds = { "porkland" }
 CRAFTING_FILTERS.SUMMER.disabled_worlds = { "porkland" }
 CRAFTING_FILTERS.FISHING.disabled_worlds = { "porkland" }
 
+-- Wheeler --
+
+AddRecipe2("trusty_shooter",  {Ingredient("mosquitosack", 1), Ingredient("twigs", 2), Ingredient("boards", 1)}, TECH.NONE, {builder_tag="trusty_shooter"}, {"CHARACTER", "WEAPONS"})
+AddRecipe2("wheeler_tracker", {Ingredient("compass", 1), Ingredient("iron", 1)},                                TECH.NONE, {builder_tag="tracker_user"}, {"CHARACTER", "TOOLS"})
+
 --- ARCHAEOLOGY ---
 AddRecipe2("disarming_kit", {Ingredient("iron", 2), Ingredient("cutreeds", 2)}, TECH.NONE, {}, {"ARCHAEOLOGY"})
 AddRecipe2("ballpein_hammer", {Ingredient("iron", 2), Ingredient("twigs", 1)}, TECH.SCIENCE_ONE, {}, {"ARCHAEOLOGY"})

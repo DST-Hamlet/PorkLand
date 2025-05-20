@@ -52,6 +52,7 @@ local function Regrow(inst)
         inst:RemoveTag("NOCLICK")
         inst.AnimState:PlayAnimation(GetAnimName(inst) .. "_pre", true)
         inst.AnimState:PushAnimation(GetAnimName(inst), true)
+        inst.components.rotatingbillboard.animdata.anim = GetAnimName(inst)
         inst.components.rotatingbillboard:SyncMaskAnimation()
     end
 end
@@ -63,6 +64,7 @@ local function hackedopen(inst)
     inst.components.shearable:SetCanShear(false)
     inst:AddTag("NOCLICK")
     inst.AnimState:PlayAnimation(GetAnimName(inst), true)
+    inst.components.rotatingbillboard.animdata.anim = GetAnimName(inst)
     inst.components.rotatingbillboard:SyncMaskAnimation()
 end
 
@@ -131,6 +133,7 @@ local function makefn()
     inst.AnimState:SetBank(anim_data.bank)
     inst.AnimState:SetBuild(anim_data.build)
     inst.AnimState:PlayAnimation(anim_data.animation, true)
+    inst.AnimState:SetRayTestOnBB(true)
 
     inst.Transform:SetRotation(-90) -- 使得rotatingbillboard默认正对室内摄像机显示
 

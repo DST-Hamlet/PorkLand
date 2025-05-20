@@ -118,6 +118,7 @@ local function fn()
 
     inst:AddTag("NOBLOCK")
     inst:AddTag("NOCLICK")
+    inst:AddTag("daylight")
 
     inst:AddComponent("lighttweener")
 

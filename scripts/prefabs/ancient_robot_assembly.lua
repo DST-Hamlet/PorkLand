@@ -115,6 +115,14 @@ local function OnLoadPostPass(inst, newents, data)
     end
 end
 
+local function OnHaunt(inst, haunter)
+    if math.random() < TUNING.HAUNT_CHANCE_OCCASIONAL then
+        inst.components.mechassembly:Dissemble()
+        return true
+    end
+    return false
+end
+
 local function fn()
     local inst = CreateEntity()
 
@@ -172,6 +180,9 @@ local function fn()
     inst:AddComponent("locomotor")
 
     inst:AddComponent("mechassembly")
+
+    inst:AddComponent("hauntable")
+    inst.components.hauntable:SetOnHauntFn(OnHaunt)
 
     inst:ListenForEvent("assemble", OnAssemble)
 

@@ -3,7 +3,7 @@ local GlobalIdentity = Class(function(self, inst)
     self.nextid = 1000001
 end)
 
-function GlobalIdentity:CraeteNewID()
+function GlobalIdentity:CreateNewId()
     local new_id = self.nextid
     self.nextid = self.nextid + 1
     return new_id

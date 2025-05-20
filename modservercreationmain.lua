@@ -69,7 +69,9 @@ scheduler:ExecuteInTime(0, function()  -- Delay a frame so we can get ServerCrea
         end
     end
 
-    -- if not servercreationscreen:CanResume() then  -- Only when first time creating the world
+    -- Sydney: 游戏会保存location，不需要每次进存档都修改
+    -- self.dirty标记是否修改了servercreationscreen的配置，在退出界面的时候是否提示保存
+    if servercreationscreen:IsDirty() then
         SetLevelLocations(servercreationscreen, "porkland", 1)  -- Automatically try switching to the porkland preset
-    -- end
+    end
 end)

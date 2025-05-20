@@ -136,6 +136,15 @@ function self:RemoveRoc(roc)
     end
 end
 
+function self:ForceLeftPos(pt)
+    if _roc and _roc:IsValid() then
+        local distsq = _roc:GetDistanceSqToPoint(pt)
+        if distsq < 200 * 200 then
+            _roc:PushEvent("liftoff")
+        end
+    end
+end
+
 --------------------------------------------------------------------------
 --[[ Initialization ]]
 --------------------------------------------------------------------------

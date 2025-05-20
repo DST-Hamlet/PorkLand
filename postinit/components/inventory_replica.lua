@@ -37,3 +37,13 @@ function Inventory:GetItem(prefab)
     end
 
 end
+
+local get_num_slots = Inventory.GetNumSlots
+function Inventory:GetNumSlots(...)
+    if not self.inst.components.inventory then
+        if self.inst.prefab == "wheeler" then
+            return 12
+        end
+    end
+    return get_num_slots(self, ...)
+end

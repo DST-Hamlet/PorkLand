@@ -13,6 +13,10 @@ local prefabs =
     "chitin",
 }
 
+local function GenerateAntmanName()
+    return STRINGS.NAMES.ANTNAMES_PREFIX..math.random(100000,999999)
+end
+
 local MAX_TARGET_SHARES = 5
 local SHARE_TARGET_DIST = 30
 
@@ -326,8 +330,7 @@ local function fn()
     inst.components.combat.hiteffectsymbol = "antman_torso"
 
     inst:AddComponent("named")
-    inst.components.named.possiblenames = STRINGS.ANTNAMES
-    inst.components.named:PickNewName()
+    inst.components.named:SetName(GenerateAntmanName())
 
     inst:AddComponent("eater")
     inst.components.eater:SetCanEatHorrible()

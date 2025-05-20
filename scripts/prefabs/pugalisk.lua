@@ -10,6 +10,7 @@ local assets =
     Asset("ANIM", "anim/python_segment_tail02_build.zip"),
     Asset("ANIM", "anim/python_segment_tail_build.zip"),
     Asset("ANIM", "anim/python_dirt_segment_in_fast_pst.zip"),
+    Asset("ANIM", "anim/python_dirt_segment_out_fast_pre.zip"),
 }
 
 local prefabs =
@@ -360,7 +361,7 @@ local function bodyfn()
 
     if not TheWorld.ismastersim then
         inst.oldpos = inst:GetPosition()
-        inst:DoPeriodicTask(FRAMES, function(inst)
+        inst:DoPeriodicTask(0, function(inst)
             if inst.oldpos == inst:GetPosition() then
                 ClientPerdictPosition(inst, FRAMES, true)
             else
@@ -681,21 +682,9 @@ local function OnFinishCallback(inst, worker)
 
     SpawnPrefab("collapse_small").Transform:SetPosition(inst.Transform:GetWorldPosition())
 
-    if worker then
-        -- figure out which side to drop the loot
-        local pt = inst:GetPosition()
-        local hispos = Vector3(worker.Transform:GetWorldPosition())
+    inst.components.lootdropper:DropLoot()
 
-        local he_right = ((hispos - pt):Dot(TheCamera:GetRightVec()) > 0)
-
-        if he_right then
-            inst.components.lootdropper:DropLoot(pt - (TheCamera:GetRightVec() * (math.random() + 1)))
-        else
-            inst.components.lootdropper:DropLoot(pt + (TheCamera:GetRightVec() * (math.random() + 1)))
-        end
-
-        inst:Remove()
-    end
+    inst:Remove()
 end
 
 local function corpsefn()

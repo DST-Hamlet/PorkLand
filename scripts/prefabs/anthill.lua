@@ -283,12 +283,7 @@ local function CreateRegularRooms(inst)
 
     local doorway_count = 1
     local current_room_setup_index = 1
-    local doorway_prefabs = {inst}
-    for _, ent in pairs(Ents) do
-        if ent:HasTag("ant_hill_exit") then
-            table.insert(doorway_prefabs, ent)
-        end
-    end
+    local doorways = JoinArrays({inst}, TheWorld.components.globalentityregistry:Get("ant_hill_exit"))
 
     for i = 1, NUM_ROWS do
         for j = 1, NUM_COLS do
@@ -296,8 +291,7 @@ local function CreateRegularRooms(inst)
             local room_type = room_types[room_id_list[current_room_setup_index]]
             current_room_setup_index = current_room_setup_index + 1
 
-            local addprops = GenerateProps(room_type, ANT_CAVE_DEPTH, ANT_CAVE_WIDTH, room, doorway_count,
-                doorway_prefabs)
+            local addprops = GenerateProps(room_type, ANT_CAVE_DEPTH, ANT_CAVE_WIDTH, room, doorway_count, doorways)
 
             if room.is_entrance then
                 local exterior_door_def = {
@@ -306,10 +300,11 @@ local function CreateRegularRooms(inst)
                     target_interior = room.id,
                 }
 
-                doorway_prefabs[doorway_count].interiorID = room.id
-                doorway_prefabs[doorway_count].doorway_index = doorway_count
-                TheWorld.components.interiorspawner:AddDoor(doorway_prefabs[doorway_count], exterior_door_def)
-                TheWorld.components.interiorspawner:AddExterior(doorway_prefabs[doorway_count])
+                local doorway = doorways[doorway_count]
+                doorway.interiorID = room.id
+                doorway.doorway_index = doorway_count
+                TheWorld.components.interiorspawner:AddDoor(doorway, exterior_door_def)
+                TheWorld.components.interiorspawner:AddExterior(doorway)
 
                 doorway_count = doorway_count + 1
             end
@@ -530,6 +525,9 @@ local function makefn(is_entrance)
             inst:AddTag("ant_hill_entrance")
         else
             inst:AddTag("ant_hill_exit")
+            if TheWorld.ismastersim then
+                TheWorld.components.globalentityregistry:Register("ant_hill_exit", inst)
+            end
         end
 
         inst.name = STRINGS.NAMES.ANTHILL
@@ -557,7 +555,6 @@ local function makefn(is_entrance)
         inst.components.inspectable.nameoverride = "anthill"
 
         inst:AddComponent("door")
-        inst.components.door.outside = true
 
         MakeSnowCovered(inst, 0.01)
 
