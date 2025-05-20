@@ -51,7 +51,7 @@ debug.setupvalue(scope_fn, i, function(self, inventory, overflow, do_integrated_
     local num_equipintersep = num_buttons > 0 and 1 or 0
     local total_w = (num_slots + num_equip + num_buttons) * W + (num_slots + num_equip + num_buttons - num_slotintersep - num_equipintersep - 1) * SEP + (num_slotintersep + num_equipintersep) * INTERSEP
 
-	local x = (W - total_w) * .5 + num_slots * W + (num_slots - num_slotintersep) * SEP + num_slotintersep * INTERSEP
+    local x = (W - total_w) * .5 + num_slots * W + (num_slots - num_slotintersep) * SEP + num_slotintersep * INTERSEP
     for k, v in ipairs(self.equipslotinfo) do
         if v.slot == EQUIPSLOTS.HANDS then
             self.hudcompass_wheeler:SetBasePosition(x, do_integrated_backpack and 80 or 40, 0)

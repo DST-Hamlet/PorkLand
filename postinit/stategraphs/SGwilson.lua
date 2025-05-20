@@ -2388,13 +2388,13 @@ local states = {
         {
             EventHandler("equip", function(inst) inst.sg:GoToState("idle") end),
             EventHandler("unequip", function(inst, data)
-				if inst.sg.statemem.thrown and data.eslot == EQUIPSLOTS.HANDS then
-					inst.sg.statemem.thrown = nil
-				else
+                if inst.sg.statemem.thrown and data.eslot == EQUIPSLOTS.HANDS then
+                    inst.sg.statemem.thrown = nil
+                else
                     inst.sg:GoToState("idle")
                 end
             end),
-			EventHandler("animqueueover", function(inst)
+            EventHandler("animqueueover", function(inst)
                 if inst.AnimState:AnimDone() then
                     inst.sg:GoToState("idle")
                 end

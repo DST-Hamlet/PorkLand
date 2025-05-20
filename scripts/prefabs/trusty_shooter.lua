@@ -238,7 +238,7 @@ local function fn()
 
     inst.CanTakeAmmo = CanTakeAmmo
 
-	if not TheNet:IsDedicated() then
+    if not TheNet:IsDedicated() then
         inst:ListenForEvent("itemget", OnTakeAmmoClient)
     end
 

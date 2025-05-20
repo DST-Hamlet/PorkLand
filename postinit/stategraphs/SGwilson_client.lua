@@ -831,21 +831,21 @@ local states = {
         tags = { "attack", "notalking", "abouttoattack" },
 
         onenter = function(inst)
-			local combat = inst.replica.combat
-			if combat:InCooldown() then
-				inst.sg:RemoveStateTag("abouttoattack")
-				inst:ClearBufferedAction()
-				inst.sg:GoToState("idle", true)
-				return
-			end
+            local combat = inst.replica.combat
+            if combat:InCooldown() then
+                inst.sg:RemoveStateTag("abouttoattack")
+                inst:ClearBufferedAction()
+                inst.sg:GoToState("idle", true)
+                return
+            end
 
-			combat:StartAttack()
-			inst.sg:SetTimeout(20 * FRAMES)
+            combat:StartAttack()
+            inst.sg:SetTimeout(20 * FRAMES)
             inst.components.locomotor:Stop()
 
             inst.AnimState:PlayAnimation("hand_shoot")
 
-			local buffaction = inst:GetBufferedAction()
+            local buffaction = inst:GetBufferedAction()
             if buffaction ~= nil then
                 inst:PerformPreviewBufferedAction()
 
@@ -872,7 +872,7 @@ local states = {
 
         events =
         {
-			EventHandler("animqueueover", function(inst)
+            EventHandler("animqueueover", function(inst)
                 if inst.AnimState:AnimDone() then
                     inst.sg:GoToState("idle")
                 end

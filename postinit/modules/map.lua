@@ -418,17 +418,17 @@ end
 
 local _GetTileAtPoint = Map.GetTileAtPoint
 function Map:GetTileAtPoint(x, y, z, ...)
-    local ref = _GetTileAtPoint(self, x, y, z, ...)
-    if ref == WORLD_TILES.INVALID then
+    local tile = _GetTileAtPoint(self, x, y, z, ...)
+    if tile == WORLD_TILES.INVALID then
         if x and z and TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
             if TheWorld.components.interiorspawner:IsInInteriorRoom(x, z) then
-                ref = WORLD_TILES.INTERIOR
+                tile = WORLD_TILES.INTERIOR
             else
-                ref = WORLD_TILES.IMPASSABLE
+                tile = WORLD_TILES.IMPASSABLE
             end
         end
     end
-    return ref
+    return tile
 end
 
 function Map:GetPointAtTile(x, y)
@@ -440,18 +440,18 @@ end
 
 local _GetTile = Map.GetTile
 function Map:GetTile(x, y, ...)
-    local ref = _GetTile(self, x, y, ...)
-    if ref == WORLD_TILES.INVALID then
+    local tile = _GetTile(self, x, y, ...)
+    if tile == WORLD_TILES.INVALID then
         local tx, _, tz = self:GetPointAtTile(x, y)
         if x and y and TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(tx, tz) then
             if TheWorld.components.interiorspawner:IsInInteriorRoom(tx, tz) then
-                ref = WORLD_TILES.INTERIOR
+                tile = WORLD_TILES.INTERIOR
             else
-                ref = WORLD_TILES.IMPASSABLE
+                tile = WORLD_TILES.IMPASSABLE
             end
         end
     end
-    return ref
+    return tile
 end
 
 function Map:GetIslandTagAtPoint(x, y, z)

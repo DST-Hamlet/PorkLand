@@ -104,7 +104,7 @@ local function GetKeyForNeighbors(data)
     return key
 end
 
-tile_map = {}
+local tile_map = {}
 
 local function AddToTileMap(val, data)
     local key = GetKeyForNeighbors(data)
