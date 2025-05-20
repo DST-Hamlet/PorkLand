@@ -12,7 +12,7 @@ for name, data in pairs(TILE_TYPES) do
     tile_id = tile_id + 1
 end
 
--- PLAYER_CAMERA_SEE_DISTANCE (40) / TILE_SCALE (4) = 10
+-- PLAYER_CAMERA_SEE_DISTANCE (40) / TILE_SCALE (4) + 5 = 15
 local REFRESH_RADIUS = (PLAYER_CAMERA_SEE_DISTANCE / TILE_SCALE) + 5
 
 local PL_TileManager = Class(function(self, inst)
@@ -191,11 +191,12 @@ function PL_TileManager:UpdateTiles()
     if self.inst:GetIsInInterior() then
         return
     end
-    local current_tile_center = self.inst.components.tilechangewatcher.last_tile_center
+    local tilechangewatcher = self.inst.components.tilechangewatcher
+    local current_tile_center = tilechangewatcher.last_tile_center
     for x = -REFRESH_RADIUS, REFRESH_RADIUS do
         for z = -REFRESH_RADIUS, REFRESH_RADIUS do
             local center = current_tile_center + Vector3(x * TILE_SCALE, 0, z * TILE_SCALE)
-            local tile = TheWorld.Map:GetTileAtPoint(center.x, center.y, center.z)
+            local tile = tilechangewatcher:CachedTileAtPoint(center.x, center.y, center.z)
             if tile then
                 if TILE_TYPES[tile] then
                     if self.tiles[TILE_TYPES[tile].id] == nil then
@@ -210,7 +211,7 @@ function PL_TileManager:UpdateTiles()
 
                 local neighbor_datas = {}
                 for dir, v in pairs(NEIGHBOR_TILES) do
-                    local adjacent_tile = TheWorld.Map:GetTileAtPoint(center.x + v.x * TILE_SCALE, center.y, center.z + v.z * TILE_SCALE)
+                    local adjacent_tile = tilechangewatcher:CachedTileAtPoint(center.x + v.x * TILE_SCALE, center.y, center.z + v.z * TILE_SCALE)
                     if TILE_TYPES[adjacent_tile] then
                         if neighbor_datas[adjacent_tile] == nil then
                             neighbor_datas[adjacent_tile] = {}
