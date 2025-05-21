@@ -3,8 +3,7 @@ local Uptile = Class(function(self, inst)
     self.tilesfixed =
     {
         pigruins = false,
-        lilypond_version_1 = false,
-        mud_falloff = false,
+        lilypond_version_1 = false
     }
 
     self.inst:DoStaticTaskInTime(0, function()

@@ -6,19 +6,20 @@ local LIGHT_SOURCE_RADIUS = 30
 local LIGHT_SOURCE_MUST_TAGS = {"daylight", "lightsource"}
 
 local _DoGrow = Crop.DoGrow
-function Crop:DoGrow(dt, no_wither, ...)
+function Crop:DoGrow(dt, nowither, ...)
     local x, _, z = self.inst.Transform:GetWorldPosition()
     if not TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
-        _DoGrow(self, dt, no_wither, ...)
+        _DoGrow(self, dt, nowither, ...)
         return
     end
 
-    if self.inst:HasTag("withered") then
+    if self.inst:HasTag("withered") or self.growthpercent >= 1 then
         return
     end
 
-    local should_grow = no_wither or not TheWorld.state.isnight
-    if not should_grow then
+    local should_grow = nowither
+    local not_night = not TheWorld.state.isnight
+    if not should_grow and not_night then
         local x, y, z = self.inst.Transform:GetWorldPosition()
         for _, v in ipairs(TheSim:FindEntities(x, 0, z, LIGHT_SOURCE_RADIUS, LIGHT_SOURCE_MUST_TAGS)) do
             local light_radius = v.Light:GetCalculatedRadius() * 0.7

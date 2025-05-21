@@ -151,6 +151,7 @@ local actionhandlers = {
     ActionHandler(ACTIONS.BUILD_ROOM, "doshortaction"),
     ActionHandler(ACTIONS.DEMOLISH_ROOM, "doshortaction"),
     ActionHandler(ACTIONS.THROW, "throw"),
+    ActionHandler(ACTIONS.DODGE, "dodge"),
     -- We later override it to match ACTION.CASTAOE's action handler
     ActionHandler(ACTIONS.SPELL_COMMAND, "dolongaction"),
 }
@@ -614,14 +615,14 @@ local states = {
         timeline =
         {
             TimeEvent(13*FRAMES, function(inst)
-                inst.SoundEmitter:PlaySound("dontstarve/common/fishingpole_cast", nil, nil, true)
+                inst.SoundEmitter:PlaySound("dontstarve/common/fishingpole_cast")
             end),
             TimeEvent(15*FRAMES, function(inst)
-                inst.SoundEmitter:PlaySound("dontstarve/common/fishingpole_baitsplash", nil, nil, true)
+                inst.SoundEmitter:PlaySound("dontstarve/common/fishingpole_baitsplash")
                 inst:PerformBufferedAction()
             end),
             TimeEvent(49*FRAMES, function(inst)
-                inst.SoundEmitter:PlaySound("dontstarve/common/fishingpole_fishcaught", nil, nil, true)
+                inst.SoundEmitter:PlaySound("dontstarve/common/fishingpole_fishcaught")
             end),
             TimeEvent(60*FRAMES, function(inst)
                 local fishingrod = inst.sg.statemem.tool ~= nil and inst.sg.statemem.tool.components.fishingrod
@@ -642,7 +643,7 @@ local states = {
                 end
             end),
             TimeEvent(64*FRAMES, function(inst)
-                inst.SoundEmitter:PlaySound("dontstarve/common/fishingpole_fishland", nil, nil, true)
+                inst.SoundEmitter:PlaySound("dontstarve/common/fishingpole_fishland")
             end),
             TimeEvent(70*FRAMES, function(inst)
                 local fishingrod = inst.sg.statemem.tool ~= nil and inst.sg.statemem.tool.components.fishingrod
@@ -1725,6 +1726,10 @@ local states = {
             inst.components.locomotor:Stop()
             inst.AnimState:PlayAnimation("give")
             inst.AnimState:PushAnimation("give_pst", false)
+            if inst:HasTag("beaver") then
+                inst.AnimState:PlayAnimation("atk")
+                inst.AnimState:PushAnimation("atk_pst", false)
+            end
             if inst.components.playercontroller then
                 -- inst.components.playercontroller:EnableMapControls(false)
                 inst.components.playercontroller:Enable(false)
@@ -2050,7 +2055,7 @@ local states = {
             inst.components.locomotor:Stop()
             inst.AnimState:PlayAnimation("charge_pre")
             inst.AnimState:PushAnimation("charge_grow")
-            inst.SoundEmitter:PlaySound("porkland_soundpackage/common/crafted/iron_lord/charge_up_LP", "chargedup")
+            inst.SoundEmitter:PlaySound("porkland_soundpackage/common/crafted/iron_lord/charge_up_LP", "chargedup", nil, true)
 
             inst.sg.statemem.ready_to_shoot = false
             inst.sg.statemem.should_shoot = false
@@ -2073,7 +2078,7 @@ local states = {
 
         onupdate = function(inst)
             if inst.sg.statemem.should_shoot and inst.sg.statemem.ready_to_shoot then
-                inst.SoundEmitter:PlaySoundWithParams("dontstarve_DLC003/common/crafted/iron_lord/smallshot", {timeoffset = math.random()})
+                inst.SoundEmitter:PlaySoundWithParams("dontstarve_DLC003/common/crafted/iron_lord/smallshot", {timeoffset = math.random()}, nil, true)
                 inst.SoundEmitter:KillSound("chargedup")
                 inst.sg:GoToState("ironlord_shoot", false)
             end
@@ -2093,7 +2098,7 @@ local states = {
             inst.components.locomotor:Stop()
             inst.AnimState:PlayAnimation("charge_super_pre")
             inst.AnimState:PushAnimation("charge_super_loop", true)
-            inst.SoundEmitter:PlaySound("porkland_soundpackage/common/crafted/iron_lord/electro")
+            inst.SoundEmitter:PlaySound("porkland_soundpackage/common/crafted/iron_lord/electro", nil, nil, true)
 
             inst.sg.statemem.ready_to_shoot = false
             inst.sg.statemem.should_shoot = data.should_shoot or false
@@ -2111,7 +2116,7 @@ local states = {
 
         onupdate = function(inst)
             if inst.sg.statemem.should_shoot and inst.sg.statemem.ready_to_shoot then
-                inst.SoundEmitter:PlaySoundWithParams("dontstarve_DLC003/creatures/boss/hulk_metal_robot/laser",  {intensity = math.random(0.7, 1)})
+                inst.SoundEmitter:PlaySoundWithParams("dontstarve_DLC003/creatures/boss/hulk_metal_robot/laser",  {intensity = math.random(0.7, 1)}, nil, true)
 
                 inst.sg:GoToState("ironlord_shoot", true)
             end
@@ -2156,7 +2161,7 @@ local states = {
 
     State{
         name = "ironlord_explode",
-        tags = {"busy"},
+        tags = {"busy", "nopredict"},
 
         onenter = function(inst)
             inst.components.locomotor:Stop()
@@ -2389,6 +2394,77 @@ local states = {
     },
 
     State{
+        name = "hand_shoot",
+        tags = { "attack", "notalking", "abouttoattack", "autopredict" },
+
+        onenter = function(inst)
+            if inst.components.combat:InCooldown() then
+                inst.sg:RemoveStateTag("abouttoattack")
+                inst:ClearBufferedAction()
+                inst.sg:GoToState("idle", true)
+                return
+            end
+            local buffaction = inst:GetBufferedAction()
+            local target = buffaction ~= nil and buffaction.target or nil
+            inst.components.combat:SetTarget(target)
+            inst.components.combat:StartAttack()
+            inst.components.locomotor:Stop()
+            local cooldown = math.max(20 * FRAMES)
+
+            inst.AnimState:PlayAnimation("hand_shoot")
+
+            inst.sg:SetTimeout(cooldown)
+
+            if target ~= nil and target:IsValid() then
+                inst:FacePoint(target.Transform:GetWorldPosition())
+                inst.sg.statemem.attacktarget = target
+                inst.sg.statemem.retarget = target
+            end
+        end,
+
+        timeline =
+        {
+            TimeEvent(17*FRAMES, function(inst)
+                inst:PerformBufferedAction()
+                inst.sg:RemoveStateTag("abouttoattack")
+            end),
+        },
+
+        ontimeout = function(inst)
+            inst.sg:RemoveStateTag("attack")
+            inst.sg:AddStateTag("idle")
+        end,
+
+        events =
+        {
+            EventHandler("equip", function(inst) inst.sg:GoToState("idle") end),
+            EventHandler("unequip", function(inst, data)
+				if inst.sg.statemem.thrown and data.eslot == EQUIPSLOTS.HANDS then
+					inst.sg.statemem.thrown = nil
+				else
+                    inst.sg:GoToState("idle")
+                end
+            end),
+			EventHandler("animqueueover", function(inst)
+                if inst.AnimState:AnimDone() then
+                    inst.sg:GoToState("idle")
+                end
+            end),
+        },
+
+        onexit = function(inst)
+            if inst.components.rider:IsRiding() then
+                inst.Transform:SetSixFaced()
+            end
+
+            inst.components.combat:SetTarget(nil)
+            if inst.sg:HasStateTag("abouttoattack") then
+                inst.components.combat:CancelAttack()
+            end
+        end,
+    },
+
+    State{
         name = "blunderbuss",
         tags = {"attack", "notalking", "abouttoattack"},
 
@@ -2398,10 +2474,11 @@ local states = {
             end
 
             local buffaction = inst:GetBufferedAction()
-            local target = buffaction and buffaction.target
+            local target = buffaction and buffaction.target or nil
             inst.sg.statemem.target = target
-            inst.sg.statemem.target_position = target and target:GetPosition()
+            inst.sg.statemem.target_position = target and target:IsValid() and target:GetPosition()
 
+            inst.components.combat:SetTarget(target)
             inst.components.combat:StartAttack()
             inst.components.locomotor:Stop()
             inst.AnimState:PlayAnimation("speargun")
@@ -2415,15 +2492,17 @@ local states = {
             if inst.components.rider:IsRiding() then
                 inst.Transform:SetSixFaced()
             end
+
+            inst.components.combat:SetTarget(nil)
+            if inst.sg:HasStateTag("abouttoattack") then
+                inst.components.combat:CancelAttack()
+            end
         end,
 
         timeline =
         {
             TimeEvent(12 * FRAMES, function(inst)
                 inst.sg:RemoveStateTag("abouttoattack")
-                inst.components.combat:DoAttack(inst.sg.statemem.target)
-
-                inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/items/weapon/blunderbuss_shoot")
 
                 local target_position
                 if inst.sg.statemem.target and inst.sg.statemem.target:IsValid() then
@@ -2432,18 +2511,23 @@ local states = {
                     target_position = inst.sg.statemem.target_position
                 end
 
-                local angle =  target_position and (inst:GetAngleToPoint(target_position.x, target_position.y, target_position.z) - 90) * DEGREES
+                if target_position then
+                    inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/items/weapon/blunderbuss_shoot")
+                    inst.components.combat:DoAttack(inst.sg.statemem.target)
 
-                inst.sg.statemem.target = nil
-                inst.sg.statemem.target_position = nil
+                    local angle =  target_position and (inst:GetAngleToPoint(target_position.x, target_position.y, target_position.z) - 90) * DEGREES
 
-                local DIST = 1.5
-                local pt = Vector3(inst.Transform:GetWorldPosition())
-                local offset = Vector3(math.cos(angle + PI / 2), 0, -math.sin(angle + PI / 2)) * DIST
-                local y = inst.components.rider:IsRiding() and 4.5 or 2
+                    inst.sg.statemem.target = nil
+                    inst.sg.statemem.target_position = nil
 
-                local cloud = SpawnPrefab("cloudpuff")
-                cloud.Transform:SetPosition(pt.x + offset.x, y, pt.z + offset.z)
+                    local DIST = 1.5
+                    local pt = Vector3(inst.Transform:GetWorldPosition())
+                    local offset = Vector3(math.cos(angle + PI / 2), 0, -math.sin(angle + PI / 2)) * DIST
+                    local y = inst.components.rider:IsRiding() and 4.5 or 2
+
+                    local cloud = SpawnPrefab("cloudpuff")
+                    cloud.Transform:SetPosition(pt.x + offset.x, y, pt.z + offset.z)
+                end
             end),
             TimeEvent(20 * FRAMES, function(inst) inst.sg:RemoveStateTag("attack") end),
         },
@@ -2531,7 +2615,7 @@ local states = {
 
     State{
         name = "cower",
-        tags = {"busy", "cower", "pausepredict"},
+        tags = {"busy", "cower", "canrotate", "nopredict", "nomorph", "nointerrupt"},
 
         onenter = function(inst, data)
             inst.components.locomotor:Stop()
@@ -2555,9 +2639,11 @@ local states = {
 
     State{
         name = "grabbed",
-        tags = {"busy", "pausepredict"},
+        tags = {"busy", "canrotate", "nopredict", "nomorph", "nointerrupt"},
 
         onenter = function(inst, data)
+            inst.components.locomotor:Stop()
+            inst:ClearBufferedAction()
             inst:ShowHUD(false)
             if inst.components.playercontroller then
                 inst.components.playercontroller:EnableMapControls(false)
@@ -2593,6 +2679,206 @@ local states = {
                 inst.DynamicShadow:Enable(false)
             end),
         },
+    },
+
+    State
+    {
+        name = "dodge",
+        tags = {"busy", "evade", "no_stun", "canrotate"},
+
+        onenter = function(inst)
+            local action = inst:GetBufferedAction()
+            if action then
+                local pos = action:GetActionPoint()
+                inst:ForceFacePoint(pos)
+            end
+
+            inst.sg:SetTimeout(TUNING.DODGE_TIMEOUT)
+            inst.components.locomotor:Stop()
+            inst.AnimState:PlayAnimation("slide_pre")
+
+            inst.AnimState:PushAnimation("slide_loop")
+            inst.SoundEmitter:PlaySound("porkland_soundpackage/characters/wheeler/slide", nil, nil, true)
+            inst.Physics:SetMotorVelOverride(20, 0, 0)
+            inst.components.locomotor:EnableGroundSpeedMultiplier(false)
+
+            inst:AddTag("difficult_to_hit")
+            inst.CanBeAttack = function() return false end
+
+            inst.last_dodge_time = GetTime()
+        end,
+
+        timeline=
+        {
+            TimeEvent(3*FRAMES, function(inst)
+                inst.Physics:SetMotorVelOverride(14, 0, 0)
+            end),
+            TimeEvent(8*FRAMES, function(inst)
+                inst.Physics:SetMotorVelOverride(8, 0, 0)
+                inst.AnimState:PlayAnimation("slide_pst")
+            end),
+        },
+
+        ontimeout = function(inst)
+            inst.sg:GoToState("dodge_pst")
+        end,
+
+        onexit = function(inst)
+            inst.components.locomotor:EnableGroundSpeedMultiplier(true)
+            inst.Physics:ClearMotorVelOverride()
+            inst.components.locomotor:Stop()
+
+            inst.components.locomotor:SetBufferedAction(nil)
+
+            inst:RemoveTag("difficult_to_hit")
+            inst.CanBeAttack = nil
+        end,
+    },
+
+    State
+    {
+        name = "dodge_pst",
+        tags = {"evade", "no_stun"},
+
+        events =
+        {
+            EventHandler("animover", function(inst)
+                inst.sg:GoToState("idle")
+            end),
+        }
+    },
+
+    State{
+        name = "beaver_attack",
+        tags = {"attack", "abouttoattack"},
+
+        onenter = function(inst)
+            if inst.components.combat:InCooldown() then
+                inst.sg:RemoveStateTag("abouttoattack")
+                inst:ClearBufferedAction()
+                inst.sg:GoToState("idle", true)
+                return
+            end
+
+            inst.components.locomotor:StopMoving()
+            inst.AnimState:PlayAnimation("atk_pre")
+            inst.AnimState:PushAnimation("atk", false)
+            inst.SoundEmitter:PlaySound("dontstarve/wilson/attack_whoosh", nil, nil, true)
+            inst.components.combat:StartAttack()
+            inst.components.combat.laststartattacktime = inst.components.combat.laststartattacktime - 0.2
+            local buffaction = inst:GetBufferedAction()
+            local target = buffaction ~= nil and buffaction.target or nil
+            inst.components.combat:SetTarget(target)
+            inst.sg.statemem.target = target
+
+            if target ~= nil and target:IsValid() then
+                inst:FacePoint(target.Transform:GetWorldPosition())
+                inst.sg.statemem.attacktarget = target
+                inst.sg.statemem.retarget = target
+            end
+        end,
+
+        timeline =
+        {
+            TimeEvent(6 * FRAMES, function(inst)
+                    inst:PerformBufferedAction()
+                    inst.sg:RemoveStateTag("abouttoattack")
+                end),
+            TimeEvent(7 * FRAMES, function(inst)
+                    inst.sg:RemoveStateTag("attack")
+                    inst.sg:AddStateTag("idle")
+                end),
+        },
+
+        events =
+        {
+            EventHandler("animqueueover", function(inst)
+                inst.sg:GoToState("idle")
+            end),
+        },
+
+        onexit = function(inst)
+            inst.components.combat:SetTarget(nil)
+            if inst.sg:HasStateTag("abouttoattack") then
+                inst.components.combat:CancelAttack()
+            end
+        end,
+    },
+
+    State{
+        name = "beaver_eat",
+		tags = { "busy", "nodangle", "keep_pocket_rummage" },
+
+        onenter = function(inst, foodinfo)
+            inst.components.locomotor:Stop()
+
+            local feed = foodinfo and foodinfo.feed
+            if feed ~= nil then
+                inst.components.locomotor:Clear()
+                inst:ClearBufferedAction()
+                inst.sg.statemem.feed = foodinfo.feed
+                inst.sg.statemem.feeder = foodinfo.feeder
+                inst.sg:AddStateTag("pausepredict")
+                if inst.components.playercontroller ~= nil then
+                    inst.components.playercontroller:RemotePausePrediction()
+                end
+            elseif inst:GetBufferedAction() then
+                feed = inst:GetBufferedAction().invobject
+            end
+
+            inst.AnimState:PlayAnimation("eat_pre")
+            inst.AnimState:PushAnimation("eat", false)
+            inst.SoundEmitter:PlaySound("dontstarve/characters/woodie/eat_beaver")
+
+            inst.components.hunger:Pause()
+        end,
+
+        timeline =
+        {
+            TimeEvent(9 * FRAMES, function(inst)
+                if inst.sg.statemem.feed == nil then
+                    inst:PerformBufferedAction()
+                else
+                    inst.components.eater:Eat(inst.sg.statemem.feed, inst.sg.statemem.feeder)
+                end
+				--NOTE: "queue_post_eat_state" can be triggered immediately from the eat action
+            end),
+
+            TimeEvent(12 * FRAMES, function(inst)
+				if inst.sg.statemem.queued_post_eat_state == nil then
+					inst.sg:RemoveStateTag("busy")
+					inst.sg:RemoveStateTag("pausepredict")
+				end
+            end),
+        },
+
+        events =
+        {
+			EventHandler("queue_post_eat_state", function(inst, data)
+				--NOTE: this event can trigger instantly instead of buffered
+				if data ~= nil then
+					inst.sg.statemem.queued_post_eat_state = data.post_eat_state
+					if data.nointerrupt then
+						inst.sg:AddStateTag("nointerrupt")
+					end
+				end
+			end),
+            EventHandler("animqueueover", function(inst)
+                if inst.AnimState:AnimDone() then
+					inst.sg:GoToState(inst.sg.statemem.queued_post_eat_state or "idle")
+                end
+            end),
+        },
+
+        onexit = function(inst)
+            inst.SoundEmitter:KillSound("eating")
+            if not GetGameModeProperty("no_hunger") then
+                inst.components.hunger:Resume()
+            end
+            if inst.sg.statemem.feed ~= nil and inst.sg.statemem.feed:IsValid() then
+                inst.sg.statemem.feed:Remove()
+            end
+        end,
     },
 }
 
@@ -2635,12 +2921,26 @@ AddStategraphPostInit("wilson", function(sg)
 
     local _attack_deststate = sg.actionhandlers[ACTIONS.ATTACK].deststate
     sg.actionhandlers[ACTIONS.ATTACK].deststate = function(inst, action, ...)
+        if inst:HasTag("ironlord") then
+            return "ironlord_attack"
+        end
+
         if not inst.sg:HasStateTag("sneeze") then
-            local weapon = inst.components.combat ~= nil and inst.components.combat:GetWeapon()
-            if weapon and weapon:HasTag("blunderbuss_loaded") then
-                return "blunderbuss"
+            local ret = _attack_deststate and _attack_deststate(inst, action, ...)
+            if ret then
+                if inst:HasTag("beaver") then
+                    return "beaver_attack"
+                end
+                local weapon = inst.components.combat and inst.components.combat:GetWeapon()
+                if weapon then
+                    if weapon:HasTag("blunderbuss_loaded") then
+                        return "blunderbuss"
+                    elseif weapon:HasTag("hand_gun_loaded") then
+                        return "hand_shoot"
+                    end
+                end
             end
-            return _attack_deststate and _attack_deststate(inst, action, ...)
+            return ret
         end
     end
 
@@ -2666,9 +2966,9 @@ AddStategraphPostInit("wilson", function(sg)
 
     local _attacked_eventhandler = sg.events.attacked.fn
 
-    local _DoHurtSound, DoHurtSound_i = ToolUtil.GetUpvalue(_attacked_eventhandler, "DoHurtSound")
+    local _DoHurtSound, scope_fn, DoHurtSound_i = ToolUtil.GetUpvalue(_attacked_eventhandler, "DoHurtSound")
     if DoHurtSound_i then
-        debug.setupvalue(_attacked_eventhandler, DoHurtSound_i,function(inst)
+        debug.setupvalue(scope_fn, DoHurtSound_i,function(inst)
             if inst:HasTag("ironlord") then
                 return
             end
@@ -2993,16 +3293,6 @@ AddStategraphPostInit("wilson", function(sg)
         inst:PerformBufferedAction()
     end
 
-    local _attack_deststate = sg.actionhandlers[ACTIONS.ATTACK].deststate
-    sg.actionhandlers[ACTIONS.ATTACK].deststate = function(inst, ...)
-        if inst:HasTag("ironlord") then
-            return "ironlord_attack"
-        end
-        if not inst.sg:HasStateTag("sneeze") then
-            return _attack_deststate and _attack_deststate(inst, ...)
-        end
-    end
-
     local _chop_deststate = sg.actionhandlers[ACTIONS.CHOP].deststate
     sg.actionhandlers[ACTIONS.CHOP].deststate = function(inst, action)
         if inst:HasTag("ironlord") then
@@ -3036,6 +3326,15 @@ AddStategraphPostInit("wilson", function(sg)
             return "ironlord_work"
         else
             return _hammer_deststate and _hammer_deststate(inst, action)
+        end
+    end
+
+    local _eat_deststate = sg.actionhandlers[ACTIONS.EAT].deststate
+    sg.actionhandlers[ACTIONS.EAT].deststate = function(inst, action)
+        if inst:HasTag("beaver") then
+            return "beaver_eat"
+        else
+            return _eat_deststate and _eat_deststate(inst, action)
         end
     end
 end)

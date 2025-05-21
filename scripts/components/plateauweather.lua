@@ -383,7 +383,7 @@ return Class(function(self, inst)
             or 1
     end
 
-    local function CalculateLight()
+    local function CalculateWorldLight()
         if _precipmode:value() == PRECIP_MODES.never then
             return 1
         end
@@ -419,7 +419,7 @@ return Class(function(self, inst)
             precipitationrate = CalculatePrecipitationRate(),
             snowlevel = 0,
             wetness = _wetness:value(),
-            light = CalculateLight(),
+            light = CalculateWorldLight(),
         }
         _world:PushEvent("weathertick", data)
         _world:PushEvent("plateauweathertick", data)
@@ -1072,7 +1072,7 @@ return Class(function(self, inst)
             string.format("preciprate:(%2.2f of %2.2f)", preciprate, _peakprecipitationrate:value()),
             string.format("fog:%2.5f", _fogstate:value()),
             string.format("wetness:%2.2f(%s%2.2f)%s", _wetness:value(), wetrate > 0 and "+" or "", wetrate, _wet:value() and " WET" or ""),
-            string.format("light:%2.5f", CalculateLight()),
+            string.format("light:%2.5f", CalculateWorldLight()),
         }
 
         if _ismastersim then

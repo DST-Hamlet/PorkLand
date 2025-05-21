@@ -21,6 +21,8 @@ local Sailable = Class(function(self, inst)
 
     self._currentboatanim = net_string(inst.GUID, "sailable._currentboatanim", "animdirty")
     self._animevent = net_event(inst.GUID, "animeventdirty")
+    self._haunt = net_bool(inst.GUID, "sailable._haunt", "hauntdirty")
+    self._haunt:set_local(false)
     if not TheWorld.ismastersim then
         inst:ListenForEvent("animeventdirty", function()
             if not (self:GetSailor() and self:GetSailor().sg ~= nil) then--无延迟补偿情况下通过这部分代码同步动画
@@ -51,6 +53,9 @@ local Sailable = Class(function(self, inst)
                     self:PlayIdleAnims(true)
                 end
             end
+        end)
+        inst:ListenForEvent("hauntdirty", function()
+            self:UpdateHaunt()
         end)
     end
 
@@ -210,6 +215,20 @@ function Sailable:PlayRunAnims(push, notnet)
     end
     for k, v in pairs(self.inst.boatvisuals) do
         k.components.boatvisualanims:PlayRunAnims(false)
+    end
+end
+
+function Sailable:UpdateHaunt(enable)
+    local _enable = self._haunt:value()
+    if enable ~= nil then
+        _enable = enable
+    end
+    if TheWorld.ismastersim then
+        self._haunt:set(_enable)
+    end
+    self.inst.AnimState:SetHaunted(_enable)
+    for k, v in pairs(self.inst.boatvisuals) do
+        k.components.boatvisualanims:SetHauntFx(_enable)
     end
 end
 

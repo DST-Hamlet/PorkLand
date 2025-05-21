@@ -1,4 +1,34 @@
 return {
+    SKIN_NAMES = 
+    {
+        wagstaff_none = "Wagstaff",
+        wilba_none = "Wilba",
+        wheeler_none = "Wheeler",
+    },
+    CHARACTER_NAMES = 
+    {
+        wagstaff = "Robert Wagstaff",
+        wilba = "Wilba",
+        wheeler = "Maybelle Dorothea Wheeler",
+    },
+    CHARACTER_TITLES =
+    {
+        wagstaff = "The Cryptic Founder",
+        wilba = "The Royal Adventurer",
+        wheeler = "The Intrepid Explorer",
+    },
+    CHARACTER_DESCRIPTIONS =
+    {
+        wagstaff = "*A great inventor\n*Nearsighted\n*Delicate Stomach",   
+        wilba = "*Is royalty\n*Carries her father's legacy\n*Is afraid of the dark",
+        wheeler = "*Armed with an air horn\n*Has a knick knack for finding things\n*Travels lighter than most",
+    },
+    CHARACTER_SURVIVABILITY =
+    {
+        wagstaff = "Unknown",   
+        wilba = "Slim",
+        wheeler = "Slim",
+    },
     ACTIONS = {
         DODGE = "Dodge",
         BUILD_ROOM = "Build Room",
@@ -2140,7 +2170,7 @@ return {
         PIGMAN_MAYOR = "Mayor Truffleston",
         PIGMAN_MECHANIC = "Worker",
         PIGMAN_MINER = "Miner",
-        PIGMAN_QUEEN = "Pig Queen",
+        PIGMAN_QUEEN = "Queen Malfalfa",
         PIGMAN_ROYALGUARD = "Royal Guard",
         PIGMAN_STOREOWNER = "Shopkeep",
         PIG_GUARD_TOWER = "Watch Tower",
@@ -2393,9 +2423,6 @@ return {
         WINDOW_TALL = "Tall Window",
         WINDOW_TALL_CURTAIN = "Tall Curtain Window",
         WOOD_DOOR = "Hardwood Door",
-    },
-    QUEENPIGNAMES = {
-        "Queen Malfalfa",
     },
     RECIPE_DESC = {
         ANTIVENOM = "Poison be gone!",
@@ -2651,12 +2678,14 @@ return {
         SWINGING_LIGHT_TOPHAT = "Add some sophistication.",
         THUNDERHAT = "Don't be shocked.",
         TRAWLNET = "The patient fisher is always rewarded.",
+        TRUSTY_SHOOTER = "Throw anything at your hand at the enemy.",
         TURF_COBBLEROAD = "The life of a thriving village.",
         TURF_DEEPRAINFOREST_NOCANOPY = "As tame as wild jungle can be.",
         TURF_FIELDS = "A civilized patch of dirt.",
         TURF_FOUNDATION = "The foundation of a solid village.",
         TURF_LAWN = "Fully tamed grass.",
         VENOMGLAND = "Freshly squeezed poison.",
+        WHEELER_TRACKER = "Never betray it.",
         WINDOW_GREENHOUSE = "Sunlight and creepers.",
         WINDOW_LARGE_SQUARE = "Doubles as a tic-tac-toe board.",
         WINDOW_LARGE_SQUARE_CURTAIN = "Comes with drapery.",
@@ -2775,6 +2804,53 @@ return {
                 LUSH = "Lush",
                 TEMPERATE = "Temperate",
             },
+        },
+    },
+    LUCY = {
+        beaver_up_early=
+        {
+            "Are you okay?",
+            "You alright, big guy?",
+            "What's wrong?",
+            "Are you sure you're feeling alright?",
+            "You're looking extra gruff today.",
+            "You look distracted.",
+            "Why are you making that face?",
+            "Try to take deep breaths, okay?",
+            "It's just a tree! Calm down!",
+        },
+        beaver_up_mid=
+        {
+            "Hello? Can you hear me?",
+            "You might want to slow down a bit.",
+            "Careful, you're getting yourself worked up!",
+            "Don't chop too fast. You know what will happen!",
+        },
+        beaver_up_late=
+        {
+            "You're overdoing it!",
+            "You're not pacing yourself!",
+            "You're about to change!",
+            "Take it easy!",
+            "You've gotta slow down!",
+            "Slow down, I'm worried about you!",
+            "Watch out! You're going to turn!",
+            "No! Don't chop any more!",
+            "The transformation is starting!",
+            "One more chop and you're in trouble!",
+            "Ease up, you're looking a little bucktoothed!",
+            "Stop chopping, I'm getting nervous!",
+        },
+        beaver_down_washigh=
+        {
+            "That was a close one!",
+            "I think we'll be alright.",
+            "You're looking much better now.",
+            "It's passed. For now.",
+            "I was silly to doubt you.",
+            "Wow, I was afraid you were in for it!",
+            "I think the colour's returning to your cheeks.",
+            "It's back in the lodge. Phew!",
         },
     },
 }

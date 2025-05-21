@@ -255,7 +255,6 @@ function InteriorSpawner:GetInteriorDefinition(position_or_id)
 end
 
 function InteriorSpawner:AddExterior(entity)
-    entity:AddTag("exterior_door")
     local interior_id = entity.interiorID
     self.exteriors[interior_id] = entity
     entity.interiorspawner_exterior_on_remove_listener = function()
@@ -272,7 +271,6 @@ function InteriorSpawner:TransferExterior(from_entity, to_entity)
         from_entity:RemoveEventCallback("onremove", from_entity.interiorspawner_exterior_on_remove_listener)
         from_entity.interiorspawner_exterior_on_remove_listener = nil
     end
-    from_entity:RemoveTag("exterior_door")
     self.exteriors[from_entity.interiorID] = nil
 
     self:AddExterior(to_entity)
@@ -523,7 +521,6 @@ function InteriorSpawner:CreateRoom(params)
         minimaptexture = minimaptexture,
         cityID = cityID,
         cc = colour_cube,
-        visited = false,
         batted = batted,
         playerroom = playerroom,
         enigma = false,
@@ -540,7 +537,7 @@ function InteriorSpawner:CreateRoom(params)
 
     for _, prefab in ipairs(addprops) do
         if not prefab.chance or math.random() < prefab.chance then
-            interior_def.prefabs[#interior_def.prefabs + 1] = prefab
+            table.insert(interior_def.prefabs, prefab)
         end
     end
 
@@ -987,8 +984,6 @@ function InteriorSpawner:SpawnInterior(interior)
             end
         end
     end
-
-    interior.visited = true
 end
 
 function InteriorSpawner:GetAllConnectedRooms(center, allrooms)

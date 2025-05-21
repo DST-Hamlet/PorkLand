@@ -9,17 +9,17 @@ local REPLACE_ANIMS =
         ["atk"] = "atk_old",
         ["hit"] = "hit_old",
         ["hit_goo"] = "hit_goo_old",
+        ["idle_inaction_sanity"] = "idle_inaction_sanity_fixed",
     }
 }
 
-local anim_to_entity = {}
+local hash_to_bank = {}
 
-local animstate_banks = {}
+local anim_to_entity = {}
 
 local function clean_up_mapping(inst)
     if inst.AnimState then
         anim_to_entity[inst.AnimState] = nil
-        animstate_banks[inst.AnimState] = nil
     end
 end
 
@@ -37,13 +37,14 @@ end
 
 local _SetBank = AnimState.SetBank
 function AnimState:SetBank(bank, ...)
-    animstate_banks[self] = bank
-    return _SetBank(self, bank, ...)
+    local ret = _SetBank(self, bank, ...)
+    hash_to_bank[self:GetBankHash()] = bank
+    return ret
 end
 
 local _PlayAnimation = AnimState.PlayAnimation
 AnimState.PlayAnimation = function(self, animname, ...)
-    local bank = animstate_banks[self]
+    local bank = hash_to_bank[self:GetBankHash()]
     if REPLACE_ANIMS[bank] and REPLACE_ANIMS[bank][animname] then
         return _PlayAnimation(self, REPLACE_ANIMS[bank][animname], ...)
     else
@@ -53,7 +54,7 @@ end
 
 local _PushAnimation = AnimState.PushAnimation
 AnimState.PushAnimation = function(self, animname, ...)
-    local bank = animstate_banks[self]
+    local bank = hash_to_bank[self:GetBankHash()]
     if REPLACE_ANIMS[bank] and REPLACE_ANIMS[bank][animname] then
         return _PushAnimation(self, REPLACE_ANIMS[bank][animname], ...)
     else

@@ -23,8 +23,6 @@ for i, recipe_name in ipairs(LOST_RECIPES) do
     end)
 end
 
-AllRecipes["cookbook"].ingredients = {Ingredient("papyrus", 1), Ingredient("radish", 1)} -- TODO: 检测世界来修改配方
-
 local _telebase_testfn = AllRecipes["telebase"].testfn
 AllRecipes["telebase"].testfn = function(pt, rot, ...)
     if TheWorld.components.interiorspawner:IsInInterior(pt.x, pt.z) then
@@ -236,6 +234,11 @@ CRAFTING_FILTERS.RIDING.disabled_worlds = { "porkland" }
 CRAFTING_FILTERS.WINTER.disabled_worlds = { "porkland" }
 CRAFTING_FILTERS.SUMMER.disabled_worlds = { "porkland" }
 CRAFTING_FILTERS.FISHING.disabled_worlds = { "porkland" }
+
+-- Wheeler --
+
+AddRecipe2("trusty_shooter",  {Ingredient("mosquitosack", 1), Ingredient("twigs", 2), Ingredient("boards", 1)}, TECH.NONE, {builder_tag="trusty_shooter"}, {"CHARACTER", "WEAPONS"})
+AddRecipe2("wheeler_tracker", {Ingredient("compass", 1), Ingredient("iron", 1)},                                TECH.NONE, {builder_tag="tracker_user"}, {"CHARACTER", "TOOLS"})
 
 --- ARCHAEOLOGY ---
 AddRecipe2("disarming_kit", {Ingredient("iron", 2), Ingredient("cutreeds", 2)}, TECH.NONE, {}, {"ARCHAEOLOGY"})

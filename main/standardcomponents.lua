@@ -241,6 +241,48 @@ function MakeTreeBlowInWindGust(inst, stages, threshold, destroy_chance)
     end
 end
 
+function OnTreeFallClient(inst)
+    local anim = inst.client_anims[inst._stage:value()]
+    local he_right = false
+
+    local dif = inst._fallangle:value() + 180 + TheCamera.heading
+    while dif > 180 do
+        dif = dif - 360
+    end
+    while dif < -180 do
+        dif = dif + 360
+    end
+    if dif > 0 then
+        he_right = true
+    end
+
+    if he_right then
+        inst.AnimState:PlayAnimation(anim.fallleft)
+    else
+        inst.AnimState:PlayAnimation(anim.fallright)
+    end
+end
+
+function MakeTreeClientFallAnim(inst, anims)
+    inst.client_anims = anims
+
+    inst._stage = net_byte(inst.GUID, "_stage")
+    inst._fallangle = net_float(inst.GUID, "_fallangle", "fallangledirty")
+    inst._fallangle:set_local(0)
+
+    if not TheWorld.ismastersim then
+        inst:ListenForEvent("fallangledirty", function()
+            inst:RunOnPostUpdate(OnTreeFallClient)
+        end)
+    end
+end
+
+function PushTreeFallServer(inst, pt, hispos)
+    local angle = math.atan2(pt.z - hispos.z, hispos.x - pt.x) * RADIANS
+    inst._stage:set(inst.stage)
+    inst._fallangle:set(angle)
+end
+
 function MakePoisonableCharacter(inst, sym, offset, fxstyle, damage_penalty, attack_period_penalty, speed_penalty, hunger_burn, sanity_scale)
     if not inst.components.poisonable then
         inst:AddComponent("poisonable")

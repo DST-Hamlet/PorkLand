@@ -25,6 +25,7 @@ local function OnPlayedCorrupted(inst, musician)
     local rocmanager = TheWorld.components.rocmanager
     if rocmanager then
         rocmanager:Disable()
+        rocmanager:ForceLeftPos(inst:GetPosition())
     end
 
     inst:Remove()
@@ -59,6 +60,8 @@ local function CommonFn()
     inst.components.tool:SetAction(ACTIONS.PLAY)
 
     inst:AddComponent("inventoryitem")
+
+    MakeHauntableLaunch(inst)
 
     return inst
 end

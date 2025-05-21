@@ -6,6 +6,7 @@ local assets =
     Asset("ANIM", "anim/player_idles_wes.zip"),
     Asset("ANIM", "anim/player_mount_wes.zip"),
     Asset("ANIM", "anim/player_mime.zip"),
+    Asset("ANIM", "anim/player_mime2.zip"),
 }
 
 local start_inv =
@@ -42,13 +43,13 @@ local function master_postinit(inst)
 
     inst.customidlestate = "wes_funnyidle"
 
-    inst.customidlestate = "wes_funnyidle"
-
     inst.components.health:SetMaxHealth(TUNING.WILSON_HEALTH * 0.75)
     inst.components.hunger:SetMax(TUNING.WILSON_HUNGER * 0.75)
-    inst.components.hunger:SetRate(TUNING.WILSON_HUNGER_RATE * 1.25)
     inst.components.sanity:SetMax(TUNING.WILSON_SANITY * 0.75)
+
     inst.components.combat.damagemultiplier = TUNING.WES_DAMAGE_MULT
+    inst:AddComponent("efficientuser")
+    inst.components.efficientuser:AddMultiplier(ACTIONS.ATTACK, 0.75, "wes")
 end
 
 return MakePlayerCharacter("wes", prefabs, assets, common_postinit, master_postinit, prefabs)

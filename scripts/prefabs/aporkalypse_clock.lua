@@ -226,7 +226,7 @@ local function aporkalypse_clock_fn()
 
     inst:DoTaskInTime(0, DoPostInit)
 
-    MakeHauntableWork(inst)
+    MakeHauntable(inst)
 
     return inst
 end

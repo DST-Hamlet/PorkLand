@@ -77,6 +77,7 @@ local function fn()
     inst:AddTag("NOBLOCK")
     inst:AddTag("lightrays")
     inst:AddTag("exposure")
+    inst:AddTag("daylight")
 
     if not TheNet:IsDedicated() then
         inst:AddComponent("distancefade")

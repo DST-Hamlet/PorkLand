@@ -95,5 +95,54 @@ function PlayerActionPicker:GetRightClickActions(position, target, ...)
     if self.inst.components.playercontroller.casting_action_override_spell then
         return {}
     end
-    return get_right_click_actions(self, position, target, ...)
+
+    local actions = get_right_click_actions(self, position, target, ...)
+
+    -- Allow performing Wheeler's DODGE on impassable points
+    if IsTableEmpty(actions) and (target == nil or target:HasTag("walkableplatform") or target:HasTag("walkableperipheral")) and not self.map:IsPassableAtPoint(position:Get()) then
+        local useitem = self.inst.replica.inventory:GetActiveItem()
+        local point_special_actions = self:GetPointSpecialActions(position, useitem, true)
+        if point_special_actions[1] and point_special_actions[1].action == ACTIONS.DODGE then
+            actions = point_special_actions
+        end
+    end
+
+    return actions or {}
+end
+
+-- Allow performing wheeler's DODGE in the dark
+local do_get_mouse_actions = PlayerActionPicker.DoGetMouseActions
+function PlayerActionPicker:DoGetMouseActions(position, target, spellbook, ...)
+    local actions = { do_get_mouse_actions(self, position, target, spellbook, ...) }
+
+    if position == nil then
+        local lmb = actions[1]
+        local rmb = actions[2]
+
+        if not rmb and not TheInput:GetHUDEntityUnderMouse() and not self.inst.components.playercontroller:IsAOETargeting() then
+            position = TheInput:GetWorldPosition()
+			target = target or TheInput:GetWorldEntityUnderMouse()
+
+            local cansee
+            if target == nil then
+                local x, y, z = position:Get()
+                cansee = CanEntitySeePoint(self.inst, x, y, z)
+            else
+                cansee = target == self.inst or CanEntitySeeTarget(self.inst, target)
+            end
+            if not cansee then
+                local rmbs = self:GetRightClickActions(position, nil, spellbook)
+                for i, v in ipairs(rmbs) do
+                    -- Mainly for this part
+                    if v.action == ACTIONS.DODGE then
+                        rmb = v
+                    end
+                end
+            end
+
+            return lmb, rmb
+        end
+    end
+
+    return unpack(actions)
 end

@@ -65,6 +65,14 @@ function EntityScript:ReplicateComponent(component, ...)
     Replicas[filename] = cmp
 end
 
+local _AddComponent = EntityScript.AddComponent
+function EntityScript:AddComponent(component, ...)
+    if component == "sentientaxe" then
+        return self:AddReplaceComponent("pl_sentientaxe", component)
+    end
+    return _AddComponent(self, component, ...)
+end
+
 ---@class entityscript
 ---@field pushevent_postfn table
 
@@ -269,4 +277,43 @@ function EntityScript:IsInSameIsland(target)
     local target_island = TheWorld.Map:GetIslandTagAtPoint(tx, ty, tz)
 
     return current_island == target_island
+end
+
+function EntityScript:RunOnPostUpdate(fn)
+    RunOnPostUpdate(function()
+        if self:IsValid() then
+            fn(self)
+        end
+    end)
+end
+
+function EntityScript:GetColourAndLight()
+    local x, y, z = self.Transform:GetWorldPosition()
+    local position = Vector3(x, y, z)
+
+    local sum_r, sum_g, sum_b = 0, 0, 0
+
+    if not self:GetIsInInterior() then
+        local r, g, b = TheSim:GetAmbientColour()
+        sum_r = sum_r + r / 255
+        sum_g = sum_g + g / 255
+        sum_b = sum_b + b / 255
+    end
+
+    local max_r, max_g, max_b = sum_r, sum_g, sum_b
+    for _, v in ipairs(TheSim:FindEntities(x, 0, z, 40, nil, {"INLIMBO"})) do
+        if v ~= self and v.Light and v.Light:IsEnabled() then
+            local r, g, b = v.Light:GetColour()
+            max_r = math.max(max_r, r)
+            max_g = math.max(max_g, g)
+            max_b = math.max(max_b, b)
+            local _r, _g, _b = CalculateLight(v.Light, math.sqrt(v:GetPosition():DistSq(position)))
+            sum_r = math.min(sum_r + _r, max_r)
+            sum_g = math.min(sum_g + _g, max_g)
+            sum_b = math.min(sum_b + _b, max_b)
+        end
+    end
+    local sum = 0.2126 * sum_r + 0.7152 * sum_g + 0.0722 * sum_b
+
+    return sum_r, sum_g, sum_b, sum
 end

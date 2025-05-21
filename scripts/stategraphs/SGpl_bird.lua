@@ -7,7 +7,7 @@ local actionhandlers =
 }
 
 local function IsStuck(inst)
-	return inst:HasAnyTag("honey_ammo_afflicted", "gelblob_ammo_afflicted") and TheWorld.Map:IsPassableAtPoint(inst.Transform:GetWorldPosition())
+    return inst:HasAnyTag("honey_ammo_afflicted", "gelblob_ammo_afflicted") and TheWorld.Map:IsPassableAtPoint(inst.Transform:GetWorldPosition())
 end
 
 local events =
@@ -77,7 +77,7 @@ local states =
                         v.components.bait and
                         not (v.components.inventoryitem and v.components.inventoryitem:IsHeld()) and
                         (inst.components.floater ~= nil or TheWorld.Map:IsPassableAtPoint(x, y, z)) then
-    
+
                         inst.bufferedaction = BufferedAction(inst, v, ACTIONS.EAT)
                         break
                     end
@@ -156,18 +156,18 @@ local states =
 
         events =
         {
-			EventHandler("stop_honey_ammo_afflicted", function(inst)
-				if not (inst.components.health:IsDead() or (inst.components.burnable and inst.components.burnable:IsBurning()) or IsStuck(inst)) then
-					inst.sg:GoToState("flyaway")
-				end
-			end),
-			EventHandler("stop_gelblob_ammo_afflicted", function(inst)
-				if not (inst.components.health:IsDead() or (inst.components.burnable and inst.components.burnable:IsBurning()) or IsStuck(inst)) then
-					inst.sg:GoToState("flyaway")
-				end
-			end),
+            EventHandler("stop_honey_ammo_afflicted", function(inst)
+                if not (inst.components.health:IsDead() or (inst.components.burnable and inst.components.burnable:IsBurning()) or IsStuck(inst)) then
+                    inst.sg:GoToState("flyaway")
+                end
+            end),
+            EventHandler("stop_gelblob_ammo_afflicted", function(inst)
+                if not (inst.components.health:IsDead() or (inst.components.burnable and inst.components.burnable:IsBurning()) or IsStuck(inst)) then
+                    inst.sg:GoToState("flyaway")
+                end
+            end),
             EventHandler("onextinguish", function(inst)
-				if not (inst.components.health:IsDead() or IsStuck(inst)) then
+                if not (inst.components.health:IsDead() or IsStuck(inst)) then
                     inst.sg:GoToState("idle", "flap_post")
                 end
             end),
@@ -209,14 +209,14 @@ local states =
         tags = { "idle", "flight", "notarget" },
 
         onenter = function(inst)
-			inst:AddTag("NOCLICK")
+            inst:AddTag("NOCLICK")
             if not inst.AnimState:IsCurrentAnimation("glide") then
                 inst.AnimState:PlayAnimation("glide", true)
             end
             inst.sg:SetTimeout(inst.AnimState:GetCurrentAnimationLength())
 
             inst.Physics:SetMotorVel(0, math.random() * 10 - 20, 0)
-			inst.DynamicShadow:Enable(false)
+            inst.DynamicShadow:Enable(false)
         end,
 
         timeline =
@@ -250,7 +250,7 @@ local states =
                         inst.bufferedaction = BufferedAction(inst, bait, ACTIONS.EAT)
                     end
                 end
-                
+
                 inst.sg:GoToState("idle", true)
             end
         end,
@@ -259,10 +259,10 @@ local states =
             inst.sg:GoToState("glide")
         end,
 
-		onexit = function(inst)
-			inst:RemoveTag("NOCLICK")
-			inst.DynamicShadow:Enable(true)
-		end,
+        onexit = function(inst)
+            inst:RemoveTag("NOCLICK")
+            inst.DynamicShadow:Enable(true)
+        end,
     },
 
     State{
@@ -308,12 +308,12 @@ local states =
         tags = { "flight", "busy", "notarget" },
 
         onenter = function(inst)
-			if IsStuck(inst) then
-				inst.sg:GoToState("distress_pre")
-				return
-			end
+            if IsStuck(inst) then
+                inst.sg:GoToState("distress_pre")
+                return
+            end
 
-			inst:AddTag("NOCLICK")
+            inst:AddTag("NOCLICK")
 
             if inst.components.floater ~= nil then
                 inst:PushEvent("on_no_longer_landed")
@@ -359,24 +359,24 @@ local states =
                 inst.AnimState:PushAnimation("takeoff_diagonal_loop", true)
                 inst.Physics:SetMotorVel(math.random() * 8 + 8, math.random() * 5 + 15,math.random() * 4 - 2)
             end
-			inst.DynamicShadow:Enable(false)
+            inst.DynamicShadow:Enable(false)
         end,
 
         timeline =
         {
-			FrameEvent(5, function(inst)
-				inst.DynamicShadow:SetSize(.6, .5)
-			end),
+            FrameEvent(5, function(inst)
+                inst.DynamicShadow:SetSize(.6, .5)
+            end),
             TimeEvent(2, function(inst)
                 inst:Remove()
             end),
         },
 
-		onexit = function(inst)
-			inst:RemoveTag("NOCLICK")
-			inst.DynamicShadow:SetSize(1, .75)
-			inst.DynamicShadow:Enable(true)
-		end,
+        onexit = function(inst)
+            inst:RemoveTag("NOCLICK")
+            inst.DynamicShadow:SetSize(1, .75)
+            inst.DynamicShadow:Enable(true)
+        end,
     },
 
     State{
@@ -437,7 +437,7 @@ local states =
         onenter = function(inst)
             inst.Physics:Stop()
             inst.AnimState:PlayAnimation("fall_loop", true)
-			inst.DynamicShadow:Enable(false)
+            inst.DynamicShadow:Enable(false)
         end,
 
         onupdate = function(inst)
@@ -453,9 +453,9 @@ local states =
             end
         end,
 
-		onexit = function(inst)
-			inst.DynamicShadow:Enable(true)
-		end,
+        onexit = function(inst)
+            inst.DynamicShadow:Enable(true)
+        end,
     },
 
     State{

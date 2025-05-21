@@ -87,6 +87,7 @@ local function OnPhaseChange(inst, phase)
 end
 
 local function MakeTimeChanger(inst)
+    inst:AddTag("daylight")
     inst:AddComponent("lighttweener")
     inst.components.lighttweener:StartTween(inst.Light, lights.day.rad, lights.day.intensity, lights.day.falloff,
         {lights.day.color[1], lights.day.color[2], lights.day.color[3]}, 0)
@@ -96,6 +97,64 @@ local function MakeTimeChanger(inst)
     OnPhaseChange(inst, TheWorld.state.phase)
 
     inst.timechanger = true
+end
+
+local function UpdateDoorLight(inst)
+    if inst.components.door then
+        local interior_spawner = TheWorld.components.interiorspawner
+        local targetdoor = interior_spawner.doors[inst.components.door.target_door_id].inst
+        if not (targetdoor and targetdoor:IsValid()) then
+            return
+        end
+        if not (targetdoor.prefab == "prop_door") then
+            return
+        end
+        local r, g, b, light = targetdoor:GetColourAndLight()
+
+        local door_percent = 1
+        if inst.animchangetime then
+            door_percent = math.max(0, math.min(1, (GetTime() - inst.animchangetime) * 7))
+        end
+        if inst.dooranimclosed then
+            door_percent = 1 - door_percent
+        end
+        light = light * door_percent
+
+        if light > TUNING.DARK_CUTOFF then
+            inst.Light:Enable(true)
+            inst.Light:SetFalloff(0.8)
+            inst.Light:SetIntensity(TUNING.DARK_CUTOFF + (light - TUNING.DARK_CUTOFF) / 2)
+            inst.Light:SetRadius(3 + light)
+            inst.Light:SetColour(r,g,b)
+        else
+            inst.Light:Enable(false)
+        end
+    end
+end
+
+local function StartDoorLightUpdate(inst)
+    if not inst.doorlighttask then
+        inst.doorlighttask = inst:DoPeriodicTask(0, UpdateDoorLight)
+    end
+end
+
+local function StopDoorLightUpdate(inst)
+    if inst.doorlighttask then
+        inst.doorlighttask:Cancel()
+        inst.doorlighttask = nil
+        inst.Light:Enable(false)
+    end
+end
+
+local function EnableDoorLightUpdate(inst, enable)
+    inst.doorlightenable = enable
+    if enable then
+        if not inst:IsAsleep() then
+            inst:StartDoorLightUpdate()
+        end
+    else
+        inst:StopDoorLightUpdate()
+    end
 end
 
 -- TODO: Combine these two and add a getter
@@ -166,6 +225,8 @@ local function InitInteriorPrefab(inst, doer, prefab_definition, interior_defini
 
     if animdata.light then
         MakeTimeChanger(inst)
+    else
+        EnableDoorLightUpdate(inst, true)
     end
 
     if animdata.minimapicon then
@@ -197,7 +258,6 @@ local function OnSave(inst, data)
     data.dooranimclosed = inst.dooranimclosed
     data.flipped = inst.flipped
     data.minimapicon = inst.minimapicon
-    data.rotation = inst.Transform:GetRotation()
     data.sg_name = inst.sg_name
     data.startstate = inst.startstate
     data.timechanger = inst.timechanger
@@ -235,9 +295,6 @@ local function OnLoad(inst, data)
         build = data.door_data_build,
         anim = data.door_data_animstate,
     })
-    if data.rotation and inst.components.rotatingbillboard == nil then
-        inst.Transform:SetRotation(data.rotation)
-    end
     if data.door_data_background
         or (data.door_data_animstate and data.door_data_animstate == "day_loop") then -- 第二个条件用于旧存档兼容
 
@@ -250,6 +307,8 @@ local function OnLoad(inst, data)
     end
     if data.timechanger then
         MakeTimeChanger(inst)
+    else
+        EnableDoorLightUpdate(inst, true)
     end
     if data.timechange_anims then
         inst:AddTag("timechange_anims")
@@ -266,6 +325,7 @@ local function OnLoad(inst, data)
     end
     if data.dooranimclosed then
         inst.AnimState:PushAnimation(inst.baseanimname.."_closed")
+        inst.dooranimclosed = true
     end
     if data.minimapicon then
         inst:SetMinimapIcon(data.minimapicon)
@@ -349,6 +409,9 @@ local function OpenDoor(inst, nospread)
         inst.opentask = nil
     end
     if inst.baseanimname and inst.components.door.disable_causes and inst.components.door.disable_causes["door"] then
+
+        inst.animchangetime = GetTime()
+
         if not inst:IsAsleep() then
             inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/stone_door/slide")
             inst.AnimState:PlayAnimation(inst.baseanimname .. "_open")
@@ -385,6 +448,8 @@ local function CloseDoor(inst, nospread)
         return
     end
 
+    inst.animchangetime = GetTime()
+
     if not inst:IsAsleep() then
         inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/stone_door/close")
         inst.AnimState:PlayAnimation(inst.baseanimname .. "_shut")
@@ -413,14 +478,24 @@ local function GetMinimapIcon(inst)
 end
 
 local function OnEntitySleep(inst)
-    if inst.sg:HasStateTag("moving") or inst.sg:HasStateTag("shut") then
+    if inst.sg and 
+        (inst.sg:HasStateTag("moving") or inst.sg:HasStateTag("shut")) then
+
         door.sg:GoToState("idle")
     end
+    
+    inst:StopDoorLightUpdate()
 end
 
 local function OnEntityWake(inst)
-    if inst.sg:HasStateTag("moving") or inst.sg:HasStateTag("shut") then
+    if inst.sg and 
+        (inst.sg:HasStateTag("moving") or inst.sg:HasStateTag("shut")) then
+
         door.sg:GoToState("idle")
+    end
+    
+    if inst.doorlightenable then
+        inst:StartDoorLightUpdate()
     end
 end
 
@@ -468,8 +543,6 @@ local function fn()
 
     inst.initInteriorPrefab = InitInteriorPrefab
 
-    MakeHauntableDoor(inst) -- 门关上时，鬼魂玩家仍然可以通过
-
     inst.opendoor = OpenDoor
     inst.closedoor = CloseDoor
     inst.disableDoor = DisableDoor
@@ -478,8 +551,16 @@ local function fn()
     inst:ListenForEvent("close", CloseDoor)
     inst:ListenForEvent("usedoor", UseDoor)
 
+    MakeHauntableDoor(inst)
+
+    inst.StartDoorLightUpdate = StartDoorLightUpdate
+    inst.StopDoorLightUpdate = StopDoorLightUpdate
+
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
+
+    inst.OnEntitySleep = OnEntitySleep
+    inst.OnEntityWake = OnEntityWake
 
     return inst
 end

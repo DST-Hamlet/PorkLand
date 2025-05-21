@@ -17,6 +17,17 @@ local prefabs =
     "tuber_bloom_crop_cooked",
 }
 
+SetSharedLootTable("tubertree_burnt",
+{
+    {"charcoal", 1.00},
+    {"charcoal", 0.33},
+})
+
+SetSharedLootTable("tubertree_stump",
+{
+    {"tuber_crop", 1.00},
+})
+
 local HACKS_PER_TUBER = 3
 
 local TUBER_SLOTS_SHORT = {5, 6}
@@ -140,7 +151,7 @@ local growth_stages = {
 }
 
 local function OnFinishCallbackStump(inst, chopper)
-    inst.components.lootdropper:SpawnLootPrefab("tuber_crop")
+    inst.components.lootdropper:DropLoot()
     inst:Remove()
 end
 
@@ -171,6 +182,9 @@ local function MakeStump(inst, push_anim)
     end
 
     inst.MiniMapEntity:SetIcon("tuber_trees_stump.tex")
+
+    inst.components.lootdropper:SetLoot({})
+    inst.components.lootdropper:SetChanceLootTable("tubertree_stump")
 
     -- inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.DIG)
@@ -213,6 +227,7 @@ local function OnBurntChanges(inst)
     MakeHauntableWork(inst)
 
     inst.components.lootdropper:SetLoot({})
+    inst.components.lootdropper:SetChanceLootTable("tubertree_burnt")
 
     if inst.components.workable then
         inst.components.workable:SetWorkLeft(1)
@@ -264,6 +279,8 @@ local function OnHackedFinal(inst, worker)
         inst.AnimState:PlayAnimation(anim.fallright)
         inst.components.lootdropper:DropLoot(pt + TheCamera:GetRightVec())
     end
+
+    PushTreeFallServer(inst, pt, hispos)
 
     MakeStump(inst, true)
 
@@ -426,6 +443,8 @@ local function MakeTree(name, build, stage, data)
         inst:AddTag("tubertree")
 
         inst:SetPrefabName("tubertree")
+
+        MakeTreeClientFallAnim(inst, anims)
 
         inst.entity:SetPristine()
 

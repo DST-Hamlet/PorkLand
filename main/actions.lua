@@ -59,6 +59,8 @@ if not rawget(_G, "HotReloading") then
 
         THROW = Action({priority = 0, instant = false, rmb = true, distance = 20, mount_valid = true}),
 
+        DODGE = Action({priority = -5, instant = false, distance = math.huge}),
+
         -- Replacing CASTAOE for custom controls
         SPELL_COMMAND = Action({mount_valid = true, distance = 35}),
     }
@@ -72,7 +74,7 @@ end
 
 ----set up the action functions
 local _ValidToolWork = ToolUtil.GetUpvalue(ACTIONS.CHOP.validfn, "ValidToolWork")
-local _DoToolWork = ToolUtil.GetUpvalue(ACTIONS.CHOP.fn, "DoToolWork")
+local _DoToolWork, scope_fn, do_tool_work_up_index = ToolUtil.GetUpvalue(ACTIONS.CHOP.fn, "DoToolWork")
 local function DoToolWork(act, workaction, ...)
     if act.doer and act.doer.player_classified then
         act.doer.player_classified._last_work_target:set(act.target)
@@ -102,7 +104,7 @@ local function DoToolWork(act, workaction, ...)
     end
     return _DoToolWork(act, workaction, ...)
 end
-ToolUtil.SetUpvalue(ACTIONS.CHOP.fn, DoToolWork, "DoToolWork")
+debug.setupvalue(scope_fn, do_tool_work_up_index, DoToolWork)
 
 ACTIONS.HACK.fn = function(act)
     DoToolWork(act, ACTIONS.HACK)
@@ -171,20 +173,21 @@ end
 ACTIONS.DIGDUNG.validfn = function(act)
     if act.doer and act.target and act.doer:IsValid() and act.target:IsValid() then
         return not act.doer:HasTag("hasdung") and act.target:HasTag("dungpile")
+            and not (act.target.components.burnable and act.target.components.burnable:IsBurning())
     end
 end
 
 ACTIONS.MOUNTDUNG.fn = function(act)
     if act.doer and act.target and act.doer:IsValid() and act.target:IsValid() then
-        act.target:Remove()
-        act.doer:AddTag("hasdung")
+        act.doer:MountDungBall(act.target)
         return true
     end
 end
 
 ACTIONS.MOUNTDUNG.validfn = function(act)
     if act.doer and act.target and act.doer:IsValid() and act.target:IsValid() then
-        return not act.doer:HasTag("hasdung") and act.target:HasTag("dungball")
+        return not act.doer:HasTag("hasdung") and not act.target:HasTag("hasbettle") and act.target:HasTag("dungball")
+            and not (act.target.components.burnable and act.target.components.burnable:IsBurning())
     end
 end
 
@@ -1020,6 +1023,11 @@ local PL_COMPONENT_ACTIONS =
     },
 
     INVENTORY = { -- args: inst, doer, actions, right
+        balloonmaker = function (inst, doer, actions, right)
+            if doer:HasTag("balloonomancer") then
+                table.insert(actions, ACTIONS.MAKEBALLOON)
+            end
+        end,
         livingartifact = function (inst, doer, actions, right)
             if not (inst.replica.inventoryitem and inst.replica.inventoryitem:IsHeldBy(doer)) then
                 return
@@ -1249,24 +1257,25 @@ function USEITEM.healer(inst, doer, target, actions, right, ...)
     return _USEITEM_healer(inst, doer, target, actions, right, ...)
 end
 
-local _USEITEMlighter = USEITEM.lighter
+local _USEITEM_lighter = USEITEM.lighter
 function USEITEM.lighter(inst, doer, target, actions, ...)
     local wasLimbo = false
     if target:HasTag("allowinventoryburning") and target:HasTag("INLIMBO") then
         target:RemoveTag("INLIMBO")
         wasLimbo = true
     end
-    _USEITEMlighter(inst, doer, target, actions, ...)
+    _USEITEM_lighter(inst, doer, target, actions, ...)
     if wasLimbo and target:IsValid() and target.inlimbo then
         target:AddTag("INLIMBO")
     end
 end
 
-local _POINTfishingrod = POINT.fishingrod
+local _POINT_fishingrod = POINT.fishingrod
 function POINT.fishingrod(inst, doer, pos, actions, right, target, ...)
     if TheWorld:HasTag("porkland") then
         return
     end
+    return _POINT_fishingrod(inst, doer, pos, actions, right, target, ...)
 end
 
 local PlayerController = require("components/playercontroller")
@@ -1285,7 +1294,7 @@ function PlayerController:DoActionAutoEquip(buffaction, ...)
 end
 
 function PLENV.OnHotReload()
-    ToolUtil.SetUpvalue(ACTIONS.CHOP.fn, _DoToolWork, "DoToolWork")
+    debug.setupvalue(scope_fn, do_tool_work_up_index, DoToolWork)
 
     ACTIONS.FERTILIZE.fn = _FERTILIZE_fn
     ACTIONS.EQUIP.fn = _EQUIP_fn
