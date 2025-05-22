@@ -22,4 +22,14 @@ function BoatVisualManager:RemoveBoatEquipVisuals(item)
     end
 end
 
+function BoatVisualManager:OnRemoveFromEntity()
+    for item, visual in pairs(self.visuals) do
+        visual:Remove()
+        item.visual = nil
+    end
+    self.visuals = {}
+end
+
+BoatVisualManager.OnRemoveEntity = BoatVisualManager.OnRemoveFromEntity
+
 return BoatVisualManager

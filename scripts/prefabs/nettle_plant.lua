@@ -199,6 +199,7 @@ local function fn()
     MakeSmallPropagator(inst)
     MakeNoGrowInWinter(inst)
     MakePickableBlowInWindGust(inst, TUNING.GRASS_WINDBLOWN_SPEED, TUNING.GRASS_WINDBLOWN_FALL_CHANCE)
+    MakeHauntable(inst)
 
     inst.OnTerraform = function(src, data)
         OnTerraform(inst, data)

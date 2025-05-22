@@ -70,7 +70,6 @@ local function fn()
 
     inst:AddComponent("fueled")
     inst.components.fueled.fueltype = FUELTYPE.USAGE
-    inst.components.fueled.no_sewing = true
     inst.components.fueled:InitializeFuelLevel(TUNING.WALKING_STICK_PERISHTIME)
     inst.components.fueled:SetDepletedFn(onwornout)
 

@@ -5,6 +5,8 @@ local ImageButton = require "widgets/imagebutton"
 
 local MapScreen = require("screens/mapscreen")
 
+local HudCompass_Wheeler = require ("widgets/hudcompass_wheeler")
+
 local function FocusMapOnWorldPosition(mapscreen, worldx, worldz)
     if mapscreen == nil or mapscreen.minimap == nil then return nil end
 
@@ -93,4 +95,7 @@ AddClassPostConstruct("screens/mapscreen", function(self)
     self.inst:ListenForEvent("interiorvisitor.exterior_pos", function() self:OnEnterInterior() end, self.owner)
     self.inst:ListenForEvent("refresh_interior_minimap", function() self:RefreshInteriorMinimap() end, self.owner)
     self.inst:ListenForEvent("refresh_always_shown_interior_minimap", function(_, data) self:RefreshAlwaysShownInteriorMinimap(data) end, self.owner)
+
+    self.hudcompass_wheeler = self.bottomright_root:AddChild(HudCompass_Wheeler(self.owner, false))
+    self.hudcompass_wheeler:SetBasePosition(-160,70,0)
 end)

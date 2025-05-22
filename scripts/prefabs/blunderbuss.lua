@@ -74,7 +74,18 @@ local function OnLoseAmmo(inst)
     inst.components.inventoryitem:ChangeImageName("blunderbuss")
 end
 
-local function OnProjectileLaunched(inst, attacker, target)
+local function OnProjectileLaunched(inst, attacker, target, proj)
+    if attacker and attacker.AnimState then
+        proj.Transform:SetPosition(attacker.AnimState:GetSymbolPosition("swap_object", 0, 0, 0))
+    else
+        local x, y, z = attacker.Transform:GetWorldPosition()
+        proj.Transform:SetPosition(x, y + 2.5, z)
+    end
+
+    if proj.components.projectile_gun then
+        proj.components.projectile_gun:Throw(inst, target, attacker)
+    end
+
     local removed_item = inst.components.inventory.itemslots[1]
     inst.components.inventory:RemoveItem(removed_item, false)
 
@@ -112,7 +123,9 @@ local function fn()
     inst.AnimState:PlayAnimation("idle")
 
     inst:AddTag("blunderbuss")
-    inst:AddTag("gun")
+    inst:AddTag("rangedweapon")
+    -- weapon (from weapon component) added to pristine state for optimization
+    inst:AddTag("weapon")
 
     inst.entity:SetPristine()
 
@@ -183,10 +196,10 @@ local function projectile_fn()
         return inst
     end
 
-    inst:AddReplaceComponent("projectile_gun", "projectile")
-    inst.components.projectile.damage = TUNING.GUNPOWDER_DAMAGE
-    inst.components.projectile:SetSpeed(50)
-    inst.components.projectile:SetOnHitFn(OnHit)
+    inst:AddComponent("projectile_gun")
+    inst.components.projectile_gun.damage = TUNING.GUNPOWDER_DAMAGE
+    inst.components.projectile_gun:SetSpeed(50)
+    inst.components.projectile_gun:SetOnHitFn(OnHit)
 
     inst.persists = false
 

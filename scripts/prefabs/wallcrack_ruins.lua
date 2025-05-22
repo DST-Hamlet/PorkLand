@@ -127,6 +127,8 @@ local function fn()
 
     inst:AddComponent("inspectable")
 
+    MakeHauntable(inst)
+
     inst.OnSave = OnSave
     inst.OnLoadPostPass = OnLoadPostPass
     inst.SetCrack = SetCrack

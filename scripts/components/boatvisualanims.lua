@@ -116,4 +116,8 @@ function BoatVisualAnims:PlayRunAnims(push)
     end
 end
 
+function BoatVisualAnims:SetHauntFx(enable)
+    self.inst.visualchild.AnimState:SetHaunted(enable)
+end
+
 return BoatVisualAnims
