@@ -123,7 +123,7 @@ local function fn()
     inst.AnimState:PlayAnimation("idle")
 
     inst:AddTag("blunderbuss")
-    inst:AddTag("rangedweapon")
+    inst:AddTag("gun")
     -- weapon (from weapon component) added to pristine state for optimization
     inst:AddTag("weapon")
 

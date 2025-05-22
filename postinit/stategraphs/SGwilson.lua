@@ -2640,7 +2640,7 @@ local states = {
             inst.components.locomotor:EnableGroundSpeedMultiplier(false)
 
             inst:AddTag("difficult_to_hit")
-            inst.CanBeAttack = function() return false end
+            inst.CanBeHit = function() return false end
 
             inst.last_dodge_time = GetTime()
         end,
@@ -2668,7 +2668,7 @@ local states = {
             inst.components.locomotor:SetBufferedAction(nil)
 
             inst:RemoveTag("difficult_to_hit")
-            inst.CanBeAttack = nil
+            inst.CanBeHit = nil
         end,
     },
 

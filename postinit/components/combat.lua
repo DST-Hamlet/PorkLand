@@ -53,7 +53,14 @@ function Combat:GetIsAttackPoison(attacker)
 end
 
 local _GetAttacked = Combat.GetAttacked
-function Combat:GetAttacked(attacker, damage, weapon, stimuli, ...)
+function Combat:GetAttacked(attacker, damage, weapon, stimuli, spdamage, ...)
+    if self.inst:HasTag("difficult_to_hit") then
+        if not self.inst:CanBeHit({ attacker = attacker, weapon = weapon or self:GetWeapon() }) then
+            self.inst:PushEvent("avoidattack", { attacker = attacker, weapon = weapon or self:GetWeapon() })
+            damage, spdamage = 0, nil
+        end
+    end
+
     local poisonAttack, poisonGasAttack = self:GetIsAttackPoison(attacker)
 
     if poisonGasAttack and self.inst.components.poisonable then
@@ -91,7 +98,7 @@ function Combat:GetAttacked(attacker, damage, weapon, stimuli, ...)
         return not blocked
     end
 
-    local rets = {_GetAttacked(self, attacker, damage, weapon, stimuli, ...)}
+    local rets = {_GetAttacked(self, attacker, damage, weapon, stimuli, spdamage, ...)}
 
     if rets[1] and attacker and poisonAttack and self.inst.components and self.inst.components.poisonable then
         self.inst.components.poisonable:Poison()
@@ -120,20 +127,19 @@ end
 
 local _DoAttack = Combat.DoAttack
 function Combat:DoAttack(targ, weapon, projectile, ...)
-    if projectile == nil then
-        if targ and targ:HasTag("difficult_to_hit") and not self.AOEarc then
-            if not targ:CanBeAttack({ attacker = self.inst, weapon = weapon or self:GetWeapon() }) then
-                targ:PushEvent("avoidattack", { attacker = self.inst, weapon = weapon or self:GetWeapon() })
-                self.inst:PushEvent("onmissother", { target = targ, weapon = weapon or self:GetWeapon() })
-                self:ClearAttackTemps()
-                return
-            end
-        end
-    else
-        if targ and targ:HasTag("difficult_to_hit") and not self.AOEarc then
-            if not targ:CanBeHit({ attacker = self.inst, weapon = weapon or self:GetWeapon() }) then
-                targ:PushEvent("avoidattack", { attacker = self.inst, weapon = weapon or self:GetWeapon() })
-                self.inst:PushEvent("onmissother", { target = targ, weapon = weapon or self:GetWeapon() })
+    local _targ = targ
+    if _targ == nil then
+        _targ = self.target
+    end
+    local _weapon = weapon
+    if _weapon == nil then
+        _weapon = self:GetWeapon()
+    end
+    if projectile == nil and not (_weapon and ((_weapon.components.projectile ~= nil) or (_weapon.components.complexprojectile ~= nil) or _weapon.components.weapon:CanRangedAttack())) then
+        if _targ and _targ:HasTag("difficult_to_hit") then
+            if not _targ:CanBeHit({ attacker = self.inst, weapon = _weapon or self:GetWeapon() }) then
+                _targ:PushEvent("avoidattack", { attacker = self.inst, weapon = _weapon or self:GetWeapon() })
+                self.inst:PushEvent("onmissother", { target = _targ, weapon = _weapon or self:GetWeapon() })
                 self:ClearAttackTemps()
                 return
             end
