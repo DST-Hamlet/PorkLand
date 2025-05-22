@@ -1,0 +1,122 @@
+local AddClassPostConstruct = AddClassPostConstruct
+GLOBAL.setfenv(1, GLOBAL)
+
+local TargetIndicator = require("widgets/targetindicator")
+
+local on_update = TargetIndicator.OnUpdate
+function TargetIndicator:OnUpdate(...)
+    if TheNet:IsServerPaused() then return end
+
+    if not self.target:IsValid() then
+        return
+    end
+
+    if self.target.prefab ~= "target_indicator_marker" then
+        return on_update(self, ...)
+    end
+
+    local userflags = self.target.marker_data.userflags or 0
+    if self.userflags ~= userflags then
+        self.userflags = userflags
+        self.isGhost = checkbit(userflags, USERFLAGS.IS_GHOST)
+        self.isCharacterState1 = checkbit(userflags, USERFLAGS.CHARACTER_STATE_1)
+        self.isCharacterState2 = checkbit(userflags, USERFLAGS.CHARACTER_STATE_2)
+        self.isCharacterState3 = checkbit(userflags, USERFLAGS.CHARACTER_STATE_3)
+        self.headbg:SetTexture(DEFAULT_ATLAS, self.isGhost and "avatar_ghost_bg.tex" or "avatar_bg.tex")
+        self.head:SetTexture(self:GetAvatarAtlas(), self:GetAvatar(), DEFAULT_AVATAR)
+    end
+
+    -- TODO
+    local dist = self.owner:GetDistanceSqToInst(self.target)
+    dist = math.sqrt(dist)
+
+    local alpha = self:GetTargetIndicatorAlpha(dist)
+    self.headbg:SetTint(1, 1, 1, alpha)
+    self.head:SetTint(1, 1, 1, alpha)
+    self.headframe:SetTint(self.colour[1], self.colour[2], self.colour[3], alpha)
+    self.arrow:SetTint(self.colour[1], self.colour[2], self.colour[3], alpha)
+    self.name_label:SetColour(self.colour[1], self.colour[2], self.colour[3], alpha)
+
+    if dist < TUNING.MIN_INDICATOR_RANGE then
+        dist = TUNING.MIN_INDICATOR_RANGE
+    elseif dist > TUNING.MAX_INDICATOR_RANGE then
+        dist = TUNING.MAX_INDICATOR_RANGE
+    end
+    local scale = Remap(dist, TUNING.MIN_INDICATOR_RANGE, TUNING.MAX_INDICATOR_RANGE, 1, MIN_SCALE)
+    self:SetScale(scale)
+
+    -- TODO
+    local x, _, z = self.target.Transform:GetWorldPosition()
+    self:UpdatePosition(x, z)
+
+    -- local interiorspawner = TheWorld.component.interiorspawner
+    -- if interiorspawner then
+    --     if interiorspawner:GetInteriorCenter(self.owner) then
+
+    --     end
+    -- end
+end
+
+local update_position = TargetIndicator.UpdatePosition
+function TargetIndicator:UpdatePosition(x, z, ...)
+    if self.target.prefab ~= "target_indicator_marker" then
+        return update_position(self, x, z, ...)
+    end
+
+    -- TODO
+end
+
+local get_avatar_atlas = TargetIndicator.GetAvatarAtlas
+function TargetIndicator:GetAvatarAtlas(...)
+    if self.target.prefab ~= "target_indicator_marker" then
+        return get_avatar_atlas(self, ...)
+    end
+
+    if self.is_mod_character then
+        local location = MOD_AVATAR_LOCATIONS["Default"]
+        if MOD_AVATAR_LOCATIONS[self.target.marker_data.prefab] ~= nil then
+            location = MOD_AVATAR_LOCATIONS[self.target.marker_data.prefab]
+        end
+
+        local starting = self.isGhost and "avatar_ghost_" or "avatar_"
+        local ending =
+            (self.isCharacterState1 and "_1" or "")..
+            (self.isCharacterState2 and "_2" or "")..
+            (self.isCharacterState3 and "_3" or "")
+
+        return location..starting..self.target.marker_data.prefab..ending..".xml"
+    end
+    return self.config_data.atlas or DEFAULT_ATLAS
+end
+
+local get_avatar = TargetIndicator.GetAvatar
+function TargetIndicator:GetAvatar(...)
+    if self.target.prefab ~= "target_indicator_marker" then
+        return get_avatar(self, ...)
+    end
+
+    local starting = self.isGhost and "avatar_ghost_" or "avatar_"
+    local ending =
+        (self.isCharacterState1 and "_1" or "")..
+        (self.isCharacterState2 and "_2" or "")..
+        (self.isCharacterState3 and "_3" or "")
+
+    return starting .. self.target.marker_data.prefab .. ending .. ".tex"
+end
+
+AddClassPostConstruct("widgets/targetindicator", function(self)
+    if self.target.prefab ~= "target_indicator_marker" then
+        return
+    end
+
+    self.userflags = self.target.marker_data.userflags or 0
+    self.isGhost = checkbit(self.userflags, USERFLAGS.IS_GHOST)
+    self.isCharacterState1 = checkbit(self.userflags, USERFLAGS.CHARACTER_STATE_1)
+    self.isCharacterState2 = checkbit(self.userflags, USERFLAGS.CHARACTER_STATE_2)
+    self.isCharacterState3 = checkbit(self.userflags, USERFLAGS.CHARACTER_STATE_3)
+
+    self.is_mod_character = table.contains(MODCHARACTERLIST, self.target.marker_data.prefab)
+
+    self.name = self.target.marker_data.display_name
+    self.name_label:SetString(self.name)
+end)
