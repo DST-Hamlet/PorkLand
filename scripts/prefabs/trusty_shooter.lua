@@ -48,7 +48,7 @@ local function OnEquip(inst, owner, force)
 
         local item = inst.components.container:GetItemInSlot(1)
         if item and item:IsValid() then
-            inst:AddTag("gun")
+            inst:AddTag("rangedweapon")
             SetAmmoDamageAndRange(inst, item, owner)
         end
     end
@@ -106,7 +106,7 @@ local function LoadWeapon(inst, item)
         owner.AnimState:OverrideSymbol("swap_object", inst.override_bank, "swap_trusty_shooter")
     end
 
-    inst:AddTag("gun")
+    inst:AddTag("rangedweapon")
     SetAmmoDamageAndRange(inst, item, owner)
 
     inst.components.inventoryitem:ChangeImageName("trusty_shooter")
@@ -138,7 +138,7 @@ local function ResetAmmo(inst)
     inst:RemoveTag("projectile")
     inst.components.weapon:SetProjectile(nil)
     inst:RemoveTag("hand_gun_loaded")
-    inst:RemoveTag("gun")
+    inst:RemoveTag("rangedweapon")
 
     --Change ranges back to melee
     inst.components.weapon:SetRange(nil, nil)

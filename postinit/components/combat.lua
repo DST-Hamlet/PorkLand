@@ -135,7 +135,9 @@ function Combat:DoAttack(targ, weapon, projectile, ...)
     if _weapon == nil then
         _weapon = self:GetWeapon()
     end
-    if projectile == nil and not (_weapon and ((_weapon.components.projectile ~= nil) or (_weapon.components.complexprojectile ~= nil) or _weapon.components.weapon:CanRangedAttack())) then
+    if not (_weapon and ((_weapon.components.projectile ~= nil) or (_weapon.components.complexprojectile ~= nil) or _weapon.components.weapon:CanRangedAttack()))
+        or ((weapon ~= nil) and (weapon == projectile)) then
+
         if _targ and _targ:HasTag("difficult_to_hit") then
             if not _targ:CanBeHit({ attacker = self.inst, weapon = _weapon or self:GetWeapon() }) then
                 _targ:PushEvent("avoidattack", { attacker = self.inst, weapon = _weapon or self:GetWeapon() })

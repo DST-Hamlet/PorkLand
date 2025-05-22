@@ -94,7 +94,7 @@ end
 
 local function CanBeHit(inst, data)
     return inst.components.freezable:IsFrozen()
-        or (data.weapon and (data.weapon:HasOneOfTags({"rangedweapon"}))) -- 魔杖！
+        or (data.weapon and (data.weapon:HasOneOfTags({"icestaff"})))
 end
 
 local function OnEntitySleep(inst)
