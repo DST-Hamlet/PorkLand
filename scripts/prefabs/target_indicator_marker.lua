@@ -1,12 +1,12 @@
 local function RemoveHudIndicator(inst)
-	if ThePlayer and ThePlayer.HUD then
-		ThePlayer.HUD:RemoveTargetIndicator(inst)
-	end
+    if ThePlayer and ThePlayer.HUD then
+        ThePlayer.HUD:RemoveTargetIndicator(inst)
+    end
 end
 
 local function SetupHudIndicator(inst)
     if ThePlayer then
-        ThePlayer.HUD:AddTargetIndicator(inst, {image = "avatar_megaflare.tex"})
+        ThePlayer.HUD:AddTargetIndicator(inst)
         inst:ListenForEvent("onremove", RemoveHudIndicator)
     end
 end
