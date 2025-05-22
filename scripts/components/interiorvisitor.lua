@@ -515,26 +515,35 @@ function InteriorVisitor:UpdateHudIndicatableEntities()
                 -- Only top down left right, no diagonal
                 if (is_x_adjacent or is_y_adjacent) and not (is_x_adjacent and is_y_adjacent) then
                     local offset = pos - center:GetPosition()
+                    local userflags = ent.Network:GetUserFlags()
+                    local display_name = ent:GetDisplayName()
                     local has_changes = false
                     if not current_data then
                         current_data = {
                             id = userid,
+                            prefab = ent.prefab,
                             coord_x = coord_x,
                             coord_y = coord_y,
                             offset_x = offset.x,
                             offset_z = offset.z,
+                            display_name = display_name,
+                            userflags = userflags,
                         }
                         self.update_hud_indicatable_entities[ent] = current_data
                         has_changes = true
                     elseif current_data.offset_x ~= offset.x
                         or current_data.offset_z ~= offset.z
                         or current_data.coord_x ~= coord_x
-                        or current_data.coord_y ~= coord_y then
+                        or current_data.coord_y ~= coord_y
+                        or current_data.display_name == display_name
+                        or current_data.userflags == userflags then
 
                         current_data.offset_x = offset.x
                         current_data.offset_z = offset.z
                         current_data.coord_x = coord_x
                         current_data.coord_y = coord_y
+                        current_data.display_name = display_name
+                        current_data.userflags = userflags
                         has_changes = true
                     end
                     if has_changes then
