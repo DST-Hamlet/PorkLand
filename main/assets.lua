@@ -285,6 +285,9 @@ PrefabFiles = {
 
     "tile_fx",
     "woodie_beaver_bag",
+
+    "waxwell_shield",
+    "waxwell_pillar"
 }
 
 Assets = {
