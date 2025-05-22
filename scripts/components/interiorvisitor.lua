@@ -469,10 +469,6 @@ function InteriorVisitor:RevealAlwaysShownMinimapEntities()
     end
 end
 
-local function should_reveal_hud_indicatable(inst, indicatable)
-
-end
-
 -- This is basically the same as `InteriorVisitor:RevealAlwaysShownMinimapEntities`,
 -- but for tracking HUD indicatables inside the interior
 --
@@ -489,7 +485,7 @@ function InteriorVisitor:UpdateHudIndicatableEntities()
     local sync_actions = {}
 
     for ent in pairs(self.update_hud_indicatable_entities) do
-        if not AllPlayers[ent] then
+        if not table.contains(AllPlayers, ent) then
             table.insert(sync_actions, {
                 type = "delete",
                 data = self.update_hud_indicatable_entities[ent].id,
@@ -501,9 +497,13 @@ function InteriorVisitor:UpdateHudIndicatableEntities()
     local interior_group = self.center_ent:GetGroupId()
     local current_coord_x, current_coord_y = self.center_ent:GetCoordinates()
 
-    for ent in pairs(AllPlayers) do
-        local userid = ent.userid
-        if userid ~= self.inst then
+    for _, ent in ipairs(AllPlayers) do
+        -- We can use either userid or network id here,
+        -- but since dummy players (e.g. from `c_spawn("wilson")`) don't have userid
+        -- we use network id here
+        -- local userid = ent.userid
+        local network_id = ent.Network and ent.Network:GetNetworkID()
+        if network_id and ent ~= self.inst then
             local pos = ent:GetPosition()
             local center = TheWorld.components.interiorspawner:GetInteriorCenter(pos)
             local current_data = self.update_hud_indicatable_entities[ent]
@@ -520,7 +520,7 @@ function InteriorVisitor:UpdateHudIndicatableEntities()
                     local has_changes = false
                     if not current_data then
                         current_data = {
-                            id = userid,
+                            id = network_id,
                             prefab = ent.prefab,
                             coord_x = coord_x,
                             coord_y = coord_y,
@@ -558,7 +558,7 @@ function InteriorVisitor:UpdateHudIndicatableEntities()
             if not should_show and current_data then
                 table.insert(sync_actions, {
                     type = "delete",
-                    data = userid,
+                    data = network_id,
                 })
                 self.update_hud_indicatable_entities[ent] = nil
             end
