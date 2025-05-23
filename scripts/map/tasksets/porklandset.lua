@@ -133,3 +133,15 @@ AddTaskSet("porkland", {
     -- },
     required_prefabs = GLOBAL.PORKLAND_REQUIRED_PREFABS
 })
+
+AddTaskSet("porkland_test", {
+    name = "porkland_test",
+    location = "porkland",
+    tasks = {
+        "porkland_test"
+    },
+    numoptionaltasks = 0,
+    numrandom_set_pieces = 0,
+    set_pieces = {},
+    required_prefabs = {}
+})

@@ -1,13 +1,17 @@
+local modimport = modimport
 GLOBAL.setfenv(1, GLOBAL)
 
 require("constants")
 require("mathutil")
+
+local Levels = require("map/levels")
 
 local separate_region = require("map/separate_region")
 local build_porkland = require("map/build_porkland")
 local startlocations = require("map/startlocations")
 local forest_map = require("map/forest_map")
 local BuildPorkLandStory = require("map/pl_storygen")
+local BuildPorkLandStory_new = require("map/pl_storygen_new")
 local MULTIPLY = forest_map.MULTIPLY
 local TRANSLATE_TO_PREFABS = forest_map.TRANSLATE_TO_PREFABS
 local TRANSLATE_AND_OVERRIDE = forest_map.TRANSLATE_AND_OVERRIDE
@@ -47,7 +51,7 @@ local function validate_ground_tile(tile)
     return WORLD_TILES.IMPASSABLE
 end
 
-local SKIP_GEN_CHECKS = false
+local SKIP_GEN_CHECKS = true
 local _Generate = forest_map.Generate
 local GetTileForNoiseTile = ToolUtil.GetUpvalue(_Generate, "GetTileForNoiseTile")
 local pickspawnprefab = ToolUtil.GetUpvalue(_Generate, "pickspawnprefab")
@@ -55,28 +59,13 @@ local pickspawngroup = ToolUtil.GetUpvalue(_Generate, "pickspawngroup")
 local pickspawncountprefabforground = ToolUtil.GetUpvalue(_Generate, "pickspawncountprefabforground")
 local TranslateWorldGenChoices = ToolUtil.GetUpvalue(_Generate, "TranslateWorldGenChoices")
 
-forest_map.Generate = function(prefab, map_width, map_height, tasks, level, level_type, ...)
-    assert(level.overrides ~= nil, "Level must have overrides specified.")
+local SpawnFunctions = {
+    pickspawnprefab = pickspawnprefab,
+    pickspawngroup = pickspawngroup,
+    pickspawncountprefabforground = pickspawncountprefabforground,
+}
 
-    local is_porkland = level.location == "porkland"
-    Node.is_porkland = is_porkland
-    if not is_porkland then
-        return _Generate(prefab, map_width, map_height, tasks, level, level_type, ...)
-    end
-
-    TRANSLATE_TO_PREFABS["grass"] = {"grass", "grass_tall", "grass_tall_bunche_patch"}
-
-    WorldSim:SetPointsBarrenOrReservedTile(WORLD_TILES.ROAD)
-    WorldSim:SetResolveNoiseFunction(GetTileForNoiseTile)
-
-    WorldSim:SetValidateGroundTileFunction(validate_ground_tile)
-
-    local SpawnFunctions = {
-        pickspawnprefab = pickspawnprefab,
-        pickspawngroup = pickspawngroup,
-        pickspawncountprefabforground = pickspawncountprefabforground,
-    }
-
+local function GetWorldGenParams(level, level_type)
     local current_gen_params = deepcopy(level.overrides)
     local default_impassible_tile = WORLD_TILES.IMPASSABLE
 
@@ -141,8 +130,16 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
         end
     end
 
+    return current_gen_params, story_gen_params
+end
+
+local function InitWorld(world_size, join_islands, topology_save)
+    WorldSim:SetPointsBarrenOrReservedTile(WORLD_TILES.ROAD)
+    WorldSim:SetResolveNoiseFunction(GetTileForNoiseTile)
+    WorldSim:SetValidateGroundTileFunction(validate_ground_tile)
+
     local min_size = 350
-    if current_gen_params.world_size ~= nil then
+    if world_size ~= nil then
         local sizes
         if PLATFORM == "PS4" then
             sizes = {
@@ -161,26 +158,19 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
             }
         end
 
-        if sizes[current_gen_params.world_size] then
-            min_size = sizes[current_gen_params.world_size]
-            print("New size:", min_size, current_gen_params.world_size)
+        if sizes[world_size] then
+            min_size = sizes[world_size]
+            print("New size:", min_size, world_size)
         else
-            print("ERROR: Worldgen preset had an invalid size: "..current_gen_params.world_size)
+            print("ERROR: Worldgen preset had an invalid size: ".. world_size)
         end
     end
-    map_width = min_size
-    map_height = min_size
+    local map_width = min_size
+    local map_height = min_size
     WorldSim:SetWorldSize(map_width, map_height)
 
-    print("Creating story...")
-    require("map/storygen")
-    local topology_save, storygen = BuildPorkLandStory(tasks, story_gen_params, level)
-
-    WorldSim:WorldGen_InitializeNodePoints();
-
+    WorldSim:WorldGen_InitializeNodePoints()
     WorldSim:WorldGen_VoronoiPass(100)
-
-    print("... story created")
 
     print("Baking map...", min_size)
 
@@ -193,40 +183,137 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
     end
 
     topology_save.root:ApplyPoisonTag()
-    WorldSim:ConvertToTileMap(min_size)
 
-    -- WorldSim:SeparateIslands()
+    WorldSim:ConvertToTileMap(min_size)
 
     print("Map Baked!")
     map_width, map_height = WorldSim:GetWorldSize()
-
-    local join_islands = not current_gen_params.no_joining_islands
 
     -- Note: This also generates land tiles
     local ground_fill = WORLD_TILES.DIRT
     WorldSim:ForceConnectivity(join_islands, false, ground_fill)
 
+    -- WorldSim:SeparateIslands()
+
+    return map_width, map_height
+end
+
+local function MakeFakeStory(story_gen_params)
+    local level_data = Levels.GetDataForLevelID("PORKLAND_TEST")
+    level_data.overrides.world_size = "medium"
+    local level = Level(level_data)
+    level:ChooseTasks()
+    level:ChooseSetPieces()
+    local tasks = level:GetTasksForLevel()
+
+    local topology_save, storygen = BuildPorkLandStory(tasks, story_gen_params, level)
+
+    return topology_save, storygen
+end
+
+local function ClearMap(map_width, map_height)
+    for x = 0, map_width - 1 do
+        for y = 0, map_height - 1 do
+            WorldSim:SetTile(x, y, WORLD_TILES.IMPASSABLE)
+        end
+    end
+end
+
+forest_map.Generate = function(prefab, map_width, map_height, tasks, level, level_type, ...)
+    assert(level.overrides ~= nil, "Level must have overrides specified.")
+
+    local is_porkland = level.location == "porkland"
+    Node.is_porkland = is_porkland
+    if not is_porkland then
+        return _Generate(prefab, map_width, map_height, tasks, level, level_type, ...)
+    end
+
+    TRANSLATE_TO_PREFABS["grass"] = {"grass", "grass_tall", "grass_tall_bunche_patch"}
+
+    local current_gen_params, story_gen_params = GetWorldGenParams(level, level_type)
+    local join_islands = not current_gen_params.no_joining_islands
+
+    local fake_topology_save, fake_storygen = MakeFakeStory(story_gen_params)
+    map_width, map_height = InitWorld("medium", join_islands, fake_topology_save)
+
+    local fake_topology = {}
+    fake_topology_save.root:SaveEncode({width = map_width, height = map_height}, fake_topology)
+    WorldSim:CreateNodeIdTileMap(fake_topology.ids)
+
+    ClearMap(map_width, map_height)
+
+    -- print("Creating story...")
+    local topology_save, storygen = BuildPorkLandStory_new(tasks, story_gen_params, level)
+
+    modimport("postinit/map/worldsim")
+
+    local i = 0
+    local j = 0
+    local size = 20
+    for task_id, task_node in pairs(topology_save.root:GetChildren(false)) do
+        for room_id, room_node in pairs(task_node:GetNodes()) do
+            local site_x = i + size / 2 - 1
+            local site_y = i + size / 2 - 1
+            local centroid_x = i + size / 2 - 1
+            local centroid_y = i + size / 2 - 1
+
+            local data = {
+                area = size * size,
+                site = { x = site_x, y = site_y } ,
+                site_centroid = { x = centroid_x, y = centroid_y },
+                site_points = { x = {}, y = {}, map = {} },
+                polygon_vertexs = { x = {}, y = {} },
+                children = nil,
+            }
+            data.polygon_vertexs.x = {i, i, i + size - 1, i + size - 1}
+            data.polygon_vertexs.y = {j, j + size - 1, j + size - 1, j}
+
+            local tile = room_node.data.value or WORLD_TILES.IMPASSABLE
+            for x = i, i + size - 1 do
+                for y = j, j + size - 1 do
+                    table.insert(data.site_points.x, x)
+                    table.insert(data.site_points.y, y)
+                    data.site_points[x] = data.site_points[x] or {}
+                    data.site_points[x][y] = tile
+                    WorldSim:SetTile(x, y, tile)
+                end
+            end
+
+            i = i + size
+            if i >= map_width - size then
+                i = 0
+                j = j + size
+            end
+
+            WorldSim:SetNodeData(room_id, data)
+        end
+    end
+
     local entities = {}
+    local save = {
+        ents = entities,
+        map = {
+            tiles = "",
+            topology = {},
+            prefab = prefab,
+            has_ocean = current_gen_params.has_ocean,
+            generated = {
+                densities = {},
+            },
+        },
+    }
 
     -- Run Node specific functions here
     local nodes = topology_save.root:GetNodes(true)
     for _, node in pairs(nodes) do
         node:SetTilesViaFunction(entities, map_width, map_height)
     end
-    separate_region(nodes, 2) -- ensure at least two tiles at intervals between islands
+    -- separate_region(nodes, 2) -- ensure at least two tiles at intervals between islands
 
     print("Encoding...")
 
-    local save = {}
-    save.ents = {}
-    save.map = {
-        tiles = "",
-        topology = {},
-        prefab = prefab,
-        has_ocean = current_gen_params.has_ocean,
-    }
     topology_save.root:SaveEncode({width = map_width, height = map_height}, save.map.topology)
-    WorldSim:CreateNodeIdTileMap(save.map.topology.ids)
+    -- WorldSim:CreateNodeIdTileMap(save.map.topology.ids)
     print("Encoding... DONE")
 
     -- TODO: Double check that each of the rooms has enough space (minimimum # tiles generated) - maybe countprefabs + %
@@ -246,13 +333,13 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
            end
     end
 
-    local translated_prefabs, runtime_overrides = TranslateWorldGenChoices(current_gen_params)
+   local translated_prefabs, runtime_overrides = TranslateWorldGenChoices(current_gen_params)
 
     print("Populating voronoi...")
 
     topology_save.root:GlobalPrePopulate(entities, map_width, map_height)
-    topology_save.root:ConvertGround(SpawnFunctions, entities, map_width, map_height)
-    WorldSim:ReplaceSingleNonLandTiles()
+    -- topology_save.root:ConvertGround(SpawnFunctions, entities, map_width, map_height)
+    -- WorldSim:ReplaceSingleNonLandTiles()
 
     if not story_gen_params.keep_disconnected_tiles then
         local replace_count = WorldSim:DetectDisconnect()
@@ -269,25 +356,21 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
         print("Not checking for disconnected tiles.")
     end
 
-    save.map.generated = {}
-    save.map.generated.densities = {}
-
     topology_save.root:PopulateVoronoi(SpawnFunctions, entities, map_width, map_height, translated_prefabs, save.map.generated.densities)
-
     topology_save.root:GlobalPostPopulate(entities, map_width, map_height)
 
-    for k, ents in pairs(entities) do
-        for i=#ents, 1, -1 do
-            local x = ents[i].x/TILE_SCALE + map_width/2.0
-            local y = ents[i].z/TILE_SCALE + map_height/2.0
+    -- for k, ents in pairs(entities) do
+    --     for i=#ents, 1, -1 do
+    --         local x = ents[i].x/TILE_SCALE + map_width/2.0
+    --         local y = ents[i].z/TILE_SCALE + map_height/2.0
 
-            local tiletype = WorldSim:GetVisualTileAtPosition(x,y) -- Warning: This does not quite work as expected. It thinks the ground type id is in rendering order, which it totally is not!
-            if TileGroupManager:IsImpassableTile(tiletype) then
-                print("Removing entity on IMPASSABLE", k, x, y, ""..ents[i].x..", 0, "..ents[i].z)
-                table.remove(entities[k], i)
-            end
-        end
-    end
+    --         local tiletype = WorldSim:GetVisualTileAtPosition(x,y) -- Warning: This does not quite work as expected. It thinks the ground type id is in rendering order, which it totally is not!
+    --         if TileGroupManager:IsImpassableTile(tiletype) then
+    --             print("Removing entity on IMPASSABLE", k, x, y, ""..ents[i].x..", 0, "..ents[i].z)
+    --             table.remove(entities[k], i)
+    --         end
+    --     end
+    -- end
 
     if translated_prefabs ~= nil then
         -- Filter out any etities over our overrides
@@ -309,9 +392,9 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
     BunchSpawnerInit(entities, map_width, map_height)
     BunchSpawnerRun(WorldSim)
 
-    AncientArchivePass(entities, map_width, map_height, WorldSim)
+    -- AncientArchivePass(entities, map_width, map_height, WorldSim)
 
-    build_porkland(entities, topology_save, map_width, map_height, current_gen_params)
+    -- build_porkland(entities, topology_save, map_width, map_height, current_gen_params)
 
     local double_check = {}
     for i, prefab in ipairs(level.required_prefabs or {}) do
@@ -347,6 +430,10 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
             end
         end
     end
+
+    -- 测试用
+    entities["anthill"] = nil
+    entities["anthill_exit"] = nil
 
     save.ents = entities
 
