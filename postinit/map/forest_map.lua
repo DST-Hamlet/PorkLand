@@ -247,47 +247,7 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
 
     modimport("postinit/map/worldsim")
 
-    local i = 0
-    local j = 0
-    local size = 20
-    for task_id, task_node in pairs(topology_save.root:GetChildren(false)) do
-        for room_id, room_node in pairs(task_node:GetNodes()) do
-            local site_x = i + size / 2 - 1
-            local site_y = i + size / 2 - 1
-            local centroid_x = i + size / 2 - 1
-            local centroid_y = i + size / 2 - 1
-
-            local data = {
-                area = size * size,
-                site = { x = site_x, y = site_y } ,
-                site_centroid = { x = centroid_x, y = centroid_y },
-                site_points = { x = {}, y = {}, map = {} },
-                polygon_vertexs = { x = {}, y = {} },
-                children = nil,
-            }
-            data.polygon_vertexs.x = {i, i, i + size - 1, i + size - 1}
-            data.polygon_vertexs.y = {j, j + size - 1, j + size - 1, j}
-
-            local tile = room_node.data.value or WORLD_TILES.IMPASSABLE
-            for x = i, i + size - 1 do
-                for y = j, j + size - 1 do
-                    table.insert(data.site_points.x, x)
-                    table.insert(data.site_points.y, y)
-                    data.site_points[x] = data.site_points[x] or {}
-                    data.site_points[x][y] = tile
-                    WorldSim:SetTile(x, y, tile)
-                end
-            end
-
-            i = i + size
-            if i >= map_width - size then
-                i = 0
-                j = j + size
-            end
-
-            WorldSim:SetNodeData(room_id, data)
-        end
-    end
+    WorldSim:CaculateTopologies(topology_save, map_width)
 
     local entities = {}
     local save = {
@@ -425,7 +385,7 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
             else
                 print(string.format("PANIC: missing required prefab [%s]! Expected %d, got %d", prefab, count, entities[prefab] == nil and 0 or #entities[prefab]))
                 if SKIP_GEN_CHECKS == false then
-                    return nil
+                    -- return nil
                 end
             end
         end
