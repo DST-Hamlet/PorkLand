@@ -3,26 +3,11 @@ GLOBAL.setfenv(1, GLOBAL)
 
 local TargetIndicator = require("widgets/targetindicator")
 
-local INTERIOR_SPACEING = 20
-
 local MIN_SCALE = .5
 -- local MIN_ALPHA = .35
 
 local DEFAULT_ATLAS = "images/avatars.xml"
 local DEFAULT_AVATAR = "avatar_unknown.tex"
-
--- TODO: Combine this with the one inside `postinit/widgets/mapwidget.lua`
--- and also use it for the `wheeler_tracker`
-local function CalculateOffset(current_center, target_x, target_y)
-    -- Convert the grid coordinates to positions
-    -- as a compromise, we don't know the exact position,
-    -- just use the current room's size as an estimate
-    local current_x, current_y = current_center:GetCoordinates()
-    local width, depth = current_center:GetSize()
-    local offset_x = (target_x - current_x) * (width + INTERIOR_SPACEING * 2)
-    local offset_y = (target_y - current_y) * (depth + INTERIOR_SPACEING * 2)
-    return Vector3(-offset_y, 0, offset_x)
-end
 
 local on_update = TargetIndicator.OnUpdate
 function TargetIndicator:OnUpdate(...)
@@ -54,7 +39,7 @@ function TargetIndicator:OnUpdate(...)
 
     local coord_x = self.target.marker_data.coord_x
     local coord_y = self.target.marker_data.coord_y
-    local offset = CalculateOffset(center, coord_x, coord_y)
+    local offset = CalculateInteriorOffset(center, coord_x, coord_y)
     local target_position = center:GetPosition() + offset + Vector3(self.target.marker_data.offset_x, 0, self.target.marker_data.offset_z)
     self.target.Transform:SetPosition(target_position:Get())
 
