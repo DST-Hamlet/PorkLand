@@ -330,6 +330,7 @@ Assets = {
     Asset("ANIM", "anim/livingartifact_meter.zip"),
     Asset("ANIM", "anim/poison_meter_overlay.zip"),
     Asset("ANIM", "anim/trawlnet_meter.zip"),
+    Asset("ANIM", "anim/pl_leaves_canopy.zip"),
 
     Asset("ANIM", "anim/moon_aporkalypse_phases.zip"), -- blood moon
 
