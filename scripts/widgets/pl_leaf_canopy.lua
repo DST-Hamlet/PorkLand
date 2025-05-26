@@ -187,7 +187,7 @@ function LeavesOver:OnUpdate(dt)
     else
         showleaves(self)
 
-        local ypos = ((1-self.leavestop_intensity) *500 + zoomoffset) / 2  + 300
+        local ypos = ((1-self.leavestop_intensity) *500 + zoomoffset) / 2  + 330
 
         local thisframecoords = Vector3(current_camera_x, current_camera_y, current_camera_z)
         local down = TheCamera:GetDownVec()
