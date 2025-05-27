@@ -265,6 +265,11 @@ function Segmented:AddSegment(tail)
     self:UpdateSegmentBuild(segment, 0)
 
     segment._body:set(self.inst)
+
+    local speed = self.lastrun and 1 or self.ease
+    self.inst.AnimState:PlayAnimation(speed > 0.5 and "dirt_segment_out_fast_pre" or "dirt_segment_out_pre")
+    self.inst.AnimState:PushAnimation("dirt_static")
+    self.inst.AnimState:OverrideSymbol("segment_swap", segment.build, "segment_swap")
 end
 
 function Segmented:GetSegment(index)

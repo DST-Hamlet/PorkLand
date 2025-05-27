@@ -1034,30 +1034,29 @@ function BoatContainer:ReferenceAllItems()
 end
 
 function BoatContainer:EnableInfiniteStackSize(enable)
-	local _ = rawget(self, "_") --see class.lua for property setters implementation
-	if enable then
-		if not _.infinitestacksize[1] then
-			_.infinitestacksize[1] = true
-			for i = 1, self.numslots do
-				local item = self.slots[i]
-				if item and item.components.stackable then
-					item.components.stackable:SetIgnoreMaxSize(true)
-				end
-			end
-			self.inst.replica.container:EnableInfiniteStackSize(true)
-		end
-	elseif _.infinitestacksize[1] then
-		_.infinitestacksize[1] = nil
-		local x, y, z = self.inst.Transform:GetWorldPosition()
-		for i = 1, self.numslots do
-			local item = self.slots[i]
-			if item and item.components.stackable then
-				self:DropOverstackedExcess(item)
-				item.components.stackable:SetIgnoreMaxSize(false)
-			end
-			self.inst.replica.container:EnableInfiniteStackSize(false)
-		end
-	end
+    local _ = rawget(self, "_") --see class.lua for property setters implementation
+    if enable then
+        if not _.infinitestacksize[1] then
+            _.infinitestacksize[1] = true
+            for i = 1, self.numslots do
+                local item = self.slots[i]
+                if item and item.components.stackable then
+                    item.components.stackable:SetIgnoreMaxSize(true)
+                end
+            end
+            self.inst.replica.container:EnableInfiniteStackSize(true)
+        end
+    elseif _.infinitestacksize[1] then
+        _.infinitestacksize[1] = nil
+        for i = 1, self.numslots do
+            local item = self.slots[i]
+            if item and item.components.stackable then
+                self:DropOverstackedExcess(item)
+                item.components.stackable:SetIgnoreMaxSize(false)
+            end
+            self.inst.replica.container:EnableInfiniteStackSize(false)
+        end
+    end
 end
 
 function BoatContainer:IsRestricted(target)

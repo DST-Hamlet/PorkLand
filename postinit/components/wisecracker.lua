@@ -33,10 +33,15 @@ local function OnNewDay(inst)
     end
 end
 
+local function canttrack(inst, data)
+    inst.components.talker:Say(GetString(inst, "ANNOUNCE_NOTHING_FOUND"))
+end
+
 AddComponentPostInit("wisecracker", function(cmp)
     cmp.inst:ListenForEvent("boat_damaged", boat_damaged)
     cmp.inst:ListenForEvent("boostbywave", boostbywave)
     cmp.inst:ListenForEvent("gasdamage", gasdamage)
+    cmp.inst:ListenForEvent("canttrackitem", canttrack)
     cmp.inst:WatchWorldState("cycles", OnNewDay)
 
     cmp.pl_enterlight_time = math.huge

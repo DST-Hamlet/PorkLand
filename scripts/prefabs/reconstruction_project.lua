@@ -256,6 +256,8 @@ local function fn()
     inst.components.workable:SetWorkLeft(4)
     inst.components.workable:SetOnFinishCallback(OnHammered)
 
+    MakeHauntable(inst)
+
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
     inst.OnLoadPostPass = OnLoadPostPass

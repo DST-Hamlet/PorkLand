@@ -2,24 +2,25 @@ GLOBAL.setfenv(1, GLOBAL)
 
 local Rider_Replica = require("components/rider_replica")
 
-local _GetPickupAction = ToolUtil.GetUpvalue(Rider_Replica.SetActionFilter, "ActionButtonOverride.GetPickupAction")
-local GetPickupAction = function(self, target, tool, ...)
-    if target:HasTag("smolder") then
-        return ACTIONS.SMOTHER
-    elseif tool ~= nil then
-        for action, _ in pairs(TOOLACTIONS) do
-            if target:HasTag(action .. "_workable") then
-                if tool:HasTag(action .. "_tool") then
-                    return ACTIONS[action]
+local GetPickupAction, ActionButtonOverride, i = ToolUtil.GetUpvalue(Rider_Replica.SetActionFilter, "ActionButtonOverride.GetPickupAction")
+if GetPickupAction then
+    debug.setupvalue(ActionButtonOverride, i, function(self, target, tool, ...)
+        if target:HasTag("smolder") then
+            return ACTIONS.SMOTHER
+        elseif tool ~= nil then
+            for action, _ in pairs(TOOLACTIONS) do
+                if target:HasTag(action .. "_workable") then
+                    if tool:HasTag(action .. "_tool") then
+                        return ACTIONS[action]
+                    end
+                    -- break
                 end
-                -- break
             end
         end
-    end
 
-    return _GetPickupAction(self, target, tool, ...)
+        return GetPickupAction(self, target, tool, ...)
+    end)
 end
-ToolUtil.SetUpvalue(Rider_Replica.SetActionFilter, GetPickupAction, "ActionButtonOverride.GetPickupAction")
 
 function Rider_Replica:GetMountSpeedMultiplier()
     local multiplier = 1

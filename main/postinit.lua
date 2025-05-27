@@ -1,6 +1,52 @@
 local modimport = modimport
 GLOBAL.setfenv(1, GLOBAL)
 
+local post_init_functions = {}
+
+-- Runs a callback on the prefab gets registered,
+-- if the prefab is already registered, the callback will be called immediately
+--
+-- ## Examples:
+--
+-- ```lua
+-- AddPrefabRegisterPostInit(function(spoiled_food)
+--     local spoiled_food_constructor = spoiled_food.fn
+--     local food_OnIsRaining, food_mastersim_init, i = ToolUtil.GetUpvalue(spoiled_food_constructor, "food_mastersim_init.food_OnIsRaining")
+--     if not food_OnIsRaining then
+--         return
+--     end
+--     debug.setupvalue(food_mastersim_init, i, function(inst, israining, ...)
+--         if inst:GetIsInInterior() then
+--             inst.components.disappears:StopDisappear()
+--             return
+--         end
+--         return food_OnIsRaining(inst, israining, ...)
+--     end)
+-- end)
+-- ```
+function AddPrefabRegisterPostInit(prefab, post_init)
+    if Prefabs[prefab] then
+        post_init(Prefabs[prefab])
+        return
+    end
+    if not post_init_functions[prefab] then
+        post_init_functions[prefab] = {}
+    end
+    table.insert(post_init_functions[prefab], post_init)
+end
+
+local register_prefabs_impl = RegisterPrefabsImpl
+RegisterPrefabsImpl = function(prefab, ...)
+    local ret = { register_prefabs_impl(prefab, ...) }
+    local prefab_name = prefab.name
+    if post_init_functions[prefab_name] then
+        for _, post_init in ipairs(post_init_functions[prefab_name]) do
+            post_init(prefab)
+        end
+    end
+    return unpack(ret)
+end
+
 -- Update this list when adding files
 local behaviour_posts = {
     "chaseandattack",
@@ -26,7 +72,6 @@ local component_posts = {
     "builder_replica",
     "builder",
     "burnable",
-    "circler",
     "clock",
     "colourcube",
     "combat",
@@ -216,6 +261,7 @@ modimport("postinit/soundemitter")
 modimport("postinit/preparedfoods")
 modimport("postinit/skilltrees")
 modimport("postinit/lightwatcher")
+modimport("postinit/shardindex")
 
 for _, file_name in ipairs(behaviour_posts) do
     modimport("postinit/behaviours/" .. file_name)

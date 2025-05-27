@@ -62,6 +62,8 @@ local function desk(Sim)
     inst.components.workable:SetOnFinishCallback(onhammered)
     inst.components.workable:SetOnWorkCallback(onhit)
 
+    MakeHauntable(inst)
+
     --[[
     inst:AddComponent("inspectable")
     inst.components.inspectable.nameoverride = "ROCK"

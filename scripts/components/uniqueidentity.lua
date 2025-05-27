@@ -15,7 +15,7 @@ function UniqueIdentity:SetRandomID()
         print("WARNING!!! This world don't have component named globalidentity")
         return
     end
-    self.uniqueid = TheWorld.components.globalidentity:CraeteNewID()
+    self.uniqueid = TheWorld.components.globalidentity:CreateNewId()
 end
 
 function UniqueIdentity:SetID(id_number)

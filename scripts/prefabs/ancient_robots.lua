@@ -150,6 +150,14 @@ local function OnEntitySleep(inst)
     end
 end
 
+local function OnHaunt(inst, haunter)
+    if math.random() < TUNING.HAUNT_CHANCE_HALF then
+        inst:ActiveRobot(8 + math.random() * 4)
+        return true
+    end
+    return false
+end
+
 local brain = require("brains/ancientrobotbrain")
 
 local function commonfn()
@@ -210,6 +218,9 @@ local function commonfn()
     inst.components.workable.undestroyable = true
 
     inst:AddComponent("timer")
+
+    inst:AddComponent("hauntable")
+    inst.components.hauntable:SetOnHauntFn(OnHaunt)
 
     inst:SetBrain(brain)
 

@@ -45,6 +45,7 @@ local function fn_fx()
     inst.entity:AddTransform()
 
     inst:AddTag("FX")
+    inst:AddTag("CLASSIFIED")
     --[[Non-networked entity]]
     inst.entity:SetCanSleep(false)
     inst.persists = false
@@ -64,7 +65,7 @@ local function fn_fx()
         effect:SetScaleEnvelope(i, SCALE_ENVELOPE_NAME)
         effect:SetUVFrameSize(i, 0.234375, 0.46875)
         effect:SetLayer(i, LAYER_BELOW_GROUND)
-        effect:SetSortOrder(i, 1)
+        effect:SetSortOrder(i, -3)
         effect:EnableDepthTest(i, true)
         effect:EnableDepthWrite(i, true)
         effect:SetKillOnEntityDeath(i, true)
@@ -125,13 +126,14 @@ local function fn()
     inst.entity:AddTransform()
 
     inst:AddTag("FX")
+    inst:AddTag("CLASSIFIED")
     --[[Non-networked entity]]
     inst.entity:SetCanSleep(false)
     inst.persists = false
 
     inst.child_effects = {}
 
-    inst:ListenForEvent("onremove", function()    
+    inst:ListenForEvent("onremove", function()
         for k, v in pairs(inst.child_effects) do
             v:Remove()
             inst.child_effects[k] = nil

@@ -27,6 +27,8 @@ local Door = Class(function(self, inst)
     self.disabled = false
     self.hidden = false
     self.disable_causes = {}
+
+    self.inst:AddTag("door")
 end, nil,
 {
     disabled = ondisabled,

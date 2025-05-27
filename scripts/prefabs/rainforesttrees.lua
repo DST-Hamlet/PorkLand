@@ -43,6 +43,17 @@ SetSharedLootTable("rainforesttree_tall",
     {"log", 1.0},
 })
 
+SetSharedLootTable("rainforesttree_burnt",
+{
+    {"charcoal", 1.00},
+    {"charcoal", 0.33},
+})
+
+SetSharedLootTable("rainforesttree_stump",
+{
+    {"log", 1.00},
+})
+
 SetSharedLootTable("spider_monkey_tree_short",
 {
     {"log", 1.0},
@@ -54,7 +65,7 @@ SetSharedLootTable("spider_monkey_tree_normal",
     {"log", 1.0},
     {"log", 1.0},
     {"silk", 1.0},
-    {"silk", 1.0},
+    {"silk", 0.5},
 })
 
 SetSharedLootTable("spider_monkey_tree_tall",
@@ -64,6 +75,12 @@ SetSharedLootTable("spider_monkey_tree_tall",
     {"log", 1.0},
     {"silk", 1.0},
     {"silk", 1.0},
+})
+
+SetSharedLootTable("spider_monkey_tree_stump",
+{
+    {"log", 1.00},
+    {"silk", 1.00},
 })
 
 local function MakeAnims(stage)
@@ -207,13 +224,8 @@ local function OnWorkCallback(inst, chopper)
 end
 
 local function OnFinishCallbackStump(inst, digger)
-    inst.components.lootdropper:SpawnLootPrefab("log")
+    inst.components.lootdropper:DropLoot()
     inst:Remove()
-    -- Wagstaff stuff
-    -- if inst:HasTag("mystery") and inst.components.mystery.investigated then
-    --     inst.components.lootdropper:SpawnLootPrefab(inst.components.mystery.reward)
-    --     inst:RemoveTag("mystery")
-    -- end
 end
 
 local function MakeStump(inst)
@@ -237,6 +249,13 @@ local function MakeStump(inst)
     inst.AnimState:PushAnimation(anims[inst.stage].stump)
 
     inst.MiniMapEntity:SetIcon("tree_rainforest_stump.tex")
+
+    inst.components.lootdropper:SetLoot({})
+    if inst:HasTag("spider_monkey_tree") then
+        inst.components.lootdropper:SetChanceLootTable("spider_monkey_tree_stump")
+    else
+        inst.components.lootdropper:SetChanceLootTable("rainforesttree_stump")
+    end
 
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.DIG)
@@ -284,6 +303,8 @@ local function OnFinishCallback(inst, chopper)
     end
     drop_burr(inst, pt)
 
+    PushTreeFallServer(inst, pt, hispos)
+
     MakeStump(inst)
 
     local fx = SpawnPrefab("fall_mangrove_pink")
@@ -309,10 +330,7 @@ local function OnFinishCallbackBurnt(inst, chopper)
     inst:ListenForEvent("animover", inst.Remove)
     inst:ListenForEvent("entitysleep", inst.Remove)
 
-    inst.components.lootdropper:SpawnLootPrefab("charcoal")
-    if math.random() < 0.4 then
-        inst.components.lootdropper:SpawnLootPrefab("charcoal")
-    end
+    inst.components.lootdropper:DropLoot()
 end
 
 local function OnBurntChanges(inst)
@@ -327,6 +345,7 @@ local function OnBurntChanges(inst)
     MakeHauntableWork(inst)
 
     inst.components.lootdropper:SetLoot({})
+    inst.components.lootdropper:SetChanceLootTable("rainforesttree_burnt")
 
     if inst.components.workable then
         inst.components.workable:SetWorkLeft(1)
@@ -346,13 +365,6 @@ local function OnBurnt(inst)
     -- inst.AnimState:SetRayTestOnBB(true) -- 这个会影响鼠标选取判定
 
     inst.seed_task = inst:DoTaskInTime(10, function()
-        local pt = inst:GetPosition()
-        if math.random(0, 1) == 1 then -- ...why?
-            pt = pt + TheCamera:GetRightVec()
-        else
-            pt = pt - TheCamera:GetRightVec()
-        end
-
         inst.seed_task = nil
     end)
 end
@@ -360,12 +372,6 @@ end
 local function drop_critter(inst, prefab)
     local critter = SpawnPrefab(prefab)
     local pt = Vector3(inst.Transform:GetWorldPosition())
-
-    if math.random(0, 1) == 1 then -- why?
-        pt = pt + (TheCamera:GetRightVec() * (math.random() + 1))
-    else
-        pt = pt - (TheCamera:GetRightVec() * (math.random() + 1))
-    end
 
     critter.sg:GoToState("fall")
     pt.y = pt.y + (2 * inst.stage)
@@ -417,12 +423,6 @@ local function DoBloom(inst)
 
     local burr = SpawnPrefab("burr")
     local pt = inst:GetPosition()
-
-    if math.random(0, 1) == 1 then -- why?
-        pt = pt + (TheCamera:GetRightVec() * (math.random() + 1))
-    else
-        pt = pt - (TheCamera:GetRightVec() * (math.random() + 1))
-    end
 
     burr.AnimState:PlayAnimation("drop")
     burr.AnimState:PushAnimation("idle")
@@ -652,6 +652,8 @@ local function MakeTree(name, build, stage, data)
         else
             inst:SetPrefabName("rainforesttree")
         end
+
+        MakeTreeClientFallAnim(inst, anims)
 
         inst.entity:SetPristine()
 

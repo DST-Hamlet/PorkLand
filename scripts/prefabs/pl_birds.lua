@@ -102,7 +102,7 @@ local function MakeBird(name, sounds, feather_name, isreplace)
     local assets =
     {
         Asset("ANIM", "anim/crow.zip"),
-        Asset("ANIM", "anim/" .. name .. "_build.zip"),
+        Asset("ANIM", "anim/" .. (isreplace and "pl_" or "") .. name .. "_build.zip"),
         Asset("SOUND", "sound/birds.fsb"),
     }
 

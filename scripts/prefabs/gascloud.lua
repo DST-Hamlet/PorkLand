@@ -9,6 +9,10 @@ local function Spawn(inst)
 end
 
 local function Despawn(inst)
+    if inst.persists == false then
+        return
+    end
+    
     inst.AnimState:PlayAnimation("disappear")
     -- should probably disable DynamicShadow here
     inst:ListenForEvent("animover", function()
@@ -54,6 +58,14 @@ local function OnUpdate(inst, dt)
     end
 end
 
+local function OnHaunt(inst, haunter)
+    if math.random() < TUNING.HAUNT_CHANCE_ALWAYS then
+        Despawn(inst)
+        return true
+    end
+    return false
+end
+
 local function fn()
     local inst = CreateEntity()
 
@@ -86,6 +98,9 @@ local function fn()
     inst.components.creatureprox:Schedule(0.01)
 
     inst:AddComponent("inspectable")
+
+    inst:AddComponent("hauntable")
+    inst.components.hauntable:SetOnHauntFn(OnHaunt)
 
     inst:DoTaskInTime(20, Despawn)
 

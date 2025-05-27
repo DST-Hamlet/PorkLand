@@ -15,8 +15,7 @@ local function Mask(parent)
     inst:AddTag("noblock")
     inst:AddTag("rotatingbillboard_mask")
     inst.AnimState:SetMultColour(0, 0, 0, 1)
-    inst.AnimState:SetLayer(LAYER_BELOW_GROUND)
-    inst.AnimState:SetFinalOffset(FINALOFFSET_MIN)
+    inst.AnimState:SetLayer(LAYER_BACKDROP)
     inst.Transform:SetTwoFaced()
     inst.Transform:SetRotation(-90)
 
@@ -212,6 +211,7 @@ end
 function RotatingBillboard:OnRemoveFromEntity()
     if self.mask and self.mask:IsValid() then
         self.mask:Remove()
+        self.mask = nil
     end
 
     self.inst.AnimState:SetOrientation(ANIM_ORIENTATION.BillBoard)

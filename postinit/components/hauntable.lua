@@ -8,6 +8,9 @@ function Hauntable:StartShaderFx(...)
     if self.inst.components.rotatingbillboard then
         self.inst.components.rotatingbillboard:SetMaskHaunt(true)
     else
+        if self.inst.replica.sailable then
+            self.inst.replica.sailable:UpdateHaunt(true)
+        end
         _StartShaderFx(self, ...)
     end
 end
@@ -19,6 +22,9 @@ function Hauntable:StopShaderFX(...)
             self.inst.components.rotatingbillboard:SetMaskHaunt(false)
         end
     else
+        if self.inst:IsValid() and self.inst.replica.sailable then
+            self.inst.replica.sailable:UpdateHaunt(false)
+        end
         _StopShaderFX(self, ...)
     end
 end

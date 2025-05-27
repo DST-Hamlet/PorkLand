@@ -18,8 +18,11 @@ end
 --      action: "remove"
 --      data: { [index: number]: true }
 -- }
-function UnderTile:NotifyUnderTileChanged(data)
-    SendModRPCToClient(GetClientModRPC("PorkLand", "update_undertile"), nil, ZipAndEncodeString(data))
+function UnderTile:NotifyUnderTileChanged(data, userid)
+    SendModRPCToClient(GetClientModRPC("PorkLand", "update_undertile"), userid, ZipAndEncodeString({
+        action = "update",
+        data = data,
+    }))
 end
 
 function UnderTile:CheckInSize(x, y)
@@ -96,6 +99,9 @@ AddComponentPostInit("undertile", function(self, inst)
             print("WARNING: Can't get upvalue _underneath_tiles form UnderTile.OnLoad, client side shadows and canopies will not work!")
             return
         end
-        self:NotifyUnderTileChanged(self:Get():Save())
+    end)
+
+    self.inst:ListenForEvent("ms_playerjoined", function(inst, player)
+        self:NotifyUnderTileChanged(self:Get():Save(), player.userid)
     end)
 end)
