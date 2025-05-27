@@ -182,7 +182,15 @@ local function lockvisual_fn() -- 锁
 end
 
 local function OnVisualChange(inst)
-    inst.highlightchildren = {inst._frontvisual:value(), inst._lockvisual:value()}
+    local frontvisual = inst._frontvisual and inst._frontvisual:value() or nil
+    local lockvisual = inst._lockvisual and inst._lockvisual:value() or nil
+    inst.highlightchildren = {}
+    if frontvisual then
+        table.insert(inst.highlightchildren, frontvisual)
+    end
+    if lockvisual then
+        table.insert(inst.highlightchildren, lockvisual)
+    end
 end
 
 local function IsHighPriorityAction(act, force_inspect)
@@ -233,8 +241,13 @@ local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, on_r
             inst.AnimState:SetSortOrder(anim_def.order)
         end
 
-        inst._frontvisual = net_entity(inst.GUID, "_frontvisual", "frontvisualdirty")
-        inst._lockvisual = net_entity(inst.GUID, "_lockvisual", "lockvisualdirty")
+        if anim_def.has_front then
+            inst._frontvisual = net_entity(inst.GUID, "_frontvisual", "frontvisualdirty")
+        end
+
+        if anim_def.is_pedestal then
+            inst._lockvisual = net_entity(inst.GUID, "_lockvisual", "lockvisualdirty")
+        end
 
         inst.AnimState:SetFinalOffset(-1)
 
@@ -262,18 +275,32 @@ local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, on_r
             return inst
         end
 
-        inst.frontvisual = CreateFrontVisual(inst, name, anim_def)
-        inst._frontvisual:set(inst.frontvisual)
+        if anim_def.has_front then
+            inst.frontvisual = CreateFrontVisual(inst, name, anim_def)
+            inst._frontvisual:set(inst.frontvisual)
+        end
 
-        inst.lockvisual = CreateLockVisual(inst, name, anim_def)
-        inst._lockvisual:set(inst.lockvisual)
+        if anim_def.is_pedestal then
+            inst.lockvisual = CreateLockVisual(inst, name, anim_def)
+            inst._lockvisual:set(inst.lockvisual)
+        end
 
         inst:DoStaticTaskInTime(0, function()
-            inst.frontvisual.Follower:FollowSymbol(inst.GUID, nil, 0, 0, 0.0015) -- 毫无疑问，这是为了解决层级bug的屎山，因为有时SetFinalOffset会失效（特别是在离0点特别远的位置）
-            inst.lockvisual.Follower:FollowSymbol(inst.GUID, nil, 0, 0, 0.002) -- 毫无疑问，这是为了解决层级bug的屎山，因为有时SetFinalOffset会失效（特别是在离0点特别远的位置）
+            if inst.frontvisual then
+                inst.frontvisual.Follower:FollowSymbol(inst.GUID, nil, 0, 0, 0.0015) -- 毫无疑问，这是为了解决层级bug的屎山，因为有时SetFinalOffset会失效（特别是在离0点特别远的位置）
+            end
+            if inst.lockvisual then
+                inst.lockvisual.Follower:FollowSymbol(inst.GUID, nil, 0, 0, 0.002) -- 毫无疑问，这是为了解决层级bug的屎山，因为有时SetFinalOffset会失效（特别是在离0点特别远的位置）
+            end
         end)
 
-        inst.highlightchildren = {inst.frontvisual, inst.lockvisual}
+        inst.highlightchildren = {}
+        if inst.frontvisual then
+            table.insert(inst.highlightchildren, inst.frontvisual)
+        end
+        if inst.lockvisual then
+            table.insert(inst.highlightchildren, inst.lockvisual)
+        end
 
         inst:AddComponent("inspectable")
 
@@ -351,19 +378,19 @@ return MakeShelf("wood", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
     MakeShelf("hutch", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
     MakeShelf("industrial", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
     MakeShelf("adjustable", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
-    MakeShelf("fridge", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
+    MakeShelf("fridge", false, {layer = LAYER_WORLD_BACKGROUND, order = 3, has_front = true}),
     MakeShelf("cinderblocks", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
-    MakeShelf("midcentury", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
+    MakeShelf("midcentury", false, {layer = LAYER_WORLD_BACKGROUND, order = 3, has_front = true}),
     MakeShelf("wallmount", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
-    MakeShelf("aframe", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
+    MakeShelf("aframe", false, {layer = LAYER_WORLD_BACKGROUND, order = 3, has_front = true}),
     MakeShelf("crates", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
     -- MakeShelf("hooks", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
     MakeShelf("pipe", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
     MakeShelf("hattree", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
     MakeShelf("pallet", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
     MakeShelf("floating", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
-    MakeShelf("displaycase_wood", true, {animation = "displayshelf_wood"}),
-    MakeShelf("displaycase_metal", true, {animation = "displayshelf_metal"}),
+    MakeShelf("displaycase_wood", true, {animation = "displayshelf_wood", has_front = true}),
+    MakeShelf("displaycase_metal", true, {animation = "displayshelf_metal", has_front = true}),
     MakeShelf("queen_display_1", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock19_east", is_pedestal = true, name = STRINGS.NAMES.ROYAL_GALLERY}, "SWAP_SIGN", nil, MakeLock),
     MakeShelf("queen_display_2", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock17_east", is_pedestal = true, name = STRINGS.NAMES.ROYAL_GALLERY}, "SWAP_SIGN", nil, MakeLock),
     MakeShelf("queen_display_3", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock12_west", is_pedestal = true, name = STRINGS.NAMES.ROYAL_GALLERY}, "SWAP_SIGN", nil, MakeLock),

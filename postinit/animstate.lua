@@ -9,6 +9,7 @@ local REPLACE_ANIMS =
         ["atk"] = "atk_old",
         ["hit"] = "hit_old",
         ["hit_goo"] = "hit_goo_old",
+        ["idle_inaction_sanity"] = "idle_inaction_sanity_fixed",
     }
 }
 

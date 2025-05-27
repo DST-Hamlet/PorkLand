@@ -17,7 +17,7 @@ local function get_tool_action(tool, target)
     end
 end
 
-local _GetPickupAction, i = ToolUtil.GetUpvalue(PlayerController.GetActionButtonAction, "GetPickupAction")
+local _GetPickupAction, scope_fn, i = ToolUtil.GetUpvalue(PlayerController.GetActionButtonAction, "GetPickupAction")
 local GetPickupAction = function(self, target, tool, ...)
     local action = _GetPickupAction(self, target, tool, ...)
     if not action then
@@ -42,7 +42,7 @@ local GetPickupAction = function(self, target, tool, ...)
     end
     return action
 end
-debug.setupvalue(PlayerController.GetActionButtonAction, i, GetPickupAction)
+debug.setupvalue(scope_fn, i, GetPickupAction)
 
 
 local _GetActionButtonAction = PlayerController.GetActionButtonAction
@@ -205,6 +205,14 @@ function PlayerController:GetMapActions(...)
     end
 
     return _GetMapActions(self, ...)
+end
+
+local do_action = PlayerController.DoAction
+function PlayerController:DoAction(buffaction, ...)
+    if buffaction and buffaction.action == ACTIONS.DODGE and not self:CanLocomote() then
+        self.inst.last_dodge_time = GetTime()
+    end
+    return do_action(self, buffaction, ...)
 end
 
 AddComponentPostInit("playercontroller", function(self)

@@ -101,7 +101,9 @@ local states = {
             inst.AnimState:PlayAnimation(ProcessAnim(inst, "walk_pre"))
             inst.Physics:Stop()
             if inst:HasTag("hasdung") then
-                inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/dungbeetle/rollingbball_LP","dungroll")
+                if not inst.SoundEmitter:PlayingSound("dungroll") then
+                    inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/dungbeetle/rollingbball_LP","dungroll")
+                end
                 inst.SoundEmitter:SetParameter("dungroll", "speed", 0)
             end
         end,
@@ -311,7 +313,9 @@ local states = {
         onenter = function(inst)
             inst.AnimState:PlayAnimation(ProcessAnim(inst, "run_pre"))
             inst.AnimState:PushAnimation(ProcessAnim(inst, "run_loop"), true)
-            inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/dungbeetle/rollingbball_LP","dungroll")
+            if not inst.SoundEmitter:PlayingSound("dungroll") then
+                inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/dungbeetle/rollingbball_LP","dungroll")
+            end
             inst.SoundEmitter:SetParameter("dungroll", "speed", 1)
             inst.components.locomotor:RunForward()
         end,
@@ -494,12 +498,7 @@ local states = {
         tags = {"busy"},
 
         onenter = function(inst, dead)
-            if inst:HasTag("hasdung") then
-                inst:RemoveTag("hasdung")
-                local ball = SpawnPrefab("dungball")
-                ball.Transform:SetPosition(inst.Transform:GetWorldPosition())
-                ball.AnimState:PlayAnimation("idle")
-            end
+            inst:LoseDungBall()
 
             inst.Physics:Stop()
             inst:ClearBufferedAction()
