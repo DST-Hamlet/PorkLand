@@ -102,8 +102,10 @@ local function OnHack(inst, worker, hacksleft)
         inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/vine_drop")
 
         if not from_shears then
-            inst.components.lootdropper:DropLoot()
+            inst.components.lootdropper:SpawnLootPrefab(inst.components.storageloot:TakeRandomLoot())
         end
+
+        inst.components.storageloot:DestroyLoots()
     else
         inst.AnimState:PlayAnimation("chop")
         inst.AnimState:PushAnimation("idle", true)
@@ -140,6 +142,8 @@ local GROWTH_STAGES = {
             end
             inst.AnimState:PlayAnimation("grow")
             inst.AnimState:PushAnimation("idle", true)
+            inst.components.storageloot:AddLoot("cutgrass")
+            inst.components.storageloot:AddLoot("cutgrass")
             inst.components.hackable:SetWorkLeft(3)
             inst.components.shearable:SetCanShear(true)
             WeevoleNestTest(inst)
@@ -218,7 +222,10 @@ local function grass_tall()
     end
 
     inst:AddComponent("lootdropper")
-    inst.components.lootdropper:SetLoot({"cutgrass"})
+
+    inst:AddComponent("storageloot")
+    inst.components.storageloot:AddLoot("cutgrass")
+    inst.components.storageloot:AddLoot("cutgrass")
 
     inst:AddComponent("inspectable")
     inst.components.inspectable.getstatus = GetStatus

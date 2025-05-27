@@ -188,7 +188,6 @@ local function BeaverRightClickPicker(inst, target, pos)
         end
         for k, v in pairs(FOODTYPE) do
             if target:HasTag("edible_"..v) and inst:HasTag(v.."_eater") then
-                table.insert(actions, ACTIONS.EAT)
                 return inst.components.playeractionpicker:SortActionList({ ACTIONS.EAT }, target, nil)
             end
         end
@@ -361,17 +360,45 @@ local function beaverbonusdamagefn(inst, target, damage, weapon)
     return (target:HasTag("tree") or target:HasTag("beaverchewable")) and TUNING.BEAVER_WOOD_DAMAGE or 0
 end
 
-local function CalculateWerenessDrainRate(inst)
+local function CalculateWerenessDrainRate(inst, old, dt)
     if inst:HasTag("playerghost") then
         return 0
     else
         if TheWorld.state.isfullmoon and not inst:HasTag("inside_interior") then
             return 2
         end
-        return -1
+
+        if inst.weremode:value() == WEREMODES.BEAVER then
+            return math.min(math.max(old - 0.01 * dt, -10), -0.25)
+        else 
+            return math.min(math.max(old + 0.002 * dt, -10), -0.25)
+        end
     end
 end
 
+local function OnFinishedWork(inst, data)
+    if not (data and data.target and data.action) then
+        return
+    end
+    if data.action == ACTIONS.CHOP
+        and data.target:HasTag("tree")
+        and not inst:HasTag("playerghost")
+        and not inst:HasTag("wereplayer") then
+
+        inst.components.wereness:DoDelta(10)
+    end
+end
+
+local function CustomFoodStatsModBeaver(inst, health_delta, hunger_delta, sanity_delta, food, feeder)
+    health_delta = health_delta + hunger_delta
+	if food and food.components.edible
+        and (food.components.edible.foodtype == FOODTYPE.ROUGHAGE 
+        or food.components.edible.secondaryfoodtype == FOODTYPE.ROUGHAGE) then-- 同时有木头+粗食标签减少一半食用效果
+            
+        health_delta = health_delta * 0.5
+	end
+	return health_delta, hunger_delta, sanity_delta
+end
 --------------------------------------------------------------------------
 
 local function IsLucy(item)
@@ -508,6 +535,7 @@ local function ChangeWereModeValue(inst, newmode)
         end
         inst:RemoveTag(inst.weremode:value() == WEREMODES.BEAVER and "beaver" or ("were"..WEREMODE_NAMES[inst.weremode:value()]))
         inst.Network:RemoveUserFlag(USERFLAGS["CHARACTER_STATE_"..tostring(inst.weremode:value())])
+        inst.components.wereness.rate = math.min(inst.components.wereness.rate, - 4)
     end
 
     inst.weremode:set(newmode)
@@ -588,6 +616,9 @@ local function onbecamehuman(inst)
 
     inst.MiniMapEntity:SetIcon("woodie.png")
 
+    inst.components.eater:SetDiet({FOODGROUP.OMNI})
+    inst.components.eater.custom_stats_mod_fn = nil
+
     inst.components.sanity.ignore = false
 
     inst.components.locomotor.runspeed = TUNING.WILSON_RUN_SPEED
@@ -652,6 +683,9 @@ local function onbecamebeaver(inst)
         CustomSetSkinMode(inst, "werebeaver_skin")
     end
     inst.MiniMapEntity:SetIcon("woodie_1.png")
+
+    inst.components.eater:SetDiet({FOODTYPE.WOOD})
+    inst.components.eater.custom_stats_mod_fn = CustomFoodStatsModBeaver
 
     inst.components.health:SetPercent(0.5)
     inst.components.sanity:SetPercent(0.5)
@@ -901,6 +935,7 @@ local function master_postinit(inst)
 
     inst:ListenForEvent("ms_respawnedfromghost", onrespawnedfromghost)
     inst:ListenForEvent("ms_becameghost", onbecameghost)
+    inst:ListenForEvent("finishedwork", OnFinishedWork)
 
     inst:DoStaticTaskInTime(0, function()
         if not inst:HasTag("playerghost") then

@@ -80,7 +80,7 @@ end
 
 function PL_Wereness:OnUpdate(dt)
     if self.drainratefn then
-        self.rate = self.drainratefn(self.inst)
+        self.rate = self.drainratefn(self.inst, self.rate, dt)
     end
     if self.rate ~= 0 and dt ~= 0 then
         self:DoDelta(self.rate * dt, true)
@@ -88,16 +88,18 @@ function PL_Wereness:OnUpdate(dt)
 end
 
 function PL_Wereness:OnSave()
-    return self.current > 0 and {
+    return {
         current = self.current,
         mode = self.weremode,
+        rate = self.rate,
     } or nil
 end
 
 function PL_Wereness:OnLoad(data)
-    if data.current ~= nil and data.current > 0 then
+    if data.current ~= nil then
         self.weremode = data.mode
         self.current = data.current
+        self.rate = data.rate,
         self:StartDraining()
         self:DoDelta(0, true)
     end

@@ -95,6 +95,8 @@ local function makeitem(name, build, frame)
         inst:AddComponent("fixable")
         inst.components.fixable:AddReconstructionStageData("burnt", build, build)
 
+        MakeHauntable(inst)
+
         return inst
     end
 

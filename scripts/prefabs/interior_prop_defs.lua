@@ -336,7 +336,7 @@ local function RandomisePosition(addprops, room)
     end
 end
 
-PROP_DEFS.anthill_common = function(depth, width, room, doorway_count, doorwayPrefabs)
+PROP_DEFS.anthill_common = function(depth, width, room, doorway_count)
     local addprops = {}
     if room.is_entrance then
         if doorway_count > NUM_ENTRANCES then
@@ -406,10 +406,10 @@ PROP_DEFS.anthill_common = function(depth, width, room, doorway_count, doorwayPr
     return addprops
 end
 
-PROP_DEFS.anthill_empty = function(depth, width, room, doorway, doorwayPrefabs)
+PROP_DEFS.anthill_empty = function(depth, width, room, doorway_count)
     -- creating a seperate table here to not randomise addprops_common, don't want to move all the pillars and doors in it
     local addprops = {}
-    local addprops_common = PROP_DEFS.anthill_common(depth, width, room, doorway, doorwayPrefabs)
+    local addprops_common = PROP_DEFS.anthill_common(depth, width, room, doorway_count)
 
     AddLanternTables(addprops, MIN_LANTERNS, MAX_LANTERNS)
     RandomisePosition(addprops, room)
@@ -417,9 +417,9 @@ PROP_DEFS.anthill_empty = function(depth, width, room, doorway, doorwayPrefabs)
     return JoinArrays(addprops, addprops_common)
 end
 
-PROP_DEFS.anthill_ant_home = function(depth, width, room, doorway, doorwayPrefabs)
+PROP_DEFS.anthill_ant_home = function(depth, width, room, doorway_count)
     local addprops = {}
-    local addprops_common = PROP_DEFS.anthill_common(depth, width, room, doorway, doorwayPrefabs)
+    local addprops_common = PROP_DEFS.anthill_common(depth, width, room, doorway_count)
 
     AddItemTables("antcombhome", addprops, 1, 2)
     AddItemTables("antman", addprops, 3, 4)
@@ -428,9 +428,9 @@ PROP_DEFS.anthill_ant_home = function(depth, width, room, doorway, doorwayPrefab
     return JoinArrays(addprops, addprops_common)
 end
 
-PROP_DEFS.anthill_wandering_ant = function(depth, width, room, doorway, doorwayPrefabs)
+PROP_DEFS.anthill_wandering_ant = function(depth, width, room, doorway_count)
     local addprops = {}
-    local addprops_common = PROP_DEFS.anthill_common(depth, width, room, doorway, doorwayPrefabs)
+    local addprops_common = PROP_DEFS.anthill_common(depth, width, room, doorway_count)
 
     AddItemTables("antman", addprops, 1, 3)
     AddLanternTables(addprops, MIN_LANTERNS, MAX_LANTERNS)
@@ -438,9 +438,9 @@ PROP_DEFS.anthill_wandering_ant = function(depth, width, room, doorway, doorwayP
     return JoinArrays(addprops, addprops_common)
 end
 
-PROP_DEFS.anthill_treasure = function(depth, width, room, doorway, doorwayPrefabs)
+PROP_DEFS.anthill_treasure = function(depth, width, room, doorway_count)
     local addprops = {}
-    local addprops_common = PROP_DEFS.anthill_common(depth, width, room, doorway, doorwayPrefabs)
+    local addprops_common = PROP_DEFS.anthill_common(depth, width, room, doorway_count)
 
     AddItemTables("antcombhome", addprops, 1, 1)
     AddItemTables("antman", addprops, 1, 2)

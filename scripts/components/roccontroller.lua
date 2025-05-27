@@ -584,7 +584,7 @@ function RocController:FadeOutFinished()
 
         local player = self.grabbed_player
         if player and player:IsValid() then
-            self.grabbed_player.Transform:SetPosition(pt.x, pt.y, pt.z)
+            self.grabbed_player.Physics:Teleport(pt.x, pt.y, pt.z)
             self.grabbed_player.components.sanity:DoDelta(-TUNING.SANITY_MED)
 
             self.grabbed_player.sg:GoToState("wakeup")

@@ -22,6 +22,10 @@ local function OnUnWrappedFn(inst, pos, doer)
         --TODO test if we're in the doers inv, remember the slot, and put the steak there. -from IA Mobstar
         --亚丹: 蜜罐也需要类似的机制, 使得转化后的产物和转化前的物品处于同一个格子
         owner.components.inventory:GiveItem(steak)
+    elseif owner and owner.components.container then
+        --TODO test if we're in the doers inv, remember the slot, and put the steak there. -from IA Mobstar
+        --亚丹: 蜜罐也需要类似的机制, 使得转化后的产物和转化前的物品处于同一个格子
+        owner.components.container:GiveItem(steak)
     else
         if steak.Physics ~= nil then
             steak.Physics:Teleport(pos:Get())

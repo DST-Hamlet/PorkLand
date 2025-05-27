@@ -259,8 +259,6 @@ local function OnSave(inst, data)
         data.door_data_background = inst.door_data_background
     end
 
-    data.rotation = inst.Transform:GetRotation()
-
     if inst.flipped then
         data.flipped = inst.flipped
     end
@@ -282,10 +280,6 @@ local function OnLoad(inst, data)
         inst.door_data_animstate = data.door_data_animstate
     else
         inst.AnimState:PlayAnimation(inst.prefab .. "_close_" .. PLAYER_INTERIOR_EXIT_DIR_DATA[inst.baseanimname].anim, true)
-    end
-
-    if data.rotation and inst.components.rotatingbillboard == nil then
-        inst.Transform:SetRotation(data.rotation)
     end
 
     -- alas, the background flag wasn't correctly set on old doors

@@ -494,12 +494,7 @@ local states = {
         tags = {"busy"},
 
         onenter = function(inst, dead)
-            if inst:HasTag("hasdung") then
-                inst:RemoveTag("hasdung")
-                local ball = SpawnPrefab("dungball")
-                ball.Transform:SetPosition(inst.Transform:GetWorldPosition())
-                ball.AnimState:PlayAnimation("idle")
-            end
+            inst:LoseDungBall()
 
             inst.Physics:Stop()
             inst:ClearBufferedAction()

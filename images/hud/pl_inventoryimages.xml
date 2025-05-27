@@ -637,8 +637,8 @@
         <Element name="thunderhat.tex" u1="0.78125" u2="0.8125" v1="0.375" v2="0.40625"/>
         <Element name="tigereye.tex" u1="0.8125" u2="0.84375" v1="0.375" v2="0.40625"/>
         <Element name="toucan.tex" u1="0.84375" u2="0.875" v1="0.375" v2="0.40625"/>
-        <Element name="tracker.tex" u1="0.875" u2="0.90625" v1="0.375" v2="0.40625"/>
-        <Element name="tracker_open.tex" u1="0.90625" u2="0.9375" v1="0.375" v2="0.40625"/>
+        <Element name="wheeler_tracker.tex" u1="0.875" u2="0.90625" v1="0.375" v2="0.40625"/>
+        <Element name="wheeler_tracker_open.tex" u1="0.90625" u2="0.9375" v1="0.375" v2="0.40625"/>
         <Element name="trawlnet.tex" u1="0.9375" u2="0.96875" v1="0.375" v2="0.40625"/>
         <Element name="trinket_giftshop_1.tex" u1="0.96875" u2="1" v1="0.375" v2="0.40625"/>
         <Element name="trinket_giftshop_3.tex" u1="0" u2="0.03125" v1="0.34375" v2="0.375"/>

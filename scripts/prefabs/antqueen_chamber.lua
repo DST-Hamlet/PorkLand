@@ -223,7 +223,6 @@ local function makefn()
         inst.components.inspectable.nameoverride = "anthill"
 
         inst:AddComponent("door")
-        inst.components.door.outside = true
 
         inst:DoTaskInTime(0, function()
             if inst.interiorID == nil then

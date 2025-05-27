@@ -121,6 +121,14 @@ return Class(function(self, inst)
         local player = ThePlayer
         if player == nil then return end
 
+        if self.inst:GetIsInInterior() then
+            for index, data in pairs(_canopy_grid.grid) do
+                local _cx, _cz = _canopy_grid:GetXYFromIndex(index)
+                DespawnShadeTile(_cx, _cz)
+            end
+            return
+        end
+
         local px, py, pz = player.Transform:GetWorldPosition()
         local cx, cz = GetCanopyCoordsAtPoint(px, py, pz)
         local center_x, _, center_z = GetCanopyCenterPoint(cx, cz)

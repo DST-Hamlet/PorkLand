@@ -17,7 +17,7 @@ local function get_tool_action(tool, target)
     end
 end
 
-local _GetPickupAction, i = ToolUtil.GetUpvalue(PlayerController.GetActionButtonAction, "GetPickupAction")
+local _GetPickupAction, scope_fn, i = ToolUtil.GetUpvalue(PlayerController.GetActionButtonAction, "GetPickupAction")
 local GetPickupAction = function(self, target, tool, ...)
     local action = _GetPickupAction(self, target, tool, ...)
     if not action then
@@ -27,7 +27,11 @@ local GetPickupAction = function(self, target, tool, ...)
         and not TheWorld.Map:IsLandTileAtPoint(target.Transform:GetWorldPosition()) then --让物品在靠近岸边时被捡起而不是回收
         action = ACTIONS.RETRIEVE
     end
-    if (target:HasTag("interior_door") or target:HasTag("exterior_door")) and not target:HasTag("door_hidden") and not target:HasTag("door_disabled") then
+    if target:HasActionComponent("door")
+        and not target:HasTag("door_hidden")
+        and not target:HasTag("door_disabled")
+        and not (target:HasTag("burnt") or target:HasTag("fire")) then
+
         action = ACTIONS.USEDOOR
     end
     if action == ACTIONS.PICK and target:HasTag("pickable") and target:HasTag("unsuited") then
@@ -38,7 +42,7 @@ local GetPickupAction = function(self, target, tool, ...)
     end
     return action
 end
-debug.setupvalue(PlayerController.GetActionButtonAction, i, GetPickupAction)
+debug.setupvalue(scope_fn, i, GetPickupAction)
 
 
 local _GetActionButtonAction = PlayerController.GetActionButtonAction
@@ -46,7 +50,12 @@ function PlayerController:GetActionButtonAction(force_target, ...)
     local buffaction = _GetActionButtonAction(self, force_target, ...)
     if buffaction then
         local target = buffaction.target
-        if target and (target:HasTag("interior_door") or target:HasTag("exterior_door")) and not target:HasTag("door_hidden") and not target:HasTag("door_disabled") then
+        if target
+            and target:HasActionComponent("door")
+            and not target:HasTag("door_hidden")
+            and not target:HasTag("door_disabled")
+            and not (target:HasTag("burnt") or target:HasTag("fire")) then
+
             if buffaction.action.code == ACTIONS.HAUNT.code then
                 return BufferedAction(self.inst, target, ACTIONS.USEDOOR)
             end
@@ -196,6 +205,14 @@ function PlayerController:GetMapActions(...)
     end
 
     return _GetMapActions(self, ...)
+end
+
+local do_action = PlayerController.DoAction
+function PlayerController:DoAction(buffaction, ...)
+    if buffaction and buffaction.action == ACTIONS.DODGE and not self:CanLocomote() then
+        self.inst.last_dodge_time = GetTime()
+    end
+    return do_action(self, buffaction, ...)
 end
 
 AddComponentPostInit("playercontroller", function(self)

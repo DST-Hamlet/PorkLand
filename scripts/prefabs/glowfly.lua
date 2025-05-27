@@ -42,7 +42,7 @@ local function FadeOut(inst)
 end
 
 local function UpdateLight(inst)
-    if (not TheWorld.state.isday or inst:HasTag("under_leaf_canopy")) and
+    if (not TheWorld.state.isday or TheWorld.Map:IsVisualCanopyAtPoint(inst.Transform:GetWorldPosition())) and
         not (inst.components.inventoryitem ~= nil and inst.components.inventoryitem.owner ~= nil) then
         if not inst.lighton then
             FadeIn(inst)

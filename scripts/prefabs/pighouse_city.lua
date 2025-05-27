@@ -442,7 +442,7 @@ local function MakePigHouse(name, bank, build, minimapicon, spawn_list)
         MakeSnowCovered(inst, .01)
         MakeLargeBurnable(inst, nil, nil, true)
         MakeLargePropagator(inst)
-        MakeHauntableWork(inst)
+        MakeHauntable(inst)
 
         return inst
     end
