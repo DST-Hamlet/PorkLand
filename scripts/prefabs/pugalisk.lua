@@ -244,7 +244,7 @@ local function OnBodyFinished_Body(inst, data)
     inst:Remove()
 end
 
-local function ClientPerdictPosition(inst, dt, should_update_position)
+local function ClientPerdictPosition(inst, dt)
     if inst._state:value() == STATES.DEAD then
         return
     end
@@ -253,7 +253,7 @@ local function ClientPerdictPosition(inst, dt, should_update_position)
     local hit = inst._hit:value()
 
     for _, seg in pairs(inst.segs) do
-        if seg._segtime and inst._speed and inst._speed:value() > 0 and should_update_position then
+        if seg._segtime and inst._speed and inst._speed:value() > 0 then
             local animation_percent = math.clamp(seg._segtime:value() / 1, 0, 1)
 
             if inst._start_point and inst._end_point then
@@ -274,22 +274,24 @@ local function ClientPerdictPosition(inst, dt, should_update_position)
         end
     end
 
-    if should_update_position then
-        inst.SoundEmitter:SetParameter("speed", "intensity", inst._speed:value())
-    end
+    inst.SoundEmitter:SetParameter("speed", "intensity", inst._speed:value())
 
-    local ease = inst._speed:value()
-    if inst._state:value() == STATES.MOVING then
-        ease = math.min(ease + dt,1)
-    else
-        ease = math.max(ease - dt,0)
-    end
+    inst.count_dt = inst.count_dt + dt
+    if inst.count_dt >= FRAMES then
+        local ease = inst._speed:value()
+        if inst._state:value() == STATES.MOVING then
+            ease = math.min(ease + FRAMES,1)
+        else
+            ease = math.max(ease - FRAMES,0)
+        end
+    
+        inst._speed:set_local(ease)
+        inst._hit:set_local(hit - FRAMES * 5)
 
-    inst._speed:set_local(ease)
-    inst._hit:set_local(hit - dt * 5)
-
-    for _, seg in pairs(inst.segs) do
-        seg._segtime:set_local(seg._segtime:value() + (dt * inst._speed:value()))
+        for _, seg in pairs(inst.segs) do
+            seg._segtime:set_local(seg._segtime:value() + (FRAMES * inst._speed:value()))
+        end
+        inst.count_dt = inst.count_dt - FRAMES
     end
 end
 
@@ -360,14 +362,10 @@ local function bodyfn()
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
-        inst.oldpos = inst:GetPosition()
-        inst:DoPeriodicTask(0, function(inst)
-            if inst.oldpos == inst:GetPosition() then
-                ClientPerdictPosition(inst, FRAMES, true)
-            else
-                ClientPerdictPosition(inst, FRAMES, false)
-            end
-            inst.oldpos = inst:GetPosition()
+        inst.count_dt = 0
+        inst:AddComponent("updatelooper")
+        inst.components.updatelooper:AddOnWallUpdateFn(function(inst, dt)
+            inst:RunOnPostUpdate(function() ClientPerdictPosition(inst, dt) end) 
         end)
         return inst
     end

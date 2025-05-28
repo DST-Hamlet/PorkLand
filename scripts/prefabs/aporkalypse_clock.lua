@@ -157,16 +157,18 @@ local function RegistClocks(inst)
     end
 end
 
-local function ClientPerdictRotation(inst, dt)
+local function UpdateRotation(inst, dt)
     if TheWorld.state.isaporkalypse then
         return
     end
 
-    for k, clock in pairs(inst._clocks) do
+    local clocks = inst.clocks or inst._clocks
+    local offset =  - dt - inst._rewind_mult:value() * 250 * dt
+    for k, clock in pairs(clocks) do
         local angle = inst._timeuntilaporkalypse:value() / TUNING.APORKALYPSE_PERIOD_LENGTH * 360 * rotation_speeds[k]
         set_rotation(clock, angle)
     end
-    inst._timeuntilaporkalypse:set_local(inst._timeuntilaporkalypse:value() - dt - inst._rewind_mult:value() * 250 * dt)
+    inst._timeuntilaporkalypse:set_local(inst._timeuntilaporkalypse:value() + offset)
 end
 
 local function aporkalypse_clock_fn()
@@ -190,20 +192,17 @@ local function aporkalypse_clock_fn()
     inst._clock_spawndirty = net_event(inst.GUID, "_clock_spawndirty", "clock_spawndirty")
     inst._timeuntilaporkalypse = net_float(inst.GUID, "_timeuntilaporkalypse")
 
+    inst:AddComponent("updatelooper")
+    inst.components.updatelooper:AddOnWallUpdateFn(function(inst, dt)
+        inst:RunOnPostUpdate(function() UpdateRotation(inst, dt) end) 
+    end)
+
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
         inst._clocks = {}
         inst:ListenForEvent("clock_spawndirty", RegistClocks)
-        inst:DoTaskInTime(0, RegistClocks)
-
-        inst.oldtimeuntilaporkalypse = 0
-        inst:DoPeriodicTask(FRAMES, function(inst)
-            if inst.oldtimeuntilaporkalypse == inst._timeuntilaporkalypse:value() then
-                ClientPerdictRotation(inst, FRAMES)
-            end
-            inst.oldtimeuntilaporkalypse = inst._timeuntilaporkalypse:value()
-        end)
+        inst:DoStaticTaskInTime(0, RegistClocks)
 
         return inst
     end
