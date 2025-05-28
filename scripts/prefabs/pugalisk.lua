@@ -276,22 +276,21 @@ local function ClientPerdictPosition(inst, dt)
 
     inst.SoundEmitter:SetParameter("speed", "intensity", inst._speed:value())
 
-    inst.count_dt = inst.count_dt + dt
-    if inst.count_dt >= FRAMES then
+    if inst.count_dt > 0 then
         local ease = inst._speed:value()
         if inst._state:value() == STATES.MOVING then
-            ease = math.min(ease + FRAMES,1)
+            ease = math.min(ease + inst.count_dt,1)
         else
-            ease = math.max(ease - FRAMES,0)
+            ease = math.max(ease - inst.count_dt,0)
         end
     
         inst._speed:set_local(ease)
-        inst._hit:set_local(hit - FRAMES * 5)
+        inst._hit:set_local(hit - inst.count_dt * 5)
 
         for _, seg in pairs(inst.segs) do
-            seg._segtime:set_local(seg._segtime:value() + (FRAMES * inst._speed:value()))
+            seg._segtime:set_local(seg._segtime:value() + (inst.count_dt * inst._speed:value()))
         end
-        inst.count_dt = inst.count_dt - FRAMES
+        inst.count_dt = 0
     end
 end
 
@@ -364,6 +363,9 @@ local function bodyfn()
     if not TheWorld.ismastersim then
         inst.count_dt = 0
         inst:AddComponent("updatelooper")
+        inst.components.updatelooper:AddOnUpdateFn(function(inst, dt)
+            inst.count_dt = inst.count_dt + dt
+        end)
         inst.components.updatelooper:AddOnWallUpdateFn(function(inst, dt)
             inst:RunOnPostUpdate(function() ClientPerdictPosition(inst, dt) end) 
         end)
