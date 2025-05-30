@@ -9,7 +9,7 @@ local post_init_functions = {}
 -- ## Examples:
 --
 -- ```lua
--- AddPrefabRegisterPostInit(function(spoiled_food)
+-- AddPrefabRegisterPostInit("spoiled_food", function(spoiled_food)
 --     local spoiled_food_constructor = spoiled_food.fn
 --     local food_OnIsRaining, food_mastersim_init, i = ToolUtil.GetUpvalue(spoiled_food_constructor, "food_mastersim_init.food_OnIsRaining")
 --     if not food_OnIsRaining then
