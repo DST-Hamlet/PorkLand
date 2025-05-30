@@ -288,6 +288,11 @@ PrefabFiles = {
     "wheeler",
     "trusty_shooter",
     "wheeler_tracker",
+
+    "woodie_beaver_bag",
+
+    "waxwell_shield",
+    "waxwell_pillar"
 }
 
 Assets = {
@@ -530,3 +535,14 @@ local function AddCharacter(name, gender)
 end
 
 AddCharacter("wheeler", "FEMALE")
+
+local dst_chracters = {
+    "wortox",
+    "wurt",
+    "walter",
+    "wanda",
+}
+
+for _, v in pairs(dst_chracters) do
+    RemoveDefaultCharacter(v)
+end

@@ -1249,4 +1249,4 @@ return MakeCityPigman("pigman_beautician", "pig_beautician", FEMALE),
        MakeCityPigman("pigman_mechanic", "pig_mechanic", MALE, nil, nil, MechanicMasterPostinit),
 
        MakeCityPigman("pigman_mayor", "pig_mayor", MALE, nil, nil, nil, nil, STRINGS.NAMES.PIGMAN_MAYOR),
-       MakeCityPigman("pigman_queen", "pig_queen", FEMALE, {"pigqueen", "emote_nohat"}, QueenCommonPostinit, QueenMasterPostInit, nil, STRINGS.QUEENPIGNAMES)
+       MakeCityPigman("pigman_queen", "pig_queen", FEMALE, {"pigqueen", "emote_nohat"}, QueenCommonPostinit, QueenMasterPostInit, nil, STRINGS.NAMES.PIGMAN_QUEEN)
