@@ -24,6 +24,8 @@ return {
     ANNOUNCE_MYSTERY_FOUND = "Look what I found!",
     ANNOUNCE_MYSTERY_NOREWARD = "I didn't find anything.",
     ANNOUNCE_NOTHING_FOUND = "Ms.Wheeler! It doesn't work!",
+    --ANNOUNCE_TRACKER_FAR = "",
+    --ANNOUNCE_TRACKER_FOUND = "",
     ANNOUNCE_PICKPOOP = {
         "Pine Pioneers must be hardworking...but...",
         "This is really unhygienic!",

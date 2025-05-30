@@ -173,6 +173,7 @@ local function fn()
     inst:AddTag("monster")
     inst:AddTag("scarytoprey")
     inst:AddTag("plantcreature")
+    inst:AddTag("NPCcanaggro")
 
     inst.entity:SetPristine()
 

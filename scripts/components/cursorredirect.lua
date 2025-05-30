@@ -30,8 +30,19 @@ function CursorRedirect:GetRedirect()
     end
     if closest ~= nil then
         closest.highlightforward = self.inst
+        self.closest = closest
+        self.inst:StartUpdatingComponent(self)
     end
     return closest, closest ~= nil and rangesq
+end
+
+function CursorRedirect:OnUpdate()
+    if self.closest and self.closest.highlightforward == self.inst then
+        self.closest.highlightforward = nil
+    end
+    if self.inst.components.highlight == nil then
+        self.inst:StopUpdatingComponent(self)
+    end
 end
 
 -- For pugalisk there's no need for save and load

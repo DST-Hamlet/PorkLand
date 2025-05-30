@@ -24,6 +24,8 @@ return {
     ANNOUNCE_MYSTERY_FOUND = "Hyuyu! Someone hide something here.",
     ANNOUNCE_MYSTERY_NOREWARD = "Nothing here.",
     ANNOUNCE_NOTHING_FOUND = "Not everyone can reach such a great distance.",
+    --ANNOUNCE_TRACKER_FAR = "",
+    --ANNOUNCE_TRACKER_FOUND = "",
     ANNOUNCE_PICKPOOP = {
         "Disgusting!",
         "It's still warm!",

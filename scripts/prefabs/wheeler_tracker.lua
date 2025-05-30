@@ -38,7 +38,7 @@ local function CanGiveLoot(inst, goal_inst)
     if not (inst.components.inventoryitem and (inst.components.inventoryitem.owner ~= nil)) and (inst:HasTag("track_ignore_limbo") or not inst:IsInLimbo()) then
         if inst.prefab == prefab then
             return true
-            
+
         elseif SPECIAL_LOOT_TABLE[prefab] and SPECIAL_LOOT_TABLE[prefab][inst.prefab] then
             return true
 
@@ -162,10 +162,10 @@ local function TryTracking(inst)
         end
     end
     if not inst.tracked_item then
-        local x, y, z = inst.track_data.start_pos:Get()
+        local x, _, z = inst.track_data.start_pos:Get()
         local index = inst.track_data.index
         local item = inst.components.container:GetItemInSlot(1)
-        
+
         if index > #pos_table then
             ReSetTrackingData(inst)
             inst._istracking:set(true)
@@ -205,7 +205,7 @@ local function OnEquip(inst, owner, force)
     if inst.components.container:GetItemInSlot(1) then
         StartTracking(inst)
     end
-    
+
     inst:ListenForEvent("leaveinterior", inst.refresh_tracking_owner_listener, owner)
     inst:ListenForEvent("enterinterior", inst.refresh_tracking_owner_listener, owner)
 
@@ -221,11 +221,11 @@ local function OnEquip(inst, owner, force)
     owner:AddTag("compassbearer")
 end
 
-local function OnUnequip(inst, owner)    
+local function OnUnequip(inst, owner)
     owner.AnimState:Hide("ARM_carry")
     owner.AnimState:Show("ARM_normal")
     owner.AnimState:ClearOverrideSymbol("swap_object")
-    
+
     ReSetTrackingData(inst)
     if inst.refresh_tracking_owner_listener then
         inst:RemoveEventCallback("leaveinterior", inst.refresh_tracking_owner_listener, owner)
@@ -333,7 +333,7 @@ local function fn()
 
     inst:AddTag("tracker_compass")
 
-	if not TheNet:IsDedicated() then
+    if not TheNet:IsDedicated() then
         inst:ListenForEvent("itemget", OnItemGetClient)
         inst:ListenForEvent("itemlose", OnItemLoseClient)
     end

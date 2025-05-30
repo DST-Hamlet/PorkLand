@@ -42,6 +42,7 @@ local HudCompass_Wheeler = Class(Widget, function(self, owner, isattached)
         self.bg:GetAnimState():SetBank("wheeler_compass_bg")
         self.bg:GetAnimState():SetBuild("wheeler_compass_bg")
         self.bg:GetAnimState():PlayAnimation("idle")
+        self:StartUpdateNeedle()
     end
 
     self:Hide()
