@@ -475,7 +475,7 @@ AddPrefabPostInit("abigail_flower", function(inst)
     inst:AddComponent("spellcommand")
 end)
 
-AddPrefabRegisterPostInit(function(abigail_flower)
+AddPrefabRegisterPostInit("abigail_flower", function(abigail_flower)
     ToolUtil.SetUpvalue(abigail_flower.fn, "updatespells", function(inst, owner)
         if not owner then
             return
