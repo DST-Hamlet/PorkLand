@@ -31,6 +31,8 @@ return {
     ANNOUNCE_MYSTERY_FOUND = "There's definitely something...",
     ANNOUNCE_MYSTERY_NOREWARD = "That was disappointing.",
     ANNOUNCE_NOTHING_FOUND = "This magical object isn't picking up anything nearby.",
+    --ANNOUNCE_TRACKER_FAR = "",
+    --ANNOUNCE_TRACKER_FOUND = "",
     ANNOUNCE_PICKPOOP = {
         "Bah!",
         "Ew!",
