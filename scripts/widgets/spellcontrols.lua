@@ -2,6 +2,7 @@ local Widget = require "widgets/widget"
 local ImageButton = require "widgets/imagebutton"
 local UIAnimButton = require("widgets/uianimbutton")
 local UIAnim = require("widgets/uianim")
+local Image = require "widgets/image"
 
 local SpellControls = Class(Widget, function(self, owner)
     Widget._ctor(self, "SpellControls")
@@ -12,6 +13,10 @@ local SpellControls = Class(Widget, function(self, owner)
     self.anchor_position = Vector3()
     self.items = {}
     self.isopen = false
+
+    self.background = self:AddChild(Image())
+    self.background:MoveToBack()
+    self.background:Hide()
 end)
 
 function SpellControls:IsOpen()
@@ -25,7 +30,7 @@ local function UnpackAnimData(data_in, owner)
     end
 end
 
-function SpellControls:SetItems(items_data, source_item, anchor_position)
+function SpellControls:SetItems(items_data, background, source_item, anchor_position)
     if source_item then
         self.source_item = source_item
     end
@@ -70,6 +75,8 @@ function SpellControls:SetItems(items_data, source_item, anchor_position)
             button:SetImageNormalColour(.8, .8, .8, 1)
             button:SetImageFocusColour(1, 1, 1, 1)
             button:SetImageDisabledColour(0.7, 0.7, 0.7, 0.7)
+            local background_image = button.image:AddChild(Image("images/hud.xml", "inv_slot.tex"))
+            background_image:MoveToBack()
         end
 
         button:SetHoverText(item_data.label, { offset_y = 60 })
@@ -131,9 +138,10 @@ function SpellControls:SetItems(items_data, source_item, anchor_position)
     end
 
     local screen_width, _ = TheSim:GetScreenSize()
-    local button_width = 70
+    local button_width = 75
     local total_width = button_width * (#visible_buttons - 1)
-    local initial_position = self.anchor_position + Vector3(-total_width / 2, 100)
+    local half_total_width = total_width / 2
+    local initial_position = self.anchor_position + Vector3(-half_total_width, 100)
     -- Limit the x so we can always display all the buttons inside the screen
     local max_x = screen_width - (total_width + button_width / 2)
     initial_position.x = math.min(initial_position.x, max_x)
@@ -141,9 +149,17 @@ function SpellControls:SetItems(items_data, source_item, anchor_position)
     for i, button in ipairs(visible_buttons) do
         button:SetPosition(initial_position + Vector3(button_width * (i - 1)))
     end
+
+    if background then
+        self.background:SetTexture(background.atlas, background.image)
+        self.background:SetPosition(Vector3(initial_position.x + half_total_width, initial_position.y))
+        self.background:Show()
+    else
+        self.background:Hide()
+    end
 end
 
-function SpellControls:Open(items_data, source_item, anchor_position)
+function SpellControls:Open(items_data, background, source_item, anchor_position)
     self.isopen = true
 
     self:Show()
@@ -152,7 +168,7 @@ function SpellControls:Open(items_data, source_item, anchor_position)
     self:SetClickable(true)
     self:Enable()
 
-    self:SetItems(items_data, source_item, anchor_position)
+    self:SetItems(items_data, background, source_item, anchor_position)
 
     local selected
     for _, item in ipairs(self.items) do

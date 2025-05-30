@@ -1,8 +1,5 @@
 local AddPrefabPostInit = AddPrefabPostInit
-local AddSimPostInit = AddSimPostInit
 GLOBAL.setfenv(1, GLOBAL)
-
-local ICON_SCALE = .6
 
 local function ReticuleGhostTargetFn(inst)
     return Vector3(ThePlayer.entity:LocalToWorldSpace(7, 0.001, 0))
@@ -126,6 +123,9 @@ local function AlwaysTrue()
     return true
 end
 
+local ATLAS = "images/hud/abigail_flower_commands.xml"
+local SCALE = {0.9, 0.9, 0.9}
+
 local COMMANDS = {
 	{
         id = "unsummon",
@@ -145,15 +145,9 @@ local COMMANDS = {
 				ThePlayer.replica.inventory:CastSpellBookFromInv(inst)
 			end
 		end,
-		bank = "spell_icons_wendy",
-		build = "spell_icons_wendy",
-		anims =
-		{
-			idle = { anim = "unsummon" },
-			focus = { anim = "unsummon_focus", loop = true },
-			down = { anim = "unsummon_pressed" },
-		},
-		widget_scale = ICON_SCALE,
+		atlas = ATLAS,
+        scale = SCALE,
+		normal = "unsummon.tex",
 	},
     {
         id = "make_aggressive",
@@ -175,15 +169,9 @@ local COMMANDS = {
         should_show = function(inst)
             return not ThePlayer:HasTag("has_aggressive_follower")
         end,
-        bank = "spell_icons_wendy",
-        build = "spell_icons_wendy",
-        anims =
-        {
-            idle = { anim = "rile" },
-            focus = { anim = "rile_focus", loop = true },
-            down = { anim = "rile_pressed" },
-        },
-        widget_scale = ICON_SCALE,
+		atlas = ATLAS,
+        scale = SCALE,
+		normal = "rileup.tex",
     },
     {
         id = "make_defensive",
@@ -205,15 +193,9 @@ local COMMANDS = {
         should_show = function(inst)
             return ThePlayer:HasTag("has_aggressive_follower")
         end,
-        bank = "spell_icons_wendy",
-        build = "spell_icons_wendy",
-        anims =
-        {
-            idle = { anim = "soothe" },
-            focus = { anim = "soothe_focus", loop = true },
-            down = { anim = "soothe_pressed" },
-        },
-        widget_scale = ICON_SCALE,
+		atlas = ATLAS,
+        scale = SCALE,
+		normal = "smoothe.tex",
     },
     {
         id = "freeze_movements",
@@ -235,15 +217,9 @@ local COMMANDS = {
         should_show = function(inst)
             return not ThePlayer:HasTag("has_movements_frozen_follower")
         end,
-        bank = "spell_icons_wendy",
-        build = "spell_icons_wendy",
-        anims =
-        {
-            idle = { anim = "soothe" },
-            focus = { anim = "soothe_focus", loop = true },
-            down = { anim = "soothe_pressed" },
-        },
-        widget_scale = ICON_SCALE,
+		atlas = ATLAS,
+        scale = SCALE,
+		normal = "freeze.tex",
     },
     {
         id = "resume_movements",
@@ -265,15 +241,9 @@ local COMMANDS = {
         should_show = function(inst)
             return ThePlayer:HasTag("has_movements_frozen_follower")
         end,
-        bank = "spell_icons_wendy",
-        build = "spell_icons_wendy",
-        anims =
-        {
-            idle = { anim = "soothe" },
-            focus = { anim = "soothe_focus", loop = true },
-            down = { anim = "soothe_pressed" },
-        },
-        widget_scale = ICON_SCALE,
+		atlas = ATLAS,
+        scale = SCALE,
+		normal = "resume.tex",
     },
 	-- {
 	-- 	label = STRINGS.GHOSTCOMMANDS.ESCAPE,
@@ -405,16 +375,9 @@ local COMMANDS = {
                 ThePlayer.components.playercontroller:StartCastingActionOverrideSpell(inst, LeftClickPicker)
             end
         end,
-        bank = "spell_icons_wendy",
-        build = "spell_icons_wendy",
-        anims =
-        {
-            idle = { anim = "haunt" },
-            focus = { anim = "haunt_focus", loop = true },
-            down = { anim = "haunt_pressed" },
-            cooldown = { anim = "haunt_cooldown" },
-        },
-        widget_scale = ICON_SCALE,
+		atlas = ATLAS,
+        scale = SCALE,
+		normal = "haunt.tex",
         -- checkcooldown = function(doer)
         --     --client safe
         --     return (doer ~= nil
@@ -453,20 +416,18 @@ local COMMANDS = {
             end
         end,
         execute = StartAOETargeting,
-        bank = "spell_icons_wendy",
-        build = "spell_icons_wendy",
-        anims =
-        {
-            idle = { anim = "haunt" },
-            focus = { anim = "haunt_focus", loop = true },
-            down = { anim = "haunt_pressed" },
-        },
-        widget_scale = ICON_SCALE,
+		atlas = ATLAS,
+        scale = SCALE,
+		normal = "goto.tex",
     },
 }
 
 AddPrefabPostInit("abigail_flower", function(inst)
     inst.components.spellbook:SetItems(COMMANDS)
+    inst.components.spellbook.background = {
+        atlas = ATLAS,
+        image = "ui_abigail_command_5x1.tex",
+    }
 
     if not TheWorld.ismastersim then
         return inst
@@ -483,7 +444,7 @@ AddPrefabRegisterPostInit("abigail_flower", function(abigail_flower)
         if owner:HasTag("ghostfriend_summoned") then
             inst.components.spellbook:SetItems(COMMANDS)
             if owner.HUD and owner.HUD.controls.spellcontrols:IsOpen() then
-                owner.HUD.controls.spellcontrols:Open(inst.components.spellbook.items)
+                owner.HUD.controls.spellcontrols:Open(inst.components.spellbook.items, inst.components.spellbook.background)
             end
         else
             if owner.HUD and owner.HUD.controls.spellcontrols:IsOpen() then
