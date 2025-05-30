@@ -92,14 +92,9 @@ local function gnat_redirect(inst, amount, overtime, cause, ignore_invincible, a
         and not inst.components.freezable:IsFrozen()
 end
 
-local function CanBeAttack(inst, data)
-    return inst.components.freezable:IsFrozen()
-        or (data.weapon and (data.weapon:HasOneOfTags({"rangedweapon", "blowdart", "blowpipe", "slingshot", "thrown", "gun"})))
-end
-
 local function CanBeHit(inst, data)
     return inst.components.freezable:IsFrozen()
-        or (data.weapon and (data.weapon:HasOneOfTags({"rangedweapon"})))
+        or (data.weapon and (data.weapon:HasOneOfTags({"icestaff"})))
 end
 
 local function OnEntitySleep(inst)
@@ -213,7 +208,6 @@ local function fn()
     inst.build_mound_action = BuildHome
     inst.CanBuildMoundAtPoint = CanBuildMoundAtPoint
 
-    inst.CanBeAttack = CanBeAttack
     inst.CanBeHit = CanBeHit
 
     inst.OnEntitySleep = OnEntitySleep

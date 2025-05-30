@@ -210,7 +210,8 @@ return {
     ANNOUNCE_PUTONGOGGLES_GOGGLESARMORHAT = "My cranium is now safeguarded for combat.",
     ANNOUNCE_PUTONGOGGLES_GOGGLESSHOOTHAT = "Now I can emit destructive spheres of electromagnetic radiation.",
     ANNOUNCE_NOTHING_FOUND = "My desired object appears to be out of its range.",
-
+    --ANNOUNCE_TRACKER_FAR = "",
+    --ANNOUNCE_TRACKER_FOUND = "",
  	ANNOUNCE_TAXDAY = "Ah! The tariffs are due.",
 	ANNOUNCE_SUITUP = "EUREKA!",
 
