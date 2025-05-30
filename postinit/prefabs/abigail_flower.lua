@@ -475,9 +475,8 @@ AddPrefabPostInit("abigail_flower", function(inst)
     inst:AddComponent("spellcommand")
 end)
 
-AddSimPostInit(function()
-    local constructor = Prefabs["abigail_flower"].fn
-    ToolUtil.SetUpvalue(constructor, function(inst, owner)
+AddPrefabRegisterPostInit(function(abigail_flower)
+    ToolUtil.SetUpvalue(abigail_flower.fn, "updatespells", function(inst, owner)
         if not owner then
             return
         end
@@ -491,5 +490,5 @@ AddSimPostInit(function()
                 owner.HUD.controls.spellcontrols:Close()
             end
         end
-    end, "updatespells")
+    end)
 end)
