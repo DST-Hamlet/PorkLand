@@ -853,24 +853,21 @@ local states = {
         tags = { "attack", "notalking", "abouttoattack" },
 
         onenter = function(inst)
-			local combat = inst.replica.combat
-			if combat:InCooldown() then
-				inst.sg:RemoveStateTag("abouttoattack")
-				inst:ClearBufferedAction()
-				inst.sg:GoToState("idle", true)
-				return
-			end
+            local combat = inst.replica.combat
+            if combat:InCooldown() then
+                inst.sg:RemoveStateTag("abouttoattack")
+                inst:ClearBufferedAction()
+                inst.sg:GoToState("idle", true)
+                return
+            end
 
-			combat:StartAttack()
-			inst.sg:SetTimeout(20 * FRAMES)
+            combat:StartAttack()
+            inst.sg:SetTimeout(20 * FRAMES)
             inst.components.locomotor:Stop()
 
-            if inst.replica.rider:IsRiding() then
-                inst.Transform:SetFourFaced()
-            end
             inst.AnimState:PlayAnimation("hand_shoot")
 
-			local buffaction = inst:GetBufferedAction()
+            local buffaction = inst:GetBufferedAction()
             if buffaction ~= nil then
                 inst:PerformPreviewBufferedAction()
 
@@ -897,7 +894,7 @@ local states = {
 
         events =
         {
-			EventHandler("animqueueover", function(inst)
+            EventHandler("animqueueover", function(inst)
                 if inst.AnimState:AnimDone() then
                     inst.sg:GoToState("idle")
                 end
@@ -905,9 +902,6 @@ local states = {
         },
 
         onexit = function(inst)
-            if inst.replica.rider:IsRiding() then
-                inst.Transform:SetSixFaced()
-            end
             if inst.sg:HasStateTag("abouttoattack") and inst.replica.combat ~= nil then
                 inst.replica.combat:CancelAttack()
             end
@@ -1243,7 +1237,7 @@ AddStategraphPostInit("wilson_client", function(sg)
         local chair = buffaction ~= nil and buffaction.target or nil
         if chair and chair:HasTag("limited_chair") then
             if chair:HasTag("rotatableobject") then
-                inst.Transform:SetTwoFaced()
+                inst.Transform:SetPredictedNoFaced()
             end
         end
     end

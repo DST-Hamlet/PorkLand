@@ -31,6 +31,8 @@ return {
     ANNOUNCE_MYSTERY_FOUND = "Treasure!",
     ANNOUNCE_MYSTERY_NOREWARD = "Bah. Tha treasure be gone.",
     ANNOUNCE_NOTHING_FOUND = "Thar b'nothin' ta find 'round these parts.",
+    --ANNOUNCE_TRACKER_FAR = "",
+    --ANNOUNCE_TRACKER_FOUND = "",
     ANNOUNCE_PICKPOOP = {
         "Arrgh!",
         "Avast!",

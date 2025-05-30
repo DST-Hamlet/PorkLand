@@ -53,6 +53,9 @@ local states =
         tags = {"moving", "canrotate"},
 
         onenter = function(inst, pushanim)
+            if not inst.SoundEmitter:PlayingSound("move") then
+                inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/gnat/LP", "move")
+            end
             if inst.components.locomotor:WantsToRun() then
                 inst.sg:GoToState("running", true)
             else
@@ -62,7 +65,6 @@ local states =
                 else
                     inst.AnimState:PlayAnimation("idle_loop")
                 end
-                inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/gnat/LP", "move")
             end
         end,
 
@@ -77,6 +79,9 @@ local states =
         tags = {"moving", "canrotate"},
 
         onenter = function(inst, pre)
+            if not inst.SoundEmitter:PlayingSound("move") then
+                inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/gnat/LP", "move")
+            end
             if not inst.components.locomotor:WantsToRun() then
                 inst.sg:GoToState("moving", true)
             else
@@ -109,7 +114,9 @@ local states =
             inst.Physics:Stop()
             RemovePhysicsColliders(inst)
             inst.components.lootdropper:DropLoot()
-            inst.SoundEmitter:KillSound("move")
+            if inst.SoundEmitter:PlayingSound("move") then
+                inst.SoundEmitter:KillSound("move")
+            end
             inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/gnat/death")
         end,
 
@@ -126,6 +133,9 @@ local states =
         tags = {"idle", "canrotate"},
 
         onenter = function(inst, pushanim)
+            if not inst.SoundEmitter:PlayingSound("move") then
+                inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/gnat/LP", "move")
+            end
             inst.Physics:Stop()
             if pushanim then
                 inst.AnimState:PushAnimation("idle_loop", true)
@@ -158,6 +168,12 @@ local states =
         {
             EventHandler("animover", function(inst) inst.sg:GoToState("idle") end),
         },
+
+        onexit = function(inst)
+            if not inst.SoundEmitter:PlayingSound("move") then
+                inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/gnat/LP", "move")
+            end
+        end,
     },
 
     State{
@@ -287,6 +303,13 @@ local states =
     },
 }
 
-CommonStates.AddFrozenStates(states, PL_LandFlyingCreature, PL_RaiseFlyingCreature)
+local function OnGnatFreeze(inst)
+    if inst.SoundEmitter:PlayingSound("move") then
+        inst.SoundEmitter:KillSound("move")
+    end
+    PL_LandFlyingCreature(inst)
+end
+
+CommonStates.AddFrozenStates(states, OnGnatFreeze, PL_RaiseFlyingCreature)
 
 return StateGraph("gnat", states, events, "spawn", actionhandlers)

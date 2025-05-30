@@ -2,6 +2,7 @@ local TileChangeWatcher = Class(function(self, inst)
     self.inst = inst
 
     self.last_tile_center = nil
+    self.tile_cache = DataGrid(1, 1)
 
     self.update_listeners = {}
 end)
@@ -28,9 +29,25 @@ function TileChangeWatcher:UnlistenToUpdate(listener)
 end
 
 function TileChangeWatcher:NotifyUpdate()
+    local width, height = TheWorld.Map:GetSize()
+    self.tile_cache = DataGrid(width, height)
     for _, listener in ipairs(self.update_listeners) do
         listener()
     end
+    self.tile_cache = DataGrid(width, height)
+end
+
+-- You can use this in the listeners to replace TheWorld.Map:GetTileAtPoint calls with a cache
+function TileChangeWatcher:CachedTileAtPoint(x, y, z)
+    local grid_x = x / TILE_SCALE
+    local grid_z = z / TILE_SCALE
+    local cache = self.tile_cache:GetDataAtPoint(grid_x, grid_z)
+    if cache then
+        return cache
+    end
+    local tile = TheWorld.Map:GetTileAtPoint(x, y, z)
+    self.tile_cache:SetDataAtPoint(grid_x, grid_z, tile)
+    return tile
 end
 
 return TileChangeWatcher

@@ -24,6 +24,8 @@ return {
     ANNOUNCE_MYSTERY_FOUND = "There somthing.",
     ANNOUNCE_MYSTERY_NOREWARD = "Nothing.",
     ANNOUNCE_NOTHING_FOUND = "Is it too far?",
+    --ANNOUNCE_TRACKER_FAR = "",
+    --ANNOUNCE_TRACKER_FOUND = "",
     ANNOUNCE_PICKPOOP = {
         "Dirty water!",
         "Glurgh...",

@@ -121,7 +121,7 @@ function PlayerActionPicker:DoGetMouseActions(position, target, spellbook, ...)
 
         if not rmb and not TheInput:GetHUDEntityUnderMouse() and not self.inst.components.playercontroller:IsAOETargeting() then
             position = TheInput:GetWorldPosition()
-			target = target or TheInput:GetWorldEntityUnderMouse()
+            target = target or TheInput:GetWorldEntityUnderMouse()
 
             local cansee
             if target == nil then

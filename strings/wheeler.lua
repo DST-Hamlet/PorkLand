@@ -139,6 +139,8 @@ return {
     ANNOUNCE_NONIGHTSIESTA_CAVE = "Caves are for spelunking, not sleeping.",
     ANNOUNCE_NOSLEEPONFIRE = "I'm not that eager for adventure!",
     ANNOUNCE_NOTHING_FOUND = "It's not finding anything close-by.",
+    ANNOUNCE_TRACKER_FAR = "Sometimes it takes a little long.",
+    ANNOUNCE_TRACKER_FOUND = "Navigadget tell me in this way.",
     ANNOUNCE_NO_TRAP = "Haha! Got something!",
     ANNOUNCE_OTHER_WORLD_PLANT = "You can take the plant out of the world but you can't take the world out of the plant.",
     ANNOUNCE_OTHER_WORLD_TREASURE = "Awful far to go for treasure, but I'm up for it.",

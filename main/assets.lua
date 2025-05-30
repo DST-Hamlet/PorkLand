@@ -290,6 +290,9 @@ PrefabFiles = {
     "wheeler_tracker",
 
     "woodie_beaver_bag",
+
+    "waxwell_shield",
+    "waxwell_pillar"
 }
 
 Assets = {
@@ -332,6 +335,7 @@ Assets = {
     Asset("ANIM", "anim/livingartifact_meter.zip"),
     Asset("ANIM", "anim/poison_meter_overlay.zip"),
     Asset("ANIM", "anim/trawlnet_meter.zip"),
+    Asset("ANIM", "anim/pl_leaves_canopy.zip"),
 
     Asset("ANIM", "anim/moon_aporkalypse_phases.zip"), -- blood moon
 
@@ -351,6 +355,7 @@ Assets = {
     Asset("ANIM", "anim/werebeaver_boat_death.zip"),
     Asset("ANIM", "anim/player_lifeplant.zip"),
     Asset("ANIM", "anim/player_actions_hand_lens.zip"),
+    Asset("ANIM", "anim/player_mount_hand_lens.zip"),
     Asset("ANIM", "anim/player_living_suit_destruct.zip"),
     Asset("ANIM", "anim/player_living_suit_morph.zip"),
     Asset("ANIM", "anim/player_living_suit_punch.zip"),
@@ -364,6 +369,7 @@ Assets = {
     Asset("ANIM", "anim/player_teleport_bfb.zip"),
     Asset("ANIM", "anim/player_teleport_bfb2.zip"),
     Asset("ANIM", "anim/player_pistol.zip"),
+    Asset("ANIM", "anim/player_mount_pistol.zip"),
 
     -- replace_anim
     Asset("ANIM", "anim/replace_anim/player_attacks_old.zip"),

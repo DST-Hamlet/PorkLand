@@ -51,26 +51,18 @@ local function refreshart(inst)
     end)
 end
 
-local function TransformToBush(inst, ignore_state)
-    inst.AnimState:SetBank("eyebush")
+local function TransformToBush(inst)
     inst.AnimState:SetBuild("eyebush")
+    inst.AnimState:SetBankAndPlayAnimation("eyebush", "hide_pst")
     inst.components.inspectable.nameoverride = "peagawk_bush"
-
-    if not ignore_state then
-        inst.sg:GoToState("idle")
-    end
 
     inst.is_bush = true
 end
 
-local function TransformToAnimal(inst, ignore_state)
-    inst.AnimState:SetBank("peagawk")
+local function TransformToAnimal(inst)
     inst.AnimState:SetBuild("peagawk")
+    inst.AnimState:SetBankAndPlayAnimation("peagawk", "appear")
     inst.components.inspectable.nameoverride = nil
-
-    if not ignore_state then
-        inst.sg:GoToState("appear")
-    end
 
     inst.is_bush = false
 end

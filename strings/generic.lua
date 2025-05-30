@@ -36,6 +36,8 @@ return {
     ANNOUNCE_MYSTERY_FOUND = "There's definitely something here.",
     ANNOUNCE_MYSTERY_NOREWARD = "There's nothing here.",
     ANNOUNCE_NOTHING_FOUND = "It's not picking up anything. I must be too far away.",
+    ANNOUNCE_TRACKER_FAR = "It takes time to work...",
+    ANNOUNCE_TRACKER_FOUND = "This device showed a direction.",
     ANNOUNCE_PICKPOOP = {
         "Eugg!",
         "Gross!",
