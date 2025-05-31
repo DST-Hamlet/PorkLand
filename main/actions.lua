@@ -60,6 +60,9 @@ if not rawget(_G, "HotReloading") then
         THROW = Action({priority = 0, instant = false, rmb = true, distance = 20, mount_valid = true}),
 
         DODGE = Action({priority = -5, instant = false, distance = math.huge}),
+
+        -- Replacing CASTAOE for custom controls
+        SPELL_COMMAND = Action({mount_valid = true, distance = 35}),
     }
 
     for name, ACTION in pairs(_G.PL_ACTIONS) do
@@ -603,6 +606,23 @@ ACTIONS.THROW.fn = function(act)
     end
 end
 
+ACTIONS.SPELL_COMMAND.stroverridefn = function(act)
+	return act.invobject
+        and act.invobject.components.spellcommand
+        and act.invobject.components.spellcommand:GetSpellName()
+        or nil
+end
+
+ACTIONS.SPELL_COMMAND.strfn = function(act)
+    return act.invobject and string.upper(act.invobject.prefab) or nil
+end
+
+ACTIONS.SPELL_COMMAND.fn = function(act)
+    if act.invobject.components.spellcommand then
+        return act.invobject.components.spellcommand:Run(act)
+    end
+end
+
 local _EQUIP_fn = ACTIONS.EQUIP.fn
 function ACTIONS.EQUIP.fn(act, ...)
     if act.doer.components.inventory and act.invobject.components.equippable.equipslot then
@@ -856,6 +876,14 @@ ACTIONS.ROTATE_FENCE.fn = function(act)
     end
 
     return _ROTATE_FENCEfn(act)
+end
+
+local castaoe_stroverridefn = ACTIONS.CASTAOE.stroverridefn
+ACTIONS.CASTAOE.stroverridefn = function(act, ...)
+    return act.invobject
+        and act.invobject.components.spellcommand
+        and act.invobject.components.spellcommand:GetSpellName()
+        or castaoe_stroverridefn(act, ...)
 end
 
 -- SCENE        using an object in the world

@@ -318,6 +318,10 @@ Assets = {
     Asset("ATLAS", "images/hud/pl_mapscreen_widgets.xml"),
     Asset("IMAGE", "images/hud/pl_mapscreen_widgets.tex"),
 
+    -- abigail flower spell command icons
+    Asset("ATLAS", "images/hud/abigail_flower_commands.xml"),
+    Asset("IMAGE", "images/hud/abigail_flower_commands.tex"),
+
     -- falloff
     Asset("IMAGE", "levels/tiles/black_falloff.tex"),
     Asset("FILE", "levels/tiles/black_falloff.xml"),

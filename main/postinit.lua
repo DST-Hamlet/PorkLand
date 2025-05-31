@@ -87,6 +87,7 @@ local component_posts = {
     "explosive",
     "fishingrod",
     "floater",
+    "ghostlybond",
     "grogginess",
     "grower",
     "grue",
@@ -138,6 +139,8 @@ local component_posts = {
 }
 
 local prefab_posts = {
+    "abigail",
+    "abigail_flower",
     "batwing",
     "birdcage",
     "boomerang",
@@ -210,20 +213,23 @@ local stategraph_posts = {
 local widget_posts = {
     "bloodover",
     "containerwidget",
+    "controls",
     "craftingmenu_ingredients",
     "craftingmenu_widget",
     "grid",
-    "inventorybar",
     "healthbadge",
+    "hoverer",
+    "inventorybar",
+    "invslot",
+    "itemtile",
+    "mapwidget",
+    "recipepopup",
     "seasonclock",
     "skilltreetoast",
     "statusdisplay",
     "uiclock",
-    "widget",
-    "mapwidget",
-    "recipepopup",
-    "itemtile",
     "werebadge",
+    "widget",
 }
 
 local module_posts = {
