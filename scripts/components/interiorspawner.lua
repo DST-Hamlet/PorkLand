@@ -1039,6 +1039,24 @@ function InteriorSpawner:IsAnyPlayerInRoom(interiorID)
     return false
 end
 
+-- Get a sorted list of rooms in distance to the given interior center
+function InteriorSpawner:GetSortedRoomsInGroup(room)
+    local group = self.interior_groups[room:GetGroupId()]
+    local rooms = {}
+    for _, center in pairs(group) do
+        if center ~= room then
+            table.insert(rooms, center)
+        end
+    end
+    local current_x, current_y = room:GetCoordinates()
+    table.sort(rooms, function(a, b)
+        local a_x, a_y = a:GetCoordinates()
+        local b_x, b_y = b:GetCoordinates()
+        return distsq(current_x, current_y, a_x, a_y) < distsq(current_x, current_y, b_x, b_y)
+    end)
+    return rooms
+end
+
 function InteriorSpawner:GetInteriorCenterByCoordinates(group_id, x, y)
     local group = self.interior_groups[group_id]
     if group then
