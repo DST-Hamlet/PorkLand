@@ -35,14 +35,5 @@ local function Breaker(title_en, title_zh) -- hover does not work, as this item 
 end
 
 configuration_options = {
-    {
-		name = "leave_canopy",
-		label = "雨林树冠外观样式",
-		hover = "雨林树冠的外观样式",
-		options =	{
-						{description = "经典", data = false, hover = "与单机版猪镇相同"},
-						{description = "水中木", data = true, hover = "像水中木一样随玩家移动"},
-					},
-		default = false,
-	},
+	-- Breaker("Misc", "杂项"),
 }
