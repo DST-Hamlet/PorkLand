@@ -7,6 +7,9 @@ local Image = require "widgets/image"
 local SpellControls = Class(Widget, function(self, owner)
     Widget._ctor(self, "SpellControls")
 
+    self:SetScale(TheFrontEnd:GetHUDScale() * 0.8)
+    self.inst:ListenForEvent("refreshhudsize", function(hud, scale) self:SetScale(scale * 0.8) end, owner.HUD.inst)
+
     self.owner = owner
 
     self.source_item = nil
@@ -36,6 +39,7 @@ function SpellControls:SetItems(items_data, background, source_item, anchor_posi
     end
     if anchor_position then
         self.anchor_position = anchor_position
+        self:SetPosition(anchor_position)
     end
 
     for _, item in ipairs(self.items) do
@@ -75,7 +79,7 @@ function SpellControls:SetItems(items_data, background, source_item, anchor_posi
             button:SetImageNormalColour(.8, .8, .8, 1)
             button:SetImageFocusColour(1, 1, 1, 1)
             button:SetImageDisabledColour(0.7, 0.7, 0.7, 0.7)
-            local background_image = button.image:AddChild(Image("images/hud.xml", "inv_slot.tex"))
+            local background_image = button.image:AddChild(Image("images/skilltree.xml", "selected.tex"))
             background_image:MoveToBack()
         end
 
@@ -141,7 +145,7 @@ function SpellControls:SetItems(items_data, background, source_item, anchor_posi
     local button_width = 75
     local total_width = button_width * (#visible_buttons - 1)
     local half_total_width = total_width / 2
-    local initial_position = self.anchor_position + Vector3(-half_total_width, 100)
+    local initial_position = Vector3(-half_total_width, 100)
     -- Limit the x so we can always display all the buttons inside the screen
     local max_x = screen_width - (total_width + button_width / 2)
     initial_position.x = math.min(initial_position.x, max_x)
