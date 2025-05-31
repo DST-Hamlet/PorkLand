@@ -5,7 +5,8 @@ local easing = require("easing")
 local BatSonar = require("widgets/batsonar")
 local BoatOver = require("widgets/boatover")
 local FogOver = require("widgets/fogover")
-local LeavesOver = require("widgets/pl_leaf_canopy")
+local LeavesOver = require("widgets/pl_leaf_canopy_classic")
+local LeavesOver_new = require("widgets/pl_leaf_canopy")
 local LivingArtifactOver = require("widgets/livingartifactover")
 local PoisonOver = require("widgets/poisonover")
 local PollenOver = require("widgets/pollenover")
@@ -32,7 +33,11 @@ function PlayerHud:CreateOverlays(owner, ...)
     self.pollenover:Hide()
     self.inst:ListenForEvent("updatepollen", function(inst, data) return self.pollenover:UpdateState(data.sneezetime) end, self.owner)
 
-    self.leavesover = self.overlayroot:AddChild(LeavesOver(owner))
+    if GetModConfigData("leave_canopy","云霄国度-Above the Clouds") then
+	    self.leavesover = self.overlayroot:AddChild(LeavesOver_new(owner))
+    else
+        self.leavesover = self.overlayroot:AddChild(LeavesOver(owner))
+    end
 
     self.livingartifactover = self.overlayroot:AddChild(LivingArtifactOver(owner))
     self.inst:ListenForEvent("livingartifactoveron", function(inst, data) self.livingartifactover:TurnOn() end, self.owner)
