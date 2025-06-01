@@ -31,7 +31,7 @@ local function build_porkland(entities, topology_save, map_width, map_height, cu
     end
 
     -- make the city here.
-    entities = make_cities(entities, topology_save, WorldSim, map_width, map_height, current_gen_params)
+    make_cities(entities, topology_save, WorldSim, map_width, map_height, current_gen_params)
 
     -- Process tallgrass, jungle fernnoise and other prefabs that spawn groups.
     if entities["grass_tall_bunche_patch"] then
@@ -74,7 +74,6 @@ local function build_porkland(entities, topology_save, map_width, map_height, cu
     --     end
     --     entities["asparagus_patch"] = nil
     -- end
-
 
     -- filter small ruins doors
     if entities["pig_ruins_entrance_small"] then
@@ -163,7 +162,6 @@ local function build_porkland(entities, topology_save, map_width, map_height, cu
     if not entities["pig_ruins_plaque"] then
         entities["pig_ruins_plaque"] = {}
     end
-
 
     if entities["randomrelic"] then
         for i, ent in ipairs(entities["randomrelic"]) do
