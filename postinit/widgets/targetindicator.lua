@@ -43,7 +43,8 @@ function TargetIndicator:OnUpdate(...)
     local target_position = center:GetPosition() + offset + Vector3(self.target.marker_data.offset_x, 0, self.target.marker_data.offset_z)
     self.target.Transform:SetPosition(target_position:Get())
 
-    local dist = self.owner:GetDistanceSqToInst(self.target)
+    local dist = center:GetDistanceSqToInst(self.target)
+    local position = self.owner:GetPosition()
     dist = math.sqrt(dist)
 
     local alpha = self:GetTargetIndicatorAlpha(dist)
@@ -63,6 +64,29 @@ function TargetIndicator:OnUpdate(...)
 
     local x, _, z = self.target.Transform:GetWorldPosition()
     self:UpdatePosition(x, z)
+end
+
+local update_position = TargetIndicator.UpdatePosition
+function TargetIndicator:UpdatePosition(targX, targZ, ...)
+    local position = self.owner:GetPosition()
+    local roomcenter = TheWorld.components.interiorspawner:GetInteriorCenter(position)
+    if roomcenter and roomcenter:IsValid() then
+        local w0, h0 = self.head:GetSize()
+        local w1, h1 = self.arrow:GetSize()
+        local scale = self:GetScale()
+        local w = ((w0 or 0) + (w1 or 0)) * 0.5 * scale.x
+        local h = ((h0 or 0) + (h1 or 0)) * 0.5 * scale.y
+        local x, y, angle = GetIndicatorLocationAndAngle(roomcenter, targX, targZ, w, h)
+
+        self:SetPosition(x, y, 0)
+        self.x = x
+        self.y = y
+        self.angle = angle
+        self:PositionArrow()
+        self:PositionLabel()
+    else
+        return update_position(self, targX, targZ, ...)
+    end
 end
 
 local get_avatar_atlas = TargetIndicator.GetAvatarAtlas
