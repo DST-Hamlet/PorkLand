@@ -1,320 +1,118 @@
-local Widget = require "widgets/widget"
-local Image = require "widgets/image"
-local UIAnim = require "widgets/uianim"
-
-local ROWS = 5
-local ANIM_IDLES = 5
-local POS_INDEX = {
-    [1] = -6,
-    [2] = -3,
-    [3] = 0,
-    [4] = 3,
-    [5] = 6,
-}
-
-local function getxoffset()
-    return (math.random()*400)-200
-end
-
-local ROW_ANIMS = {}
-
-local function setnewanim(widget)
-    local newnum = math.random(1,ANIM_IDLES)
-
-    local row1 = widget.anim_row + 1
-    local row2 = widget.anim_row - 1
-    if row1 > ROWS then row1 = 1 end
-    if row2 < 1 then row2 = ROWS end
-
-    while newnum == ROW_ANIMS[row1][widget.anim_pos] or
-          newnum == ROW_ANIMS[row2][widget.anim_pos] do
-        newnum = math.random(1,ANIM_IDLES)
-    end
-    widget.animnum = newnum
-    widget:GetAnimState():PlayAnimation("idle"..newnum,true)
-    widget:GetAnimState():SetTime(math.random()*2)
-end
-
-local function addcanopyrow(widget,row)
-    if not ROW_ANIMS[row] then
-        ROW_ANIMS[row] = {}
-    end
-    local x,y = TheSim:GetWindowSize()
-    local new_widget
-    for i=1,#POS_INDEX do
-        new_widget = widget:AddChild(UIAnim())
-        local new_widget_AnimState = new_widget:GetAnimState()
-        widget["leavesTop"..row.."_"..i] = new_widget
-        new_widget:SetClickable(false)
-        new_widget:SetHAnchor(ANCHOR_MIDDLE)
-        new_widget:SetVAnchor(ANCHOR_TOP)
-        new_widget_AnimState:SetDefaultEffectHandle("shaders/ui_anim_cc.ksh")
-        new_widget_AnimState:SetBank("pl_leaves_canopy")
-        new_widget_AnimState:SetBuild("pl_leaves_canopy")
-        new_widget:SetScaleMode(SCALEMODE_PROPORTIONAL)
-        new_widget_AnimState:UseColourCube(true)
-        new_widget_AnimState:SetUILightParams(2.0, 4.0, 4.0, 20.0)
-        new_widget_AnimState:AnimateWhilePaused(false)
-        new_widget:Hide()
-        new_widget.x_offset = getxoffset()
-        new_widget:SetPosition( new_widget.x_offset + POS_INDEX[i]*x/8,0 )
-        new_widget.depth = ((row-1)*2)/ROWS
-
-        local anim = math.random(ANIM_IDLES)
-        if ROW_ANIMS[row-1] and ROW_ANIMS[row-1][i] then
-            while anim == ROW_ANIMS[row-1][i] do
-                anim = math.random(ANIM_IDLES)
-            end
-        end
-
-        new_widget.animnum = anim
-        new_widget_AnimState:PlayAnimation("idle"..new_widget.animnum,true)
-        new_widget_AnimState:SetTime(math.random()*2)
-        new_widget.anim_row = row
-        new_widget.anim_pos = i
-
-        new_widget_AnimState:SetMultColour(1, 1, 1, 1)
-
-        ROW_ANIMS[row][i] = new_widget.animnum
-
-        local scale = (math.random() < 0.5 and -1) or 1
-        new_widget:SetScale(scale, 0, 1)
-    end
-end
+local Widget = require("widgets/widget")
+local UIAnim = require("widgets/uianim")
 
 local LeavesOver = Class(Widget, function(self, owner)
     self.owner = owner
     Widget._ctor(self, "LeavesOver")
 
-    for i=1,ROWS do
-        addcanopyrow(self,i)
-    end
+    self:SetClickable(false)
 
-    self.leavestop_intensity = 0
-
-    self.leavespercent = 0
+    self.leavesTop = self:AddChild(UIAnim())
+    self.leavesTop:SetClickable(false)
+    self.leavesTop:SetHAnchor(ANCHOR_MIDDLE)
+    self.leavesTop:SetVAnchor(ANCHOR_TOP)
+    self.leavesTop:GetAnimState():SetBank("leaves_canopy2")
+    self.leavesTop:GetAnimState():SetBuild("leaves_canopy2")
+    self.leavesTop:GetAnimState():PlayAnimation("idle", true)
+    self.leavesTop:GetAnimState():SetDefaultEffectHandle(resolvefilepath("shaders/ui_anim_cc_nolight.ksh"))
+    self.leavesTop:GetAnimState():UseColourCube(true)
+    self.leavesTop:GetAnimState():SetMultColour(1, 1, 1, 1)
+    self.leavesTop:GetAnimState():AnimateWhilePaused(false)
+    self.leavesTop:SetScaleMode(SCALEMODE_FIXEDSCREEN_NONDYNAMIC)
+    -- self.leavesTop:GetAnimState():SetEffectParams( 0.784, 0.784, 0.784, 1)
+    self.leavesTop:Hide()
 end)
 
-local function calcdepthmod(depth)
-    depth = depth -1
-
-    local mod = 0.5 * math.sqrt(1 - (depth*depth))
-    return mod * -450
+function LeavesOver:SetLeavesTopColorMult(r, g, b)
+    self.leavestopmultiplytarget = {r = r, g = g, b = b}
 end
-
-local function sortdepth(widget, mod)
-    widget.depth = widget.depth - mod
-
-    if widget.depth > 2 then
-        widget.depth = widget.depth -2
-        widget:MoveToBack()
-        widget:GetAnimState():PlayAnimation("idle"..math.random(1,4),true)
-        widget:GetAnimState():SetTime(math.random()*2)
-
-        local x = widget:GetPosition().x - widget.x_offset
-        local modx = getxoffset()
-        widget.x_offset = modx
-        widget:SetPosition(x + widget.x_offset ,widget:GetPosition().y)
-
-    elseif widget.depth < 0 then
-        widget.depth = widget.depth +2
-        widget:MoveToFront()
-        widget:GetAnimState():PlayAnimation("idle"..math.random(1,4),true)
-        widget:GetAnimState():SetTime(math.random()*2)
-
-        local x = widget:GetPosition().x - widget.x_offset
-        local modx = getxoffset()
-        widget.x_offset = modx
-        widget:SetPosition(x + widget.x_offset ,widget:GetPosition().y)
-    end
-
-    return widget
-end
-
-local function showleaves(widget)
-    for set=1,ROWS do
-        for i=1,#POS_INDEX do
-            widget["leavesTop"..set.."_"..i]:Show()
-        end
-    end
-end
-
-local function hideleaves(widget)
-    for set=1,ROWS do
-        for i=1,#POS_INDEX do
-            widget["leavesTop"..set.."_"..i]:Hide()
-        end
-    end
-end
-
-local Normal_1_0_1,  -- = Vector3(1,0,1):GetNormalized()
-    Normal_n1_0_1,  -- = Vector3(-1,0,1):GetNormalized()
-    Normal_1_0_n1,  -- = Vector3(1,0,-1):GetNormalized()
-    Normal_n1_0_n1,  -- = Vector3(-1,0,-1):GetNormalized()
-    Normal_0_0_1,  -- = Vector3(0, 0, 1)
-    Normal_0_0_n1,  -- = Vector3(0, 0, -1)
-    Normal_1_0_0,  -- = Vector3(1, 0, 0)
-    Normal_n1_0_0  -- = Vector3(-1, 0, 0)
 
 function LeavesOver:OnUpdate(dt)
-   if TheNet:IsServerPaused() then return end
+    local wasup = self.leavestop_intensity and self.leavestop_intensity > 0 or false
 
-    local zoomoffset = 0
-    if TheCamera.distance and not TheCamera.dollyzoom then
-        zoomoffset = Remap(TheCamera.distance,30,45,0,-75)
-        if TheCamera.distance < 30 then
-            zoomoffset = zoomoffset *1.6
-        end
+    if not self.leavestopmultiplytarget then
+        self.leavestopmultiplytarget = {r = 1, g = 1, b = 1}
+        self.leavestopmultiplycurrent = {r = 1, g = 1, b = 1}
     end
-    zoomoffset = math.max(zoomoffset, - 200)
 
-    local current_camera_x, current_camera_y, current_camera_z = TheCamera.currentpos:Get()
-    for set=1,ROWS do
-        for i=1,#POS_INDEX do
-            self["leavesTop"..set.."_"..i]:GetAnimState():SetWorldSpaceAmbientLightPos(current_camera_x, current_camera_y, current_camera_z)
-        end
+    local r, g, b = TheSim:GetAmbientColour()
+    local colourstrength = math.min(1, ((r + g + b) / 3) / 255 + 0.1)
+
+    if TheWorld.state.isdusk then
+        self:SetLeavesTopColorMult(colourstrength, colourstrength, colourstrength)
+    elseif TheWorld.state.isnight then
+        self:SetLeavesTopColorMult(colourstrength, colourstrength, colourstrength)
+    else
+        self:SetLeavesTopColorMult(colourstrength, colourstrength, colourstrength)
     end
+
+    if not self.leavesTop then
+        return
+    end
+
+    if self.leavestopmultiplycurrent ~= self.leavestopmultiplytarget then
+        if self.leavestopmultiplycurrent.r > self.leavestopmultiplytarget.r then
+            self.leavestopmultiplycurrent.r = math.max(self.leavestopmultiplytarget.r, self.leavestopmultiplycurrent.r - dt)
+            self.leavestopmultiplycurrent.g = math.max(self.leavestopmultiplytarget.g, self.leavestopmultiplycurrent.g - dt)
+            self.leavestopmultiplycurrent.b = math.max(self.leavestopmultiplytarget.b, self.leavestopmultiplycurrent.b - dt)
+        else
+            self.leavestopmultiplycurrent.r = math.min(self.leavestopmultiplytarget.r, self.leavestopmultiplycurrent.r + dt)
+            self.leavestopmultiplycurrent.g = math.min(self.leavestopmultiplytarget.g, self.leavestopmultiplycurrent.g + dt)
+            self.leavestopmultiplycurrent.b = math.min(self.leavestopmultiplytarget.b, self.leavestopmultiplycurrent.b + dt)
+        end
+        self.leavesTop:GetAnimState():SetMultColour(self.leavestopmultiplycurrent.r, self.leavestopmultiplycurrent.g, self.leavestopmultiplycurrent.b, 1)
+    end
+
+    if not self.leavestop_intensity then
+        self.leavestop_intensity = 0
+    end
+
+    self.under_leaves = false
 
     local x, y ,z = self.owner.Transform:GetWorldPosition()
     self.under_leaves = TheWorld.Map:IsVisualCanopyAtPoint(x, y, z)
 
-    local SEC = 1.5
-    self.leavestop_intensity = (self.under_leaves and math.min(1, self.leavestop_intensity+(1/(30 * SEC)) ))
-        or math.max(0, self.leavestop_intensity-(1/(30 * SEC)) )
+    if self.under_leaves then
+        self.leavestop_intensity = math.min(1, self.leavestop_intensity + (1/30))
+    else
+        self.leavestop_intensity = math.max(0, self.leavestop_intensity - (1/30))
+    end
 
     if self.leavestop_intensity == 0 then
-        hideleaves(self)
+        if wasup then
+            self.owner:PushEvent("canopyout")
+        end
+
+        self.leavesTop:Hide()
     else
-        showleaves(self)
+        self.leavesTop:Show()
 
-        local ypos = ((1-self.leavestop_intensity) *500 + zoomoffset) / 2  + 300
-
-        local thisframecoords = Vector3(current_camera_x, current_camera_y, current_camera_z)
-        local down = TheCamera:GetDownVec()
-        local down_x, down_z = down.x, down.z
-        local diffcoords = (self.lastframecoords ~= nil and (thisframecoords - self.lastframecoords))
-            or Vector3(0,0,0)
-
-        local modx = 0
-        local mody = 0
-
-        --(0.71, 0.71)
-        if down_x < 0.8 and down_x > 0.6 and down_z < 0.8 and down_z > 0.6 then
-            Normal_n1_0_1 = Normal_n1_0_1 or Vector3(-1, 0, 1):GetNormalized()
-            modx = diffcoords:Dot(Normal_n1_0_1)
-
-            Normal_1_0_1 = Normal_1_0_1 or Vector3(1, 0, 1):GetNormalized()
-            mody = diffcoords:Dot(Normal_1_0_1)
-        end
-
-        --(1.00, 0.00)
-        if down_x > 0.8 and down_z < 0.1 and down_z > -0.1 then
-            Normal_0_0_1 = Normal_0_0_1 or Vector3(0, 0, 1)
-            modx = diffcoords:Dot(Normal_0_0_1)
-
-            Normal_1_0_0 = Normal_1_0_0 or Vector3(1, 0, 0)
-            mody = diffcoords:Dot(Normal_1_0_0)
-        end
-
-        --(0.71,-0.71)
-        if down_x < 0.8 and down_x > 0.6 and down_z > -0.8 and down_z < -0.6 then
-            Normal_1_0_1 = Normal_1_0_1 or Vector3(1, 0, 1):GetNormalized()
-            modx = diffcoords:Dot(Normal_1_0_1)
-
-            Normal_1_0_n1 = Normal_1_0_n1 or Vector3(1, 0, -1):GetNormalized()
-            mody = diffcoords:Dot(Normal_1_0_n1)
-        end
-
-        --(0.0,-1)
-        if down_x < 0.1 and down_x > -0.1 and down_z < -0.8 then
-            Normal_1_0_0 = Normal_1_0_0 or Vector3(1, 0, 0)
-            modx = diffcoords:Dot(Normal_1_0_0)
-
-            Normal_0_0_n1 = Normal_0_0_n1 or Vector3(0, 0, -1)
-            mody = diffcoords:Dot(Normal_0_0_n1)
-        end
-
-        --(-0.71, -0.71)
-        if down_x > -0.8 and down_x < -0.6 and down_z > -0.8 and down_z < -0.6 then
-            Normal_1_0_n1 = Normal_1_0_n1 or Vector3(1, 0, -1):GetNormalized()
-            modx = diffcoords:Dot(Normal_1_0_n1)
-
-            Normal_n1_0_n1 = Normal_n1_0_n1 or Vector3(-1, 0, -1):GetNormalized()
-            mody = diffcoords:Dot(Normal_n1_0_n1)
-        end
-
-        --(-1.00, 0.00)
-        if down_x < -0.8 and down_z < 0.1 and down_z > -0.1 then
-            Normal_0_0_n1 = Normal_0_0_n1 or Vector3(0, 0, -1)
-            modx = diffcoords:Dot(Normal_0_0_n1)
-
-            Normal_n1_0_0 = Normal_n1_0_0 or Vector3(-1, 0, 0)
-            mody = diffcoords:Dot(Normal_n1_0_0)
-        end
-
-        --(-0.71, 0.71)
-        if down_x > -0.8 and down_x < -0.6 and down_z < 0.8 and down_z > 0.6 then
-            Normal_n1_0_n1 = Normal_n1_0_n1 or Vector3(-1, 0, -1):GetNormalized()
-            modx = diffcoords:Dot(Normal_n1_0_n1)
-
-            Normal_n1_0_1 = Normal_n1_0_1 or Vector3(-1, 0, 1):GetNormalized()
-            mody = diffcoords:Dot(Normal_n1_0_1)
-        end
-
-        --(0.00, 1.00)
-        if down_x < 0.1 and down_x > -0.1 and down_z > 0.9 then
-            Normal_n1_0_0 = Normal_n1_0_0 or Vector3(-1, 0, 0)
-            modx = diffcoords:Dot(Normal_n1_0_0)
-
-            Normal_0_0_1 = Normal_0_0_1 or Vector3(0, 0, 1)
-            mody = diffcoords:Dot(Normal_0_0_1)
-        end
-
-        modx = modx * 100
-        mody = mody * 0.2
-
-        for set=1,ROWS do
-            local depthmod = calcdepthmod(self["leavesTop"..set.."_1"].depth)
-            for i=1,#POS_INDEX do
-                local widget = sortdepth(self["leavesTop"..set.."_"..i], mody)
-                self["leavesTop"..set.."_"..i] = widget
-
-                local widget_position = widget:GetPosition()
-                widget:SetPosition(widget_position.x-modx, ypos + depthmod)
-                widget_position = widget:GetPosition()
-
-                local sx, _ = TheSim:GetWindowSize()
-                if widget_position.x > 6*sx/8 then
-                    local modx_offset = getxoffset()
-                    local adjust = modx_offset - widget.x_offset
-                    widget.x_offset = modx_offset
-
-                    widget:SetPosition(adjust + widget_position.x - (sx*6/4), widget_position.y)
-                    setnewanim(widget)
+        if self.leavestop_intensity == 1 then
+            if not self.leavesfullyin then
+                self.leavesTop:GetAnimState():PlayAnimation("idle", true)
+                self.leavesfullyin = true
+                self.owner:PushEvent("canopyin")
+            else
+                if self.owner:HasTag("moving") or (self.owner.sg and self.owner.sg:HasStateTag("moving")) then
+                    if not self.leavesmoving then
+                        self.leavesmoving = true
+                        self.leavesTop:GetAnimState():PlayAnimation("run_pre")
+                        self.leavesTop:GetAnimState():PushAnimation("run_loop", true)
+                    end
+                else
+                    if self.leavesmoving then
+                        self.leavesmoving = nil
+                        self.leavesTop:GetAnimState():PlayAnimation("run_pst")
+                        self.leavesTop:GetAnimState():PushAnimation("idle", true)
+                        self.leaves_olddir = nil
+                    end
                 end
-                if widget_position.x < -6*sx/8 then
-                    local modx_offset = getxoffset()
-                    local adjust = modx_offset - widget.x_offset
-                    widget.x_offset = modx_offset
-
-                    widget:SetPosition(adjust + widget_position.x + (sx*6/4), widget_position.y)
-                    setnewanim(widget)
-                end
-            end
-        end
-
-        if self.leavesfullyin then
-            self.leavespercent = self.leavespercent + mody
-            if self.leavespercent > 1 then
-                self.leavespercent = self.leavespercent -1
-            end
-            if self.leavespercent < 0 then
-                self.leavespercent = self.leavespercent +1
             end
         else
-            self.leavesfullyin = true
+            self.leavesfullyin = nil
+            self.leavesmoving = nil
+            self.leavesTop:GetAnimState():SetPercent("zoom_in", self.leavestop_intensity)
         end
-        self.lastframecoords = thisframecoords
     end
 end
 

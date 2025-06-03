@@ -289,6 +289,8 @@ PrefabFiles = {
     "trusty_shooter",
     "wheeler_tracker",
 
+    "target_indicator_marker",
+
     "woodie_beaver_bag",
 
     "waxwell_shield",
