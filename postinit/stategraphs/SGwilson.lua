@@ -1724,6 +1724,10 @@ local states = {
             inst.components.locomotor:Stop()
             inst.AnimState:PlayAnimation("give")
             inst.AnimState:PushAnimation("give_pst", false)
+            if inst:HasTag("beaver") then
+                inst.AnimState:PlayAnimation("atk")
+                inst.AnimState:PushAnimation("atk_pst", false)
+            end
             if inst.components.playercontroller then
                 -- inst.components.playercontroller:EnableMapControls(false)
                 inst.components.playercontroller:Enable(false)
@@ -2684,6 +2688,139 @@ local states = {
             end),
         }
     },
+
+    State{
+        name = "beaver_attack",
+        tags = {"attack", "abouttoattack"},
+
+        onenter = function(inst)
+            if inst.components.combat:InCooldown() then
+                inst.sg:RemoveStateTag("abouttoattack")
+                inst:ClearBufferedAction()
+                inst.sg:GoToState("idle", true)
+                return
+            end
+
+            inst.components.locomotor:StopMoving()
+            inst.AnimState:PlayAnimation("atk_pre")
+            inst.AnimState:PushAnimation("atk", false)
+            inst.SoundEmitter:PlaySound("dontstarve/wilson/attack_whoosh", nil, nil, true)
+            inst.components.combat:StartAttack()
+            inst.components.combat.laststartattacktime = inst.components.combat.laststartattacktime - 0.2
+            local buffaction = inst:GetBufferedAction()
+            local target = buffaction ~= nil and buffaction.target or nil
+            inst.components.combat:SetTarget(target)
+            inst.sg.statemem.target = target
+
+            if target ~= nil and target:IsValid() then
+                inst:FacePoint(target.Transform:GetWorldPosition())
+                inst.sg.statemem.attacktarget = target
+                inst.sg.statemem.retarget = target
+            end
+        end,
+
+        timeline =
+        {
+            TimeEvent(6 * FRAMES, function(inst)
+                    inst:PerformBufferedAction()
+                    inst.sg:RemoveStateTag("abouttoattack")
+                end),
+            TimeEvent(7 * FRAMES, function(inst)
+                    inst.sg:RemoveStateTag("attack")
+                    inst.sg:AddStateTag("idle")
+                end),
+        },
+
+        events =
+        {
+            EventHandler("animqueueover", function(inst)
+                inst.sg:GoToState("idle")
+            end),
+        },
+
+        onexit = function(inst)
+            inst.components.combat:SetTarget(nil)
+            if inst.sg:HasStateTag("abouttoattack") then
+                inst.components.combat:CancelAttack()
+            end
+        end,
+    },
+
+    State{
+        name = "beaver_eat",
+		tags = { "busy", "nodangle", "keep_pocket_rummage" },
+
+        onenter = function(inst, foodinfo)
+            inst.components.locomotor:Stop()
+
+            local feed = foodinfo and foodinfo.feed
+            if feed ~= nil then
+                inst.components.locomotor:Clear()
+                inst:ClearBufferedAction()
+                inst.sg.statemem.feed = foodinfo.feed
+                inst.sg.statemem.feeder = foodinfo.feeder
+                inst.sg:AddStateTag("pausepredict")
+                if inst.components.playercontroller ~= nil then
+                    inst.components.playercontroller:RemotePausePrediction()
+                end
+            elseif inst:GetBufferedAction() then
+                feed = inst:GetBufferedAction().invobject
+            end
+
+            inst.AnimState:PlayAnimation("eat_pre")
+            inst.AnimState:PushAnimation("eat", false)
+            inst.SoundEmitter:PlaySound("dontstarve/characters/woodie/eat_beaver")
+
+            inst.components.hunger:Pause()
+        end,
+
+        timeline =
+        {
+            TimeEvent(9 * FRAMES, function(inst)
+                if inst.sg.statemem.feed == nil then
+                    inst:PerformBufferedAction()
+                else
+                    inst.components.eater:Eat(inst.sg.statemem.feed, inst.sg.statemem.feeder)
+                end
+				--NOTE: "queue_post_eat_state" can be triggered immediately from the eat action
+            end),
+
+            TimeEvent(12 * FRAMES, function(inst)
+				if inst.sg.statemem.queued_post_eat_state == nil then
+					inst.sg:RemoveStateTag("busy")
+					inst.sg:RemoveStateTag("pausepredict")
+				end
+            end),
+        },
+
+        events =
+        {
+			EventHandler("queue_post_eat_state", function(inst, data)
+				--NOTE: this event can trigger instantly instead of buffered
+				if data ~= nil then
+					inst.sg.statemem.queued_post_eat_state = data.post_eat_state
+					if data.nointerrupt then
+						inst.sg:AddStateTag("nointerrupt")
+					end
+				end
+			end),
+            EventHandler("animqueueover", function(inst)
+                if inst.AnimState:AnimDone() then
+					inst.sg:GoToState(inst.sg.statemem.queued_post_eat_state or "idle")
+                end
+            end),
+        },
+
+        onexit = function(inst)
+            inst.SoundEmitter:KillSound("eating")
+            if not GetGameModeProperty("no_hunger") then
+                inst.components.hunger:Resume()
+            end
+            if inst.sg.statemem.feed ~= nil and inst.sg.statemem.feed:IsValid() then
+                inst.sg.statemem.feed:Remove()
+            end
+        end,
+    },
 }
 
 for _, actionhandler in ipairs(actionhandlers) do
@@ -2728,15 +2865,21 @@ AddStategraphPostInit("wilson", function(sg)
         end
 
         if not inst.sg:HasStateTag("sneeze") then
-            local weapon = inst.components.combat and inst.components.combat:GetWeapon()
-            if weapon then
-                if weapon:HasTag("blunderbuss_loaded") then
-                    return "blunderbuss"
-                elseif weapon:HasTag("hand_gun_loaded") then
-                    return "hand_shoot"
+            local ret = _attack_deststate and _attack_deststate(inst, action, ...)
+            if ret then
+                if inst:HasTag("beaver") then
+                    return "beaver_attack"
+                end
+                local weapon = inst.components.combat and inst.components.combat:GetWeapon()
+                if weapon then
+                    if weapon:HasTag("blunderbuss_loaded") then
+                        return "blunderbuss"
+                    elseif weapon:HasTag("hand_gun_loaded") then
+                        return "hand_shoot"
+                    end
                 end
             end
-            return _attack_deststate and _attack_deststate(inst, action, ...)
+            return ret
         end
     end
 
@@ -3122,6 +3265,15 @@ AddStategraphPostInit("wilson", function(sg)
             return "ironlord_work"
         else
             return _hammer_deststate and _hammer_deststate(inst, action)
+        end
+    end
+
+    local _eat_deststate = sg.actionhandlers[ACTIONS.EAT].deststate
+    sg.actionhandlers[ACTIONS.EAT].deststate = function(inst, action)
+        if inst:HasTag("beaver") then
+            return "beaver_eat"
+        else
+            return _eat_deststate and _eat_deststate(inst, action)
         end
     end
 end)

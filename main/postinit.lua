@@ -54,6 +54,10 @@ local behaviour_posts = {
     "wander",
 }
 
+local brain_posts = {
+    "abigailbrain",
+}
+
 local camera_posts = {
     "followcamera",
 }
@@ -63,6 +67,7 @@ local component_posts = {
     "ambientlighting",
     "amphibiouscreature",
     "areaaware",
+    "beard",
     "blinkstaff",
     "builder_replica",
     "builder",
@@ -75,6 +80,7 @@ local component_posts = {
     "dest",
     "drownable",
     "dryer",
+    "eater",
     "edible",
     "equippable_replica",
     "equippable",
@@ -124,6 +130,7 @@ local component_posts = {
     "undertile",
     "waterproofer",
     "wavemanager",
+    "weapon",
     "wisecracker",
     "witherable",
     "workable",
@@ -158,6 +165,7 @@ local prefab_posts = {
     "world",
     "shard_network",
     "spoiledfood",
+    "spiderqueen",
     "statueruins",
     "shadowcreature",
     "telestaff",
@@ -199,9 +207,6 @@ local stategraph_posts = {
     "wilsonghost_client",
 }
 
-local brain_posts = {
-}
-
 local widget_posts = {
     "bloodover",
     "containerwidget",
@@ -218,6 +223,7 @@ local widget_posts = {
     "statusdisplay",
     "targetindicator",
     "uiclock",
+    "werebadge",
     "widget",
 }
 
@@ -262,6 +268,10 @@ for _, file_name in ipairs(behaviour_posts) do
     modimport("postinit/behaviours/" .. file_name)
 end
 
+for _, file_name in ipairs(brain_posts) do
+    modimport("postinit/brains/" .. file_name)
+end
+
 for _, file_name in ipairs(camera_posts) do
     modimport("postinit/cameras/" .. file_name)
 end
@@ -288,10 +298,6 @@ end
 
 for _, file_name in ipairs(stategraph_posts) do
     modimport("postinit/stategraphs/SG" .. file_name)
-end
-
-for _, file_name in ipairs(brain_posts) do
-    modimport("postinit/brains/" .. file_name)
 end
 
 for _, file_name in ipairs(widget_posts) do
