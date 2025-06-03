@@ -208,16 +208,17 @@ local widget_posts = {
     "craftingmenu_ingredients",
     "craftingmenu_widget",
     "grid",
-    "inventorybar",
     "healthbadge",
+    "inventorybar",
+    "itemtile",
+    "mapwidget",
+    "recipepopup",
     "seasonclock",
     "skilltreetoast",
     "statusdisplay",
+    "targetindicator",
     "uiclock",
     "widget",
-    "mapwidget",
-    "recipepopup",
-    "itemtile",
 }
 
 local module_posts = {

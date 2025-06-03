@@ -61,6 +61,8 @@ local InteriorVisitor = Class(function(self, inst)
     self.always_shown_minimap_entities = {}
     self.room_visited_time = {}
 
+    self.update_hud_indicatable_entities = {}
+
     -- self.restore_physics_task = nil
 
     self.last_mainland_pos = nil
@@ -373,6 +375,7 @@ function InteriorVisitor:UpdateExteriorPos()
     end
 
     self:RevealAlwaysShownMinimapEntities()
+    self:UpdateHudIndicatableEntities()
 end
 
 local function can_reveal_entity(player, entity)
@@ -463,6 +466,107 @@ function InteriorVisitor:RevealAlwaysShownMinimapEntities()
 
     if not IsTableEmpty(sync_actions) then
         SendModRPCToClient(GetClientModRPC("PorkLand", "always_shown_interior_map"), self.inst.userid, ZipAndEncodeString(sync_actions))
+    end
+end
+
+-- This is basically the same as `InteriorVisitor:RevealAlwaysShownMinimapEntities`,
+-- but for tracking HUD indicatables inside the interior
+--
+-- Note: we only track players for now
+function InteriorVisitor:UpdateHudIndicatableEntities()
+    if not self.center_ent then
+        if not IsTableEmpty(self.update_hud_indicatable_entities) then
+            self.update_hud_indicatable_entities = {}
+            SendModRPCToClient(GetClientModRPC("PorkLand", "update_hud_indicatable_entities"), self.inst.userid, ZipAndEncodeString({ { type = "clear" } }))
+        end
+        return
+    end
+
+    local sync_actions = {}
+
+    for ent in pairs(self.update_hud_indicatable_entities) do
+        if not table.contains(AllPlayers, ent) then
+            table.insert(sync_actions, {
+                type = "delete",
+                data = self.update_hud_indicatable_entities[ent].id,
+            })
+            self.update_hud_indicatable_entities[ent] = nil
+        end
+    end
+
+    local interior_group = self.center_ent:GetGroupId()
+    local current_coord_x, current_coord_y = self.center_ent:GetCoordinates()
+
+    for _, ent in ipairs(AllPlayers) do
+        -- We can use either userid or network id here,
+        -- but since dummy players (e.g. from `c_spawn("wilson")`) don't have userid
+        -- we use network id here
+        -- local userid = ent.userid
+        local network_id = ent.Network and ent.Network:GetNetworkID()
+        if network_id and ent ~= self.inst then
+            local pos = ent:GetPosition()
+            local center = TheWorld.components.interiorspawner:GetInteriorCenter(pos)
+            local current_data = self.update_hud_indicatable_entities[ent]
+            local should_show = false
+            if center and center ~= self.center_ent and interior_group == center:GetGroupId() then
+                local coord_x, coord_y = center:GetCoordinates()
+                local is_x_adjacent = math.abs(current_coord_x - coord_x) == 1
+                local is_y_adjacent = math.abs(current_coord_y - coord_y) == 1
+                -- Only top down left right, no diagonal
+                if (is_x_adjacent or is_y_adjacent) and not (is_x_adjacent and is_y_adjacent) then
+                    local offset = pos - center:GetPosition()
+                    local userflags = ent.Network:GetUserFlags()
+                    local display_name = ent:GetDisplayName()
+                    local has_changes = false
+                    if not current_data then
+                        current_data = {
+                            id = network_id,
+                            prefab = ent.prefab,
+                            coord_x = coord_x,
+                            coord_y = coord_y,
+                            offset_x = offset.x,
+                            offset_z = offset.z,
+                            display_name = display_name,
+                            userflags = userflags,
+                        }
+                        self.update_hud_indicatable_entities[ent] = current_data
+                        has_changes = true
+                    elseif current_data.offset_x ~= offset.x
+                        or current_data.offset_z ~= offset.z
+                        or current_data.coord_x ~= coord_x
+                        or current_data.coord_y ~= coord_y
+                        or current_data.display_name == display_name
+                        or current_data.userflags == userflags then
+
+                        current_data.offset_x = offset.x
+                        current_data.offset_z = offset.z
+                        current_data.coord_x = coord_x
+                        current_data.coord_y = coord_y
+                        current_data.display_name = display_name
+                        current_data.userflags = userflags
+                        has_changes = true
+                    end
+                    if has_changes then
+                        table.insert(sync_actions, {
+                            type = "replace",
+                            data = current_data,
+                        })
+                    end
+                    should_show = true
+                end
+            end
+            if not should_show and current_data then
+                table.insert(sync_actions, {
+                    type = "delete",
+                    data = network_id,
+                })
+                self.update_hud_indicatable_entities[ent] = nil
+            end
+        end
+    end
+
+    if not IsTableEmpty(sync_actions) then
+        SendModRPCToClient(GetClientModRPC("PorkLand", "update_hud_indicatable_entities"), self.inst.userid, ZipAndEncodeString(sync_actions))
     end
 end
 
