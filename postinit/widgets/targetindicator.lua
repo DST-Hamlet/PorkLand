@@ -44,7 +44,6 @@ function TargetIndicator:OnUpdate(...)
     self.target.Transform:SetPosition(target_position:Get())
 
     local dist = center:GetDistanceSqToInst(self.target)
-    local position = self.owner:GetPosition()
     dist = math.sqrt(dist)
 
     local alpha = self:GetTargetIndicatorAlpha(dist)
