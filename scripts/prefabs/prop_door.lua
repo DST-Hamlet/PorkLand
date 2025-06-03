@@ -100,8 +100,8 @@ local function MakeTimeChanger(inst)
 end
 
 local function UpdateDoorLight(inst)
-    if inst.components.door then
-        local interior_spawner = TheWorld.components.interiorspawner
+    local interior_spawner = TheWorld.components.interiorspawner
+    if inst.components.door and interior_spawner.doors[inst.components.door.target_door_id] then
         local targetdoor = interior_spawner.doors[inst.components.door.target_door_id].inst
         if not (targetdoor and targetdoor:IsValid()) then
             return
@@ -478,22 +478,22 @@ local function GetMinimapIcon(inst)
 end
 
 local function OnEntitySleep(inst)
-    if inst.sg and 
+    if inst.sg and
         (inst.sg:HasStateTag("moving") or inst.sg:HasStateTag("shut")) then
 
         door.sg:GoToState("idle")
     end
-    
+
     inst:StopDoorLightUpdate()
 end
 
 local function OnEntityWake(inst)
-    if inst.sg and 
+    if inst.sg and
         (inst.sg:HasStateTag("moving") or inst.sg:HasStateTag("shut")) then
 
         door.sg:GoToState("idle")
     end
-    
+
     if inst.doorlightenable then
         inst:StartDoorLightUpdate()
     end
