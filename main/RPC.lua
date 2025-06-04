@@ -106,6 +106,13 @@ AddClientModRPCHandler("Porkland", "always_shown_interior_map", function(data)
     end
 end)
 
+AddClientModRPCHandler("Porkland", "update_hud_indicatable_entities", function(data)
+    local interiorhudindicatablemanager = TheWorld and TheWorld.components.interiorhudindicatablemanager
+    if interiorhudindicatablemanager then
+        interiorhudindicatablemanager:OnInteriorHudIndicatableData(DecodeAndUnzipString(data))
+    end
+end)
+
 AddClientModRPCHandler("Porkland", "update_undertile", function(data)
     local clientundertile = TheWorld and TheWorld.components.clientundertile
     if clientundertile then
