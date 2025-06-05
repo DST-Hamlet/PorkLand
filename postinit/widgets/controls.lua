@@ -5,4 +5,5 @@ local SpellControls = require("widgets/spellcontrols")
 
 AddClassPostConstruct("widgets/controls", function(self, owner)
     self.spellcontrols = self:AddChild(SpellControls(owner))
+    self.spellcontrols:MoveToBack()
 end)
