@@ -83,7 +83,7 @@ function SpellControls:SetItems(items_data, background, source_item, anchor_posi
             background_image:MoveToBack()
         end
 
-        button:SetHoverText(item_data.label, { offset_y = 60 })
+        button:SetTooltip(item_data.label)
 
         if item_data.widget_scale ~= nil then
             button:SetScale(item_data.widget_scale)
