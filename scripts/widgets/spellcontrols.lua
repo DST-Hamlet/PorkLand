@@ -176,6 +176,10 @@ function SpellControls:Open(items_data, background, source_item, anchor_position
     self:SetClickable(true)
     self:Enable()
 
+    -- TODO: we currently force the anchor position
+    local anchor_position = self.owner.HUD.controls.inv.toprow:GetWorldPosition()
+    anchor_position.x = anchor_position.x - 600
+
     self:SetItems(items_data, background, source_item, anchor_position)
 
     local selected
