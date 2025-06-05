@@ -1,14 +1,12 @@
 <Atlas>
     <Texture filename="abigail_flower_commands.tex"/>
     <Elements>
-        <Element name="freeze.tex" u1="0.91796875" u2="0.98046875" v1="0.8125" v2="0.875"/>
-        <Element name="goto.tex" u1="0.66796875" u2="0.73046875" v1="0.75" v2="0.8125"/>
-        <Element name="haunt.tex" u1="0.73046875" u2="0.79296875" v1="0.75" v2="0.8125"/>
-        <Element name="resume.tex" u1="0.79296875" u2="0.85546875" v1="0.75" v2="0.8125"/>
-        <Element name="rileup.tex" u1="0.85546875" u2="0.91796875" v1="0.75" v2="0.8125"/>
-        <Element name="smoothe.tex" u1="0.91796875" u2="0.98046875" v1="0.75" v2="0.8125"/>
-        <Element name="ui_abigail_command_1x5.tex" u1="0" u2="0.1513671875" v1="0.4873046875" v2="1"/>
-        <Element name="ui_abigail_command_5x1.tex" u1="0.15234375" u2="0.6650390625" v1="0.5439453125" v2="0.6953125"/>
-        <Element name="unsummon.tex" u1="0.66796875" u2="0.73046875" v1="0.6875" v2="0.75"/>
+        <Element name="haunt.tex" u1="0" u2="0.25" v1="0.75" v2="1"/>
+        <Element name="resume.tex" u1="0.25" u2="0.5" v1="0.75" v2="1"/>
+        <Element name="rileup.tex" u1="0.5" u2="0.75" v1="0.75" v2="1"/>
+        <Element name="smoothe.tex" u1="0.75" u2="1" v1="0.75" v2="1"/>
+        <Element name="unsummon.tex" u1="0" u2="0.25" v1="0.5" v2="0.75"/>
+        <Element name="freeze.tex" u1="0.75" u2="1" v1="0.5" v2="0.75"/>
+        <Element name="goto.tex" u1="0" u2="0.25" v1="0.25" v2="0.5"/>
     </Elements>
 </Atlas>

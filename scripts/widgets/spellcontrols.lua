@@ -17,9 +17,10 @@ local SpellControls = Class(Widget, function(self, owner)
     self.items = {}
     self.isopen = false
 
-    self.background = self:AddChild(Image())
+    self.background = self:AddChild(UIAnim())
+    self.background:GetAnimState():AnimateWhilePaused(false)
     self.background:MoveToBack()
-    self.background:Hide()
+    -- self.background:Hide()
 end)
 
 function SpellControls:IsOpen()
@@ -155,18 +156,21 @@ function SpellControls:SetItems(items_data, background, source_item, anchor_posi
     end
 
     if background then
-        self.background:SetTexture(background.atlas, background.image)
         self.background:SetPosition(Vector3(initial_position.x + half_total_width, initial_position.y))
-        self.background:Show()
+        self.background:GetAnimState():SetBank(background.bank)
+        self.background:GetAnimState():SetBuild(background.build)
+        self.background:GetAnimState():PlayAnimation("open")
+        -- self.background:Show()
     else
-        self.background:Hide()
+        self.background:GetAnimState():PlayAnimation("close")
+        -- self.background:Hide()
     end
 end
 
 function SpellControls:Open(items_data, background, source_item, anchor_position)
     self.isopen = true
 
-    self:Show()
+    -- self:Show()
     -- self:Disable()
     -- self:SetClickable(false)
     self:SetClickable(true)
@@ -223,17 +227,21 @@ function SpellControls:Close()
         return
     end
 
-    -- for _, item in ipairs(self.items) do
-    --     if item.button.cooldown then
-    --         item.button.cooldown:StopUpdating()
-    --     end
-    --     item.button:CancelMoveTo()
-    --     item.button:Hide()
-    -- end
+    for _, item in ipairs(self.items) do
+        item.button:Kill()
+        -- if item.button.cooldown then
+        --     item.button.cooldown:StopUpdating()
+        -- end
+        -- item.button:CancelMoveTo()
+        -- item.button:Hide()
+    end
+    self.items = {}
+
     self:SetClickable(true)
     self:ClearFocus()
     self:Disable()
-    self:Hide()
+    self.background:GetAnimState():PlayAnimation("close")
+    -- self:Hide()
     self.isopen = false
 end
 

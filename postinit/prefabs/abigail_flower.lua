@@ -425,8 +425,8 @@ local COMMANDS = {
 AddPrefabPostInit("abigail_flower", function(inst)
     inst.components.spellbook:SetItems(COMMANDS)
     inst.components.spellbook.background = {
-        atlas = ATLAS,
-        image = "ui_abigail_command_5x1.tex",
+        bank = "ui_abigail_command_5x1",
+        build = "ui_abigail_command_5x1",
     }
 
     if not TheWorld.ismastersim then
