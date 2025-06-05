@@ -152,6 +152,8 @@ local actionhandlers = {
     ActionHandler(ACTIONS.DEMOLISH_ROOM, "doshortaction"),
     ActionHandler(ACTIONS.THROW, "throw"),
     ActionHandler(ACTIONS.DODGE, "dodge"),
+    -- We later override it to match ACTION.CASTAOE's action handler
+    ActionHandler(ACTIONS.SPELL_COMMAND, "dolongaction"),
 }
 
 local eventhandlers = {
@@ -2857,6 +2859,8 @@ AddStategraphPostInit("wilson", function(sg)
 
     local _portal_jumpin_onupdate = sg.states["portal_jumpin"].onupdate
     DoWortoxPortalTint = ToolUtil.GetUpvalue(_portal_jumpin_onupdate, "DoWortoxPortalTint")
+
+    sg.actionhandlers[ACTIONS.SPELL_COMMAND].deststate = sg.actionhandlers[ACTIONS.CASTAOE].deststate
 
     local _attack_deststate = sg.actionhandlers[ACTIONS.ATTACK].deststate
     sg.actionhandlers[ACTIONS.ATTACK].deststate = function(inst, action, ...)
