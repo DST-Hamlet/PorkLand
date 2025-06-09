@@ -261,6 +261,8 @@ function OnTreeFallClient(inst)
     else
         inst.AnimState:PlayAnimation(anim.fallright)
     end
+
+    inst.AnimState:PushAnimation(anim.stump)
 end
 
 function MakeTreeClientFallAnim(inst, anims)
