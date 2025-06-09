@@ -98275,6 +98275,11 @@ msgctxt "STRINGS.RECIPE_DESC.TRAWLNET"
 msgid "The patient fisher is always rewarded."
 msgstr "耐心的渔夫总会有收获。"
 
+#. STRINGS.RECIPE_DESC.TRUSTY_SHOOTER
+msgctxt "STRINGS.RECIPE_DESC.TRUSTY_SHOOTER"
+msgid "Throw anything at your hand at the enemy."
+msgstr "把你手头的一切东西扔向敌人。"
+
 #. STRINGS.RECIPE_DESC.TURF_COBBLEROAD
 msgctxt "STRINGS.RECIPE_DESC.TURF_COBBLEROAD"
 msgid "The life of a thriving village."
@@ -98304,6 +98309,11 @@ msgstr "一块完全被文明社会驯化了的草地。"
 msgctxt "STRINGS.RECIPE_DESC.VENOMGLAND"
 msgid "Freshly squeezed poison."
 msgstr "鲜榨的毒液。"
+
+#. STRINGS.RECIPE_DESC.WHEELER_TRACKER
+msgctxt "STRINGS.RECIPE_DESC.WHEELER_TRACKER"
+msgid "Never betray it."
+msgstr "不要背叛它。"
 
 #. STRINGS.RECIPE_DESC.WINDOW_GREENHOUSE
 msgctxt "STRINGS.RECIPE_DESC.WINDOW_GREENHOUSE"

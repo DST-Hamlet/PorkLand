@@ -98271,6 +98271,11 @@ msgctxt "STRINGS.RECIPE_DESC.TRAWLNET"
 msgid "The patient fisher is always rewarded."
 msgstr ""
 
+#. STRINGS.RECIPE_DESC.TRUSTY_SHOOTER
+msgctxt "STRINGS.RECIPE_DESC.TRUSTY_SHOOTER"
+msgid "Throw anything at your hand at the enemy."
+msgstr ""
+
 #. STRINGS.RECIPE_DESC.TURF_COBBLEROAD
 msgctxt "STRINGS.RECIPE_DESC.TURF_COBBLEROAD"
 msgid "The life of a thriving village."
@@ -98299,6 +98304,11 @@ msgstr ""
 #. STRINGS.RECIPE_DESC.VENOMGLAND
 msgctxt "STRINGS.RECIPE_DESC.VENOMGLAND"
 msgid "Freshly squeezed poison."
+msgstr ""
+
+#. STRINGS.RECIPE_DESC.WHEELER_TRACKER
+msgctxt "STRINGS.RECIPE_DESC.WHEELER_TRACKER"
+msgid "Never betray it."
 msgstr ""
 
 #. STRINGS.RECIPE_DESC.WINDOW_GREENHOUSE
