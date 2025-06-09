@@ -300,7 +300,7 @@ local function TryTracking_Interior(inst)
                 inst.track_data.baserandom = math.random() * 360
                 inst.track_data.start_pos = inst:GetPosition()
             else
-                update_time = 2 * FRAMES
+                update_time = 4 * FRAMES
                 if inst.track_data.failed then
                     owner:PushEvent("canttrackitem")
                     inst.track_data.failed = nil
@@ -321,8 +321,7 @@ local function OnEquip(inst, owner, force)
         StartTracking(inst)
     end
 
-    inst:ListenForEvent("leaveinterior", inst.refresh_tracking_owner_listener, owner)
-    inst:ListenForEvent("enterinterior", inst.refresh_tracking_owner_listener, owner)
+    inst:ListenForEvent("roomgroupchange", inst.refresh_tracking_owner_listener, owner)
 
     if inst.components.container then
         inst.components.container:Open(owner)
@@ -343,8 +342,7 @@ local function OnUnequip(inst, owner)
 
     ReSetTrackingData(inst)
     if inst.refresh_tracking_owner_listener then
-        inst:RemoveEventCallback("leaveinterior", inst.refresh_tracking_owner_listener, owner)
-        inst:RemoveEventCallback("enterinterior", inst.refresh_tracking_owner_listener, owner)
+        inst:RemoveEventCallback("roomgroupchange", inst.refresh_tracking_owner_listener, owner)
     end
 
     if inst.components.container then

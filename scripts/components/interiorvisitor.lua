@@ -347,6 +347,15 @@ function InteriorVisitor:UpdateExteriorPos()
         end
         if last_center_ent ~= ent then
             self.inst:PushEvent("enterinterior", {from = last_center_ent, to = ent})
+            if last_center_ent ~= nil 
+                and last_center_ent:IsValid()
+                and ent ~= nil
+                and ent:IsValid()
+                and ent:IsInSameRoomGroup(last_center_ent) then
+
+            else
+                self.inst:PushEvent("roomgroupchange")
+            end
         end
         self.interior_cc = ent.interior_cc
         self:UpdatePlayerAndCreaturePhysics(ent)
