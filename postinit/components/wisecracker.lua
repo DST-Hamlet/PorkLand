@@ -34,7 +34,10 @@ local function OnNewDay(inst)
 end
 
 local function canttrack(inst, data)
-    inst.components.talker:Say(GetString(inst, "ANNOUNCE_NOTHING_FOUND"))
+    if not inst.last_cant_track_talk or GetTime() - inst.last_cant_track_talk > 4 then
+        inst.last_cant_track_talk = GetTime()
+        inst.components.talker:Say(GetString(inst, "ANNOUNCE_NOTHING_FOUND"))
+    end
 end
 
 local function track_close(inst, data)

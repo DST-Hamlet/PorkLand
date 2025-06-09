@@ -268,7 +268,7 @@ function EntityScript:IsInSameIsland(target)
     local current_island = TheWorld.Map:GetIslandTagAtPoint(x, 0, z)
     local target_island = TheWorld.Map:GetIslandTagAtPoint(tx, ty, tz)
 
-    return current_island == target_island
+    return (current_island ~= nil) and current_island == target_island
 end
 
 function EntityScript:RunOnPostUpdate(fn)
@@ -300,4 +300,50 @@ function EntityScript:GetLightColour()
     end
 
     return sum_r, sum_g, sum_b, 0.2126 * sum_r + 0.7152 * sum_g + 0.0722 * sum_b
+end
+
+function EntityScript:GetCurrentInteriorCenter()
+    return TheWorld.components.interiorspawner:GetInteriorCenter(self:GetPosition())
+end
+
+function EntityScript:GetInteriorGroupID()
+    local center = self:GetCurrentInteriorCenter()
+    if center then
+        return center:GetGroupId()
+    end
+end
+
+function EntityScript:GetInteriorGroupPosition()
+    local center = self:GetCurrentInteriorCenter()
+    if center then
+        local x, y, z = self.Transform:GetWorldPosition()
+        local cx, cy, cz = center.Transform:GetWorldPosition()
+
+        local current_x, current_y = center:GetCoordinates()
+        local width, depth = center:GetSize()
+
+        local offset_x = current_x * (width + INTERIOR_SPACEING * 2)
+        local offset_y = current_y * (depth + INTERIOR_SPACEING * 2)
+
+        return Vector3(x - cx - offset_y, 0, z - cz + offset_x)
+    end
+end
+
+function EntityScript:GetRelativePositionInRoom(target)
+    return target:GetInteriorGroupPosition() - self:GetInteriorGroupPosition()
+end
+
+function EntityScript:IsInSameRoomGroup(target)
+    if not (target and target:IsValid()) then
+        return false
+    end
+
+    local current_group = self:GetInteriorGroupID()
+    local target_group = target:GetInteriorGroupID()
+
+    return (current_group ~= nil) and current_group == target_group
+end
+
+function EntityScript:IsInSameArea(target)
+    return self:IsInSameIsland(target) or self:IsInSameRoomGroup(target)
 end

@@ -117,6 +117,19 @@ local function TrackNext(x, y, z, inst, goal_inst)
     end
 end
 
+local function TrackNext_Interior(x, y, z, inst, goal_inst)
+    if not goal_inst then
+        return
+    end
+
+    local ents = TheSim:FindEntities(x, y, z, TUNING.ROOM_FINDENTITIES_RADIUS, nil, {"INLIMBO"}) -- or we could include a flag to the search?
+    for i, v in ipairs(ents) do
+        if v ~= inst and v.entity:IsVisible() and CanGiveLoot(v, goal_inst) and inst:IsInSameRoomGroup(v) then
+            return v
+        end
+    end
+end
+
 local function ReSetTrackingData(inst)
     if inst.target_item_update then
         inst.target_item_update:Cancel()
@@ -128,6 +141,17 @@ local function ReSetTrackingData(inst)
     inst.track_data.baserandom = math.random() * 360
     inst.track_data.start_pos = inst:GetPosition()
     inst.tracked_item = nil
+    local center = inst:GetCurrentInteriorCenter()
+    if center then
+        inst.track_data.roomgroup = TheWorld.components.interiorspawner:GetSortedRoomsInGroup(center)
+        table.insert(inst.track_data.roomgroup, center)
+        local current_x, current_y = center:GetCoordinates()
+        table.sort(inst.track_data.roomgroup, function(a, b)
+            local a_x, a_y = a:GetCoordinates()
+            local b_x, b_y = b:GetCoordinates()
+            return distsq(current_x, current_y, a_x, a_y) < distsq(current_x, current_y, b_x, b_y)
+        end)
+    end
 
     inst._hastarget:set(false)
     inst._istracking:set(false)
@@ -142,7 +166,12 @@ local function StartTracking(inst)
     ReSetTrackingData(inst)
 
     inst._istracking:set(true)
-    inst:TryTracking()
+
+    if not inst:GetIsInInterior() then
+        inst:TryTracking()
+    else
+        inst:TryTracking_Interior()
+    end
 end
 
 local function TryTracking(inst)
@@ -212,6 +241,75 @@ local function TryTracking(inst)
     end
 
     inst.target_item_update = inst:DoTaskInTime(update_time, inst.TryTracking)
+end
+
+
+local function TryTracking_Interior(inst)
+    inst.target_item_update = nil
+    local update_time = FRAMES
+    local owner = inst.components.inventoryitem.owner
+    if not (owner and owner:HasTag("tracker_user")) then
+        ReSetTrackingData(inst)
+        inst._istracking:set(true)
+        inst.target_item_update = inst:DoTaskInTime(update_time, inst.TryTracking_Interior)
+        return
+    end
+
+    if inst.tracked_item then
+        if not inst.tracked_item:IsValid()
+            or (inst.tracked_item:IsInLimbo() and not inst.tracked_item:HasTag("track_ignore_limbo"))
+            or not CanGiveLoot(inst.tracked_item, inst.components.container:GetItemInSlot(1))
+            or not inst:IsInSameRoomGroup(inst.tracked_item) then
+
+            ReSetTrackingData(inst)
+            inst._istracking:set(true)
+        else
+            local offset = inst:GetRelativePositionInRoom(inst.tracked_item)
+            inst:ServerUpdateTargetPos((inst:GetPosition() + offset):Get())
+            inst._hastarget:set(true)
+        end
+    end
+    if inst.track_data.roomgroup == nil then
+        ReSetTrackingData(inst)
+        inst._istracking:set(true)
+        inst.target_item_update = inst:DoTaskInTime(update_time, inst.TryTracking_Interior)
+        return
+    end
+    if not inst.tracked_item then
+        local x, _, z = inst.track_data.start_pos:Get()
+        local index = inst.track_data.index
+        local item = inst.components.container:GetItemInSlot(1)
+
+        if index > #inst.track_data.roomgroup then
+            ReSetTrackingData(inst)
+            inst._istracking:set(true)
+            inst.track_data.failed = true
+        else
+            x, _, z = inst.track_data.roomgroup[index].Transform:GetWorldPosition()
+            local target_item = TrackNext_Interior(x, 0, z, inst, item)
+            inst.track_data.index = index + 1
+            if target_item then
+                inst.tracked_item = target_item
+                owner:PushEvent("trackitem_close")
+
+                local offset = inst:GetRelativePositionInRoom(inst.tracked_item)
+                inst:ServerUpdateTargetPos((inst:GetPosition() + offset):Get())
+                inst._hastarget:set(true)
+
+                inst.track_data.index = 1
+                inst.track_data.baserandom = math.random() * 360
+                inst.track_data.start_pos = inst:GetPosition()
+            else
+                update_time = 2 * FRAMES
+                if inst.track_data.failed then
+                    owner:PushEvent("canttrackitem")
+                    inst.track_data.failed = nil
+                end
+            end
+        end
+    end
+
+    inst.target_item_update = inst:DoTaskInTime(update_time, inst.TryTracking_Interior)
 end
 
 local function OnEquip(inst, owner, force)
@@ -402,9 +500,14 @@ local function fn()
         end
     end)
 
-    inst.refresh_tracking_owner_listener = function(owner) StartTracking(inst) end
+    inst.refresh_tracking_owner_listener = function(owner) 
+        if inst.components.container:GetItemInSlot(1) and inst.components.equippable:IsEquipped() then
+            StartTracking(inst)
+        end
+    end
     inst.ServerUpdateTargetPos = ServerUpdateTargetPos
     inst.TryTracking = TryTracking
+    inst.TryTracking_Interior = TryTracking_Interior
     return inst
 end
 

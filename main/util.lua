@@ -456,8 +456,6 @@ function TagToDirect(inst)
     end
 end
 
-local INTERIOR_SPACEING = 20
-
 -- Calculate the offset of the interior coordinates,
 -- and convert them into estimated world position offset,
 -- this is mainly used for simulating positions on the minimap and displaying directions

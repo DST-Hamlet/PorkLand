@@ -102,3 +102,5 @@ for k, v in pairs(PICKUPSOUNDS) do
         PICKUPSOUNDS[k] = "dontstarve/HUD/collect_resource"
     end
 end
+
+INTERIOR_SPACEING = 4
