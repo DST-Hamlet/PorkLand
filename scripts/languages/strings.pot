@@ -39788,7 +39788,7 @@ msgstr ""
 
 #. STRINGS.CHARACTERS.WHEELER.ANNOUNCE_TRACKER_FAR
 msgctxt "STRINGS.CHARACTERS.WHEELER.ANNOUNCE_TRACKER_FAR"
-msgid "Sometimes it takes a little long."
+msgid "It took a little more time, but navigadget still found the target in the distance."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WHEELER.ANNOUNCE_TRACKER_FOUND

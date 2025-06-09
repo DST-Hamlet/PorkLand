@@ -80,21 +80,28 @@ local function CanGiveLoot(inst, goal_inst)
 end
 
 local SEARCH_RADIUS = 150
+local MAX_TRACK_RADIUS = SEARCH_RADIUS * 5
 local pos_table =
 {
     {0, 0},
-    {1, 1},
-    {1, -1},
-    {-1, -1},
-    {-1, 1},
-    {2, 1},
-    {2, -1},
-    {-2, -1},
-    {-2, 1},
-    {1, 2},
-    {1, -2},
-    {-1, -2},
-    {-1, 2},
+    {1, 0},
+    {1, 60}, -- 半径，角度
+    {1, 120},
+    {1, 180},
+    {1, 240},
+    {1, 300},
+    {2, 0},
+    {1.7320508, 30},
+    {2, 60},
+    {1.7320508, 90},
+    {2, 120},
+    {1.7320508, 150},
+    {2, 180},
+    {1.7320508, 210},
+    {2, 240},
+    {1.7320508, 270},
+    {2, 300},
+    {1.7320508, 330},
 }
 
 local function TrackNext(x, y, z, inst, goal_inst)
@@ -118,8 +125,8 @@ local function ReSetTrackingData(inst)
 
     inst.track_data = {}
     inst.track_data.index = 1
+    inst.track_data.baserandom = math.random() * 360
     inst.track_data.start_pos = inst:GetPosition()
-
     inst.tracked_item = nil
 
     inst._hastarget:set(false)
@@ -152,7 +159,9 @@ local function TryTracking(inst)
     if inst.tracked_item then
         if not inst.tracked_item:IsValid()
             or (inst.tracked_item:IsInLimbo() and not inst.tracked_item:HasTag("track_ignore_limbo"))
-            or not CanGiveLoot(inst.tracked_item, inst.components.container:GetItemInSlot(1)) then
+            or not CanGiveLoot(inst.tracked_item, inst.components.container:GetItemInSlot(1))
+            or not inst:IsInSameIsland(inst.tracked_item)
+            or not (inst:GetDistanceSqToInst(inst.tracked_item) <= MAX_TRACK_RADIUS * MAX_TRACK_RADIUS) then
 
             ReSetTrackingData(inst)
             inst._istracking:set(true)
@@ -171,18 +180,26 @@ local function TryTracking(inst)
             inst._istracking:set(true)
             inst.track_data.failed = true
         else
-            x = x + pos_table[index][1] * SEARCH_RADIUS
-            z = z + pos_table[index][2] * SEARCH_RADIUS
+            local radius = pos_table[index][1] * SEARCH_RADIUS * 2 * 0.866025
+            local angle = (pos_table[index][2] + inst.track_data.baserandom) * DEGREES -- 二分之根号3
+            local offset = Vector3(radius * math.cos(angle), 0, radius * math.sin(angle))
+            x = x + offset.x
+            z = z + offset.z
             local target_item = TrackNext(x, 0, z, inst, item)
             inst.track_data.index = index + 1
             if target_item then
                 inst.tracked_item = target_item
-                owner:PushEvent("trackitem")
+                if (inst.track_data.index - 1) > 7 then
+                    owner:PushEvent("trackitem_far")
+                else
+                    owner:PushEvent("trackitem_close")
+                end
 
                 inst:ServerUpdateTargetPos(inst.tracked_item.Transform:GetWorldPosition())
                 inst._hastarget:set(true)
 
                 inst.track_data.index = 1
+                inst.track_data.baserandom = math.random() * 360
                 inst.track_data.start_pos = inst:GetPosition()
             else
                 update_time = 8 * FRAMES
@@ -271,7 +288,7 @@ end
 
 local function OnItemGetClient(inst, data)
     local item = data and data.item
-    if item and inst.replica.inventoryitem:IsHeldBy(ThePlayer) then
+    if item and ThePlayer and ThePlayer:HasTag("tracker_user") and inst.replica.inventoryitem:IsHeldBy(ThePlayer) then
         local container_classified = inst.replica.container and inst.replica.container.classified
         if not (container_classified
             and container_classified._itemspreview
@@ -284,7 +301,7 @@ local function OnItemGetClient(inst, data)
 end
 
 local function OnItemLoseClient(inst, data)
-    if  inst.replica.inventoryitem:IsHeldBy(ThePlayer) then
+    if ThePlayer and ThePlayer:HasTag("tracker_user") and inst.replica.inventoryitem:IsHeldBy(ThePlayer) then
         local container_classified = inst.replica.container and inst.replica.container.classified
         if not (container_classified
             and container_classified._itemspreview
@@ -376,6 +393,14 @@ local function fn()
     inst.components.weapon:SetDamage(TUNING.UNARMED_DAMAGE)
 
     inst.track_data = {}
+
+    inst:DoTaskInTime(0, function() -- 游戏载入时，会在错误的坐标进行搜寻，因此需要重新开始
+        if inst.target_item_update then
+            if inst.components.container:GetItemInSlot(1) and inst.components.equippable:IsEquipped() then
+                StartTracking(inst)
+            end
+        end
+    end)
 
     inst.refresh_tracking_owner_listener = function(owner) StartTracking(inst) end
     inst.ServerUpdateTargetPos = ServerUpdateTargetPos
