@@ -97,6 +97,7 @@ local function fn()
 
     inst:AddTag("FX")
     inst:AddTag("pl_interiorwall_fx")
+    inst:AddTag("NOBLOCK")
 
     if InitEnvelopes ~= nil then
         InitEnvelopes()
