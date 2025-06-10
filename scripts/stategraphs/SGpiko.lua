@@ -3,7 +3,6 @@ require("stategraphs/commonstates")
 local actionhandlers =
 {
     ActionHandler(ACTIONS.EAT, "eat"),
-    ActionHandler(ACTIONS.GOHOME, "action"),
     ActionHandler(ACTIONS.PICKUP, "pickup"),
     ActionHandler(ACTIONS.GOHOME, "ascendtree"),
 }
