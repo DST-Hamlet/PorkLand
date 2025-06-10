@@ -479,22 +479,10 @@ local function GetMinimapIcon(inst)
 end
 
 local function OnEntitySleep(inst)
-    if inst.sg and
-        (inst.sg:HasStateTag("moving") or inst.sg:HasStateTag("shut")) then
-
-        door.sg:GoToState("idle")
-    end
-
     inst:StopDoorLightUpdate()
 end
 
 local function OnEntityWake(inst)
-    if inst.sg and
-        (inst.sg:HasStateTag("moving") or inst.sg:HasStateTag("shut")) then
-
-        door.sg:GoToState("idle")
-    end
-
     if inst.doorlightenable then
         inst:StartDoorLightUpdate()
     end

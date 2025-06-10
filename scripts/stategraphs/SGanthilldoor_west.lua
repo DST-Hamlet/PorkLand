@@ -39,6 +39,9 @@ local states_west =
             EventHandler("animover", function(inst)
                 inst.sg:GoToState("idle")
             end),
+            EventHandler("entitysleep", function(inst)
+				inst.sg:GoToState("idle")
+			end),
         }
     },
 
@@ -60,53 +63,10 @@ local states_west =
                 inst.components.door:UpdateDoorVis()
                 inst.sg:GoToState("idle")
             end),
-        }
-    },
-
-    -- 旧存档的sg
-
-    State{
-        name = "idle_west",
-        tags = {"idle", "canrotate"},
-
-        onenter = function(inst, playanim)
-            inst.sg:GoToState("idle")
-        end,
-    },
-
-    State{
-        name = "open_west",
-        tags = {"moving", "canrotate"},
-
-        onenter = function(inst)
-            inst.components.door:SetHidden(false)
-            inst.components.door:UpdateDoorVis()
-            inst.AnimState:PlayAnimation("west_open", false)
-        end,
-
-        events =
-        {
-            EventHandler("animover", function(inst)
-                inst.sg:GoToState("idle_west")
-            end),
-        }
-    },
-
-    State{
-        name = "shut_west",
-        tags = {"busy"},
-
-        onenter = function(inst)
-            inst.AnimState:PlayAnimation("west_shut", false)
-        end,
-
-        events =
-        {
-            EventHandler("animover", function(inst)
-                inst.components.door:SetHidden(true)
+            EventHandler("entitysleep", function(inst)
                 inst.components.door:UpdateDoorVis()
-                inst.sg:GoToState("idle_west")
-            end),
+				inst.sg:GoToState("idle")
+			end),
         }
     },
 }
