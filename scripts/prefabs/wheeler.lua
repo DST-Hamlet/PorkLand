@@ -56,6 +56,8 @@ local common_postinit = function(inst)
     inst:ListenForEvent("setowner", OnSetOwner)
 
     inst.last_dodge_time = GetTime()
+    
+    inst.AllowDodge = AllowDodge
 end
 
 local master_postinit = function(inst)

@@ -151,7 +151,11 @@ local actionhandlers = {
     ActionHandler(ACTIONS.BUILD_ROOM, "doshortaction"),
     ActionHandler(ACTIONS.DEMOLISH_ROOM, "doshortaction"),
     ActionHandler(ACTIONS.THROW, "throw"),
-    ActionHandler(ACTIONS.DODGE, "dodge"),
+    ActionHandler(ACTIONS.DODGE, function(inst)
+        if inst.AllowDodge and inst:AllowDodge() then
+            return "dodge"
+        end
+    end),
 }
 
 local eventhandlers = {
