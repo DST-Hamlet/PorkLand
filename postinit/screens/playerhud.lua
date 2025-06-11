@@ -58,6 +58,12 @@ function PlayerHud:UpdateClouds(camera)
     end
 end
 
+local get_current_open_spell_book = PlayerHud.GetCurrentOpenSpellBook
+function PlayerHud:GetCurrentOpenSpellBook(...)
+    return get_current_open_spell_book(self, ...)
+        or (self.controls.spellcontrols:IsOpen() and self.controls.spellcontrols.source_item or nil)
+end
+
 function PlayerHud:UpdateFogClouds(camera)
     if not TheFocalPoint.SoundEmitter:PlayingSound("windsound") then
         TheFocalPoint.SoundEmitter:PlaySound("dontstarve/common/clouds", "windsound")
@@ -139,6 +145,29 @@ function PlayerHud:OpenBoat(boat, sailing)
 
         self.controls.containers[boat] = boatwidget
     end
+end
+
+local on_control = PlayerHud.OnControl
+function PlayerHud:OnControl(...)
+    local is_aoe_targeting
+    local cancel_aoe_targeting
+    if self.owner.components.playercontroller then
+        is_aoe_targeting = self.owner.components.playercontroller.IsAOETargeting
+        self.owner.components.playercontroller.IsAOETargeting = function(self, ...)
+            return is_aoe_targeting(self, ...) or self.casting_action_override_spell ~= nil
+        end
+        cancel_aoe_targeting = self.owner.components.playercontroller.CancelAOETargeting
+        self.owner.components.playercontroller.CancelAOETargeting = function(self, ...)
+            self:CancelCastingActionOverrideSpell()
+            return cancel_aoe_targeting(self, ...)
+        end
+    end
+    local ret = on_control(self, ...)
+    if is_aoe_targeting then
+        self.owner.components.playercontroller.IsAOETargeting = is_aoe_targeting
+        self.owner.components.playercontroller.CancelAOETargeting = cancel_aoe_targeting
+    end
+    return ret
 end
 
 local _OnUpdate = PlayerHud.OnUpdate

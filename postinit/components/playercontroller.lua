@@ -64,6 +64,102 @@ function PlayerController:GetActionButtonAction(force_target, ...)
     return buffaction
 end
 
+local on_left_click = PlayerController.OnLeftClick
+function PlayerController:OnLeftClick(down, ...)
+    if down
+        -- Intercept if we're casting spell commands
+        and (self.casting_action_override_spell or (self:IsAOETargeting() and self.reticule.inst.components.spellcommand))
+        and not TheInput:GetHUDEntityUnderMouse()
+        and self:IsEnabled()
+    then
+        -- SPELL_COMMAND is a left mouse action while CASTAOE is a right mouse action
+        local act = self.casting_action_override_spell and self:GetLeftMouseAction() or self:GetRightMouseAction()
+        if act then
+            local platform
+            local pos_x
+            local pos_z
+            if act.pos then
+                platform = act.pos.walkable_platform
+                pos_x = act.pos.local_pt.x
+                pos_z = act.pos.local_pt.z
+            else
+                local position = TheInput:GetWorldPosition()
+                platform, pos_x, pos_z = self:GetPlatformRelativePosition(position.x, position.z)
+            end
+            local target = act.target or TheInput:GetWorldEntityUnderMouse()
+            local item = self.casting_action_override_spell and self.casting_action_override_spell.item or self.reticule.inst
+
+            self:CastSpellCommand(item, item.components.spellcommand:GetSelectedCommandId(), target, pos_x, pos_z, platform)
+            return
+        end
+    end
+
+    return on_left_click(self, down, ...)
+
+    -- local ret = { on_left_click(self, down, ...) }
+
+    -- if down and not TheInput:GetHUDEntityUnderMouse() then
+    --     self:CancelCastingActionOverrideSpell()
+    -- end
+
+    -- return unpack(ret)
+end
+
+local on_right_click = PlayerController.OnRightClick
+function PlayerController:OnRightClick(down, ...)
+    local ret = { on_right_click(self, down, ...) }
+    if down then
+        self:CancelCastingActionOverrideSpell()
+    end
+    return unpack(ret)
+end
+
+local start_aoe_targeting_using = PlayerController.StartAOETargetingUsing
+function PlayerController:StartAOETargetingUsing(item, ...)
+    self:CancelCastingActionOverrideSpell()
+    return start_aoe_targeting_using(self, item, ...)
+end
+
+local has_aoe_targeting = PlayerController.HasAOETargeting
+function PlayerController:HasAOETargeting(...)
+    return self.casting_action_override_spell ~= nil or has_aoe_targeting(self, ...)
+end
+
+function PlayerController:StartCastingActionOverrideSpell(item, leftclickoverride)
+    self:CancelCastingActionOverrideSpell()
+    self:CancelAOETargeting()
+
+    self.inst.components.playeractionpicker.leftclickoverride = leftclickoverride
+    self.casting_action_override_spell = {
+        item = item,
+        leftclickoverride = leftclickoverride,
+    }
+end
+
+function PlayerController:CancelCastingActionOverrideSpell()
+    if self.casting_action_override_spell then
+        if self.inst.components.playeractionpicker.leftclickoverride == self.casting_action_override_spell.leftclickoverride then
+            self.inst.components.playeractionpicker.leftclickoverride = nil
+        end
+        self.casting_action_override_spell = nil
+    end
+end
+
+-- TODO: Maybe sending the index instead to optimize network usage in the future
+function PlayerController:CastSpellCommand(item, command_id, target, x, z)
+    SendModRPCToServer(MOD_RPC["Porkland"]["CastSpellCommand"], item, command_id, target, x, z)
+end
+
+function PlayerController:OnRemoteCastSpellCommand(item, command_id, position, target)
+    if item
+        and item.components.spellcommand
+        and item.components.inventoryitem
+        and item.components.inventoryitem:GetGrandOwner() == self.inst
+    then
+        item.components.spellcommand:RunCommand(command_id, self.inst, position, target)
+    end
+end
+
 -- local _GetGroundUseAction = PlayerController.GetGroundUseAction
 -- function PlayerController:GetGroundUseAction(position, ...)
 --     if self.inst:IsSailing() then
@@ -163,6 +259,17 @@ function PlayerController:OnUpdate(dt)
             self:ReleaseControlSecondary(x, z)
         end
         self.lasttick_controlpressed[CONTROL_SECONDARY] = self:IsControlPressed(CONTROL_SECONDARY)
+
+        if self.casting_action_override_spell then
+            if not self.casting_action_override_spell.item:IsValid() then
+                self:CancelCastingActionOverrideSpell()
+            else
+                local inventoryitem = self.casting_action_override_spell.item.replica.inventoryitem
+                if inventoryitem and not inventoryitem:IsGrandOwner(self.inst) then
+                    self:CancelCastingActionOverrideSpell()
+                end
+            end
+        end
     end
 
     return unpack(ret)
@@ -217,4 +324,5 @@ end
 
 AddComponentPostInit("playercontroller", function(self)
     self.lasttick_controlpressed = {}
+    self.casting_action_override_spell = nil
 end)
