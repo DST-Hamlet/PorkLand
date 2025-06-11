@@ -36,4 +36,11 @@ AddPrefabPostInit("abigail", function(inst)
     inst:ListenForEvent("do_ghost_goto_position", OnGotoCommand)
     inst.FreezeMovements = FreezeMovements
     inst.OnGotoCommand = OnGotoCommand
+
+    local link_to_player = inst.LinkToPlayer
+    inst.LinkToPlayer = function(inst, ...)
+        local ret = { link_to_player(inst, ...) }
+        FreezeMovements(inst, false)
+        return unpack(ret)
+    end
 end)
