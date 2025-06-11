@@ -116,7 +116,7 @@ local function AlwaysTrue()
 end
 
 local ATLAS = "images/hud/abigail_flower_commands.xml"
-local SCALE = {0.9, 0.9, 0.9}
+local SCALE = 0.9
 
 local COMMANDS = {
 	{
@@ -128,8 +128,8 @@ local COMMANDS = {
 		on_execute_on_client = function(inst)
             ThePlayer.components.playercontroller:CastSpellCommand(inst, "unsummon")
 		end,
+        widget_scale = SCALE,
 		atlas = ATLAS,
-        scale = SCALE,
 		normal = "unsummon.tex",
 	},
     {
@@ -141,8 +141,8 @@ local COMMANDS = {
         on_execute_on_client = function(inst)
             ThePlayer.components.playercontroller:CastSpellCommand(inst, "toggle_aggressive")
         end,
+        widget_scale = SCALE,
 		atlas = ATLAS,
-        scale = SCALE,
 		normal = function(inst)
            return ThePlayer:HasTag("has_aggressive_follower") and "smoothe.tex" or "rileup.tex"
         end,
@@ -156,8 +156,8 @@ local COMMANDS = {
         on_execute_on_client = function(inst)
             ThePlayer.components.playercontroller:CastSpellCommand(inst, "toggle_freeze_movements")
         end,
+        widget_scale = SCALE,
 		atlas = ATLAS,
-        scale = SCALE,
 		normal = function(inst)
            return ThePlayer:HasTag("has_movements_frozen_follower") and "resume.tex" or "freeze.tex"
         end,
@@ -289,8 +289,8 @@ local COMMANDS = {
             inst.components.spellcommand:SetSelectedCommand("haunt_at")
             ThePlayer.components.playercontroller:StartCastingActionOverrideSpell(inst, LeftClickPicker)
         end,
+        widget_scale = SCALE,
 		atlas = ATLAS,
-        scale = SCALE,
 		normal = "haunt.tex",
         -- checkcooldown = function(doer)
         --     --client safe
@@ -340,8 +340,8 @@ local COMMANDS = {
 
             StartAOETargeting(inst)
         end,
+        widget_scale = SCALE,
 		atlas = ATLAS,
-        scale = SCALE,
 		normal = "goto.tex",
     },
 }
