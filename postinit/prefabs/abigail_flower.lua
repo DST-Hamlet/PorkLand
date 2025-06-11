@@ -20,15 +20,8 @@ local function GhostChangeBehaviour(inst, doer)
 	return true
 end
 
-local function FreezeGhostMovements(inst, doer)
-    doer.components.ghostlybond:FreezeMovements(true)
-	doer.refreshflowertooltip:push()
-	inst:PushEvent("spellupdateneeded", doer)
-	return true
-end
-
-local function ResumeGhostMovements(inst, doer)
-    doer.components.ghostlybond:FreezeMovements(false)
+local function ToggleFreezeGhostMovements(inst, doer)
+    doer.components.ghostlybond:FreezeMovements(not doer:HasTag("has_movements_frozen_follower"))
 	doer.refreshflowertooltip:push()
 	inst:PushEvent("spellupdateneeded", doer)
 	return true
@@ -140,60 +133,34 @@ local COMMANDS = {
 		normal = "unsummon.tex",
 	},
     {
-        id = "make_aggressive",
-        label = STRINGS.ACTIONS.COMMUNEWITHSUMMONED.MAKE_AGGRESSIVE,
+        id = "toggle_aggressive",
+        label = function(inst)
+           return ThePlayer:HasTag("has_aggressive_follower") and STRINGS.ACTIONS.COMMUNEWITHSUMMONED.MAKE_DEFENSIVE or STRINGS.ACTIONS.COMMUNEWITHSUMMONED.MAKE_AGGRESSIVE
+        end,
         on_execute_on_server = GhostChangeBehaviour,
         on_execute_on_client = function(inst)
-            ThePlayer.components.playercontroller:CastSpellCommand(inst, "make_aggressive")
-        end,
-        should_show = function(inst)
-            return not ThePlayer:HasTag("has_aggressive_follower")
+            ThePlayer.components.playercontroller:CastSpellCommand(inst, "toggle_aggressive")
         end,
 		atlas = ATLAS,
         scale = SCALE,
-		normal = "rileup.tex",
+		normal = function(inst)
+           return ThePlayer:HasTag("has_aggressive_follower") and "smoothe.tex" or "rileup.tex"
+        end,
     },
     {
-        id = "make_defensive",
-        label = STRINGS.ACTIONS.COMMUNEWITHSUMMONED.MAKE_DEFENSIVE,
-        on_execute_on_server = GhostChangeBehaviour,
-        on_execute_on_client = function(inst)
-            ThePlayer.components.playercontroller:CastSpellCommand(inst, "make_defensive")
+        id = "toggle_freeze_movements",
+        label = function(inst)
+           return ThePlayer:HasTag("has_movements_frozen_follower") and "Resume Movements" or "Freeze Movements"
         end,
-        should_show = function(inst)
-            return ThePlayer:HasTag("has_aggressive_follower")
+        on_execute_on_server = ToggleFreezeGhostMovements,
+        on_execute_on_client = function(inst)
+            ThePlayer.components.playercontroller:CastSpellCommand(inst, "toggle_freeze_movements")
         end,
 		atlas = ATLAS,
         scale = SCALE,
-		normal = "smoothe.tex",
-    },
-    {
-        id = "freeze_movements",
-        label = "Freeze Movements",
-        on_execute_on_server = FreezeGhostMovements,
-        on_execute_on_client = function(inst)
-            ThePlayer.components.playercontroller:CastSpellCommand(inst, "freeze_movements")
+		normal = function(inst)
+           return ThePlayer:HasTag("has_movements_frozen_follower") and "resume.tex" or "freeze.tex"
         end,
-        should_show = function(inst)
-            return not ThePlayer:HasTag("has_movements_frozen_follower")
-        end,
-		atlas = ATLAS,
-        scale = SCALE,
-		normal = "freeze.tex",
-    },
-    {
-        id = "resume_movements",
-        label = "Resume Movements",
-        on_execute_on_server = ResumeGhostMovements,
-        on_execute_on_client = function(inst)
-            ThePlayer.components.playercontroller:CastSpellCommand(inst, "resume_movements")
-        end,
-        should_show = function(inst)
-            return ThePlayer:HasTag("has_movements_frozen_follower")
-        end,
-		atlas = ATLAS,
-        scale = SCALE,
-		normal = "resume.tex",
     },
 	-- {
 	-- 	label = STRINGS.GHOSTCOMMANDS.ESCAPE,
@@ -395,7 +362,7 @@ AddPrefabRegisterPostInit("abigail_flower", function(abigail_flower)
         end
         if owner:HasTag("ghostfriend_summoned") then
             if owner.HUD and owner.HUD.controls.spellcontrols:IsOpen() then
-                owner.HUD.controls.spellcontrols:Open(inst.components.spellcommand:GetSpellCommands(), inst.components.spellcommand.ui_background)
+                owner.HUD.controls.spellcontrols:RefreshItemStates()
             end
         else
             if owner.HUD and owner.HUD.controls.spellcontrols:IsOpen() then

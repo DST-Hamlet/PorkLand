@@ -39,7 +39,7 @@ end
 
 function SpellCommand:GetSeletedCommandName()
     local command = self:GetSelectedCommand()
-    return command and command.label
+    return FunctionOrValue(command.label, self.inst)
 end
 
 function SpellCommand:RunCommand(id, doer, position, target)

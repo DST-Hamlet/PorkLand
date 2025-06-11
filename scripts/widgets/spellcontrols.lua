@@ -50,8 +50,6 @@ function SpellControls:SetItems(items_data, background, source_item, anchor_posi
 
     -- self.numspacers = 0
 
-    local visible_buttons = {}
-
     for i, item_data in ipairs(items_data) do
         local button
         if item_data.anims then
@@ -76,7 +74,7 @@ function SpellControls:SetItems(items_data, background, source_item, anchor_posi
                 button.cooldown:Hide()
             end
         else
-            button = self:AddChild(ImageButton(item_data.atlas, item_data.normal, item_data.focus, item_data.disabled, item_data.down, item_data.selected, item_data.scale, item_data.offset))
+            button = self:AddChild(ImageButton(item_data.atlas, FunctionOrValue(item_data.normal, self.source_item), item_data.focus, item_data.disabled, item_data.down, item_data.selected, item_data.scale, item_data.offset))
             button:SetImageNormalColour(.8, .8, .8, 1)
             button:SetImageFocusColour(1, 1, 1, 1)
             button:SetImageDisabledColour(0.7, 0.7, 0.7, 0.7)
@@ -84,7 +82,7 @@ function SpellControls:SetItems(items_data, background, source_item, anchor_posi
             background_image:MoveToBack()
         end
 
-        button:SetTooltip(item_data.label)
+        button:SetTooltip(FunctionOrValue(item_data.label, self.source_item))
 
         if item_data.widget_scale ~= nil then
             button:SetScale(item_data.widget_scale)
@@ -126,12 +124,6 @@ function SpellControls:SetItems(items_data, background, source_item, anchor_posi
         --     self.numspacers = self.numspacers + 1
         -- end
 
-        if not item_data.should_show or item_data.should_show(self.source_item) then
-            table.insert(visible_buttons, button)
-        else
-            button:Hide()
-        end
-
         table.insert(self.items, {
             button = button,
             data = item_data,
@@ -140,15 +132,15 @@ function SpellControls:SetItems(items_data, background, source_item, anchor_posi
 
     local screen_width, _ = TheSim:GetScreenSize()
     local button_width = 75
-    local total_width = button_width * (#visible_buttons - 1)
+    local total_width = button_width * (#self.items - 1)
     local half_total_width = total_width / 2
     local initial_position = Vector3(-half_total_width, 100)
     -- Limit the x so we can always display all the buttons inside the screen
     local max_x = screen_width - (total_width + button_width / 2)
     initial_position.x = math.min(initial_position.x, max_x)
 
-    for i, button in ipairs(visible_buttons) do
-        button:SetPosition(initial_position + Vector3(button_width * (i - 1)))
+    for i, item in ipairs(self.items) do
+        item.button:SetPosition(initial_position + Vector3(button_width * (i - 1)))
     end
 
     if background then
@@ -163,20 +155,15 @@ function SpellControls:SetItems(items_data, background, source_item, anchor_posi
     end
 end
 
-function SpellControls:Open(items_data, background, source_item, anchor_position)
-    self.isopen = true
-
-    -- self:Show()
-    -- self:Disable()
-    -- self:SetClickable(false)
-    self:SetClickable(true)
-    self:Enable()
-
-    -- TODO: we currently force the anchor position
-    local anchor_position = self.owner.HUD.controls.inv.toprow:GetWorldPosition()
-    anchor_position.x = anchor_position.x - 600
-
-    self:SetItems(items_data, background, source_item, anchor_position)
+function SpellControls:RefreshItemStates()
+    for _, item in ipairs(self.items) do
+        if item.data.anims then
+            -- TODO: Implement this when we have items with animations
+        else
+            item.button:SetTextures(item.data.atlas, FunctionOrValue(item.data.normal, self.source_item), item.data.focus, item.data.disabled, item.data.down, item.data.selected, item.data.scale, item.data.offset)
+        end
+        item.button:SetTooltip(FunctionOrValue(item.data.label, self.source_item))
+    end
 
     local selected
     for _, item in ipairs(self.items) do
@@ -220,6 +207,23 @@ function SpellControls:Open(items_data, background, source_item, anchor_position
         --     self:Enable()
         -- end)
     end
+end
+
+function SpellControls:Open(items_data, background, source_item, anchor_position)
+    self.isopen = true
+
+    -- self:Show()
+    -- self:Disable()
+    -- self:SetClickable(false)
+    self:SetClickable(true)
+    self:Enable()
+
+    -- TODO: we currently force the anchor position
+    local anchor_position = self.owner.HUD.controls.inv.toprow:GetWorldPosition()
+    anchor_position.x = anchor_position.x - 600
+
+    self:SetItems(items_data, background, source_item, anchor_position)
+    -- self:RefreshItemStates()
 end
 
 function SpellControls:Close()
