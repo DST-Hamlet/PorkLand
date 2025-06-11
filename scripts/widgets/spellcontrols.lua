@@ -93,13 +93,9 @@ function SpellControls:SetItems(items_data, background, source_item, anchor_posi
             button.image:SetRadiusForRayTraces(item_data.hit_radius)
         end
 
-        if item_data.execute then
+        if item_data.on_execute_on_client then
             button.onclick = function()
-                if self.source_item.components.spellbook then
-                    self.source_item.components.spellbook:SelectSpell(i)
-                end
-                -- item_data.onselect(self.source_item)
-                item_data.execute(self.source_item)
+                item_data.on_execute_on_client(self.source_item)
             end
         end
 

@@ -11,13 +11,13 @@ function InvSlot:UseItem(...)
     if item then
         local inventory = ThePlayer and ThePlayer.replica.inventory
         if inventory then
-            if not TheInput:ControllerAttached() and SUPPORTED_ITEMS[item.prefab] and item.components.spellbook then
+            if not TheInput:ControllerAttached() and SUPPORTED_ITEMS[item.prefab] and item.components.spellcommand then
                 local action = ThePlayer.components.playeractionpicker:GetInventoryActions(item)[1]
                 -- print(action)
                 if action then
                     if action.action == ACTIONS.USESPELLBOOK then
                         -- print("ThePlayer.HUD.controls.spellcontrols:Open()")
-                        ThePlayer.HUD.controls.spellcontrols:Open(item.components.spellbook.items, item.components.spellbook.background, item, self.tile:GetWorldPosition())
+                        ThePlayer.HUD.controls.spellcontrols:Open(item.components.spellcommand:GetSpellCommands(), item.components.spellcommand.ui_background, item, self.tile:GetWorldPosition())
                         return
                     end
                     if action.action == ACTIONS.CLOSESPELLBOOK then

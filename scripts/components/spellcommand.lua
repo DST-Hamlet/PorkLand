@@ -1,50 +1,51 @@
 local SpellCommand = Class(function(self, inst)
     self.inst = inst
 
+    self.commands = {}
+    self.ui_background = nil
+
     self.spell_display_name = nil
-    self.selected_spell_id = nil
+    self.selected_command_id = nil
     self.on_run = nil
 end)
 
-function SpellCommand:SetSpell(spell_display_name, on_run)
-    self.spell_display_name = spell_display_name
-    self.on_run = on_run
+function SpellCommand:SetSpellCommands(commands)
+    self.commands = commands
 end
 
-function SpellCommand:SetSpellName(spell_display_name)
-    self.spell_display_name = spell_display_name
+function SpellCommand:GetSpellCommands()
+    return self.commands
 end
 
-function SpellCommand:GetSpellName()
-    return self.spell_display_name
-end
-
-function SpellCommand:SetSelectedSpell(id)
-    self.selected_spell_id = id
-end
-
-function SpellCommand:GetSelectedSpell()
-    return self.selected_spell_id
-end
-
-function SpellCommand:ReselectSelectedSpellInSpellBook()
-    if not self.selected_spell_id then
-        return
-    end
-    for index, item in ipairs(self.inst.components.spellbook.items) do
-        if item.id and item.id == self.selected_spell_id then
-            self.inst.components.spellbook:SelectSpell(index)
+function SpellCommand:GetSpellCommandById(id)
+    for i, command in ipairs(self.commands) do
+        if command.id == id then
+            return command, i
         end
     end
 end
 
-function SpellCommand:SetOnRun(on_run)
-    self.on_run = on_run
+function SpellCommand:SetSelectedCommand(id)
+    self.selected_command_id = id
 end
 
-function SpellCommand:Run(buffered_action)
-    if self.on_run then
-       return self.on_run(self.inst, buffered_action)
+function SpellCommand:GetSelectedCommandId()
+    return self.selected_command_id
+end
+
+function SpellCommand:GetSelectedCommand()
+    return self:GetSpellCommandById(self.selected_command_id)
+end
+
+function SpellCommand:GetSeletedCommandName()
+    local command = self:GetSelectedCommand()
+    return command and command.label
+end
+
+function SpellCommand:RunCommand(id, doer, position, target)
+    local command = self:GetSpellCommandById(id)
+    if command and command.on_execute_on_server then
+        command.on_execute_on_server(self.inst, doer, position, target)
     end
 end
 

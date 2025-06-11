@@ -609,7 +609,7 @@ end
 ACTIONS.SPELL_COMMAND.stroverridefn = function(act)
 	return act.invobject
         and act.invobject.components.spellcommand
-        and act.invobject.components.spellcommand:GetSpellName()
+        and act.invobject.components.spellcommand:GetSeletedCommandName()
         or nil
 end
 
@@ -617,10 +617,12 @@ ACTIONS.SPELL_COMMAND.strfn = function(act)
     return act.invobject and string.upper(act.invobject.prefab) or nil
 end
 
+-- TODO: This is currently unused, left here in case we want to use it in the future
 ACTIONS.SPELL_COMMAND.fn = function(act)
-    if act.invobject.components.spellcommand then
-        return act.invobject.components.spellcommand:Run(act)
-    end
+    print("WARNING: This action should not be ran directly, instead it should be intercepted and redirected to the PlayerController.OnRemoteCastSpellCommand")
+    -- if act.invobject.components.spellcommand then
+    --     return act.invobject.components.spellcommand:Run(act)
+    -- end
 end
 
 local _EQUIP_fn = ACTIONS.EQUIP.fn
@@ -882,7 +884,7 @@ local castaoe_stroverridefn = ACTIONS.CASTAOE.stroverridefn
 ACTIONS.CASTAOE.stroverridefn = function(act, ...)
     return act.invobject
         and act.invobject.components.spellcommand
-        and act.invobject.components.spellcommand:GetSpellName()
+        and act.invobject.components.spellcommand:GetSeletedCommandName()
         or castaoe_stroverridefn(act, ...)
 end
 

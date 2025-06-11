@@ -67,12 +67,13 @@ end
 local on_left_click = PlayerController.OnLeftClick
 function PlayerController:OnLeftClick(down, ...)
     if down
-        and self.casting_action_override_spell
-        and not self.ismastersim
+        -- Intercept if we're casting spell commands
+        and (self.casting_action_override_spell or (self:IsAOETargeting() and self.reticule.inst.components.spellcommand))
         and not TheInput:GetHUDEntityUnderMouse()
         and self:IsEnabled()
     then
-        local act = self:GetLeftMouseAction()
+        -- SPELL_COMMAND is a left mouse action while CASTAOE is a right mouse action
+        local act = self.casting_action_override_spell and self:GetLeftMouseAction() or self:GetRightMouseAction()
         if act then
             local platform
             local pos_x
@@ -86,65 +87,22 @@ function PlayerController:OnLeftClick(down, ...)
                 platform, pos_x, pos_z = self:GetPlatformRelativePosition(position.x, position.z)
             end
             local target = act.target or TheInput:GetWorldEntityUnderMouse()
+            local item = self.casting_action_override_spell and self.casting_action_override_spell.item or self.reticule.inst
 
-            local spellbook = self.inst.HUD:GetCurrentOpenSpellBook()
-            local spell_id
-            if spellbook then
-                spell_id = spellbook.components.spellbook:GetSelectedSpell()
-            end
-
-            local controlmods = self:EncodeControlMods()
-            if self.locomotor == nil then
-                self.remote_controls[CONTROL_PRIMARY] = 0
-                SendRPCToServer(RPC.LeftClick, act.action.code, pos_x, pos_z, target, nil, controlmods, act.action.canforce, act.action.mod_name, platform, platform ~= nil, spellbook, spell_id)
-            elseif act.action ~= ACTIONS.WALKTO and self:CanLocomote() then
-                act.preview_cb = function()
-                    self.remote_controls[CONTROL_PRIMARY] = 0
-                    local isreleased = not TheInput:IsControlPressed(CONTROL_PRIMARY)
-                    SendRPCToServer(RPC.LeftClick, act.action.code, pos_x, pos_z, target, isreleased, controlmods, nil, act.action.mod_name, platform, platform ~= nil, spellbook, spell_id)
-                end
-            end
-            self:DoAction(act, spellbook)
+            self:CastSpellCommand(item, item.components.spellcommand:GetSelectedCommandId(), target, pos_x, pos_z, platform)
             return
         end
     end
 
-    if down
-        and not TheInput:GetHUDEntityUnderMouse()
-        and self:IsEnabled()
-        and self:IsAOETargeting()
-    then
-        local spellbook = self:GetActiveSpellBook()
-        if spellbook and spellbook.components.spellcommand then
-            spellbook.components.spellcommand:ReselectSelectedSpellInSpellBook()
-        end
-    end
+    return on_left_click(self, down, ...)
 
-    local ret = { on_left_click(self, down, ...) }
+    -- local ret = { on_left_click(self, down, ...) }
 
     -- if down and not TheInput:GetHUDEntityUnderMouse() then
     --     self:CancelCastingActionOverrideSpell()
     -- end
 
-    return unpack(ret)
-end
-
-local on_remote_left_click = PlayerController.OnRemoteLeftClick
-function PlayerController:OnRemoteLeftClick(actioncode, position, target, isreleased, controlmodscode, noforce, mod_name, spellbook, spell_id, ...)
-    if self.ismastersim and self:IsEnabled() and self.handler == nil then
-        if actioncode == ACTIONS.SPELL_COMMAND.code then
-            if spellbook
-                and spellbook.components.inventoryitem
-                and spellbook.components.inventoryitem:GetGrandOwner() == self.inst
-                and spellbook.components.spellbook
-            then
-                spellbook.components.spellbook:SelectSpell(spell_id)
-            end
-			self:DoAction(BufferedAction(self.inst, target, ACTIONS.SPELL_COMMAND, spellbook, position), spellbook)
-            return
-        end
-    end
-    return on_remote_left_click(self, actioncode, position, target, isreleased, controlmodscode, noforce, mod_name, spellbook, spell_id, ...)
+    -- return unpack(ret)
 end
 
 local on_right_click = PlayerController.OnRightClick
@@ -184,6 +142,21 @@ function PlayerController:CancelCastingActionOverrideSpell()
             self.inst.components.playeractionpicker.leftclickoverride = nil
         end
         self.casting_action_override_spell = nil
+    end
+end
+
+-- TODO: Maybe sending the index instead to optimize network usage in the future
+function PlayerController:CastSpellCommand(item, command_id, target, x, z)
+    SendModRPCToServer(MOD_RPC["Porkland"]["CastSpellCommand"], item, command_id, target, x, z)
+end
+
+function PlayerController:OnRemoteCastSpellCommand(item, command_id, position, target)
+    if item
+        and item.components.spellcommand
+        and item.components.inventoryitem
+        and item.components.inventoryitem:GetGrandOwner() == self.inst
+    then
+        item.components.spellcommand:RunCommand(command_id, self.inst, position, target)
     end
 end
 

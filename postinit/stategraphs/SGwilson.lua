@@ -152,6 +152,7 @@ local actionhandlers = {
     ActionHandler(ACTIONS.DEMOLISH_ROOM, "doshortaction"),
     ActionHandler(ACTIONS.THROW, "throw"),
     ActionHandler(ACTIONS.DODGE, "dodge"),
+    -- TODO: This is currently unused, left here in case we want to use it in the future
     -- We later override it to match ACTION.CASTAOE's action handler
     ActionHandler(ACTIONS.SPELL_COMMAND, "dolongaction"),
 }

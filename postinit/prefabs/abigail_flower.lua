@@ -80,13 +80,12 @@ end
 --     return DoGhostSpell(doer, "do_ghost_hauntat", nil, pos)
 -- end
 
-local function GhostHauntSpellCommand(inst, buffered_action)
-    local doer = buffered_action.doer
-    return DoGhostSpell(doer, "do_ghost_haunt_target", nil, buffered_action.target)
+local function GhostHauntSpellCommand(inst, doer, position, target)
+    return DoGhostSpell(doer, "do_ghost_haunt_target", nil, target)
 end
 
-local function GhostGotoSpellCommand(inst, doer, pos)
-    return DoGhostSpell(doer, "do_ghost_goto_position", nil, pos)
+local function GhostGotoSpellCommand(inst, doer, position)
+    return DoGhostSpell(doer, "do_ghost_goto_position", nil, position)
 end
 
 local function GhostUnsummonSpell(inst, doer)
@@ -130,20 +129,11 @@ local COMMANDS = {
 	{
         id = "unsummon",
 		label = STRINGS.GHOSTCOMMANDS.UNSUMMON,
-		onselect = function(inst)
-			local spellbook = inst.components.spellbook
-			spellbook:SetSpellName(STRINGS.GHOSTCOMMANDS.UNSUMMON)
-
-			inst:AddTag("unsummoning_spell")
-			if TheWorld.ismastersim then
-				inst.components.aoespell:SetSpellFn(nil)
-                spellbook:SetSpellFn(GhostUnsummonSpell)
-			end
+		on_execute_on_server = function(inst, doer)
+			GhostUnsummonSpell(inst, doer)
 		end,
-		execute = function(inst)
-			if ThePlayer.replica.inventory then
-				ThePlayer.replica.inventory:CastSpellBookFromInv(inst)
-			end
+		on_execute_on_client = function(inst)
+            ThePlayer.components.playercontroller:CastSpellCommand(inst, "unsummon")
 		end,
 		atlas = ATLAS,
         scale = SCALE,
@@ -152,19 +142,9 @@ local COMMANDS = {
     {
         id = "make_aggressive",
         label = STRINGS.ACTIONS.COMMUNEWITHSUMMONED.MAKE_AGGRESSIVE,
-        onselect = function(inst)
-            local spellbook = inst.components.spellbook
-            spellbook:SetSpellName(STRINGS.ACTIONS.COMMUNEWITHSUMMONED.MAKE_AGGRESSIVE)
-
-            if TheWorld.ismastersim then
-                inst.components.aoespell:SetSpellFn(nil)
-                spellbook:SetSpellFn(GhostChangeBehaviour)
-            end
-        end,
-        execute = function(inst)
-            if ThePlayer.replica.inventory then
-                ThePlayer.replica.inventory:CastSpellBookFromInv(inst)
-            end
+        on_execute_on_server = GhostChangeBehaviour,
+        on_execute_on_client = function(inst)
+            ThePlayer.components.playercontroller:CastSpellCommand(inst, "make_aggressive")
         end,
         should_show = function(inst)
             return not ThePlayer:HasTag("has_aggressive_follower")
@@ -176,19 +156,9 @@ local COMMANDS = {
     {
         id = "make_defensive",
         label = STRINGS.ACTIONS.COMMUNEWITHSUMMONED.MAKE_DEFENSIVE,
-        onselect = function(inst)
-            local spellbook = inst.components.spellbook
-            spellbook:SetSpellName(STRINGS.ACTIONS.COMMUNEWITHSUMMONED.MAKE_DEFENSIVE)
-
-            if TheWorld.ismastersim then
-                inst.components.aoespell:SetSpellFn(nil)
-                spellbook:SetSpellFn(GhostChangeBehaviour)
-            end
-        end,
-        execute = function(inst)
-            if ThePlayer.replica.inventory then
-                ThePlayer.replica.inventory:CastSpellBookFromInv(inst)
-            end
+        on_execute_on_server = GhostChangeBehaviour,
+        on_execute_on_client = function(inst)
+            ThePlayer.components.playercontroller:CastSpellCommand(inst, "make_defensive")
         end,
         should_show = function(inst)
             return ThePlayer:HasTag("has_aggressive_follower")
@@ -200,19 +170,9 @@ local COMMANDS = {
     {
         id = "freeze_movements",
         label = "Freeze Movements",
-        onselect = function(inst)
-            local spellbook = inst.components.spellbook
-            spellbook:SetSpellName("Freeze Movements")
-
-            if TheWorld.ismastersim then
-                inst.components.aoespell:SetSpellFn(nil)
-                spellbook:SetSpellFn(FreezeGhostMovements)
-            end
-        end,
-        execute = function(inst)
-            if ThePlayer.replica.inventory then
-                ThePlayer.replica.inventory:CastSpellBookFromInv(inst)
-            end
+        on_execute_on_server = FreezeGhostMovements,
+        on_execute_on_client = function(inst)
+            ThePlayer.components.playercontroller:CastSpellCommand(inst, "freeze_movements")
         end,
         should_show = function(inst)
             return not ThePlayer:HasTag("has_movements_frozen_follower")
@@ -224,19 +184,9 @@ local COMMANDS = {
     {
         id = "resume_movements",
         label = "Resume Movements",
-        onselect = function(inst)
-            local spellbook = inst.components.spellbook
-            spellbook:SetSpellName("Resume Movements")
-
-            if TheWorld.ismastersim then
-                inst.components.aoespell:SetSpellFn(nil)
-                spellbook:SetSpellFn(ResumeGhostMovements)
-            end
-        end,
-        execute = function(inst)
-            if ThePlayer.replica.inventory then
-                ThePlayer.replica.inventory:CastSpellBookFromInv(inst)
-            end
+        on_execute_on_server = ResumeGhostMovements,
+        on_execute_on_client = function(inst)
+            ThePlayer.components.playercontroller:CastSpellCommand(inst, "resume_movements")
         end,
         should_show = function(inst)
             return ThePlayer:HasTag("has_movements_frozen_follower")
@@ -367,13 +317,10 @@ local COMMANDS = {
     {
         id = "haunt_at",
         label = STRINGS.GHOSTCOMMANDS.HAUNT_AT,
-        onselect = function(inst)
-            inst.components.spellcommand:SetSpell(STRINGS.GHOSTCOMMANDS.HAUNT_AT, GhostHauntSpellCommand)
-        end,
-        execute = function(inst)
-            if ThePlayer then
-                ThePlayer.components.playercontroller:StartCastingActionOverrideSpell(inst, LeftClickPicker)
-            end
+        on_execute_on_server = GhostHauntSpellCommand,
+        on_execute_on_client = function(inst)
+            inst.components.spellcommand:SetSelectedCommand("haunt_at")
+            ThePlayer.components.playercontroller:StartCastingActionOverrideSpell(inst, LeftClickPicker)
         end,
 		atlas = ATLAS,
         scale = SCALE,
@@ -390,14 +337,29 @@ local COMMANDS = {
     {
         id = "goto",
         label = "Goto",
-        onselect = function(inst)
-			local spellbook = inst.components.spellbook
+        on_execute_on_server = function(inst, doer, position)
+            -- TODO: See if we still want this
+            inst.components.aoetargeting:SetTargetFX("reticuleaoeghosttarget")
+            local fx = inst.components.aoetargeting:SpawnTargetFXAt(position)
+            if fx then
+                -- This is normally done in SG to align with the animations,
+                -- but since we don't want it to have animations right now,
+                -- we remove it after a fixed time
+                fx:DoTaskInTime(15* FRAMES, function(inst)
+                    if inst.KillFX then
+                        inst:KillFX()
+                    else
+                        inst:Remove()
+                    end
+                end)
+            end
+
+            GhostGotoSpellCommand(inst, doer, position)
+        end,
+        on_execute_on_client = function(inst)
+            inst.components.spellcommand:SetSelectedCommand("goto")
+
 			local aoetargeting = inst.components.aoetargeting
-
-            spellbook:SetSpellName("Goto")
-            inst.components.spellcommand:SetSpellName("Goto")
-            inst.components.spellcommand:SetSelectedSpell("goto")
-
             aoetargeting:SetDeployRadius(0)
 			aoetargeting:SetRange(20)
 			aoetargeting:SetShouldRepeatCastFn(AlwaysTrue)
@@ -409,13 +371,8 @@ local COMMANDS = {
             aoetargeting.reticule.updatepositionfn = nil
 			aoetargeting.reticule.twinstickrange = 15
 
-            if TheWorld.ismastersim then
-                aoetargeting:SetTargetFX("reticuleaoeghosttarget")
-                inst.components.aoespell:SetSpellFn(GhostGotoSpellCommand)
-                spellbook:SetSpellFn(nil)
-            end
+            StartAOETargeting(inst)
         end,
-        execute = StartAOETargeting,
 		atlas = ATLAS,
         scale = SCALE,
 		normal = "goto.tex",
@@ -423,17 +380,12 @@ local COMMANDS = {
 }
 
 AddPrefabPostInit("abigail_flower", function(inst)
-    inst.components.spellbook:SetItems(COMMANDS)
-    inst.components.spellbook.background = {
+    inst:AddComponent("spellcommand")
+    inst.components.spellcommand:SetSpellCommands(COMMANDS)
+    inst.components.spellcommand.ui_background = {
         bank = "ui_abigail_command_5x1",
         build = "ui_abigail_command_5x1",
     }
-
-    if not TheWorld.ismastersim then
-        return inst
-    end
-
-    inst:AddComponent("spellcommand")
 end)
 
 AddPrefabRegisterPostInit("abigail_flower", function(abigail_flower)
@@ -442,9 +394,8 @@ AddPrefabRegisterPostInit("abigail_flower", function(abigail_flower)
             return
         end
         if owner:HasTag("ghostfriend_summoned") then
-            inst.components.spellbook:SetItems(COMMANDS)
             if owner.HUD and owner.HUD.controls.spellcontrols:IsOpen() then
-                owner.HUD.controls.spellcontrols:Open(inst.components.spellbook.items, inst.components.spellbook.background)
+                owner.HUD.controls.spellcontrols:Open(inst.components.spellcommand:GetSpellCommands(), inst.components.spellcommand.ui_background)
             end
         else
             if owner.HUD and owner.HUD.controls.spellcontrols:IsOpen() then

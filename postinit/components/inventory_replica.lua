@@ -74,7 +74,7 @@ function Inventory:UseItemFromInvTile(item, ...)
         local action = self.inst.components.playeractionpicker:GetInventoryActions(item)[1]
         if action then
             if action.action == ACTIONS.USESPELLBOOK then
-                self.inst.HUD.controls.spellcontrols:Open(item.components.spellbook.items, item.components.spellbook.background, item, get_slot_position(self.inst.HUD.controls.inv, item))
+                self.inst.HUD.controls.spellcontrols:Open(item.components.spellcommand:GetSpellCommands(), item.components.spellcommand.ui_background, item, get_slot_position(self.inst.HUD.controls.inv, item))
                 return
             end
             if action.action == ACTIONS.CLOSESPELLBOOK then
