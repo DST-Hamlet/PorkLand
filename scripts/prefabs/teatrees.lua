@@ -43,8 +43,14 @@ SetSharedLootTable("teatree_tall",
 
 SetSharedLootTable("teatree_burnt",
 {
+    {"charcoal", 1.0},
+})
+
+SetSharedLootTable("teatree_stump",
+{
     {"log", 1.0},
 })
+
 
 local function MakeAnims(stage)
     return {
