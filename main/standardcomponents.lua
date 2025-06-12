@@ -242,6 +242,9 @@ function MakeTreeBlowInWindGust(inst, stages, threshold, destroy_chance)
 end
 
 function OnTreeFallClient(inst)
+    if inst._should_playanim:value() ~= true then
+        return
+    end
     local anim = inst.client_anims[inst._stage:value()]
     local he_right = false
 
@@ -269,20 +272,24 @@ function MakeTreeClientFallAnim(inst, anims)
     inst.client_anims = anims
 
     inst._stage = net_byte(inst.GUID, "_stage")
+    inst._should_playanim = net_bool(inst.GUID, "_should_playanim")
     inst._fallangle = net_float(inst.GUID, "_fallangle", "fallangledirty")
-    inst._fallangle:set_local(0)
 
     if not TheWorld.ismastersim then
         inst:ListenForEvent("fallangledirty", function()
             inst:RunOnPostUpdate(OnTreeFallClient)
         end)
+    else
+        inst._fallangle:set_local(0)
     end
 end
 
 function PushTreeFallServer(inst, pt, hispos)
     local angle = math.atan2(pt.z - hispos.z, hispos.x - pt.x) * RADIANS
     inst._stage:set(inst.stage)
+    inst._should_playanim:set(true)
     inst._fallangle:set(angle)
+    inst:DoTaskInTime(15 * FRAMES, function() inst._should_playanim:set(false) end)
 end
 
 function MakePoisonableCharacter(inst, sym, offset, fxstyle, damage_penalty, attack_period_penalty, speed_penalty, hunger_burn, sanity_scale)
