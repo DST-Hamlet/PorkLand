@@ -90,7 +90,7 @@ local events =
     CommonHandlers.OnLocomote(true, true),
     CommonHandlers.OnDeath(),
     CommonHandlers.OnAttack(),
-    CommonHandlers.OnAttacked(),
+    CommonHandlers.OnAttacked(TUNING.BOSS_HITREACT_COOLDOWN, TUNING.BOSS_MAX_STUN_LOCKS),
 
     EventHandler("activate", function(inst) inst.sg:GoToState("activate") end),
 }
@@ -185,7 +185,7 @@ local states =
 
     State{
         name = "hit",
-        tags = {"hit"},
+        tags = {"busy"},
 
         onenter = function(inst, cb)
             if inst.components.locomotor then
@@ -193,6 +193,7 @@ local states =
             end
             inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/hulk_metal_robot/hit")
             inst.AnimState:PlayAnimation("hit")
+            CommonHandlers.UpdateHitRecoveryDelay(inst)
         end,
 
         events =

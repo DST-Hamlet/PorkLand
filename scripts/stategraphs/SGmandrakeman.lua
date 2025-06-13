@@ -167,6 +167,7 @@ local states=
 
             inst.AnimState:PlayAnimation("hit")
             inst.Physics:Stop()
+            CommonHandlers.UpdateHitRecoveryDelay(inst)
         end,
 
         timeline =

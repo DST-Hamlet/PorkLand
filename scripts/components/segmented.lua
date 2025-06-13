@@ -305,7 +305,6 @@ function Segmented:SwitchToTail()
     local x, _, z = self.inst.exitpt.Transform:GetWorldPosition()
     local newtail = SpawnPrefab("pugalisk_tail")
     newtail.sg:GoToState("tail_ready")
-    newtail.wantstotaunt = nil
     newtail.Transform:SetPosition(x, 0, z)
     self:RemoveAllSegments()
     self.inst.host.components.multibody.tail = newtail
