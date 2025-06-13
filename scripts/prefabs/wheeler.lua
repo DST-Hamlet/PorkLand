@@ -26,7 +26,7 @@ local function AllowDodge(inst)
 end
 
 local function GetPointSpecialActions(inst, pos, useitem, right)
-    if right then
+    if right and useitem == nil then
         if AllowDodge(inst) then
             return { ACTIONS.DODGE }
         end
