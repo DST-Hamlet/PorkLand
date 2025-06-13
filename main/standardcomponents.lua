@@ -268,19 +268,21 @@ function OnTreeFallClient(inst)
     inst.AnimState:PushAnimation(anim.stump)
 end
 
-function MakeTreeClientFallAnim(inst, anims)
+function MakeTreeClientFallAnim(inst, anims, stage)
     inst.client_anims = anims
 
     inst._stage = net_byte(inst.GUID, "_stage")
     inst._should_playanim = net_bool(inst.GUID, "_should_playanim")
     inst._fallangle = net_float(inst.GUID, "_fallangle", "fallangledirty")
 
+    inst._stage:set(stage or 1)
+    inst._should_playanim:set(false)
+    inst._fallangle:set_local(0)
+
     if not TheWorld.ismastersim then
         inst:ListenForEvent("fallangledirty", function()
             inst:RunOnPostUpdate(OnTreeFallClient)
-        end)
-    else
-        inst._fallangle:set_local(0)
+        end) 
     end
 end
 

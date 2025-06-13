@@ -57,9 +57,9 @@ if not rawget(_G, "HotReloading") then
 
         SEARCH_MYSTERY = Action({priority = -1, distance = 1}),
 
-        THROW = Action({priority = 0, instant = false, rmb = true, distance = 20, mount_valid = true}),
+        THROW = Action({priority = 0, invalid_hold_action = true, rmb = true, distance = 20, mount_valid = true}),
 
-        DODGE = Action({priority = -5, instant = false, distance = math.huge}),
+        DODGE = Action({priority = -5, invalid_hold_action = true, distance = math.huge}),
     }
 
     for name, ACTION in pairs(_G.PL_ACTIONS) do

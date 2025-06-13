@@ -653,7 +653,7 @@ local function MakeTree(name, build, stage, data)
             inst:SetPrefabName("rainforesttree")
         end
 
-        MakeTreeClientFallAnim(inst, anims)
+        MakeTreeClientFallAnim(inst, anims, stage)
 
         inst.entity:SetPristine()
 
