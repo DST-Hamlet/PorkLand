@@ -31,6 +31,10 @@ local SPECIAL_LOOT_TABLE =
         ancient_robot_head = true,
         ancient_robots_assembly = true,
     },
+    ["waterdrop"] = 
+    {
+        lifeplant = true,
+    }
 }
 
 local function CanGiveLoot(inst, goal_inst)
