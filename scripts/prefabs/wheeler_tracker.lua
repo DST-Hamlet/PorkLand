@@ -63,9 +63,6 @@ local function CanGiveLoot(inst, goal_inst)
         elseif inst.components.cookable and inst.components.cookable.product == prefab then
             return true
 
-        elseif goal_inst.components.deployable and goal_inst.components.deployable.product == inst.prefab then
-            return true
-
         elseif inst.components.storageloot and inst.components.storageloot:HasLoot(prefab) then
             return true
 
