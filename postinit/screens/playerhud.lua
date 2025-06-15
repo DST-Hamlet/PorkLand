@@ -31,7 +31,7 @@ function PlayerHud:CreateOverlays(owner, ...)
     self.pollenover = self.overlayroot:AddChild(PollenOver(owner))
     self.pollenover:Hide()
     self.inst:ListenForEvent("updatepollen", function(inst, data) return self.pollenover:UpdateState(data.sneezetime) end, self.owner)
-
+    
     self.leavesover = self.overlayroot:AddChild(LeavesOver(owner))
 
     self.livingartifactover = self.overlayroot:AddChild(LivingArtifactOver(owner))
