@@ -194,6 +194,10 @@ function BoatContainer:CanBeOpened()
     return not self._cannotbeopened:value()
 end
 
+function BoatContainer:IsReadOnlyContainer()
+    return false
+end
+
 function BoatContainer:CanTakeItemInSlot(item, slot)
     return item ~= nil
         and item.replica.inventoryitem ~= nil
@@ -239,6 +243,14 @@ function BoatContainer:IsHolding(item, checkcontainer)
         return self.inst.components.container:IsHolding(item, checkcontainer)
     else
         return self.classified ~= nil and self.classified:IsHolding(item, checkcontainer)
+    end
+end
+
+function BoatContainer:FindItem(fn)
+    if self.inst.components.container then
+        return self.inst.components.container:FindItem(fn)
+    elseif self.opener and self.classified then
+        return self.classified:FindItem(fn)
     end
 end
 
