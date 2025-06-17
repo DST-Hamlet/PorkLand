@@ -56,6 +56,20 @@ local common_postinit = function(inst)
 
     inst.MiniMapEntity:SetIcon("wheeler.tex")
 
+    inst.Anim_Hide_Hook = function(animstate, layername, ...)
+        if layername == "HAIR" then
+            animstate:_Hide("HAIRFRONT")
+        end
+        return animstate:_Hide(layername, ...)
+    end
+
+    inst.Anim_Show_Hook = function(animstate, layername, ...)
+        if layername == "HAIR" then
+            animstate:_Show("HAIRFRONT")
+        end
+        return animstate:_Show(layername, ...)
+    end
+
     inst:AddTag("trusty_shooter")
     inst:AddTag("tracker_user")
     inst:ListenForEvent("setowner", OnSetOwner)
@@ -88,8 +102,6 @@ local master_postinit = function(inst)
     -- See postinit/components/inventory and postinit/components/inventory_replica,
     -- this is hard coded there
     -- inst.components.inventory:SetNumSlots(12)
-
-    inst.AnimState:Hide("HAIR_HAT")
 
     inst:ListenForEvent("itemget", UpdateBonusSpeed)
     inst:ListenForEvent("itemlose", UpdateBonusSpeed)
