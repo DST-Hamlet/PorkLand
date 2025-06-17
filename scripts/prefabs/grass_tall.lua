@@ -96,16 +96,16 @@ local function OnHack(inst, worker, hacksleft)
             inst.components.childspawner:ReleaseAllChildren(worker)
             RemoveWeevoleden(inst)
         end
-        inst.components.growable:SetStage(1)
-        inst.AnimState:PlayAnimation("fall")
-        inst.AnimState:PushAnimation("picked", true)
-        inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/vine_drop")
 
         if not from_shears then
             inst.components.lootdropper:SpawnLootPrefab(inst.components.storageloot:TakeRandomLoot())
         end
 
         inst.components.storageloot:DestroyLoots()
+        inst.components.growable:SetStage(1)
+        inst.AnimState:PlayAnimation("fall")
+        inst.AnimState:PushAnimation("picked", true)
+        inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/vine_drop")
     else
         inst.AnimState:PlayAnimation("chop")
         inst.AnimState:PushAnimation("idle", true)
@@ -122,6 +122,7 @@ local GROWTH_STAGES = {
         time = function() return TUNING.VINE_REGROW_TIME end,
         fn = function(inst)
             inst.AnimState:PlayAnimation("picked", true)
+            inst.components.storageloot:DestroyLoots()
             inst.components.hackable:SetWorkable(false)
             inst.components.shearable:SetCanShear(false)
             inst.components.childspawner:StopSpawning()
