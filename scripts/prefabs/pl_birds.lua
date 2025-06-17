@@ -157,6 +157,10 @@ local function MakeBird(name, sounds, feather_name, isreplace)
             inst:SetPrefabNameOverride(name)
         end
 
+        if name == "kingfisher" then
+            MakeInventoryFloatable(inst, nil, .07)
+        end
+
         MakeFeedableSmallLivestockPristine(inst)
 
         inst.entity:SetPristine()
@@ -192,7 +196,9 @@ local function MakeBird(name, sounds, feather_name, isreplace)
         inst.components.inventoryitem.nobounce = true
         inst.components.inventoryitem.canbepickedup = false
         inst.components.inventoryitem.canbepickedupalive = true
-        inst.components.inventoryitem:SetSinks(true)
+        if name ~= "kingfisher" then
+            inst.components.inventoryitem:SetSinks(true)
+        end
         if isreplace then
             inst.components.inventoryitem:ChangeImageName(name)
         end
