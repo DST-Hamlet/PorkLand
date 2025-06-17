@@ -208,8 +208,18 @@ function EntityScript:GetCurrentBank()
 end
 
 local _GetIsWet = EntityScript.GetIsWet
-function EntityScript:GetIsWet(...)
-    return self:HasTag("temporary_wet") or (_GetIsWet(self, ...) and not self:GetIsInInterior())
+function EntityScript:GetIsWet(...) -- 危险的写法
+    local ret
+    if self:GetIsInInterior() then
+        local _iswet = TheWorld.state.iswet
+        TheWorld.state.iswet = false
+        ret = _GetIsWet(self, ...)
+        TheWorld.state.iswet = _iswet
+    else
+        ret = _GetIsWet(self, ...)
+    end
+
+    return ret or self:HasTag("temporary_wet")
 end
 
 function EntityScript:GetShouldBrainStopped()

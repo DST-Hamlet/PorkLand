@@ -34,6 +34,10 @@ local SPECIAL_LOOT_TABLE =
     ["waterdrop"] = 
     {
         lifeplant = true,
+    },
+    ["boat_cork_item"] = 
+    {
+        boat_cork = true,
     }
 }
 
