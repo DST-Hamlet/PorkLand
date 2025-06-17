@@ -2965,12 +2965,22 @@ AddStategraphPostInit("wilson", function(sg)
         end
     end
 
+    local _start_sitting_onenter = sg.states["start_sitting"].onenter
+    sg.states["start_sitting"].onenter = function(inst, chair, ...)
+        _start_sitting_onenter(inst, chair, ...)
+        if chair and chair:HasTag("limited_chair") then
+            if chair:HasTag("rotatableobject") then
+                inst.Transform:SetPredictedTwoFaced()
+            end
+        end
+    end
+
     local _sit_jumpon_onenter = sg.states["sit_jumpon"].onenter
     sg.states["sit_jumpon"].onenter = function(inst, chair, ...)
         _sit_jumpon_onenter(inst, chair, ...)
         if chair and chair:HasTag("limited_chair") then
             if chair:HasTag("rotatableobject") then
-                inst.Transform:SetPredictedNoFaced()
+                inst.Transform:SetTwoFaced()
             end
         end
     end

@@ -1133,7 +1133,7 @@ AddStategraphPostInit("wilson_client", function(sg)
         local chair = buffaction ~= nil and buffaction.target or nil
         if chair and chair:HasTag("limited_chair") then
             if chair:HasTag("rotatableobject") then
-                inst.Transform:SetPredictedNoFaced()
+                inst.Transform:SetPredictedTwoFaced()
             end
         end
     end
