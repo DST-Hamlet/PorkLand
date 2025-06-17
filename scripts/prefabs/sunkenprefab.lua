@@ -133,7 +133,7 @@ local function SunkenVisualfn()
     inst.AnimState:SetFinalOffset(FINALOFFSET_MIN)
     inst.AnimState:SetMultColour(0.0, 0.0, 0.0, 1)
     inst.AnimState:SetBank("sunken_visual_slot")
-    inst.AnimState:SetBuild("visual_slot")
+    inst.AnimState:SetBuild("sunken_visual_slot")
     inst.AnimState:PlayAnimation("idle")
 
     inst.persists = false

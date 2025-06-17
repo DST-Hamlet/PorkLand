@@ -182,6 +182,8 @@ local function spawner_fn()
     inst.entity:AddTransform()
     inst.entity:AddNetwork()
 
+    inst:AddTag("NOBLOCK")
+
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then

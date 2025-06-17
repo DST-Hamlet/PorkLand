@@ -43,8 +43,14 @@ SetSharedLootTable("teatree_tall",
 
 SetSharedLootTable("teatree_burnt",
 {
+    {"charcoal", 1.0},
+})
+
+SetSharedLootTable("teatree_stump",
+{
     {"log", 1.0},
 })
+
 
 local function MakeAnims(stage)
     return {
@@ -520,7 +526,6 @@ local function MakeTeaTree(name, stage, state)
         inst:AddTag("workable")
         inst:AddTag("cattoyairborne")
 
-        inst.stage = stage == 0 and math.random(1, 3) or stage
         local color = 0.7 + math.random() * 0.3
 
         inst.AnimState:SetBank("tree_leaf")
@@ -530,7 +535,7 @@ local function MakeTeaTree(name, stage, state)
 
         inst:SetPrefabName("teatree")
 
-        MakeTreeClientFallAnim(inst, anims)
+        MakeTreeClientFallAnim(inst, anims, stage)
 
         inst.entity:SetPristine()
 
@@ -538,6 +543,8 @@ local function MakeTeaTree(name, stage, state)
             return inst
         end
 
+        inst.stage = stage == 0 and math.random(1, 3) or stage
+        
         -- The inventory is separate from the loot in the regard that it stores items that entities deposit in the tree.
         -- An example of this is the squirrel (ie. piko), which steals items off the ground and takes them back to the tree.
         inst:AddComponent("inventory")

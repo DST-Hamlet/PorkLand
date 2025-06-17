@@ -311,7 +311,7 @@ params.trusty_shooter =
     excludefromcrafting = true,
 }
 function params.trusty_shooter.itemtestfn(container, item, slot)
-    return container.inst:CanTakeAmmo(item)
+    return container.inst:CanTakeAmmo(item) and not (item:HasTag("irreplaceable") or item:HasTag("_container"))
 end
 params.wheeler_tracker =
 {
@@ -329,5 +329,5 @@ params.wheeler_tracker =
     excludefromcrafting = true,
 }
 function params.wheeler_tracker.itemtestfn(container, item, slot)
-    return true
+    return not (item:HasTag("irreplaceable") or item:HasTag("_container"))
 end

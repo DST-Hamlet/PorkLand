@@ -39,9 +39,6 @@ local states_north =
             EventHandler("animover", function(inst)
                 inst.sg:GoToState("idle_north")
             end),
-            EventHandler("entitysleep", function(inst)
-				inst.sg:GoToState("idle")
-			end),
         }
     },
 
@@ -63,12 +60,8 @@ local states_north =
                 inst.components.door:UpdateDoorVis()
                 inst.sg:GoToState("idle")
             end),
-            EventHandler("entitysleep", function(inst)
-                inst.components.door:UpdateDoorVis()
-				inst.sg:GoToState("idle")
-			end),
         }
     },
 }
 
-return StateGraph("anthilldoor_north", states_north, events, "idle", actionhandlers)
+return StateGraph("anthilldoor", states_north, events, "idle", actionhandlers)

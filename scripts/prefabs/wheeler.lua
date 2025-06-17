@@ -25,9 +25,14 @@ local function AllowDodge(inst)
         and not inst.replica.sailor:IsSailing() and not inst.replica.rider:IsRiding()
 end
 
+local function AllowDodge_Client(inst)
+    return AllowDodge(inst)
+        or (inst._candodge:value() == true)
+end
+
 local function GetPointSpecialActions(inst, pos, useitem, right)
-    if right then
-        if AllowDodge(inst) then
+    if right and useitem == nil then
+        if inst:AllowDodge() then
             return { ACTIONS.DODGE }
         end
     end
@@ -56,6 +61,14 @@ local common_postinit = function(inst)
     inst:ListenForEvent("setowner", OnSetOwner)
 
     inst.last_dodge_time = GetTime()
+    inst._candodge = net_bool(inst.GUID, "_candodge")
+    inst._candodge:set(true)
+    
+    if TheWorld.ismastersim then
+        inst.AllowDodge = AllowDodge
+    else
+        inst.AllowDodge = AllowDodge_Client
+    end
 end
 
 local master_postinit = function(inst)

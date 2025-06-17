@@ -624,7 +624,7 @@ local function NormalRetargetFn(inst)
             return (guy:HasTag("monster") or guy:HasTag("bandit") or angry_at_guy) and
                        guy.components.health and not guy.components.health:IsDead() and
                        inst.components.combat:CanTarget(guy) and
-                       not (inst.components.follower.leader ~= nil and guy:HasTag("abigail"))
+                       not (inst.components.follower.leader ~= nil and guy.components.follower ~= nil and (inst.components.follower.leader == guy.components.follower.leader))
         end
     end)
 end

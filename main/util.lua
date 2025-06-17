@@ -455,3 +455,20 @@ function TagToDirect(inst)
         return 0
     end
 end
+
+-- Calculate the offset of the interior coordinates,
+-- and convert them into estimated world position offset,
+-- this is mainly used for simulating positions on the minimap and displaying directions
+--
+-- TODO: Combine this with the one inside `postinit/widgets/mapwidget.lua`
+-- and also use it for the `wheeler_tracker`
+function CalculateInteriorOffset(current_center, target_coord_x, target_coord_y)
+    -- Convert the grid coordinates to positions
+    -- as a compromise, we don't know the exact position,
+    -- just use the current room's size as an estimate
+    local current_x, current_y = current_center:GetCoordinates()
+    local width, depth = current_center:GetSize()
+    local offset_x = (target_coord_x - current_x) * (width + INTERIOR_SPACEING * 2)
+    local offset_y = (target_coord_y - current_y) * (depth + INTERIOR_SPACEING * 2)
+    return Vector3(-offset_y, 0, offset_x)
+end

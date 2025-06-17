@@ -54,7 +54,7 @@ end
 local events =
 {
     CommonHandlers.OnAttack(),
-    CommonHandlers.OnAttacked(),
+    CommonHandlers.OnAttacked(TUNING.BOSS_HITREACT_COOLDOWN, TUNING.BOSS_MAX_STUN_LOCKS),
     CommonHandlers.OnDeath(),
     CommonHandlers.OnLocomote(false, true),
 
@@ -93,6 +93,25 @@ local states =
             EventHandler("animover", function(inst, data)
                 inst.sg:GoToState("idle")
             end)
+        },
+    },
+
+    State{
+        name = "hit",
+        tags = {"busy"}, -- hit tag用于控制生物在hit状态下也可以进行反击，由于先驱有硬直保护，因此不需要这个tag
+
+        onenter = function(inst, cb)
+            if inst.components.locomotor ~= nil then
+                inst.components.locomotor:StopMoving()
+            end
+            inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/ancient_herald/hit")
+            inst.AnimState:PlayAnimation("hit")
+            CommonHandlers.UpdateHitRecoveryDelay(inst)
+        end,
+
+        events =
+        {
+            EventHandler("animqueueover", function(inst) inst.sg:GoToState("idle") end),
         },
     },
 
@@ -180,11 +199,6 @@ CommonStates.AddCombatStates(states, {
             ring.Transform:SetScale(1.1, 1.1, 1.1)
             DoDamage(inst, 6)
         end)
-    },
-
-    hittimeline =
-    {
-        TimeEvent(0 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/ancient_herald/hit") end),
     },
 
     deathtimeline =

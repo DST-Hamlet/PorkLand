@@ -250,6 +250,7 @@ local states =
             inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/antqueen/hit")
             inst.AnimState:PlayAnimation("hit")
             inst.Physics:Stop()
+            CommonHandlers.UpdateHitRecoveryDelay(inst)
         end,
 
         events =

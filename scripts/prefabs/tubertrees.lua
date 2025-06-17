@@ -444,7 +444,7 @@ local function MakeTree(name, build, stage, data)
 
         inst:SetPrefabName("tubertree")
 
-        MakeTreeClientFallAnim(inst, anims)
+        MakeTreeClientFallAnim(inst, anims, stage)
 
         inst.entity:SetPristine()
 

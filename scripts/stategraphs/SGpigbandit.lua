@@ -108,6 +108,7 @@ local states =
         onenter = function(inst)
             inst.SoundEmitter:PlaySound("dontstarve/pig/oink")
             inst.AnimState:PlayAnimation("hit")
+            CommonHandlers.UpdateHitRecoveryDelay(inst)
         end,
 
         timeline =

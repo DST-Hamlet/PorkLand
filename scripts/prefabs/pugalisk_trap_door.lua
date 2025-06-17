@@ -28,7 +28,6 @@ local function DoSpawnPugalisk(inst)
     pugalisk.Transform:SetPosition(x, y, z)
     pugalisk.home = TheSim:FindFirstEntityWithTag("pugalisk_fountain")
     pugalisk.sg:GoToState("emerge_taunt")
-    pugalisk.wantstotaunt = false
     inst.doingpugaliskspawn = nil
 end
 

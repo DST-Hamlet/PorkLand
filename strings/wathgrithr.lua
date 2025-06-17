@@ -31,6 +31,8 @@ return {
     ANNOUNCE_MYSTERY_FOUND = "I have discovered something!",
     ANNOUNCE_MYSTERY_NOREWARD = "I am unaccustomed to disappointment!!",
     ANNOUNCE_NOTHING_FOUND = "This territory does not contain that which I seek.",
+    --ANNOUNCE_TRACKER_FAR = "",
+    --ANNOUNCE_TRACKER_FOUND = "",
     ANNOUNCE_PICKPOOP = {
         "Alas!",
         "Alack!",

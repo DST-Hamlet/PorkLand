@@ -406,6 +406,10 @@ local states =
             inst.Physics:Stop()
 
             inst.components.combat.laststartattacktime = 0
+
+            if inst:HasTag("guard") then
+                CommonHandlers.UpdateHitRecoveryDelay(inst)
+            end
         end,
 
         timeline=

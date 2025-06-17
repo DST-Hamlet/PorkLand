@@ -151,7 +151,11 @@ local actionhandlers = {
     ActionHandler(ACTIONS.BUILD_ROOM, "doshortaction"),
     ActionHandler(ACTIONS.DEMOLISH_ROOM, "doshortaction"),
     ActionHandler(ACTIONS.THROW, "throw"),
-    ActionHandler(ACTIONS.DODGE, "dodge"),
+    ActionHandler(ACTIONS.DODGE, function(inst)
+        if inst.AllowDodge and inst:AllowDodge() then
+            return "dodge"
+        end
+    end),
 }
 
 local eventhandlers = {
@@ -2643,6 +2647,18 @@ local states = {
             inst.CanBeHit = function() return false end
 
             inst.last_dodge_time = GetTime()
+
+            if inst._candodge then
+                inst._candodge:set(false)
+                if inst.candodgetask then
+                    inst.candodgetask:Cancel()
+                    inst.candodgetask = nil
+                end
+                inst.candodgetask = inst:DoTaskInTime(TUNING.WHEELER_DODGE_COOLDOWN, function() 
+                    inst.candodgetask = nil
+                    inst._candodge:set(true) 
+                end)
+            end
         end,
 
         timeline=

@@ -24,6 +24,8 @@ return {
     ANNOUNCE_MYSTERY_FOUND = "There's something down here.",
     ANNOUNCE_MYSTERY_NOREWARD = "I'm pretty sure there's nothing here.",
     ANNOUNCE_NOTHING_FOUND = "I think it's beyond its limits.",
+    --ANNOUNCE_TRACKER_FAR = "",
+    --ANNOUNCE_TRACKER_FOUND = "",
     ANNOUNCE_PICKPOOP = {
         "Alas!",
         "So dirty!",
