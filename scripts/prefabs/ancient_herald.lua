@@ -147,8 +147,8 @@ local function fn()
 
     inst:AddComponent("lootdropper")
     -- for wheeler_tracker
-    -- inst.components.lootdropper:AddExternalLoot("ancient_remnant")
-    -- inst.components.lootdropper:AddExternalLoot("nightmarefuel")
+    inst.components.lootdropper:AddChanceLoot("ancient_remnant", 1)
+    inst.components.lootdropper:AddChanceLoot("nightmarefuel", 1)
 
     inst:AddComponent("inspectable")
 
