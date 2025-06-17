@@ -244,7 +244,6 @@ local tuning = {
     SNAKE_JUNGLETREE_POISON_CHANCE = 0.25, -- chance of a poison snake
     SNAKE_JUNGLETREE_AMOUNT_TALL = 2, -- num of times to try and spawn a snake from a tall tree
     SNAKE_JUNGLETREE_AMOUNT_NORMAL = 1, -- num of times to try and spawn a snake from a normal tree
-    SNAKE_JUNGLETREE_AMOUNT_SHORT = 1, -- num of times to try and spawn a snake from a small tree
     SNAKEDEN_MAX_SNAKES = 3,
     SNAKEDEN_CHECK_DIST = 20,
     SNAKEDEN_TRAP_DIST = 2,
