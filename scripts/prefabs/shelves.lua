@@ -267,6 +267,10 @@ local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, on_r
 
         inst.CanMouseThrough = CanMouseThrough
 
+        if name:find("queen") then
+            inst.name = STRINGS.NAMES.ROYAL_GALLERY
+        end
+
         inst.entity:SetPristine()
 
         if not TheWorld.ismastersim then
@@ -367,6 +371,8 @@ local function MakeLock(inst)
     inst.components.lock:SetOnUnlockedFn(OnUnlock)
     inst.components.lock.islocked = false
     inst.components.lock:SetLocked(true)
+
+    inst.components.inspectable.nameoverride = "royal_gallery"
 end
 
 return MakeShelf("wood", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),

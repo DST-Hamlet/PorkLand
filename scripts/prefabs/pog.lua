@@ -117,6 +117,17 @@ local function OnAporkalypse(inst, isaporkalypse)
     end
 end
 
+local function GetStatus(inst)
+    if TheWorld.state.isaporkalypse then
+        return "APORKALYPSE"
+    elseif inst.components.sleeper:IsAsleep() then
+        return "SLEEPING"
+    elseif inst.components.follower.leader then
+        return "FOLLOWER"
+    end
+end
+
+
 local brain = require("brains/pogbrain")
 
 local function fn()
@@ -173,6 +184,7 @@ local function fn()
     inst.components.herdmember:SetHerdPrefab("pogherd")
 
     inst:AddComponent("inspectable")
+    inst.components.inspectable.getstatus = GetStatus
 
     inst:AddComponent("inventory")
 
