@@ -121,6 +121,18 @@ local function PushMusic(inst)
     end
 end
 
+local function OnMixerDirty(inst, data)
+    if inst.mixer:value() then
+        TheMixer:PushMix("boom")
+    else
+        TheMixer:PopMix("boom")
+    end
+end
+
+local function OnRemoveEntity_Client(inst)
+    TheMixer:PopMix("boom")
+end
+
 local brain = require("brains/ancienthulkbrain")
 
 local function fn()
@@ -167,6 +179,8 @@ local function fn()
     inst:AddTag("noember")
     inst:AddTag("soulless")
 
+    inst.mixer = net_bool(inst.GUID, "antqueen.mixer", "mixerdirty")
+
     inst.entity:SetPristine()
 
     if not TheNet:IsDedicated() then
@@ -175,6 +189,10 @@ local function fn()
     end
 
     if not TheWorld.ismastersim then
+        inst:ListenForEvent("mixerdirty", OnMixerDirty)
+
+        inst.OnRemoveEntity = OnRemoveEntity_Client
+
         return inst
     end
 
@@ -221,6 +239,8 @@ local function fn()
 
     inst:SetBrain(brain)
     inst:SetStateGraph("SGancient_hulk")
+
+    inst.OnRemoveEntity = OnRemoveEntity_Client
 
     inst.orbs = 2
 

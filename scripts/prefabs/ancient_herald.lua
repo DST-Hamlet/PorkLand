@@ -65,6 +65,18 @@ local function PushMusic(inst)
     end
 end
 
+local function OnMixerDirty(inst, data)
+    if inst.mixer:value() then
+        TheMixer:PushMix("shadow")
+    else
+        TheMixer:PopMix("shadow")
+    end
+end
+
+local function OnRemoveEntity_Client(inst)
+    TheMixer:PopMix("shadow")
+end
+
 local brain = require("brains/ancientheraldbrain")
 
 local function fn()
@@ -99,6 +111,8 @@ local function fn()
     inst:AddTag("ancient_herald")
     inst:AddTag("shadow_aligned")
 
+    inst.mixer = net_bool(inst.GUID, "antqueen.mixer", "mixerdirty")
+
     inst.entity:SetPristine()
 
     if not TheNet:IsDedicated() then
@@ -107,6 +121,10 @@ local function fn()
     end
 
     if not TheWorld.ismastersim then
+        inst:ListenForEvent("mixerdirty", OnMixerDirty)
+
+        inst.OnRemoveEntity = OnRemoveEntity_Client
+
         return inst
     end
 
@@ -143,6 +161,7 @@ local function fn()
 
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
+    inst.OnRemoveEntity = OnRemoveEntity_Client
 
     inst:ListenForEvent("attacked", OnAttacked)
     inst:WatchWorldState("isaporkalypse", OnIsAporkalypse)
