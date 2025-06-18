@@ -70,6 +70,7 @@ function PlayerController:OnLeftClick(down, ...)
         -- Intercept if we're casting spell commands
         and (self.casting_action_override_spell or (self:IsAOETargeting() and self.reticule.inst.components.spellcommand))
         and not TheInput:GetHUDEntityUnderMouse()
+        and not (self.placer_recipe and self.placer)
         and self:IsEnabled()
     then
         -- SPELL_COMMAND is a left mouse action while CASTAOE is a right mouse action
