@@ -544,7 +544,7 @@ local function MakeTeaTree(name, stage, state)
         end
 
         inst.stage = stage == 0 and math.random(1, 3) or stage
-        
+
         -- The inventory is separate from the loot in the regard that it stores items that entities deposit in the tree.
         -- An example of this is the squirrel (ie. piko), which steals items off the ground and takes them back to the tree.
         inst:AddComponent("inventory")

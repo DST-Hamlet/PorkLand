@@ -283,7 +283,7 @@ local function ClientPerdictPosition(inst, dt)
         else
             ease = math.max(ease - inst.count_dt,0)
         end
-    
+
         inst._speed:set_local(ease)
         inst._hit:set_local(hit - inst.count_dt * 5)
 
@@ -367,7 +367,7 @@ local function bodyfn()
             inst.count_dt = inst.count_dt + dt
         end)
         inst.components.updatelooper:AddOnWallUpdateFn(function(inst, dt)
-            inst:RunOnPostUpdate(function() ClientPerdictPosition(inst, dt) end) 
+            inst:RunOnPostUpdate(function() ClientPerdictPosition(inst, dt) end)
         end)
         return inst
     end

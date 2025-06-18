@@ -415,7 +415,7 @@ local function OnIgnite(inst)
 
                 critter.sg:GoToState("fall")
                 pt.y = pt.y + (2 * inst.stage)
-            
+
                 critter.Transform:SetPosition(pt:Get())
             end
         end

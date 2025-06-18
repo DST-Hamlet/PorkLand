@@ -2631,8 +2631,7 @@ local states = {
         },
     },
 
-    State
-    {
+    State{
         name = "dodge",
         tags = {"busy", "evade", "no_stun", "canrotate"},
 
@@ -2663,19 +2662,19 @@ local states = {
                     inst.candodgetask:Cancel()
                     inst.candodgetask = nil
                 end
-                inst.candodgetask = inst:DoTaskInTime(TUNING.WHEELER_DODGE_COOLDOWN, function() 
+                inst.candodgetask = inst:DoTaskInTime(TUNING.WHEELER_DODGE_COOLDOWN, function()
                     inst.candodgetask = nil
-                    inst._candodge:set(true) 
+                    inst._candodge:set(true)
                 end)
             end
         end,
 
         timeline=
         {
-            TimeEvent(3*FRAMES, function(inst)
+            TimeEvent(3 * FRAMES, function(inst)
                 inst.Physics:SetMotorVelOverride(14, 0, 0)
             end),
-            TimeEvent(8*FRAMES, function(inst)
+            TimeEvent(8 * FRAMES, function(inst)
                 inst.Physics:SetMotorVelOverride(8, 0, 0)
                 inst.AnimState:PlayAnimation("slide_pst")
             end),
@@ -2697,8 +2696,7 @@ local states = {
         end,
     },
 
-    State
-    {
+    State{
         name = "dodge_pst",
         tags = {"evade", "no_stun"},
 

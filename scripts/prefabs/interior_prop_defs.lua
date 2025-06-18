@@ -1566,11 +1566,11 @@ PROP_DEFS.pig_ruins_common = function(depth, width, exits_open, exits_vined, roo
                 end
                 addprops[#addprops + 1] = { name = "pig_ruins_torch_sidewall"..room.color, x_offset =  depth/3-0.5, z_offset =  -width/2 }
 
-                addprops[#addprops + 1] = { name = "pig_ruins_torch_sidewall"..room.color, x_offset = -depth/3-0.5, z_offset =  width/2, flip=true }
+                addprops[#addprops + 1] = { name = "pig_ruins_torch_sidewall"..room.color, x_offset = -depth/3-0.5, z_offset =  width/2, flip = true }
                 if exits_open.east then
-                    addprops[#addprops + 1] = { name = "pig_ruins_torch_sidewall"..room.color, x_offset = 0-0.5, z_offset =  width/2, flip=true }
+                    addprops[#addprops + 1] = { name = "pig_ruins_torch_sidewall"..room.color, x_offset = 0-0.5, z_offset =  width/2, flip = true }
                 end
-                addprops[#addprops + 1] = { name = "pig_ruins_torch_sidewall"..room.color, x_offset =  depth/3-0.5, z_offset =  width/2, flip=true }
+                addprops[#addprops + 1] = { name = "pig_ruins_torch_sidewall"..room.color, x_offset =  depth/3-0.5, z_offset =  width/2, flip = true }
             end
         end
     end
@@ -1651,9 +1651,9 @@ PROP_DEFS.pig_ruins_common = function(depth, width, exits_open, exits_vined, roo
         end
 
         local roots_left = {
-            { name = "deco_ruins_roots"..math.random(3), x_offset = -depth/2, z_offset =  -width/6 - width/12 + jostle(),flip=flip() },
-            { name = "deco_ruins_roots"..math.random(3), x_offset = -depth/2, z_offset =  -width/6 - width/12*2+ jostle(),flip=flip() },
-            { name = "deco_ruins_roots"..math.random(3), x_offset = -depth/2, z_offset =  -width/6 - width/12*3+ jostle(),flip=flip() }
+            { name = "deco_ruins_roots"..math.random(3), x_offset = -depth/2, z_offset =  -width/6 - width/12 + jostle(),flip = flip() },
+            { name = "deco_ruins_roots"..math.random(3), x_offset = -depth/2, z_offset =  -width/6 - width/12*2+ jostle(),flip = flip() },
+            { name = "deco_ruins_roots"..math.random(3), x_offset = -depth/2, z_offset =  -width/6 - width/12*3+ jostle(),flip = flip() }
         }
 
         local num = math.random(#roots_left)
@@ -1665,9 +1665,9 @@ PROP_DEFS.pig_ruins_common = function(depth, width, exits_open, exits_vined, roo
 
         if exits_open.north then
             local roots_center = {
-                { name = "deco_ruins_roots"..math.random(3), x_offset = -depth/2, z_offset =  0 + width/12+ jostle(),flip=flip() },
-                { name = "deco_ruins_roots"..math.random(3), x_offset = -depth/2, z_offset =  0 + jostle(),flip=flip() },
-                { name = "deco_ruins_roots"..math.random(3), x_offset = -depth/2, z_offset =  0 - width/12+ jostle(),flip=flip() }
+                { name = "deco_ruins_roots"..math.random(3), x_offset = -depth/2, z_offset =  0 + width/12+ jostle(),flip = flip() },
+                { name = "deco_ruins_roots"..math.random(3), x_offset = -depth/2, z_offset =  0 + jostle(),flip = flip() },
+                { name = "deco_ruins_roots"..math.random(3), x_offset = -depth/2, z_offset =  0 - width/12+ jostle(),flip = flip() }
             }
 
             local num = math.random(#roots_center)
@@ -1679,9 +1679,9 @@ PROP_DEFS.pig_ruins_common = function(depth, width, exits_open, exits_vined, roo
         end
 
         local roots_right = {
-            { name = "deco_ruins_roots"..math.random(3), x_offset = -depth/2, z_offset =  width/6 + width/12+ jostle(),flip=flip() },
-            { name = "deco_ruins_roots"..math.random(3), x_offset = -depth/2, z_offset =  width/6 + width/12*2+ jostle(),flip=flip() },
-            { name = "deco_ruins_roots"..math.random(3), x_offset = -depth/2, z_offset =  width/6 + width/12*3+ jostle(),flip=flip() }
+            { name = "deco_ruins_roots"..math.random(3), x_offset = -depth/2, z_offset =  width/6 + width/12+ jostle(),flip = flip() },
+            { name = "deco_ruins_roots"..math.random(3), x_offset = -depth/2, z_offset =  width/6 + width/12*2+ jostle(),flip = flip() },
+            { name = "deco_ruins_roots"..math.random(3), x_offset = -depth/2, z_offset =  width/6 + width/12*3+ jostle(),flip = flip() }
         }
 
         local num = math.random(#roots_right)
@@ -1879,9 +1879,9 @@ PROP_DEFS.pig_shop_weapons = function(depth, width, exterior_door_def)
         {name = "rug_fur", x_offset =  2, z_offset =  4, rotation =  90 },
         {name = "rug_catcoon", x_offset = -2, z_offset =  4, rotation =  90 },
 
-        {name = "deco_weapon_beam1", x_offset = -5,   z_offset =  width/2, flip=true },
+        {name = "deco_weapon_beam1", x_offset = -5,   z_offset =  width/2, flip = true },
         {name = "deco_weapon_beam1", x_offset = -5,   z_offset = -width/2 },
-        {name = "deco_weapon_beam2", x_offset =  4.7, z_offset =  width/2, flip=true },
+        {name = "deco_weapon_beam2", x_offset =  4.7, z_offset =  width/2, flip = true },
         {name = "deco_weapon_beam2", x_offset =  4.7, z_offset = -width/2 },
 
         {name = "window_square_weapons", x_offset = 1,  z_offset = -width/2  },
@@ -1889,7 +1889,7 @@ PROP_DEFS.pig_shop_weapons = function(depth, width, exterior_door_def)
         {name = "swinging_light_basic_metal", x_offset = -6, z_offset =  3 },
         {name = "swinging_light_basic_metal", x_offset = 3,  z_offset =  6.5 },
 
-        {name = "deco_antiquities_beefalo_side", x_offset = -2, z_offset = width/2,  flip=true },
+        {name = "deco_antiquities_beefalo_side", x_offset = -2, z_offset = width/2,  flip = true },
         {name = "closed_chest", x_offset = 4.5, z_offset = (-width/2)+1.5},
         {name = "deco_displaycase", x_offset = -4,  z_offset = -5.5},
         {name = "deco_displaycase", x_offset = -4,  z_offset = -4},
@@ -1926,16 +1926,16 @@ PROP_DEFS.pig_shop_arcane = function (depth, width, exterior_door_def)
         { name = "rug_round",  x_offset = 0, z_offset = 0},
         { name = "containers", x_offset = width/2 - 3, z_offset = -width/2 + 1.5},
 
-        { name = "deco_accademy_cornerbeam", x_offset =  4.7, z_offset =   width/2, flip=true },
+        { name = "deco_accademy_cornerbeam", x_offset =  4.7, z_offset =   width/2, flip = true },
         { name = "deco_accademy_cornerbeam", x_offset =  4.7, z_offset =  -width/2 },
-        { name = "deco_accademy_beam",       x_offset = -5,   z_offset =   width/2, flip=true },
+        { name = "deco_accademy_beam",       x_offset = -5,   z_offset =   width/2, flip = true },
         { name = "deco_accademy_beam",       x_offset = -5,   z_offset =  -width/2 },
         { name = "swinging_light_rope_1",    x_offset = -3,   z_offset =   width/6 },
 
         { name = "deco_antiquities_screamcatcher", x_offset =-2,    z_offset =  -6.5 },
         { name = "deco_antiquities_windchime",     x_offset = -2,   z_offset =   6.5 },
 
-        { name = "deco_antiquities_beefalo_side",  x_offset = 0,    z_offset =  width/2, flip=true },
+        { name = "deco_antiquities_beefalo_side",  x_offset = 0,    z_offset =  width/2, flip = true },
 
         { name = "window_round_arcane",            x_offset = 0,    z_offset = -width/2  },
         { name = "window_round_light",             x_offset = 0,    z_offset = -width/2  },
@@ -1952,7 +1952,7 @@ end
 PROP_DEFS.pig_shop_florist = function (depth, width, exterior_door_def)
     return {
         { name = "prop_door", x_offset = 5, z_offset = 0,
-            animdata = {bank ="pig_shop_doormats", build ="pig_shop_doormats", anim="idle_florist", background=true},
+            animdata = {bank ="pig_shop_doormats", build ="pig_shop_doormats", anim="idle_florist", background = true},
             is_exit = true,
             my_door_id = exterior_door_def.target_door_id, target_door_id = exterior_door_def.my_door_id,
             addtags = {"guard_entrance", "shop_music"},
@@ -1996,7 +1996,7 @@ PROP_DEFS.pig_shop_hoofspa = function (depth, width, exterior_door_def)
     return {
         {
             name = "prop_door", x_offset = 5,
-            z_offset = 0, animdata = {bank ="pig_shop_doormats", build ="pig_shop_doormats", anim="idle_hoofspa", background=true},
+            z_offset = 0, animdata = {bank ="pig_shop_doormats", build ="pig_shop_doormats", anim="idle_hoofspa", background = true},
             is_exit = true,
             my_door_id = exterior_door_def.target_door_id, target_door_id = exterior_door_def.my_door_id,
             addtags = {"guard_entrance", "shop_music"},
@@ -2052,9 +2052,9 @@ PROP_DEFS.pig_shop_general = function (depth, width, exterior_door_def)
         { name = "rug_hedgehog", x_offset = -0.2, z_offset =  4, rotation = 90},
 
         { name = "deco_roomglow",             x_offset =  0, z_offset =  0 },
-        { name = "deco_wood_cornerbeam",      x_offset = -5, z_offset = width/2, flip=true },
+        { name = "deco_wood_cornerbeam",      x_offset = -5, z_offset = width/2, flip = true },
         { name = "deco_wood_cornerbeam",      x_offset = -5, z_offset = -width/2 },
-        { name = "deco_wood_cornerbeam",      x_offset =  5, z_offset =  width/2, flip=true },
+        { name = "deco_wood_cornerbeam",      x_offset =  5, z_offset =  width/2, flip = true },
         { name = "deco_wood_cornerbeam",      x_offset =  5, z_offset = -width/2,},
         { name = "deco_general_hangingpans",  x_offset =  0, z_offset = -width/2+2},
         { name = "deco_general_hangingscale", x_offset = -2, z_offset =  6 },
@@ -2086,7 +2086,7 @@ PROP_DEFS.pig_shop_produce = function (depth, width, exterior_door_def)
     return {
         {
             name = "prop_door",
-            x_offset = 5, z_offset = 0, animdata = {bank ="pig_shop_doormats", build ="pig_shop_doormats", anim="idle_produce", background=true},
+            x_offset = 5, z_offset = 0, animdata = {bank ="pig_shop_doormats", build ="pig_shop_doormats", anim="idle_produce", background = true},
             is_exit = true,
             my_door_id = exterior_door_def.target_door_id, target_door_id = exterior_door_def.my_door_id,
             addtags = {"guard_entrance", "shop_music"},
@@ -2132,7 +2132,7 @@ end
 
 PROP_DEFS.pig_shop_deli = function (depth, width, exterior_door_def)
     return {
-        { name = "prop_door", x_offset = 5, z_offset = 0, animdata = {bank ="pig_shop_doormats", build ="pig_shop_doormats", anim="idle_deli", background=true},
+        { name = "prop_door", x_offset = 5, z_offset = 0, animdata = {bank ="pig_shop_doormats", build ="pig_shop_doormats", anim="idle_deli", background = true},
         is_exit = true,
             my_door_id = exterior_door_def.target_door_id, target_door_id = exterior_door_def.my_door_id,
             addtags = {"guard_entrance", "shop_music"},
@@ -2171,7 +2171,7 @@ end
 
 PROP_DEFS.pig_shop_cityhall = function (depth, width, exterior_door_def)
     return {
-        { name = "prop_door", x_offset = 5, z_offset = 0, animdata = {bank ="pig_shop_doormats", build ="pig_shop_doormats", anim="idle_flag", background=true},
+        { name = "prop_door", x_offset = 5, z_offset = 0, animdata = {bank ="pig_shop_doormats", build ="pig_shop_doormats", anim="idle_flag", background = true},
             is_exit = true,
             my_door_id = exterior_door_def.target_door_id, target_door_id = exterior_door_def.my_door_id,
             addtags={"guard_entrance"},
@@ -2182,15 +2182,15 @@ PROP_DEFS.pig_shop_cityhall = function (depth, width, exterior_door_def)
 
         { name = "deco_cityhall_desk",       x_offset = -1.3,     z_offset =  0 },
         { name = "deco_cityhall_bookshelf",  x_offset = -depth/2, z_offset =  width/3 },
-        { name = "deco_cityhall_bookshelf",  x_offset = -depth/2, z_offset = -width/3, flip=true  },
+        { name = "deco_cityhall_bookshelf",  x_offset = -depth/2, z_offset = -width/3, flip = true  },
 
-        { name = "deco_cityhall_cornerbeam", x_offset = -4.99, z_offset =  width/2, flip=true },
+        { name = "deco_cityhall_cornerbeam", x_offset = -4.99, z_offset =  width/2, flip = true },
         { name = "deco_cityhall_cornerbeam", x_offset = -4.99, z_offset = -width/2 },
-        { name = "deco_cityhall_pillar",     x_offset =  4.7,  z_offset =  width/2, flip=true },
+        { name = "deco_cityhall_pillar",     x_offset =  4.7,  z_offset =  width/2, flip = true },
         { name = "deco_cityhall_pillar",     x_offset =  4.7,  z_offset = -width/2 },
 
-        { name = "deco_cityhall_picture1",   x_offset =  1.3,  z_offset =  width/2, flip=true },
-        { name = "deco_cityhall_picture2",   x_offset = -1.3,  z_offset =  width/2, flip=true },
+        { name = "deco_cityhall_picture1",   x_offset =  1.3,  z_offset =  width/2, flip = true },
+        { name = "deco_cityhall_picture2",   x_offset = -1.3,  z_offset =  width/2, flip = true },
 
         { name = "rug_hoofprint",            x_offset =  0,    z_offset =  0,    rotation = 90  },
 
@@ -2214,7 +2214,7 @@ end
 
 PROP_DEFS.pig_shop_cityhall_player = function (depth, width, exterior_door_def)
     return {
-        { name = "prop_door", x_offset = 5, z_offset = 0, animdata = {bank ="pig_shop_doormats", build ="pig_shop_doormats", anim="idle_flag", background=true},
+        { name = "prop_door", x_offset = 5, z_offset = 0, animdata = {bank ="pig_shop_doormats", build ="pig_shop_doormats", anim="idle_flag", background = true},
         is_exit = true,
             my_door_id = exterior_door_def.target_door_id, target_door_id = exterior_door_def.my_door_id, addtags={"guard_entrance"}, usesounds={EXIT_SHOP_SOUND} },
 
@@ -2222,15 +2222,15 @@ PROP_DEFS.pig_shop_cityhall_player = function (depth, width, exterior_door_def)
 
         { name = "deco_cityhall_desk",       x_offset = -1.3,     z_offset =  0 },
         { name = "deco_cityhall_bookshelf",  x_offset = -depth/2, z_offset =  width/3 },
-        { name = "deco_cityhall_bookshelf",  x_offset = -depth/2, z_offset = -width/3, flip=true  },
+        { name = "deco_cityhall_bookshelf",  x_offset = -depth/2, z_offset = -width/3, flip = true  },
 
-        { name = "deco_cityhall_cornerbeam", x_offset = -4.99, z_offset =  width/2, flip=true },
+        { name = "deco_cityhall_cornerbeam", x_offset = -4.99, z_offset =  width/2, flip = true },
         { name = "deco_cityhall_cornerbeam", x_offset = -4.99, z_offset = -width/2 },
-        { name = "deco_cityhall_pillar",     x_offset =  4.7,  z_offset =  width/2, flip=true },
+        { name = "deco_cityhall_pillar",     x_offset =  4.7,  z_offset =  width/2, flip = true },
         { name = "deco_cityhall_pillar",     x_offset =  4.7,  z_offset = -width/2 },
 
-        { name = "deco_cityhall_picture1",   x_offset =  1.3,  z_offset =  width/2, flip=true },
-        { name = "deco_cityhall_picture2",   x_offset = -1.3,  z_offset =  width/2, flip=true },
+        { name = "deco_cityhall_picture1",   x_offset =  1.3,  z_offset =  width/2, flip = true },
+        { name = "deco_cityhall_picture2",   x_offset = -1.3,  z_offset =  width/2, flip = true },
 
         { name = "rug_hoofprint",            x_offset =  0,    z_offset =  0,    rotation = 90  },
 
@@ -2249,7 +2249,7 @@ end
 
 PROP_DEFS.pig_shop_bank = function (depth, width, exterior_door_def)
     return {
-        { name = "prop_door", x_offset = 5, z_offset = 0, animdata = {bank ="pig_shop_doormats", build ="pig_shop_doormats", anim="idle_bank", background=true},
+        { name = "prop_door", x_offset = 5, z_offset = 0, animdata = {bank ="pig_shop_doormats", build ="pig_shop_doormats", anim="idle_bank", background = true},
         is_exit = true,
             my_door_id = exterior_door_def.target_door_id, target_door_id = exterior_door_def.my_door_id,
             addtags = {"guard_entrance", "shop_music"}, usesounds={EXIT_SHOP_SOUND} },
@@ -2259,14 +2259,14 @@ PROP_DEFS.pig_shop_bank = function (depth, width, exterior_door_def)
         { name = "deco_roomglow",            x_offset = 0,  z_offset = 0 },
 
 
-        { name = "deco_bank_marble_cornerbeam", x_offset = -4.99, z_offset =  width/2, flip=true },
+        { name = "deco_bank_marble_cornerbeam", x_offset = -4.99, z_offset =  width/2, flip = true },
         { name = "deco_bank_marble_cornerbeam", x_offset = -4.99, z_offset = -width/2 },
-        { name = "deco_bank_marble_beam",     x_offset =  4.7,  z_offset =  width/2, flip=true },
+        { name = "deco_bank_marble_beam",     x_offset =  4.7,  z_offset =  width/2, flip = true },
         { name = "deco_bank_marble_beam",     x_offset =  4.7,  z_offset = -width/2 },
 
-        { name = "deco_bank_clock1_side",   x_offset = -depth/4,  z_offset =  width/2, flip=true },
-        { name = "deco_bank_clock2_side",   x_offset = 0,  z_offset =  width/2, flip=true },
-        { name = "deco_bank_clock3_side",   x_offset = depth/4,  z_offset =  width/2, flip=true },
+        { name = "deco_bank_clock1_side",   x_offset = -depth/4,  z_offset =  width/2, flip = true },
+        { name = "deco_bank_clock2_side",   x_offset = 0,  z_offset =  width/2, flip = true },
+        { name = "deco_bank_clock3_side",   x_offset = depth/4,  z_offset =  width/2, flip = true },
 
         { name = "deco_bank_clock3_side",   x_offset = -depth/4,  z_offset =  -width/2},
         { name = "deco_bank_clock1_side",   x_offset = 0,  z_offset =  -width/2 },
@@ -2321,12 +2321,12 @@ PROP_DEFS.pig_shop_tinker = function (depth, width, exterior_door_def)
 
         { name = "deco_roomglow",            x_offset = 0,  z_offset = 0 },
 
-        { name = "deco_tinker_cornerbeam", x_offset = -4.99, z_offset =  width/2, flip=true },
+        { name = "deco_tinker_cornerbeam", x_offset = -4.99, z_offset =  width/2, flip = true },
         { name = "deco_tinker_cornerbeam", x_offset = -4.99, z_offset = -width/2 },
-        { name = "deco_tinker_beam",     x_offset =  4.7,  z_offset =  width/2, flip=true },
+        { name = "deco_tinker_beam",     x_offset =  4.7,  z_offset =  width/2, flip = true },
         { name = "deco_tinker_beam",     x_offset =  4.7,  z_offset = -width/2 },
 
-        { name = "deco_bank_clock1_side",   x_offset = -depth/4,  z_offset =  width/2, flip=true },
+        { name = "deco_bank_clock1_side",   x_offset = -depth/4,  z_offset =  width/2, flip = true },
         { name = "deco_bank_clock2_side",   x_offset = 0,  z_offset =  -width/2},
 
         { name = "shop_buyer", x_offset = 1.3,  z_offset = -width/6 -1.75,     animation = "idle_metal" },
@@ -2435,8 +2435,8 @@ PROP_DEFS.pig_palace = function (depth, width, exterior_door_def, togallery_door
         { name = "wall_mirror", x_offset =  18/3, z_offset = -26/2 },
         { name = "wall_mirror", x_offset = -18/3, z_offset = -26/2 },
 
-        -- { name = "wall_mirror", x_offset =  18/3, z_offset = 26/2, rotation = 90, flip=true },
-        -- { name = "wall_mirror", x_offset = -18/3, z_offset = 26/2, rotation = 90, flip=true },
+        -- { name = "wall_mirror", x_offset =  18/3, z_offset = 26/2, rotation = 90, flip = true },
+        -- { name = "wall_mirror", x_offset = -18/3, z_offset = 26/2, rotation = 90, flip = true },
 
         { name = "deco_cityhall_picture1", x_offset =  18/3, z_offset = 26/2, rotation = 90 },
         { name = "deco_cityhall_picture2", x_offset =  -0.5, z_offset = 26/2, rotation = 90 },
@@ -2635,9 +2635,9 @@ PROP_DEFS.playerhouse_city = function(exterior_door_def)
         { name = "shelf_cinderblocks",      x_offset = -4.5, z_offset = -15/3.5, addtags={"playercrafted"} },
         { name = "deco_antiquities_wallfish", x_offset = -5,   z_offset =  3.9,    rotation = 90, addtags={"playercrafted"} },
 
-        { name = "deco_antiquities_cornerbeam",  x_offset = -5,  z_offset =  -15/2, rotation =  90, flip=true, addtags={"playercrafted"} },
+        { name = "deco_antiquities_cornerbeam",  x_offset = -5,  z_offset =  -15/2, rotation =  90, flip = true, addtags={"playercrafted"} },
         { name = "deco_antiquities_cornerbeam",  x_offset = -5,  z_offset =   15/2, rotation =  90,            addtags={"playercrafted"} },
-        { name = "deco_antiquities_cornerbeam2", x_offset = 4.7, z_offset =  -15/2, rotation =  90, flip=true, addtags={"playercrafted"} },
+        { name = "deco_antiquities_cornerbeam2", x_offset = 4.7, z_offset =  -15/2, rotation =  90, flip = true, addtags={"playercrafted"} },
         { name = "deco_antiquities_cornerbeam2", x_offset = 4.7, z_offset =   15/2, rotation =  90,            addtags={"playercrafted"} },
         { name = "swinging_light_rope_1",        x_offset = -2,  z_offset =  0,                addtags={"playercrafted"} },
 

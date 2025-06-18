@@ -282,7 +282,7 @@ function MakeTreeClientFallAnim(inst, anims, stage)
     if not TheWorld.ismastersim then
         inst:ListenForEvent("fallangledirty", function()
             inst:RunOnPostUpdate(OnTreeFallClient)
-        end) 
+        end)
     end
 end
 

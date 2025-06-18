@@ -6,7 +6,7 @@ local Fuse = Class(function(self, inst)
     self.consuming = false
     self.period = 1
     self.onfusedone = nil
-    
+
     self.inst:AddTag("fuse")
 end)
 

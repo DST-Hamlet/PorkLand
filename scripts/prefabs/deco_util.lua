@@ -634,7 +634,7 @@ local function MakeDeco(build, bank, animframe, data, name)
                 inst.Transform:SetTwoFaced()
             end
         end
-        
+
         if name_override then
             inst.name = STRINGS.NAMES[name_override:upper()]
             inst:SetPrefabNameOverride(name_override)

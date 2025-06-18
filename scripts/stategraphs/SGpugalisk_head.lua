@@ -62,8 +62,8 @@ local events =
 
     EventHandler("attacked", function(inst, data)
         if inst.components.health ~= nil and not inst.components.health:IsDead()
-            and inst.sg:HasStateTag("idle") 
-            and not inst:HasTag("tail") and data.vulnerable_segment 
+            and inst.sg:HasStateTag("idle")
+            and not inst:HasTag("tail") and data.vulnerable_segment
             and not CommonHandlers.HitRecoveryDelay(inst, TUNING.BOSS_HITREACT_COOLDOWN, TUNING.BOSS_MAX_STUN_LOCKS) then
 
             inst.sg:GoToState("hit")

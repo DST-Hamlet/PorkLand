@@ -201,7 +201,7 @@ local function WallPlaceTest(inst, distance)
         local side = ""
         local rot = -90
         if backdiff and not rightdiff and not leftdiff then
-            newpt = {x = originpt.x - depth/2, z=pt.z}
+            newpt = {x = originpt.x - depth/2, z = pt.z}
           --  anim = "_front"
             rot = -90
         elseif rightdiff and not backdiff and not frontdiff then
@@ -297,7 +297,7 @@ local function WindowPlaceTest(inst)
         local bank = ""
         local rot = -90
         if backdiff and not rightdiff and not leftdiff then
-            newpt = {x = originpt.x - depth/2, z=pt.z}
+            newpt = {x = originpt.x - depth/2, z = pt.z}
             bank = ""
             rot = -90
         elseif rightdiff and not backdiff and not frontdiff then
@@ -359,7 +359,7 @@ local function WindowWidePlaceTest(inst)
         local bank = ""
         local rot = -90
         if backdiff and not rightdiff and not leftdiff then
-            newpt = {x = originpt.x - depth/2, z=originpt.z}
+            newpt = {x = originpt.x - depth/2, z = originpt.z}
             bank = ""
             rot = -90
         elseif rightdiff and not backdiff and not frontdiff then
@@ -438,7 +438,7 @@ local function ShelfPlaceTest(inst)
         local canbuild = true
         local rot = -90
         if backdiff and not rightdiff and not leftdiff then
-            newpt = {x = originpt.x - depth/2, z=pt.z}
+            newpt = {x = originpt.x - depth/2, z = pt.z}
             rot = -90
         else
             newpt = pt

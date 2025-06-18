@@ -38,7 +38,7 @@ local states =
             end
         end,
 
-        ontimeout=function(inst)
+        ontimeout = function(inst)
             inst.sg:GoToState("peek")
         end,
 

@@ -77,7 +77,7 @@ local common_postinit = function(inst)
     inst.last_dodge_time = GetTime()
     inst._candodge = net_bool(inst.GUID, "_candodge")
     inst._candodge:set(true)
-    
+
     if TheWorld.ismastersim then
         inst.AllowDodge = AllowDodge
     else

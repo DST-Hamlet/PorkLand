@@ -214,7 +214,7 @@ local states =
 
         events =
         {
-            EventHandler("animover", function(inst)     
+            EventHandler("animover", function(inst)
                 inst.sg:GoToState("idle")
             end),
         },
@@ -241,14 +241,14 @@ local states =
             TimeEvent(32 * FRAMES, function(inst)
                 local pt = Vector3(inst.Transform:GetWorldPosition())
                 pt.y = 5
-    
+
                 inst.components.lootdropper.speed = 3
                 inst.components.lootdropper:DropLootPrefab(SpawnPrefab("ancient_remnant"), pt, math.random() * 360)
                 inst.components.lootdropper:DropLootPrefab(SpawnPrefab("ancient_remnant"), pt, math.random() * 360)
                 inst.components.lootdropper:DropLootPrefab(SpawnPrefab("ancient_remnant"), pt, math.random() * 360)
                 inst.components.lootdropper:DropLootPrefab(SpawnPrefab("ancient_remnant"), pt, math.random() * 360)
                 inst.components.lootdropper:DropLootPrefab(SpawnPrefab("ancient_remnant"), pt, math.random() * 360)
-    
+
                 inst.components.lootdropper.speed = 0
                 inst.components.lootdropper:DropLootPrefab(SpawnPrefab("nightmarefuel"), pt, math.random() * 360)
                 inst.components.lootdropper:DropLootPrefab(SpawnPrefab("nightmarefuel"), pt, math.random() * 360)

@@ -681,7 +681,7 @@ function BoatContainer:Equip(item, old_to_active)
         item.components.inventoryitem:OnPutInInventory(self.inst)
         item.components.equippable:Equip(self.inst)
         self.boatequipslots[eslot] = item
-        self.inst:PushEvent("equip", {item=item, eslot=eslot})
+        self.inst:PushEvent("equip", {item = item, eslot = eslot})
         return true
     end
 end
@@ -692,7 +692,7 @@ function BoatContainer:Unequip(equipslot)
         item.components.equippable:Unequip(self.inst)
     end
     self.boatequipslots[equipslot] = nil
-    self.inst:PushEvent("unequip", {item=item, eslot=equipslot})
+    self.inst:PushEvent("unequip", {item = item, eslot = equipslot})
     return item
 end
 

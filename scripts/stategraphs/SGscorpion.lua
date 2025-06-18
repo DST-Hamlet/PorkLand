@@ -476,7 +476,7 @@ local states =
         onupdate = function(inst)
             local x, y, z = inst.Transform:GetWorldPosition()
             inst.Physics:SetMotorVel(0, inst.sg.statemem.speed, 0)
-            
+
             if y <= 0.1 then
                 y = 0
                 inst.Physics:Stop()

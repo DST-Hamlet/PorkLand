@@ -81,7 +81,7 @@ local BlowInHUrricaneLight = {
     "seeds",
     "silk",
     "smallmeat_dried",
-    "smallmeat", 
+    "smallmeat",
     "stinger",
     "tomato_cooked",
     "tomato_seeds",

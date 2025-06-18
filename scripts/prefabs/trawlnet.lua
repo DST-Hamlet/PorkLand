@@ -509,7 +509,7 @@ local function dropped_net()
     return inst
 end
 
-function trawlnet_visual_common(inst)
+local function trawlnet_visual_common(inst)
     inst.visualchild.AnimState:SetBank("sail_visual")
     inst.visualchild.AnimState:SetBuild("swap_trawlnet")
     inst.visualchild.AnimState:PlayAnimation("idle_loop", true)

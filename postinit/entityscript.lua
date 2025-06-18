@@ -292,7 +292,7 @@ end
 function EntityScript:GetLightColour()
     local x, y, z = self.Transform:GetWorldPosition()
     local position = Vector3(x, y, z)
-    
+
     local sum_r, sum_g, sum_b = 0, 0, 0
     for _, v in ipairs(TheSim:FindEntities(x, 0, z, TUNING.ROOM_FINDENTITIES_RADIUS, nil, {"INLIMBO"})) do
         if v ~= self and v.Light and v.Light:IsEnabled() then

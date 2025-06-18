@@ -1,11 +1,11 @@
 return {
-    SKIN_NAMES = 
+    SKIN_NAMES =
     {
         wagstaff_none = "Wagstaff",
         wilba_none = "Wilba",
         wheeler_none = "Wheeler",
     },
-    CHARACTER_NAMES = 
+    CHARACTER_NAMES =
     {
         wagstaff = "Robert Wagstaff",
         wilba = "Wilba",
@@ -19,13 +19,13 @@ return {
     },
     CHARACTER_DESCRIPTIONS =
     {
-        wagstaff = "*A great inventor\n*Nearsighted\n*Delicate Stomach",   
+        wagstaff = "*A great inventor\n*Nearsighted\n*Delicate Stomach",
         wilba = "*Is royalty\n*Carries her father's legacy\n*Is afraid of the dark",
         wheeler = "*Armed with an air horn\n*Has a knick knack for finding things\n*Travels lighter than most",
     },
     CHARACTER_SURVIVABILITY =
     {
-        wagstaff = "Unknown",   
+        wagstaff = "Unknown",
         wilba = "Slim",
         wheeler = "Slim",
     },

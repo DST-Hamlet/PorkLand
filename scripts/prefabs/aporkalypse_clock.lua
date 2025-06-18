@@ -167,7 +167,7 @@ local function UpdateRotation(inst, dt)
         local angle = inst._timeuntilaporkalypse:value() / TUNING.APORKALYPSE_PERIOD_LENGTH * 360 * rotation_speeds[k]
         set_rotation(clock, angle)
     end
-    
+
     if inst.count_dt > 0 then
         local offset = - inst.count_dt - inst._rewind_mult:value() * 250 * inst.count_dt
         inst._timeuntilaporkalypse:set_local(inst._timeuntilaporkalypse:value() + offset)
@@ -207,7 +207,7 @@ local function aporkalypse_clock_fn()
         inst.count_dt = 0
         inst:AddComponent("updatelooper")
         inst.components.updatelooper:AddOnWallUpdateFn(function(inst, dt)
-            inst:RunOnPostUpdate(function() UpdateRotation(inst, dt) end) 
+            inst:RunOnPostUpdate(function() UpdateRotation(inst, dt) end)
         end)
 
         inst.components.updatelooper:AddOnUpdateFn(function(inst, dt)

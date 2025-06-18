@@ -40,8 +40,8 @@ local states_west =
                 inst.sg:GoToState("idle")
             end),
             EventHandler("entitysleep", function(inst)
-				inst.sg:GoToState("idle")
-			end),
+                inst.sg:GoToState("idle")
+            end),
         }
     },
 
@@ -65,8 +65,8 @@ local states_west =
             end),
             EventHandler("entitysleep", function(inst)
                 inst.components.door:UpdateDoorVis()
-				inst.sg:GoToState("idle")
-			end),
+                inst.sg:GoToState("idle")
+            end),
         }
     },
 }

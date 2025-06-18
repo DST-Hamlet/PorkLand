@@ -283,7 +283,7 @@ local function ReplenishStockAction(inst)
     end
 end
 
-function getfacespeech()
+function GetFaceSpeech()
     return function(inst)
         local econprefab = inst.econprefab or inst.prefab
         local desc = TheWorld.components.economy:GetTradeItemDesc(econprefab)
@@ -339,7 +339,7 @@ function CityPigBrain:OnStart()
             Leash(self.inst, GetNoLeaderHomePos, LEASH_MAX_DIST, LEASH_RETURN_DIST),
 
             IfNode(function() return not self.inst.alerted and not self.inst.daily_gifting end, "greet",
-                ChattyNode(self.inst, getfacespeech(),
+                ChattyNode(self.inst, GetFaceSpeech(),
                     FaceEntity(self.inst, GetFaceTargetFn, KeepFaceTargetFn))),
 
             Wander(self.inst, GetNoLeaderHomePos, MAX_WANDER_DIST)
