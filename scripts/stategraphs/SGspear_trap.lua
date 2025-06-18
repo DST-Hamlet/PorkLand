@@ -1,5 +1,11 @@
 require("stategraphs/commonstates")
 
+local SPEAR_STATUS =
+{
+    IDLE = 0,
+    EXTENDED = 1,
+}
+
 local events =
 {
     EventHandler("spring", function(inst)
@@ -26,12 +32,12 @@ local events =
 }
 
 local radius = 1.3
-local DAMAGE_MUST_TAGS = { "_combat", "_health" }
 local DAMAGE_NO_TAGS = {"playerghost", "FX", "NOCLICK", "DECOR", "spear_trap", "INLIMBO"}
+local DAMAGE_ONEOF_TAGS = {"_combat", "_health", "pickable", "NPC_workable", "CHOP_workable", "HAMMER_workable", "MINE_workable", "DIG_workable", "HACK_workable", "SHEAR_workable"}
 
 local function DoDamage(inst)
     local x, y, z = inst.Transform:GetWorldPosition()
-    local ents = TheSim:FindEntities(x, y, z, radius, DAMAGE_MUST_TAGS, DAMAGE_NO_TAGS)
+    local ents = TheSim:FindEntities(x, y, z, radius, nil, DAMAGE_NO_TAGS, DAMAGE_ONEOF_TAGS)
     for _, ent in pairs(ents) do
         if ent.components.health then
             inst.components.combat:DoAttack(ent)
@@ -56,8 +62,6 @@ local function SetExtended(inst, extended)
 
         inst.components.inspectable.nameoverride = "PIG_RUINS_SPEAR_TRAP_TRIGGERED"
 
-        inst.extended = true
-
         if inst.components.burnable then
             inst.components.burnable.disabled = nil
         end
@@ -77,8 +81,6 @@ local function SetExtended(inst, extended)
 
         inst.components.inspectable.nameoverride = nil
 
-        inst.extended = nil
-
         if inst.components.burnable then
             inst.components.burnable.disabled = true
         end
@@ -95,7 +97,11 @@ local states =
 
         onenter = function(inst)
             SetExtended(inst, false)
-            inst.AnimState:PlayAnimation("idle_retract", true)
+            if inst.targetstaus == SPEAR_STATUS.EXTENDED then
+                inst.sg:GoToState("extending")
+            else
+                inst.AnimState:PlayAnimation("idle_retract", true)
+            end
         end,
     },
 
@@ -127,7 +133,7 @@ local states =
 
         onenter = function(inst)
             SetExtended(inst, true)
-            if inst.wantstoretract then
+            if inst.targetstaus == SPEAR_STATUS.IDLE then
                 inst.sg:GoToState("retract")
             else
                 inst.AnimState:PlayAnimation("idle_extend")

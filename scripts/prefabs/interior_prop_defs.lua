@@ -903,7 +903,7 @@ PROP_DEFS.pig_ruins_spear_trap = function(depth, width, exits_open, exits_vined,
     local addprops = PROP_DEFS.pig_ruins_common(depth, width, exits_open, exits_vined, room, roomtype, dungeondef, exterior_door_def)
 
     local local_trap_tags = {"localtrap"}
-    local pressure_plate_tags = {"trap_spear", "localtrap", "reversetrigger", "startdown"}
+    local pressure_plate_tags = {"trap_spear", "localtrap", "reversetrigger"}
 
     local speartraps = {"spottraps","walltrap","wavetrap","bait"}
     if dungeondef.deepruins and GetTableSize(room.exits) > 1 then
