@@ -34,7 +34,26 @@ function InventoryBar:GetInventoryLists(same_container_only, ...)
     return lists
 end
 
-local RebuildLayout, scope_fn, i = ToolUtil.GetUpvalue(InventoryBar.Rebuild, "RebuildLayout")
+local rebuild = InventoryBar.Rebuild
+function InventoryBar:Rebuild(...)
+    local ret = { rebuild(self, ...) }
+    if self.owner.HUD.controls.spellcontrols then
+        local overflow = self.owner.replica.inventory:GetOverflowContainer()
+        local do_integrated_backpack = self.integrated_backpack and overflow and overflow:IsOpenedBy(self.owner)
+        if do_integrated_backpack then
+            -- Wait for the animation
+            -- TODO: Maybe find a better way to do this
+            self.root.inst:DoStaticTaskInTime(0.5, function()
+                self.owner.HUD.controls.spellcontrols:SetAnchorPosition(self.toprow:GetWorldPosition())
+            end)
+        else
+            self.owner.HUD.controls.spellcontrols:SetAnchorPosition(self.toprow:GetWorldPosition())
+        end
+    end
+    return unpack(ret)
+end
+
+local RebuildLayout, scope_fn, i = ToolUtil.GetUpvalue(rebuild, "RebuildLayout")
 debug.setupvalue(scope_fn, i, function(self, inventory, overflow, do_integrated_backpack, do_self_inspect, ...)
     local boatwidget = self.boatwidget
     if boatwidget then

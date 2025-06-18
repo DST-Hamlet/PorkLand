@@ -13,7 +13,7 @@ local SpellControls = Class(Widget, function(self, owner)
     self.owner = owner
 
     self.source_item = nil
-    self.anchor_position = Vector3()
+    -- self.anchor_position = Vector3()
     self.items = {}
     self.isopen = false
 
@@ -34,13 +34,9 @@ local function UnpackAnimData(data_in, owner)
     end
 end
 
-function SpellControls:SetItems(items_data, background, source_item, anchor_position)
+function SpellControls:SetItems(items_data, background, source_item)
     if source_item then
         self.source_item = source_item
-    end
-    if anchor_position then
-        self.anchor_position = anchor_position
-        self:SetPosition(anchor_position)
     end
 
     for _, item in ipairs(self.items) do
@@ -209,6 +205,15 @@ function SpellControls:RefreshItemStates()
     end
 end
 
+function SpellControls:SetAnchorPosition(anchor_position)
+    -- TODO: we currently force the anchor position
+    local anchor_position = self.owner.HUD.controls.inv.toprow:GetWorldPosition()
+    anchor_position.x = anchor_position.x - 600
+
+    -- self.anchor_position = anchor_position
+    self:SetPosition(anchor_position)
+end
+
 function SpellControls:Open(items_data, background, source_item, anchor_position)
     self.isopen = true
 
@@ -218,11 +223,9 @@ function SpellControls:Open(items_data, background, source_item, anchor_position
     self:SetClickable(true)
     self:Enable()
 
-    -- TODO: we currently force the anchor position
-    local anchor_position = self.owner.HUD.controls.inv.toprow:GetWorldPosition()
-    anchor_position.x = anchor_position.x - 600
+    self:SetAnchorPosition(anchor_position)
 
-    self:SetItems(items_data, background, source_item, anchor_position)
+    self:SetItems(items_data, background, source_item)
     -- self:RefreshItemStates()
 end
 
