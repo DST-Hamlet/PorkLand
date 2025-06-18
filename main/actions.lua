@@ -154,6 +154,15 @@ ACTIONS.PANGOLDEN_POOP.fn = function(act)
     return true
 end
 
+ACTIONS.FISH.extra_arrive_dist = function(doer, dest, bufferedaction)
+    local target = dest and dest.inst or nil
+    if target and (target:HasTag("sink") or target:HasTag("sunkencontainer")) then
+        return 1
+    end
+
+    return 0
+end
+
 ACTIONS.FISH.strfn = function(act)
     if act.target and (act.target:HasTag("sink") or act.target:HasTag("sunkencontainer")) then
         return "RETRIEVE"
