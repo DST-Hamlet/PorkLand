@@ -224,15 +224,9 @@ local function GetStatus(inst)
 end
 
 local function BuildMaze(inst, exterior_door_def)
-    if inst.interiorID then
-        -- Maze already generated
-        return
-    end
-
     local interior_spawner = TheWorld.components.interiorspawner
 
-    local id = interior_spawner:GetNewID()
-    inst.interiorID = id
+    local id = inst.interiorID
     local rooms = {
         {
             x = 0, -- x, y are used to keep track of the relative position of those rooms
@@ -343,14 +337,28 @@ local function BuildMaze(inst, exterior_door_def)
 end
 
 local function InitMaze(inst)
+    local id = inst.interiorID
+    local can_reuse_interior = id ~= nil
+
+    local interior_spawner = TheWorld.components.interiorspawner
+    if not can_reuse_interior then
+        id = interior_spawner:GetNewID()
+        inst.interiorID = id
+    end
     local exterior_door_def = {
         my_door_id = ROC_CAVE_NAME .. "_ENTRANCE1",
         target_door_id = ROC_CAVE_NAME .. "_EXIT1",
         target_interior = inst.interiorID
     }
-    BuildMaze(inst, exterior_door_def)
     TheWorld.components.interiorspawner:AddDoor(inst, exterior_door_def)
     TheWorld.components.interiorspawner:AddExterior(inst)
+
+    if can_reuse_interior then
+        -- Reuse old interior, but we still need to re-register the door
+        return
+    end
+
+    BuildMaze(inst, exterior_door_def)
 end
 
 local function OnSave(inst, data)

@@ -624,6 +624,7 @@ PROP_DEFS.roc_cave = function(depth, width, room, open_exits, exterior_door_def)
             },
             my_door_id =  exterior_door_def.target_door_id,
             target_exterior = exterior_door_def.target_exterior,
+            target_door_id = exterior_door_def.my_door_id,
 
             angle = 0,
             is_exit = true
