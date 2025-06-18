@@ -73,7 +73,7 @@ local function fn()
     inst.components.edible:SetOnEatenFn(OnEaten)
 
     inst:AddComponent("deployable")
-    inst.components.deployable:SetDeployMode(DEPLOYMODE.PLANT)
+    inst.components.deployable:SetDeployMode(DEPLOYMODE.CUSTOM)
     inst.components.deployable.ondeploy = OnDeploy
 
     MakeHauntableLaunch(inst)
