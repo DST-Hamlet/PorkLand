@@ -151,7 +151,8 @@ function PlayerController:CastSpellCommand(item, command_id, target, x, z)
 end
 
 function PlayerController:OnRemoteCastSpellCommand(item, command_id, position, target)
-    if item
+    if self:IsEnabled()
+        and item
         and item.components.spellcommand
         and item.components.inventoryitem
         and item.components.inventoryitem:GetGrandOwner() == self.inst
