@@ -268,19 +268,6 @@ local function KeepGoHomeInCombat(inst)
         or (homePos and distsq(homePos, myPos) > GO_HOME_DIST*GO_HOME_DIST and not istargetnear and not GetLeader(inst) )
 end
 
-local function inCityLimits(inst)
-    local x, y, z = inst.Transform:GetWorldPosition()
-    local ents = TheSim:FindEntities(x, y, z, FAR_ENOUGH, {"citypossession"}, {"city_pig"})
-    if #ents > 0 then
-        return true
-    end
-    if inst.components.combat.target then
-        inst:SayLine(inst:GetSpeechType("CITY_PIG_TALK_STAYOUT"))
-        inst.components.combat:GiveUp()
-    end
-    return false
-end
-
 local function ExtinguishfireAction(inst)
     if not inst:HasTag("guard") then
         return false
@@ -312,8 +299,9 @@ local function RescueLeaderAction(inst)
     return BufferedAction(inst, GetLeader(inst), ACTIONS.UNPIN)
 end
 
-local function ChatterSay(str)
+local function ChatterSay(str, mood)
     return function(inst)
+        inst.mood = mood
         inst:SayLine(inst:GetSpeechType(str))
     end
 end
@@ -379,9 +367,9 @@ function RoyalPigGuardBrain:OnStart()
             ChattyNode(self.inst, ChatterSay("CITY_PIG_TALK_EXTINGUISH"),
                     DoAction(self.inst, ExtinguishfireAction,"extinguish", true )),
 
-            ChattyNode(self.inst, ChatterSay("CITY_PIG_TALK_FIGHT"),
+            ChattyNode(self.inst, ChatterSay("CITY_PIG_TALK_FIGHT", "alarmed"),
                 WhileNode( function() return self.inst.components.combat.target and self.inst.components.combat:InCooldown() and self.inst:HasTag("guard") end, "Dodge",
-                    RunAway(self.inst, function() return self.inst.components.combat.target end, RUN_AWAY_DIST, STOP_RUN_AWAY_DIST) )--[[, "alarmed"]]),
+                    RunAway(self.inst, function() return self.inst.components.combat.target end, RUN_AWAY_DIST, STOP_RUN_AWAY_DIST))),
 
             -- FOLLOWER CODE
             ChattyNode(self.inst, ChatterSay("CITY_PIG_TALK_FOLLOWWILSON"),
@@ -396,9 +384,9 @@ function RoyalPigGuardBrain:OnStart()
                     DoAction(self.inst, GuardGoHomeAction, "Go Home", true ) ) ),
             -- END GUARD SECTION
 
-            ChattyNode(self.inst, ChatterSay("CITY_PIG_TALK_FLEE"),
+            ChattyNode(self.inst, ChatterSay("CITY_PIG_TALK_FLEE", "alarmed"),
                 WhileNode(function() return should_panic(self.inst)  end, "Threat Panic",
-                    Panic(self.inst) )--[[, "alarmed"]]),
+                    Panic(self.inst))),
 
             ChattyNode(self.inst, ChatterSay("CITY_PIG_TALK_ATTEMPT_TRADE"),
                 FaceEntity(self.inst, GetTraderFn, KeepTraderFn)),

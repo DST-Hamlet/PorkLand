@@ -307,10 +307,6 @@ function getfacespeech()
     end
 end
 
-local function RescueLeaderAction(inst)
-    return BufferedAction(inst, GetLeader(inst), ACTIONS.UNPIN)
-end
-
 local function GoToIdleStateWrap(inst, fn)
     return function(...)
         local ret = fn(...)
@@ -322,8 +318,9 @@ local function GoToIdleStateWrap(inst, fn)
     end
 end
 
-local function ChatterSay(str)
+local function ChatterSay(str, mood)
     return function(inst)
+        inst.mood = mood
         inst:SayLine(inst:GetSpeechType(str))
     end
 end
@@ -396,13 +393,13 @@ function CityPigBrain:OnStart()
                     FaceEntity(self.inst, GetFaceTargetFn, KeepFaceTargetFn ))),
             -- END FOLLOWER CODE
 
-            ChattyNode(self.inst, ChatterSay("CITY_PIG_TALK_FLEE"),
+            ChattyNode(self.inst, ChatterSay("CITY_PIG_TALK_FLEE", "alarmed"),
                 WhileNode(GoToIdleStateWrap(self.inst, function() return shouldpanicwithspeech(self.inst) end), "Threat Panic",
-                    Panic(self.inst) )--[[, "alarmed"]]),
+                    Panic(self.inst))),
 
-            ChattyNode(self.inst, ChatterSay("CITY_PIG_TALK_FLEE"),
+            ChattyNode(self.inst, ChatterSay("CITY_PIG_TALK_FLEE", "alarmed"),
                 WhileNode(GoToIdleStateWrap(self.inst, function() return (self.inst.components.combat.target and not self.inst:HasTag("guard")) end), "Dodge",
-                    RunAway(self.inst, function() return self.inst.components.combat.target end, RUN_AWAY_DIST, STOP_RUN_AWAY_DIST) )--[[, "alarmed"]]),
+                    RunAway(self.inst, function() return self.inst.components.combat.target end, RUN_AWAY_DIST, STOP_RUN_AWAY_DIST))),
 
             WhileNode(function() return ReplaceStockCondition(self.inst) end, "replenish",
                 DoAction(self.inst, ReplenishStockAction, "restock", true)),
