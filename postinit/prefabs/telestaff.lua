@@ -1,6 +1,6 @@
 GLOBAL.setfenv(1, GLOBAL)
 
-AddPrefabRegisterPostInit(function(telestaff)
+AddPrefabRegisterPostInit("telestaff", function(telestaff)
     local telestaff_constructor = telestaff.fn
     local teleport_start, teleport_func, i = ToolUtil.GetUpvalue(telestaff_constructor, "teleport_func.teleport_start")
     if not teleport_start then

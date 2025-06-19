@@ -1,7 +1,7 @@
 local assets=
 {
     Asset("ANIM", "anim/venus_flytrap_sm_build.zip"),
-    Asset("ANIM", "anim/venus_flytrap_lg_build.zip"),
+    Asset("ANIM", "anim/venus_flytrap_ml_build.zip"),
     Asset("ANIM", "anim/venus_flytrap_build.zip"),
     Asset("ANIM", "anim/venus_flytrap.zip"),
 }
@@ -76,7 +76,7 @@ local growth_stages = {
     [3] = {
         scale = 1.4,
         start_scale = 1.2,
-        new_build = "venus_flytrap_lg_build",
+        new_build = "venus_flytrap_ml_build",
         name = "FLYTRAP_",
     }
 }

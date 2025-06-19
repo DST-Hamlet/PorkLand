@@ -99,7 +99,7 @@ function Update(dt, ...)
     -- 在原版世界c_gonext("wasphive")即可生成没有brain的杀人蜂(注意杀人蜂巢只会被不在上帝模式的玩家触发)
     for k, v in pairs(NewFrameEnts) do
         local inst = Ents[k]
-        if inst then
+        if inst and inst:IsValid() then
             if not inst.sleeptested then
                 if not inst:IsAsleep() then
                     OnEntityWake(k)

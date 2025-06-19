@@ -46,7 +46,7 @@ AddComponentPostInit("ambientlighting", function(self, inst)
 
     local function Pl_ComputeTargetColour(targetsettings, timeoverride, ...)
         if targetsettings == _overridecolour and ThePlayer and ThePlayer:HasTag("inside_interior") then
-            if _overridecolour.currentcolourset.PHASE_COLOURS.spring then
+            if _overridecolour.currentcolourset.PHASE_COLOURS and _overridecolour.currentcolourset.PHASE_COLOURS.spring then
                 -- when player have no nightvision, change to no light mode
                 local temp = _overridecolour.currentcolourset
                 _overridecolour.currentcolourset = PL_NO_LIGHT_INTERIOR_COLOURS

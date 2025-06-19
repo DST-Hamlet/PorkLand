@@ -30,7 +30,7 @@ for name, data in pairs(FALLOFF_TYPES) do
     falloff_id = falloff_id + 1
 end
 
--- PLAYER_CAMERA_SEE_DISTANCE (40) / TILE_SCALE (4) = 10
+-- PLAYER_CAMERA_SEE_DISTANCE (40) / TILE_SCALE (4) + 5 = 15
 local REFRESH_RADIUS = (PLAYER_CAMERA_SEE_DISTANCE / TILE_SCALE) + 5
 
 local FalloffManager = Class(function(self, inst)
@@ -115,14 +115,15 @@ function FalloffManager:UpdateFalloffs()
     if self.inst:GetIsInInterior() then
         return
     end
-    local current_tile_center = self.inst.components.tilechangewatcher.last_tile_center
+    local tilechangewatcher = self.inst.components.tilechangewatcher
+    local current_tile_center = tilechangewatcher.last_tile_center
     for x = -REFRESH_RADIUS, REFRESH_RADIUS do
         for z = -REFRESH_RADIUS, REFRESH_RADIUS do
             local center = current_tile_center + Vector3(x * TILE_SCALE, 0, z * TILE_SCALE)
-            local tile = TheWorld.Map:GetTileAtPoint(center.x, center.y, center.z)
+            local tile = tilechangewatcher:CachedTileAtPoint(center.x, center.y, center.z)
             if tile then
                 for _, v in ipairs(adjacent) do
-                    local adjacent_tile = TheWorld.Map:GetTileAtPoint(center.x + v.x, center.y, center.z + v.z)
+                    local adjacent_tile = tilechangewatcher:CachedTileAtPoint(center.x + v.x, center.y, center.z + v.z)
                     if adjacent then
                         for falloff_name, falloff_data in pairs(FALLOFF_TYPES) do
                             if falloff_data.testfn(tile, adjacent_tile) then

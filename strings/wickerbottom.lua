@@ -36,6 +36,8 @@ return {
     ANNOUNCE_MYSTERY_FOUND = "I have found something.",
     ANNOUNCE_MYSTERY_NOREWARD = "Failure is an important part of discovery.",
     ANNOUNCE_NOTHING_FOUND = "Nothing of what I seek is in my current surroundings.",
+    --ANNOUNCE_TRACKER_FAR = "",
+    --ANNOUNCE_TRACKER_FOUND = "",
     ANNOUNCE_PICKPOOP = {
         "I never!",
         "Disgusting!",
