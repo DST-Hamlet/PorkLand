@@ -144,7 +144,7 @@ function SpellControls:SetItems(items_data, background, source_item)
     end
 
     if background then
-        self.background:SetPosition(Vector3(-2, initial_position.y))
+        self.background:SetPosition(Vector3(-2, initial_position.y)) -- 最好有个为每个background进行自定义的表
         self.background:GetAnimState():SetBank(background.bank)
         self.background:GetAnimState():SetBuild(background.build)
         self.background:GetAnimState():PlayAnimation("open")
