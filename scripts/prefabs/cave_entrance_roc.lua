@@ -141,6 +141,7 @@ end
 
 local function Open(inst)
     inst.AnimState:PlayAnimation("open", true)
+    inst.AnimState:SetLayer(LAYER_BACKGROUND)
 
     inst:RemoveComponent("workable")
     inst:RemoveComponent("lootdropper")
