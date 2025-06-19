@@ -8,7 +8,10 @@ local SpellControls = Class(Widget, function(self, owner)
     Widget._ctor(self, "SpellControls")
 
     self:SetScale(TheFrontEnd:GetHUDScale() * 0.8)
-    self.inst:ListenForEvent("refreshhudsize", function(hud, scale) self:SetScale(scale * 0.8) end, owner.HUD.inst)
+    self.inst:ListenForEvent("refreshhudsize", function(hud, scale) 
+        self:SetScale(scale * 0.8) 
+        self:UpdateAnchorPosition() 
+    end, owner.HUD.inst)
 
     self.owner = owner
 
@@ -19,6 +22,7 @@ local SpellControls = Class(Widget, function(self, owner)
 
     self.background = self:AddChild(UIAnim())
     self.background:GetAnimState():AnimateWhilePaused(false)
+    self.background:SetScale(0.9)
     self.background:MoveToBack()
     -- self.background:Hide()
 end)
@@ -140,7 +144,7 @@ function SpellControls:SetItems(items_data, background, source_item)
     end
 
     if background then
-        self.background:SetPosition(Vector3(initial_position.x + half_total_width, initial_position.y))
+        self.background:SetPosition(Vector3(-2, initial_position.y))
         self.background:GetAnimState():SetBank(background.bank)
         self.background:GetAnimState():SetBuild(background.build)
         self.background:GetAnimState():PlayAnimation("open")
@@ -205,10 +209,22 @@ function SpellControls:RefreshItemStates()
     end
 end
 
-function SpellControls:SetAnchorPosition(anchor_position)
+local function get_slot_position(inventory_bar, index)
+    local slots = JoinArrays(unpack(inventory_bar:GetInventoryLists()))
+    local i = 1
+    for _, slot in pairs(slots) do
+        if i == index then
+            return slot:GetWorldPosition()
+        end
+        i = i + 1
+    end
+    return Vector3(0, 0, 0)
+end
+
+function SpellControls:UpdateAnchorPosition()
     -- TODO: we currently force the anchor position
     local anchor_position = self.owner.HUD.controls.inv.toprow:GetWorldPosition()
-    anchor_position.x = anchor_position.x - 600
+    anchor_position.x = get_slot_position(self.owner.HUD.controls.inv, 3).x
 
     -- self.anchor_position = anchor_position
     self:SetPosition(anchor_position)
@@ -223,7 +239,7 @@ function SpellControls:Open(items_data, background, source_item, anchor_position
     self:SetClickable(true)
     self:Enable()
 
-    self:SetAnchorPosition(anchor_position)
+    self:UpdateAnchorPosition()
 
     self:SetItems(items_data, background, source_item)
     -- self:RefreshItemStates()

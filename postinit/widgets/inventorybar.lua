@@ -35,24 +35,6 @@ function InventoryBar:GetInventoryLists(same_container_only, ...)
 end
 
 local rebuild = InventoryBar.Rebuild
-function InventoryBar:Rebuild(...)
-    local ret = { rebuild(self, ...) }
-    if self.owner.HUD.controls.spellcontrols then
-        local overflow = self.owner.replica.inventory:GetOverflowContainer()
-        local do_integrated_backpack = self.integrated_backpack and overflow and overflow:IsOpenedBy(self.owner)
-        if do_integrated_backpack then
-            -- Wait for the animation
-            -- TODO: Maybe find a better way to do this
-            self.root.inst:DoStaticTaskInTime(0.5, function()
-                self.owner.HUD.controls.spellcontrols:SetAnchorPosition(self.toprow:GetWorldPosition())
-            end)
-        else
-            self.owner.HUD.controls.spellcontrols:SetAnchorPosition(self.toprow:GetWorldPosition())
-        end
-    end
-    return unpack(ret)
-end
-
 local RebuildLayout, scope_fn, i = ToolUtil.GetUpvalue(rebuild, "RebuildLayout")
 debug.setupvalue(scope_fn, i, function(self, inventory, overflow, do_integrated_backpack, do_self_inspect, ...)
     local boatwidget = self.boatwidget
@@ -85,6 +67,15 @@ debug.setupvalue(scope_fn, i, function(self, inventory, overflow, do_integrated_
     self.bg:SetScale(bg_scale, 1, 1)
     self.bgcover:SetScale(bg_scale, 1, 1)
 end)
+
+local _OnUpdate = InventoryBar.OnUpdate
+function InventoryBar:OnUpdate(dt, ...)
+    _OnUpdate(self, dt, ...)
+
+    if self.owner.HUD.controls.spellcontrols then
+        self.owner.HUD.controls.spellcontrols:UpdateAnchorPosition() 
+    end
+end
 
 AddClassPostConstruct("widgets/inventorybar", function(self)
     self.hudcompass_wheeler = self.root:AddChild(HudCompass_Wheeler(self.owner, true))
