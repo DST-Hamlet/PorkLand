@@ -57,7 +57,10 @@ local states = {
 
         timeline =
         {
-            TimeEvent(23 * FRAMES, function(inst) PL_LandFlyingCreature(inst) end),
+            TimeEvent(23 * FRAMES, function(inst)
+                PL_LandFlyingCreature(inst)
+                RemovePhysicsColliders(inst)
+            end),
         },
     },
 

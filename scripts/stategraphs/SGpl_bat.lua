@@ -383,7 +383,10 @@ CommonStates.AddCombatStates(states,
     {
         TimeEvent(1*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/bat/death") end),
         TimeEvent(4*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/bat/flap") end ),
-        TimeEvent(15*FRAMES, PL_LandFlyingCreature),
+        TimeEvent(15*FRAMES, function(inst)
+            PL_LandFlyingCreature(inst)
+            RemovePhysicsColliders(inst)
+        end),
     },
 })
 
