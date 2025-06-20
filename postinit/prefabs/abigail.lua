@@ -8,6 +8,8 @@ end
 
 local function OnGotoCommand(inst, position)
     inst._goto_position = position
+    inst:_OnHauntTargetRemoved()
+    inst:_OnNextHauntTargetRemoved()
 end
 
 local HAUNT_CANT_TAGS = {"catchable", "DECOR", "FX", "haunted", "INLIMBO", "NOCLICK"}
@@ -23,8 +25,9 @@ local function DoGhostHauntTarget(inst, target)
         end
     end
 
-    inst._haunt_target = target
-    inst:ListenForEvent("onremove", inst._OnHauntTargetRemoved, inst._haunt_target)
+    inst._next_haunt_target = target
+    inst._goto_position = nil
+    inst:ListenForEvent("onremove", inst._OnNextHauntTargetRemoved, inst._next_haunt_target)
 end
 
 AddPrefabPostInit("abigail", function(inst)
@@ -43,4 +46,21 @@ AddPrefabPostInit("abigail", function(inst)
         FreezeMovements(inst, false)
         return unpack(ret)
     end
+
+    inst._OnNextHauntTargetRemoved = function()
+        if inst._next_haunt_target then
+            inst:RemoveEventCallback("onremove", inst._OnNextHauntTargetRemoved, inst._next_haunt_target)
+            inst._next_haunt_target = nil
+        end
+    end
+
+    inst._SetNewHauntTarget = function()
+        inst:_OnHauntTargetRemoved()
+        if inst._next_haunt_target and inst._next_haunt_target:IsValid() then
+            inst._haunt_target = inst._next_haunt_target
+            inst:ListenForEvent("onremove", inst._OnHauntTargetRemoved, inst._haunt_target)
+        end
+        inst:_OnNextHauntTargetRemoved()
+    end
+
 end)

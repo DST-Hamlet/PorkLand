@@ -22,12 +22,18 @@ local function DanceParty(inst)
 end
 
 local function HauntAction(inst)
+    if inst._next_haunt_target ~= nil then
+        inst:_SetNewHauntTarget()
+    end
+    if inst._haunt_target == nil then
+        return
+    end
     local haunt_action = BufferedAction(inst, inst._haunt_target, ACTIONS.HAUNT)
     haunt_action:AddSuccessAction(inst._OnHauntTargetRemoved)
-    haunt_action:AddFailAction(inst._OnHauntTargetRemoved)
+    haunt_action:AddFailAction(inst._SetNewHauntTarget)
     haunt_action.validfn = function()
         -- InLimbo covers stuff like items getting picked up
-        return inst._haunt_target ~= nil and not inst._haunt_target:IsInLimbo()
+        return inst._haunt_target ~= nil and not inst._haunt_target:IsInLimbo() and inst._next_haunt_target == nil
     end
     return haunt_action
 end
@@ -169,11 +175,8 @@ function AbigailBrain:OnStart()
             ActionNode(function() DanceParty(self.inst) end),
     }, PRIORITY_NODE_RATE))
 
-    local haunt_behaviour = WhileNode(function() return self.inst._haunt_target ~= nil end, "Haunt Something",
-        PriorityNode({
-            DoAction(self.inst, HauntAction, nil, true, 60),
-            ActionNode(function() self.inst._haunt_target = nil end),
-        }, PRIORITY_NODE_RATE)
+    local haunt_behaviour = WhileNode(function() return self.inst._haunt_target ~= nil or self.inst._next_haunt_target ~= nil end, "Haunt Something",
+        DoAction(self.inst, HauntAction, nil, true, 60)
     )
 
     local goto_behaviour = WhileNode(function() return self.inst._goto_position ~= nil end, "Go To Point",
