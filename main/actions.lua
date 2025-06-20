@@ -1280,6 +1280,13 @@ function POINT.fishingrod(inst, doer, pos, actions, right, target, ...)
     return _POINT_fishingrod(inst, doer, pos, actions, right, target, ...)
 end
 
+-- 由于用菜单代替轮盘, 因此需要修改阿比盖尔之花的相关交互, 此函数应当在将物品拖动至人物身上时以及在非玩家所属的容器内右键时生效
+function INVENTORY.summoningitem(inst, doer, actions, ...)
+    if doer:HasTag("ghostfriend_notsummoned") and inst.replica.inventoryitem:IsHeldBy(doer) then
+		table.insert(actions, ACTIONS.CASTSUMMON)
+	end
+end
+
 local PlayerController = require("components/playercontroller")
 
 local NON_AUTO_EQUIP_ACTIONS = {
