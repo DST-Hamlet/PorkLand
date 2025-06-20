@@ -1,6 +1,7 @@
 require "behaviours/doaction"
 require "behaviours/follow"
 require "behaviours/wander"
+require "behaviours/trydoaction"
 
 local AbigailBrain = Class(Brain, function(self, inst)
     Brain._ctor(self, inst)
@@ -176,12 +177,12 @@ function AbigailBrain:OnStart()
     }, PRIORITY_NODE_RATE))
 
     local haunt_behaviour = WhileNode(function() return self.inst._haunt_target ~= nil or self.inst._next_haunt_target ~= nil end, "Haunt Something",
-        DoAction(self.inst, HauntAction, nil, true, 60)
+        TryDoAction(self.inst, HauntAction, nil, true, 60)
     )
 
     local goto_behaviour = WhileNode(function() return self.inst._goto_position ~= nil end, "Go To Point",
         PriorityNode({
-            Leash(self.inst, function(inst) return inst._goto_position end, 0.5, 0.5, true),
+            Leash(self.inst, function(inst) return inst._goto_position end, 0.2, 0.2, true),
             ActionNode(function() self.inst._goto_position = nil end),
         }, PRIORITY_NODE_RATE)
     )
