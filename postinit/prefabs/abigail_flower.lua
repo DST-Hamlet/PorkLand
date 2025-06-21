@@ -115,6 +115,11 @@ local COMMANDS = {
             doer.components.locomotor:PushAction(action, true)
 		end,
 		on_execute_on_client = function(inst)
+            -- Movement prediction
+            if not TheWorld.ismastersim and ThePlayer.components.playercontroller:CanLocomote() then
+                local action = BufferedAction(ThePlayer, nil, ACTIONS.CASTUNSUMMON, inst)
+                ThePlayer.components.locomotor:PreviewAction(action, true)
+            end
             ThePlayer.components.playercontroller:CastSpellCommand(inst, "unsummon")
 		end,
         widget_scale = SCALE,
