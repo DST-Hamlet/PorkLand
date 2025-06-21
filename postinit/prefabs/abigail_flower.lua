@@ -106,6 +106,8 @@ end
 local ATLAS = "images/hud/abigail_flower_commands.xml"
 local SCALE = 0.9
 
+local function do_nothing() end
+
 local COMMANDS = {
 	{
         id = "unsummon",
@@ -118,6 +120,7 @@ local COMMANDS = {
             -- Movement prediction
             if not TheWorld.ismastersim and ThePlayer.components.playercontroller:CanLocomote() then
                 local action = BufferedAction(ThePlayer, nil, ACTIONS.CASTUNSUMMON, inst)
+                action.preview_cb = do_nothing
                 ThePlayer.components.locomotor:PreviewAction(action, true)
             end
             ThePlayer.components.playercontroller:CastSpellCommand(inst, "unsummon")
