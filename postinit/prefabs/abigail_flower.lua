@@ -81,18 +81,6 @@ local function GhostGotoSpellCommand(inst, doer, position)
     return DoGhostSpell(doer, "do_ghost_goto_position", nil, position)
 end
 
-local function GhostUnsummonSpell(inst, doer)
-	inst:RemoveTag("unsummoning_spell")
-
-	local doer_ghostlybond = doer.components.ghostlybond
-	if not doer_ghostlybond then
-		return false
-	else
-		doer_ghostlybond:Recall(false)
-		return true
-	end
-end
-
 local function LeftClickPicker(inst, target, position)
     local actions = {}
     if target and target ~= inst then
@@ -123,7 +111,8 @@ local COMMANDS = {
         id = "unsummon",
 		label = STRINGS.GHOSTCOMMANDS.UNSUMMON,
 		on_execute_on_server = function(inst, doer)
-			GhostUnsummonSpell(inst, doer)
+            local action = BufferedAction(doer, nil, ACTIONS.CASTUNSUMMON, inst)
+            doer.components.locomotor:PushAction(action, true)
 		end,
 		on_execute_on_client = function(inst)
             ThePlayer.components.playercontroller:CastSpellCommand(inst, "unsummon")
