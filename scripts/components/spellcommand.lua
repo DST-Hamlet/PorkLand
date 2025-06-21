@@ -44,8 +44,15 @@ end
 
 function SpellCommand:RunCommand(id, doer, position, target)
     local command = self:GetSpellCommandById(id)
-    if command and command.on_execute_on_server then
+    if not command then
+        return
+    end
+    if command.on_execute_on_server then
         command.on_execute_on_server(self.inst, doer, position, target)
+    end
+    if command.action then
+        local buffered_action = command.action(self.inst, doer, position, target)
+        doer.components.locomotor:PushAction(buffered_action, true)
     end
 end
 

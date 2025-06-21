@@ -106,25 +106,19 @@ end
 local ATLAS = "images/hud/abigail_flower_commands.xml"
 local SCALE = 0.9
 
-local function do_nothing() end
-
 local COMMANDS = {
 	{
         id = "unsummon",
 		label = STRINGS.GHOSTCOMMANDS.UNSUMMON,
 		on_execute_on_server = function(inst, doer)
-            local action = BufferedAction(doer, nil, ACTIONS.CASTUNSUMMON, inst)
-            doer.components.locomotor:PushAction(action, true)
+            -- Done with action
 		end,
 		on_execute_on_client = function(inst)
-            -- Movement prediction
-            if not TheWorld.ismastersim and ThePlayer.components.playercontroller:CanLocomote() then
-                local action = BufferedAction(ThePlayer, nil, ACTIONS.CASTUNSUMMON, inst)
-                action.preview_cb = do_nothing
-                ThePlayer.components.locomotor:PreviewAction(action, true)
-            end
             ThePlayer.components.playercontroller:CastSpellCommand(inst, "unsummon")
 		end,
+        action = function(inst, doer, position, target)
+            return BufferedAction(doer, nil, ACTIONS.CASTUNSUMMON, inst)
+        end,
         widget_scale = SCALE,
 		atlas = ATLAS,
 		normal = "unsummon.tex",

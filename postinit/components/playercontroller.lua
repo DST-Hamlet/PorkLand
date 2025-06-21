@@ -146,9 +146,33 @@ function PlayerController:CancelCastingActionOverrideSpell()
     end
 end
 
+-- TODO: Maybe convert the position just before sending the RPC instead of converting it back like this
+local function ConvertPlatformRelativePositionToAbsolutePosition(platform, relative_x, relative_z)
+    if not (relative_x and relative_z) then
+        return
+    end
+    if not platform then
+        return Vector3(relative_x, 0, relative_z)
+    end
+    local x, _, z = platform.entity:LocalToWorldSpace(relative_x, 0, relative_z)
+    return Vector3(x, 0, z)
+end
+
+local function do_nothing() end
+
 -- TODO: Maybe sending the index instead to optimize network usage in the future
-function PlayerController:CastSpellCommand(item, command_id, target, x, z)
-    SendModRPCToServer(MOD_RPC["Porkland"]["CastSpellCommand"], item, command_id, target, x, z)
+function PlayerController:CastSpellCommand(item, command_id, target, x, z, platform)
+    -- Movement prediction
+    if not self.ismastersim and self:CanLocomote() then
+        local command = item.components.spellcommand:GetSpellCommandById(command_id)
+        if command.action then
+            local position = ConvertPlatformRelativePositionToAbsolutePosition(platform, x, z)
+            local action = command.action(item, self.inst, position, target)
+            action.preview_cb = do_nothing
+            self.inst.components.locomotor:PreviewAction(action, true)
+        end
+    end
+    SendModRPCToServer(MOD_RPC["Porkland"]["CastSpellCommand"], item, command_id, target, x, z, platform)
 end
 
 function PlayerController:OnRemoteCastSpellCommand(item, command_id, position, target)
