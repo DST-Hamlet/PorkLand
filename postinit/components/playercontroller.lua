@@ -163,7 +163,7 @@ local function do_nothing() end
 -- TODO: Maybe sending the index instead to optimize network usage in the future
 function PlayerController:CastSpellCommand(item, command_id, target, x, z, platform)
     -- Movement prediction
-    if not self.ismastersim and self:CanLocomote() then
+    if not self.ismastersim and self:CanLocomote() and not self:IsBusy() then
         local command = item.components.spellcommand:GetSpellCommandById(command_id)
         if command.action then
             local position = ConvertPlatformRelativePositionToAbsolutePosition(platform, x, z)
@@ -181,6 +181,7 @@ function PlayerController:OnRemoteCastSpellCommand(item, command_id, position, t
         and item.components.spellcommand
         and item.components.inventoryitem
         and item.components.inventoryitem:GetGrandOwner() == self.inst
+        and self:CanLocomote() and not self:IsBusy()
     then
         item.components.spellcommand:RunCommand(command_id, self.inst, position, target)
     end
