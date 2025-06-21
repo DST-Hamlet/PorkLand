@@ -55,7 +55,7 @@ local behaviour_posts = {
 }
 
 local brain_posts = {
-    "abigailbrain",
+
 }
 
 local camera_posts = {
@@ -87,6 +87,7 @@ local component_posts = {
     "explosive",
     "fishingrod",
     "floater",
+    "ghostlybond",
     "grogginess",
     "grower",
     "grue",
@@ -138,6 +139,8 @@ local component_posts = {
 }
 
 local prefab_posts = {
+    "abigail",
+    "abigail_flower",
     "batwing",
     "birdcage",
     "boomerang",
@@ -210,10 +213,12 @@ local stategraph_posts = {
 local widget_posts = {
     "bloodover",
     "containerwidget",
+    "controls",
     "craftingmenu_ingredients",
     "craftingmenu_widget",
     "grid",
     "healthbadge",
+    "hoverer",
     "inventorybar",
     "itemtile",
     "mapwidget",

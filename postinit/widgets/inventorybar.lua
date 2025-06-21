@@ -34,7 +34,8 @@ function InventoryBar:GetInventoryLists(same_container_only, ...)
     return lists
 end
 
-local RebuildLayout, scope_fn, i = ToolUtil.GetUpvalue(InventoryBar.Rebuild, "RebuildLayout")
+local rebuild = InventoryBar.Rebuild
+local RebuildLayout, scope_fn, i = ToolUtil.GetUpvalue(rebuild, "RebuildLayout")
 debug.setupvalue(scope_fn, i, function(self, inventory, overflow, do_integrated_backpack, do_self_inspect, ...)
     local boatwidget = self.boatwidget
     if boatwidget then
@@ -66,6 +67,15 @@ debug.setupvalue(scope_fn, i, function(self, inventory, overflow, do_integrated_
     self.bg:SetScale(bg_scale, 1, 1)
     self.bgcover:SetScale(bg_scale, 1, 1)
 end)
+
+local _OnUpdate = InventoryBar.OnUpdate
+function InventoryBar:OnUpdate(dt, ...)
+    _OnUpdate(self, dt, ...)
+
+    if self.owner.HUD.controls.spellcontrols then
+        self.owner.HUD.controls.spellcontrols:UpdateAnchorPosition() 
+    end
+end
 
 AddClassPostConstruct("widgets/inventorybar", function(self)
     self.hudcompass_wheeler = self.root:AddChild(HudCompass_Wheeler(self.owner, true))
