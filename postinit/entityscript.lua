@@ -326,8 +326,8 @@ end
 function EntityScript:GetInteriorGroupPosition()
     local center = self:GetCurrentInteriorCenter()
     if center then
-        local x, y, z = self.Transform:GetWorldPosition()
-        local cx, cy, cz = center.Transform:GetWorldPosition()
+        local x, _, z = self.Transform:GetWorldPosition()
+        local cx, _, cz = center.Transform:GetWorldPosition()
 
         local current_x, current_y = center:GetCoordinates()
         local width, depth = center:GetSize()

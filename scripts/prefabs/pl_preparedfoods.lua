@@ -17,7 +17,7 @@ local function MakePreparedFood(data)
     local foodassets =
     {
         Asset("ANIM", "anim/pl_cook_pot_food.zip"),
-        --Asset("ANIM", "anim/cook_pot_food_yotp.zip"),
+		Asset("ANIM", "anim/cook_pot_food_yotp.zip"),
     }
 
     local function fn()
