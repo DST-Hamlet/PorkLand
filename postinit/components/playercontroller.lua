@@ -177,11 +177,11 @@ end
 
 function PlayerController:OnRemoteCastSpellCommand(item, command_id, position, target)
     if self:IsEnabled()
+        and not self:IsBusy()
         and item
         and item.components.spellcommand
         and item.components.inventoryitem
         and item.components.inventoryitem:GetGrandOwner() == self.inst
-        and self:CanLocomote() and not self:IsBusy()
     then
         item.components.spellcommand:RunCommand(command_id, self.inst, position, target)
     end
