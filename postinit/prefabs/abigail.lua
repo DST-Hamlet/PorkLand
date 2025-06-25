@@ -6,14 +6,22 @@ local function FreezeMovements(inst, should_freeze)
     inst:AddOrRemoveTag("movements_frozen", should_freeze)
 end
 
-local function OnGotoCommand(inst, position)
+local function OnGotoCommand(inst, data)
+    local position = data.position
+    if position == nil then
+        return
+    end
     inst._goto_position = position
     inst:_OnHauntTargetRemoved()
     inst:_OnNextHauntTargetRemoved()
 end
 
 local HAUNT_CANT_TAGS = {"catchable", "DECOR", "FX", "haunted", "INLIMBO", "NOCLICK"}
-local function DoGhostHauntTarget(inst, target)
+local function DoGhostHauntTarget(inst, data)
+    local target = data.target
+    if target == nil then
+        return
+    end
     if (inst.sg and inst.sg:HasStateTag("nocommand"))
             or (inst.components.health and inst.components.health:IsDead()) then
         return

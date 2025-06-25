@@ -15,6 +15,8 @@ local ToggleOnPhysics = nil
 local ToggleOffPhysics = nil
 local DoneTeleporting = nil
 local DoWortoxPortalTint = nil
+local DoTalkSound = nil
+local StopTalkSound = nil
 
 local function OnExitRow(inst)
     local boat = inst.replica.sailor:GetBoat()
@@ -216,6 +218,11 @@ local eventhandlers = {
                 inst.sg:HasStateTag("sleeping") or
                 inst.sg:HasStateTag("frozen")) then
             inst.sg:GoToState("cower", data)
+        end
+    end),
+    EventHandler("talk_whisper", function(inst, data)
+        if inst.sg:HasStateTag("idle") then
+            inst.sg:GoToState("talk_whisper", data)
         end
     end),
 }
@@ -2824,6 +2831,44 @@ local states = {
             end
         end,
     },
+
+    State{
+        name = "talk_whisper",
+        tags = { "idle", "talking", "whisper" },
+
+        onenter = function(inst, data)
+            inst.components.locomotor:Stop()
+            if data and data.pos then
+                inst:ForceFacePoint(data.pos)
+            end
+            inst.Transform:SetSixFaced()
+            inst.AnimState:PlayAnimation("wendy_commune_pre")
+            inst.AnimState:PushAnimation("wendy_commune_pst", false)
+            DoTalkSound(inst)
+        end,
+
+        timeline =
+        {
+            TimeEvent(32 * FRAMES, function(inst)
+                StopTalkSound(inst)
+            end),
+        },
+
+        events =
+        {
+            EventHandler("animqueueover", function(inst)
+                if inst.AnimState:AnimDone() then
+                    inst.sg:GoToState("idle")
+                end
+            end),
+        },
+
+        onexit = function(inst)
+            StopTalkSound(inst)
+            inst.Transform:SetFourFaced()
+            inst.AnimState:ClearOverrideSymbol("flower")
+        end,
+    },
 }
 
 for _, actionhandler in ipairs(actionhandlers) do
@@ -2860,6 +2905,11 @@ AddStategraphPostInit("wilson", function(sg)
 
     local _portal_jumpin_onupdate = sg.states["portal_jumpin"].onupdate
     DoWortoxPortalTint = ToolUtil.GetUpvalue(_portal_jumpin_onupdate, "DoWortoxPortalTint")
+
+    local _talk_onenter = sg.states["talk"].onenter
+    DoTalkSound = ToolUtil.GetUpvalue(_talk_onenter, "DoTalkSound")
+
+    StopTalkSound = sg.states["talk"].onexit
 
     sg.actionhandlers[ACTIONS.SPELL_COMMAND].deststate = sg.actionhandlers[ACTIONS.CASTAOE].deststate
 
@@ -3280,5 +3330,13 @@ AddStategraphPostInit("wilson", function(sg)
         else
             return _eat_deststate and _eat_deststate(inst, action)
         end
+    end
+
+    local _ontalk_eventhandler = sg.events.ontalk.fn
+    sg.events.ontalk.fn = function(inst, data, ...)
+        if inst.sg:HasStateTag("whisper") then
+            return
+        end
+        return _ontalk_eventhandler(inst, data, ...)
     end
 end)

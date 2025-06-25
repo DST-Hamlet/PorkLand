@@ -1,6 +1,17 @@
 local AddPrefabPostInit = AddPrefabPostInit
 GLOBAL.setfenv(1, GLOBAL)
 
+local function CanWendyTalk(inst)
+    if (inst.components.health ~= nil and inst.components.health:IsDead() and inst.components.revivablecorpse == nil) or
+        (inst.components.sleeper ~= nil and inst.components.sleeper:IsAsleep()) or
+        (inst.components.freezable ~= nil and inst.components.freezable:IsFrozen()) then
+
+        return false
+    end
+
+    return true
+end
+
 local function ReticuleGhostTargetFn(inst)
     return Vector3(ThePlayer.entity:LocalToWorldSpace(7, 0.001, 0))
 end
@@ -13,6 +24,14 @@ end
 
 -- Rile Up and Soothe actions
 local function GhostChangeBehaviour(inst, doer)
+    if not CanWendyTalk(doer) then
+        return
+    end
+
+    local pos = doer.components.ghostlybond.ghost and doer.components.ghostlybond.ghost:GetPosition() or nil
+    doer:PushEvent("talk_whisper", {pos = pos})
+    doer.components.talker:Say("GhostChangeBehaviour")
+
 	doer.components.ghostlybond:ChangeBehaviour()
 
 	inst:PushEvent("spellupdateneeded", doer)
@@ -21,13 +40,34 @@ local function GhostChangeBehaviour(inst, doer)
 end
 
 local function ToggleFreezeGhostMovements(inst, doer)
+    if not CanWendyTalk(doer) then
+        return
+    end
+
+    local pos = doer.components.ghostlybond.ghost and doer.components.ghostlybond.ghost:GetPosition() or nil
+    doer:PushEvent("talk_whisper", {pos = pos})
+    doer.components.talker:Say("ToggleFreezeGhostMovements")
+
     doer.components.ghostlybond:FreezeMovements(not doer:HasTag("has_movements_frozen_follower"))
 	doer.refreshflowertooltip:push()
 	inst:PushEvent("spellupdateneeded", doer)
 	return true
 end
 
-local function DoGhostSpell(doer, event, state, ...)
+local function DoGhostSpell(doer, event, state, data, ...)
+    if not CanWendyTalk(doer) then
+        return
+    end
+
+    local pos = nil
+    if data.position then
+        pos = data.position
+    elseif data.target then
+        pos = data.target:GetPosition()
+    end
+    doer:PushEvent("talk_whisper", {pos = pos})
+    doer.components.talker:Say(event)
+
 	-- local spellbookcooldowns = doer.components.spellbookcooldowns
 	local ghostlybond = doer.components.ghostlybond
 
@@ -44,10 +84,10 @@ local function DoGhostSpell(doer, event, state, ...)
 	end
 
 	if event then
-		ghostlybond.ghost:PushEvent(event, ...)
+		ghostlybond.ghost:PushEvent(event, data, ...)
 
 	elseif state then
-		ghostlybond.ghost.sg:GoToState(state, ...)
+		ghostlybond.ghost.sg:GoToState(state, data, ...)
 	end
 
 	-- if spellbookcooldowns then
@@ -74,11 +114,11 @@ end
 -- end
 
 local function GhostHauntSpellCommand(inst, doer, position, target)
-    return DoGhostSpell(doer, "do_ghost_haunt_target", nil, target)
+    return DoGhostSpell(doer, "do_ghost_haunt_target", nil, {target = target})
 end
 
 local function GhostGotoSpellCommand(inst, doer, position)
-    return DoGhostSpell(doer, "do_ghost_goto_position", nil, position)
+    return DoGhostSpell(doer, "do_ghost_goto_position", nil, {position = position})
 end
 
 local function LeftClickPicker(inst, target, position)
