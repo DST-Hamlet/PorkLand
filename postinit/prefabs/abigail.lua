@@ -45,6 +45,8 @@ AddPrefabPostInit("abigail", function(inst)
         return inst
     end
 
+    inst.components.health:SetCurrentHealth(1)
+
     inst:ListenForEvent("do_ghost_haunt_target", DoGhostHauntTarget)
     inst:ListenForEvent("do_ghost_goto_position", OnGotoCommand)
     inst.FreezeMovements = FreezeMovements
@@ -84,7 +86,7 @@ AddPrefabPostInit("abigail", function(inst)
             end
             return unpack(rets)
         end
-        inst.components.combat:SetRetargetFunction(0.01, Retarget) -- 增加阿比的响应频率
+        inst.components.combat:SetRetargetFunction(FRAMES * 3, Retarget) -- 增加阿比的响应频率
     end
 
     local _BecomeDefensive = inst.BecomeDefensive
@@ -98,6 +100,6 @@ AddPrefabPostInit("abigail", function(inst)
             end
             return unpack(rets)
         end
-        inst.components.combat:SetRetargetFunction(0.01, Retarget) -- 增加阿比的响应频率
+        inst.components.combat:SetRetargetFunction(FRAMES * 3, Retarget) -- 增加阿比的响应频率
     end
 end)
