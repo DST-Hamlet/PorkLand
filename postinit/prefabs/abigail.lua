@@ -1,6 +1,8 @@
 local AddPrefabPostInit = AddPrefabPostInit
 GLOBAL.setfenv(1, GLOBAL)
 
+local auratest = nil
+
 local function FreezeMovements(inst, should_freeze)
     inst._playerlink:AddOrRemoveTag("has_movements_frozen_follower", should_freeze)
     inst:AddOrRemoveTag("movements_frozen", should_freeze)
@@ -71,4 +73,31 @@ AddPrefabPostInit("abigail", function(inst)
         inst:_OnNextHauntTargetRemoved()
     end
 
+    local _BecomeAggressive = inst.BecomeAggressive
+    inst.BecomeAggressive = function(inst, ...)
+        _BecomeAggressive(inst, ...)
+        local _Retarget = inst.components.combat.targetfn
+        local function Retarget(...)
+            local rets = {_Retarget(...)}
+            if rets[1] then
+                rets[2] = true -- 强制转移仇恨目标
+            end
+            return unpack(rets)
+        end
+        inst.components.combat:SetRetargetFunction(0.01, Retarget) -- 增加阿比的响应频率
+    end
+
+    local _BecomeDefensive = inst.BecomeDefensive
+    inst.BecomeDefensive = function(inst, ...)
+        _BecomeDefensive(inst, ...)
+        local _Retarget = inst.components.combat.targetfn
+        local function Retarget(...)
+            local rets = {_Retarget(...)}
+            if rets[1] then
+                rets[2] = true -- 强制转移仇恨目标
+            end
+            return unpack(rets)
+        end
+        inst.components.combat:SetRetargetFunction(0.01, Retarget) -- 增加阿比的响应频率
+    end
 end)
