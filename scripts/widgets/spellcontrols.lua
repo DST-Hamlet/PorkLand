@@ -236,7 +236,8 @@ function SpellControls:UpdateAnchorPosition()
     local inventory_bar = self.owner.HUD.controls.inv
     local anchor_position = inventory_bar.toprow:GetWorldPosition()
     local inv_slots = inventory_bar.inv
-    
+
+    -- 计算左右极限
     local left_x = 3
     local right_x = 3
     if #inv_slots > 3 then
