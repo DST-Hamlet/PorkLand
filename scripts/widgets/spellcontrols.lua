@@ -209,8 +209,18 @@ function SpellControls:RefreshItemStates()
     end
 end
 
-local function get_slot_position(inventory_bar, index)
+local function get_item_pos(inventory_bar, item)
     local slots = JoinArrays(unpack(inventory_bar:GetInventoryLists()))
+    for _, slot in pairs(slots) do
+        if item and slot.tile and slot.tile.item == item then
+            return slot:GetWorldPosition()
+        end
+    end
+    return Vector3(0, 0, 0)
+end
+
+local function get_slot_position(inventory_bar, index)
+    local slots = inventory_bar.inv
     local i = 1
     for _, slot in pairs(slots) do
         if i == index then
@@ -223,8 +233,21 @@ end
 
 function SpellControls:UpdateAnchorPosition()
     -- TODO: we currently force the anchor position
-    local anchor_position = self.owner.HUD.controls.inv.toprow:GetWorldPosition()
-    anchor_position.x = get_slot_position(self.owner.HUD.controls.inv, 3).x
+    local inventory_bar = self.owner.HUD.controls.inv
+    local anchor_position = inventory_bar.toprow:GetWorldPosition()
+    local inv_slots = inventory_bar.inv
+    
+    local left_x = 3
+    local right_x = 3
+    if #inv_slots > 3 then
+        right_x = #inv_slots - 2
+    end
+    left_x = get_slot_position(inventory_bar, left_x).x
+    right_x = get_slot_position(inventory_bar, right_x).x
+
+    local item_x = get_item_pos(inventory_bar, self.source_item).x
+    item_x = math.min(math.max(item_x, left_x), right_x)
+    anchor_position.x = item_x
 
     -- self.anchor_position = anchor_position
     self:SetPosition(anchor_position)

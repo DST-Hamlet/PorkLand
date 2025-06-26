@@ -72,8 +72,9 @@ local _OnUpdate = InventoryBar.OnUpdate
 function InventoryBar:OnUpdate(dt, ...)
     _OnUpdate(self, dt, ...)
 
-    if self.owner.HUD.controls.spellcontrols then
-        self.owner.HUD.controls.spellcontrols:UpdateAnchorPosition() 
+    local spellcontrols = self.owner.HUD.controls.spellcontrols
+    if spellcontrols and spellcontrols.isopen then
+        spellcontrols:UpdateAnchorPosition() 
     end
 end
 
