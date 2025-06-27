@@ -163,7 +163,6 @@ local prefab_posts = {
     "thunder_close",
     "torch",
     "waterprojectiles",
-    "woodie",
     "world_network",
     "world",
     "shard_network",
@@ -174,7 +173,6 @@ local prefab_posts = {
     "telestaff",
     "walls",
     "waterballoon",
-    "wormwood",
     "wortox",
 }
 
