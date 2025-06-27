@@ -35,5 +35,5 @@ local function Breaker(title_en, title_zh) -- hover does not work, as this item 
 end
 
 configuration_options = {
-    -- Breaker("Misc", "杂项"),
+	-- Breaker("Misc", "杂项"),
 }

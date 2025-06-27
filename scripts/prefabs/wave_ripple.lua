@@ -125,12 +125,13 @@ end
 local function ActivateCollision(inst)
     local phys = inst.Physics
     phys:SetCollisionGroup(COLLISION.CHARACTERS)
-    phys:ClearCollisionMask()
-    phys:CollidesWith(COLLISION.WORLD)
-    phys:CollidesWith(COLLISION.OBSTACLES)
-    phys:CollidesWith(COLLISION.SMALLOBSTACLES)
-    phys:CollidesWith(COLLISION.CHARACTERS)
-    phys:CollidesWith(COLLISION.GIANTS)
+    phys:SetCollisionMask(
+        COLLISION.WORLD,
+        COLLISION.OBSTACLES,
+        COLLISION.SMALLOBSTACLES,
+        COLLISION.CHARACTERS,
+        COLLISION.GIANTS,
+    )
     phys:SetCollides(false)  -- Still will get collision callback, just not dynamic collisions.
 end
 

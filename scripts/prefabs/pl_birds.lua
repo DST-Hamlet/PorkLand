@@ -124,8 +124,7 @@ local function MakeBird(name, sounds, feather_name, isreplace)
         inst.entity:AddNetwork()
 
         inst.Physics:SetCollisionGroup(COLLISION.FLYERS)
-        inst.Physics:ClearCollisionMask()
-        inst.Physics:CollidesWith(COLLISION.WORLD)
+        inst.Physics:SetCollisionMask(COLLISION.WORLD)
         inst.Physics:SetMass(1)
         inst.Physics:SetSphere(1)
 
