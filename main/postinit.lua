@@ -67,6 +67,7 @@ local component_posts = {
     "ambientlighting",
     "amphibiouscreature",
     "areaaware",
+    "aura",
     "beard",
     "blinkstaff",
     "builder_replica",
@@ -139,7 +140,6 @@ local component_posts = {
 }
 
 local prefab_posts = {
-    "abigail",
     "abigail_flower",
     "batwing",
     "birdcage",
