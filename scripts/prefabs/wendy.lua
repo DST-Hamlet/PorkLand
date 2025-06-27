@@ -240,6 +240,7 @@ local function master_postinit(inst)
 	inst:AddComponent("fader")
 
 	inst:AddComponent("ghostlybond")
+	inst.components.ghostlybond.maxbondlevel = 1
 	inst.components.ghostlybond.onbondlevelchangefn = ghostlybond_onlevelchange
 	inst.components.ghostlybond.onsummonfn = ghostlybond_onsummon
 	inst.components.ghostlybond.onrecallfn = ghostlybond_onrecall

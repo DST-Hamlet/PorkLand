@@ -24,6 +24,11 @@ function InventoryItem:SetOwner(owner, ...)
         end
         return
     end
+    if self.inst.prefab == "abigail_flower" then
+        if ThePlayer and ThePlayer.HUD and ThePlayer.HUD:GetCurrentOpenSpellBook() == self.inst then
+            ThePlayer.HUD.controls.spellcontrols:Close()
+        end
+    end
     return _SetOwner(self, owner, ...)
 end
 

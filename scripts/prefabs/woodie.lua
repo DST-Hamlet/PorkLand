@@ -631,6 +631,15 @@ local function onbecamehuman(inst)
             inst.components.hunger:SetPercent(TUNING.CALORIES_TINY / TUNING.WOODIE_HUNGER, true)
         end
     end
+
+    if inst.components.poisonable and not inst:HasTag("playerghost") then
+        inst.components.poisonable:SetBlockAll(false)
+    end
+
+    if inst.components.hayfever then
+        inst.components.hayfever.imune = false
+    end
+    
     inst.components.moisture:SetInherentWaterproofness(0)
     inst.components.talker:StopIgnoringAll("becamewere")
     inst.components.catcher:SetEnabled(true)
@@ -699,6 +708,15 @@ local function onbecamebeaver(inst)
         inst.components.hunger:SetPercent(1, true)
         inst.components.hunger:Pause()
     end
+
+    if inst.components.poisonable then
+        inst.components.poisonable:SetBlockAll(true)
+    end
+
+    if inst.components.hayfever then
+        inst.components.hayfever.imune = true
+    end
+
     inst.components.moisture:SetInherentWaterproofness(TUNING.WATERPROOFNESS_LARGE)
     inst.components.talker:IgnoreAll("becamewere")
     inst.components.catcher:SetEnabled(false)
