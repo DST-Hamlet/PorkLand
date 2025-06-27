@@ -35,6 +35,9 @@ AddComponentPostInit("playervision", function(self)
     local _UpdateCCTable = self.UpdateCCTable
     function self:UpdateCCTable()
         _UpdateCCTable(self)
+        if (self.overridecctable ~= nil) and (self.currentcctable == self.overridecctable) then
+            return
+        end
         if self.inst.replica.inventory:EquipHasTag("bat_hat") then
             local cc = BATVISION_COLOUR_CUBE
             self.currentcctable = cc

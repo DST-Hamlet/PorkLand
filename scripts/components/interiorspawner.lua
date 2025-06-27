@@ -190,10 +190,10 @@ end
 function InteriorSpawner:IsInInteriorRoom(x, z, padding)
     padding = padding or 0
     local position = Vector3(x, 0, z)
-    local ent = self:GetInteriorCenter(position)
-    if ent ~= nil then
-        local width, depth = ent:GetSize()
-        local offset = ent:GetPosition() - position
+    local center = self:GetInteriorCenter(position)
+    if center then
+        local width, depth = center:GetSize()
+        local offset = center:GetPosition() - position
         return math.abs(offset.x) < depth/2 + padding and math.abs(offset.z) < width/2 + padding
     end
 end
@@ -1037,6 +1037,24 @@ function InteriorSpawner:IsAnyPlayerInRoom(interiorID)
     end
 
     return false
+end
+
+-- Get a sorted list of rooms in distance to the given interior center
+function InteriorSpawner:GetSortedRoomsInGroup(room)
+    local group = self.interior_groups[room:GetGroupId()]
+    local rooms = {}
+    for _, center in pairs(group) do
+        if center ~= room then
+            table.insert(rooms, center)
+        end
+    end
+    local current_x, current_y = room:GetCoordinates()
+    table.sort(rooms, function(a, b)
+        local a_x, a_y = a:GetCoordinates()
+        local b_x, b_y = b:GetCoordinates()
+        return distsq(current_x, current_y, a_x, a_y) < distsq(current_x, current_y, b_x, b_y)
+    end)
+    return rooms
 end
 
 function InteriorSpawner:GetInteriorCenterByCoordinates(group_id, x, y)

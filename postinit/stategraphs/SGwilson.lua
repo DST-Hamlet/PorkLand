@@ -1791,17 +1791,8 @@ local states = {
         tags = {"preinvestigate", "investigating", "working"},
 
         onenter = function(inst)
-            if inst.components.rider:IsRiding() then
-                inst.Transform:SetFourFaced()
-            end
             inst.components.locomotor:Stop()
             inst.sg:GoToState("investigate")
-        end,
-
-        onexit = function(inst)
-            if inst.components.rider:IsRiding() then
-                inst.Transform:SetSixFaced()
-            end
         end,
 
         events =
@@ -1816,17 +1807,8 @@ local states = {
         tags = {"preinvestigate", "investigating", "working"},
 
         onenter = function(inst)
-            if inst.components.rider:IsRiding() then
-                inst.Transform:SetFourFaced()
-            end
             inst.sg.statemem.action = inst:GetBufferedAction()
             inst.AnimState:PlayAnimation("lens")
-        end,
-
-        onexit = function(inst)
-            if inst.components.rider:IsRiding() then
-                inst.Transform:SetSixFaced()
-            end
         end,
 
         timeline =
@@ -1857,16 +1839,7 @@ local states = {
         tags = {"investigating", "working"},
 
         onenter = function(inst)
-            if inst.components.rider:IsRiding() then
-                inst.Transform:SetFourFaced()
-            end
             inst.AnimState:PlayAnimation("lens_pst")
-        end,
-
-        onexit = function(inst)
-            if inst.components.rider:IsRiding() then
-                inst.Transform:SetSixFaced()
-            end
         end,
 
         events =
@@ -1881,17 +1854,11 @@ local states = {
         tags = {"preinvestigate", "investigating", "working"},
 
         onenter = function(inst)
-            if inst.components.rider:IsRiding() then
-                inst.Transform:SetFourFaced()
-            end
             inst.sg.statemem.action = inst:GetBufferedAction()
             inst.AnimState:PlayAnimation("goggle")
         end,
 
         onexit = function(inst)
-            if inst.components.rider:IsRiding() then
-                inst.Transform:SetSixFaced()
-            end
             inst.SoundEmitter:KillSound("goggle")
         end,
 
@@ -1926,16 +1893,7 @@ local states = {
         tags = {"investigating", "working"},
 
         onenter = function(inst)
-            if inst.components.rider:IsRiding() then
-                inst.Transform:SetFourFaced()
-            end
             inst.AnimState:PlayAnimation("goggle_pst")
-        end,
-
-        onexit = function(inst)
-            if inst.components.rider:IsRiding() then
-                inst.Transform:SetSixFaced()
-            end
         end,
 
         events =
@@ -2251,6 +2209,13 @@ local states = {
                 inst.sg:GoToState("ironlord_idle")
             end),
         },
+
+        onexit = function(inst)
+            inst.components.combat:SetTarget(nil)
+            if inst.sg:HasStateTag("abouttoattack") then
+                inst.components.combat:CancelAttack()
+            end
+        end,
     },
 
     State{
@@ -2348,10 +2313,6 @@ local states = {
         tags = {"busy", "canrotate"},
 
         onenter = function(inst)
-            if inst.components.rider:IsRiding() then
-                inst.Transform:SetFourFaced()
-            end
-
             local action = inst:GetBufferedAction()
             local pos
             if action.pos then -- POINT action
@@ -2383,12 +2344,6 @@ local states = {
                 inst.sg:GoToState("idle")
             end),
         },
-
-        onexit = function(inst)
-            if inst.components.rider:IsRiding() then
-                inst.Transform:SetSixFaced()
-            end
-        end,
     },
 
     State{
@@ -2437,13 +2392,13 @@ local states = {
         {
             EventHandler("equip", function(inst) inst.sg:GoToState("idle") end),
             EventHandler("unequip", function(inst, data)
-				if inst.sg.statemem.thrown and data.eslot == EQUIPSLOTS.HANDS then
-					inst.sg.statemem.thrown = nil
-				else
+                if inst.sg.statemem.thrown and data.eslot == EQUIPSLOTS.HANDS then
+                    inst.sg.statemem.thrown = nil
+                else
                     inst.sg:GoToState("idle")
                 end
             end),
-			EventHandler("animqueueover", function(inst)
+            EventHandler("animqueueover", function(inst)
                 if inst.AnimState:AnimDone() then
                     inst.sg:GoToState("idle")
                 end
@@ -2451,10 +2406,6 @@ local states = {
         },
 
         onexit = function(inst)
-            if inst.components.rider:IsRiding() then
-                inst.Transform:SetSixFaced()
-            end
-
             inst.components.combat:SetTarget(nil)
             if inst.sg:HasStateTag("abouttoattack") then
                 inst.components.combat:CancelAttack()
@@ -2467,10 +2418,6 @@ local states = {
         tags = {"attack", "notalking", "abouttoattack"},
 
         onenter = function(inst)
-            if inst.components.rider:IsRiding() then
-                inst.Transform:SetFourFaced()
-            end
-
             local buffaction = inst:GetBufferedAction()
             local target = buffaction and buffaction.target or nil
             inst.sg.statemem.target = target
@@ -2487,10 +2434,6 @@ local states = {
         end,
 
         onexit = function(inst)
-            if inst.components.rider:IsRiding() then
-                inst.Transform:SetSixFaced()
-            end
-
             inst.components.combat:SetTarget(nil)
             if inst.sg:HasStateTag("abouttoattack") then
                 inst.components.combat:CancelAttack()
@@ -2701,7 +2644,7 @@ local states = {
             inst.components.locomotor:EnableGroundSpeedMultiplier(false)
 
             inst:AddTag("difficult_to_hit")
-            inst.CanBeAttack = function() return false end
+            inst.CanBeHit = function() return false end
 
             inst.last_dodge_time = GetTime()
         end,
@@ -2729,7 +2672,7 @@ local states = {
             inst.components.locomotor:SetBufferedAction(nil)
 
             inst:RemoveTag("difficult_to_hit")
-            inst.CanBeAttack = nil
+            inst.CanBeHit = nil
         end,
     },
 
@@ -3154,7 +3097,7 @@ AddStategraphPostInit("wilson", function(sg)
         _sit_jumpon_onenter(inst, chair, ...)
         if chair and chair:HasTag("limited_chair") then
             if chair:HasTag("rotatableobject") then
-                inst.Transform:SetTwoFaced()
+                inst.Transform:SetPredictedNoFaced()
             end
         end
     end

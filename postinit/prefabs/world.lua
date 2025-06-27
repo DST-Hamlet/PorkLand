@@ -6,6 +6,10 @@ AddPrefabPostInit("world", function(inst)
         inst:AddComponent("interiorspawner")
     end
 
+    if not TheNet:IsDedicated() then
+        inst:AddComponent("interiorhudindicatablemanager")
+    end
+
     if not TheWorld.ismastersim then
         return
     end

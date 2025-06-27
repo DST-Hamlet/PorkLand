@@ -92,6 +92,9 @@ local function fn()
 
     inst.Transform:SetScale(0.5, 0.5, 0.5)
 
+    inst:AddTag("waxwell_pillar")
+    inst:AddTag("structure")
+
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then

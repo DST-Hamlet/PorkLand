@@ -104,6 +104,7 @@ local states =
         onenter = function(inst)
             inst.components.locomotor:Stop()
             inst.TransformToAnimal(inst)
+            inst.sg:GoToState("appear")
         end,
     },
 

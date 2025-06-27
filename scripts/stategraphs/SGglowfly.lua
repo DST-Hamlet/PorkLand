@@ -111,9 +111,7 @@ local states = {
 
         timeline = {
             TimeEvent(3 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("porkland_soundpackage/creatures/glowfly/buzz") end),
-            TimeEvent(6 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("porkland_soundpackage/creatures/glowfly/buzz") end),
             TimeEvent(9 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("porkland_soundpackage/creatures/glowfly/buzz") end),
-            TimeEvent(12 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("porkland_soundpackage/creatures/glowfly/buzz") end),
             TimeEvent(15 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("porkland_soundpackage/creatures/glowfly/buzz") end),
         },
 
