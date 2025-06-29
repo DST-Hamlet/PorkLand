@@ -191,7 +191,21 @@ local DISABLE_RECIPES = {
     "ocean_trawler_kit",
     "fish_box",
     "rope_bridge_kit",
-
+    "thulecitebugnet",
+    "flotationcushion",
+    
+    -- Wendy --
+    "abigail_flower",
+    "sisturn",
+    "ghostlyelixir_slowregen",
+    "ghostlyelixir_fastregen",
+    "ghostlyelixir_shield",
+    "ghostlyelixir_retaliation",
+    "ghostlyelixir_attack",
+    "ghostlyelixir_speed",
+    "ghostlyelixir_revive",
+    "ghostlyelixir_shadow",
+    "ghostlyelixir_lunar",
     -- Wickerbottom --
     "bookstation",
     "book_horticulture",
