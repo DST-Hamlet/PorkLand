@@ -149,12 +149,12 @@ local SCALE = 0.9
 local COMMANDS = {
 	{
         id = "unsummon",
-		label = STRINGS.GHOSTCOMMANDS.UNSUMMON,
+		label = STRINGS.SPELLCOMMAND.TALK_TO_ABIGAIL.UNSUMMON,
 		on_execute_on_server = function(inst, doer)
             -- Done with action
 		end,
 		on_execute_on_client = function(inst)
-            ThePlayer.components.playercontroller:CastSpellCommand(inst, "unsummon")
+            ThePlayer.components.playercontroller:CastSpelflCommand(inst, "unsummon")
 		end,
         action = function(inst, doer, position, target)
             return BufferedAction(doer, nil, ACTIONS.CASTUNSUMMON, inst)
@@ -166,7 +166,7 @@ local COMMANDS = {
     {
         id = "toggle_aggressive",
         label = function(inst)
-           return ThePlayer:HasTag("has_aggressive_follower") and STRINGS.ACTIONS.COMMUNEWITHSUMMONED.MAKE_DEFENSIVE or STRINGS.ACTIONS.COMMUNEWITHSUMMONED.MAKE_AGGRESSIVE
+           return ThePlayer:HasTag("has_aggressive_follower") and STRINGS.SPELLCOMMAND.TALK_TO_ABIGAIL.MAKE_DEFENSIVE or STRINGS.SPELLCOMMAND.TALK_TO_ABIGAIL.MAKE_AGGRESSIVE
         end,
         on_execute_on_server = GhostChangeBehaviour,
         on_execute_on_client = function(inst)
@@ -181,7 +181,7 @@ local COMMANDS = {
     {
         id = "toggle_freeze_movements",
         label = function(inst)
-           return ThePlayer:HasTag("has_movements_frozen_follower") and "Resume Movements" or "Freeze Movements"
+           return ThePlayer:HasTag("has_movements_frozen_follower") and STRINGS.SPELLCOMMAND.TALK_TO_ABIGAIL.MAKE_FOLLOW or STRINGS.SPELLCOMMAND.TALK_TO_ABIGAIL.MAKE_STAY
         end,
         on_execute_on_server = ToggleFreezeGhostMovements,
         on_execute_on_client = function(inst)
@@ -314,7 +314,7 @@ local COMMANDS = {
     -- },
     {
         id = "haunt_at",
-        label = STRINGS.GHOSTCOMMANDS.HAUNT_AT,
+        label = STRINGS.SPELLCOMMAND.TALK_TO_ABIGAIL.HAUNT,
         on_execute_on_server = GhostHauntSpellCommand,
         on_execute_on_client = function(inst)
             inst.components.spellcommand:SetSelectedCommand("haunt_at")
@@ -334,7 +334,7 @@ local COMMANDS = {
     },
     {
         id = "goto",
-        label = "Goto",
+        label = STRINGS.SPELLCOMMAND.TALK_TO_ABIGAIL.GOTO,
         on_execute_on_server = function(inst, doer, position)
             -- TODO: See if we still want this
             inst.components.aoetargeting:SetTargetFX("reticuleaoeghosttarget")

@@ -54,6 +54,23 @@ return {
     },
     ANNOUNCE_TURFTOOHARD = "No use pullin' up this ground.",
     ANNOUNCE_WAVE_BOOST = "We be a silver streak on th'blue now!",
+
+    --ATC new ANNOUNCE
+    --ANNOUNCE_ABIGAIL_GOTO = {
+    --    "only_used_by_wendy",
+    --    "only_used_by_wendy",
+    --    "only_used_by_wendy",
+    --},
+    --ANNOUNCE_ABIGAIL_HAUNT = {
+    --    "only_used_by_wendy",
+    --    "only_used_by_wendy",
+    --    "only_used_by_wendy",
+    --},
+    --ANNOUNCE_ABIGAIL_MAKE_STAY = "only_used_by_wendy",
+    --ANNOUNCE_ABIGAIL_MAKE_FOLLOW = "only_used_by_wendy",
+    --ANNOUNCE_ABIGAIL_MAKE_AGGRESSIVE = "only_used_by_wendy",
+    --ANNOUNCE_ABIGAIL_MAKE_DEFENSIVE = "only_used_by_wendy",
+
     DESCRIBE = {
         ADULT_FLYTRAP = {
             DEAD = "Danc'd tha hemp'n jig.",

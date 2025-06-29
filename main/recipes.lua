@@ -737,6 +737,9 @@ AddRecipe2("pillar_door",   {Ingredient("oinc", 20)}, TECH.HOME, {nounlock = tru
 AddRecipe2("construction_permit", {Ingredient("oinc", 50)}, TECH.HOME, {nounlock = true}, {"HOME_DOOR"})
 AddRecipe2("demolition_permit",   {Ingredient("oinc", 10)}, TECH.HOME, {nounlock = true}, {"HOME_DOOR"})
 
+-- Wendy --
+AddRecipe2("abigail_flower", {Ingredient("petals", 6), Ingredient("nightmarefuel", 1)}, TECH.NONE,	{builder_tag = "ghostlyfriend"})
+
 -- Wormwood --
 AddRecipe2("armor_bramble", {Ingredient("livinglog", 2), Ingredient("boneshard", 4)}, TECH.NONE,	{builder_tag = "plantkin"})
 AddRecipe2("trap_bramble",  {Ingredient("livinglog", 1), Ingredient("boneshard", 1)}, TECH.NONE,	{builder_tag = "plantkin"})

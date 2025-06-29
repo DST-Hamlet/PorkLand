@@ -190,6 +190,23 @@ return {
     ANNOUNCE_WHALE_HUNT_LOST_TRAIL_SPRING = "Drat! I lost the trail.",
     ANNOUNCE_WORMHOLE = "Whew! That was... interesting.",
     ANNOUNCE_WORMS = "Now what's all that rumbling about?",
+
+    --ATC new ANNOUNCE
+    --ANNOUNCE_ABIGAIL_GOTO = {
+    --    "only_used_by_wendy",
+    --    "only_used_by_wendy",
+    --    "only_used_by_wendy",
+    --},
+    --ANNOUNCE_ABIGAIL_HAUNT = {
+    --    "only_used_by_wendy",
+    --    "only_used_by_wendy",
+    --    "only_used_by_wendy",
+    --},
+    --ANNOUNCE_ABIGAIL_MAKE_STAY = "only_used_by_wendy",
+    --ANNOUNCE_ABIGAIL_MAKE_FOLLOW = "only_used_by_wendy",
+    --ANNOUNCE_ABIGAIL_MAKE_AGGRESSIVE = "only_used_by_wendy",
+    --ANNOUNCE_ABIGAIL_MAKE_DEFENSIVE = "only_used_by_wendy",
+
     BATTLECRY = {
         GENERIC = "You picked the wrong gal to mess with!",
         PIG = "Remember my name, pig!",
