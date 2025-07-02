@@ -747,6 +747,7 @@ AddRecipe2("trap_bramble",  {Ingredient("livinglog", 1), Ingredient("boneshard",
 -- BOOK --
 AddRecipe2("book_birds",       {Ingredient("papyrus", 2), Ingredient("bird_egg", 2)},                      TECH.NONE,          {builder_tag = "bookbuilder"}, {"CHARACTER"})
 AddRecipe2("book_gardening",   {Ingredient("papyrus", 2), Ingredient("seeds", 1), Ingredient("poop", 1)},  TECH.SCIENCE_ONE,   {builder_tag = "bookbuilder"}, {"CHARACTER"})
+SortAfter("book_gardening", "book_birds", "CHARACTER")
 AddRecipe2("book_sleep",       {Ingredient("papyrus", 2), Ingredient("nightmarefuel", 2)},                 TECH.MAGIC_TWO,     {builder_tag = "bookbuilder"}, {"CHARACTER"})
 AddRecipe2("book_brimstone",   {Ingredient("papyrus", 2), Ingredient("redgem", 1)},                        TECH.MAGIC_THREE,   {builder_tag = "bookbuilder"}, {"CHARACTER"})
 -- There are no tentacles in porkland

@@ -206,6 +206,13 @@ local DISABLE_RECIPES = {
     "ghostlyelixir_revive",
     "ghostlyelixir_shadow",
     "ghostlyelixir_lunar",
+    "graveurn",
+    "wendy_gravestone",
+    "elixir_container",
+    "ghostflowerhat",
+    "wendy_butterfly",
+    "wendy_moonbutterfly",
+    "wendy_resurrectiongrave",
     -- Wickerbottom --
     "bookstation",
     "book_horticulture",

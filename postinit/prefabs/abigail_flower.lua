@@ -54,7 +54,7 @@ local function ToggleFreezeGhostMovements(inst, doer)
 	return true
 end
 
-local function DoGhostSpell(doer, event, state, data, ...)
+local function DoGhostSpell(doer, event, state, data, speech, ...)
     if not CanWendyTalk(doer) then
         return
     end
@@ -66,7 +66,7 @@ local function DoGhostSpell(doer, event, state, data, ...)
         pos = data.target:GetPosition()
     end
     doer:PushEvent("talk_whisper", {pos = pos})
-    doer.components.talker:Say(event)
+    doer.components.talker:Say(GetString(doer, speech))
 
 	-- local spellbookcooldowns = doer.components.spellbookcooldowns
 	local ghostlybond = doer.components.ghostlybond
@@ -114,11 +114,11 @@ end
 -- end
 
 local function GhostHauntSpellCommand(inst, doer, position, target)
-    return DoGhostSpell(doer, "do_ghost_haunt_target", nil, {target = target})
+    return DoGhostSpell(doer, "do_ghost_haunt_target", nil, {target = target}, "ANNOUNCE_ABIGAIL_HAUNT")
 end
 
 local function GhostGotoSpellCommand(inst, doer, position)
-    return DoGhostSpell(doer, "do_ghost_goto_position", nil, {position = position})
+    return DoGhostSpell(doer, "do_ghost_goto_position", nil, {position = position}, "ANNOUNCE_ABIGAIL_GOTO")
 end
 
 local function LeftClickPicker(inst, target, position)
