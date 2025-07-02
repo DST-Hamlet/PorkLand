@@ -154,7 +154,7 @@ local COMMANDS = {
             -- Done with action
 		end,
 		on_execute_on_client = function(inst)
-            ThePlayer.components.playercontroller:CastSpelflCommand(inst, "unsummon")
+            ThePlayer.components.playercontroller:CastSpellCommand(inst, "unsummon")
 		end,
         action = function(inst, doer, position, target)
             return BufferedAction(doer, nil, ACTIONS.CASTUNSUMMON, inst)
