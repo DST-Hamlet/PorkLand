@@ -54,6 +54,23 @@ return {
     },
     ANNOUNCE_TURFTOOHARD = "Life is too short to deal with such stubbornness.",
     ANNOUNCE_WAVE_BOOST = "Joy...",
+
+    --ATC new ANNOUNCE
+    ANNOUNCE_ABIGAIL_GOTO = {
+        "Abigail, over here!",
+        "Go there, Abby.",
+        "Run, Abigail, Run!",
+    },
+    ANNOUNCE_ABIGAIL_HAUNT = {
+        "I request your ghost power, Abigail...",
+        "Play your favorite prank, dear sister.",
+        "Try that, Abigail.",
+    },
+    ANNOUNCE_ABIGAIL_MAKE_STAY = "Abigail, let's play statues game?",
+    ANNOUNCE_ABIGAIL_MAKE_FOLLOW = "Statues game is over, Abigail.",
+    ANNOUNCE_ABIGAIL_MAKE_AGGRESSIVE = "Abigail, time to fight!",
+    ANNOUNCE_ABIGAIL_MAKE_DEFENSIVE = "Calm down, Abby. I'm fine.",
+
     DESCRIBE = {
         ADULT_FLYTRAP = {
             DEAD = "Yet death still eludes me (sigh).",

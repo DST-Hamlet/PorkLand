@@ -54,7 +54,7 @@ local function ToggleFreezeGhostMovements(inst, doer)
 	return true
 end
 
-local function DoGhostSpell(doer, event, state, data, ...)
+local function DoGhostSpell(doer, event, state, data, speech, ...)
     if not CanWendyTalk(doer) then
         return
     end
@@ -66,7 +66,7 @@ local function DoGhostSpell(doer, event, state, data, ...)
         pos = data.target:GetPosition()
     end
     doer:PushEvent("talk_whisper", {pos = pos})
-    doer.components.talker:Say(event)
+    doer.components.talker:Say(GetString(doer, speech))
 
 	-- local spellbookcooldowns = doer.components.spellbookcooldowns
 	local ghostlybond = doer.components.ghostlybond
@@ -114,11 +114,11 @@ end
 -- end
 
 local function GhostHauntSpellCommand(inst, doer, position, target)
-    return DoGhostSpell(doer, "do_ghost_haunt_target", nil, {target = target})
+    return DoGhostSpell(doer, "do_ghost_haunt_target", nil, {target = target}, "ANNOUNCE_ABIGAIL_HAUNT")
 end
 
 local function GhostGotoSpellCommand(inst, doer, position)
-    return DoGhostSpell(doer, "do_ghost_goto_position", nil, {position = position})
+    return DoGhostSpell(doer, "do_ghost_goto_position", nil, {position = position}, "ANNOUNCE_ABIGAIL_GOTO")
 end
 
 local function LeftClickPicker(inst, target, position)
@@ -149,7 +149,7 @@ local SCALE = 0.9
 local COMMANDS = {
 	{
         id = "unsummon",
-		label = STRINGS.GHOSTCOMMANDS.UNSUMMON,
+		label = STRINGS.SPELLCOMMAND.TALK_TO_ABIGAIL.UNSUMMON,
 		on_execute_on_server = function(inst, doer)
             -- Done with action
 		end,
@@ -166,7 +166,7 @@ local COMMANDS = {
     {
         id = "toggle_aggressive",
         label = function(inst)
-           return ThePlayer:HasTag("has_aggressive_follower") and STRINGS.ACTIONS.COMMUNEWITHSUMMONED.MAKE_DEFENSIVE or STRINGS.ACTIONS.COMMUNEWITHSUMMONED.MAKE_AGGRESSIVE
+           return ThePlayer:HasTag("has_aggressive_follower") and STRINGS.SPELLCOMMAND.TALK_TO_ABIGAIL.MAKE_DEFENSIVE or STRINGS.SPELLCOMMAND.TALK_TO_ABIGAIL.MAKE_AGGRESSIVE
         end,
         on_execute_on_server = GhostChangeBehaviour,
         on_execute_on_client = function(inst)
@@ -181,7 +181,7 @@ local COMMANDS = {
     {
         id = "toggle_freeze_movements",
         label = function(inst)
-           return ThePlayer:HasTag("has_movements_frozen_follower") and "Resume Movements" or "Freeze Movements"
+           return ThePlayer:HasTag("has_movements_frozen_follower") and STRINGS.SPELLCOMMAND.TALK_TO_ABIGAIL.MAKE_FOLLOW or STRINGS.SPELLCOMMAND.TALK_TO_ABIGAIL.MAKE_STAY
         end,
         on_execute_on_server = ToggleFreezeGhostMovements,
         on_execute_on_client = function(inst)
@@ -314,7 +314,7 @@ local COMMANDS = {
     -- },
     {
         id = "haunt_at",
-        label = STRINGS.GHOSTCOMMANDS.HAUNT_AT,
+        label = STRINGS.SPELLCOMMAND.TALK_TO_ABIGAIL.HAUNT,
         on_execute_on_server = GhostHauntSpellCommand,
         on_execute_on_client = function(inst)
             inst.components.spellcommand:SetSelectedCommand("haunt_at")
@@ -334,7 +334,7 @@ local COMMANDS = {
     },
     {
         id = "goto",
-        label = "Goto",
+        label = STRINGS.SPELLCOMMAND.TALK_TO_ABIGAIL.GOTO,
         on_execute_on_server = function(inst, doer, position)
             -- TODO: See if we still want this
             inst.components.aoetargeting:SetTargetFX("reticuleaoeghosttarget")
