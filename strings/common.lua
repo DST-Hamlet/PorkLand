@@ -2853,4 +2853,15 @@ return {
             "It's back in the lodge. Phew!",
         },
     },
+    SPELLCOMMAND = {
+        TALK_TO_ABIGAIL = {
+            MAKE_DEFENSIVE = "Soothe", 
+            MAKE_AGGRESSIVE = "Rile Up",
+            MAKE_STAY = "Stay",
+            MAKE_FOLLOW = "Follow",
+            GOTO = "Drift To",
+            HAUNT = "Haunt On",
+            UNSUMMON = "Unsummon",
+        },
+    },
 }

@@ -190,6 +190,23 @@ return {
     ANNOUNCE_WHALE_HUNT_LOST_TRAIL_SPRING = "WILBA LOST'D BIG FISHIES!",
     ANNOUNCE_WORMHOLE = "WHAT STRANGE NEW WORLD WILBA IN?",
     ANNOUNCE_WORMS = "WHYFORE THE GROUND RUMBLIES?",
+
+    --ATC new ANNOUNCE
+    --ANNOUNCE_ABIGAIL_GOTO = {
+    --    "only_used_by_wendy",
+    --    "only_used_by_wendy",
+    --    "only_used_by_wendy",
+    --},
+    --ANNOUNCE_ABIGAIL_HAUNT = {
+    --    "only_used_by_wendy",
+    --    "only_used_by_wendy",
+    --    "only_used_by_wendy",
+    --},
+    --ANNOUNCE_ABIGAIL_MAKE_STAY = "only_used_by_wendy",
+    --ANNOUNCE_ABIGAIL_MAKE_FOLLOW = "only_used_by_wendy",
+    --ANNOUNCE_ABIGAIL_MAKE_AGGRESSIVE = "only_used_by_wendy",
+    --ANNOUNCE_ABIGAIL_MAKE_DEFENSIVE = "only_used_by_wendy",
+
     BATTLECRY = {
         GENERIC = "LET SLIP THE PIG OF WAR!",
         PIG = "SERVETH THOU WILBA!!",
