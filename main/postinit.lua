@@ -215,7 +215,7 @@ local widget_posts = {
     "recipepopup",
     "seasonclock",
     "skilltreetoast",
-    "statusdisplay",
+    "statusdisplays",
     "targetindicator",
     "uiclock",
     "widget",
