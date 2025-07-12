@@ -1,6 +1,7 @@
 local assets =
 {
     Asset("ANIM", "anim/turf_1.zip"),
+    Asset("ANIM", "anim/turf_atc.zip"),
 }
 
 local prefabs =
@@ -31,7 +32,7 @@ local function make_turf(tile, data)
         inst.pickupsound = data.pickupsound or nil
 
         inst.AnimState:SetBank("turf")
-        inst.AnimState:SetBuild("turf_1")
+        inst.AnimState:SetBuild(data.bank_build)
         inst.AnimState:PlayAnimation(data.anim)
 
         inst.tile = tile
@@ -75,17 +76,17 @@ local function make_turf(tile, data)
 end
 
 local porkland_turfs = {
-    [WORLD_TILES.PIGRUINS]   = {name = "pigruins",   anim = "pig_ruins"},
-    [WORLD_TILES.RAINFOREST] = {name = "rainforest", anim = "rainforest"},
-    [WORLD_TILES.LAWN]       = {name = "lawn",       anim = "checkeredlawn"},
-    [WORLD_TILES.SUBURB]     = {name = "moss",       anim = "mossy_blossom"},
-    [WORLD_TILES.FIELDS]     = {name = "fields",     anim = "farmland",},
-    [WORLD_TILES.FOUNDATION] = {name = "foundation", anim = "fanstone"},
-    [WORLD_TILES.COBBLEROAD] = {name = "cobbleroad", anim = "cobbleroad"},
-    [WORLD_TILES.PAINTED]    = {name = "painted",    anim = "bog"},
-    [WORLD_TILES.PLAINS]     = {name = "plains",     anim = "plains"},
-    [WORLD_TILES.DEEPRAINFOREST_NOCANOPY] = {name = "deeprainforest_nocanopy", anim = "deepjungle"},
-    [WORLD_TILES.SALTBEACH] = {name = "salt", anim = "deepjungle"},
+    [WORLD_TILES.PIGRUINS]   = {name = "pigruins",   anim = "pig_ruins", bank_build = "turf_1"},
+    [WORLD_TILES.RAINFOREST] = {name = "rainforest", anim = "rainforest", bank_build = "turf_1"},
+    [WORLD_TILES.LAWN]       = {name = "lawn",       anim = "checkeredlawn", bank_build = "turf_1"},
+    [WORLD_TILES.SUBURB]     = {name = "moss",       anim = "mossy_blossom", bank_build = "turf_1"},
+    [WORLD_TILES.FIELDS]     = {name = "fields",     anim = "farmland", bank_build = "turf_1"},
+    [WORLD_TILES.FOUNDATION] = {name = "foundation", anim = "fanstone", bank_build = "turf_1"},
+    [WORLD_TILES.COBBLEROAD] = {name = "cobbleroad", anim = "cobbleroad", bank_build = "turf_1"},
+    [WORLD_TILES.PAINTED]    = {name = "painted",    anim = "bog", bank_build = "turf_1"},
+    [WORLD_TILES.PLAINS]     = {name = "plains",     anim = "plains", bank_build = "turf_1"},
+    [WORLD_TILES.DEEPRAINFOREST_NOCANOPY] = {name = "deeprainforest_nocanopy", anim = "deepjungle", bank_build = "turf_1"},
+    [WORLD_TILES.SALTBEACH] = {name = "saltbeach", anim = "saltbeach", bank_build = "turf_atc"},
 }
 
 local ret = {}

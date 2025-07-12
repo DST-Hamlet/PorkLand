@@ -97036,6 +97036,11 @@ msgctxt "STRINGS.NAMES.TURF_RAINFOREST"
 msgid "Rainforest Turf"
 msgstr ""
 
+#. STRINGS.NAMES.TURF_SALTBEACH
+msgctxt "STRINGS.NAMES.TURF_SALTBEACH"
+msgid "Salt Desert Turf"
+msgstr ""
+
 #. STRINGS.NAMES.VAMPIREBAT
 msgctxt "STRINGS.NAMES.VAMPIREBAT"
 msgid "Vampire Bat"

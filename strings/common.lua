@@ -2397,6 +2397,7 @@ return {
         TURF_PIGRUINS = "Ancient Stone Turf",
         TURF_PLAINS = "Wild Plains Turf",
         TURF_RAINFOREST = "Rainforest Turf",
+        TURF_SALTBEACH = "Salt Desert Turf",
         VAMPIREBAT = "Vampire Bat",
         VAMPIREBATCAVE = "Cave Cleft",
         VAMPIRE_BAT_WING = "Batilisk Wing?",

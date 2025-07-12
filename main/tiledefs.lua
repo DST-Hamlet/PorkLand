@@ -57,29 +57,6 @@ local TileRanges =
 }
 
 local pl_tiledefs = {
-    -- dst had this
-    -- BEARDRUG = {
-    --     tile_range = TileRanges.LAND,
-    --     tile_data = {
-    --         ground_name = "Beard Rug",
-    --         -- old_static_id = 33,
-    --     },
-    --     ground_tile_def  = {
-    --         name = "carpet",
-    --         noise_texture = "Ground_beard_hair",
-    --         runsound = "dontstarve/movement/run_carpet",
-    --         walksound = "dontstarve/movement/walk_carpet",
-    --         flashpoint_modifier = 0,
-    --     },
-    --     minimap_tile_def = {
-    --         name = "map_edge",
-    --         noise_texture = "interior",
-    --     },
-    --     --turf_def = {
-    --     --    name = "beach",
-    --     --    bank_build = "turf_ia",
-    --     --},
-    -- },
     RAINFOREST = {
         tile_range = TileRanges.LAND,
         tile_data = {
@@ -122,7 +99,7 @@ local pl_tiledefs = {
         },
         -- turf_def = {
         --     name = "jungle",
-        --     bank_build = "turf_ia",
+        --     bank_build = "turf_1",
         -- },
     },
     DEEPRAINFOREST_NOCANOPY = {
@@ -165,7 +142,7 @@ local pl_tiledefs = {
         },
         -- turf_def = {
         --     name = "swamp",
-        --     bank_build = "turf_ia",
+        --     bank_build = "turf_1",
         -- },
     },
     PLAINS = {
@@ -376,7 +353,7 @@ local pl_tiledefs = {
             -- old_static_id =
         },
         ground_tile_def = {
-            name = "rain_forest",
+            name = "swamp",
             noise_texture = "noise_saltbeach",
             runsound = "dontstarve/movement/run_woods",
             walksound = "dontstarve/movement/walk_woods",
@@ -388,9 +365,9 @@ local pl_tiledefs = {
             noise_texture = "mini_noise_saltbeach",
         },
         turf_def = {
-            name = "fields",
-            anim = "farmland",
-            bank_build = "turf_1",
+            name = "saltbeach",
+            anim = "saltbeach",
+            bank_build = "turf_atc",
         },
     }, 
 

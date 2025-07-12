@@ -97040,6 +97040,11 @@ msgctxt "STRINGS.NAMES.TURF_RAINFOREST"
 msgid "Rainforest Turf"
 msgstr "雨林地皮"
 
+#. STRINGS.NAMES.TURF_SALTBEACH
+msgctxt "STRINGS.NAMES.TURF_SALTBEACH"
+msgid "Salt Desert Turf"
+msgstr "盐漠地皮"
+
 #. STRINGS.NAMES.VAMPIREBAT
 msgctxt "STRINGS.NAMES.VAMPIREBAT"
 msgid "Vampire Bat"
