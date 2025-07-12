@@ -74,6 +74,7 @@ AddTaskSet("porkland", {
         "Deep_wild_ruins4",
         "wild_rainforest",
         "wild_ancient_ruins",
+        "Its_All_Pink!",
     },
 
     numoptionaltasks = 0,
