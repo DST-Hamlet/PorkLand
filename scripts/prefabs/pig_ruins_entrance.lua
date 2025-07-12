@@ -161,7 +161,7 @@ local function BuildMaze(inst, dungeondef, exterior_door_def)
 
         -- fail if this direction from the chosen room is blocked
         for _, exit in pairs(room_connecting_to.blocked_exits) do
-            if interior_spawner:GetDir()[dir_choice] == exit then
+            if dir[dir_choice] == exit then
                 fail = true
             end
         end
@@ -169,7 +169,8 @@ local function BuildMaze(inst, dungeondef, exterior_door_def)
         -- fail if this room of the maze is already set up.
         if not fail then
             for _, room_to_check in pairs(rooms) do
-                if room_to_check.x == room_connecting_to.x + dir[dir_choice].x and room_to_check.y == room_connecting_to.y + dir[dir_choice].y then
+                if room_to_check.x == room_connecting_to.x + dir[dir_choice].x 
+                    and room_to_check.y == room_connecting_to.y + dir[dir_choice].y then
                     fail = true
                     break
                 end
