@@ -27,23 +27,18 @@ local prefabs =
 }
 
 local function BuildMaze(inst, exterior_door_def)
-    c_announce("Vampirebatcave BuildMaze..")
-
     local interior_spawner = TheWorld.components.interiorspawner
 
-    local id = interior_spawner:GetNewID()
-    inst.interiorID = id
     local rooms = {
         {
             x = 0, -- x, y are used to keep track of the relative position of those rooms
             y = 0,
-            id = id,
+            id = exterior_door_def.target_interior,
             exits = {},
             blocked_exits = {interior_spawner:GetNorth()},
             is_entrance = true,
         },
     }
-    exterior_door_def.target_interior = id
 
     while #rooms < BAT_CAVE_NUM_ROOMS do
         local dir = interior_spawner:GetDir()
@@ -113,7 +108,6 @@ local function BuildMaze(inst, exterior_door_def)
             dungeon_name = "vampirebatcave",
             roomindex = room.id,
             addprops = addprops,
-            --exits = {},
             exits = room.exits,
             walltexture = BAT_CAVE_WALL_TEXTURE,
             floortexture = BAT_CAVE_FLOOR_TEXTURE,
@@ -142,20 +136,23 @@ local function InitMaze(inst)
     if not can_reuse_interior then
         id = interior_spawner:GetNewID()
         inst.interiorID = id
-        print("CreateInterior id:", id)
     end
 
     local name = "vampirebatcave" .. id
-
     local exterior_door_def = {
         my_door_id = name .. "_door",
         target_door_id = name .. "_exit",
         target_interior = id,
     }
-    --遗迹和roc洞穴是怎么做到的？
-    BuildMaze(inst, exterior_door_def)
     interior_spawner:AddDoor(inst, exterior_door_def)
     interior_spawner:AddExterior(inst)
+
+    if can_reuse_interior then
+        -- Reuse old interior, but we still need to re-register the door
+        return
+    end
+
+    BuildMaze(inst, exterior_door_def)
 end
 
 local function OnSave(inst, data)
