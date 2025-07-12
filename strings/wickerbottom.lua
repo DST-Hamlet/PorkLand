@@ -59,6 +59,23 @@ return {
     },
     ANNOUNCE_TURFTOOHARD = "It's too hard for me to move.",
     ANNOUNCE_WAVE_BOOST = "Prime oceanic oscillations!",
+
+    --ATC new ANNOUNCE
+    --ANNOUNCE_ABIGAIL_GOTO = {
+    --    "only_used_by_wendy",
+    --    "only_used_by_wendy",
+    --    "only_used_by_wendy",
+    --},
+    --ANNOUNCE_ABIGAIL_HAUNT = {
+    --    "only_used_by_wendy",
+    --    "only_used_by_wendy",
+    --    "only_used_by_wendy",
+    --},
+    --ANNOUNCE_ABIGAIL_MAKE_STAY = "only_used_by_wendy",
+    --ANNOUNCE_ABIGAIL_MAKE_FOLLOW = "only_used_by_wendy",
+    --ANNOUNCE_ABIGAIL_MAKE_AGGRESSIVE = "only_used_by_wendy",
+    --ANNOUNCE_ABIGAIL_MAKE_DEFENSIVE = "only_used_by_wendy",
+
     DESCRIBE = {
         ADULT_FLYTRAP = {
             DEAD = "It has expired.",

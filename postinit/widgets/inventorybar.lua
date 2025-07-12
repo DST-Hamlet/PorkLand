@@ -34,7 +34,8 @@ function InventoryBar:GetInventoryLists(same_container_only, ...)
     return lists
 end
 
-local RebuildLayout, scope_fn, i = ToolUtil.GetUpvalue(InventoryBar.Rebuild, "RebuildLayout")
+local rebuild = InventoryBar.Rebuild
+local RebuildLayout, scope_fn, i = ToolUtil.GetUpvalue(rebuild, "RebuildLayout")
 debug.setupvalue(scope_fn, i, function(self, inventory, overflow, do_integrated_backpack, do_self_inspect, ...)
     local boatwidget = self.boatwidget
     if boatwidget then
@@ -62,10 +63,21 @@ debug.setupvalue(scope_fn, i, function(self, inventory, overflow, do_integrated_
 
     RebuildLayout(self, inventory, overflow, do_integrated_backpack, do_self_inspect, ...)
 
+    -- 适配薇勒尔的物品栏
     local bg_scale = (1.15 * total_w) / (1480) -- This is a bit ugly, the hardcoded 1480 is the standard width for a regular inventory total_w
     self.bg:SetScale(bg_scale, 1, 1)
     self.bgcover:SetScale(bg_scale, 1, 1)
 end)
+
+local _OnUpdate = InventoryBar.OnUpdate
+function InventoryBar:OnUpdate(dt, ...)
+    _OnUpdate(self, dt, ...)
+
+    local spellcontrols = self.owner.HUD.controls.spellcontrols
+    if spellcontrols and spellcontrols.isopen then
+        spellcontrols:UpdateAnchorPosition() 
+    end
+end
 
 AddClassPostConstruct("widgets/inventorybar", function(self)
     self.hudcompass_wheeler = self.root:AddChild(HudCompass_Wheeler(self.owner, true))
