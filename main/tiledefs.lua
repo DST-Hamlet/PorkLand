@@ -369,7 +369,7 @@ local pl_tiledefs = {
             noise_texture = "mini_ruins_slab"
         }
     },
-    SALT = {
+    SALTBEACH = {
         tile_range = TileRanges.LAND,
         tile_data = {
             ground_name = "Salt Desert",
@@ -377,7 +377,7 @@ local pl_tiledefs = {
         },
         ground_tile_def = {
             name = "rain_forest",
-            noise_texture = "noise_salt",
+            noise_texture = "noise_saltbeach",
             runsound = "dontstarve/movement/run_woods",
             walksound = "dontstarve/movement/walk_woods",
             snowsound = "run_ice",
@@ -385,7 +385,7 @@ local pl_tiledefs = {
         },
         minimap_tile_def = {
             name = "map_edge",
-            noise_texture = "mini_noise_rainforest",
+            noise_texture = "mini_noise_saltbeach",
         },
         turf_def = {
             name = "fields",
@@ -450,6 +450,15 @@ local pl_tiledefs = {
         end,
     },
 
+    SALTLAKE_NOISE = {
+        tile_range = function (noise)
+            if noise < 0.4 then
+                return WORLD_TILES.ROCKY
+            end
+            return WORLD_TILES.SALTBEACH
+        end,
+    },
+
 }
 
 for tile, def in pairs(pl_tiledefs) do
@@ -499,5 +508,5 @@ ChangeTileRenderOrder(WORLD_TILES.RAINFOREST, WORLD_TILES.MUD, true)
 ChangeTileRenderOrder(WORLD_TILES.PLAINS, WORLD_TILES.MUD, true)
 ChangeTileRenderOrder(WORLD_TILES.PAINTED, WORLD_TILES.MUD, true)
 ChangeTileRenderOrder(WORLD_TILES.DEEPRAINFOREST_NOCANOPY, WORLD_TILES.MUD, true)
-ChangeTileRenderOrder(WORLD_TILES.SALT, WORLD_TILES.MUD, true)
+ChangeTileRenderOrder(WORLD_TILES.SALTBEACH, WORLD_TILES.MUD, true)
 -- ChangeTileRenderOrder(WORLD_TILES.PIGRUINS, WORLD_TILES.MUD, true)

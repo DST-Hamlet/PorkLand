@@ -510,7 +510,6 @@ AddTask("wild_rainforest", {
         ["rainforest_lillypond"] = math.random(3, 4),
         ["painted_base_nobatcave"] = math.random(3, 4),
         ["rainforest_base_nobatcave"] = math.random(3, 4),
-        ["saltlake_beach"] = math.random(3, 4),
     },
     room_bg = WORLD_TILES.RAINFOREST,
     background_room = "rainforest_base_nobatcave",
@@ -550,9 +549,9 @@ AddTask("Its_All_Pink!", {
     room_tags = {"island_ancient"},
     room_choices = {
         ["saltlake_lake"] = math.random(3, 4),
-        --["saltlake_beach"] = 1,
+        ["saltlake_beach"] = 1,
     },
-    room_bg = WORLD_TILES.SALT,
+    room_bg = WORLD_TILES.SALTBEACH,
     background_room = "BG_saltlake_beach",
-    colour = {r = 1, g = 1, b = 1, a = 0.3}
+    colour = {r = 1, g = 1, b = 1, a = 0.3} --鲁鲁：这是啥？
 })

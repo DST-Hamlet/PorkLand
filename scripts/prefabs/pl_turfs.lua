@@ -85,7 +85,7 @@ local porkland_turfs = {
     [WORLD_TILES.PAINTED]    = {name = "painted",    anim = "bog"},
     [WORLD_TILES.PLAINS]     = {name = "plains",     anim = "plains"},
     [WORLD_TILES.DEEPRAINFOREST_NOCANOPY] = {name = "deeprainforest_nocanopy", anim = "deepjungle"},
-    [WORLD_TILES.SALT] = {name = "salt", anim = "deepjungle"},
+    [WORLD_TILES.SALTBEACH] = {name = "salt", anim = "deepjungle"},
 }
 
 local ret = {}
