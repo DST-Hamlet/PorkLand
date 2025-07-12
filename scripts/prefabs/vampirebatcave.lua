@@ -6,7 +6,7 @@ local GenerateProps = require("prefabs/interior_prop_defs")
 local BAT_CAVE_WIDTH = 26
 local BAT_CAVE_HEIGHT = 10
 local BAT_CAVE_DEPTH = 18
-local BAT_CAVE_NUM_ROOMS = math.random(1, 3)
+local BAT_CAVE_NUM_ROOMS = 3 --math.random(1, 3)
 local BAT_CAVE_REVERB = "batcave"
 local BAT_CAVE_AMBIENT = "BAT_CAVE"
 local BAT_CAVE_GROUND_SOUND = WORLD_TILES.DIRT
@@ -40,6 +40,7 @@ local function BuildMaze(inst, exterior_door_def)
             id = id,
             exits = {},
             blocked_exits = {interior_spawner:GetNorth()},
+            is_entrance = true,
         },
     }
     exterior_door_def.target_interior = id
@@ -104,7 +105,7 @@ local function BuildMaze(inst, exterior_door_def)
             east = not room.exits[interior_spawner:GetEast()]
         }
 
-        local addprops = GenerateProps("vampirebatcave", exterior_door_def, BAT_CAVE_DEPTH, BAT_CAVE_WIDTH)
+        local addprops = GenerateProps("vampirebatcave", exterior_door_def, BAT_CAVE_DEPTH, BAT_CAVE_WIDTH, room)
         interior_spawner:CreateRoom({
             width = BAT_CAVE_WIDTH,
             height = BAT_CAVE_HEIGHT,
