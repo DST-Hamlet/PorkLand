@@ -369,6 +369,30 @@ local pl_tiledefs = {
             noise_texture = "mini_ruins_slab"
         }
     },
+    SALT = {
+        tile_range = TileRanges.LAND,
+        tile_data = {
+            ground_name = "Salt Desert",
+            -- old_static_id =
+        },
+        ground_tile_def = {
+            name = "rain_forest",
+            noise_texture = "noise_salt",
+            runsound = "dontstarve/movement/run_woods",
+            walksound = "dontstarve/movement/walk_woods",
+            snowsound = "run_ice",
+            flooring = true,
+        },
+        minimap_tile_def = {
+            name = "map_edge",
+            noise_texture = "mini_noise_rainforest",
+        },
+        turf_def = {
+            name = "fields",
+            anim = "farmland",
+            bank_build = "turf_1",
+        },
+    }, 
 
     -------------------------------
     -- OCEAN/SEA
@@ -475,4 +499,5 @@ ChangeTileRenderOrder(WORLD_TILES.RAINFOREST, WORLD_TILES.MUD, true)
 ChangeTileRenderOrder(WORLD_TILES.PLAINS, WORLD_TILES.MUD, true)
 ChangeTileRenderOrder(WORLD_TILES.PAINTED, WORLD_TILES.MUD, true)
 ChangeTileRenderOrder(WORLD_TILES.DEEPRAINFOREST_NOCANOPY, WORLD_TILES.MUD, true)
+ChangeTileRenderOrder(WORLD_TILES.SALT, WORLD_TILES.MUD, true)
 -- ChangeTileRenderOrder(WORLD_TILES.PIGRUINS, WORLD_TILES.MUD, true)
