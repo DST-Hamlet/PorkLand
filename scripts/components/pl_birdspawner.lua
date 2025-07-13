@@ -27,8 +27,10 @@ return Class(function(self, inst)
         [WORLD_TILES.SUBURB] = {"pl_robin", "pl_crow", "pigeon"},
         [WORLD_TILES.PLAINS] = {"pl_robin", "pl_crow", "kingfisher"},
         [WORLD_TILES.PAINTED] =  {"kingfisher", "pl_crow"},
+        [WORLD_TILES.SALTBEACH] = {"pl_crow"},
         [WORLD_TILES.INTERIOR] = {},
         [WORLD_TILES.LILYPOND] = {},
+        [WORLD_TILES.SALTLAKE] = {},
     }
 
     --------------------------------------------------------------------------

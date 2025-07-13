@@ -29,6 +29,8 @@ local ground_types = {
     WORLD_TILES.PIGRUINS, WORLD_TILES.LILYPOND, WORLD_TILES.GASJUNGLE, WORLD_TILES.SUBURB,
     WORLD_TILES.RAINFOREST, WORLD_TILES.PIGRUINS_NOCANOPY, WORLD_TILES.PLAINS, WORLD_TILES.PAINTED, -- 64
 
+    WORLD_TILES.SALTBEACH, WORLD_TILES.SALTLAKE, -- 66
+
     WORLD_TILES.BATTLEGROUND, WORLD_TILES.INTERIOR, WORLD_TILES.FIELDS
 }
 
@@ -56,7 +58,7 @@ AllLayouts["lilypad"] = StaticLayout.Get("map/static_layouts/lilypad", {
         resource_area = LilypadResource
     }
 })
-AllLayouts["lilypad"].ground_types = ground_types
+AllLayouts["lilypad"].ground_types = WORLD_TILES.LILYPOND
 
 AllLayouts["lilypad2"] = StaticLayout.Get("map/static_layouts/lilypad_2", {
     water = true,
@@ -65,7 +67,7 @@ AllLayouts["lilypad2"] = StaticLayout.Get("map/static_layouts/lilypad_2", {
         resource_area2 = LilypadResource
     }
 })
-AllLayouts["lilypad2"].ground_types = ground_types
+AllLayouts["lilypad2"].ground_types = WORLD_TILES.LILYPOND
 
 AllLayouts["PigRuinsHead"] = StaticLayout.Get("map/static_layouts/pig_ruins_head", {
     areas = {

@@ -25,6 +25,7 @@ local INVALID_STRUCTURE_TILES = {
     [WORLD_TILES.COBBLEROAD] = true,
     [WORLD_TILES.LAWN] = true,
     [WORLD_TILES.LILYPOND] = true,
+    [WORLD_TILES.SALTLAKE] = true,
 }
 local STRUCTURE_MUST_TAGS = {"structure"}
 local STRUCTURE_ONE_OF_TAGS = {"NPC_workable", "CHOP_workable", "HAMMER_workable", "MINE_workable", "DIG_workable", "HACK_workable", "SHEAR_workable"}
@@ -34,6 +35,7 @@ local PLAYER_INVALID_TILES = {
     [WORLD_TILES.COBBLEROAD] = true,
     [WORLD_TILES.LAWN] = true,
     [WORLD_TILES.LILYPOND] = true,
+    [WORLD_TILES.SALTLAKE] = true,
     [WORLD_TILES.DEEPRAINFOREST] = true,
     [WORLD_TILES.DEEPRAINFOREST_NOCANOPY] = true,
     [WORLD_TILES.GASJUNGLE] = true,

@@ -4,6 +4,10 @@ local TILE_TYPES =
     {
         texture = "levels/merged_tex/lilypond_merged.tex",
     },
+    [WORLD_TILES.SALTLAKE] =
+    {
+        texture = "levels/merged_tex/lilypond_merged.tex",
+    },
 }
 
 local tile_id = 0
