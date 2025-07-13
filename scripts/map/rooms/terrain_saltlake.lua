@@ -9,9 +9,9 @@ AddRoom("BG_saltlake_beach", {
             saltrock = 0.01,
             rocks = 0.01,
             nitre = 0.01,
-            roc_nest_branch1 = 0.1,
-            roc_nest_branch2 = 0.1,
-            tallbirdnest = 0.0001,
+            roc_nest_branch1 = 0.05,
+            roc_nest_branch2 = 0.05,
+            tallbirdnest = 0.0002,
         },
     }
 })
@@ -21,10 +21,13 @@ AddRoom("saltlake_beach", {
     value = WORLD_TILES.SALTBEACH,
     tags = {"ExitPiece"},
     contents = {
-        distributepercent = 0.15,  -- .26 --鲁鲁：这是啥？
+        distributepercent = 0.1,  -- .26 --鲁鲁：这是啥？
         distributeprefabs = {
             saltrock = 0.01,
             nitre = 0.01,
+            rock_flippable = 0.05,
+            roc_nest_branch1 = 0.01,
+            roc_nest_branch2 = 0.01,
         },
         countprefabs = {
             tallbirdnest = 3,
