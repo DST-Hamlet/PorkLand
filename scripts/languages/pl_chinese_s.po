@@ -98930,6 +98930,21 @@ msgctxt "STRINGS.CHARACTER_DESCRIPTIONS.wilba"
 msgid "*Is royalty\n*Carries her father's legacy\n*Is afraid of the dark"
 msgstr "*是皇室成员\n*继承了她父亲的遗赠\n*害怕黑暗"
 
+#. STRINGS.CHARACTER_QUOTES.wilba
+msgctxt "STRINGS.CHARACTER_QUOTES.wilba"
+msgid "\"MAKE KINGDOM PROUD!\""
+msgstr "\"让王国为我骄傲！\""
+
+#. STRINGS.CHARACTER_QUOTES.wheeler
+msgctxt "STRINGS.CHARACTER_QUOTES.wheeler"
+msgid "\"The whole world's mine to explore!\""
+msgstr "\"整个世界都在等着我去探索！\""
+
+#. STRINGS.CHARACTER_QUOTES.wagstaff
+msgctxt "STRINGS.CHARACTER_QUOTES.wagstaff"
+msgid "\"Eureka! My destiny awaits!\""
+msgstr "\"尤里卡！我的宿命在等着我！\""
+
 #. STRINGS.CHARACTER_TITLES.wilba
 msgctxt "STRINGS.CHARACTER_TITLES.wilba"
 msgid "The Royal Adventurer"
@@ -98950,7 +98965,7 @@ msgctxt "STRINGS.CHARACTER_SURVIVABILITY.wagstaff"
 msgid "Unknown"
 msgstr "未知"
 
-#. STRINGS.CHARACTER_SURVIVABILITY.wwheeler
+#. STRINGS.CHARACTER_SURVIVABILITY.wheeler
 msgctxt "STRINGS.CHARACTER_SURVIVABILITY.wheeler"
 msgid "Slim"
 msgstr "渺茫"

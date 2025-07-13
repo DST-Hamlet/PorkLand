@@ -531,18 +531,6 @@ AddTask("wild_ancient_ruins", {
     colour = {r = 0.2, g = 0.6, b = 0.2, a = 0.3}
 })
 
-AddTask("Land_Divide_5", {
-    locks = LOCKS.ISLAND_5,
-    keys_given = KEYS.LAND_DIVIDE_5,
-    room_tags = {"island_ancient"},
-    room_choices = {
-        ["ForceDisconnectedRoom"] = 20,
-    },
-    room_bg = WORLD_TILES.DEEPRAINFOREST,
-    background_room = "ForceDisconnectedRoom",
-    colour = {r = 1, g = 1, b = 1, a = 0.3}
-})
-
 AddTask("Its_All_Pink!", {
     locks = LOCKS.WILD_JUNGLE_DEPTH_1,
     keys_given = {},
@@ -554,4 +542,16 @@ AddTask("Its_All_Pink!", {
     room_bg = WORLD_TILES.SALTBEACH,
     background_room = "BG_saltlake_beach",
     colour = {r = 1, g = 1, b = 1, a = 0.3} --鲁鲁：这是啥？
+})
+
+AddTask("Land_Divide_5", {
+    locks = LOCKS.ISLAND_5,
+    keys_given = KEYS.LAND_DIVIDE_5,
+    room_tags = {"island_ancient"},
+    room_choices = {
+        ["ForceDisconnectedRoom"] = 20,
+    },
+    room_bg = WORLD_TILES.DEEPRAINFOREST,
+    background_room = "ForceDisconnectedRoom",
+    colour = {r = 1, g = 1, b = 1, a = 0.3}
 })

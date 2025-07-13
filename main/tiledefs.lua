@@ -414,7 +414,7 @@ local pl_tiledefs = {
         -- },
         minimap_tile_def = {
             name = "map_edge",
-            noise_texture = "mini_lilypond_noise",
+            noise_texture = "mini_noise_saltlake",
         },
     },
 
@@ -483,9 +483,10 @@ for tile, def in pairs(pl_tiledefs) do
     end
 end
 
-for prefab, filter in pairs(terrain.filter) do
+for prefab, filter in pairs(terrain.filter) do 
     if type(filter) == "table" then
-        table.insert(filter, WORLD_TILES.LILYPOND)
+        --table.insert(filter, WORLD_TILES.LILYPOND)
+        table.insert(filter, WORLD_TILES.SALTLAKE) --鲁鲁：这是啥？
         -- if table.contains(filter, WORLD_TILES.CARPET) then
         --     table.insert(filter, WORLD_TILES.SNAKESKIN)
         -- end

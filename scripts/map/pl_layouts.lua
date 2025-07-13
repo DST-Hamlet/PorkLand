@@ -58,7 +58,7 @@ AllLayouts["lilypad"] = StaticLayout.Get("map/static_layouts/lilypad", {
         resource_area = LilypadResource
     }
 })
-AllLayouts["lilypad"].ground_types = WORLD_TILES.LILYPOND
+AllLayouts["lilypad"].ground_types = ground_types
 
 AllLayouts["lilypad2"] = StaticLayout.Get("map/static_layouts/lilypad_2", {
     water = true,
@@ -67,7 +67,7 @@ AllLayouts["lilypad2"] = StaticLayout.Get("map/static_layouts/lilypad_2", {
         resource_area2 = LilypadResource
     }
 })
-AllLayouts["lilypad2"].ground_types = WORLD_TILES.LILYPOND
+AllLayouts["lilypad2"].ground_types = ground_types
 
 AllLayouts["PigRuinsHead"] = StaticLayout.Get("map/static_layouts/pig_ruins_head", {
     areas = {

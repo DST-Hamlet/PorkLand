@@ -6,7 +6,7 @@ local TILE_TYPES =
     },
     [WORLD_TILES.SALTLAKE] =
     {
-        texture = "levels/merged_tex/lilypond_merged.tex",
+        texture = "levels/merged_tex/saltlake_merged.tex",
     },
 }
 
