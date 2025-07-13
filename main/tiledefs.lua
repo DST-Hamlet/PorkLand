@@ -355,8 +355,8 @@ local pl_tiledefs = {
         ground_tile_def = {
             name = "swamp",
             noise_texture = "noise_saltbeach",
-            runsound = "dontstarve/movement/run_woods",
-            walksound = "dontstarve/movement/walk_woods",
+            runsound = "turnoftides/movement/run_meteor",
+            walksound = "turnoftides/movement/run_meteor",
             snowsound = "run_ice",
             flooring = true,
         },
@@ -401,7 +401,6 @@ local pl_tiledefs = {
         tile_data = {
             name = "Salt Water"
         },
-        -- 鲁鲁：这个我不会，但总得尝试一下....
         -- ground_tile_def  = {
             -- name = "water_medium",
             -- noise_texture = "Ground_water_saltlake",
@@ -483,10 +482,9 @@ for tile, def in pairs(pl_tiledefs) do
     end
 end
 
-for prefab, filter in pairs(terrain.filter) do 
+for prefab, filter in pairs(terrain.filter) do --鲁鲁：这是啥？
     if type(filter) == "table" then
-        --table.insert(filter, WORLD_TILES.LILYPOND)
-        table.insert(filter, WORLD_TILES.SALTLAKE) --鲁鲁：这是啥？
+        table.insert(filter, WORLD_TILES.LILYPOND)
         -- if table.contains(filter, WORLD_TILES.CARPET) then
         --     table.insert(filter, WORLD_TILES.SNAKESKIN)
         -- end
