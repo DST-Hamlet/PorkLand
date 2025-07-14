@@ -541,7 +541,7 @@ AddTask("Its_All_Pink!", {
     },
     room_bg = WORLD_TILES.SALTBEACH,
     background_room = "BG_saltlake_beach",
-    colour = {r = 1, g = 1, b = 1, a = 0.3} --鲁鲁：这是啥？
+    colour = {r = 1, g = 1, b = 1, a = 0.3}
 })
 
 AddTask("Land_Divide_5", {

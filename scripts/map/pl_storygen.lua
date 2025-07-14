@@ -321,7 +321,8 @@ end
 function Story:Pl_InsertAdditionalSetPieces(task_nodes)
     local obj_layout = require("map/object_layout")
 
-    local function is_tile_ok(room, layout)
+    local function is_tile_ok(room, layout) 
+        --鲁鲁：虽然这里写了对水上layout的检测，但是满足water_layout的layout完全不会过这个检测
         local water_room = room.data.type == "water" or IsOceanTile(room.data.value)
         local water_layout = layout and layout.water == true
         local water_ok = (water_room and water_layout) or (not water_room and not water_layout)

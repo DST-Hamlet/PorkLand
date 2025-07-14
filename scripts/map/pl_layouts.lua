@@ -45,7 +45,7 @@ local allow_tiles_deeprainforest =
 local allow_tiles_lilypad = --鲁鲁：怎么才能不让莲花池在盐湖生成啊？
 {
     [WORLD_TILES.LILYPOND] = true,
-    [WORLD_TILES.SALTLAKE] = false,
+    --[WORLD_TILES.SALTLAKE] = false,
 }
 
 AllLayouts["PorkLandStart"] = StaticLayout.Get("map/static_layouts/porkland_start", {
@@ -61,22 +61,24 @@ end
 
 AllLayouts["lilypad"] = StaticLayout.Get("map/static_layouts/lilypad", {
     water = true,
+    --allow_tiles = allow_tiles_lilypad,
     areas = {
         resource_area = LilypadResource
     }
 })
 AllLayouts["lilypad"].ground_types = ground_types
-AllLayouts["lilypad"].allow_tiles = allow_tiles_lilypad
+--AllLayouts["lilypad"].allow_tiles = allow_tiles_lilypad
 
 AllLayouts["lilypad2"] = StaticLayout.Get("map/static_layouts/lilypad_2", {
     water = true,
+    --allow_tiles = allow_tiles_lilypad,
     areas = {
         resource_area = LilypadResource,
         resource_area2 = LilypadResource
     }
 })
 AllLayouts["lilypad2"].ground_types = ground_types
-AllLayouts["lilypad2"].allow_tiles = allow_tiles_lilypad
+--AllLayouts["lilypad2"].allow_tiles = allow_tiles_lilypad
 
 AllLayouts["PigRuinsHead"] = StaticLayout.Get("map/static_layouts/pig_ruins_head", {
     areas = {

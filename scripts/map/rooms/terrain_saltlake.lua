@@ -1,7 +1,7 @@
 AddRoom("BG_saltlake_beach", {
-    colour = {r = .1, g = 0.1, b = 0.1, a = 0.3}, --鲁鲁：这是啥？
+    colour = {r = .1, g = 0.1, b = 0.1, a = 0.3},
     value = WORLD_TILES.SALTLAKE_NOISE,
-    tags = {"ExitPiece"},
+    tags = {},
     contents = {
         distributepercent = 0.1,--鲁鲁：这是啥？
         distributeprefabs = {
@@ -17,9 +17,9 @@ AddRoom("BG_saltlake_beach", {
 })
 
 AddRoom("saltlake_beach", {
-    colour = {r = 1.0, g = 1.0, b = 1.0, a = 0.3}, --鲁鲁：这是啥？
+    colour = {r = 1.0, g = 1.0, b = 1.0, a = 0.3},
     value = WORLD_TILES.SALTBEACH,
-    tags = {"ExitPiece"},
+    tags = {},
     contents = {
         distributepercent = 0.1,  -- .26 --鲁鲁：这是啥？
         distributeprefabs = {
@@ -36,7 +36,7 @@ AddRoom("saltlake_beach", {
 })
 
 AddRoom("saltlake_lake", {
-    colour = {r = 1.0, g = 0.3, b = 0.3, a = 0.3}, --鲁鲁：这是啥？
+    colour = {r = 1.0, g = 0.3, b = 0.3, a = 0.3},
     value = WORLD_TILES.SALTLAKE,
     tags = {},
     contents = {
