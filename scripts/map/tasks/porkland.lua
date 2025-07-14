@@ -532,7 +532,7 @@ AddTask("wild_ancient_ruins", {
 })
 
 AddTask("Its_All_Pink!", {
-    locks = LOCKS.WILD_JUNGLE_DEPTH_1,
+    locks = LOCKS.WILD_JUNGLE_DEPTH_2,
     keys_given = {},
     room_tags = {"island_ancient"},
     room_choices = {

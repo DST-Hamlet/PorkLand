@@ -33,6 +33,7 @@ end
 local function common_postinit(inst)
     inst:AddTag("handyperson")
     inst:AddTag("fastbuilder")
+    inst:AddTag("portableengineer")
 end
 
 local function master_postinit(inst)
