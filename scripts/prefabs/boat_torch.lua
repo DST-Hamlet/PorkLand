@@ -147,6 +147,8 @@ local function torchfn()
     inst.AnimState:SetBuild("swap_torch_boat")
     inst.AnimState:PlayAnimation("idle")
 
+    inst:AddTag("boat_equip_lamp")
+
     inst.visualbuild = "swap_torch_boat"
 
     PorkLandMakeInventoryFloatable(inst)

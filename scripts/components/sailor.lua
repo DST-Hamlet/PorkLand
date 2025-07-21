@@ -252,7 +252,7 @@ function Sailor:Embark(boat, nostate)
 
     if boat.components.container then
         if boat.components.container:IsOpen() then
-            boat.components.container:Close(true)
+            boat.components.container:Close()
         end
         boat:DoTaskInTime(0.25, function()
             if boat == self.boat then
@@ -291,7 +291,7 @@ function Sailor:Disembark(pos, boat_to_boat, no_state, boat_pos)
     self.inst:RemoveEventCallback("boathealthchange", OnBoatDelta, self.boat)
 
     if self.boat.components.container then
-        self.boat.components.container:Close(true)
+        self.boat.components.container:Close(self.inst)
     end
 
     -- dst no this

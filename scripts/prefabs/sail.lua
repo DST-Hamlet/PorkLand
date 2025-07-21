@@ -117,6 +117,7 @@ local function common()
     PorkLandMakeInventoryFloatable(inst)
 
     inst:AddTag("sail")
+    inst:AddTag("boat_equip_sail")
 
     -- networking the equip/unequip event
     inst.sailquipped = net_bool(inst.GUID, "sailquipped", not TheWorld.ismastersim and "sailquipped" or nil)

@@ -70,6 +70,8 @@ local component_posts = {
     "clock",
     "colourcube",
     "combat",
+    "container_replica",
+    "container",
     "crop",
     "deployable",
     "dest",

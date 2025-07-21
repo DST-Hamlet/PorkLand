@@ -2,7 +2,6 @@ local AddClassPostConstruct = AddClassPostConstruct
 local PLENV = env
 GLOBAL.setfenv(1, GLOBAL)
 
-local BoatEquipSlot = require("widgets/boatequipslot")
 local BoatBadge = require("widgets/boatbadge")
 local ItemTile = require("widgets/itemtile")
 local InvSlot = require("widgets/invslot")
@@ -14,12 +13,6 @@ local ContainerWidget = require("widgets/containerwidget")
 
 -- local DOUBLECLICKTIME = .33
 local HUD_ATLAS = "images/hud/pl_hud.xml"
-
-function ContainerWidget:AddBoatEquipSlot(slot, atlas, image, sortkey)
-    sortkey = sortkey or #self.boatEquipInfo
-    table.insert(self.boatEquipInfo, {slot = slot, atlas = atlas, image = image, sortkey = sortkey})
-    table.sort(self.boatEquipInfo, function(a,b) return a.sortkey < b.sortkey end)
-end
 
 function ContainerWidget:BoatDelta(boat, data)
     if data.damage then
@@ -44,36 +37,6 @@ function ContainerWidget:BoatDelta(boat, data)
     self.prev_boat_pct = data.percent
 end
 
-function ContainerWidget:OnItemEquip(item, slot)
-    if slot ~= nil and self.boatEquip[slot] ~= nil then
-        self.boatEquip[slot]:SetTile(ItemTile(item))
-    end
-end
-
-function ContainerWidget:OnItemUnequip(item, slot)
-    if slot ~= nil and self.boatEquip[slot] ~= nil then
-        self.boatEquip[slot]:SetTile(nil)
-    end
-end
-
-local _Refresh = ContainerWidget.Refresh
-function ContainerWidget:Refresh(...)
-    _Refresh(self, ...)
-    local boatequips = self.container.replica.container.GetBoatEquips and self.container.replica.container:GetBoatEquips() or {}
-    for k, v in pairs(self.boatEquip) do
-        local item = boatequips[k]
-        if item == nil then
-            if v.tile ~= nil then
-                v:SetTile(nil)
-            end
-        elseif v.tile == nil or v.tile.item ~= item then
-            v:SetTile(ItemTile(item))
-        else
-            v.tile:Refresh()
-        end
-    end
-end
-
 local _Open = ContainerWidget.Open
 function ContainerWidget:Open(container, doer, boatwidget, ...)
     local _GetWidget = container.replica.container.GetWidget
@@ -92,12 +55,6 @@ function ContainerWidget:Open(container, doer, boatwidget, ...)
         end
     end
 
-    self.onitemequipfn = function(inst, data) self:OnItemEquip(data.item, data.eslot) end
-    self.inst:ListenForEvent("equip", self.onitemequipfn, container)
-
-    self.onitemunequipfn = function(inst, data) self:OnItemUnequip(data.item, data.eslot) end
-    self.inst:ListenForEvent("unequip", self.onitemunequipfn, container)
-
     if container.replica.container.type == "boat" then
         self.boatbadge:SetPosition(widget.badgepos.x, widget.badgepos.y)
         self.boatbadge:Show()
@@ -106,27 +63,35 @@ function ContainerWidget:Open(container, doer, boatwidget, ...)
             self.boatbadge:SetPercent(container.replica.boathealth:GetPercent(), container.replica.boathealth:GetMaxHealth())
         end
 
-        if container.replica.container.hasboatequipslots then
-            self:AddBoatEquipSlot(BOATEQUIPSLOTS.BOAT_SAIL, HUD_ATLAS, "equip_slot_boat_utility.tex")
-            self:AddBoatEquipSlot(BOATEQUIPSLOTS.BOAT_LAMP, HUD_ATLAS, "equip_slot_boat_light.tex")
-            local lastX = widget.equipslotroot.x
-            local lastY = widget.equipslotroot.y
-            local spacing = 80
-            for k, v in ipairs(self.boatEquipInfo) do
-                local slot = BoatEquipSlot(v.slot, v.atlas, v.image, self.owner)
-                self.boatEquip[v.slot] = self:AddChild(slot)
-                slot:SetPosition(lastX, lastY, 0)
-                lastX = lastX - spacing
-                local obj = container.replica.container:GetItemInBoatSlot(v.slot)
-                if obj then
-                    local tile = ItemTile(obj)
-                    slot:SetTile(tile)
-                end
-            end
-        end
         self.boatbadge:MoveToFront()
 
         self:Refresh()
+    end
+
+    if container.replica.container.hasboatequipslots then
+        self.inv[1].inst:ListenForEvent("newactiveitem", function(owner, data)
+            if data.item ~= nil and
+                data.item.replica.equippable ~= nil and
+                data.item.replica.equippable:BoatEquipSlot() == BOATEQUIPSLOTS.BOAT_SAIL then
+                self.inv[1]:ScaleTo(self.inv[1].base_scale, self.inv[1].highlight_scale, 0.125)
+                self.inv[1].highlight = true
+            elseif self.inv[1].highlight then
+                self.inv[1].highlight = false
+                self.inv[1]:ScaleTo(self.inv[1].highlight_scale, self.inv[1].base_scale, 0.125)
+            end
+        end, self.owner)
+
+        self.inv[2].inst:ListenForEvent("newactiveitem", function(owner, data)
+            if data.item ~= nil and
+                data.item.replica.equippable ~= nil and
+                data.item.replica.equippable:BoatEquipSlot() == BOATEQUIPSLOTS.BOAT_LAMP then
+                self.inv[2]:ScaleTo(self.inv[2].base_scale, self.inv[2].highlight_scale, 0.125)
+                self.inv[2].highlight = true
+            elseif self.inv[2].highlight then
+                self.inv[2].highlight = false
+                self.inv[2]:ScaleTo(self.inv[2].highlight_scale, self.inv[2].base_scale, 0.125)
+            end
+        end, self.owner)
     end
 end
 
@@ -145,9 +110,6 @@ function ContainerWidget:Close(...)
         end
         _Close(self, ...)
         self.boatbadge:Hide()
-        for i, v in pairs(self.boatEquip) do
-            v:Kill()
-        end
     else
         return _Close(self, ...)
     end
@@ -155,9 +117,6 @@ end
 
 if not rawget(_G, "HotReloading") then
     AddClassPostConstruct("widgets/containerwidget", function(self)
-        self.boatEquipInfo = {}
-        self.boatEquip = {}
-
         self.boatbadge = self:AddChild(BoatBadge(self.owner, self))
         self.boatbadge:Hide()
     end)

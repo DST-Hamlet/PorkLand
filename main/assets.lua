@@ -35,7 +35,6 @@ PrefabFiles = {
     "birdwhistle",
     "blunderbuss",
     "boat_torch",
-    "boatcontainer_classified",
     "boatrepairkit",
     "boats",
     "bonestaff",

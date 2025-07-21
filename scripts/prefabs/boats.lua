@@ -174,7 +174,7 @@ local function commonfn()
 
     inst:AddComponent("highlightchild")
 
-    inst:SetReplaceReplicableComponent("boatcontainer", "container")
+    -- inst:SetReplaceReplicableComponent("boatcontainer", "container")
 
     inst.entity:SetPristine()
 
@@ -210,7 +210,8 @@ local function commonfn()
     inst.components.repairable.repairmaterial = "boat"
     inst.components.repairable.onrepaired = OnRepaired
 
-    inst:AddReplaceComponent("boatcontainer", "container")
+    -- inst:AddReplaceComponent("boatcontainer", "container")
+    inst:AddComponent("container")
     inst.components.container.stay_open_on_hide = true
     inst.components.container.onopenfn = OnOpen
     inst.components.container.onclosefn = OnClose

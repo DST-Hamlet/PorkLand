@@ -123,7 +123,7 @@ local function fn()
 
     inst.Physics:SetCollisionGroup(COLLISION.FLYERS)
     inst.Physics:SetCollisionMask(
-        CCOLLISION.GROUND,
+        COLLISION.GROUND,
         COLLISION.VOID_LIMITS
     )
 

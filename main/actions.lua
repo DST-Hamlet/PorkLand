@@ -621,7 +621,7 @@ function ACTIONS.EQUIP.fn(act, ...)
     if act.doer.components.sailor and act.doer.components.sailor.boat and act.invobject.components.equippable.boatequipslot then
         local boat = act.doer.components.sailor.boat
         if boat.components.container and boat.components.container.hasboatequipslots then
-            boat.components.container:Equip(act.invobject)
+            boat.components.container:BoatEquip(act.invobject)
         end
     end
 end
@@ -735,7 +735,7 @@ function ACTIONS.UNEQUIP.fn(act, ...)
     if act.invobject.components.equippable.boatequipslot and act.invobject.parent then
         local boat = act.invobject.parent
         if boat.components.container then
-            boat.components.container:Unequip(act.invobject.components.equippable.boatequipslot)
+            boat.components.container:BoatUnequip(act.invobject.components.equippable.boatequipslot)
             if act.invobject.components.inventoryitem.cangoincontainer and not GetGameModeProperty("non_item_equips") then
                 act.doer.components.inventory:GiveItem(act.invobject)
             else

@@ -110,7 +110,21 @@ function PlayerHud:UpdateFogClouds(camera)
     TheFocalPoint.SoundEmitter:SetVolume("windsound", intensity)
 end
 
-function PlayerHud:OpenBoat(boat, sailing)
+local _OpenContainer = PlayerHud.OpenContainer
+function PlayerHud:OpenContainer(container, ...)
+    if container.replica.container.type == "boat" then
+        return self:OpenBoat(container)
+    end
+
+    return _OpenContainer(self, container, ...)
+end
+
+function PlayerHud:OpenBoat(boat)
+    local sailing = false
+    if self.owner and self.owner.replica.sailor:GetBoat() == boat then
+        sailing = true
+    end
+
     if boat then
         local boatwidget = nil
         if sailing then
@@ -129,7 +143,7 @@ function PlayerHud:OpenBoat(boat, sailing)
 
         for k, v in pairs(self.controls.containers) do
             if v.container then
-                if v.parent == boatwidget.parent or k == boat then
+                if k == boat then
                     v:Close()
                 end
             else
