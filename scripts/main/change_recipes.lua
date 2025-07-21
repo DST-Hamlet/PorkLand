@@ -183,7 +183,6 @@ local DISABLE_RECIPES = {
     "premiumwateringcan",
     "wall_moonrock_item",
     "tacklestation",
-    "saltbox",
     "saltlick_improved",
     "bedroll_furry",
     "redmooneye",

@@ -7,6 +7,7 @@ require("map/rooms/terrain_painted")
 require("map/rooms/terrain_battleground")
 require("map/rooms/terrain_plains")
 require("map/rooms/terrain_pinacle")
+require("map/rooms/terrain_saltlake")
 
 AddTask("Edge_of_the_unknown", {
     locks = LOCKS.NONE,
@@ -528,6 +529,19 @@ AddTask("wild_ancient_ruins", {
     room_bg = WORLD_TILES.RAINFOREST,
     background_room = "rainforest_base_nobatcave",
     colour = {r = 0.2, g = 0.6, b = 0.2, a = 0.3}
+})
+
+AddTask("Its_All_Pink!", {
+    locks = LOCKS.WILD_JUNGLE_DEPTH_2,
+    keys_given = {},
+    room_tags = {"island_ancient"},
+    room_choices = {
+        ["saltlake_lake"] = math.random(3, 4),
+        ["saltlake_beach"] = 1,
+    },
+    room_bg = WORLD_TILES.SALTBEACH,
+    background_room = "BG_saltlake_beach",
+    colour = {r = 1, g = 1, b = 1, a = 0.3}
 })
 
 AddTask("Land_Divide_5", {
