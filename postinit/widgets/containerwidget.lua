@@ -122,9 +122,6 @@ function ContainerWidget:Open(container, doer, boatwidget, ...)
                     local tile = ItemTile(obj)
                     slot:SetTile(tile)
                 end
-                if not container.replica.container._enableboatequipslots:value() then
-                    slot:Hide()
-                end
             end
         end
         self.boatbadge:MoveToFront()

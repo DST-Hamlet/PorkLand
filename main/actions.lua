@@ -1170,7 +1170,7 @@ function INVENTORY.equippable(inst, doer, actions, ...)
 
         local sailor = doer.replica.sailor
         local boat = sailor and sailor:GetBoat()
-        if boat and boat.replica.container.hasboatequipslots and boat.replica.container.enableboatequipslots then
+        if boat and boat.replica.container.hasboatequipslots then
             canEquip = true
         end
     end

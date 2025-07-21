@@ -157,7 +157,7 @@ local function MakeFountain(name, build, bank, animframe, is_vortex)
         inst.Physics:SetCollisionGroup(COLLISION.OBSTACLES)
         inst.Physics:SetCollisionMask(
             COLLISION.ITEMS,
-            COLLISION.CHARACTERS,
+            COLLISION.CHARACTERS
         )
 
         inst.MiniMapEntity:SetIcon("pig_ruins_well.tex")

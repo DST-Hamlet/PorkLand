@@ -584,7 +584,7 @@ local function MakeDeco(build, bank, animframe, data, name)
                 inst.Physics:SetCollisionGroup(COLLISION.OBSTACLES)
                 inst.Physics:SetCollisionMask(
                     COLLISION.ITEMS,
-                    COLLISION.CHARACTERS,
+                    COLLISION.CHARACTERS
                 )
             elseif physics == "pond_physics" then
                 inst:AddTag("blocker")
@@ -594,7 +594,7 @@ local function MakeDeco(build, bank, animframe, data, name)
                 inst.Physics:SetCollisionGroup(COLLISION.OBSTACLES)
                 inst.Physics:SetCollisionMask(
                     COLLISION.ITEMS,
-                    COLLISION.CHARACTERS,
+                    COLLISION.CHARACTERS
                 )
             elseif physics == "big_post_physics" then
                 MakeObstaclePhysics(inst, 0.75)

@@ -25,7 +25,7 @@ local function MakeLilypadPhysics(inst, rad)
     inst.Physics:SetCollisionMask(
         COLLISION.ITEMS,
         COLLISION.CHARACTERS,
-        COLLISION.WORLD,
+        COLLISION.WORLD
     )
 end
 

@@ -130,7 +130,7 @@ local function ActivateCollision(inst)
         COLLISION.OBSTACLES,
         COLLISION.SMALLOBSTACLES,
         COLLISION.CHARACTERS,
-        COLLISION.GIANTS,
+        COLLISION.GIANTS
     )
     phys:SetCollides(false)  -- Still will get collision callback, just not dynamic collisions.
 end

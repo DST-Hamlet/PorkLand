@@ -4,7 +4,6 @@ local BoatContainer = Class(function(self, inst)
     self.inst = inst
 
     self._cannotbeopened = net_bool(inst.GUID, "boatcontainer._cannotbeopened")
-    self._enableboatequipslots = net_bool(inst.GUID, "boatcontainer._enableboatequipslots")
     self._isopen = false
     self._numslots = 0
     self.hasboatequipslots = false

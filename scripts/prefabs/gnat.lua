@@ -124,7 +124,7 @@ local function fn()
     inst.Physics:SetCollisionGroup(COLLISION.FLYERS)
     inst.Physics:SetCollisionMask(
         CCOLLISION.GROUND,
-        COLLISION.VOID_LIMITS,
+        COLLISION.VOID_LIMITS
     )
 
     inst.Transform:SetFourFaced()

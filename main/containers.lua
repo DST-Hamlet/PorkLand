@@ -64,7 +64,6 @@ local boat_lograft = {
     side_align_tip = -500,
     canbeopened = false,
     hasboatequipslots = false,
-    enableboatequipslots = true,
 }
 
 local boat_row = {
@@ -89,7 +88,6 @@ local boat_row = {
     side_align_tip = -500,
     canbeopened = false,
     hasboatequipslots = true,
-    enableboatequipslots = true,
 }
 
 local boat_cork = {
@@ -114,7 +112,6 @@ local boat_cork = {
     side_align_tip = -500,
     canbeopened = false,
     hasboatequipslots = true,
-    enableboatequipslots = true,
 }
 
 local boat_cargo = {
@@ -129,6 +126,7 @@ local boat_cargo = {
     },
     inspectwidget = {
         slotpos = {},
+        slotpos = {},
         animbank = "boat_inspect_cargo",
         animbuild = "boat_inspect_cargo",
         pos = Vector3(200, 0, 0),
@@ -139,7 +137,6 @@ local boat_cargo = {
     side_align_tip = -500,
     canbeopened = false,
     hasboatequipslots = true,
-    enableboatequipslots = true,
 }
 
 for i = 6, 1, -1 do

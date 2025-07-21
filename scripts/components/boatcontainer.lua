@@ -1,10 +1,6 @@
 local containers = require("containers")
 local EquipSlot = require("equipslotutil")
 
-local function onenableboatequipslots(self, enableboatequipslots)
-    self.inst.replica.container._enableboatequipslots:set(enableboatequipslots)
-end
-
 local function oncanbeopened(self, canbeopened)
     self.inst.replica.container:SetCanBeOpened(canbeopened)
 end
@@ -18,7 +14,6 @@ local BoatContainer = Class(function(self, inst)
     self.slots = {}
     self.boatequipslots = {}
     self.hasboatequipslots = false
-    self.enableboatequipslots = true
     self.numslots = 0
     self.canbeopened = true
     self.acceptsstacks = true
@@ -37,7 +32,6 @@ nil,
 {
     canbeopened = oncanbeopened,
     opener = onopener,
-    enableboatequipslots = onenableboatequipslots
 })
 
 local widgetprops =
