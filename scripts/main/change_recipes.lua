@@ -230,6 +230,8 @@ local DISABLE_RECIPES = {
     -- Wormwood --
     "armor_bramble",
     "trap_bramble",
+    -- Winona--
+    "winona_remote",
 }
 
 local LOST_RECIPES = {
