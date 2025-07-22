@@ -11,11 +11,12 @@ function Container:GetItemInBoatSlot(eslot)
         return self.inst.components.container:GetItemInBoatSlot(eslot)
     else
         if self.classified ~= nil then
-            if eslot == BOATEQUIPSLOTS.BOAT_SAIL then
-                return self.classified:GetItemInSlot(1)
-            elseif eslot == BOATEQUIPSLOTS.BOAT_LAMP then
-                return self.classified:GetItemInSlot(2)
+            local slot = self.boatcontainerequips[eslot]
+            if slot == nil then
+                return
             end
+
+            return self.classified:GetItemInSlot(slot)
         end
     end
 end

@@ -69,29 +69,22 @@ function ContainerWidget:Open(container, doer, boatwidget, ...)
     end
 
     if container.replica.container.hasboatequipslots then
-        self.inv[1].inst:ListenForEvent("newactiveitem", function(owner, data)
-            if data.item ~= nil and
-                data.item.replica.equippable ~= nil and
-                data.item.replica.equippable:BoatEquipSlot() == BOATEQUIPSLOTS.BOAT_SAIL then
-                self.inv[1]:ScaleTo(self.inv[1].base_scale, self.inv[1].highlight_scale, 0.125)
-                self.inv[1].highlight = true
-            elseif self.inv[1].highlight then
-                self.inv[1].highlight = false
-                self.inv[1]:ScaleTo(self.inv[1].highlight_scale, self.inv[1].base_scale, 0.125)
-            end
-        end, self.owner)
-
-        self.inv[2].inst:ListenForEvent("newactiveitem", function(owner, data)
-            if data.item ~= nil and
-                data.item.replica.equippable ~= nil and
-                data.item.replica.equippable:BoatEquipSlot() == BOATEQUIPSLOTS.BOAT_LAMP then
-                self.inv[2]:ScaleTo(self.inv[2].base_scale, self.inv[2].highlight_scale, 0.125)
-                self.inv[2].highlight = true
-            elseif self.inv[2].highlight then
-                self.inv[2].highlight = false
-                self.inv[2]:ScaleTo(self.inv[2].highlight_scale, self.inv[2].base_scale, 0.125)
-            end
-        end, self.owner)
+        for eslot, index in pairs(container.replica.container.boatcontainerequips) do
+            local invslot = self.inv[index]
+            invslot.inst:ListenForEvent("newactiveitem", function(owner, data)
+                if data.item ~= nil and
+                    data.item.replica.equippable ~= nil and
+                    data.item.replica.equippable:BoatEquipSlot() ~= "INVALID" and
+                    data.item.replica.equippable:BoatEquipSlot() == eslot then
+                        
+                    invslot:ScaleTo(invslot.base_scale, invslot.highlight_scale, 0.125)
+                    invslot.highlight = true
+                elseif invslot.highlight then
+                    invslot.highlight = false
+                    invslot:ScaleTo(invslot.highlight_scale, invslot.base_scale, 0.125)
+                end
+            end, self.owner)
+        end
     end
 end
 

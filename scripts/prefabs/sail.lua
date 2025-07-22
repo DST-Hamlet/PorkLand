@@ -42,6 +42,9 @@ local function OnEquip(inst, owner)
         return false
     end
 
+    print("Equipped sail", inst)
+    print(_TRACEBACK())
+
     if owner.components.boatvisualmanager then
         owner.components.boatvisualmanager:SpawnBoatEquipVisuals(inst, inst.visualprefab)
     end
@@ -117,7 +120,6 @@ local function common()
     PorkLandMakeInventoryFloatable(inst)
 
     inst:AddTag("sail")
-    inst:AddTag("boat_equip_sail")
 
     -- networking the equip/unequip event
     inst.sailquipped = net_bool(inst.GUID, "sailquipped", not TheWorld.ismastersim and "sailquipped" or nil)

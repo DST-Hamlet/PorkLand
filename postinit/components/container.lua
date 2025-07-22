@@ -8,16 +8,16 @@ function Container:GetItemInBoatSlot(eslot)
         return
     end
 
-    if eslot == BOATEQUIPSLOTS.BOAT_SAIL then -- 每个船容器的第一格视为船帆的装备栏位
-        return self.slots[1]
-    elseif eslot == BOATEQUIPSLOTS.BOAT_LAMP then -- 每个船容器的第二格视为船灯的装备栏位
-        return self.slots[2]
+    local slot = self.boatcontainerequips[eslot]
+    if slot ~= nil then
+        return self:GetItemInSlot(slot)
     end
 end
 
 local widgetprops = {
     "inspectwidget",
     "hasboatequipslots",
+    "boatcontainerequips",
     "multispecificslots"
 }
 
@@ -58,41 +58,28 @@ function Container:BoatEquip(item)
         return
     end
 
-    if self.inst.components.container ~= nil then
-        local eslot = item.components.equippable.boatequipslot
-        local slot
-        local old_item
-        local inventory = item.components.inventoryitem.owner and item.components.inventoryitem.owner.components.inventory or nil
+    if self.inst.components.container ~= nil and item.replica.equippable and item.replica.equippable:BoatEquipSlot() ~= "INVALID" then
+        local eslot = item.replica.equippable:BoatEquipSlot()
+        local slot = self.boatcontainerequips[eslot]
 
-        item.prevslot = inventory and inventory:GetItemSlot(item) or nil
-
-        if item.prevslot == nil and
-            item.components.inventoryitem.owner ~= nil and
-            item.components.inventoryitem.owner.components.container ~= nil and
-            item.components.inventoryitem.owner.components.inventoryitem ~= nil then
-            item.prevcontainer = item.components.inventoryitem.owner.components.container
-            item.prevslot = item.components.inventoryitem.owner.components.container:GetItemSlot(item)
-        else
-            item.prevcontainer = nil
-        end
-
-        if eslot == BOATEQUIPSLOTS.BOAT_SAIL then
-            old_item = self:GetItemInSlot(1)
-            slot = 1
-        elseif eslot == BOATEQUIPSLOTS.BOAT_LAMP then
-            old_item = self:GetItemInSlot(2)
-            slot = 2
-        end
-        if inventory then
-            inventory:RemoveItem(item)
-        end
-        if old_item then
-            self:DropItem(old_item)
-            if inventory then
-                inventory:GiveItem(old_item)
+        if slot ~= nil then
+            local old_item = self:GetItemInSlot(slot)
+            local inventory = item.components.inventoryitem.owner and item.components.inventoryitem.owner.components.inventory or nil -- 可以是物品栏或容器
+            if inventory == nil then
+                inventory = item.components.inventoryitem.owner and item.components.inventoryitem.owner.components.container or nil
             end
+
+            if inventory then
+                inventory:RemoveItem(item)
+            end
+            if old_item then
+                self:DropItem(old_item)
+                if inventory then
+                    inventory:GiveItem(old_item)
+                end
+            end
+            self:GiveItem(item, slot)
         end
-        self:GiveItem(item, slot)
     end
 end
 
@@ -103,11 +90,12 @@ function Container:BoatUnequip(eslot)
 
     if self.inst.components.container ~= nil then
         local item
-        if eslot == BOATEQUIPSLOTS.BOAT_SAIL then
-            item = self:GetItemInSlot(1)
-        elseif eslot == BOATEQUIPSLOTS.BOAT_LAMP then
-            item = self:GetItemInSlot(2)
+
+        local slot = self.boatcontainerequips[eslot]
+        if slot ~= nil then
+            item = self:GetItemInSlot(slot)
         end
+
         if item and item.components.equippable then
            self:DropItem(item)
        end
@@ -116,16 +104,22 @@ end
 
 local function OnGetItem(inst, data)
     if inst.components.container.hasboatequipslots then
-        if data.slot == 1 or data.slot == 2 then
-            data.item.components.equippable:Equip(inst)
+        for eslot, index in pairs(inst.components.container.boatcontainerequips) do
+            if index == data.slot then
+                data.item.components.equippable:Equip(inst)
+                return
+            end
         end
     end
 end
 
 local function OnLoseItem(inst, data)
     if inst.components.container.hasboatequipslots then
-        if data.slot == 1 or data.slot == 2 then
-            data.prev_item.components.equippable:Unequip(inst)
+        for eslot, index in pairs(inst.components.container.boatcontainerequips) do
+            if index == data.slot then
+                data.prev_item.components.equippable:Unequip(inst)
+                return
+            end
         end
     end
 end

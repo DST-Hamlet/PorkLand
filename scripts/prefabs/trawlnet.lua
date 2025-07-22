@@ -319,7 +319,6 @@ local function net(Sim)
 
     inst:AddTag("trawlnet")
     inst:AddTag("show_invspace")
-    inst:AddTag("boat_equip_sail")
 
     inst.trawlitem = net_bool(inst.GUID, "trawlitem", not TheWorld.ismastersim and "trawlitem" or nil)
 

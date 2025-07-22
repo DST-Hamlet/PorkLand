@@ -12,21 +12,6 @@ function InventoryItem:CanDeploy(pt, mouseover, deployer, rot, ...)
     return ret
 end
 
-local _SetOwner = InventoryItem.SetOwner
-function InventoryItem:SetOwner(owner, ...)
-    local boat_owner = owner ~= nil and owner.components.container ~= nil and owner.components.container.hasboatequipslots and owner.components.container.opener
-    if boat_owner then
-        if self.inst.Network ~= nil then
-            self.inst.Network:SetClassifiedTarget(boat_owner)
-        end
-        if self.classified ~= nil then
-            self.classified.Network:SetClassifiedTarget(boat_owner or self.inst)
-        end
-        return
-    end
-    return _SetOwner(self, owner, ...)
-end
-
 local _SerializeUsage = InventoryItem.SerializeUsage
 function InventoryItem:SerializeUsage(...)
     _SerializeUsage(self, ...)
