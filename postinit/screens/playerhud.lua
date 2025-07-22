@@ -119,7 +119,7 @@ function PlayerHud:OpenContainer(container, ...)
     return _OpenContainer(self, container, ...)
 end
 
-function PlayerHud:OpenBoat(boat)
+function PlayerHud:OpenBoat(boat) -- 此函数复制自OpenContainer，目的为使船容器的界面挂载在controls.inv.root上
     local sailing = false
     if self.owner and self.owner.replica.sailor:GetBoat() == boat then
         sailing = true
@@ -140,16 +140,6 @@ function PlayerHud:OpenBoat(boat)
         end
 
         boatwidget:Open(boat, self.owner, not sailing)
-
-        for k, v in pairs(self.controls.containers) do
-            if v.container then
-                if k == boat then
-                    v:Close()
-                end
-            else
-                self.controls.containers[k] = nil
-            end
-        end
 
         self.controls.containers[boat] = boatwidget
     end
