@@ -40,10 +40,10 @@ function Container:GetSpecificSlotForItem(item, ...)
     if ret and self.multispecificslots then
         if self:GetItemInSlot(ret) then
             for i = 1, self:GetNumSlots() do
-                if self:itemtestfn(item, i) 
+                if self:itemtestfn(item, i)
                     and (not self:GetItemInSlot(i)
                     or (self:GetItemInSlot(i) ~= nil and self:GetItemInSlot(i).components.stackable and self:GetItemInSlot(i).prefab == item.prefab and self:GetItemInSlot(i).skinname == item.skinname and not self:GetItemInSlot(i).components.stackable:IsFull())) then
-                    
+
                     return i
                 end
             end
@@ -65,7 +65,7 @@ function Container:BoatEquip(item)
         local inventory = item.components.inventoryitem.owner and item.components.inventoryitem.owner.components.inventory or nil
 
         item.prevslot = inventory and inventory:GetItemSlot(item) or nil
-    
+
         if item.prevslot == nil and
             item.components.inventoryitem.owner ~= nil and
             item.components.inventoryitem.owner.components.container ~= nil and
@@ -79,7 +79,7 @@ function Container:BoatEquip(item)
         if eslot == BOATEQUIPSLOTS.BOAT_SAIL then
             old_item = self:GetItemInSlot(1)
             slot = 1
-        elseif eslot == BOATEQUIPSLOTS.BOAT_LAMPthen
+        elseif eslot == BOATEQUIPSLOTS.BOAT_LAMP then
             old_item = self:GetItemInSlot(2)
             slot = 2
         end
