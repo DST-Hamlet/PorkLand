@@ -702,34 +702,6 @@ ACTIONS.RUMMAGE.extra_arrive_dist = function(doer, dest, ...)
     return ret
 end
 
-local _RUMMAGE_strfn = ACTIONS.RUMMAGE.strfn
-function ACTIONS.RUMMAGE.strfn(act, ...)
-    local target = act.target or act.invobject
-    if target and target.replica.container and target.replica.container.type == "boat" then
-        return target.replica.container:IsOpenedBy(act.doer) and "CLOSE" or "INSPECT"
-    end
-    return _RUMMAGE_strfn(act, ...)
-end
-
-local _RUMMAGE_fn = ACTIONS.RUMMAGE.fn
-function ACTIONS.RUMMAGE.fn(act, ...)
-    local ret = {_RUMMAGE_fn(act, ...)}
-    if ret[1] == nil then
-        local targ = act.target or act.invobject
-
-        if targ ~= nil and targ.components.container ~= nil then
-            if not targ.components.container.canbeopened and targ.components.container.type == "boat" then
-                if CanEntitySeeTarget(act.doer, targ) then
-                    act.doer:PushEvent("opencontainer", { container = targ })
-                    targ.components.container:Open(act.doer)
-                end
-                return true
-            end
-        end
-    end
-    return unpack(ret)
-end
-
 local _UNEQUIP_fn = ACTIONS.UNEQUIP.fn
 function ACTIONS.UNEQUIP.fn(act, ...)
     if act.invobject.components.equippable.boatequipslot and act.invobject.parent then
@@ -1057,12 +1029,8 @@ local INVENTORY = COMPONENT_ACTIONS.INVENTORY
 
 local _SCENE_container = SCENE.container
 function SCENE.container(inst, doer, actions, right, ...)
-    if not inst:HasTag("bundle") and not inst:HasTag("burnt") and not inst:HasTag("noslot")
-        and doer.replica.inventory
-        and not (doer.replica.rider ~= nil and doer.replica.rider:IsRiding())
-        and right and inst.replica.container.type == "boat" then
-
-        table.insert(actions, ACTIONS.RUMMAGE)
+    if right and inst.replica.container.type == "boat" then
+        _SCENE_container(inst, doer, actions, right, ...)
     else
         _SCENE_container(inst, doer, actions, right, ...)
     end

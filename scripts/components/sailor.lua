@@ -173,16 +173,6 @@ function Sailor:OnLoad(data)
         local boat = SpawnSaveRecord(data.boat)
         if boat then
             self:Embark(boat, true)
-            if boat.components.container then
-                boat:DoTaskInTime(0.3, function()
-                    if boat.components.container:IsOpen() then
-                        boat.components.container:Close(true)
-                    end
-                end)
-                boat:DoTaskInTime(1.5, function()
-                    boat.components.container:Open(self.inst)
-                end)
-            end
         end
     end
 end

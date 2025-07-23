@@ -3,6 +3,22 @@ GLOBAL.setfenv(1, GLOBAL)
 
 local Container = require("components/container")
 
+function Container:ChangeBoatType(has_sailor)
+    if self.type ~= "boat" and self.type ~= "boat_has_sailor" then
+        return
+    end
+
+    removesetter(self, "type")
+    if has_sailor then
+        self.type = "boat_has_sailor"
+    else
+        self.type = "boat"
+    end
+    makereadonly(self, "type")
+    
+    self.inst.replica.container._has_sailor:set(has_sailor)
+end
+
 function Container:GetItemInBoatSlot(eslot)
     if not self.hasboatequipslots then
         return

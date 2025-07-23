@@ -120,7 +120,6 @@ local boat_row = {
     },
     type = "boat",
     side_align_tip = -500,
-    canbeopened = false,
     hasboatequipslots = true,
     boatcontainerequips =  -- 该表为装备与格子的对应关系
     {
@@ -169,7 +168,6 @@ local boat_cork = {
     },
     type = "boat",
     side_align_tip = -500,
-    canbeopened = false,
     hasboatequipslots = true,
     boatcontainerequips = 
     {
@@ -216,7 +214,6 @@ local boat_cargo = {
     },
     type = "boat",
     side_align_tip = -500,
-    canbeopened = false,
     hasboatequipslots = true,
     boatcontainerequips = 
     {

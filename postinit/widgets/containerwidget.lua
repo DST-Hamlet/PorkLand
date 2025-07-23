@@ -55,7 +55,7 @@ function ContainerWidget:Open(container, doer, boatwidget, ...)
         end
     end
 
-    if container.replica.container.type == "boat" then
+    if container.replica.container.type == "boat" or container.replica.container.type == "boat_has_sailor" then
         self.boatbadge:SetPosition(widget.badgepos.x, widget.badgepos.y)
         self.boatbadge:Show()
         if container and container.replica.boathealth then
