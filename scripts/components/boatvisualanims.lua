@@ -25,15 +25,15 @@ function BoatVisualAnims:OnUpdate(dt)
 end
 
 function BoatVisualAnims:PlayPreRowAnims()
-    self.inst.visualchild.AnimState:PlayAnimation(self.prerowanimation)
+    self.inst.visualchild.AnimState:PlayAnimation(BOAT_ANIM_NAMES.prerowanimation)
     if self.prerow then
         self.prerow(self.inst)
     end
 end
 
 function BoatVisualAnims:PlayRowAnims()
-    if not self.inst.visualchild.AnimState:IsCurrentAnimation(self.rowanimation) then
-        self.inst.visualchild.AnimState:PlayAnimation(self.rowanimation, true)
+    if not self.inst.visualchild.AnimState:IsCurrentAnimation(BOAT_ANIM_NAMES.rowanimation) then
+        self.inst.visualchild.AnimState:PlayAnimation(BOAT_ANIM_NAMES.rowanimation, true)
     end
     if self.row then
         self.row(self.inst)
@@ -41,22 +41,22 @@ function BoatVisualAnims:PlayRowAnims()
 end
 
 function BoatVisualAnims:PlayPostRowAnims()
-    self.inst.visualchild.AnimState:PlayAnimation(self.postrowanimation)
+    self.inst.visualchild.AnimState:PlayAnimation(BOAT_ANIM_NAMES.postrowanimation)
     if self.postrow then
         self.postrow(self.inst)
     end
 end
 
 function BoatVisualAnims:PlayPreSailAnims()
-    self.inst.visualchild.AnimState:PlayAnimation(self.presailanim)
+    self.inst.visualchild.AnimState:PlayAnimation(BOAT_ANIM_NAMES.presailanim)
     if self.presail then
         self.presail(self.inst)
     end
 end
 
 function BoatVisualAnims:PlaySailAnims()
-    if not self.inst.visualchild.AnimState:IsCurrentAnimation(self.sailanim) then
-        self.inst.visualchild.AnimState:PlayAnimation(self.sailanim, true)
+    if not self.inst.visualchild.AnimState:IsCurrentAnimation(BOAT_ANIM_NAMES.sailanim) then
+        self.inst.visualchild.AnimState:PlayAnimation(BOAT_ANIM_NAMES.sailanim, true)
     end
     if self.sail then
         self.sail(self.inst)
@@ -64,14 +64,14 @@ function BoatVisualAnims:PlaySailAnims()
 end
 
 function BoatVisualAnims:PlayPostSailAnims()
-    self.inst.visualchild.AnimState:PlayAnimation(self.postsailanim)
+    self.inst.visualchild.AnimState:PlayAnimation(BOAT_ANIM_NAMES.postsailanim)
     if self.postsail then
         self.postsail(self.inst)
     end
 end
 
 function BoatVisualAnims:PlayTrawlOverAnims()
-    self.inst.visualchild.AnimState:PlayAnimation(self.trawlover)
+    self.inst.visualchild.AnimState:PlayAnimation(BOAT_ANIM_NAMES.trawlover)
     if self.trawl then
         self.trawl(self.inst)
     end
@@ -79,14 +79,14 @@ end
 
 function BoatVisualAnims:PlayIdleAnims(push)
     if push then
-        self.inst.visualchild.AnimState:PushAnimation(self.idleanim, true)
+        self.inst.visualchild.AnimState:PushAnimation(BOAT_ANIM_NAMES.idleanim, true)
         if self.idle then
             self.idle(self.inst)
         end
         return
     end
-    if not self.inst.visualchild.AnimState:IsCurrentAnimation(self.idleanim) then
-        self.inst.visualchild.AnimState:PlayAnimation(self.idleanim, true)
+    if not self.inst.visualchild.AnimState:IsCurrentAnimation(BOAT_ANIM_NAMES.idleanim) then
+        self.inst.visualchild.AnimState:PlayAnimation(BOAT_ANIM_NAMES.idleanim, true)
     end
     if self.idle then
         self.idle(self.inst)
@@ -94,7 +94,7 @@ function BoatVisualAnims:PlayIdleAnims(push)
 end
 
 function BoatVisualAnims:PlayOnHitAnims()
-    self.inst.visualchild.AnimState:PlayAnimation(self.hitanim)
+    self.inst.visualchild.AnimState:PlayAnimation(BOAT_ANIM_NAMES.hitanim)
     if self.hit then
         self.hit(self.inst)
     end
@@ -102,14 +102,14 @@ end
 
 function BoatVisualAnims:PlayRunAnims(push)
     if push then
-        self.inst.visualchild.AnimState:PushAnimation(self.runanim, true)
+        self.inst.visualchild.AnimState:PushAnimation(BOAT_ANIM_NAMES.runanim, true)
         if self.run then
             self.run(self.inst)
         end
         return
     end
-    if not self.inst.visualchild.AnimState:IsCurrentAnimation(self.runanim) then
-        self.inst.visualchild.AnimState:PlayAnimation(self.runanim, true)
+    if not self.inst.visualchild.AnimState:IsCurrentAnimation(BOAT_ANIM_NAMES.runanim) then
+        self.inst.visualchild.AnimState:PlayAnimation(BOAT_ANIM_NAMES.runanim, true)
     end
     if self.run then
         self.run(self.inst)

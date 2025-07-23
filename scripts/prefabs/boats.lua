@@ -149,6 +149,16 @@ local function DeployTestCorkBoat(inst, pt, mouseover, deployer, rot)
     return TheWorld.Map:IsOceanTileAtPoint(pt.x, pt.y, pt.z)
 end
 
+local function Old_OnEntityReplicated(inst)
+    inst.finish_replicated = true
+
+    for visual, _ in pairs(inst.boatvisuals) do
+        if visual.finish_replicated then
+            visual:SetVisual(inst)
+        end
+    end
+end
+
 local function commonfn()
     local inst = CreateEntity()
 
@@ -182,6 +192,7 @@ local function commonfn()
         function inst.OnEntityReplicated(inst)
             inst.replica.sailable.creaksound = "dontstarve_DLC002/common/boat_creaks_bamboo"
             inst.replica.sailable.basicspeedbonus = TUNING.BOAT_RAFT_SPEED
+            Old_OnEntityReplicated(inst)
         end
         return inst
     end
@@ -244,8 +255,8 @@ end
 local function lograftfn()
     local inst = commonfn()
 
-    --inst.AnimState:SetBank("raft")
-    --inst.AnimState:SetBuild("raft_log_build")
+    inst.AnimState:SetBank("raft")
+    inst.AnimState:PlayAnimation("run_loop", true)
 
     inst:AddTag("noslot")
 
@@ -255,6 +266,7 @@ local function lograftfn()
         function inst.OnEntityReplicated(inst)
             inst.replica.sailable.creaksound = "dontstarve_DLC002/common/boat_creaks_log"
             inst.replica.sailable.basicspeedbonus = TUNING.BOAT_LOGRAFT_SPEED
+            Old_OnEntityReplicated(inst)
         end
         return inst
     end
@@ -286,8 +298,8 @@ end
 local function rowboatfn()
     local inst = commonfn()
 
-    --inst.AnimState:SetBank("rowboat")
-    --inst.AnimState:SetBuild("rowboat_build")
+    inst.AnimState:SetBank("rowboat")
+    inst.AnimState:PlayAnimation("run_loop", true)
 
     inst.MiniMapEntity:SetIcon("rowboat.tex")
 
@@ -295,6 +307,7 @@ local function rowboatfn()
         function inst.OnEntityReplicated(inst)
             inst.replica.sailable.creaksound = "dontstarve_DLC002/common/boat_creaks"
             inst.replica.sailable.basicspeedbonus = TUNING.BOAT_ROW_SPEED
+            Old_OnEntityReplicated(inst)
         end
         return inst
     end
@@ -327,8 +340,8 @@ end
 local function cargofn()
     local inst = commonfn()
 
-    --inst.AnimState:SetBank("rowboat")
-    --inst.AnimState:SetBuild("rowboat_cargo_build")
+    inst.AnimState:SetBank("rowboat")
+    inst.AnimState:PlayAnimation("run_loop", true)
 
     inst.MiniMapEntity:SetIcon("cargo.tex")
 
@@ -336,6 +349,7 @@ local function cargofn()
         function inst.OnEntityReplicated(inst)
             inst.replica.sailable.creaksound = "dontstarve_DLC002/common/boat_creaks_cargo"
             inst.replica.sailable.basicspeedbonus = TUNING.BOAT_CARGO_SPEED
+            Old_OnEntityReplicated(inst)
         end
         return inst
     end
@@ -367,12 +381,16 @@ end
 local function corkboatfn()
     local inst = commonfn()
 
+    inst.AnimState:SetBank("rowboat")
+    inst.AnimState:PlayAnimation("run_loop", true)
+
     inst.MiniMapEntity:SetIcon("coracle_boat.tex")
 
     if not TheWorld.ismastersim then
         function inst.OnEntityReplicated(inst)
             inst.replica.sailable.creaksound = "dontstarve_DLC003/common/objects/corkboat/creaks"
             inst.replica.sailable.basicspeedbonus = TUNING.BOAT_CORK_SPEED
+            Old_OnEntityReplicated(inst)
         end
         return inst
     end
@@ -458,36 +476,32 @@ local function corkboatitemfn()
     return inst
 end
 
-local function lograft_visual_common(inst)
+local function lograft_visual_setup(inst)
     inst.visualchild.AnimState:SetBank("raft")
     inst.visualchild.AnimState:SetBuild("raft_log_build")
     inst.visualchild.AnimState:PlayAnimation("idle_loop")
     inst.visualchild.AnimState:SetFinalOffset(FINALOFFSET_MIN + 1)
-    inst.boat.replica.sailable:PlayRunAnims()
 end
 
-local function rowboat_visual_common(inst)
+local function rowboat_visual_setup(inst)
     inst.visualchild.AnimState:SetBank("rowboat")
     inst.visualchild.AnimState:SetBuild("rowboat_build")
     inst.visualchild.AnimState:PlayAnimation("idle_loop")
     inst.visualchild.AnimState:SetFinalOffset(FINALOFFSET_MIN + 1)
-    inst.boat.replica.sailable:PlayRunAnims()
 end
 
-local function cargo_visual_common(inst)
+local function cargo_visual_setup(inst)
     inst.visualchild.AnimState:SetBank("rowboat")
     inst.visualchild.AnimState:SetBuild("rowboat_cargo_build")
     inst.visualchild.AnimState:PlayAnimation("idle_loop")
     inst.visualchild.AnimState:SetFinalOffset(FINALOFFSET_MIN + 1)
-    inst.boat.replica.sailable:PlayRunAnims()
 end
 
-local function corkboat_visual_common(inst)
+local function corkboat_visual_setup(inst)
     inst.visualchild.AnimState:SetBank("rowboat")
     inst.visualchild.AnimState:SetBuild("coracle_boat_build")
     inst.visualchild.AnimState:PlayAnimation("idle_loop")
     inst.visualchild.AnimState:SetFinalOffset(FINALOFFSET_MIN + 1)
-    inst.boat.replica.sailable:PlayRunAnims()
 end
 
 return Prefab("boat_lograft", lograftfn, lograft_assets, prefabs),
@@ -499,11 +513,11 @@ return Prefab("boat_lograft", lograftfn, lograft_assets, prefabs),
     MakePlacer("boat_row_placer", "rowboat", "rowboat_build", "run_loop", nil, nil, nil, nil, nil, nil, nil, 2),
     MakePlacer("boat_cargo_placer", "rowboat", "rowboat_cargo_build", "run_loop", nil, nil, nil, nil, nil, nil, nil, 2),
     MakePlacer("boat_cork_placer", "rowboat", "coracle_boat_build", "run_loop", false, false, false),
-    visualboatequip.MakeVisualBoatEquip("boat_lograft", lograft_assets, nil, lograft_visual_common),
-    visualboatequip.MakeVisualBoatEquipChild("boat_lograft", lograft_assets, nil, lograft_visual_common),
-    visualboatequip.MakeVisualBoatEquip("boat_row", rowboat_assets, nil, rowboat_visual_common),
-    visualboatequip.MakeVisualBoatEquipChild("boat_row", rowboat_assets, nil, rowboat_visual_common),
-    visualboatequip.MakeVisualBoatEquip("boat_cargo", cargo_assets, nil, cargo_visual_common),
-    visualboatequip.MakeVisualBoatEquipChild("boat_cargo", cargo_assets, nil, cargo_visual_common),
-    visualboatequip.MakeVisualBoatEquip("boat_cork", corkboat_assets, nil, corkboat_visual_common),
-    visualboatequip.MakeVisualBoatEquipChild("boat_cork", corkboat_assets, nil, corkboat_visual_common)
+    visualboatequip.MakeVisualBoatEquip("boat_lograft", lograft_assets, nil, lograft_visual_setup),
+    visualboatequip.MakeVisualBoatEquipChild("boat_lograft", lograft_assets),
+    visualboatequip.MakeVisualBoatEquip("boat_row", rowboat_assets, nil, rowboat_visual_setup),
+    visualboatequip.MakeVisualBoatEquipChild("boat_row", rowboat_assets),
+    visualboatequip.MakeVisualBoatEquip("boat_cargo", cargo_assets, nil, cargo_visual_setup),
+    visualboatequip.MakeVisualBoatEquipChild("boat_cargo", cargo_assets),
+    visualboatequip.MakeVisualBoatEquip("boat_cork", corkboat_assets, nil, corkboat_visual_setup),
+    visualboatequip.MakeVisualBoatEquipChild("boat_cork", corkboat_assets)

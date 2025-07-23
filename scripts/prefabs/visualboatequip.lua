@@ -1,4 +1,4 @@
-local function MakeVisualBoatEquipChild(name, assets, prefabs, commonfn, masterfn, onreplicate)
+local function MakeVisualBoatEquipChild(name, assets, prefabs)
     local function childfn()
         local inst = CreateEntity()
 
@@ -29,101 +29,99 @@ local function MakeVisualBoatEquipChild(name, assets, prefabs, commonfn, masterf
     return Prefab("visual_" .. name .. "_boat_child", childfn, assets, prefabs)
 end
 
-local function MakeVisualBoatEquip(name, assets, prefabs, commonfn, masterfn, onreplicate)
-    local function WaitForRotationSync(inst)
-        inst:Hide()
-        inst:DoTaskInTime(0, inst.Show)
+------------------------------------------------------------------------------------------
+
+local function OnEntityReplicated(inst)
+    inst.finish_replicated = true
+
+    local boat = inst.entity:GetParent()
+    boat.boatvisuals[inst] = true
+    if boat.finish_replicated then
+        inst:SetVisual(boat)
     end
+end
 
-    local function OnEntityReplicated(inst)
-        WaitForRotationSync(inst)
+local function OnRemove(inst)
+    inst.boat.boatvisuals[inst] = nil
+end
 
-        inst:DoTaskInTime(0,function()
-            inst.boat = inst.entity:GetParent()
-            inst.boat.boatvisuals[inst] = true
-            inst:SetVisual(inst.boat)
+local function SetVisual(inst, boat) -- 在服务器端，此函数会在实体生成完后调用。在客户端，此函数会在船实体与自身实体创建且数据同步完成后被调用
+    inst.boat = boat
 
-            inst:StartUpdatingComponent(inst.components.boatvisualanims)
-
-            if onreplicate then
-                onreplicate(inst)
-            end
-        end)
-    end
-
-    local function OnRemove(inst)
-        inst.boat.boatvisuals[inst] = nil
-    end
-
-    local function SetVisual(inst, boat)
-        inst.boat = boat
-        boat.boatvisuals[inst] = true
-
-        inst:ListenForEvent("onremove", OnRemove)
-        inst.visualchild = SpawnPrefab(inst.prefab .. "_child")
-        inst.visualchild.entity:SetParent(inst.entity)
-        if inst.boat then
-            if inst.visualchild.components.highlightchild then
-                inst.visualchild.components.highlightchild:SetOwner(inst.boat)
-            end
-
-            if inst.boat.components.colouradder then
-                inst.boat.components.colouradder:AttachChild(inst.visualchild)
-            end
-            if inst.boat.components.eroder then
-                inst.boat.components.eroder:AttachChild(inst.visualchild)
-            end
+    inst:ListenForEvent("onremove", OnRemove)
+    inst.visualchild = SpawnPrefab(inst.prefab .. "_child")
+    inst.visualchild.entity:SetParent(inst.entity)
+    if inst.boat then
+        if inst.visualchild.components.highlightchild then
+            inst.visualchild.components.highlightchild:SetOwner(inst.boat)
         end
 
-        if inst.commonfn then
-            inst:commonfn()
+        if inst.boat.components.colouradder then
+            inst.boat.components.colouradder:AttachChild(inst.visualchild)
         end
-
-        local startanim = "idle_loop"
-        local startanimframe
-        if boat.replica.sailable._currentboatanim and boat.replica.sailable._currentboatanim:value() ~= "" then
-            startanim = boat.replica.sailable._currentboatanim:value()
+        if inst.boat.components.eroder then
+            inst.boat.components.eroder:AttachChild(inst.visualchild)
         end
+    end
 
-        startanimframe = 0
-        for k, v in pairs(boat.boatvisuals) do
+    if inst.setupfn then
+        inst:setupfn()
+    end
+
+    local startanim = "run_loop"
+
+    for k, v in pairs(boat.boatvisuals) do
+        for _, animname in pairs(BOAT_ANIM_NAMES) do
             if k ~= inst and k.visualchild and k.visualchild.AnimState then
-                if k.visualchild.AnimState:IsCurrentAnimation("idle_loop") then
-                    startanim = "idle_loop"
+                if k.visualchild.AnimState:IsCurrentAnimation(animname) then
+                    startanim = animname
+                    break
                 end
-                if k.visualchild.AnimState:IsCurrentAnimation("run_loop") then
-                    startanim = "run_loop"
-                end
+            end
+        end
+    end
+    
+    if startanim == "idle_loop" or
+        startanim == "run_loop" or
+        startanim == "row_loop" or
+        startanim == "sail_loop" then
+
+        inst.visualchild.AnimState:PlayAnimation(startanim, true)
+    else
+        inst.visualchild.AnimState:PlayAnimation(startanim)
+    end
+    
+    local startanimframe = boat.AnimState:GetCurrentAnimationFrame() or 0
+    for k, v in pairs(boat.boatvisuals) do
+        if k ~= inst and k.visualchild and k.visualchild.AnimState then
+            if k.visualchild.AnimState:IsCurrentAnimation(startanim) then
                 startanimframe = k.visualchild.AnimState:GetCurrentAnimationFrame()
                 break
             end
         end
+    end
+    inst.visualchild.AnimState:SetFrame(startanimframe)
 
-        if startanim == "idle_loop_push" then
-            inst.visualchild.AnimState:PlayAnimation("idle_loop", true)
-        elseif startanim == "run_loop_push" then
-            inst.visualchild.AnimState:PlayAnimation("run_loop", true)
-        elseif startanim == "idle_loop" or
-            startanim == "run_loop" or
-            startanim == "row_loop" or
-            startanim == "sail_loop" then
-            inst.visualchild.AnimState:PlayAnimation(startanim, true)
+    local pushanim
+    if boat.replica.sailable._currentboatanim and boat.replica.sailable._currentboatanim:value() ~= 0 then
+        pushanim = BOAT_ANIM_ID_TO_NAME[boat.replica.sailable._currentboatanim:value()]
+    end
+    if pushanim ~= nil and startanim ~= pushanim then
+        if pushanim == "idle_loop" or
+            pushanim == "run_loop" or
+            pushanim == "row_loop" or
+            pushanim == "sail_loop" then
+
+            inst.visualchild.AnimState:PushAnimation(pushanim, true)
         else
-            inst.visualchild.AnimState:PlayAnimation(startanim)
+            inst.visualchild.AnimState:PushAnimation(pushanim)
         end
-        print(startanim,startanimframe)
-        inst.visualchild.AnimState:SetFrame(startanimframe)
-
-        if TheWorld.ismastersim then
-            if inst.masterfn then
-                inst:masterfn()
-            end
-        end
-
-        inst:StartUpdatingComponent(inst.components.boatvisualanims)
-
     end
 
+    inst:StartUpdatingComponent(inst.components.boatvisualanims)
+end
+
+local function MakeVisualBoatEquip(name, assets, prefabs, setupfn, commonfn)
     local function fn()
         local inst = CreateEntity()
 
@@ -144,20 +142,18 @@ local function MakeVisualBoatEquip(name, assets, prefabs, commonfn, masterfn, on
         inst.boat = nil
 
         inst.SetVisual = SetVisual
-        inst.commonfn = commonfn
+        inst.setupfn = setupfn
+
+        if commonfn then
+            commonfn(inst)
+        end
 
         inst.entity:SetPristine()
 
-        if TheWorld.ismastersim then
-            if not TheNet:IsDedicated() then
-                WaitForRotationSync(inst)
-            end
-        else
+        if not TheWorld.ismastersim then
             inst.OnEntityReplicated = OnEntityReplicated
             return inst
         end
-
-        inst.masterfn = masterfn
 
         inst.persists = false
 

@@ -18,7 +18,7 @@ local function onsailor(self)
         container:Close()
         if self.sailor then
             container:ChangeBoatType(true)
-            container.canbeopened = false
+            container.canbeopened = false -- 有人的船容器不能通过打开动作来开启
         else
             container:ChangeBoatType(false)
             container.canbeopened = container.old_canbeopened
@@ -146,7 +146,7 @@ function Sailable:OnDisembarked(sailor)
         self.inst.components.workable.workable = true
     end
 
-    self.inst.replica.sailable:PlayRunAnims(true)
+    self.inst.replica.sailable:PlayRunAnims() -- 因为动画数据的选取碰撞箱数据问题，船必须播放run动画才能被鼠标选中
 end
 
 function Sailable:OnRemoveFromEntity()

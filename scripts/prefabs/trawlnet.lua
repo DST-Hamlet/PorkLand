@@ -509,7 +509,7 @@ local function dropped_net()
     return inst
 end
 
-local function trawlnet_visual_common(inst)
+local function trawlnet_visual_setup(inst)
     inst.visualchild.AnimState:SetBank("sail_visual")
     inst.visualchild.AnimState:SetBuild("swap_trawlnet")
     inst.visualchild.AnimState:PlayAnimation("idle_loop", true)
@@ -517,7 +517,7 @@ local function trawlnet_visual_common(inst)
 end
 
 return Prefab("trawlnet", net, net_assets),
-    visualboatequip.MakeVisualBoatEquip("trawlnet", net_assets, nil, trawlnet_visual_common),
-    visualboatequip.MakeVisualBoatEquipChild("trawlnet", net_assets, nil, trawlnet_visual_common),
+    visualboatequip.MakeVisualBoatEquip("trawlnet", net_assets, nil, trawlnet_visual_setup),
+    visualboatequip.MakeVisualBoatEquipChild("trawlnet", net_assets),
     Prefab("trawlnetdropped", dropped_net, dropped_assets)
 

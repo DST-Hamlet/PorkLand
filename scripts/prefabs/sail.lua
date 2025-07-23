@@ -42,9 +42,6 @@ local function OnEquip(inst, owner)
         return false
     end
 
-    print("Equipped sail", inst)
-    print(_TRACEBACK())
-
     if owner.components.boatvisualmanager then
         owner.components.boatvisualmanager:SpawnBoatEquipVisuals(inst, inst.visualprefab)
     end
@@ -185,7 +182,7 @@ local function snakeskinsail_fn()
     return inst
 end
 
-local function make_sail_snakeskin_visual_common(build)
+local function make_sail_snakeskin_visual_setup(build)
     return function (inst)
         inst.visualchild.AnimState:SetBank("sail_visual")
         inst.visualchild.AnimState:SetBuild(build)
@@ -203,7 +200,7 @@ local function make_sail_snakeskin_visual_common(build)
 end
 
 return Prefab("sail_snakeskin", snakeskinsail_fn, snakeskinsail_assets),
-    visualboatequip.MakeVisualBoatEquip("sail_snakeskin", snakeskinsail_assets, nil, make_sail_snakeskin_visual_common("swap_sail_snakeskin")),
-    visualboatequip.MakeVisualBoatEquipChild("sail_snakeskin", snakeskinsail_assets, nil, make_sail_snakeskin_visual_common("swap_sail_snakeskin")),
-    visualboatequip.MakeVisualBoatEquip("sail_snakeskin_scaly", snakeskinsail_assets, nil, make_sail_snakeskin_visual_common("swap_sail_snakeskin_scaly")),
-    visualboatequip.MakeVisualBoatEquipChild("sail_snakeskin_scaly", snakeskinsail_assets, nil, make_sail_snakeskin_visual_common("swap_sail_snakeskin_scaly"))
+    visualboatequip.MakeVisualBoatEquip("sail_snakeskin", snakeskinsail_assets, nil, make_sail_snakeskin_visual_setup("swap_sail_snakeskin")),
+    visualboatequip.MakeVisualBoatEquipChild("sail_snakeskin", snakeskinsail_assets),
+    visualboatequip.MakeVisualBoatEquip("sail_snakeskin_scaly", snakeskinsail_assets, nil, make_sail_snakeskin_visual_setup("swap_sail_snakeskin_scaly")),
+    visualboatequip.MakeVisualBoatEquipChild("sail_snakeskin_scaly", snakeskinsail_assets)

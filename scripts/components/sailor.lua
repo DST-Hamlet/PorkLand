@@ -185,8 +185,6 @@ function Sailor:Embark(boat, nostate)
     self.sailing = true
     self.boat = boat
 
-    boat:AddTag("NOCLICK")
-
     self.last_pos = boat:GetPosition()
     self.boatspeed = 0
 
@@ -267,10 +265,6 @@ end
 function Sailor:Disembark(pos, boat_to_boat, no_state, boat_pos)
     self.sailing = false
     self.boatspeed = 0
-
-    if self.boat and self.boat:HasTag("NOCLICK") then
-        self.boat:RemoveTag("NOCLICK")
-    end
 
     self.inst:StopUpdatingComponent(self)
 

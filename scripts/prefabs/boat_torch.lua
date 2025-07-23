@@ -76,20 +76,12 @@ local function onequip(inst, owner)
     if owner.components.boatvisualmanager then
         owner.components.boatvisualmanager:SpawnBoatEquipVisuals(inst, inst.visualprefab)
     end
-    if owner.components.sailable then
-        inst:ListenForEvent("embarked", inst.onembarked, owner)
-        inst:ListenForEvent("disembarked", inst.ondisembarked, owner)
-    end
     setswapsymbol(inst, inst.components.equippable:IsToggledOn() and "swap_lantern" or "swap_lantern_off")
 end
 
 local function onunequip(inst, owner)
     if owner.components.boatvisualmanager then
         owner.components.boatvisualmanager:RemoveBoatEquipVisuals(inst)
-    end
-    if owner.components.sailable then
-        inst:RemoveEventCallback("embarked", inst.onembarked, owner)
-        inst:RemoveEventCallback("disembarked", inst.ondisembarked, owner)
     end
     if inst.components.equippable:IsToggledOn() then
         inst.components.equippable:ToggleOff()
@@ -185,21 +177,6 @@ local function torchfn()
     inst.OnLoad = OnLoad
     inst.OnRemove = OnRemove
 
-    inst.onembarked = function(owner, data)
-        if inst._light ~= nil and inst._light:IsValid() then
-            local sailor = data.sailor
-            if sailor then
-                inst._light.entity:SetParent(sailor.entity)
-            end
-        end
-    end
-    inst.ondisembarked = function()
-        if inst._light ~= nil and inst._light:IsValid() then
-            local owner = inst.components.inventoryitem.owner
-            inst._light.entity:SetParent((owner or inst).entity)
-        end
-    end
-
     return inst
 end
 
@@ -239,25 +216,14 @@ local function torchlightcommon(inst)
     inst.Light:SetFalloff(0.5)
 end
 
-local function torch_visual_common(inst)
+local function torch_visual_setup(inst)
+    inst.visualchild.AnimState:OverrideSymbol("swap_lantern", "swap_torch_boat", inst._oversymbol:value())
     inst.visualchild.AnimState:SetBank("sail_visual")
     inst.visualchild.AnimState:SetBuild("swap_torch_boat")
     inst.visualchild.AnimState:PlayAnimation("idle_loop", true)
     inst.visualchild.AnimState:SetFinalOffset(FINALOFFSET_MIN + 2)  -- below the player
 
-    inst._oversymbol = net_string(inst.GUID, "_oversymbol", "symboldirty")
-    inst._oversymbol:set("swap_lantern_off")
-
-    if not TheWorld.ismastersim then
-        inst.visualchild.AnimState:OverrideSymbol("swap_lantern", "swap_torch_boat", inst._oversymbol:value())
-        inst:ListenForEvent("symboldirty", function()
-            if "symboldirty" ~= "" then
-                inst.visualchild.AnimState:OverrideSymbol("swap_lantern", "swap_torch_boat", inst._oversymbol:value())
-            end
-        end)
-    end
-
-    function inst.components.boatvisualanims.update(inst, dt)
+    inst.components.boatvisualanims.update = function(inst, dt)
         if inst.visualchild.AnimState:GetCurrentFacing() == FACING_UP then
             inst.visualchild.AnimState:SetFinalOffset(FINALOFFSET_MIN + 2)  -- above the player
         else
@@ -266,8 +232,21 @@ local function torch_visual_common(inst)
     end
 end
 
+local function torch_visual_commonfn(inst)
+    inst._oversymbol = net_string(inst.GUID, "_oversymbol", "symboldirty")
+    inst._oversymbol:set("swap_lantern_off")
+
+    if not TheWorld.ismastersim then
+        inst:ListenForEvent("symboldirty", function()
+            if "symboldirty" ~= "" and inst.visualchild then
+                inst.visualchild.AnimState:OverrideSymbol("swap_lantern", "swap_torch_boat", inst._oversymbol:value())
+            end
+        end)
+        return
+    end
+end
 
 return Prefab("boat_torch", torchfn, torchassets, torchprefabs),
        MakeLight("boat_torch_light", torchlightcommon),
-       visualboatequip.MakeVisualBoatEquip("boat_torch", torchassets, nil, torch_visual_common),
-       visualboatequip.MakeVisualBoatEquipChild("boat_torch", torchassets, nil, torch_visual_common)
+       visualboatequip.MakeVisualBoatEquip("boat_torch", torchassets, nil, torch_visual_setup, torch_visual_commonfn),
+       visualboatequip.MakeVisualBoatEquipChild("boat_torch", torchassets)
