@@ -109,23 +109,7 @@ local actionhandlers = {
 }
 
 local eventhandlers = {
-    EventHandler("sailequipped", function(inst)
-        if inst.sg:HasStateTag("rowing") then
-            inst.sg:GoToState("sail")
-        end
-    end),
 
-    EventHandler("sailunequipped", function(inst)
-        if inst.sg:HasStateTag("sailing") then
-            inst.sg:GoToState("pl_row")
-
-            if not inst:HasTag("mime") then
-                inst.AnimState:OverrideSymbol("paddle", "swap_paddle", "paddle")
-            end
-            -- TODO allow custom paddles?
-            inst.AnimState:OverrideSymbol("wake_paddle", "swap_paddle", "wake_paddle")
-        end
-    end),
 }
 
 local states = {
@@ -163,9 +147,9 @@ local states = {
         tags = {"moving", "running", "rowing", "boating", "canrotate"},
 
         onenter = function(inst)
-            local boat = inst.replica.sailor:GetBoat()
-
             inst.components.locomotor:RunForward()
+
+            local boat = inst.replica.sailor:GetBoat()
 
             if not inst:HasTag("mime") then
                 inst.AnimState:OverrideSymbol("paddle", "swap_paddle", "paddle")
@@ -186,6 +170,11 @@ local states = {
 
         onupdate = function(inst)
             inst.components.locomotor:RunForward()
+
+            local boat = inst.replica.sailor:GetBoat()
+            if boat and boat.replica.sailable and boat.replica.sailable:GetIsSailEquipped() then
+                inst.sg:GoToState("sail")
+            end
         end,
 
         onexit = OnExitRow,
@@ -200,6 +189,8 @@ local states = {
         tags = {"moving", "running", "rowing", "boating", "canrotate"},
 
         onenter = function(inst)
+            inst.components.locomotor:RunForward()
+
             local boat = inst.replica.sailor:GetBoat()
 
             if boat and boat.replica.sailable and boat.replica.sailable.creaksound then
@@ -225,6 +216,11 @@ local states = {
 
         onupdate = function(inst)
             inst.components.locomotor:RunForward()
+
+            local boat = inst.replica.sailor:GetBoat()
+            if boat and boat.replica.sailable and boat.replica.sailable:GetIsSailEquipped() then
+                inst.sg:GoToState("sail")
+            end
         end,
 
         onexit = OnExitRow,
@@ -278,9 +274,9 @@ local states = {
         tags = {"moving", "running", "canrotate", "boating", "sailing"},
 
         onenter = function(inst)
-            local boat = inst.replica.sailor:GetBoat()
-
             inst.components.locomotor:RunForward()
+
+            local boat = inst.replica.sailor:GetBoat()
 
             local anim = boat.replica.sailable.sailstartanim or "sail_pre"
             if anim ~= "sail_pre" or inst.has_sailface then
@@ -299,6 +295,17 @@ local states = {
 
         onupdate = function(inst)
             inst.components.locomotor:RunForward()
+            
+            local boat = inst.replica.sailor:GetBoat()
+            if boat and boat.replica.sailable and not boat.replica.sailable:GetIsSailEquipped() then
+                inst.sg:GoToState("pl_row")
+        
+                if not inst:HasTag("mime") then
+                    inst.AnimState:OverrideSymbol("paddle", "swap_paddle", "paddle")
+                end
+                -- TODO allow custom paddles?
+                inst.AnimState:OverrideSymbol("wake_paddle", "swap_paddle", "wake_paddle")
+            end
         end,
 
         events = {
@@ -311,6 +318,8 @@ local states = {
         tags = {"canrotate", "moving", "running", "boating", "sailing"},
 
         onenter = function(inst)
+            inst.components.locomotor:RunForward()
+
             local boat = inst.replica.sailor:GetBoat()
 
             local loopsound = nil
@@ -356,6 +365,17 @@ local states = {
 
         onupdate = function(inst)
             inst.components.locomotor:RunForward()
+
+            local boat = inst.replica.sailor:GetBoat()
+            if boat and boat.replica.sailable and not boat.replica.sailable:GetIsSailEquipped() then
+                inst.sg:GoToState("pl_row")
+        
+                if not inst:HasTag("mime") then
+                    inst.AnimState:OverrideSymbol("paddle", "swap_paddle", "paddle")
+                end
+                -- TODO allow custom paddles?
+                inst.AnimState:OverrideSymbol("wake_paddle", "swap_paddle", "wake_paddle")
+            end
         end,
 
         onexit = OnExitSail,

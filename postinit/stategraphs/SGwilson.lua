@@ -1083,9 +1083,9 @@ local states = {
         tags = {"moving", "running", "rowing", "boating", "canrotate", "autopredict" },
 
         onenter = function(inst)
-            local boat = inst.replica.sailor:GetBoat()
-
             inst.components.locomotor:RunForward()
+
+            local boat = inst.replica.sailor:GetBoat()
 
             if not inst:HasTag("mime") then -- 韦斯手中不显示桨
                 inst.AnimState:OverrideSymbol("paddle", "swap_paddle", "paddle")
@@ -1133,6 +1133,8 @@ local states = {
         tags = {"moving", "running", "rowing", "boating", "canrotate", "autopredict" },
 
         onenter = function(inst)
+            inst.components.locomotor:RunForward()
+
             local boat = inst.replica.sailor:GetBoat()
 
             if boat and boat.replica.sailable and boat.replica.sailable.creaksound then
@@ -1249,9 +1251,9 @@ local states = {
         tags = {"moving", "running", "canrotate", "boating", "sailing", "autopredict"},
 
         onenter = function(inst)
-            local boat = inst.replica.sailor:GetBoat()
-
             inst.components.locomotor:RunForward()
+
+            local boat = inst.replica.sailor:GetBoat()
 
             local anim = boat.replica.sailable.sailstartanim or "sail_pre"
             if anim ~= "sail_pre" or inst.has_sailface then
@@ -1301,6 +1303,8 @@ local states = {
         tags = {"canrotate", "moving", "running", "boating", "sailing", "autopredict"},
 
         onenter = function(inst)
+            inst.components.locomotor:RunForward()
+
             local boat = inst.replica.sailor:GetBoat()
 
             local loopsound = nil

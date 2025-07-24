@@ -48,9 +48,6 @@ local function OnEquip(inst, owner)
 
     if owner.components.sailable.sailor then
         local sailor = owner.components.sailable.sailor
-        sailor:PushEvent("sailequipped")
-        inst.sailquipped:set_local(true)
-        inst.sailquipped:set(true)
         if inst.flapsound then
             sailor.SoundEmitter:PlaySound(inst.flapsound)
         end
@@ -74,9 +71,6 @@ local function OnUnequip(inst, owner)
         end
         if owner.components.sailable and owner.components.sailable.sailor then
             local sailor = owner.components.sailable.sailor
-            sailor:PushEvent("sailunequipped")
-            inst.sailquipped:set_local(false)
-            inst.sailquipped:set(false)
             if inst.flapsound then
                 sailor.SoundEmitter:PlaySound(inst.flapsound)
             end
@@ -118,20 +112,9 @@ local function common()
 
     inst:AddTag("sail")
 
-    -- networking the equip/unequip event
-    inst.sailquipped = net_bool(inst.GUID, "sailquipped", not TheWorld.ismastersim and "sailquipped" or nil)
-
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
-        inst:ListenForEvent("sailquipped", function(inst)
-            if inst.sailquipped:value() then
-                ThePlayer:PushEvent("sailequipped")
-            else
-                ThePlayer:PushEvent("sailunequipped")
-            end
-        end)
-
         return inst
     end
 
