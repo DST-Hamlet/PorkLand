@@ -70,32 +70,30 @@ local function SetVisual(inst, boat) -- 初始化动画数据函数。在服务�
 
     local startanim = "run_loop"
 
+    local visual_prefab = boat
+
     for k, v in pairs(boat.boatvisuals) do
-        for animname, _ in pairs(BOAT_ANIM_IDS) do
-            if k ~= inst and k.visualchild and k.visualchild.AnimState then
-                if k.visualchild.AnimState:IsCurrentAnimation(animname) then
-                    startanim = animname
-                    break
-                end
+        if k ~= inst then
+            visual_prefab = k.visualchild
+            break
+        end
+    end
+    for animname, _ in pairs(BOAT_ANIM_IDS) do
+        if visual_prefab.AnimState then
+            if visual_prefab.AnimState:IsCurrentAnimation(animname) then
+                startanim = animname
+                break
             end
         end
     end
-    
+
     if LOOP_BOAT_ANIMS[startanim] then
         inst.visualchild.AnimState:PlayAnimation(startanim, true)
     else
         inst.visualchild.AnimState:PlayAnimation(startanim)
     end
     
-    local startanimframe = boat.AnimState:GetCurrentAnimationFrame() or 0
-    for k, v in pairs(boat.boatvisuals) do
-        if k ~= inst and k.visualchild and k.visualchild.AnimState then
-            if k.visualchild.AnimState:IsCurrentAnimation(startanim) then
-                startanimframe = k.visualchild.AnimState:GetCurrentAnimationFrame()
-                break
-            end
-        end
-    end
+    local startanimframe = visual_prefab.AnimState:GetCurrentAnimationFrame() or 0
     inst.visualchild.AnimState:SetFrame(startanimframe)
 
     inst:StartUpdatingComponent(inst.components.boatvisualanims)

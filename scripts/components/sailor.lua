@@ -134,7 +134,7 @@ function Sailor:OnUpdate(dt)
             end
             self.boatspeed = current_speed
             local sailor_speed = self.boatspeed
-            sailor_speed = math.floor(self.boatspeed + 1)
+            sailor_speed = math.floor(self.boatspeed + 1) -- 船的应用速度从1开始计数，且尽可能取整数
             if sailor_speed > target_speed and
                 ((sailor_speed - target_speed) <= (math.floor(target_speed + 1) - target_speed)) and
                 self.perdictframe > 0 then

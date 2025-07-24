@@ -1,21 +1,5 @@
 local BoatVisualAnims = Class(function(self, inst)
     self.inst = inst
-
-    self.prerowanimation = "row_pre"
-    self.rowanimation = "row_loop"
-    self.postrowanimation = "row_pst"
-
-    self.presailanim = "sail_pre"
-    self.sailanim = "sail_loop"
-    self.postsailanim = "sail_pst"
-
-    self.trawlover = "trawlover"
-
-    self.idleanim = "idle_loop"
-
-    self.hitanim = "hit"
-
-    self.runanim = "run_loop"
 end)
 
 function BoatVisualAnims:OnUpdate(dt)
