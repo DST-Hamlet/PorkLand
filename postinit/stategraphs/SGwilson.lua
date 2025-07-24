@@ -2867,6 +2867,16 @@ AddStategraphPostInit("wilson", function(sg)
 
     sg.events["boatattacked"] = EventHandler("boatattacked", sg.events.attacked.fn)
 
+    local _hit_onenter = sg.states["hit"].onenter
+    sg.states["hit"].onenter = function(inst, ...)
+        local boat = inst.replica.sailor:GetBoat()
+        if boat and boat.replica.sailable then
+            -- boat.replica.sailable:PlayPostRowAnims()
+            boat.replica.sailable:PlayAnim("hit")
+        end
+        return _hit_onenter(inst, ...)
+    end
+
     -- Disembark properly and drop no skeleton
     local _death_animover = sg.states["death"].events.animover.fn
     sg.states["death"].events.animover.fn = function(inst, ...)

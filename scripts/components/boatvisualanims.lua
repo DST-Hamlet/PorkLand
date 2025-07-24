@@ -16,6 +16,10 @@ function BoatVisualAnims:PlayAnim(animname)
     end
 end
 
+function BoatVisualAnims:SetAnimFrame(frame)
+    self.inst.visualchild.AnimState:SetFrame(frame)
+end
+
 function BoatVisualAnims:SetHauntFx(enable)
     self.inst.visualchild.AnimState:SetHaunted(enable)
 end

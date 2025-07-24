@@ -11,11 +11,11 @@ local Sailable = Class(function(self, inst)
 
     if not TheWorld.ismastersim then
         inst:ListenForEvent("animdirty", function()
-            if self:GetSailor() and self:GetSailor().sg then -- 是否开启本地延迟补偿
-                if not self:GetSailor():HasAnyTag({"nopredict", "pausepredict"}) then -- 本地延迟补偿是否被特定state覆盖
-                    return
-                end
+            if self:CheckIsPredict() then
+                return
             end
+
+            self.is_predict = false
 
             local boatanim = BOAT_ID_TO_ANIM[self._currentboatanim:value()]
             self:PlayAnim(boatanim)
@@ -23,6 +23,10 @@ local Sailable = Class(function(self, inst)
         inst:ListenForEvent("hauntdirty", function()
             self:UpdateHaunt()
         end)
+
+        self.is_predict = false
+
+        self.inst:StartUpdatingComponent(self)
     end
 
     self.creaksound = "dontstarve_DLC002/common/boat_creaks"
@@ -30,6 +34,7 @@ local Sailable = Class(function(self, inst)
     self.alwayssail = false
 
     self.basicspeedbonus = 1
+
 end)
 
 function Sailable:GetSailor()
@@ -61,27 +66,49 @@ function Sailable:PlayAnim(animname)
 end
 
 function Sailable:ClientPlayAnim(animname)
+    if not self:CheckIsPredict() then
+        return
+    end
+    self.is_predict = true
     self:PlayAnim(animname)
 end
 
-function Sailable:SetAnimFrame(frame)
+function Sailable:SetAnimFrame(frame) -- 仅本地，无网络同步效果
     for k, v in pairs(self.inst.boatvisuals) do
-        k.components.boatvisualanims:SetFrame(frame)
+        k.components.boatvisualanims:SetAnimFrame(frame)
+    end
+end
+
+function Sailable:CheckIsPredict()
+    if self:GetSailor() and self:GetSailor().sg then -- 是否开启本地延迟补偿
+        if not self:GetSailor():HasAnyTag({"nopredict", "pausepredict"}) then -- 本地延迟补偿是否被特定state覆盖
+            return true
+        end
     end
 end
 
 function Sailable:RefreshClientAnim()
+    self.is_predict = false
+
     local startanim = "run_loop"
     for animname, _ in pairs(BOAT_ANIM_IDS) do
-        if inst.AnimState:IsCurrentAnimation(animname) then
+        if self.inst.AnimState:IsCurrentAnimation(animname) then
             startanim = animname
             break
         end
     end
     self:PlayAnim(startanim)
     
-    local startanimframe = inst.AnimState:GetCurrentAnimationFrame() or 0
+    local startanimframe = self.inst.AnimState:GetCurrentAnimationFrame() or 0
     self:SetAnimFrame(startanimframe)
+end
+
+function Sailable:OnUpdate()
+    if self.is_predict == false and self:CheckIsPredict() then -- 客户端启用了延迟补偿，且客户端还没有播放过预测动画，则默认使用idle_loop作为预测动画
+        self:ClientPlayAnim("idle_loop")
+    elseif self.is_predict == true and not self:CheckIsPredict() then -- 客户端停用了延迟补偿，且客户端仍在播放预测动画，则默认同步船本体的动画
+        self:RefreshClientAnim()
+    end
 end
 
 function Sailable:UpdateHaunt(enable)

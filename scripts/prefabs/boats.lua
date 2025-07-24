@@ -53,7 +53,7 @@ local function OnClose(inst)
 end
 
 local function OnHit(inst)
-    if inst.replica.sailable then
+    if inst.replica.sailable and inst.replica.sailable:GetSailor() == nil then
         inst.replica.sailable:PlayAnim("hit")
     end
 end
