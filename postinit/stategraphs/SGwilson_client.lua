@@ -8,6 +8,33 @@ GLOBAL.setfenv(1, GLOBAL)
 local TIMEOUT = 2
 local DoFoleySounds = nil
 
+local function OnExitRow(inst)
+    local boat = inst.replica.sailor:GetBoat()
+    if inst.sg.nextstate ~= "pl_row" and inst.sg.nextstate ~= "sail" then
+        inst.components.locomotor:Stop(nil, true)
+        if inst.sg.nextstate ~= "row_stop" and inst.sg.nextstate ~= "sail_stop" then
+            if boat and boat.replica.sailable then
+                boat.replica.sailable:ClientPlayAnim("idle_loop")
+            end
+        end
+    end
+end
+
+local function OnExitSail(inst)
+    local boat = inst.replica.sailor:GetBoat()
+    if inst.sg.nextstate ~= "sail" then
+        inst.SoundEmitter:KillSound("sail_loop")
+        if inst.sg.nextstate ~= "pl_row" then
+            inst.components.locomotor:Stop(nil, true)
+        end
+        if inst.sg.nextstate ~= "row_stop" and inst.sg.nextstate ~= "sail_stop" then
+            if boat and boat.replica.sailable then
+                boat.replica.sailable:ClientPlayAnim("idle_loop")
+            end
+        end
+    end
+end
+
 local actionhandlers = {
     ActionHandler(ACTIONS.RENOVATE, "dolongaction"),
     ActionHandler(ACTIONS.SHOP, "doshortaction"),
@@ -150,7 +177,8 @@ local states = {
 
             inst.AnimState:PlayAnimation(oar and oar:HasTag("oar") and "row_pre" or "row_pre_pl")
             if boat and boat.replica.sailable then
-                boat.replica.sailable:PlayPreRowAnims()
+                -- boat.replica.sailable:PlayPreRowAnims()
+                boat.replica.sailable:ClientPlayAnim("row_pre")
             end
 
             DoFoleySounds(inst)
@@ -159,6 +187,8 @@ local states = {
         onupdate = function(inst)
             inst.components.locomotor:RunForward()
         end,
+
+        onexit = OnExitRow,
 
         events = {
             EventHandler("animover", function(inst) inst.sg:GoToState("pl_row") end),
@@ -187,7 +217,8 @@ local states = {
             end
 
             if boat and boat.replica.sailable then
-                boat.replica.sailable:PlayRowAnims()
+                -- boat.replica.sailable:PlayRowAnims()
+                boat.replica.sailable:ClientPlayAnim("row_loop")
             end
             inst.sg:SetTimeout(inst.AnimState:GetCurrentAnimationLength())
         end,
@@ -196,17 +227,7 @@ local states = {
             inst.components.locomotor:RunForward()
         end,
 
-        onexit = function(inst)
-            local boat = inst.replica.sailor:GetBoat()
-            if inst.sg.nextstate ~= "pl_row" and inst.sg.nextstate ~= "sail" then
-                inst.components.locomotor:Stop(nil, true)
-                if inst.sg.nextstate ~= "row_stop" and inst.sg.nextstate ~= "sail_stop" then
-                    if boat and boat.replica.sailable then
-                        boat.replica.sailable:PlayIdleAnims(true)
-                    end
-                end
-            end
-        end,
+        onexit = OnExitRow,
 
         timeline = {
             TimeEvent(8 * FRAMES, function(inst)
@@ -216,15 +237,6 @@ local states = {
                     if trawlnet and trawlnet.rowsound then
                         inst.SoundEmitter:PlaySound(trawlnet.rowsound, nil, nil, true)
                     end
-                end
-            end),
-        },
-
-        events = {
-            EventHandler("trawlitem", function(inst)
-                local boat = inst.replica.sailor:GetBoat()
-                if boat and boat.replica.sailable then
-                    boat.replica.sailable:PlayTrawlOverAnims()
                 end
             end),
         },
@@ -244,7 +256,15 @@ local states = {
 
             inst.AnimState:PlayAnimation(oar and oar:HasTag("oar") and "row_idle_pst" or "row_pst")
             if boat and boat.replica.sailable then
-                boat.replica.sailable:PlayPostRowAnims()
+                -- boat.replica.sailable:PlayPostRowAnims()
+                boat.replica.sailable:ClientPlayAnim("row_pst")
+            end
+        end,
+
+        onexit = function(inst)
+            local boat = inst.replica.sailor:GetBoat()
+            if boat and boat.replica.sailable then
+                boat.replica.sailable:ClientPlayAnim("idle_loop")
             end
         end,
 
@@ -270,9 +290,12 @@ local states = {
             end
 
             if boat and boat.replica.sailable then
-                boat.replica.sailable:PlayPreSailAnims()
+                -- boat.replica.sailable:PlayPreSailAnims()
+                boat.replica.sailable:ClientPlayAnim("sail_pre")
             end
         end,
+
+        onexit = OnExitSail,
 
         onupdate = function(inst)
             inst.components.locomotor:RunForward()
@@ -325,7 +348,8 @@ local states = {
                 end
             end
             if boat and boat.replica.sailable then
-                boat.replica.sailable:PlaySailAnims()
+                -- boat.replica.sailable:PlaySailAnims()
+                boat.replica.sailable:ClientPlayAnim("sail_loop")
             end
             inst.sg:SetTimeout(inst.AnimState:GetCurrentAnimationLength())
         end,
@@ -334,29 +358,7 @@ local states = {
             inst.components.locomotor:RunForward()
         end,
 
-        onexit = function(inst)
-            local boat = inst.replica.sailor:GetBoat()
-            if inst.sg.nextstate ~= "sail" then
-                inst.SoundEmitter:KillSound("sail_loop")
-                if inst.sg.nextstate ~= "pl_row" then
-                    inst.components.locomotor:Stop(nil, true)
-                end
-                if inst.sg.nextstate ~= "row_stop" and inst.sg.nextstate ~= "sail_stop" then
-                    if boat and boat.replica.sailable then
-                        boat.replica.sailable:PlayIdleAnims()
-                    end
-                end
-            end
-        end,
-
-        events = {
-            EventHandler("trawlitem", function(inst)
-                local boat = inst.replica.sailor:GetBoat()
-                if boat and boat.replica.sailable then
-                    boat.replica.sailable:PlayTrawlOverAnims()
-                end
-            end),
-        },
+        onexit = OnExitSail,
 
         ontimeout = function(inst) inst.sg:GoToState("sail") end,
     },
@@ -376,7 +378,15 @@ local states = {
                 inst.AnimState:PlayAnimation("sail_pst")
             end
             if boat and boat.replica.sailable then
-                boat.replica.sailable:PlayPostSailAnims()
+                -- boat.replica.sailable:PlayPostSailAnims()
+                boat.replica.sailable:ClientPlayAnim("sail_pst")
+            end
+        end,
+
+        onexit = function(inst)
+            local boat = inst.replica.sailor:GetBoat()
+            if boat and boat.replica.sailable then
+                boat.replica.sailable:ClientPlayAnim("idle_loop")
             end
         end,
 

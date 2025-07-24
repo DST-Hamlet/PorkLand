@@ -119,7 +119,7 @@ function Sailable:OnEmbarked(sailor)
         self.inst.components.workable.workable = false
     end
 
-    self.inst.replica.sailable:PlayIdleAnims(true)
+    self.inst.replica.sailable:PlayAnim("idle_loop")
 end
 
 function Sailable:OnDisembarked(sailor)
@@ -146,7 +146,7 @@ function Sailable:OnDisembarked(sailor)
         self.inst.components.workable.workable = true
     end
 
-    self.inst.replica.sailable:PlayRunAnims() -- 因为动画数据的选取碰撞箱数据问题，船必须播放run动画才能被鼠标选中
+    self.inst.replica.sailable:PlayAnim("run_loop")
 end
 
 function Sailable:OnRemoveFromEntity()

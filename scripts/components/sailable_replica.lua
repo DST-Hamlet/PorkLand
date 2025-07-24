@@ -4,40 +4,21 @@ local Sailable = Class(function(self, inst)
     self._sailor = net_entity(inst.GUID, "sailable._sailor", "sailordirty")
 
     self._currentboatanim = net_smallbyte(inst.GUID, "sailable._currentboatanim", "animdirty")
-    self._currentboatanim:set_local(BOAT_ANIM_IDS.runanim)
-    self._animevent = net_event(inst.GUID, "animeventdirty")
+    self._currentboatanim:set(BOAT_ANIM_IDS["run_loop"])
+
     self._haunt = net_bool(inst.GUID, "sailable._haunt", "hauntdirty")
-    self._haunt:set_local(false)
+    self._haunt:set(false)
+
     if not TheWorld.ismastersim then
-        inst:ListenForEvent("animeventdirty", function()
-            if not (self:GetSailor() and self:GetSailor().sg ~= nil) then -- 无延迟补偿情况下通过这部分代码同步动画
-                local boatanim = self._currentboatanim:value()
-                if boatanim == BOAT_ANIM_IDS.prerowanimation then
-                    self:PlayPreRowAnims()
-                elseif boatanim == BOAT_ANIM_IDS.rowanimation then
-                    self:PlayRowAnims()
-                elseif boatanim == BOAT_ANIM_IDS.postrowanimation then
-                    self:PlayPostRowAnims()
-                elseif boatanim == BOAT_ANIM_IDS.presailanim then
-                    self:PlayPreSailAnims()
-                elseif boatanim == BOAT_ANIM_IDS.sailanim then
-                    self:PlaySailAnims()
-                elseif boatanim == BOAT_ANIM_IDS.postsailanim then
-                    self:PlayPostSailAnims()
-                elseif boatanim == BOAT_ANIM_IDS.trawlover then
-                    self:PlayTrawlOverAnims()
-                elseif boatanim == BOAT_ANIM_IDS.hitanim then
-                    self:PlayOnHitAnims()
-                elseif boatanim == BOAT_ANIM_IDS.runanim then
-                    self:PlayRunAnims()
-                elseif boatanim == BOAT_ANIM_IDS.runanim_push then
-                    self:PlayRunAnims(true)
-                elseif boatanim == BOAT_ANIM_IDS.idleanim then
-                    self:PlayIdleAnims()
-                elseif boatanim == BOAT_ANIM_IDS.idleanim_push then
-                    self:PlayIdleAnims(true)
+        inst:ListenForEvent("animdirty", function()
+            if self:GetSailor() and self:GetSailor().sg then -- 是否开启本地延迟补偿
+                if not self:GetSailor():HasAnyTag({"nopredict", "pausepredict"}) then -- 本地延迟补偿是否被特定state覆盖
+                    return
                 end
             end
+
+            local boatanim = BOAT_ID_TO_ANIM[self._currentboatanim:value()]
+            self:PlayAnim(boatanim)
         end)
         inst:ListenForEvent("hauntdirty", function()
             self:UpdateHaunt()
@@ -59,148 +40,48 @@ function Sailable:GetSailor()
     end
 end
 
-function Sailable:PlayPreRowAnims()
-    if TheWorld.ismastersim then
-        self._currentboatanim:set(BOAT_ANIM_IDS.prerowanimation)
-        self._animevent:push()
-    end
-    self.inst.AnimState:PlayAnimation(BOAT_ANIM_NAMES.prerowanimation)
-    for k, v in pairs(self.inst.boatvisuals) do
-        k.components.boatvisualanims:PlayPreRowAnims()
-    end
-end
-
-function Sailable:PlayRowAnims()
-    if not self.inst.AnimState:IsCurrentAnimation(BOAT_ANIM_NAMES.rowanimation) then
-        if TheWorld.ismastersim then
-            self._currentboatanim:set(BOAT_ANIM_IDS.rowanimation)
-            self._animevent:push()
-        end
-        self.inst.AnimState:PlayAnimation(BOAT_ANIM_NAMES.rowanimation, true)
-    end
-    for k, v in pairs(self.inst.boatvisuals) do
-        k.components.boatvisualanims:PlayRowAnims()
-    end
-end
-
-function Sailable:PlayPostRowAnims()
-    if TheWorld.ismastersim then
-        self._currentboatanim:set(BOAT_ANIM_IDS.postrowanimation)
-        self._animevent:push()
-    end
-    self.inst.AnimState:PlayAnimation(BOAT_ANIM_NAMES.postrowanimation)
-    for k, v in pairs(self.inst.boatvisuals) do
-        k.components.boatvisualanims:PlayPostRowAnims()
-    end
-    self:PlayIdleAnims(true)
-end
-
-function Sailable:PlayPreSailAnims()
-    if TheWorld.ismastersim then
-        self._currentboatanim:set(BOAT_ANIM_IDS.presailanim)
-        self._animevent:push()
-    end
-    self.inst.AnimState:PlayAnimation(BOAT_ANIM_NAMES.presailanim)
-    for k, v in pairs(self.inst.boatvisuals) do
-        k.components.boatvisualanims:PlayPreSailAnims()
-    end
-end
-
-function Sailable:PlaySailAnims()
-    if TheWorld.ismastersim then
-        self._currentboatanim:set(BOAT_ANIM_IDS.sailanim)
-        self._animevent:push()
-    end
-    if not self.inst.AnimState:IsCurrentAnimation(BOAT_ANIM_NAMES.sailanim) then
-        self.inst.AnimState:PlayAnimation(BOAT_ANIM_NAMES.sailanim, true)
-    end
-    for k, v in pairs(self.inst.boatvisuals) do
-        k.components.boatvisualanims:PlaySailAnims()
-    end
-end
-
-function Sailable:PlayPostSailAnims()
-    if TheWorld.ismastersim then
-        self._currentboatanim:set(BOAT_ANIM_IDS.postsailanim)
-        self._animevent:push()
-    end
-    self.inst.AnimState:PlayAnimation(BOAT_ANIM_NAMES.postsailanim)
-    for k, v in pairs(self.inst.boatvisuals) do
-        k.components.boatvisualanims:PlayPostSailAnims()
-    end
-    self:PlayIdleAnims(true)
-end
-
-function Sailable:PlayTrawlOverAnims()
-    if TheWorld.ismastersim then
-        self._currentboatanim:set(BOAT_ANIM_IDS.trawlover)
-        self._animevent:push()
-    end
-    self.inst.AnimState:PlayAnimation(BOAT_ANIM_NAMES.trawlover)
-    for k, v in pairs(self.inst.boatvisuals) do
-        k.components.boatvisualanims:PlayTrawlOverAnims()
-    end
-    self:PlayIdleAnims(true)
-end
-
-function Sailable:PlayIdleAnims(push)
-    if push then
-        if TheWorld.ismastersim then
-            self._currentboatanim:set(BOAT_ANIM_IDS.idleanim_push)
-            self._animevent:push()
-        end
-        self.inst.AnimState:PushAnimation(BOAT_ANIM_NAMES.idleanim, true)
-        for k, v in pairs(self.inst.boatvisuals) do
-            k.components.boatvisualanims:PlayIdleAnims(true)
-        end
+function Sailable:PlayAnim(animname)
+    if BOAT_ANIM_IDS[animname] == nil then
         return
     end
-    if not self.inst.AnimState:IsCurrentAnimation(BOAT_ANIM_NAMES.idleanim) then
-        if TheWorld.ismastersim then
-            self._currentboatanim:set(BOAT_ANIM_IDS.idleanim)
-            self._animevent:push()
-        end
-        self.inst.AnimState:PlayAnimation(BOAT_ANIM_NAMES.idleanim, true)
-    end
-    for k, v in pairs(self.inst.boatvisuals) do
-        k.components.boatvisualanims:PlayIdleAnims(false)
-    end
-end
 
-function Sailable:PlayOnHitAnims()
     if TheWorld.ismastersim then
-        self._currentboatanim:set(BOAT_ANIM_IDS.hitanim)
-        self._animevent:push()
+        if LOOP_BOAT_ANIMS[animname] then
+            self.inst.AnimState:PlayAnimation(animname, true) -- 虽然船实体本身的动画会因为没有build而不显示，但是可以用作同步数据
+        else
+            self.inst.AnimState:PlayAnimation(animname)
+        end
+        self._currentboatanim:set_local(0) -- 这样可以强制网络同步事件触发
+        self._currentboatanim:set(BOAT_ANIM_IDS[animname])
     end
-    self.inst.AnimState:PlayAnimation(BOAT_ANIM_NAMES.hitanim)
+
     for k, v in pairs(self.inst.boatvisuals) do
-        k.components.boatvisualanims:PlayOnHitAnims()
+        k.components.boatvisualanims:PlayAnim(animname)
     end
-    self:PlayRunAnims(true)
 end
 
-function Sailable:PlayRunAnims(push)
-    if push then
-        if TheWorld.ismastersim then
-            self._currentboatanim:set(BOAT_ANIM_IDS.runanim_push)
-            self._animevent:push()
-        end
-        self.inst.AnimState:PushAnimation(BOAT_ANIM_NAMES.runanim, true)
-        for k, v in pairs(self.inst.boatvisuals) do
-            k.components.boatvisualanims:PlayRunAnims(true)
-        end
-        return
-    end
-    if not self.inst.AnimState:IsCurrentAnimation(BOAT_ANIM_NAMES.runanim) then
-        if TheWorld.ismastersim then
-            self._currentboatanim:set(BOAT_ANIM_IDS.runanim)
-            self._animevent:push()
-        end
-        self.inst.AnimState:PlayAnimation(BOAT_ANIM_NAMES.runanim, true)
-    end
+function Sailable:ClientPlayAnim(animname)
+    self:PlayAnim(animname)
+end
+
+function Sailable:SetAnimFrame(frame)
     for k, v in pairs(self.inst.boatvisuals) do
-        k.components.boatvisualanims:PlayRunAnims(false)
+        k.components.boatvisualanims:SetFrame(frame)
     end
+end
+
+function Sailable:RefreshClientAnim()
+    local startanim = "run_loop"
+    for animname, _ in pairs(BOAT_ANIM_IDS) do
+        if inst.AnimState:IsCurrentAnimation(animname) then
+            startanim = animname
+            break
+        end
+    end
+    self:PlayAnim(startanim)
+    
+    local startanimframe = inst.AnimState:GetCurrentAnimationFrame() or 0
+    self:SetAnimFrame(startanimframe)
 end
 
 function Sailable:UpdateHaunt(enable)

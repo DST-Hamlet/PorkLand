@@ -29,7 +29,8 @@ local function OnExitRow(inst)
                 equipped:PushEvent("stoprowing", {owner = inst})
             end
             if boat and boat.replica.sailable then
-                boat.replica.sailable:PlayIdleAnims()
+                -- boat.replica.sailable:PlayIdleAnims()
+                boat.replica.sailable:PlayAnim("idle_loop")
             end
         end
     end
@@ -48,7 +49,8 @@ local function OnExitSail(inst)
         end
         if inst.sg.nextstate ~= "row_stop" and inst.sg.nextstate ~= "sail_stop" then
             if boat and boat.replica.sailable then
-                boat.replica.sailable:PlayIdleAnims()
+                -- boat.replica.sailable:PlayIdleAnims()
+                boat.replica.sailable:PlayAnim("idle_loop")
             end
         end
     end
@@ -159,31 +161,6 @@ local actionhandlers = {
 }
 
 local eventhandlers = {
-    EventHandler("sailequipped", function(inst)
-        if inst.sg:HasStateTag("rowing") then
-            inst.sg:GoToState("sail")
-            local equipped = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
-            if equipped then
-                equipped:PushEvent("stoprowing", {owner = inst})
-            end
-        end
-    end),
-    EventHandler("sailunequipped", function(inst)
-        if inst.sg:HasStateTag("sailing") then
-            inst.sg:GoToState("pl_row")
-
-            if not inst:HasTag("mime") then
-                inst.AnimState:OverrideSymbol("paddle", "swap_paddle", "paddle")
-            end
-            -- TODO allow custom paddles?
-            inst.AnimState:OverrideSymbol("wake_paddle", "swap_paddle", "wake_paddle")
-
-            local equipped = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
-            if equipped then
-                equipped:PushEvent("startrowing", {owner = inst})
-            end
-        end
-    end),
     EventHandler("sneeze", function(inst, data)
         if not inst.components.health:IsDead() and not inst.components.health:IsInvincible() then
             if inst.sg:HasStateTag("busy") then
@@ -1110,7 +1087,7 @@ local states = {
 
             inst.components.locomotor:RunForward()
 
-            if not inst:HasTag("mime") then
+            if not inst:HasTag("mime") then -- 韦斯手中不显示桨
                 inst.AnimState:OverrideSymbol("paddle", "swap_paddle", "paddle")
             end
             -- TODO allow custom paddles?
@@ -1122,20 +1099,22 @@ local states = {
 
             inst.AnimState:PlayAnimation(oar and oar:HasTag("oar") and "row_pre" or "row_pre_pl")
             if boat and boat.replica.sailable then
-                boat.replica.sailable:PlayPreRowAnims()
+                -- boat.replica.sailable:PlayPreRowAnims()
+                boat.replica.sailable:PlayAnim("row_pre")
             end
 
             DoFoleySounds(inst)
 
-            local equipped = inst.replica.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
-            if equipped then
-                equipped:PushEvent("startrowing", {owner = inst})
-            end
             inst:PushEvent("startrowing")
         end,
 
         onupdate = function(inst)
             inst.components.locomotor:RunForward()
+
+            local boat = inst.replica.sailor:GetBoat()
+            if boat and boat.replica.sailable and boat.replica.sailable:GetIsSailEquipped() then
+                inst.sg:GoToState("sail")
+            end
         end,
 
         onexit = OnExitRow,
@@ -1170,7 +1149,8 @@ local states = {
                 inst.AnimState:PlayAnimation(anim, true)
             end
             if boat and boat.replica.sailable then
-                boat.replica.sailable:PlayRowAnims()
+                -- boat.replica.sailable:PlayRowAnims()
+                boat.replica.sailable:PlayAnim("row_loop")
             end
 
             if boat and boat.components.rowboatwakespawner then
@@ -1189,6 +1169,11 @@ local states = {
 
         onupdate = function(inst)
             inst.components.locomotor:RunForward()
+            
+            local boat = inst.replica.sailor:GetBoat()
+            if boat and boat.replica.sailable and boat.replica.sailable:GetIsSailEquipped() then
+                inst.sg:GoToState("sail")
+            end
         end,
 
         onexit = OnExitRow,
@@ -1209,7 +1194,7 @@ local states = {
             EventHandler("trawlitem", function(inst)
                 local boat = inst.replica.sailor:GetBoat()
                 if boat and boat.replica.sailable then
-                    boat.replica.sailable:PlayTrawlOverAnims()
+                    -- boat.replica.sailable:PlayTrawlOverAnims()
                 end
             end),
         },
@@ -1228,7 +1213,15 @@ local states = {
 
             inst.AnimState:PlayAnimation(oar and oar:HasTag("oar") and "row_idle_pst" or "row_pst")
             if boat and boat.replica.sailable then
-                boat.replica.sailable:PlayPostRowAnims()
+                -- boat.replica.sailable:PlayPostRowAnims()
+                boat.replica.sailable:PlayAnim("row_pst")
+            end
+        end,
+
+        onexit = function(inst)
+            local boat = inst.replica.sailor:GetBoat()
+            if boat and boat.replica.sailable then
+                boat.replica.sailable:PlayAnim("idle_loop")
             end
         end,
 
@@ -1267,7 +1260,8 @@ local states = {
                 inst.AnimState:PlayAnimation("sail_pre")
             end
             if boat and boat.replica.sailable then
-                boat.replica.sailable:PlayPreSailAnims()
+                -- boat.replica.sailable:PlayPreSailAnims()
+                boat.replica.sailable:PlayAnim("sail_pre")
             end
 
             local equipped = inst.replica.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
@@ -1278,6 +1272,17 @@ local states = {
 
         onupdate = function(inst)
             inst.components.locomotor:RunForward()
+
+            local boat = inst.replica.sailor:GetBoat()
+            if boat and boat.replica.sailable and not boat.replica.sailable:GetIsSailEquipped() then
+                inst.sg:GoToState("pl_row")
+        
+                if not inst:HasTag("mime") then
+                    inst.AnimState:OverrideSymbol("paddle", "swap_paddle", "paddle")
+                end
+                -- TODO allow custom paddles?
+                inst.AnimState:OverrideSymbol("wake_paddle", "swap_paddle", "wake_paddle")
+            end
         end,
 
         onexit = OnExitSail,
@@ -1332,7 +1337,8 @@ local states = {
                 end
             end
             if boat and boat.replica.sailable then
-                boat.replica.sailable:PlaySailAnims()
+                -- boat.replica.sailable:PlaySailAnims()
+                boat.replica.sailable:PlayAnim("sail_loop")
             end
 
             if boat and boat.components.rowboatwakespawner then
@@ -1350,6 +1356,17 @@ local states = {
 
         onupdate = function(inst)
             inst.components.locomotor:RunForward()
+
+            local boat = inst.replica.sailor:GetBoat()
+            if boat and boat.replica.sailable and not boat.replica.sailable:GetIsSailEquipped() then
+                inst.sg:GoToState("pl_row")
+        
+                if not inst:HasTag("mime") then
+                    inst.AnimState:OverrideSymbol("paddle", "swap_paddle", "paddle")
+                end
+                -- TODO allow custom paddles?
+                inst.AnimState:OverrideSymbol("wake_paddle", "swap_paddle", "wake_paddle")
+            end
         end,
 
         onexit = OnExitSail,
@@ -1359,7 +1376,7 @@ local states = {
             EventHandler("trawlitem", function(inst)
                 local boat = inst.replica.sailor:GetBoat()
                 if boat and boat.replica.sailable then
-                    boat.replica.sailable:PlayTrawlOverAnims()
+                    -- boat.replica.sailable:PlayTrawlOverAnims()
                 end
             end),
         },
@@ -1382,7 +1399,15 @@ local states = {
                 inst.AnimState:PlayAnimation("sail_pst")
             end
             if boat and boat.replica.sailable then
-                boat.replica.sailable:PlayPostSailAnims()
+                -- boat.replica.sailable:PlayPostSailAnims()
+                boat.replica.sailable:PlayAnim("sail_pst")
+            end
+        end,
+
+        onexit = function(inst)
+            local boat = inst.replica.sailor:GetBoat()
+            if boat and boat.replica.sailable then
+                boat.replica.sailable:PlayAnim("idle_loop")
             end
         end,
 

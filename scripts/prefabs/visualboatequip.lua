@@ -45,7 +45,7 @@ local function OnRemove(inst)
     inst.boat.boatvisuals[inst] = nil
 end
 
-local function SetVisual(inst, boat) -- 在服务器端，此函数会在实体生成完后调用。在客户端，此函数会在船实体与自身实体创建且数据同步完成后被调用
+local function SetVisual(inst, boat) -- 初始化动画数据函数。在服务器端，此函数会在实体生成完后调用。在客户端，此函数会在船实体与自身实体创建且数据同步完成后被调用
     inst.boat = boat
 
     inst:ListenForEvent("onremove", OnRemove)
@@ -71,7 +71,7 @@ local function SetVisual(inst, boat) -- 在服务器端，此函数会在实体�
     local startanim = "run_loop"
 
     for k, v in pairs(boat.boatvisuals) do
-        for _, animname in pairs(BOAT_ANIM_NAMES) do
+        for animname, _ in pairs(BOAT_ANIM_IDS) do
             if k ~= inst and k.visualchild and k.visualchild.AnimState then
                 if k.visualchild.AnimState:IsCurrentAnimation(animname) then
                     startanim = animname
@@ -81,11 +81,7 @@ local function SetVisual(inst, boat) -- 在服务器端，此函数会在实体�
         end
     end
     
-    if startanim == "idle_loop" or
-        startanim == "run_loop" or
-        startanim == "row_loop" or
-        startanim == "sail_loop" then
-
+    if LOOP_BOAT_ANIMS[startanim] then
         inst.visualchild.AnimState:PlayAnimation(startanim, true)
     else
         inst.visualchild.AnimState:PlayAnimation(startanim)
@@ -101,22 +97,6 @@ local function SetVisual(inst, boat) -- 在服务器端，此函数会在实体�
         end
     end
     inst.visualchild.AnimState:SetFrame(startanimframe)
-
-    local pushanim
-    if boat.replica.sailable._currentboatanim and boat.replica.sailable._currentboatanim:value() ~= 0 then
-        pushanim = BOAT_ANIM_ID_TO_NAME[boat.replica.sailable._currentboatanim:value()]
-    end
-    if pushanim ~= nil and startanim ~= pushanim then
-        if pushanim == "idle_loop" or
-            pushanim == "run_loop" or
-            pushanim == "row_loop" or
-            pushanim == "sail_loop" then
-
-            inst.visualchild.AnimState:PushAnimation(pushanim, true)
-        else
-            inst.visualchild.AnimState:PushAnimation(pushanim)
-        end
-    end
 
     inst:StartUpdatingComponent(inst.components.boatvisualanims)
 end

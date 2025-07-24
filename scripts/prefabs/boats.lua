@@ -54,7 +54,13 @@ end
 
 local function OnHit(inst)
     if inst.replica.sailable then
-        inst.replica.sailable:PlayOnHitAnims()
+        inst.replica.sailable:PlayAnim("hit")
+    end
+end
+
+local function OnAnimOver(inst)
+    if inst.AnimState:IsCurrentAnimation("hit") and inst.replica.sailable then
+        inst.replica.sailable:PlayAnim("run_loop")
     end
 end
 
@@ -245,6 +251,7 @@ local function commonfn()
 
     inst:ListenForEvent("embarked", OnEmbarked)
     inst:ListenForEvent("disembarked", OnDisEmbarked)
+    inst:ListenForEvent("animover", OnAnimOver)
 
     inst:AddComponent("hauntable")
     inst.components.hauntable:SetHauntValue(TUNING.HAUNT_TINY)
