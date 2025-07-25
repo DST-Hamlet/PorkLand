@@ -133,3 +133,23 @@ end
 function RunOnPostUpdate(fn)
     table.insert(scheduled_post_update_functions, fn)
 end
+
+pl_ProfilerPop = false
+
+local last_profiler_time = os.clock()
+local last_profiler_name = "default"
+
+local _ProfilerPush = Sim.ProfilerPush
+function Sim.ProfilerPush(sim, name, ...)
+    last_profiler_time = os.clock()
+    last_profiler_name = name
+    return _ProfilerPush(sim, name, ...)
+end
+
+local _ProfilerPop = Sim.ProfilerPop
+function Sim.ProfilerPop(sim, ...)
+    if pl_ProfilerPop then
+        print(last_profiler_name, os.clock() - last_profiler_time)
+    end
+    return _ProfilerPop(sim, ...)
+end
