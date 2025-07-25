@@ -350,7 +350,6 @@ local function circlingbatfn()
     phys:SetDamping(5)
     phys:SetCollisionGroup(COLLISION.FLYERS)
     phys:SetCollisionMask(COLLISION.GROUND)
-    phys:CollidesWith()
     if TheWorld:HasTag("porkland") then
         phys:ClearCollidesWith(COLLISION.LIMITS)
         phys:ClearCollidesWith(COLLISION.VOID_LIMITS)

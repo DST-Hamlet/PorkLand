@@ -848,46 +848,6 @@ return Class(function(self, inst)
             end
         end
 
-        -- Update precipitation effects
-        if _preciptype:value() == PRECIP_TYPES.rain and TheWorld.state.fogstate ~= FOG_STATE.FOGGY then
-            local preciprate_sound = preciprate
-            if _activatedplayer == nil then
-                StartTreeRainSound(0)
-                StopUmbrellaRainSound()
-            elseif _activatedplayer:HasTag("inside_interior") then
-                StopAmbientRainSound()
-                StopTreeRainSound()
-                StopUmbrellaRainSound()
-            elseif _activatedplayer.replica.sheltered ~= nil and _activatedplayer.replica.sheltered:IsSheltered() then
-                StartTreeRainSound(preciprate_sound)
-                StopUmbrellaRainSound()
-                preciprate_sound = preciprate_sound - .4
-            else
-                StartTreeRainSound(0)
-                if _activatedplayer.replica.inventory:EquipHasTag("umbrella") then
-                    preciprate_sound = preciprate_sound - .4
-                    StartUmbrellaRainSound()
-                else
-                    StopUmbrellaRainSound()
-                end
-            end
-            StartAmbientRainSound(preciprate_sound)
-            if _hasfx then
-                -- DST reduces rain fx but we need it
-                local peakprecipitationrate = _peakprecipitationrate:value()
-                _rainfx.particles_per_tick = (5 + peakprecipitationrate * 25) * preciprate
-                _rainfx.splashes_per_tick = 8 * peakprecipitationrate * preciprate
-            end
-        else
-            StopAmbientRainSound()
-            StopTreeRainSound()
-            StopUmbrellaRainSound()
-            if _hasfx then
-                _rainfx.particles_per_tick = 0
-                _rainfx.splashes_per_tick = 0
-            end
-        end
-
         -- Update fog
         -- fog is created instead of rain during the humid season when it should rain and the atmo moisture is above a threshold
         -- client fog state wait for server sync
@@ -934,6 +894,46 @@ return Class(function(self, inst)
             end
         elseif _fogstate:value() == FOG_STATE.CLEAR then
 
+        end
+
+        -- Update precipitation effects
+        if _preciptype:value() == PRECIP_TYPES.rain and TheWorld.state.fogstate ~= FOG_STATE.FOGGY and TheWorld.state.fogstate ~= FOG_STATE.SETTING then
+            local preciprate_sound = preciprate
+            if _activatedplayer == nil then
+                StartTreeRainSound(0)
+                StopUmbrellaRainSound()
+            elseif _activatedplayer:HasTag("inside_interior") then
+                StopAmbientRainSound()
+                StopTreeRainSound()
+                StopUmbrellaRainSound()
+            elseif _activatedplayer.replica.sheltered ~= nil and _activatedplayer.replica.sheltered:IsSheltered() then
+                StartTreeRainSound(preciprate_sound)
+                StopUmbrellaRainSound()
+                preciprate_sound = preciprate_sound - .4
+            else
+                StartTreeRainSound(0)
+                if _activatedplayer.replica.inventory:EquipHasTag("umbrella") then
+                    preciprate_sound = preciprate_sound - .4
+                    StartUmbrellaRainSound()
+                else
+                    StopUmbrellaRainSound()
+                end
+            end
+            StartAmbientRainSound(preciprate_sound)
+            if _hasfx then
+                -- DST reduces rain fx but we need it
+                local peakprecipitationrate = _peakprecipitationrate:value()
+                _rainfx.particles_per_tick = (5 + peakprecipitationrate * 25) * preciprate
+                _rainfx.splashes_per_tick = 8 * peakprecipitationrate * preciprate
+            end
+        else
+            StopAmbientRainSound()
+            StopTreeRainSound()
+            StopUmbrellaRainSound()
+            if _hasfx then
+                _rainfx.particles_per_tick = 0
+                _rainfx.splashes_per_tick = 0
+            end
         end
 
         if _ismastersim then
