@@ -95,8 +95,17 @@ function SpawnPrefab(...)
     return inst
 end
 
+pl_ProfilerPop = false
+
+local update_start_time = os.clock()
+
 local _Update = Update
 function Update(dt, ...)
+    if pl_ProfilerPop then
+        print("--------------START UPDATE--------------")
+        update_start_time = os.clock()
+    end
+    
     _Update(dt, ...)
 
     -- 警告：出于未知原因，在一帧新的加载范围中生成新生物会导致生物的OnEntityWake和OnEntitySleep都没有被执行
@@ -116,6 +125,26 @@ function Update(dt, ...)
     end
 
     NewFrameEnts = {}
+
+    if pl_ProfilerPop then
+        print("Update Spend Time:", os.clock() - update_start_time)
+        print("--------------STOP UPDATE--------------")
+    end
+end
+
+local _WallUpdate = WallUpdate
+function WallUpdate(dt, ...)
+    if pl_ProfilerPop then
+        print("--------------START WALLUPDATE--------------")
+        update_start_time = os.clock()
+    end
+
+    _WallUpdate(dt, ...)
+
+    if pl_ProfilerPop then
+        print("WallUpdate Spend Time:", os.clock() - update_start_time)
+        print("--------------STOP WALLUPDATE--------------")
+    end
 end
 
 local scheduled_post_update_functions = {}
@@ -134,8 +163,6 @@ function RunOnPostUpdate(fn)
     table.insert(scheduled_post_update_functions, fn)
 end
 
-pl_ProfilerPop = false
-
 local last_profiler_time = os.clock()
 local last_profiler_name = "default"
 
@@ -149,7 +176,8 @@ end
 local _ProfilerPop = Sim.ProfilerPop
 function Sim.ProfilerPop(sim, ...)
     if pl_ProfilerPop then
-        print(last_profiler_name, os.clock() - last_profiler_time)
+        local spend_time = os.clock() - last_profiler_time
+        print("ProfilerPop", last_profiler_name, spend_time)
     end
     return _ProfilerPop(sim, ...)
 end
