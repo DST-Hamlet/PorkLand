@@ -127,7 +127,6 @@ local component_posts = {
     "waterproofer",
     "wavemanager",
     "wisecracker",
-    "witherable",
     "workable",
     "worldstate",
 }
