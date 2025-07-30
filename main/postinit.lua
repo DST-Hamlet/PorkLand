@@ -141,7 +141,7 @@ local prefab_posts = {
     "grass",
     "inventoryitem_classified",
     "mandrake",
-    "meatrack",
+    -- "meatrack",
     "mosquitosack",
     "multiplayer_portal",
     "orangestaff",
