@@ -11,4 +11,5 @@ function InventoryItemMoisture:GetTargetMoisture(...)
     end
     local ret = _GetTargetMoisture(self, ...)
     TheWorld.state.wetness = old_wetness
+    return ret
 end
