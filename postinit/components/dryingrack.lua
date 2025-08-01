@@ -21,14 +21,15 @@ function DryingRack:IsExposedToRain(...)
     return _IsExposedToRain(self, ...)
 end
 
-AddComponentPostInit("dryingrack", function(self)
-    self.inst:DoTaskInTime(0, function()
-        if self.enabled then
-            if (TheWorld.state.israining or TheWorld.state.isacidraining) and not self:HasRainImmunity() then
-                self:PauseDrying()
-            else
-                self:ResumeDrying()
-            end
+local _LoadPostPass = DryingRack.LoadPostPass
+function DryingRack:LoadPostPass(...)
+    if self.enabled then
+        if (TheWorld.state.israining or TheWorld.state.isacidraining) and not self:HasRainImmunity() then
+            self:PauseDrying()
+        else
+            self:ResumeDrying()
         end
-    end)
-end)
+    end
+    return _LoadPostPass(self, ...)
+end
+
