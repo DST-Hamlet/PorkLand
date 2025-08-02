@@ -292,7 +292,7 @@ local function CollectLocalDoorMinimap(inst, ignore_non_cacheable)
                 hidden = door:HasTag("door_hidden"),
                 disabled = door:HasTag("door_disabled"),
             }
-        elseif door.components.door.door_id ~= "roc_cave_EXIT1" then -- roc_cave_EXIT1 doesn't have a direction but still is a prop_door...
+        elseif door.components.door and door.components.door.door_id ~= "roc_cave_EXIT1" then -- roc_cave_EXIT1 doesn't have a direction but still is a prop_door...
             print("This door doesn't have a direction!", door)
         end
     end
