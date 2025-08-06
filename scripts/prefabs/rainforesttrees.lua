@@ -278,8 +278,7 @@ local function drop_burr(inst,pt)
         local num_seeds = inst.components.growable.stage == 3 and 2 or 1
 
         for i = 1, num_seeds do
-            local burr = SpawnPrefab("burr")
-            inst.components.lootdropper:DropLootPrefab(burr, pt)
+            inst.components.lootdropper:SpawnLootPrefab("burr", pt)
         end
     end
 end

@@ -8,6 +8,22 @@ local prefabs =
     "ancient_remnant",
 }
 
+SetSharedLootTable("ancient_herald_base",
+{
+    {"ancient_remnant", 1.0},
+    {"ancient_remnant", 1.0},
+    {"ancient_remnant", 1.0},
+    {"ancient_remnant", 1.0},
+    {"ancient_remnant", 1.0},
+})
+
+SetSharedLootTable("ancient_remnant_extra",
+{
+    {"nightmarefuel",               1.0},
+    {"nightmarefuel",               1.0},
+    {"armorvortexcloak_blueprint",  1.0},
+})
+
 local function CalcSanityAura(inst, observer)
     if inst.components.combat.target then
         return -TUNING.SANITYAURA_HUGE
@@ -149,6 +165,7 @@ local function fn()
     -- for wheeler_tracker
     inst.components.lootdropper:AddChanceLoot("ancient_remnant", 1)
     inst.components.lootdropper:AddChanceLoot("nightmarefuel", 1)
+    inst.components.lootdropper:AddChanceLoot("armorvortexcloak_blueprint", 1)
 
     inst:AddComponent("inspectable")
 

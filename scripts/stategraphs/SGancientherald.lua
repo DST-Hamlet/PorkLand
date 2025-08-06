@@ -242,17 +242,33 @@ local states =
                 local pt = Vector3(inst.Transform:GetWorldPosition())
                 pt.y = 5
 
-                inst.components.lootdropper.speed = 3
-                inst.components.lootdropper:DropLootPrefab(SpawnPrefab("ancient_remnant"), pt, math.random() * 360)
-                inst.components.lootdropper:DropLootPrefab(SpawnPrefab("ancient_remnant"), pt, math.random() * 360)
-                inst.components.lootdropper:DropLootPrefab(SpawnPrefab("ancient_remnant"), pt, math.random() * 360)
-                inst.components.lootdropper:DropLootPrefab(SpawnPrefab("ancient_remnant"), pt, math.random() * 360)
-                inst.components.lootdropper:DropLootPrefab(SpawnPrefab("ancient_remnant"), pt, math.random() * 360)
+                inst.components.lootdropper.y_speed = 4
+                inst.components.lootdropper.min_speed = 3
+                inst.components.lootdropper.max_speed = 3
+                local loot_table = LootTables["ancient_herald_base"]
+                if loot_table then
+                    for i, entry in ipairs(loot_table) do
+                        local prefab = entry[1]
+                        local chance = entry[2]
+                        if (chance >= 1.0) or (math.random() <= chance) then
+                            inst.components.lootdropper:SpawnLootPrefab(prefab, pt)
+                        end
+                    end
+                end
 
-                inst.components.lootdropper.speed = 0
-                inst.components.lootdropper:DropLootPrefab(SpawnPrefab("nightmarefuel"), pt, math.random() * 360)
-                inst.components.lootdropper:DropLootPrefab(SpawnPrefab("nightmarefuel"), pt, math.random() * 360)
-                inst.components.lootdropper:DropLootPrefab(SpawnPrefab("armorvortexcloak_blueprint"), pt, math.random() * 360)
+                inst.components.lootdropper.y_speed = 8
+                inst.components.lootdropper.min_speed = 0
+                inst.components.lootdropper.max_speed = 0
+                local extra_loot_table = LootTables["ancient_remnant_extra"]
+                if extra_loot_table then
+                    for i, entry in ipairs(extra_loot_table) do
+                        local prefab = entry[1]
+                        local chance = entry[2]
+                        if (chance >= 1.0) or (math.random() <= chance) then
+                            inst.components.lootdropper:SpawnLootPrefab(prefab, pt)
+                        end
+                    end
+                end
             end),
         },
     },
