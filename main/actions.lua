@@ -250,12 +250,20 @@ ACTIONS.TOGGLEON.fn = function(act)
     end
 end
 
+ACTIONS.TOGGLEON.stroverridefn = function(act)
+    return STRINGS.ACTIONS.TURNON
+end
+
 ACTIONS.TOGGLEOFF.fn = function(act)
     local tar = act.target or act.invobject
     if tar and tar.components.equippable and tar.components.equippable:IsEquipped() and tar.components.equippable.togglable and tar.components.equippable:IsToggledOn() then
         tar.components.equippable:ToggleOff()
         return true
     end
+end
+
+ACTIONS.TOGGLEOFF.stroverridefn = function(act)
+    return STRINGS.ACTIONS.TURNOFF.GENERIC
 end
 
 ACTIONS.REPAIRBOAT.fn = function(act)
