@@ -917,7 +917,8 @@ local PL_COMPONENT_ACTIONS =
             end
         end,
         poisonhealer = function(inst, doer, target, actions, right)
-            if right and target and target:HasTag("poisonable") then
+            if right and target and target:HasTag("poisonable")
+                and (TheNet:GetPVPEnabled() or target:HasTag("poison")) then
                 table.insert(actions, ACTIONS.CUREPOISON)
             end
         end,

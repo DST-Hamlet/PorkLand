@@ -34,6 +34,7 @@ local function fn()
     inst:AddTag("fishmeat")
     inst:AddTag("catfood")
     inst:AddTag("poisonous")
+    inst:AddTag("unsafefood")
     inst:AddTag("dryable")
 
     inst.entity:SetPristine()
@@ -98,6 +99,7 @@ local function cookedfn()
     --inst.pickupsound = "squidgy"
 
     inst:AddTag("poisonous")
+    inst:AddTag("unsafefood")
     inst:AddTag("smallmeat")
     inst:AddTag("fishmeat")
     inst:AddTag("catfood")
