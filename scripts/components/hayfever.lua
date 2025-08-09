@@ -17,7 +17,7 @@ end
 local Hayfever = Class(function(self, inst)
     self.inst = inst
     self.enabled = false
-    self.sneezed = false
+    self.sneezed = false -- 此变量在多次连续喷嚏开始且未完成期间为true
     self.imune = false
     self.nextsneeze = self:GetNextSneezTimeInitial()
 
