@@ -42,7 +42,7 @@ local cooking = require("cooking")
 local get_recipe = cooking.GetRecipe
 function cooking.GetRecipe(cooker, product, ...)
     local recipe = get_recipe(cooker, product, ...)
-    if recipe.yotp and TheWorld and TheWorld.state.isfiesta then
+    if recipe and recipe.yotp and TheWorld and TheWorld.state.isfiesta then
         recipe = shallowcopy(recipe)
         recipe.overridebuild = "cook_pot_food_yotp"
     end
