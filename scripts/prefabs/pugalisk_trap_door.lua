@@ -23,21 +23,21 @@ local STATE_TO_ANIMATION = {
 }
 
 local function DoSpawnPugalisk(inst)
-    local x, y, z = inst.Transform:GetWorldPosition()
-    local pugalisk = SpawnPrefab("pugalisk")
-    pugalisk.Transform:SetPosition(x, y, z)
-    pugalisk.home = TheSim:FindFirstEntityWithTag("pugalisk_fountain")
-    pugalisk.sg:GoToState("emerge_taunt")
+    local pugalisk = TheSim:FindFirstEntityWithTag("pugalisk")
+    if not pugalisk then
+        local x, y, z = inst.Transform:GetWorldPosition()
+        local pugalisk = SpawnPrefab("pugalisk")
+        pugalisk.Transform:SetPosition(x, y, z)
+        pugalisk.home = TheSim:FindFirstEntityWithTag("pugalisk_fountain")
+        pugalisk.sg:GoToState("emerge_taunt")
+    end
     inst.doingpugaliskspawn = nil
 end
 
 local function SpawnPugalisk(inst)
     inst.doingpugaliskspawn = true
-    local pugalisk = TheSim:FindFirstEntityWithTag("pugalisk")
-    if not pugalisk then
-        inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/pugalisk/entrance")
-        inst.task, inst.taskinfo = inst:ResumeTask(2, DoSpawnPugalisk)
-    end
+    inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/pugalisk/entrance")
+    inst.task, inst.taskinfo = inst:ResumeTask(2, DoSpawnPugalisk)
 end
 
 local function activate(inst)
