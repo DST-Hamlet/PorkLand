@@ -35,7 +35,7 @@ local function SpawnGiantGrub()
 
     if not _anthill then
         _anthill = TheSim:FindFirstEntityWithTag("ant_hill_entrance")
-        if not _anthill then
+        if not _anthill or not _anthill.rooms then
             return
         end
     end

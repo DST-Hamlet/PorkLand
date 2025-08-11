@@ -541,3 +541,14 @@ AddTask("Land_Divide_5", {
     background_room = "ForceDisconnectedRoom",
     colour = {r = 1, g = 1, b = 1, a = 0.3}
 })
+
+AddTask("porkland_test", {
+    locks = {},
+    keys_given = {},
+    room_choices = {
+        ["Blank"] = 1,
+    },
+    room_bg = GROUND.IMPASSABLE,
+    background_room = "Blank",
+    colour = { r = 0, g = 1, b = 0, a = 1 },
+})
