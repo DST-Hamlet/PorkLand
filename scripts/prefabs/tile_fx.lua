@@ -10,6 +10,7 @@ local MAX_LIFETIME = 1e10
 local assets =
 {
     Asset("IMAGE", "levels/merged_tex/lilypond_merged.tex"),
+    Asset("IMAGE", "levels/merged_tex/saltlake_merged.tex"),
     Asset("SHADER", SHADER),
 }
 

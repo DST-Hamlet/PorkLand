@@ -183,7 +183,6 @@ local DISABLE_RECIPES = {
     "premiumwateringcan",
     "wall_moonrock_item",
     "tacklestation",
-    "saltbox",
     "saltlick_improved",
     "bedroll_furry",
     "redmooneye",
@@ -231,6 +230,8 @@ local DISABLE_RECIPES = {
     -- Wormwood --
     "armor_bramble",
     "trap_bramble",
+    -- Winona--
+    "winona_remote",
 }
 
 local LOST_RECIPES = {

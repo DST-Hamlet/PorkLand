@@ -57,29 +57,6 @@ local TileRanges =
 }
 
 local pl_tiledefs = {
-    -- dst had this
-    -- BEARDRUG = {
-    --     tile_range = TileRanges.LAND,
-    --     tile_data = {
-    --         ground_name = "Beard Rug",
-    --         -- old_static_id = 33,
-    --     },
-    --     ground_tile_def  = {
-    --         name = "carpet",
-    --         noise_texture = "Ground_beard_hair",
-    --         runsound = "dontstarve/movement/run_carpet",
-    --         walksound = "dontstarve/movement/walk_carpet",
-    --         flashpoint_modifier = 0,
-    --     },
-    --     minimap_tile_def = {
-    --         name = "map_edge",
-    --         noise_texture = "interior",
-    --     },
-    --     --turf_def = {
-    --     --    name = "beach",
-    --     --    bank_build = "turf_ia",
-    --     --},
-    -- },
     RAINFOREST = {
         tile_range = TileRanges.LAND,
         tile_data = {
@@ -122,7 +99,7 @@ local pl_tiledefs = {
         },
         -- turf_def = {
         --     name = "jungle",
-        --     bank_build = "turf_ia",
+        --     bank_build = "turf_1",
         -- },
     },
     DEEPRAINFOREST_NOCANOPY = {
@@ -165,7 +142,7 @@ local pl_tiledefs = {
         },
         -- turf_def = {
         --     name = "swamp",
-        --     bank_build = "turf_ia",
+        --     bank_build = "turf_1",
         -- },
     },
     PLAINS = {
@@ -369,6 +346,30 @@ local pl_tiledefs = {
             noise_texture = "mini_ruins_slab"
         }
     },
+    SALTBEACH = {
+        tile_range = TileRanges.LAND,
+        tile_data = {
+            ground_name = "Salt Desert",
+            -- old_static_id =
+        },
+        ground_tile_def = {
+            name = "swamp",
+            noise_texture = "noise_saltbeach",
+            runsound = "turnoftides/movement/run_meteor",
+            walksound = "turnoftides/movement/run_meteor",
+            snowsound = "run_ice",
+            flooring = true,
+        },
+        minimap_tile_def = {
+            name = "map_edge",
+            noise_texture = "mini_noise_saltbeach",
+        },
+        turf_def = {
+            name = "saltbeach",
+            anim = "saltbeach",
+            bank_build = "turf_atc",
+        },
+    }, 
 
     -------------------------------
     -- OCEAN/SEA
@@ -393,6 +394,26 @@ local pl_tiledefs = {
         minimap_tile_def = {
             name = "map_edge",
             noise_texture = "mini_lilypond_noise",
+        },
+    },
+    SALTLAKE = {
+        tile_range = TileRanges.OCEAN,
+        tile_data = {
+            name = "Salt Water"
+        },
+        -- ground_tile_def  = {
+            -- name = "water_medium",
+            -- noise_texture = "Ground_water_saltlake",
+            -- runsound = "run_marsh",
+            -- walksound = "walk_marsh",
+            -- -- flashpoint_modifier = 250, -- 亚丹：不知道谁给莲花池地皮加上的更高起火点特性，我先注释掉了，虽然在水上起火慢很合理
+            -- is_shoreline = true,
+            -- ocean_depth = "SHALLOW",
+            -- cannotbedug = true,
+        -- },
+        minimap_tile_def = {
+            name = "map_edge",
+            noise_texture = "mini_noise_saltlake",
         },
     },
 
@@ -426,6 +447,15 @@ local pl_tiledefs = {
         end,
     },
 
+    SALTLAKE_NOISE = {
+        tile_range = function (noise)
+            if noise < 0.45 then
+                return WORLD_TILES.ROCKY
+            end
+            return WORLD_TILES.SALTBEACH
+        end,
+    },
+
 }
 
 for tile, def in pairs(pl_tiledefs) do
@@ -452,7 +482,7 @@ for tile, def in pairs(pl_tiledefs) do
     end
 end
 
-for prefab, filter in pairs(terrain.filter) do
+for prefab, filter in pairs(terrain.filter) do --鲁鲁：这是啥？
     if type(filter) == "table" then
         table.insert(filter, WORLD_TILES.LILYPOND)
         -- if table.contains(filter, WORLD_TILES.CARPET) then
@@ -475,4 +505,5 @@ ChangeTileRenderOrder(WORLD_TILES.RAINFOREST, WORLD_TILES.MUD, true)
 ChangeTileRenderOrder(WORLD_TILES.PLAINS, WORLD_TILES.MUD, true)
 ChangeTileRenderOrder(WORLD_TILES.PAINTED, WORLD_TILES.MUD, true)
 ChangeTileRenderOrder(WORLD_TILES.DEEPRAINFOREST_NOCANOPY, WORLD_TILES.MUD, true)
+ChangeTileRenderOrder(WORLD_TILES.SALTBEACH, WORLD_TILES.MUD, true)
 -- ChangeTileRenderOrder(WORLD_TILES.PIGRUINS, WORLD_TILES.MUD, true)

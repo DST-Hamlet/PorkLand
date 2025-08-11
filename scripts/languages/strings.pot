@@ -97036,6 +97036,11 @@ msgctxt "STRINGS.NAMES.TURF_RAINFOREST"
 msgid "Rainforest Turf"
 msgstr ""
 
+#. STRINGS.NAMES.TURF_SALTBEACH
+msgctxt "STRINGS.NAMES.TURF_SALTBEACH"
+msgid "Salt Desert Turf"
+msgstr ""
+
 #. STRINGS.NAMES.VAMPIREBAT
 msgctxt "STRINGS.NAMES.VAMPIREBAT"
 msgid "Vampire Bat"
@@ -98919,6 +98924,21 @@ msgstr ""
 #. STRINGS.CHARACTER_DESCRIPTIONS.wilba
 msgctxt "STRINGS.CHARACTER_DESCRIPTIONS.wilba"
 msgid "*Is royalty\n*Carries her father's legacy\n*Is afraid of the dark"
+msgstr ""
+
+#. STRINGS.CHARACTER_QUOTES.wilba
+msgctxt "STRINGS.CHARACTER_QUOTES.wilba"
+msgid "\"MAKE KINGDOM PROUD!\""
+msgstr ""
+
+#. STRINGS.CHARACTER_QUOTES.wheeler
+msgctxt "STRINGS.CHARACTER_QUOTES.wheeler"
+msgid "\"The whole world's mine to explore!\""
+msgstr ""
+
+#. STRINGS.CHARACTER_QUOTES.wagstaff
+msgctxt "STRINGS.CHARACTER_QUOTES.wagstaff"
+msgid "\"Eureka! My destiny awaits!\""
 msgstr ""
 
 #. STRINGS.CHARACTER_TITLES.wilba
