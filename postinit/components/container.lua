@@ -3,20 +3,25 @@ GLOBAL.setfenv(1, GLOBAL)
 
 local Container = require("components/container")
 
-function Container:ChangeBoatType(has_sailor)
-    if self.type ~= "boat" and self.type ~= "boat_has_sailor" then
+function Container:ForceOpen(doer, ...)
+    self.forceopen = true
+
+    self:Open(doer, ...)
+end
+
+local _Close = Container.Close
+function Container:Close(doer, ...)
+    if self.forceopen then
         return
     end
 
-    removesetter(self, "type")
-    if has_sailor then
-        self.type = "boat_has_sailor"
-    else
-        self.type = "boat"
-    end
-    makereadonly(self, "type")
-    
-    self.inst.replica.container._has_sailor:set(has_sailor)
+    return _Close(self, doer, ...)
+end
+
+function Container:ForceClose(doer, ...)
+    self.forceopen = false
+
+    self:Close(doer, ...)
 end
 
 function Container:GetItemInBoatSlot(eslot)
@@ -59,6 +64,7 @@ function Container:GetSpecificSlotForItem(item, ...)
                 if self:itemtestfn(item, i)
                     and (not self:GetItemInSlot(i)
                     or (self:GetItemInSlot(i) ~= nil and self:GetItemInSlot(i).components.stackable and self:GetItemInSlot(i).prefab == item.prefab and self:GetItemInSlot(i).skinname == item.skinname and not self:GetItemInSlot(i).components.stackable:IsFull())) then
+                    -- 总之是烦人的可堆叠检测，复制自原组件Container:GiveItem
 
                     return i
                 end

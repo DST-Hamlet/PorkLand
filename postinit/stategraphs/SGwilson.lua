@@ -3107,7 +3107,7 @@ AddStategraphPostInit("wilson", function(sg)
             inst.sg:GoToState("sink_boat", data.shore_pt)
         else
             if inst.components.sailor and inst.components.sailor.boat and inst.components.sailor.boat.components.container then
-                inst.components.sailor.boat.components.container:Close()
+                inst.components.sailor.boat.components.container:ForceClose()
             end
             _onsink_eventhandler(inst, data, ...)
         end
@@ -3119,7 +3119,7 @@ AddStategraphPostInit("wilson", function(sg)
             inst.sg:GoToState("death_drown")
         else
             if inst.components.sailor and inst.components.sailor.boat and inst.components.sailor.boat.components.container then
-                inst.components.sailor.boat.components.container:Close()
+                inst.components.sailor.boat.components.container:ForceClose()
             end
             _death_eventhandler(inst, data)
         end

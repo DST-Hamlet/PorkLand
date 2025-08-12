@@ -15,12 +15,10 @@ local function onsailor(self)
             container.old_canbeopened = container.canbeopened
         end
 
-        container:Close()
+        container:ForceClose()
         if self.sailor then
-            container:ChangeBoatType(true)
             container.canbeopened = false -- 有人的船容器不能通过打开动作来开启
         else
-            container:ChangeBoatType(false)
             container.canbeopened = container.old_canbeopened
         end
     end
@@ -32,7 +30,7 @@ local function onsailor(self)
     self.check_container_task = self.inst:DoTaskInTime(0.25, function()
         self.check_container_task = nil
         if container and self:GetSailor() then
-            container:Open(self:GetSailor())
+            container:ForceOpen(self:GetSailor())
         end
     end)
 end

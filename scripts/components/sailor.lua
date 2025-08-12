@@ -238,17 +238,6 @@ function Sailor:Embark(boat, nostate)
     --     self.inst.components.farseer:AddBonus("boat", boat.components.sailable:GetMapRevealBonus())
     -- end
 
-    if boat.components.container then
-        if boat.components.container:IsOpen() then
-            boat.components.container:Close()
-        end
-        boat:DoTaskInTime(0.25, function()
-            if boat == self.boat then
-                boat.components.container:Open(self.inst)
-            end
-        end)
-    end
-
     if self.OnEmbarked then
         self.OnEmbarked(self.inst)
     end
@@ -273,10 +262,6 @@ function Sailor:Disembark(pos, boat_to_boat, no_state, boat_pos)
     UpdateSailorPathcaps(self.inst, false)
 
     self.inst:RemoveEventCallback("boathealthchange", OnBoatDelta, self.boat)
-
-    if self.boat.components.container then
-        self.boat.components.container:Close(self.inst)
-    end
 
     -- dst no this
     -- if self.inst.components.farseer then
