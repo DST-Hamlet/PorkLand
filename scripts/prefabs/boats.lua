@@ -128,6 +128,7 @@ local function OnPickupedCorkBoat(inst, doer)
     doer.components.inventory:GiveItem(boat_item)
 
     for _, item in pairs(inst.components.container:GetAllItems()) do
+        inst.components.container:DropItem(item)
         doer.components.inventory:GiveItem(item)
     end
 
