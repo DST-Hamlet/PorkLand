@@ -274,7 +274,7 @@ local function ClientPerdictPosition(inst, dt)
         end
     end
 
-    inst.SoundEmitter:SetParameter("speed", "intensity", inst._speed:value())
+    inst.SoundEmitter:SetParameter("speed", "intensity", inst._speed:value()) -- 本地可以实现修改特定网络同步音效的参数
 
     if inst.count_dt > 0 then
         local ease = inst._speed:value()

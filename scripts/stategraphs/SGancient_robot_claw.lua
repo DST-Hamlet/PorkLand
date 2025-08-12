@@ -62,26 +62,20 @@ AncientRobot.States.AddLocomoteStates(states, {
     TimeEvent(0 * FRAMES, function(inst)
         inst.Physics:Stop()
         inst.components.locomotor:WalkForward()
-        inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/metal_robot/arm/servo", "servo")
-        inst.SoundEmitter:SetParameter("servo", "intensity", math.random())
-        inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/metal_robot/arm/drag")
-        inst.SoundEmitter:SetParameter("servo", "intensity", math.random())
+        inst.SoundEmitter:PlaySoundWithParams("dontstarve_DLC003/creatures/enemy/metal_robot/arm/servo", {intensity = math.random()})
+        inst.SoundEmitter:PlaySoundWithParams("dontstarve_DLC003/creatures/enemy/metal_robot/arm/drag", {intensity = math.random()})
     end),
     TimeEvent(6 * FRAMES, function(inst)
-        inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/metal_robot/arm/step", "steps")
-        inst.SoundEmitter:SetParameter("steps", "intensity", math.random())
+        inst.SoundEmitter:PlaySoundWithParams("dontstarve_DLC003/creatures/enemy/metal_robot/arm/step", {intensity = math.random()})
     end),
     TimeEvent(14 * FRAMES, function(inst)
-        inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/metal_robot/arm/servo", "servo")
-        inst.SoundEmitter:SetParameter("servo", "intensity", math.random())
+        inst.SoundEmitter:PlaySoundWithParams("dontstarve_DLC003/creatures/enemy/metal_robot/arm/servo", {intensity = math.random()})
     end),
     TimeEvent(25 * FRAMES, function(inst)
-        inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/metal_robot/arm/step", "steps")
-        inst.SoundEmitter:SetParameter("steps", "intensity", math.random())
+        inst.SoundEmitter:PlaySoundWithParams("dontstarve_DLC003/creatures/enemy/metal_robot/arm/step", {intensity = math.random()})
     end),
     TimeEvent(28 * FRAMES, function(inst)
-        inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/metal_robot/arm/servo", "servo")
-        inst.SoundEmitter:SetParameter("servo", "intensity", math.random())
+        inst.SoundEmitter:PlaySoundWithParams("dontstarve_DLC003/creatures/enemy/metal_robot/arm/servo", {intensity = math.random()})
     end),
     TimeEvent(48 * FRAMES, function(inst)
         inst.Physics:Stop()
@@ -100,35 +94,29 @@ AncientRobot.States.AddLaserBeam(states, {
     TimeEvent(7  * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/metal_robot/laser_pre") end),
     TimeEvent(19 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/metal_robot/arm/servo") end),
     TimeEvent(30 * FRAMES, function(inst)
-        inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/metal_robot/laser", "laserfilter")
-        inst.SoundEmitter:SetParameter("laserfilter", "intensity", 0.12)
-    end),
-    TimeEvent(32 * FRAMES, function(inst)
+        inst.SoundEmitter:KillSound("laserfilter")
         inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/metal_robot/laser", "laserfilter")
         inst.SoundEmitter:SetParameter("laserfilter", "intensity", 0.24)
     end),
+    TimeEvent(32 * FRAMES, function(inst)
+        inst.SoundEmitter:SetParameter("laserfilter", "intensity", 0.36)
+    end),
     TimeEvent(34 * FRAMES, function(inst)
-        inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/metal_robot/laser", "laserfilter")
         inst.SoundEmitter:SetParameter("laserfilter", "intensity", 0.48)
     end),
     TimeEvent(36 * FRAMES, function(inst)
-        inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/metal_robot/laser", "laserfilter")
         inst.SoundEmitter:SetParameter("laserfilter", "intensity", 0.60)
     end),
     TimeEvent(38 * FRAMES, function(inst)
-        inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/metal_robot/laser", "laserfilter")
         inst.SoundEmitter:SetParameter("laserfilter", "intensity", 0.72)
     end),
     TimeEvent(40 * FRAMES, function(inst)
-        inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/metal_robot/laser", "laserfilter")
         inst.SoundEmitter:SetParameter("laserfilter", "intensity", 0.84)
     end),
     TimeEvent(42 * FRAMES, function(inst)
-        inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/metal_robot/laser", "laserfilter")
         inst.SoundEmitter:SetParameter("laserfilter", "intensity", 0.96)
     end),
     TimeEvent(44 * FRAMES, function(inst)
-        inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/metal_robot/laser", "laserfilter")
         inst.SoundEmitter:SetParameter("laserfilter", "intensity", 1)
     end),
     TimeEvent(47 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/metal_robot/arm/step") end),
