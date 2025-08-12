@@ -300,8 +300,9 @@ function Map:IsAboveGroundAtPoint(x, y, z, allow_water, ...)
         return TheWorld.components.interiorspawner:IsInInteriorRoom(x, z)
     end
     if TheWorld.has_pl_ocean then
-        local valid_water_tile = (allow_water == true) and self:ReverseIsVisualWaterAtPoint(x, y, z)
-        return valid_water_tile or _IsAboveGroundAtPoint(self, x, y, z, ...)
+        if not allow_water and self:ReverseIsVisualWaterAtPoint(x, y, z) then
+            return false
+        end
     end
     return _IsAboveGroundAtPoint(self, x, y, z, ...)
 end
