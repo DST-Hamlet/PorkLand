@@ -408,6 +408,10 @@ local function DoGhostHauntTarget(inst, data)
         return
     end
 
+    if (inst.sg and inst.sg.currentstate.name == "haunt_pre") then
+        return
+    end
+
     for _, cant_tag in pairs(HAUNT_CANT_TAGS) do
         if target:HasTag(cant_tag) then
             return

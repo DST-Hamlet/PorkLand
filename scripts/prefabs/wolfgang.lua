@@ -28,16 +28,13 @@ local function ApplyMightiness(inst)
     local percent = inst.components.hunger:GetPercent()
 
     local hunger_rate = TUNING.WOLFGANG_HUNGER_RATE_MULT_NORMAL
-    local sanity_rate = TUNING.WOLFGANG_SANITY_MULT_NORMAL
 
     if inst.strength == "mighty" then
         inst._mightiness_scale = TUNING.WOLFGANG_MIGHTY_SHAPE_SCALE
         hunger_rate = hunger_rate * inst._mightiness_scale -- 变大消耗额外饥饿
-        sanity_rate = sanity_rate / inst._mightiness_scale -- 变大更不容易受到降精神光环影响
     elseif inst.strength == "wimpy" then
         inst._mightiness_scale = TUNING.WOLFGANG_WIMPY_SHAPE_SCALE
-        hunger_rate = hunger_rate * inst._mightiness_scale -- 变大消耗更少饥饿
-        sanity_rate = sanity_rate / inst._mightiness_scale -- 变小更容易受到降精神光环影响
+        hunger_rate = hunger_rate * inst._mightiness_scale -- 变小消耗更少饥饿
     else
         inst._mightiness_scale = 1
     end
@@ -45,9 +42,6 @@ local function ApplyMightiness(inst)
     inst:ApplyShapeScale("mightiness", inst._mightiness_scale)
 
     inst.components.hunger:SetRate(hunger_rate * TUNING.WILSON_HUNGER_RATE)
-
-    inst.components.sanity.night_drain_mult = sanity_rate
-    inst.components.sanity.neg_aura_mult = sanity_rate
 end
 
 local function BecomeWimpy(inst, silent)

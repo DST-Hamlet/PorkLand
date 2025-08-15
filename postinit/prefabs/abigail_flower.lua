@@ -29,8 +29,9 @@ local function GhostChangeBehaviour(inst, doer)
     end
 
     local pos = doer.components.ghostlybond.ghost and doer.components.ghostlybond.ghost:GetPosition() or nil
-    doer:PushEvent("talk_whisper", {pos = pos})
-    doer.components.talker:Say("GhostChangeBehaviour")
+    if doer.WhisperTalk then
+        doer:WhisperTalk({speech = "GhostChangeBehaviour", text = "GhostChangeBehaviour", pos = pos})
+    end
 
 	doer.components.ghostlybond:ChangeBehaviour()
 
@@ -45,8 +46,9 @@ local function ToggleFreezeGhostMovements(inst, doer)
     end
 
     local pos = doer.components.ghostlybond.ghost and doer.components.ghostlybond.ghost:GetPosition() or nil
-    doer:PushEvent("talk_whisper", {pos = pos})
-    doer.components.talker:Say("ToggleFreezeGhostMovements")
+    if doer.WhisperTalk then
+        doer:WhisperTalk({speech = "ToggleFreezeGhostMovements", text = "ToggleFreezeGhostMovements", pos = pos})
+    end
 
     doer.components.ghostlybond:FreezeMovements(not doer:HasTag("has_movements_frozen_follower"))
 	doer.refreshflowertooltip:push()
@@ -65,8 +67,9 @@ local function DoGhostSpell(doer, event, state, data, speech, ...)
     elseif data.target then
         pos = data.target:GetPosition()
     end
-    doer:PushEvent("talk_whisper", {pos = pos})
-    doer.components.talker:Say(GetString(doer, speech))
+    if doer.WhisperTalk then
+        doer:WhisperTalk({speech = speech, text = GetString(doer, speech), pos = pos})
+    end
 
 	-- local spellbookcooldowns = doer.components.spellbookcooldowns
 	local ghostlybond = doer.components.ghostlybond
@@ -361,7 +364,7 @@ local COMMANDS = {
             aoetargeting:SetDeployRadius(0)
 			aoetargeting:SetRange(20)
 			aoetargeting:SetShouldRepeatCastFn(AlwaysTrue)
-            -- aoetargeting.reticule.reticuleprefab = "reticuleaoeghosttarget"
+            aoetargeting.reticule.reticuleprefab = "reticuleaoeghosttarget"
             aoetargeting.reticule.pingprefab = "reticuleaoeghosttarget_ping"
 
             aoetargeting.reticule.mousetargetfn = nil

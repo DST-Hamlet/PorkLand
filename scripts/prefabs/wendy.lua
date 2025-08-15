@@ -187,11 +187,20 @@ local function ghostlybond_changebehaviour(inst, ghost)
 	return true
 end
 
-local function checkforshadowsacrifice(inst,data)
-	if inst.components.skilltreeupdater and inst.components.skilltreeupdater:IsActivated("wendy_shadow_3") and
-			inst.components.ghostlybond and inst.components.ghostlybond.ghost and not inst.components.ghostlybond.ghost:HasTag("INLIMBO") then
-		inst.SoundEmitter:PlaySound("meta5/abigail/abigail_nightmare_buff_stinger")
-		inst.components.ghostlybond.ghost:DoShadowBurstBuff(data.stackmult)
+local function WhisperTalk(inst, data)
+	if data == nil then
+		return
+	end
+
+	if inst.lastwhisper and inst.lastwhisper == data.speech 
+		and inst.lastwhispertime and (GetTime() - inst.lastwhispertime) < 1 then
+
+	else
+		inst:PushEvent("talk_whisper", {pos = data.pos})
+		inst.components.talker:Say(data.text)
+
+		inst.lastwhisper = data.speech
+		inst.lastwhispertime = GetTime()
 	end
 end
 
@@ -254,6 +263,8 @@ local function master_postinit(inst)
 	inst:ListenForEvent("ms_respawnedfromghost", onresurrection)
 
     inst.components.combat.damagemultiplier = TUNING.WENDY_DAMAGE_MULT
+
+	inst.WhisperTalk = WhisperTalk
 
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
