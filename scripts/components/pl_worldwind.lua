@@ -67,7 +67,7 @@ function WorldWind:OnUpdate(dt)
             self.time_to_wind_change = math.random(5, 10)
         else
             self.angle = math.random(0,360)
-            self.inst:PushEvent("pl_windchange", {angle=self.angle, velocity=self.velocity})
+            self.inst:PushEvent("pl_windchange", {angle = self.angle, velocity = self.velocity})
 
             self.time_to_wind_change = math.random(MIN_TIME_TO_WIND_CHANGE, MAX_TIME_TO_WIND_CHANGE)
         end

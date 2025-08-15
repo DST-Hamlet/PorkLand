@@ -39892,8 +39892,8 @@ msgstr "好吧。该点新的火把了。"
 
 #. STRINGS.CHARACTERS.WHEELER.ANNOUNCE_TRACKER_FAR
 msgctxt "STRINGS.CHARACTERS.WHEELER.ANNOUNCE_TRACKER_FAR"
-msgid "Sometimes it takes a little long."
-msgstr "有时候就是要更久一点。"
+msgid "It took a little more time, but navigadget still found the target in the distance."
+msgstr "这次多花了一点时间，但导向仪还是在远处找到了目标。"
 
 #. STRINGS.CHARACTERS.WHEELER.ANNOUNCE_TRACKER_FOUND
 msgctxt "STRINGS.CHARACTERS.WHEELER.ANNOUNCE_TRACKER_FOUND"

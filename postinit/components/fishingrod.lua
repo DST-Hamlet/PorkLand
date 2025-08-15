@@ -19,11 +19,6 @@ function FishingRod:StartFishing(target, fisherman)
 end
 
 function FishingRod:Retrieve()
-    if self.target and self.target.components.inventoryitem and self.target.components.inventoryitem.canbepickedup then
-        if self.fisherman and self.fisherman.components.inventory then
-            self.fisherman.components.inventory:GiveItem(self.target)
-        end
-    end
     self.target = nil
     self:StopFishing()
 end

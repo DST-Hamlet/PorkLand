@@ -53,7 +53,10 @@ local function DrainHunger(inst)
     local x, y, z = inst.Transform:GetWorldPosition()
     local players = FindPlayersInRange(x, y, z, PLAYER_PROX_NEAR, true)
     for _, player in pairs(players) do
-        player.components.hunger:DoDelta(-1)
+        if player.components.hunger:GetPercent() > 0 then
+            player.components.hunger:DoDelta(-1)
+            player.components.sanity:DoDelta(1)
+        end
     end
 end
 
@@ -358,9 +361,6 @@ local function fn()
     inst.components.burnable:SetBurnTime(10)
     inst.components.burnable:AddBurnFX("fire", Vector3(0, 0, 0))
     inst.components.burnable:SetOnBurntFn(OnBurnt)
-
-    inst:AddComponent("sanityaura")
-    inst.components.sanityaura.aura = TUNING.SANITYAURA_MED
 
     inst:AddComponent("playerprox")
     inst.components.playerprox:SetDist(6, 7)

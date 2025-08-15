@@ -1,7 +1,7 @@
 GLOBAL.setfenv(1, GLOBAL)
 
 local SkillTreeToast = require("widgets/skilltreetoast")
-local ScrapbookToast = require("widgets/skilltreetoast")
+local ScrapbookToast = require("widgets/scrapbooktoast")
 
 -- Those two are the popup on top left corner of the HUD
 function SkillTreeToast:UpdateElements()

@@ -88,9 +88,9 @@ local function HitShake(inst)
 end
 
 local function ValidCollideTarget(inst, other)
-    return (inst.sg:HasStateTag("running") or inst.sg:HasStateTag("surprise")) 
-        and inst:HasTag("hasdung") 
-        and other ~= nil and other:IsValid() 
+    return (inst.sg:HasStateTag("running") or inst.sg:HasStateTag("surprise"))
+        and inst:HasTag("hasdung")
+        and other ~= nil and other:IsValid()
         and other ~= TheWorld and not other:HasTag("dungpile")
 end
 

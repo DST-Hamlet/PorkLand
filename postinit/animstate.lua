@@ -61,3 +61,21 @@ AnimState.PushAnimation = function(self, animname, ...)
         return _PushAnimation(self, animname, ...)
     end
 end
+
+AnimState._Hide = AnimState.Hide
+AnimState.Hide = function(self, layername, ...)
+    local inst = anim_to_entity[self]
+    if inst and inst.Anim_Hide_Hook then
+        return inst.Anim_Hide_Hook(self, layername, ...)
+    end
+    return AnimState._Hide(self, layername, ...)
+end
+
+AnimState._Show = AnimState.Show
+AnimState.Show = function(self, layername, ...)
+    local inst = anim_to_entity[self]
+    if inst and inst.Anim_Show_Hook then
+        return inst.Anim_Show_Hook(self, layername, ...)
+    end
+    return AnimState._Show(self, layername, ...)
+end

@@ -618,7 +618,7 @@ local function OnLoad(inst, data)
         if data.stage then
             inst.stage = data.stage
         end
-        if data.canhack then
+        if data.canhack ~= nil then
             inst.components.workable:SetWorkable(data.canhack)
             inst.components.shearable:SetCanShear(data.canhack)
         end

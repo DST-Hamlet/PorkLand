@@ -34,13 +34,26 @@ local function OnNewDay(inst)
 end
 
 local function canttrack(inst, data)
-    inst.components.talker:Say(GetString(inst, "ANNOUNCE_NOTHING_FOUND"))
+    if not inst.last_cant_track_talk or GetTime() - inst.last_cant_track_talk > 4 then
+        inst.last_cant_track_talk = GetTime()
+        inst.components.talker:Say(GetString(inst, "ANNOUNCE_NOTHING_FOUND"))
+    end
+end
+
+local function track_close(inst, data)
+    inst.components.talker:Say(GetString(inst, "ANNOUNCE_TRACKER_FOUND"))
+end
+
+local function track_far(inst, data)
+    inst.components.talker:Say(GetString(inst, "ANNOUNCE_TRACKER_FAR"))
 end
 
 AddComponentPostInit("wisecracker", function(cmp)
     cmp.inst:ListenForEvent("boat_damaged", boat_damaged)
     cmp.inst:ListenForEvent("boostbywave", boostbywave)
     cmp.inst:ListenForEvent("gasdamage", gasdamage)
+    cmp.inst:ListenForEvent("trackitem_far", track_far)
+    cmp.inst:ListenForEvent("trackitem_close", track_close)
     cmp.inst:ListenForEvent("canttrackitem", canttrack)
     cmp.inst:WatchWorldState("cycles", OnNewDay)
 

@@ -11,6 +11,8 @@ local prefabs =
 
 local function reset(inst)
     inst.dry = nil
+    inst.components.storageloot:DestroyLoots()
+    inst.components.storageloot:AddLoot("waterdrop")
     inst.components.activatable.inactive = true
     inst.AnimState:PlayAnimation("flow_pre")
     inst.AnimState:PushAnimation("flow_loop", true)
@@ -34,6 +36,10 @@ local function reset(inst)
 end
 
 local function OnActivate(inst, doer)
+    if not doer then
+        return
+    end
+
     inst.AnimState:PlayAnimation("flow_pst")
     inst.AnimState:PushAnimation("off", true)
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/pugalisk/resurrection")
@@ -43,9 +49,12 @@ local function OnActivate(inst, doer)
 
     inst:OnDeactivate()
 
-    local drop = SpawnPrefab("waterdrop")
-    drop.fountain = inst
-    doer.components.inventory:GiveItem(drop) --, nil, Vector3(TheSim:GetScreenPos(inst.Transform:GetWorldPosition())))
+    local loots = inst.components.storageloot:TakeAllLoots()
+    for i, v in ipairs(loots) do
+        local loot = SpawnPrefab(v)
+        doer.components.inventory:GiveItem(loot)
+    end
+    inst.components.storageloot:DestroyLoots()
 
     local ent = TheSim:FindFirstEntityWithTag("pugalisk_trap_door")
     if ent then
@@ -88,6 +97,7 @@ local function OnLoad(inst, data)
         inst.AnimState:PlayAnimation("off", true)
         inst.SoundEmitter:KillSound("burble")
         inst.dry = true
+        inst.components.storageloot:DestroyLoots()
         inst.components.activatable.inactive = false
     end
 end
@@ -136,6 +146,13 @@ local function fn()
 
     inst:AddComponent("inspectable")
     inst.components.inspectable:RecordViews()
+
+    inst:AddComponent("lootdropper")
+    inst.components.lootdropper.max_speed = 3
+
+    inst.dry = nil
+    inst:AddComponent("storageloot")
+    inst.components.storageloot:AddLoot("waterdrop")
 
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad

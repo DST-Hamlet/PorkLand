@@ -16,8 +16,9 @@ local MAX_WANDER_DIST = 50
 
 local function CantAction(inst, target)
     if inst.sg:HasStateTag("busy") or inst:HasTag("hasdung") then
-        return
+        return true
     end
+    return false
 end
 
 local DUNGPILE_TAGS = {"dungpile"}
@@ -32,13 +33,13 @@ local function DigDungAction(inst)
     end
 end
 
-local DUNGPILE_TAGS = {"dungball"}
+local DUNGBALL_TAGS = {"dungball"}
 local function MountDungAction(inst)
     if CantAction(inst) then
         return
     end
 
-    local target = FindEntity(inst, SEE_DUNG_DIST, nil, DUNGPILE_TAGS)
+    local target = FindEntity(inst, SEE_DUNG_DIST, nil, DUNGBALL_TAGS)
     if target ~= nil then
         return BufferedAction(inst, target, ACTIONS.MOUNTDUNG)
     end

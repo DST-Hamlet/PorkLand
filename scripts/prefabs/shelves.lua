@@ -267,6 +267,10 @@ local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, on_r
 
         inst.CanMouseThrough = CanMouseThrough
 
+        if name:find("queen") then
+            inst.name = STRINGS.NAMES.ROYAL_GALLERY
+        end
+
         inst.entity:SetPristine()
 
         if not TheWorld.ismastersim then
@@ -367,6 +371,8 @@ local function MakeLock(inst)
     inst.components.lock:SetOnUnlockedFn(OnUnlock)
     inst.components.lock.islocked = false
     inst.components.lock:SetLocked(true)
+
+    inst.components.inspectable.nameoverride = "royal_gallery"
 end
 
 return MakeShelf("wood", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
@@ -391,10 +397,10 @@ return MakeShelf("wood", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
     MakeShelf("floating", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
     MakeShelf("displaycase_wood", true, {animation = "displayshelf_wood", has_front = true}),
     MakeShelf("displaycase_metal", true, {animation = "displayshelf_metal", has_front = true}),
-    MakeShelf("queen_display_1", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock19_east", is_pedestal = true, name = STRINGS.NAMES.ROYAL_GALLERY}, "SWAP_SIGN", nil, MakeLock),
-    MakeShelf("queen_display_2", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock17_east", is_pedestal = true, name = STRINGS.NAMES.ROYAL_GALLERY}, "SWAP_SIGN", nil, MakeLock),
-    MakeShelf("queen_display_3", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock12_west", is_pedestal = true, name = STRINGS.NAMES.ROYAL_GALLERY}, "SWAP_SIGN", nil, MakeLock),
-    MakeShelf("queen_display_4", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock12_west", is_pedestal = true, name = STRINGS.NAMES.ROYAL_GALLERY}, "SWAP_SIGN", nil, MakeLock),
+    MakeShelf("queen_display_1", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock19_east", is_pedestal = true, name = STRINGS.NAMES.ROYAL_GALLERY, has_front = true}, "SWAP_SIGN", nil, MakeLock),
+    MakeShelf("queen_display_2", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock17_east", is_pedestal = true, name = STRINGS.NAMES.ROYAL_GALLERY, has_front = true}, "SWAP_SIGN", nil, MakeLock),
+    MakeShelf("queen_display_3", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock12_west", is_pedestal = true, name = STRINGS.NAMES.ROYAL_GALLERY, has_front = true}, "SWAP_SIGN", nil, MakeLock),
+    MakeShelf("queen_display_4", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock12_west", is_pedestal = true, name = STRINGS.NAMES.ROYAL_GALLERY, has_front = true}, "SWAP_SIGN", nil, MakeLock),
     MakeShelf("ruins", true, {animation = "ruins"}, nil, Curse),
     Prefab("shelves_lockvisual", lockvisual_fn, assets),
     Prefab("shelves_frontvisual", frontvisual_fn, assets)

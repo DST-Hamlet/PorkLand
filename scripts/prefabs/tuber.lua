@@ -27,6 +27,7 @@ local function fn()
     inst.pickupsound = "vegetation_firm"
 
     inst:AddTag("poisonous")
+    inst:AddTag("unsafefood")
 
     inst.entity:SetPristine()
 
@@ -83,6 +84,7 @@ local function cookedfn()
     inst.pickupsound = "vegetation_firm"
 
     inst:AddTag("poisonous")
+    inst:AddTag("unsafefood")
 
     inst.entity:SetPristine()
 

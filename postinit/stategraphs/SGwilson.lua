@@ -31,7 +31,8 @@ local function OnExitRow(inst)
                 equipped:PushEvent("stoprowing", {owner = inst})
             end
             if boat and boat.replica.sailable then
-                boat.replica.sailable:PlayIdleAnims()
+                -- boat.replica.sailable:PlayIdleAnims()
+                boat.replica.sailable:PlayAnim("idle_loop")
             end
         end
     end
@@ -50,7 +51,8 @@ local function OnExitSail(inst)
         end
         if inst.sg.nextstate ~= "row_stop" and inst.sg.nextstate ~= "sail_stop" then
             if boat and boat.replica.sailable then
-                boat.replica.sailable:PlayIdleAnims()
+                -- boat.replica.sailable:PlayIdleAnims()
+                boat.replica.sailable:PlayAnim("idle_loop")
             end
         end
     end
@@ -153,7 +155,11 @@ local actionhandlers = {
     ActionHandler(ACTIONS.BUILD_ROOM, "doshortaction"),
     ActionHandler(ACTIONS.DEMOLISH_ROOM, "doshortaction"),
     ActionHandler(ACTIONS.THROW, "throw"),
-    ActionHandler(ACTIONS.DODGE, "dodge"),
+    ActionHandler(ACTIONS.DODGE, function(inst)
+        if inst.AllowDodge and inst:AllowDodge() then
+            return "dodge"
+        end
+    end),
     -- TODO: This is currently unused, left here in case we want to use it in the future
     -- We later override it to match ACTION.CASTAOE's action handler
     ActionHandler(ACTIONS.SPELL_COMMAND, "dolongaction"),
@@ -169,22 +175,9 @@ local eventhandlers = {
             end
         end
     end),
-    EventHandler("sailunequipped", function(inst)
-        if inst.sg:HasStateTag("sailing") then
-            inst.sg:GoToState("pl_row")
+}
 
-            if not inst:HasTag("mime") then
-                inst.AnimState:OverrideSymbol("paddle", "swap_paddle", "paddle")
-            end
-            -- TODO allow custom paddles?
-            inst.AnimState:OverrideSymbol("wake_paddle", "swap_paddle", "wake_paddle")
-
-            local equipped = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
-            if equipped then
-                equipped:PushEvent("startrowing", {owner = inst})
-            end
-        end
-    end),
+local eventhandlers = {
     EventHandler("sneeze", function(inst, data)
         if not inst.components.health:IsDead() and not inst.components.health:IsInvincible() then
             if inst.sg:HasStateTag("busy") then
@@ -632,18 +625,23 @@ local states = {
             TimeEvent(49*FRAMES, function(inst)
                 inst.SoundEmitter:PlaySound("dontstarve/common/fishingpole_fishcaught")
             end),
-            TimeEvent(60*FRAMES, function(inst)
-                local fishingrod = inst.sg.statemem.tool ~= nil and inst.sg.statemem.tool.components.fishingrod
-                if fishingrod ~= nil and fishingrod.target and fishingrod.target.components.inventoryitem then
-                    local delta = inst:GetPosition() - fishingrod.target:GetPosition()
-                    fishingrod.target.components.inventoryitem:Launch(Vector3(0,10,0) + delta * 2)
-                elseif fishingrod ~= nil and fishingrod.target and fishingrod.target:HasTag("sunkencontainer") then
-                    local item = fishingrod.target.components.container:RemoveItemBySlot(1)
-                    item.Transform:SetPosition(fishingrod.target.Transform:GetWorldPosition())
-                    fishingrod.target:Remove()
-                    fishingrod.target = item
-                    local delta = inst:GetPosition() - fishingrod.target:GetPosition()
-                    fishingrod.target.components.inventoryitem:Launch(Vector3(0,10,0) + delta * 2)
+            TimeEvent(60*FRAMES, function(inst) -- 最好写在action里，现在有点耦合
+                local fishingrod = inst.sg.statemem.tool ~= nil and inst.sg.statemem.tool:IsValid() and inst.sg.statemem.tool.components.fishingrod or nil
+                local target = fishingrod and fishingrod.target ~= nil and fishingrod.target:IsValid() and fishingrod.target or nil
+                if fishingrod ~= nil and target and target.components.inventoryitem then
+                    local delta = inst:GetPosition() - target:GetPosition()
+                    target.components.inventoryitem:Launch(Vector3(0,10,0) + delta * 2)
+                    inst.sg.statemem.item = target
+                elseif fishingrod ~= nil and target and target:HasTag("sunkencontainer") then
+                    local item = target.components.container:RemoveItemBySlot(1)
+                    if item then
+                        item.Transform:SetPosition(target.Transform:GetWorldPosition())
+                        fishingrod.target = item
+                        local delta = inst:GetPosition() - target:GetPosition()
+                        fishingrod.target.components.inventoryitem:Launch(Vector3(0,10,0) + delta * 2)
+                        inst.sg.statemem.item = item
+                    end
+                    target:Remove()
                 end
 
                 if fishingrod then
@@ -654,7 +652,11 @@ local states = {
                 inst.SoundEmitter:PlaySound("dontstarve/common/fishingpole_fishland")
             end),
             TimeEvent(70*FRAMES, function(inst)
-                local fishingrod = inst.sg.statemem.tool ~= nil and inst.sg.statemem.tool.components.fishingrod
+                local item = inst.sg.statemem.item ~= nil and inst.sg.statemem.item:IsValid() and inst.sg.statemem.item or nil
+                if item and item.components.inventoryitem and item.components.inventoryitem.canbepickedup then
+                    inst.components.inventory:GiveItem(item)
+                end
+                local fishingrod = inst.sg.statemem.tool ~= nil and inst.sg.statemem.tool:IsValid() and inst.sg.statemem.tool.components.fishingrod or nil
                 if fishingrod ~= nil then
                     fishingrod:Retrieve()
                 end
@@ -1103,11 +1105,11 @@ local states = {
         tags = {"moving", "running", "rowing", "boating", "canrotate", "autopredict" },
 
         onenter = function(inst)
-            local boat = inst.replica.sailor:GetBoat()
-
             inst.components.locomotor:RunForward()
 
-            if not inst:HasTag("mime") then
+            local boat = inst.replica.sailor:GetBoat()
+
+            if not inst:HasTag("mime") then -- 韦斯手中不显示桨
                 inst.AnimState:OverrideSymbol("paddle", "swap_paddle", "paddle")
             end
             -- TODO allow custom paddles?
@@ -1119,20 +1121,22 @@ local states = {
 
             inst.AnimState:PlayAnimation(oar and oar:HasTag("oar") and "row_pre" or "row_pre_pl")
             if boat and boat.replica.sailable then
-                boat.replica.sailable:PlayPreRowAnims()
+                -- boat.replica.sailable:PlayPreRowAnims()
+                boat.replica.sailable:PlayAnim("row_pre")
             end
 
             DoFoleySounds(inst)
 
-            local equipped = inst.replica.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
-            if equipped then
-                equipped:PushEvent("startrowing", {owner = inst})
-            end
             inst:PushEvent("startrowing")
         end,
 
         onupdate = function(inst)
             inst.components.locomotor:RunForward()
+
+            local boat = inst.replica.sailor:GetBoat()
+            if boat and boat.replica.sailable and boat.replica.sailable:GetIsSailEquipped() then
+                inst.sg:GoToState("sail")
+            end
         end,
 
         onexit = OnExitRow,
@@ -1151,6 +1155,8 @@ local states = {
         tags = {"moving", "running", "rowing", "boating", "canrotate", "autopredict" },
 
         onenter = function(inst)
+            inst.components.locomotor:RunForward()
+
             local boat = inst.replica.sailor:GetBoat()
 
             if boat and boat.replica.sailable and boat.replica.sailable.creaksound then
@@ -1167,7 +1173,8 @@ local states = {
                 inst.AnimState:PlayAnimation(anim, true)
             end
             if boat and boat.replica.sailable then
-                boat.replica.sailable:PlayRowAnims()
+                -- boat.replica.sailable:PlayRowAnims()
+                boat.replica.sailable:PlayAnim("row_loop")
             end
 
             if boat and boat.components.rowboatwakespawner then
@@ -1186,6 +1193,11 @@ local states = {
 
         onupdate = function(inst)
             inst.components.locomotor:RunForward()
+            
+            local boat = inst.replica.sailor:GetBoat()
+            if boat and boat.replica.sailable and boat.replica.sailable:GetIsSailEquipped() then
+                inst.sg:GoToState("sail")
+            end
         end,
 
         onexit = OnExitRow,
@@ -1206,7 +1218,7 @@ local states = {
             EventHandler("trawlitem", function(inst)
                 local boat = inst.replica.sailor:GetBoat()
                 if boat and boat.replica.sailable then
-                    boat.replica.sailable:PlayTrawlOverAnims()
+                    -- boat.replica.sailable:PlayTrawlOverAnims()
                 end
             end),
         },
@@ -1225,7 +1237,15 @@ local states = {
 
             inst.AnimState:PlayAnimation(oar and oar:HasTag("oar") and "row_idle_pst" or "row_pst")
             if boat and boat.replica.sailable then
-                boat.replica.sailable:PlayPostRowAnims()
+                -- boat.replica.sailable:PlayPostRowAnims()
+                boat.replica.sailable:PlayAnim("row_pst")
+            end
+        end,
+
+        onexit = function(inst)
+            local boat = inst.replica.sailor:GetBoat()
+            if boat and boat.replica.sailable then
+                boat.replica.sailable:PlayAnim("idle_loop")
             end
         end,
 
@@ -1253,9 +1273,9 @@ local states = {
         tags = {"moving", "running", "canrotate", "boating", "sailing", "autopredict"},
 
         onenter = function(inst)
-            local boat = inst.replica.sailor:GetBoat()
-
             inst.components.locomotor:RunForward()
+
+            local boat = inst.replica.sailor:GetBoat()
 
             local anim = boat.replica.sailable.sailstartanim or "sail_pre"
             if anim ~= "sail_pre" or inst.has_sailface then
@@ -1264,7 +1284,8 @@ local states = {
                 inst.AnimState:PlayAnimation("sail_pre")
             end
             if boat and boat.replica.sailable then
-                boat.replica.sailable:PlayPreSailAnims()
+                -- boat.replica.sailable:PlayPreSailAnims()
+                boat.replica.sailable:PlayAnim("sail_pre")
             end
 
             local equipped = inst.replica.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
@@ -1275,6 +1296,17 @@ local states = {
 
         onupdate = function(inst)
             inst.components.locomotor:RunForward()
+
+            local boat = inst.replica.sailor:GetBoat()
+            if boat and boat.replica.sailable and not boat.replica.sailable:GetIsSailEquipped() then
+                inst.sg:GoToState("pl_row")
+        
+                if not inst:HasTag("mime") then
+                    inst.AnimState:OverrideSymbol("paddle", "swap_paddle", "paddle")
+                end
+                -- TODO allow custom paddles?
+                inst.AnimState:OverrideSymbol("wake_paddle", "swap_paddle", "wake_paddle")
+            end
         end,
 
         onexit = OnExitSail,
@@ -1293,6 +1325,8 @@ local states = {
         tags = {"canrotate", "moving", "running", "boating", "sailing", "autopredict"},
 
         onenter = function(inst)
+            inst.components.locomotor:RunForward()
+
             local boat = inst.replica.sailor:GetBoat()
 
             local loopsound = nil
@@ -1329,7 +1363,8 @@ local states = {
                 end
             end
             if boat and boat.replica.sailable then
-                boat.replica.sailable:PlaySailAnims()
+                -- boat.replica.sailable:PlaySailAnims()
+                boat.replica.sailable:PlayAnim("sail_loop")
             end
 
             if boat and boat.components.rowboatwakespawner then
@@ -1347,6 +1382,17 @@ local states = {
 
         onupdate = function(inst)
             inst.components.locomotor:RunForward()
+
+            local boat = inst.replica.sailor:GetBoat()
+            if boat and boat.replica.sailable and not boat.replica.sailable:GetIsSailEquipped() then
+                inst.sg:GoToState("pl_row")
+        
+                if not inst:HasTag("mime") then
+                    inst.AnimState:OverrideSymbol("paddle", "swap_paddle", "paddle")
+                end
+                -- TODO allow custom paddles?
+                inst.AnimState:OverrideSymbol("wake_paddle", "swap_paddle", "wake_paddle")
+            end
         end,
 
         onexit = OnExitSail,
@@ -1356,7 +1402,7 @@ local states = {
             EventHandler("trawlitem", function(inst)
                 local boat = inst.replica.sailor:GetBoat()
                 if boat and boat.replica.sailable then
-                    boat.replica.sailable:PlayTrawlOverAnims()
+                    -- boat.replica.sailable:PlayTrawlOverAnims()
                 end
             end),
         },
@@ -1379,7 +1425,15 @@ local states = {
                 inst.AnimState:PlayAnimation("sail_pst")
             end
             if boat and boat.replica.sailable then
-                boat.replica.sailable:PlayPostSailAnims()
+                -- boat.replica.sailable:PlayPostSailAnims()
+                boat.replica.sailable:PlayAnim("sail_pst")
+            end
+        end,
+
+        onexit = function(inst)
+            local boat = inst.replica.sailor:GetBoat()
+            if boat and boat.replica.sailable then
+                boat.replica.sailable:PlayAnim("idle_loop")
             end
         end,
 
@@ -2632,8 +2686,7 @@ local states = {
         },
     },
 
-    State
-    {
+    State{
         name = "dodge",
         tags = {"busy", "evade", "no_stun", "canrotate"},
 
@@ -2657,14 +2710,26 @@ local states = {
             inst.CanBeHit = function() return false end
 
             inst.last_dodge_time = GetTime()
+
+            if inst._candodge then
+                inst._candodge:set(false)
+                if inst.candodgetask then
+                    inst.candodgetask:Cancel()
+                    inst.candodgetask = nil
+                end
+                inst.candodgetask = inst:DoTaskInTime(TUNING.WHEELER_DODGE_COOLDOWN, function()
+                    inst.candodgetask = nil
+                    inst._candodge:set(true)
+                end)
+            end
         end,
 
         timeline=
         {
-            TimeEvent(3*FRAMES, function(inst)
+            TimeEvent(3 * FRAMES, function(inst)
                 inst.Physics:SetMotorVelOverride(14, 0, 0)
             end),
-            TimeEvent(8*FRAMES, function(inst)
+            TimeEvent(8 * FRAMES, function(inst)
                 inst.Physics:SetMotorVelOverride(8, 0, 0)
                 inst.AnimState:PlayAnimation("slide_pst")
             end),
@@ -2686,8 +2751,7 @@ local states = {
         end,
     },
 
-    State
-    {
+    State{
         name = "dodge_pst",
         tags = {"evade", "no_stun"},
 
@@ -3013,6 +3077,16 @@ AddStategraphPostInit("wilson", function(sg)
 
     sg.events["boatattacked"] = EventHandler("boatattacked", sg.events.attacked.fn)
 
+    local _hit_onenter = sg.states["hit"].onenter
+    sg.states["hit"].onenter = function(inst, ...)
+        local boat = inst.replica.sailor:GetBoat()
+        if boat and boat.replica.sailable then
+            -- boat.replica.sailable:PlayPostRowAnims()
+            boat.replica.sailable:PlayAnim("hit")
+        end
+        return _hit_onenter(inst, ...)
+    end
+
     -- Disembark properly and drop no skeleton
     local _death_animover = sg.states["death"].events.animover.fn
     sg.states["death"].events.animover.fn = function(inst, ...)
@@ -3147,12 +3221,22 @@ AddStategraphPostInit("wilson", function(sg)
         end
     end
 
+    local _start_sitting_onenter = sg.states["start_sitting"].onenter
+    sg.states["start_sitting"].onenter = function(inst, chair, ...)
+        _start_sitting_onenter(inst, chair, ...)
+        if chair and chair:HasTag("limited_chair") then
+            if chair:HasTag("rotatableobject") then
+                inst.Transform:SetPredictedTwoFaced()
+            end
+        end
+    end
+
     local _sit_jumpon_onenter = sg.states["sit_jumpon"].onenter
     sg.states["sit_jumpon"].onenter = function(inst, chair, ...)
         _sit_jumpon_onenter(inst, chair, ...)
         if chair and chair:HasTag("limited_chair") then
             if chair:HasTag("rotatableobject") then
-                inst.Transform:SetPredictedNoFaced()
+                inst.Transform:SetTwoFaced()
             end
         end
     end
@@ -3233,7 +3317,7 @@ AddStategraphPostInit("wilson", function(sg)
             inst.sg:GoToState("sink_boat", data.shore_pt)
         else
             if inst.components.sailor and inst.components.sailor.boat and inst.components.sailor.boat.components.container then
-                inst.components.sailor.boat.components.container:Close(true)
+                inst.components.sailor.boat.components.container:ForceClose()
             end
             _onsink_eventhandler(inst, data, ...)
         end
@@ -3245,7 +3329,7 @@ AddStategraphPostInit("wilson", function(sg)
             inst.sg:GoToState("death_drown")
         else
             if inst.components.sailor and inst.components.sailor.boat and inst.components.sailor.boat.components.container then
-                inst.components.sailor.boat.components.container:Close(true)
+                inst.components.sailor.boat.components.container:ForceClose()
             end
             _death_eventhandler(inst, data)
         end

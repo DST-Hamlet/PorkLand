@@ -251,31 +251,25 @@ function Map:CanDeployAquaticAtPointInWater(pt, data, player)
     end
 
     local boating = true
-    local platform = false
     if player ~= nil then
         local px, py, pz = player.Transform:GetWorldPosition()
-        boating = self:IsOceanAtPoint(px, py, pz)
-        platform = self:GetPlatformAtPoint(px, py, pz)
+        boating = player.replica.sailor:GetBoat() and true or self:ReverseIsVisualWaterAtPoint(px, py, pz)
     end
 
-    if boating or platform then
-        if platform and platform.components.walkableplatform and math.sqrt(platform:GetDistanceSqToPoint(x, 0, z)) > platform.components.walkableplatform.platform_radius + (data.platform_buffer_max or 0.5) + 1.3 then --1.5 is closer but some distance should be cut for ease of use
-            return false
-        end
-        local min_buffer = data.aquatic_buffer_min or 2
-        return self:IsSurroundedByWater(x, y, z, min_buffer + 1) -- Add 1 for overhang
+    if not self:ReverseIsVisualWaterAtPoint(x, y, z) then
+        return false
+    end
+    
+    local min_buffer = data.shore_buffer_min or 0.5
+
+    if not self:IsSurroundedByWater(x, y, z, min_buffer) then -- 水陆边界空气墙更靠近水体一侧，因此水上建筑不能建造在过于靠近水陆边界的地方
+        return false
+    end
+
+    if boating then
+        return true
     else
         if data.noshore then -- used by the ballphinhouse
-            return false
-        end
-
-        if not self:ReverseIsVisualWaterAtPoint(x, y, z) then
-            return false
-        end
-
-        local min_buffer = data.shore_buffer_min or 0.5
-
-        if not self:IsSurroundedByWater(x, y, z, min_buffer) then
             return false
         end
 
@@ -306,8 +300,9 @@ function Map:IsAboveGroundAtPoint(x, y, z, allow_water, ...)
         return TheWorld.components.interiorspawner:IsInInteriorRoom(x, z)
     end
     if TheWorld.has_pl_ocean then
-        local valid_water_tile = (allow_water == true) and self:ReverseIsVisualWaterAtPoint(x, y, z)
-        return valid_water_tile or _IsAboveGroundAtPoint(self, x, y, z, ...)
+        if not allow_water and self:ReverseIsVisualWaterAtPoint(x, y, z) then
+            return false
+        end
     end
     return _IsAboveGroundAtPoint(self, x, y, z, ...)
 end

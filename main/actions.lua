@@ -57,9 +57,9 @@ if not rawget(_G, "HotReloading") then
 
         SEARCH_MYSTERY = Action({priority = -1, distance = 1}),
 
-        THROW = Action({priority = 0, instant = false, rmb = true, distance = 20, mount_valid = true}),
+        THROW = Action({priority = 0, invalid_hold_action = true, rmb = true, distance = 20, mount_valid = true}),
 
-        DODGE = Action({priority = -5, instant = false, distance = math.huge}),
+        DODGE = Action({priority = -5, invalid_hold_action = true, distance = math.huge}),
 
         -- Replacing CASTAOE for custom controls
         SPELL_COMMAND = Action({mount_valid = true, distance = 35}),
@@ -157,6 +157,15 @@ ACTIONS.PANGOLDEN_POOP.fn = function(act)
     return true
 end
 
+ACTIONS.FISH.extra_arrive_dist = function(doer, dest, bufferedaction)
+    local target = dest and dest.inst or nil
+    if target and (target:HasTag("sink") or target:HasTag("sunkencontainer")) then
+        return 1
+    end
+
+    return 0
+end
+
 ACTIONS.FISH.strfn = function(act)
     if act.target and (act.target:HasTag("sink") or act.target:HasTag("sunkencontainer")) then
         return "RETRIEVE"
@@ -244,12 +253,20 @@ ACTIONS.TOGGLEON.fn = function(act)
     end
 end
 
+ACTIONS.TOGGLEON.stroverridefn = function(act)
+    return STRINGS.ACTIONS.TURNON
+end
+
 ACTIONS.TOGGLEOFF.fn = function(act)
     local tar = act.target or act.invobject
     if tar and tar.components.equippable and tar.components.equippable:IsEquipped() and tar.components.equippable.togglable and tar.components.equippable:IsToggledOn() then
         tar.components.equippable:ToggleOff()
         return true
     end
+end
+
+ACTIONS.TOGGLEOFF.stroverridefn = function(act)
+    return STRINGS.ACTIONS.TURNOFF.GENERIC
 end
 
 ACTIONS.REPAIRBOAT.fn = function(act)
@@ -634,7 +651,7 @@ function ACTIONS.EQUIP.fn(act, ...)
     if act.doer.components.sailor and act.doer.components.sailor.boat and act.invobject.components.equippable.boatequipslot then
         local boat = act.doer.components.sailor.boat
         if boat.components.container and boat.components.container.hasboatequipslots then
-            boat.components.container:Equip(act.invobject)
+            boat.components.container:BoatEquip(act.invobject)
         end
     end
 end
@@ -715,40 +732,12 @@ ACTIONS.RUMMAGE.extra_arrive_dist = function(doer, dest, ...)
     return ret
 end
 
-local _RUMMAGE_strfn = ACTIONS.RUMMAGE.strfn
-function ACTIONS.RUMMAGE.strfn(act, ...)
-    local target = act.target or act.invobject
-    if target and target.replica.container and target.replica.container.type == "boat" then
-        return target.replica.container:IsOpenedBy(act.doer) and "CLOSE" or "INSPECT"
-    end
-    return _RUMMAGE_strfn(act, ...)
-end
-
-local _RUMMAGE_fn = ACTIONS.RUMMAGE.fn
-function ACTIONS.RUMMAGE.fn(act, ...)
-    local ret = {_RUMMAGE_fn(act, ...)}
-    if ret[1] == nil then
-        local targ = act.target or act.invobject
-
-        if targ ~= nil and targ.components.container ~= nil then
-            if not targ.components.container.canbeopened and targ.components.container.type == "boat" then
-                if CanEntitySeeTarget(act.doer, targ) then
-                    act.doer:PushEvent("opencontainer", { container = targ })
-                    targ.components.container:Open(act.doer)
-                end
-                return true
-            end
-        end
-    end
-    return unpack(ret)
-end
-
 local _UNEQUIP_fn = ACTIONS.UNEQUIP.fn
 function ACTIONS.UNEQUIP.fn(act, ...)
     if act.invobject.components.equippable.boatequipslot and act.invobject.parent then
         local boat = act.invobject.parent
         if boat.components.container then
-            boat.components.container:Unequip(act.invobject.components.equippable.boatequipslot)
+            boat.components.container:BoatUnequip(act.invobject.components.equippable.boatequipslot)
             if act.invobject.components.inventoryitem.cangoincontainer and not GetGameModeProperty("non_item_equips") then
                 act.doer.components.inventory:GiveItem(act.invobject)
             else
@@ -958,7 +947,8 @@ local PL_COMPONENT_ACTIONS =
             end
         end,
         poisonhealer = function(inst, doer, target, actions, right)
-            if right and target and target:HasTag("poisonable") then
+            if right and target and target:HasTag("poisonable")
+                and (TheNet:GetPVPEnabled() or target:HasTag("poison")) then
                 table.insert(actions, ACTIONS.CUREPOISON)
             end
         end,
@@ -1083,12 +1073,8 @@ local INVENTORY = COMPONENT_ACTIONS.INVENTORY
 
 local _SCENE_container = SCENE.container
 function SCENE.container(inst, doer, actions, right, ...)
-    if not inst:HasTag("bundle") and not inst:HasTag("burnt") and not inst:HasTag("noslot")
-        and doer.replica.inventory
-        and not (doer.replica.rider ~= nil and doer.replica.rider:IsRiding())
-        and right and inst.replica.container.type == "boat" then
-
-        table.insert(actions, ACTIONS.RUMMAGE)
+    if right and inst.replica.container.type == "boat" then
+        _SCENE_container(inst, doer, actions, right, ...)
     else
         _SCENE_container(inst, doer, actions, right, ...)
     end
@@ -1196,7 +1182,7 @@ function INVENTORY.equippable(inst, doer, actions, ...)
 
         local sailor = doer.replica.sailor
         local boat = sailor and sailor:GetBoat()
-        if boat and boat.replica.container.hasboatequipslots and boat.replica.container.enableboatequipslots then
+        if boat and boat.replica.container.hasboatequipslots then
             canEquip = true
         end
     end

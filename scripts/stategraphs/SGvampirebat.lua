@@ -393,7 +393,10 @@ CommonStates.AddCombatStates(states, {
     {
         TimeEvent(1 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/vampire_bat/death") end),
         TimeEvent(4 * FRAMES, function(inst) inst:PushEvent("wingdown") end),
-        TimeEvent(17 * FRAMES, function(inst) PL_LandFlyingCreature(inst) end),
+        TimeEvent(17 * FRAMES, function(inst)
+            PL_LandFlyingCreature(inst)
+            RemovePhysicsColliders(inst)
+        end),
     },
 })
 

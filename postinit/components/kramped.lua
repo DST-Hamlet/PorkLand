@@ -14,6 +14,11 @@ AddComponentPostInit("kramped", function(self, inst)
 
             playerdata.actions = playerdata.actions + (how_naughty or 1)
             playerdata.timetodecay = TUNING.KRAMPUS_NAUGHTINESS_DECAY_PERIOD
+
+            if how_naughty > 0 then
+                playerdata.player.kramped_interior_up = true
+            end
+
             return
         else
             OnNaughtyAction(how_naughty, playerdata, ...)

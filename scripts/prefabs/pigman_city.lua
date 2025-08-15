@@ -152,30 +152,30 @@ local function ondonetalking(inst)
     inst.SoundEmitter:KillSound("talk")
 end
 
-local function ontalk(inst, script, mood)
-    -- TODO: Make alarmed mood work
+local function ontalk(inst, data)
     inst.SoundEmitter:KillSound("talk")
     if inst:HasTag("guard") then
-        if mood == "alarmed" then
+        if inst.mood == "alarmed" then
             inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/city_pig/guard_alert")
         else
             inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/city_pig/conversational_talk_gaurd", "talk")
         end
     else
         if inst.female then
-            if mood == "alarmed" then
+            if inst.mood == "alarmed" then
                 inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/city_pig/scream_female")
             else
                 inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/city_pig/conversational_talk_female", "talk")
             end
         else
-            if mood == "alarmed" then
+            if inst.mood == "alarmed" then
                 inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/city_pig/scream")
             else
                 inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/city_pig/conversational_talk", "talk")
             end
         end
     end
+    inst.mood = nil
 end
 
 local function GetStatus(inst)
@@ -355,9 +355,10 @@ local function OnGetItemFromPlayer(inst, giver, item)
                 behappy = true
             end
 
-            if item.prefab == "relic_4" or item.prefab == "relic_5" then
-                behappy = true
-            end
+            -- these will never trigger
+            -- if item.prefab == "relic_4" or item.prefab == "relic_5" then
+            --     behappy = true
+            -- end
             if behappy then
                 inst:PushEvent("behappy")
             end
@@ -624,7 +625,7 @@ local function NormalRetargetFn(inst)
             return (guy:HasTag("monster") or guy:HasTag("bandit") or angry_at_guy) and
                        guy.components.health and not guy.components.health:IsDead() and
                        inst.components.combat:CanTarget(guy) and
-                       not (inst.components.follower.leader ~= nil and guy:HasTag("abigail"))
+                       not (inst.components.follower.leader ~= nil and guy.components.follower ~= nil and (inst.components.follower.leader == guy.components.follower.leader))
         end
     end)
 end

@@ -304,7 +304,7 @@ local function fn()
     MakeTinyFreezableCharacter(inst, "torso")
     MakeFeedableSmallLivestock(inst, TUNING.TOTAL_DAY_TIME * 2, nil, OnDropped)
     MakeHauntablePanic(inst)
-    MakePoisonableCharacter(inst)
+    MakePoisonableCharacter(inst, "torso")
 
     -- When a piko is first created, ensure that it isn't rabid.
     SetAsRabid(inst, false)

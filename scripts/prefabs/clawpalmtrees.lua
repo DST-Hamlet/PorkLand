@@ -370,7 +370,7 @@ local function MakeTree(name, stage, data)
 
         inst:SetPrefabName("clawpalmtree")
 
-        MakeTreeClientFallAnim(inst, anims)
+        MakeTreeClientFallAnim(inst, anims, stage)
 
         inst.entity:SetPristine()
 

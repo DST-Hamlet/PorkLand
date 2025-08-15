@@ -120,7 +120,7 @@ function FollowCamera:Apply(...)
     if TheWorld and TheWorld.components.cloudmanager then
         TheWorld.components.cloudmanager:UpdatePos()
     end
-    
+
     return unpack(ret)
 end
 

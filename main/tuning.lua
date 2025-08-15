@@ -246,7 +246,6 @@ local tuning = {
     SNAKE_JUNGLETREE_POISON_CHANCE = 0.25, -- chance of a poison snake
     SNAKE_JUNGLETREE_AMOUNT_TALL = 2, -- num of times to try and spawn a snake from a tall tree
     SNAKE_JUNGLETREE_AMOUNT_NORMAL = 1, -- num of times to try and spawn a snake from a normal tree
-    SNAKE_JUNGLETREE_AMOUNT_SHORT = 1, -- num of times to try and spawn a snake from a small tree
     SNAKEDEN_MAX_SNAKES = 3,
     SNAKEDEN_CHECK_DIST = 20,
     SNAKEDEN_TRAP_DIST = 2,
@@ -703,8 +702,11 @@ local tuning = {
     GIANT_GRUB_RESPAWN_TIME = total_day_time,
     GIANT_GRUB_ENABLED = true,
 
+    CHARACTER_HITREACT_COOLDOWN = 0.75,
+    CHARACTER_HITREACT_COOLDOWN_LONG = 1.25,
     CHARACTER_MAX_STUN_LOCKS = 5,
-    BOSS_HITREACT_COOLDOWN = 1,
+    BOSS_HITREACT_COOLDOWN = 1.25,
+    BOSS_HITREACT_COOLDOWN_LONG = 2,
     BOSS_MAX_STUN_LOCKS = 1,
 
     COCONADE_FUSE = 5,

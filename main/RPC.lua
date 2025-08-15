@@ -30,28 +30,6 @@ local function ConvertPlatformRelativePositionToAbsolutePosition(platform, relat
     return Vector3(x, 0, z)
 end
 
-AddModRPCHandler("Porkland", "BoatEquipActiveItem", function(player, container)
-    if container ~= nil then
-        container.components.container:BoatEquipActiveItem()
-    end
-end)
-
-AddModRPCHandler("Porkland", "SwapBoatEquipWithActiveItem", function(player, container)
-    if container ~= nil then
-        container.components.container:SwapBoatEquipWithActiveItem()
-    end
-end)
-
-AddModRPCHandler("Porkland", "TakeActiveItemFromBoatEquipSlot", function(player, eslot, container)
-    if not checknumber(eslot) then
-        printinvalid("TakeActiveItemFromBoatEquipSlot", player)
-        return
-    end
-    if container ~= nil then
-        container.components.container:TakeActiveItemFromBoatEquipSlotID(eslot)
-    end
-end)
-
 AddShardModRPCHandler("Porkland", "SetAporkalypseClockRewindMult", function(shardid, rewind_mult)
     if not TheWorld.ismastershard then
         return

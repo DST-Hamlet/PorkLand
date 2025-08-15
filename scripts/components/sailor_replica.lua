@@ -9,19 +9,10 @@ local function OnBoatDirty(sailor)
     end
 
     if sailor._currentboat and sailor._currentboat:IsValid() then
-
-        sailor._currentboat.prefab = sailor._currentboat.actualprefab
-        sailor._currentboat.actualprefab = nil
-        sailor._currentboat.nameoverride = nil
-
         -- RemoveLocalNOCLICK(sailor._currentboat)
     end
     if sailor._boat:value() then
         sailor._currentboat = sailor._boat:value()
-
-        sailor._currentboat.actualprefab = sailor._currentboat.prefab
-        sailor._currentboat.prefab = "player_"..sailor._currentboat.actualprefab
-        sailor._currentboat.nameoverride = sailor._currentboat.actualprefab
 
         if sailor.inst == ThePlayer then
             -- LocalNOCLICK(sailor._currentboat)

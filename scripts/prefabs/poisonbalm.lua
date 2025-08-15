@@ -14,6 +14,8 @@ local function fn()
     MakeInventoryFloatable(inst)
     inst.components.floater:UpdateAnimations("idle_water", "idle")
 
+    inst:AddTag("venomgland")
+
     inst.AnimState:SetBank("poison_salve")
     inst.AnimState:SetBuild("poison_salve")
     inst.AnimState:PlayAnimation("idle")

@@ -1,5 +1,7 @@
 GLOBAL.setfenv(1, GLOBAL)
 
+is_fogtest = false -- 全局变量加在这里？
+
 local _TempTile_HandleTileChange_Void = TempTile_HandleTileChange_Void
 function TempTile_HandleTileChange_Void(x, y, z)
     if TheWorld and TheWorld:HasTag("porkland") then
@@ -455,8 +457,6 @@ function TagToDirect(inst)
         return 0
     end
 end
-
-local INTERIOR_SPACEING = 20
 
 -- Calculate the offset of the interior coordinates,
 -- and convert them into estimated world position offset,

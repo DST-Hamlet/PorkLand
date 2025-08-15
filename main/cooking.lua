@@ -36,3 +36,15 @@ AddIngredientValues({"coi", "coi_cooked"}, {meat=.5,fish=.5}, true)
 AddIngredientValues({"foliage"}, {veggie=1})
 
 AddIngredientValues({"cutnettle"}, {antihistamine=1})
+
+local cooking = require("cooking")
+
+local get_recipe = cooking.GetRecipe
+function cooking.GetRecipe(cooker, product, ...)
+    local recipe = get_recipe(cooker, product, ...)
+    if recipe and recipe.yotp and TheWorld and TheWorld.state.isfiesta then
+        recipe = shallowcopy(recipe)
+        recipe.overridebuild = "cook_pot_food_yotp"
+    end
+    return recipe
+end

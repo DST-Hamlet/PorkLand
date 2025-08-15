@@ -13,6 +13,8 @@ AddPrefabPostInit("grass", function(inst)
         if NUTRIENT_TILES[tile] then
             local tallgrass = ReplacePrefab(inst, "grass_tall")
             tallgrass.components.growable:SetStage(2)
+            tallgrass.AnimState:PlayAnimation("grow")
+            tallgrass.AnimState:PushAnimation("idle", true)
             return
         end
         _onregenfn(inst, ...)
@@ -25,6 +27,7 @@ AddPrefabPostInit("grass", function(inst)
         local tile = TheWorld.Map:GetTileAtPoint(x, y, z)
         if NUTRIENT_TILES[tile] then
             local tallgrass = ReplacePrefab(inst, "grass_tall")
+            tallgrass.components.growable:SetStage(1)
             tallgrass.components.growable:StartGrowing()
             return
         end

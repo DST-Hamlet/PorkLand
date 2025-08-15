@@ -124,6 +124,7 @@ local states =
         {
             TimeEvent(16 * FRAMES, function(inst)
                 PL_LandFlyingCreature(inst)
+                RemovePhysicsColliders(inst)
             end)
         }
     },

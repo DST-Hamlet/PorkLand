@@ -124,8 +124,7 @@ local function MakeBird(name, sounds, feather_name, isreplace)
         inst.entity:AddNetwork()
 
         inst.Physics:SetCollisionGroup(COLLISION.FLYERS)
-        inst.Physics:ClearCollisionMask()
-        inst.Physics:CollidesWith(COLLISION.WORLD)
+        inst.Physics:SetCollisionMask(COLLISION.WORLD)
         inst.Physics:SetMass(1)
         inst.Physics:SetSphere(1)
 
@@ -155,6 +154,10 @@ local function MakeBird(name, sounds, feather_name, isreplace)
 
         if isreplace then
             inst:SetPrefabNameOverride(name)
+        end
+
+        if name == "kingfisher" then
+            MakeInventoryFloatable(inst, nil, .07)
         end
 
         MakeFeedableSmallLivestockPristine(inst)
@@ -192,7 +195,9 @@ local function MakeBird(name, sounds, feather_name, isreplace)
         inst.components.inventoryitem.nobounce = true
         inst.components.inventoryitem.canbepickedup = false
         inst.components.inventoryitem.canbepickedupalive = true
-        inst.components.inventoryitem:SetSinks(true)
+        if name ~= "kingfisher" then
+            inst.components.inventoryitem:SetSinks(true)
+        end
         if isreplace then
             inst.components.inventoryitem:ChangeImageName(name)
         end

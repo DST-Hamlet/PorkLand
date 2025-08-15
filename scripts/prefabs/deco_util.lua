@@ -582,18 +582,20 @@ local function MakeDeco(build, bank, animframe, data, name)
                 inst.Physics:SetCapsule(4.7, 1)
                 inst:SetDeployExtraSpacing(5)
                 inst.Physics:SetCollisionGroup(COLLISION.OBSTACLES)
-                inst.Physics:ClearCollisionMask()
-                inst.Physics:CollidesWith(COLLISION.ITEMS)
-                inst.Physics:CollidesWith(COLLISION.CHARACTERS)
+                inst.Physics:SetCollisionMask(
+                    COLLISION.ITEMS,
+                    COLLISION.CHARACTERS
+                )
             elseif physics == "pond_physics" then
                 inst:AddTag("blocker")
                 inst.entity:AddPhysics()
                 inst.Physics:SetMass(0)
                 inst.Physics:SetCapsule(1.6, 1)
                 inst.Physics:SetCollisionGroup(COLLISION.OBSTACLES)
-                inst.Physics:ClearCollisionMask()
-                inst.Physics:CollidesWith(COLLISION.ITEMS)
-                inst.Physics:CollidesWith(COLLISION.CHARACTERS)
+                inst.Physics:SetCollisionMask(
+                    COLLISION.ITEMS,
+                    COLLISION.CHARACTERS
+                )
             elseif physics == "big_post_physics" then
                 MakeObstaclePhysics(inst, 0.75)
             elseif physics == "post_physics" then
@@ -634,7 +636,7 @@ local function MakeDeco(build, bank, animframe, data, name)
                 inst.Transform:SetTwoFaced()
             end
         end
-        
+
         if name_override then
             inst.name = STRINGS.NAMES[name_override:upper()]
             inst:SetPrefabNameOverride(name_override)

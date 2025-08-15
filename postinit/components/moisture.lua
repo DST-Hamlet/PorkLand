@@ -4,32 +4,47 @@ GLOBAL.setfenv(1, GLOBAL)
 local easing = require("easing")
 local Moisture = require("components/moisture")
 
-function Moisture:GetMoistureRate(...)
-    local rate = self:_GetMoistureRateAssumingRain()
-    local waterproofmult =
-        (   self.inst.components.sheltered ~= nil and
-            self.inst.components.sheltered.sheltered and
-            self.inst.components.sheltered.waterproofness or 0
-        ) +
-        (   self.inst.components.inventory ~= nil and
-            self.inst.components.inventory:GetWaterproofness() or 0
-        ) +
-        (   self.inherentWaterproofness or 0
-        ) +
-        (
-            self.waterproofnessmodifiers:Get() or 0
-        )
+function Moisture:_GetMoistureRateAssumingFog()
+    is_fogtest = true
+    local waterproofmult = self:GetWaterproofness()
+    
+    is_fogtest = false
+
     if waterproofmult >= 1 then
-        waterproofmult = 1
+        return 0
     end
+
+    local rate = easing.inSine(TheWorld.state.precipitationrate, self.minMoistureRate, self.maxMoistureRate, 1)
+    return rate * (1 - waterproofmult)
+end
+
+local _GetMoistureRate = Moisture.GetMoistureRate
+function Moisture:GetMoistureRate(...)
+    local rate = 0
+
+    -- 天气影响
+    
+    if TheWorld.state.fogstate == FOG_STATE.FOGGY or TheWorld.state.fogstate == FOG_STATE.SETTING then
+        rate = self:_GetMoistureRateAssumingFog() * TUNING.FOG_MOISTURE_RATE_SCALE
+    else
+        rate = _GetMoistureRate(self, ...)
+    end
+
     local x, _, z = self.inst.Transform:GetWorldPosition()
     if TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
         rate = 0
-    elseif TheWorld.state.fullfog then
-        rate = rate * TUNING.FOG_MOISTURE_RATE_SCALE
     end
+
+    -- 非天气影响
+
+    if self.inst.components.inventory and self.inst.components.inventory:IsFloaterHeld() then
+		rate = _GetMoistureRate(self, ...)
+    end
+    
+    local waterproofmult = self:GetWaterproofness()
     rate = rate + self:GetExternalMoistureRate() * (1 - waterproofmult)
-    return rate  -- fog moisture rate
+
+    return rate
 end
 
 local MUST_TAGS = {"blows_air"}

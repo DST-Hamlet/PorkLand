@@ -29,37 +29,28 @@ local events=
     CommonHandlers.OnAttack(),
     CommonHandlers.OnAttacked(nil, TUNING.CHARACTER_MAX_STUN_LOCKS),
     CommonHandlers.OnDeath(),
-    EventHandler("transformnormal", function(inst) if inst.components.health:GetPercent() > 0 then inst.sg:GoToState("transformNormal") end end),
-    EventHandler("doaction",
-        function(inst, data)
-           assert(false,"I think this is not used anymore?")
-        end),
 
-    EventHandler("behappy",
-        function(inst, data)
-            inst.sg:GoToState("happy")
-        end),
-    EventHandler("dance",
-        function(inst, data)
-            if not inst.sg:HasStateTag("busy") then
-                inst.sg:GoToState("dance")
-            end
-        end),
-    EventHandler("onsurprised",
-        function(inst, data)
-            if inst.components.health ~= nil and not inst.components.health:IsDead()
-                and not inst.sg:HasStateTag("busy") then
-
-                inst.sg:GoToState("hit")
-            end
-        end),
+    EventHandler("behappy", function(inst, data)
+        inst.sg:GoToState("happy")
+    end),
+    EventHandler("dance", function(inst, data)
+        if not inst.sg:HasStateTag("busy") then
+            inst.sg:GoToState("dance")
+        end
+    end),
+    EventHandler("onsurprised", function(inst, data)
+        if inst.components.health ~= nil and not inst.components.health:IsDead() and not inst.sg:HasStateTag("busy") then
+            inst.sg:GoToState("hit")
+        end
+    end),
 }
 
 local states =
 {
-     State {
+     State{
         name = "idle",
         tags = {"idle", "canrotate"},
+
         onenter = function(inst, pushanim)
             inst.components.locomotor:StopMoving()
             local anim = "idle_loop"
@@ -74,11 +65,11 @@ local states =
             end
         end,
 
-       events=
+       events =
         {
             EventHandler("animover", function(inst)
-                if TheWorld.state.isfiesta and  math.random()< 0.5 then
-                    if math.random()< 0.3 then
+                if TheWorld.state.isfiesta and  math.random() < 0.5 then
+                    if math.random() < 0.3 then
                         inst.sg:GoToState("throwcracker")
                     else
                         inst.sg:GoToState("dance")
@@ -88,12 +79,12 @@ local states =
                 end
             end),
         },
-
     },
 
-     State {
+    State{
         name = "dance",
         tags = {"canrotate", "busy"},
+
         onenter = function(inst, pushanim)
             if math.random() < 0.3 then
                 inst:SayLine(inst:GetSpeechType("CITY_PIG_TALK_FIESTA"))
@@ -102,15 +93,13 @@ local states =
             inst.AnimState:PlayAnimation("idle_happy")
         end,
 
-       events=
+       events =
         {
             EventHandler("animover", function(inst)
                 inst.sg:GoToState("idle")
             end),
         },
     },
-
-
 
     State{
         name = "throwcracker",
@@ -121,22 +110,21 @@ local states =
             inst.Physics:Stop()
         end,
 
-        timeline=
+        timeline =
         {
-            TimeEvent(13*FRAMES,
-                function(inst)
-                   inst.throwcrackers(inst)
-                end ),
+            TimeEvent(13 * FRAMES, function(inst)
+                inst.throwcrackers(inst)
+            end),
         },
 
-        events=
+        events =
         {
             EventHandler("animover", function(inst) inst.sg:GoToState("idle") end),
         },
     },
 
     State{
-        name= "alert",
+        name = "alert",
         tags = {"idle", "alert"},
 
         onenter = function(inst)
@@ -159,23 +147,7 @@ local states =
             end
         end,
 
-        events=
-        {
-            EventHandler("animover", function(inst) inst.sg:GoToState("idle") end ),
-        },
-    },
-
-    State{
-        name= "scared",
-        tags = {"idle"},
-
-        onenter = function(inst)
-            inst.Physics:Stop()
-            inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/city_pig/scream")
-            inst.AnimState:PlayAnimation("idle_scared")
-        end,
-
-        events=
+        events =
         {
             EventHandler("animover", function(inst) inst.sg:GoToState("idle") end ),
         },
@@ -190,7 +162,7 @@ local states =
             inst.AnimState:PlayAnimation("idle_happy")
         end,
 
-        events=
+        events =
         {
             EventHandler("animover", function(inst) inst.sg:GoToState("idle") end),
         },
@@ -222,33 +194,7 @@ local states =
 
         events =
         {
-            EventHandler("animover", function(inst) inst.sg:GoToState("idle") end ),
-        },
-    },
-
-    State{
-        name = "transformNormal",
-        tags = {"transform", "busy", "sleeping"},
-
-        onenter = function(inst)
-            inst.Physics:Stop()
-            inst.SoundEmitter:PlaySound("dontstarve/creatures/werepig/transformToPig")
-            inst.AnimState:SetBuild("werepig_build")
-            inst.AnimState:PlayAnimation("transform_were_pig")
-            inst:RemoveTag("hostile")
-
-        end,
-
-        onexit = function(inst)
-            inst.AnimState:SetBuild(inst.build)
-        end,
-
-        events=
-        {
-            EventHandler("animover", function(inst)
-                inst.components.sleeper:GoToSleep(15+math.random()*4)
-                inst.sg:GoToState("sleeping")
-            end ),
+            EventHandler("animover", function(inst) inst.sg:GoToState("idle") end),
         },
     },
 
@@ -270,12 +216,12 @@ local states =
             inst.AnimState:PlayAnimation("atk")
         end,
 
-        timeline=
+        timeline =
         {
             TimeEvent(13*FRAMES, function(inst) inst.components.combat:DoAttack() inst.sg:RemoveStateTag("attack") inst.sg:RemoveStateTag("busy") end),
         },
 
-        events=
+        events =
         {
             EventHandler("animover", function(inst) inst.sg:GoToState("idle") end),
         },
@@ -283,20 +229,20 @@ local states =
 
     State{
         name = "interact",
-        tags = {"interact","busy"},
+        tags = {"interact", "busy"},
 
         onenter = function(inst)
             inst.Physics:Stop()
             inst.AnimState:PlayAnimation("interact")
         end,
 
-        timeline=
+        timeline =
         {
 
-            TimeEvent(13*FRAMES, function(inst) inst:PerformBufferedAction() end ),
+            TimeEvent(13 * FRAMES, function(inst) inst:PerformBufferedAction() end),
         },
 
-        events=
+        events =
         {
             EventHandler("animover", function(inst) inst.sg:GoToState("idle") end),
         },
@@ -309,18 +255,17 @@ local states =
         onenter = function(inst)
             inst.Physics:Stop()
             inst.AnimState:PlayAnimation("atk")
-
         end,
 
-        timeline=
+        timeline =
         {
-            TimeEvent(13*FRAMES, function(inst)
+            TimeEvent(13 * FRAMES, function(inst)
                 inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/house_repair")
                 inst:PerformBufferedAction()
-            end ),
+            end),
         },
 
-        events=
+        events =
         {
             EventHandler("animover", function(inst)
                 if inst.AnimState:AnimDone() then
@@ -330,7 +275,7 @@ local states =
         },
     },
 
-    State {
+    State{
         name = "desk_pre",
         tags = {"desk"},
 
@@ -342,19 +287,19 @@ local states =
 
         events =
         {
-            EventHandler("animover", function(inst) inst.keepdesk = true inst.sg:GoToState("desk_idle") end ),
+            EventHandler("animover", function(inst) inst.keepdesk = true inst.sg:GoToState("desk_idle") end),
         },
 
         onexit = function(inst)
             if inst.keepdesk then
-                 inst.keepdesk = nil
+                inst.keepdesk = nil
             else
-               inst.separatedesk(inst,true)
+               inst.separatedesk(inst, true)
             end
         end
     },
 
-    State {
+    State{
         name = "desk_idle",
         tags = {"desk"},
 
@@ -365,9 +310,9 @@ local states =
 
         onexit = function(inst)
             if inst.keepdesk then
-                 inst.keepdesk = nil
+                inst.keepdesk = nil
             else
-               inst.separatedesk(inst,true)
+               inst.separatedesk(inst, true)
             end
         end
     },
@@ -381,23 +326,30 @@ local states =
             inst.AnimState:PlayAnimation("eat")
         end,
 
-        timeline=
+        timeline =
         {
-            TimeEvent(10*FRAMES, function(inst) inst:PerformBufferedAction() end),
+            TimeEvent(10 * FRAMES, function(inst) inst:PerformBufferedAction() end),
         },
 
-        events=
+        events =
         {
-            EventHandler("animover", function(inst) inst.sg:GoToState("idle") end ),
+            EventHandler("animover", function(inst) inst.sg:GoToState("idle") end),
         },
     },
+
     State{
         name = "hit",
         tags = {"busy"},
 
         onenter = function(inst)
+            if not inst:HasTag("guard") then
+                if inst.female then
+                    inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/city_pig/scream_female", nil, 0.25)
+                else
+                    inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/city_pig/scream", nil, 0.25)
+                end
+            end
 
-            inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/city_pig/scream",nil,.25)
             if inst:HasTag("guard") then
                 inst.SoundEmitter:PlaySound("dontstarve_DLC003/movement/iron_armor/hit")
                 inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/city_pig/guard_alert")
@@ -406,20 +358,21 @@ local states =
             inst.Physics:Stop()
 
             inst.components.combat.laststartattacktime = 0
+
+            if inst:HasTag("guard") then
+                CommonHandlers.UpdateHitRecoveryDelay(inst)
+            end
         end,
 
-        timeline=
+        timeline =
         {
-
-            TimeEvent(12*FRAMES, function (inst) if inst:HasTag("guard") then inst.SoundEmitter:PlaySound("dontstarve_DLC003/movement/iron_armor/foley")end end),
-
-            TimeEvent(13*FRAMES, function (inst) if inst:HasTag("guard") then inst.sg:GoToState("idle") end end),
-
+            TimeEvent(12 * FRAMES, function (inst) if inst:HasTag("guard") then inst.SoundEmitter:PlaySound("dontstarve_DLC003/movement/iron_armor/foley") end end),
+            TimeEvent(13 * FRAMES, function (inst) if inst:HasTag("guard") then inst.sg:GoToState("idle") end end),
         },
 
-        events=
+        events =
         {
-            EventHandler("animover", function(inst) inst.sg:GoToState("idle") end ),
+            EventHandler("animover", function(inst) inst.sg:GoToState("idle") end),
         },
     },
 
@@ -438,12 +391,12 @@ local states =
             inst.Physics:Stop()
         end,
 
-        timeline=
+        timeline =
         {
             TimeEvent(13 * FRAMES, function(inst) inst:PerformBufferedAction() end),
         },
 
-        events=
+        events =
         {
             EventHandler("animover",
                 function(inst)
@@ -465,12 +418,12 @@ local states =
             inst.Physics:Stop()
         end,
 
-        timeline=
+        timeline =
         {
             TimeEvent(13 * FRAMES, function(inst) inst:PerformBufferedAction() end),
         },
 
-        events=
+        events =
         {
             EventHandler("animover",
                 function(inst)
@@ -493,12 +446,12 @@ local states =
             inst.Physics:Stop()
         end,
 
-        timeline=
+        timeline =
         {
             TimeEvent(13 * FRAMES, function(inst) inst:PerformBufferedAction() end),
         },
 
-        events=
+        events =
         {
             EventHandler("animover",
                 function(inst)
@@ -512,13 +465,13 @@ local states =
 CommonStates.AddWalkStates(states,
 {
     walktimeline = {
-        TimeEvent(0*FRAMES, function(inst)
+        TimeEvent(0 * FRAMES, function(inst)
                 PlayFootstep(inst)
                 if inst:HasTag("guard") then
                    inst.SoundEmitter:PlaySound("dontstarve_DLC003/movement/iron_armor/foley")
                 end
             end ),
-        TimeEvent(12*FRAMES, function(inst)
+        TimeEvent(12 * FRAMES, function(inst)
                 PlayFootstep(inst)
                 if inst:HasTag("guard") then
                    inst.SoundEmitter:PlaySound("dontstarve_DLC003/movement/iron_armor/foley")
@@ -529,18 +482,18 @@ CommonStates.AddWalkStates(states,
 CommonStates.AddRunStates(states,
 {
     runtimeline = {
-        TimeEvent(0*FRAMES, PlayFootstep ),
+        TimeEvent(0 * FRAMES, PlayFootstep),
 
-        TimeEvent(3*FRAMES, function(inst)
+        TimeEvent(3 * FRAMES, function(inst)
                 -- PlayFootstep(inst)
                 if inst:HasTag("guard") then
                    inst.SoundEmitter:PlaySound("dontstarve_DLC003/movement/iron_armor/foley")
                 end
             end),
 
-        TimeEvent(10*FRAMES, PlayFootstep),
+        TimeEvent(10 * FRAMES, PlayFootstep),
 
-        TimeEvent(11*FRAMES, function(inst)
+        TimeEvent(11 * FRAMES, function(inst)
             -- PlayFootstep(inst)
             if inst:HasTag("guard") then
                 inst.SoundEmitter:PlaySound("dontstarve_DLC003/movement/iron_armor/foley")
@@ -558,14 +511,14 @@ CommonStates.AddSleepStates(states,
 {
     sleeptimeline =
     {
-        TimeEvent(35*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/pig/sleep") end ),
+        TimeEvent(35*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/pig/sleep") end),
     },
 })
 
 CommonStates.AddSimpleState(states,"refuse", "pig_reject", {"busy"})
 CommonStates.AddFrozenStates(states)
 
-CommonStates.AddSimpleActionState(states,"pickup", "pig_pickup", 10*FRAMES, {"busy"})
-CommonStates.AddSimpleActionState(states, "gohome", "pig_pickup", 4*FRAMES, {"busy"})
+CommonStates.AddSimpleActionState(states,"pickup", "pig_pickup", 10 * FRAMES, {"busy"})
+CommonStates.AddSimpleActionState(states, "gohome", "pig_pickup", 4 * FRAMES, {"busy"})
 
 return StateGraph("pig", states, events, "idle", actionhandlers)

@@ -72,6 +72,7 @@ local function fn()
 
     inst:AddTag("sunkencontainer")
     inst:AddTag("fishable")
+    inst:AddTag("wet")
     inst:AddTag("NOBLOCK")
 
     inst._sunkenvisual = net_entity(inst.GUID, "_sunkenvisual", "sunkenvisualdirty")
@@ -103,6 +104,10 @@ local function fn()
             inst._sunkenvisual:set(inst.visual)
         end
         inst.visual:SetUp(inst, data.item)
+
+        if data.item and data.item.components.inventoryitem then
+            data.item.components.inventoryitem:AddMoisture(TUNING.OCEAN_WETNESS)
+        end
     end)
 
     inst.Initialize = init
@@ -133,7 +138,7 @@ local function SunkenVisualfn()
     inst.AnimState:SetFinalOffset(FINALOFFSET_MIN)
     inst.AnimState:SetMultColour(0.0, 0.0, 0.0, 1)
     inst.AnimState:SetBank("sunken_visual_slot")
-    inst.AnimState:SetBuild("visual_slot")
+    inst.AnimState:SetBuild("sunken_visual_slot")
     inst.AnimState:PlayAnimation("idle")
 
     inst.persists = false

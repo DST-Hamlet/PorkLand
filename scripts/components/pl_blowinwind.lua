@@ -130,7 +130,7 @@ function BlowInWind:SpawnWindTrail(dt)
 end
 
 function BlowInWind:OnUpdate(dt)
-    if self.inst:GetCurrentInteriorID() ~= nil then
+    if self.inst:GetIsInInterior() then
         -- inside an interior, don't blow
         return
     end

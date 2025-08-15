@@ -20,7 +20,7 @@ local events =
     CommonHandlers.OnSleep(),
     CommonHandlers.OnFreeze(),
     CommonHandlers.OnAttack(),
-    CommonHandlers.OnAttacked(nil, TUNING.CHARACTER_MAX_STUN_LOCKS),
+    CommonHandlers.OnAttacked(TUNING.CHARACTER_HITREACT_COOLDOWN, TUNING.CHARACTER_MAX_STUN_LOCKS),
     CommonHandlers.OnDeath(),
 
     EventHandler("doaction", function(inst, data)
@@ -192,12 +192,13 @@ local states =
 
     State{
         name = "hit",
-        tags = {"busy", "hit"},
+        tags = {"busy"},
 
         onenter = function(inst)
             inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/crickant/hit")
             inst.AnimState:PlayAnimation("hit")
             inst.Physics:Stop()
+            CommonHandlers.UpdateHitRecoveryDelay(inst)
         end,
 
         events =

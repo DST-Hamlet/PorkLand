@@ -1,4 +1,4 @@
-local function onsailor(self, sailor)
+local function onsailor(self)
     if self.inst.replica.sailable then
         self.inst.replica.sailable._sailor:set(self.sailor)
     end
@@ -7,6 +7,32 @@ local function onsailor(self, sailor)
     else
         self.inst:AddTag("sailable")
     end
+
+    local container = self.inst.components.container
+
+    if container then
+        if container.old_canbeopened == nil then
+            container.old_canbeopened = container.canbeopened
+        end
+
+        container:ForceClose()
+        if self.sailor then
+            container.canbeopened = false -- 有人的船容器不能通过打开动作来开启
+        else
+            container.canbeopened = container.old_canbeopened
+        end
+    end
+    
+    if self.check_container_task then
+        self.check_container_task:Cancel()
+    end
+
+    self.check_container_task = self.inst:DoTaskInTime(0.25, function()
+        self.check_container_task = nil
+        if container and self:GetSailor() then
+            container:ForceOpen(self:GetSailor())
+        end
+    end)
 end
 
 local Sailable = Class(function(self, inst)
@@ -14,7 +40,7 @@ local Sailable = Class(function(self, inst)
     self.flotsambuild = nil
     self.unoccupiedanim = "run_loop"
     self.sailor = nil
-    self.isembarking = false
+    self.isembarking = false -- 是否有人正在试图上船
 
     self.hit_immunity = 0.66  -- time in seconds the boat is immune to hit state reactions after being hit.
     self.next_hit_time = 0
@@ -35,10 +61,6 @@ end, nil, {
 
 function Sailable:SetHitImmunity(time)
     self.hit_immunity = time
-end
-
-function Sailable:GetSailor()
-    return self.sailor
 end
 
 function Sailable:GetSailor()
@@ -95,7 +117,7 @@ function Sailable:OnEmbarked(sailor)
         self.inst.components.workable.workable = false
     end
 
-    self.inst.replica.sailable:PlayIdleAnims(true)
+    self.inst.replica.sailable:PlayAnim("idle_loop")
 end
 
 function Sailable:OnDisembarked(sailor)
@@ -122,7 +144,7 @@ function Sailable:OnDisembarked(sailor)
         self.inst.components.workable.workable = true
     end
 
-    self.inst.replica.sailable:PlayRunAnims(true)
+    self.inst.replica.sailable:PlayAnim("run_loop")
 end
 
 function Sailable:OnRemoveFromEntity()

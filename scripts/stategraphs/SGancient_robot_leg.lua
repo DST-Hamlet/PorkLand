@@ -73,8 +73,7 @@ AncientRobot.States.AddLocomoteStates(states, {
         inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/metal_robot/leg/servo", nil, 0.8)
     end),
     TimeEvent(14 * FRAMES, function(inst)
-        inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/metal_robot/leg/step", "steps")
-        inst.SoundEmitter:SetParameter("steps", "intensity", math.random())
+        inst.SoundEmitter:PlaySoundWithParams("dontstarve_DLC003/creatures/boss/hulk_metal_robot/leg/step", {intensity = math.random()})
     end),
     TimeEvent(48 * FRAMES, function(inst)
         inst.Physics:Stop()

@@ -61,7 +61,11 @@ local events =
     end),
 
     EventHandler("attacked", function(inst, data)
-        if inst.sg:HasStateTag("idle") and not inst:HasTag("tail") and data.vulnerable_segment and not CommonHandlers.HitRecoveryDelay(inst) then
+        if inst.components.health ~= nil and not inst.components.health:IsDead()
+            and inst.sg:HasStateTag("idle")
+            and not inst:HasTag("tail") and data.vulnerable_segment
+            and not CommonHandlers.HitRecoveryDelay(inst, TUNING.BOSS_HITREACT_COOLDOWN, TUNING.BOSS_MAX_STUN_LOCKS) then
+
             inst.sg:GoToState("hit")
         end
     end),
@@ -188,14 +192,22 @@ local states =
                     inst.AnimState:PlayAnimation("head_idle_loop", true)
                 end
             end
+
+            if not inst:HasTag("tail") then
+                if inst.wantstogaze then
+                    inst.sg:GoToState("gaze")
+                end
+
+                if inst.movecommited then
+                    inst:PushEvent("premove")
+                end
+            end
         end,
 
         onupdate = function(inst)
             if not inst:HasTag("tail") then
                 if inst.wantstogaze then
                     inst.sg:GoToState("gaze")
-                elseif inst.wantstotaunt then
-                    inst.sg:GoToState("tongue")
                 end
 
                 if inst.movecommited then
@@ -218,7 +230,7 @@ local states =
 
     State{
         name = "hit",
-        tags = {"busy", "hit", "canrotate"},
+        tags = {"busy", "canrotate"},
 
         onenter = function(inst, start_anim)
             inst.Physics:Stop()
@@ -250,7 +262,6 @@ local states =
 
             inst.Physics:Stop()
             inst.AnimState:PlayAnimation("taunt")
-            inst.wantstotaunt = nil
         end,
 
         timeline =
@@ -273,7 +284,6 @@ local states =
         onenter = function(inst, start_anim)
             inst.Physics:Stop()
             inst.AnimState:PlayAnimation("emerge_taunt")
-            inst.wantstotaunt = nil
         end,
 
         timeline =

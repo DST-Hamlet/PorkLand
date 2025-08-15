@@ -341,6 +341,20 @@ function InteriorVisitor:UpdateExteriorPos()
         self:RecordMapOnEnteringNewRoom(last_center_ent)
     end
 
+    if last_center_ent ~= ent then
+        if last_center_ent ~= nil
+            and last_center_ent:IsValid()
+            and ent ~= nil
+            and ent:IsValid()
+            and ent:IsInSameRoomGroup(last_center_ent) then -- 一直在同一个迷宫
+
+        elseif last_center_ent == nil and ent == nil then -- 一直不在室内
+
+        else -- 在不同迷宫之间切换
+            self.inst:PushEvent("roomgroupchange")
+        end
+    end
+
     if ent then
         if not self.inst:HasTag("inside_interior") then
             self.inst:AddTag("inside_interior")

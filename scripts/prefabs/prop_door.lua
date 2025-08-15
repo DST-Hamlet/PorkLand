@@ -109,7 +109,7 @@ local function UpdateDoorLight(inst)
         if not (targetdoor.prefab == "prop_door") then
             return
         end
-        local r, g, b, light = targetdoor:GetColourAndLight()
+        local r, g, b, light = targetdoor:GetLightColour()
 
         local door_percent = 1
         if inst.animchangetime then
@@ -118,13 +118,14 @@ local function UpdateDoorLight(inst)
         if inst.dooranimclosed then
             door_percent = 1 - door_percent
         end
+        light = math.min(1.73205, math.max(0, light))
         light = light * door_percent
 
         if light > TUNING.DARK_CUTOFF then
             inst.Light:Enable(true)
-            inst.Light:SetFalloff(0.8)
-            inst.Light:SetIntensity(TUNING.DARK_CUTOFF + (light - TUNING.DARK_CUTOFF) / 2)
-            inst.Light:SetRadius(3 + light)
+            inst.Light:SetFalloff(1 / (light * 1))
+            inst.Light:SetIntensity(TUNING.DARK_CUTOFF + (light - TUNING.DARK_CUTOFF) / 3)
+            inst.Light:SetRadius(3)
             inst.Light:SetColour(r,g,b)
         else
             inst.Light:Enable(false)
@@ -478,22 +479,10 @@ local function GetMinimapIcon(inst)
 end
 
 local function OnEntitySleep(inst)
-    if inst.sg and
-        (inst.sg:HasStateTag("moving") or inst.sg:HasStateTag("shut")) then
-
-        door.sg:GoToState("idle")
-    end
-
     inst:StopDoorLightUpdate()
 end
 
 local function OnEntityWake(inst)
-    if inst.sg and
-        (inst.sg:HasStateTag("moving") or inst.sg:HasStateTag("shut")) then
-
-        door.sg:GoToState("idle")
-    end
-
     if inst.doorlightenable then
         inst:StartDoorLightUpdate()
     end

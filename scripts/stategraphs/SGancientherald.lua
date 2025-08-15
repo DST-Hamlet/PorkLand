@@ -54,7 +54,7 @@ end
 local events =
 {
     CommonHandlers.OnAttack(),
-    CommonHandlers.OnAttacked(),
+    CommonHandlers.OnAttacked(TUNING.BOSS_HITREACT_COOLDOWN, TUNING.BOSS_MAX_STUN_LOCKS),
     CommonHandlers.OnDeath(),
     CommonHandlers.OnLocomote(false, true),
 
@@ -80,7 +80,7 @@ local states =
         onenter = function(inst)
             inst.AnimState:PlayAnimation("appear")
             inst.SoundEmitter:PlaySound("dontstarve/ghost/ghost_howl")
-            -- TheMixer:PushMix("shadow") -- this doesn't work at all actually -- 等哪一天搞明白了Mixer再说
+            inst.mixer:set(true)
         end,
 
         timeline =
@@ -93,6 +93,25 @@ local states =
             EventHandler("animover", function(inst, data)
                 inst.sg:GoToState("idle")
             end)
+        },
+    },
+
+    State{
+        name = "hit",
+        tags = {"busy"}, -- hit tag用于控制生物在hit状态下也可以进行反击，由于先驱有硬直保护，因此不需要这个tag
+
+        onenter = function(inst, cb)
+            if inst.components.locomotor ~= nil then
+                inst.components.locomotor:StopMoving()
+            end
+            inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/ancient_herald/hit")
+            inst.AnimState:PlayAnimation("hit")
+            CommonHandlers.UpdateHitRecoveryDelay(inst)
+        end,
+
+        events =
+        {
+            EventHandler("animqueueover", function(inst) inst.sg:GoToState("idle") end),
         },
     },
 
@@ -167,50 +186,93 @@ local states =
             end)
         },
     },
+
+    State{
+        name = "attack",
+        tags = { "attack", "busy" },
+
+        onenter = function(inst, target)
+            if inst.components.locomotor ~= nil then
+                inst.components.locomotor:StopMoving()
+            end
+            inst.AnimState:PlayAnimation("attack")
+            inst.components.combat:StartAttack()
+
+            inst.sg.statemem.target = target
+        end,
+
+        timeline = {
+            TimeEvent(0  * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/ancient_herald/attack") end),
+            TimeEvent(1  * FRAMES, function(inst) inst.SoundEmitter:PlaySound("porkland_soundpackage/creatures/boss/ancient_herald/attack_2d") end),
+            TimeEvent(20 * FRAMES, function(inst)
+                local ring = SpawnPrefab("laser_ring")
+                ring.Transform:SetPosition(inst.Transform:GetWorldPosition())
+                ring.Transform:SetScale(1.1, 1.1, 1.1)
+                DoDamage(inst, 6)
+            end)
+        },
+
+        events =
+        {
+            EventHandler("animover", function(inst)
+                inst.sg:GoToState("idle")
+            end),
+        },
+    },
+
+    State{
+        name = "death",
+        tags = {"busy"},
+
+        onenter = function(inst)
+            if inst.components.locomotor ~= nil then
+                inst.components.locomotor:StopMoving()
+            end
+            inst.AnimState:PlayAnimation("death")
+            RemovePhysicsColliders(inst)
+        end,
+
+        timeline =
+        {
+            TimeEvent(0 * FRAMES, function(inst)
+                inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/ancient_herald/death")
+                AncientHeraldUtil.CancelFrogRain(inst)
+            end),
+            TimeEvent(32 * FRAMES, function(inst)
+                local pt = Vector3(inst.Transform:GetWorldPosition())
+                pt.y = 5
+
+                inst.components.lootdropper.y_speed = 4
+                inst.components.lootdropper.min_speed = 3
+                inst.components.lootdropper.max_speed = 3
+                local loot_table = LootTables["ancient_herald_base"]
+                if loot_table then
+                    for i, entry in ipairs(loot_table) do
+                        local prefab = entry[1]
+                        local chance = entry[2]
+                        if (chance >= 1.0) or (math.random() <= chance) then
+                            inst.components.lootdropper:SpawnLootPrefab(prefab, pt)
+                        end
+                    end
+                end
+
+                inst.components.lootdropper.y_speed = 8
+                inst.components.lootdropper.min_speed = 0
+                inst.components.lootdropper.max_speed = 0
+                local extra_loot_table = LootTables["ancient_remnant_extra"]
+                if extra_loot_table then
+                    for i, entry in ipairs(extra_loot_table) do
+                        local prefab = entry[1]
+                        local chance = entry[2]
+                        if (chance >= 1.0) or (math.random() <= chance) then
+                            inst.components.lootdropper:SpawnLootPrefab(prefab, pt)
+                        end
+                    end
+                end
+            end),
+        },
+    },
 }
-
-CommonStates.AddCombatStates(states, {
-    attacktimeline =
-    {
-        TimeEvent(0  * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/ancient_herald/attack") end),
-        TimeEvent(1  * FRAMES, function(inst) inst.SoundEmitter:PlaySound("porkland_soundpackage/creatures/boss/ancient_herald/attack_2d") end),
-        TimeEvent(20 * FRAMES, function(inst)
-            local ring = SpawnPrefab("laser_ring")
-            ring.Transform:SetPosition(inst.Transform:GetWorldPosition())
-            ring.Transform:SetScale(1.1, 1.1, 1.1)
-            DoDamage(inst, 6)
-        end)
-    },
-
-    hittimeline =
-    {
-        TimeEvent(0 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/ancient_herald/hit") end),
-    },
-
-    deathtimeline =
-    {
-        TimeEvent(0 * FRAMES, function(inst)
-            inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/ancient_herald/death")
-            AncientHeraldUtil.CancelFrogRain(inst)
-        end),
-        TimeEvent(32 * FRAMES, function(inst)
-            local pt = Vector3(inst.Transform:GetWorldPosition())
-            pt.y = 5
-
-            inst.components.lootdropper.speed = 3
-            inst.components.lootdropper:DropLootPrefab(SpawnPrefab("ancient_remnant"), pt, math.random() * 360)
-            inst.components.lootdropper:DropLootPrefab(SpawnPrefab("ancient_remnant"), pt, math.random() * 360)
-            inst.components.lootdropper:DropLootPrefab(SpawnPrefab("ancient_remnant"), pt, math.random() * 360)
-            inst.components.lootdropper:DropLootPrefab(SpawnPrefab("ancient_remnant"), pt, math.random() * 360)
-            inst.components.lootdropper:DropLootPrefab(SpawnPrefab("ancient_remnant"), pt, math.random() * 360)
-
-            inst.components.lootdropper.speed = 0
-            inst.components.lootdropper:DropLootPrefab(SpawnPrefab("nightmarefuel"), pt, math.random() * 360)
-            inst.components.lootdropper:DropLootPrefab(SpawnPrefab("nightmarefuel"), pt, math.random() * 360)
-            inst.components.lootdropper:DropLootPrefab(SpawnPrefab("armorvortexcloak_blueprint"), pt, math.random() * 360)
-        end),
-    },
-}, {attack = "attack",})
 
 CommonStates.AddWalkStates(states,
 {

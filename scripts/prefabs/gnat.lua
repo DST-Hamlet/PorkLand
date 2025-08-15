@@ -122,9 +122,10 @@ local function fn()
     inst.DynamicShadow:SetSize(2, 0.6)
 
     inst.Physics:SetCollisionGroup(COLLISION.FLYERS)
-    inst.Physics:ClearCollisionMask()
-    inst.Physics:CollidesWith(COLLISION.GROUND)
-    inst.Physics:CollidesWith(COLLISION.VOID_LIMITS)
+    inst.Physics:SetCollisionMask(
+        COLLISION.GROUND,
+        COLLISION.VOID_LIMITS
+    )
 
     inst.Transform:SetFourFaced()
 

@@ -34,8 +34,7 @@ function InventoryBar:GetInventoryLists(same_container_only, ...)
     return lists
 end
 
-local rebuild = InventoryBar.Rebuild
-local RebuildLayout, scope_fn, i = ToolUtil.GetUpvalue(rebuild, "RebuildLayout")
+local RebuildLayout, scope_fn, i = ToolUtil.GetUpvalue(InventoryBar.Rebuild, "RebuildLayout")
 debug.setupvalue(scope_fn, i, function(self, inventory, overflow, do_integrated_backpack, do_self_inspect, ...)
     local boatwidget = self.boatwidget
     if boatwidget then

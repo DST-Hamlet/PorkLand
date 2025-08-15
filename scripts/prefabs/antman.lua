@@ -254,7 +254,7 @@ local function fn()
 
     inst.AnimState:SetBank("antman")
     inst.AnimState:SetBuild("antman_translucent_build")
-    inst.AnimState:PlayAnimation("idle_loop")
+    inst.AnimState:PlayAnimation("idle_loop", true)
     inst.AnimState:Hide("hat")
 
     inst.DynamicShadow:SetSize(1.5, 0.75)
