@@ -3415,12 +3415,4 @@ AddStategraphPostInit("wilson", function(sg)
             return _eat_deststate and _eat_deststate(inst, action)
         end
     end
-
-    local _ontalk_eventhandler = sg.events.ontalk.fn
-    sg.events.ontalk.fn = function(inst, data, ...)
-        if inst.sg:HasStateTag("whisper") then
-            return
-        end
-        return _ontalk_eventhandler(inst, data, ...)
-    end
 end)

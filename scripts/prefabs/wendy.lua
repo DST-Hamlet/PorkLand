@@ -197,7 +197,7 @@ local function WhisperTalk(inst, data)
 
 	else
 		inst:PushEvent("talk_whisper", {pos = data.pos})
-		inst.components.talker:Say(data.text)
+		inst.components.talker:Say(data.text, nil, true)
 
 		inst.lastwhisper = data.speech
 		inst.lastwhispertime = GetTime()
