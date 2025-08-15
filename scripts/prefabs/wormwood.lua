@@ -112,7 +112,7 @@ local function WatchWorldPlants(inst)
             elseif data.pos then
                 local distsq = inst:GetDistanceSqToPoint(data.pos)
                 if distsq < WATCH_WORLD_PLANTS_DIST_SQ then
-                    DoPlantBonus(inst, CalcSanityMult(distsq) * TUNING.SANITY_SUPERTINY * 2, true)
+                    DoPlantBonus(inst, TUNING.SANITY_SUPERTINY * 2, true)
                 end
             end
         end
@@ -124,11 +124,14 @@ local function WatchWorldPlants(inst)
             if not data then
                 --shouldn't happen
             elseif data.doer == inst then
-                DoKillPlantPenalty(inst, data.workaction and data.workaction ~= ACTIONS.DIG and TUNING.SANITY_MED or TUNING.SANITY_TINY)
+                if data.workaction and data.workaction == ACTIONS.HACK then
+                    return
+                end
+                DoKillPlantPenalty(inst, data.workaction and data.workaction == ACTIONS.DIG and TUNING.SANITY_MED or TUNING.SANITY_TINY)
             elseif data.pos then
                 local distsq = inst:GetDistanceSqToPoint(data.pos)
                 if distsq < WATCH_WORLD_PLANTS_DIST_SQ then
-                    DoKillPlantPenalty(inst, CalcSanityMult(distsq) * TUNING.SANITY_SUPERTINY * 2, true)
+                    DoKillPlantPenalty(inst, TUNING.SANITY_SUPERTINY * 2, true)
                 end
             end
         end
