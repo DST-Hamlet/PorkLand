@@ -14,6 +14,22 @@ local function printinvalid(rpcname, player)
     end
 end
 
+local function IsPointInRange(player, position)
+    local px, _, pz = player.Transform:GetWorldPosition()
+    return distsq(position.x, position.z, px, pz) <= 4096
+end
+
+local function ConvertPlatformRelativePositionToAbsolutePosition(platform, relative_x, relative_z)
+    if not (relative_x and relative_z) then
+        return
+    end
+    if not platform then
+        return Vector3(relative_x, 0, relative_z)
+    end
+    local x, _, z = platform.entity:LocalToWorldSpace(relative_x, 0, relative_z)
+    return Vector3(x, 0, z)
+end
+
 AddModRPCHandler("Porkland", "BoatEquipActiveItem", function(player, container)
     if container ~= nil then
         container.components.container:BoatEquipActiveItem()
@@ -82,6 +98,30 @@ AddModRPCHandler("Porkland", "StrafeFacing_pl", function(player, dir)
     local locomotor = player.components.locomotor
     if locomotor then
         locomotor:OnStrafeFacingChanged(dir)
+    end
+end)
+
+AddModRPCHandler("Porkland", "CastSpellCommand", function(player, item, command_id, target, x, z, platform)
+    if not (
+        checkentity(item)
+        and checkstring(command_id)
+        and optentity(target)
+        and optnumber(x)
+        and optnumber(z)
+        and optentity(platform)
+    ) then
+        printinvalid("CastSpellCommand", player)
+        return
+    end
+
+    local playercontroller = player.components.playercontroller
+    if playercontroller then
+        local position = ConvertPlatformRelativePositionToAbsolutePosition(platform, x, z)
+        if not position or IsPointInRange(player, position) then
+            playercontroller:OnRemoteCastSpellCommand(item, command_id, position, target)
+        else
+            print("Remote left click out of range")
+        end
     end
 end)
 

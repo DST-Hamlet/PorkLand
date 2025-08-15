@@ -539,6 +539,11 @@ local function master_postinit(inst)
     inst.components.burnable:SetBurnTime(TUNING.WORMWOOD_BURN_TIME)
     inst.components.burnable.flammability = 0.5
 
+    if inst.components.hayfever == nil then
+        inst:AddComponent("hayfever")
+    end
+    inst.components.hayfever.imune = true
+
     inst.fullbloom = nil
     inst.beebeacon = nil
     inst.overrideskinmode = nil

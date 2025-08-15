@@ -55,7 +55,7 @@ local behaviour_posts = {
 }
 
 local brain_posts = {
-    "abigailbrain",
+
 }
 
 local camera_posts = {
@@ -67,6 +67,7 @@ local component_posts = {
     "ambientlighting",
     "amphibiouscreature",
     "areaaware",
+    "aura",
     "beard",
     "blinkstaff",
     "builder_replica",
@@ -87,6 +88,7 @@ local component_posts = {
     "explosive",
     "fishingrod",
     "floater",
+    "ghostlybond",
     "grogginess",
     "grower",
     "grue",
@@ -138,6 +140,7 @@ local component_posts = {
 }
 
 local prefab_posts = {
+    "abigail_flower",
     "batwing",
     "birdcage",
     "boomerang",
@@ -160,7 +163,6 @@ local prefab_posts = {
     "thunder_close",
     "torch",
     "waterprojectiles",
-    "woodie",
     "world_network",
     "world",
     "shard_network",
@@ -171,7 +173,6 @@ local prefab_posts = {
     "telestaff",
     "walls",
     "waterballoon",
-    "wormwood",
     "wortox",
 }
 
@@ -210,10 +211,12 @@ local stategraph_posts = {
 local widget_posts = {
     "bloodover",
     "containerwidget",
+    "controls",
     "craftingmenu_ingredients",
     "craftingmenu_widget",
     "grid",
     "healthbadge",
+    "hoverer",
     "inventorybar",
     "itemtile",
     "mapwidget",

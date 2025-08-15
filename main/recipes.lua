@@ -737,6 +737,9 @@ AddRecipe2("pillar_door",   {Ingredient("oinc", 20)}, TECH.HOME, {nounlock = tru
 AddRecipe2("construction_permit", {Ingredient("oinc", 50)}, TECH.HOME, {nounlock = true}, {"HOME_DOOR"})
 AddRecipe2("demolition_permit",   {Ingredient("oinc", 10)}, TECH.HOME, {nounlock = true}, {"HOME_DOOR"})
 
+-- Wendy --
+AddRecipe2("abigail_flower", {Ingredient("petals", 6), Ingredient("nightmarefuel", 1)}, TECH.NONE,	{builder_tag = "ghostlyfriend"})
+
 -- Wormwood --
 AddRecipe2("armor_bramble", {Ingredient("livinglog", 2), Ingredient("boneshard", 4)}, TECH.NONE,	{builder_tag = "plantkin"})
 AddRecipe2("trap_bramble",  {Ingredient("livinglog", 1), Ingredient("boneshard", 1)}, TECH.NONE,	{builder_tag = "plantkin"})
@@ -744,6 +747,7 @@ AddRecipe2("trap_bramble",  {Ingredient("livinglog", 1), Ingredient("boneshard",
 -- BOOK --
 AddRecipe2("book_birds",       {Ingredient("papyrus", 2), Ingredient("bird_egg", 2)},                      TECH.NONE,          {builder_tag = "bookbuilder"}, {"CHARACTER"})
 AddRecipe2("book_gardening",   {Ingredient("papyrus", 2), Ingredient("seeds", 1), Ingredient("poop", 1)},  TECH.SCIENCE_ONE,   {builder_tag = "bookbuilder"}, {"CHARACTER"})
+SortAfter("book_gardening", "book_birds", "CHARACTER")
 AddRecipe2("book_sleep",       {Ingredient("papyrus", 2), Ingredient("nightmarefuel", 2)},                 TECH.MAGIC_TWO,     {builder_tag = "bookbuilder"}, {"CHARACTER"})
 AddRecipe2("book_brimstone",   {Ingredient("papyrus", 2), Ingredient("redgem", 1)},                        TECH.MAGIC_THREE,   {builder_tag = "bookbuilder"}, {"CHARACTER"})
 -- There are no tentacles in porkland
