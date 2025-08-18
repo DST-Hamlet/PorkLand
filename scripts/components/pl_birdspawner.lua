@@ -306,6 +306,10 @@ return Class(function(self, inst)
         end
     end
 
+    function self:GetPostHailEasingMult()
+        return 1
+    end
+
     function self:StopTracking(target)
         self.StopTrackingFn(target)
     end
