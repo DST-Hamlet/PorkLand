@@ -28,9 +28,16 @@ local function GhostChangeBehaviour(inst, doer)
         return
     end
 
+    local ghostlybond = doer.components.ghostlybond
+
+	if ghostlybond == nil or ghostlybond.ghost == nil then
+		return false
+	end
+
     local pos = doer.components.ghostlybond.ghost and doer.components.ghostlybond.ghost:GetPosition() or nil
     if doer.WhisperTalk then
-        doer:WhisperTalk({speech = "GhostChangeBehaviour", text = "GhostChangeBehaviour", pos = pos})
+        local speech = ghostlybond.ghost.is_defensive and "ANNOUNCE_ABIGAIL_MAKE_AGGRESSIVE" or "ANNOUNCE_ABIGAIL_MAKE_DEFENSIVE"
+        doer:WhisperTalk({speech = speech, text = GetString(doer, speech), pos = pos})
     end
 
 	doer.components.ghostlybond:ChangeBehaviour()
@@ -45,9 +52,16 @@ local function ToggleFreezeGhostMovements(inst, doer)
         return
     end
 
+    local ghostlybond = doer.components.ghostlybond
+
+	if ghostlybond == nil or ghostlybond.ghost == nil then
+		return false
+	end
+
     local pos = doer.components.ghostlybond.ghost and doer.components.ghostlybond.ghost:GetPosition() or nil
     if doer.WhisperTalk then
-        doer:WhisperTalk({speech = "ToggleFreezeGhostMovements", text = "ToggleFreezeGhostMovements", pos = pos})
+        local speech = doer:HasTag("has_movements_frozen_follower") and "ANNOUNCE_ABIGAIL_MAKE_FOLLOW" or "ANNOUNCE_ABIGAIL_MAKE_STAY"
+        doer:WhisperTalk({speech = speech, text = GetString(doer, speech), pos = pos})
     end
 
     doer.components.ghostlybond:FreezeMovements(not doer:HasTag("has_movements_frozen_follower"))

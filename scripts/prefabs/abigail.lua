@@ -535,9 +535,9 @@ local function fn()
     local health = inst:AddComponent("health")
     health:SetMaxHealth(TUNING.ABIGAIL_HEALTH_LEVEL1)
     inst.components.health:SetCurrentHealth(1)
-    health:StartRegen(1, 1)
     health.nofadeout = true
     health.save_maxhealth = true
+    inst:DoPeriodicTask(15 * FRAMES, function() health:DoDelta(0.5, true, "regen", true) end) -- 不使用StartRegen是因为阿比在某些情况下会进入无敌模式，此时StartRegen会失效
 
     --
     local inspectable = inst:AddComponent("inspectable")
@@ -547,7 +547,7 @@ local function fn()
     local locomotor = inst:AddComponent("locomotor") -- locomotor must be constructed before the stategraph
     locomotor.walkspeed = TUNING.ABIGAIL_SPEED*.5
     locomotor.runspeed = TUNING.ABIGAIL_SPEED
-    locomotor.pathcaps = { allowocean = true, ignorecreep = true }
+    locomotor.pathcaps = { allowocean = true, ignorecreep = true, ignorewalls = true, }
     locomotor:SetTriggersCreep(false)
 
     --

@@ -126,7 +126,7 @@ function PlayerController:HasAOETargeting(...)
     return self.casting_action_override_spell ~= nil or has_aoe_targeting(self, ...)
 end
 
-function PlayerController:StartCastingActionOverrideSpell(item, leftclickoverride)
+function PlayerController:StartCastingActionOverrideSpell(item, leftclickoverride, onexitspell)
     self:CancelCastingActionOverrideSpell()
     self:CancelAOETargeting()
 
@@ -134,6 +134,7 @@ function PlayerController:StartCastingActionOverrideSpell(item, leftclickoverrid
     self.casting_action_override_spell = {
         item = item,
         leftclickoverride = leftclickoverride,
+        onexitspell = onexitspell,
     }
 end
 
@@ -141,6 +142,9 @@ function PlayerController:CancelCastingActionOverrideSpell()
     if self.casting_action_override_spell then
         if self.inst.components.playeractionpicker.leftclickoverride == self.casting_action_override_spell.leftclickoverride then
             self.inst.components.playeractionpicker.leftclickoverride = nil
+        end
+        if self.casting_action_override_spell.onexitspell then
+            self.casting_action_override_spell.onexitspell(self.casting_action_override_spell.item or nil)
         end
         self.casting_action_override_spell = nil
     end
