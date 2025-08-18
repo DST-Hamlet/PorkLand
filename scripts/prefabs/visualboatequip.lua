@@ -73,7 +73,7 @@ local function SetVisual(inst, boat) -- 初始化动画数据函数。在服务�
     local visual_prefab = boat
 
     for k, v in pairs(boat.boatvisuals) do
-        if k ~= inst then
+        if k ~= inst and k.visualchild ~= nil then
             visual_prefab = k.visualchild
             break
         end
