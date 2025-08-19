@@ -1,8 +1,11 @@
 local AddPrefabPostInit = AddPrefabPostInit
 GLOBAL.setfenv(1, GLOBAL)
 
+local ABIGAIL_COMMAND_DISTANCE = PLAYER_CAMERA_SEE_DISTANCE * 0.5
+
 local function CanWendyTalk(inst)
     if (inst.components.health ~= nil and inst.components.health:IsDead() and inst.components.revivablecorpse == nil) or
+        inst:HasTag("playerghost") or
         (inst.components.sleeper ~= nil and inst.components.sleeper:IsAsleep()) or
         (inst.components.freezable ~= nil and inst.components.freezable:IsFrozen()) then
 
@@ -12,7 +15,14 @@ local function CanWendyTalk(inst)
     return true
 end
 
-local function ReticuleGhostTargetFn(inst)
+local function ReticuleGhostMouseTargetFn(inst, pos)
+    local doer_pos = inst:GetPosition()
+    if inst:GetDistanceSqToPoint(pos) > ABIGAIL_COMMAND_DISTANCE * ABIGAIL_COMMAND_DISTANCE then
+        return doer_pos + (pos - doer_pos):Normalize() * ABIGAIL_COMMAND_DISTANCE
+    end
+end
+
+local function ReticuleGhostTargetFn(inst) -- 这是给手柄用的?
     return Vector3(ThePlayer.entity:LocalToWorldSpace(7, 0.001, 0))
 end
 
@@ -81,6 +91,10 @@ local function DoGhostSpell(doer, event, state, data, speech, ...)
     elseif data.target then
         pos = data.target:GetPosition()
     end
+    if doer:GetDistanceSqToPoint(pos) > ABIGAIL_COMMAND_DISTANCE * ABIGAIL_COMMAND_DISTANCE then
+        return
+    end
+
     if doer.WhisperTalk then
         doer:WhisperTalk({speech = speech, text = GetString(doer, speech), pos = pos})
     end
@@ -145,7 +159,11 @@ local function LeftClickPicker(inst, target, position)
     end
     for _, action in ipairs(actions) do
         if action == ACTIONS.HAUNT then
-            local distance = 40
+            local distance = ABIGAIL_COMMAND_DISTANCE
+            if inst:GetDistanceSqToInst(target) > distance * distance then
+                return
+            end
+            
             local spellbook = inst.HUD:GetCurrentOpenSpellBook()
             return { BufferedAction(inst, target, ACTIONS.SPELL_COMMAND, spellbook, nil, nil, distance) }
         end
@@ -377,12 +395,14 @@ local COMMANDS = {
 			local aoetargeting = inst.components.aoetargeting
             aoetargeting:SetAllowWater(true)
             aoetargeting:SetDeployRadius(0)
-			aoetargeting:SetRange(20)
+			aoetargeting:SetRange(40)
 			aoetargeting:SetShouldRepeatCastFn(AlwaysTrue)
+            
+            aoetargeting.reticule.validcolour = { 1, .75, 0, 1 }
+            aoetargeting.reticule.invalidcolour = { .5, 0, 0, 1 }
             aoetargeting.reticule.reticuleprefab = "reticuleaoeghosttarget"
             aoetargeting.reticule.pingprefab = "reticuleaoeghosttarget_ping"
-
-            aoetargeting.reticule.mousetargetfn = nil
+            aoetargeting.reticule.mousetargetfn = ReticuleGhostMouseTargetFn
             aoetargeting.reticule.targetfn = ReticuleGhostTargetFn
             aoetargeting.reticule.updatepositionfn = nil
 			aoetargeting.reticule.twinstickrange = 15
