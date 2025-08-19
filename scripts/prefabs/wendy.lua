@@ -45,21 +45,23 @@ end
 prefabs = FlattenTree({ prefabs, start_inv }, true)
 
 local function OnBondLevelDirty(inst)
+	local bond_level = inst._bondlevel:value()
 	if inst.HUD ~= nil then
-		local bond_level = inst._bondlevel:value()
 		for i = 0, 3 do
 			if i ~= 1 then
 				inst:SetClientSideInventoryImageOverrideFlag("bondlevel"..i, i == bond_level)
 			end
 		end
 		if not inst:HasTag("playerghost") then
-			if bond_level > 1 then
+			local prev_level = inst.prev_level or 0
+			if bond_level == 2 and prev_level < 2 then
 				if inst.HUD.wendyflowerover ~= nil then
 					inst.HUD.wendyflowerover:Play( bond_level )
 				end
 			end
 		end
     end
+	inst.prev_level = bond_level
 end
 
 local function OnPlayerDeactivated(inst)
@@ -144,20 +146,24 @@ end
 
 local function ghostlybond_onlevelchange(inst, ghost, level, prev_level, isloading)
 	inst._bondlevel:set(level)
+	OnBondLevelDirty(inst)
 
 	if not isloading and inst.components.talker ~= nil and level > 1 then
 		inst.components.talker:Say(GetString(inst, "ANNOUNCE_GHOSTLYBOND_LEVELUP", "LEVEL"..tostring(level)))
-		OnBondLevelDirty(inst)
 	end
 end
 
 local function ghostlybond_onsummon(inst, ghost)
+	inst.components.ghostlybond:SetBondLevel(3)
 	if inst.components.sanity ~= nil and inst.migration == nil then
 		inst.components.sanity:DoDelta(TUNING.SANITY_MED)
 	end
 end
 
 local function ghostlybond_onrecall(inst, ghost, was_killed)
+	if inst.components.ghostlybond.bondlevel > 2 then
+		inst.components.ghostlybond:SetBondLevel(2)
+	end
 	if inst.migration == nil then
 		if inst.components.sanity ~= nil then
 			inst.components.sanity:DoDelta(was_killed and (-TUNING.SANITY_MED * 2) or -TUNING.SANITY_MED)
@@ -187,6 +193,32 @@ local function ghostlybond_changebehaviour(inst, ghost)
 	return true
 end
 
+local function ghostlybond_cansummon(inst)
+	local level = inst.components.ghostlybond.bondlevel
+	if level > 1 then
+		return true
+	else
+		return false
+	end
+end
+
+local function ghostlybond_overrideupdate(inst, dt)
+	local ghost = inst.components.ghostlybond.ghost
+	if ghost == nil or not ghost:IsValid() then
+		return
+	end
+	local level = inst.components.ghostlybond.bondlevel
+	if level == 1 then
+		if ghost.components.health.currenthealth > 100 then
+			inst.components.ghostlybond:SetBondLevel(2)
+		end
+	elseif level == 2 then
+
+	elseif level == 3 then
+
+	end
+end
+
 local function WhisperTalk(inst, data)
 	if data == nil then
 		return
@@ -196,11 +228,8 @@ local function WhisperTalk(inst, data)
 		and inst.lastwhispertime and (GetTime() - inst.lastwhispertime) < 1 then
 
 	else
-		inst:PushEvent("talk_whisper", {pos = data.pos})
+		inst:PushEvent("talk_whisper", {pos = data.pos, lastwhisper = data.speech, lastwhispertime = GetTime()})
 		inst.components.talker:Say(data.text, nil, true)
-
-		inst.lastwhisper = data.speech
-		inst.lastwhispertime = GetTime()
 	end
 end
 
@@ -249,12 +278,14 @@ local function master_postinit(inst)
 	inst:AddComponent("fader")
 
 	inst:AddComponent("ghostlybond")
-	inst.components.ghostlybond.maxbondlevel = 1
+	inst.components.ghostlybond.maxbondlevel = 3
 	inst.components.ghostlybond.onbondlevelchangefn = ghostlybond_onlevelchange
 	inst.components.ghostlybond.onsummonfn = ghostlybond_onsummon
 	inst.components.ghostlybond.onrecallfn = ghostlybond_onrecall
 	inst.components.ghostlybond.onsummoncompletefn = ghostlybond_onsummoncomplete
 	inst.components.ghostlybond.changebehaviourfn = ghostlybond_changebehaviour
+	inst.components.ghostlybond.cansummonfn = ghostlybond_cansummon
+	inst.components.ghostlybond.overrideupdatefn = ghostlybond_overrideupdate
 
 	inst.components.ghostlybond:Init("abigail", TUNING.ABIGAIL_BOND_LEVELUP_TIME)
 

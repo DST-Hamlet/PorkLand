@@ -10,9 +10,22 @@ function GhostlyBond:FreezeMovements(should_freeze)
 end
 
 local _Summon = GhostlyBond.Summon
-function GhostlyBond:Summon(...)
-	if self.ghost and self.ghost.components.health and self.ghost.components.health.currenthealth <= 100 then
+function GhostlyBond:Summon(summoningitem, ...)
+	if self.cansummonfn and not self.cansummonfn(self.inst) then
 		return false
 	end
-	return _Summon(self, ...)
+	local ret = _Summon(self, summoningitem, ...)
+	if ret and self.inst.player_classified then
+		self.inst.player_classified._spellcommand_item:set_local(nil)
+		self.inst.player_classified._spellcommand_item:set(summoningitem)
+	end
+	return ret
+end
+
+local _OnUpdate = GhostlyBond.OnUpdate
+function GhostlyBond:OnUpdate(...)
+	if self.overrideupdatefn then
+		return self.overrideupdatefn(self.inst, ...)
+	end
+	return _OnUpdate(self, ...)
 end

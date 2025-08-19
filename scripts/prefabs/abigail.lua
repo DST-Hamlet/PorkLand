@@ -51,7 +51,8 @@ local function SetMaxHealth(inst)
     end
 end
 
-local function UpdateGhostlyBondLevel(inst, level)
+local function UpdateGhostlyBondLevel(inst)
+    local level = 1 -- 永远使用1级阿比的数据
 	local max_health = level == 3 and TUNING.ABIGAIL_HEALTH_LEVEL3
 					or level == 2 and TUNING.ABIGAIL_HEALTH_LEVEL2
 					or TUNING.ABIGAIL_HEALTH_LEVEL1
@@ -152,7 +153,7 @@ local function DefensiveRetarget(inst)
             ix, iy, iz, TUNING.ABIGAIL_DEFENSIVE_MAX_FOLLOW,
             COMBAT_MUSHAVE_TAGS, COMBAT_CANTHAVE_TAGS, COMBAT_MUSTONEOF_TAGS_DEFENSIVE
         )
-        local should_force_retarget = inst:HasTag("movements_frozen")
+        local should_force_retarget = inst:HasTag("movements_frozen") or (inst._goto_position ~= nil) or (inst._haunt_target ~= nil)
 
         for _, v in ipairs(entities_near_me) do
             if CommonRetarget(inst, v)
@@ -178,7 +179,7 @@ local function AggressiveRetarget(inst)
         ix, iy, iz, TUNING.ABIGAIL_COMBAT_TARGET_DISTANCE,
         COMBAT_MUSHAVE_TAGS, COMBAT_CANTHAVE_TAGS, COMBAT_MUSTONEOF_TAGS_AGGRESSIVE
     )
-    local should_force_retarget = inst:HasTag("movements_frozen")
+    local should_force_retarget = inst:HasTag("movements_frozen") or (inst._goto_position ~= nil) or (inst._haunt_target ~= nil)
 
     for _, entity_near_me in ipairs(entities_near_me) do
         if CommonRetarget(inst, entity_near_me) then
@@ -313,10 +314,6 @@ local function AbleToAcceptTest(inst, item)
 end
 
 local function on_ghostlybond_level_change(inst, player, data)
-	if not inst.inlimbo and data.level > 1 and not inst.sg:HasStateTag("busy") and (inst.components.health == nil or not inst.components.health:IsDead()) then
-		inst.sg:GoToState("ghostlybond_levelup", {level = data.level})
-	end
-
 	UpdateGhostlyBondLevel(inst, data.level)
 end
 
@@ -367,10 +364,7 @@ end
 
 --
 local function getstatus(inst)
-	local bondlevel = (inst._playerlink ~= nil and inst._playerlink.components.ghostlybond ~= nil) and inst._playerlink.components.ghostlybond.bondlevel or 0
-	return bondlevel == 3 and "LEVEL3"
-		or bondlevel == 2 and "LEVEL2"
-		or "LEVEL1"
+    return "LEVEL1"
 end
 
 local function OnSave(inst, data)

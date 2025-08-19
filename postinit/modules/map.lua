@@ -304,7 +304,7 @@ function Map:IsAboveGroundAtPoint(x, y, z, allow_water, ...)
             return false
         end
     end
-    return _IsAboveGroundAtPoint(self, x, y, z, ...)
+    return _IsAboveGroundAtPoint(self, x, y, z, allow_water, ...)
 end
 
 local _CanDeployRecipeAtPoint = Map.CanDeployRecipeAtPoint

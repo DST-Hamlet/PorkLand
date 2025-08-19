@@ -375,6 +375,7 @@ local COMMANDS = {
             inst.components.spellcommand:SetSelectedCommand("goto")
 
 			local aoetargeting = inst.components.aoetargeting
+            aoetargeting:SetAllowWater(true)
             aoetargeting:SetDeployRadius(0)
 			aoetargeting:SetRange(20)
 			aoetargeting:SetShouldRepeatCastFn(AlwaysTrue)

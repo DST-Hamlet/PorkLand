@@ -2898,12 +2898,16 @@ local states = {
 
     State{
         name = "talk_whisper",
-        tags = { "idle", "talking", "whisper" },
+        tags = { "idle", "talking", "whisper", "notalking" },
 
         onenter = function(inst, data)
             inst.components.locomotor:Stop()
-            if data and data.pos then
-                inst:ForceFacePoint(data.pos)
+            if data then
+                if data.pos then
+                    inst:ForceFacePoint(data.pos)
+                end
+                inst.lastwhisper = data.lastwhisper
+                inst.lastwhispertime = data.lastwhispertime
             end
             inst.Transform:SetSixFaced()
             inst.AnimState:PlayAnimation("wendy_commune_pre")
@@ -2928,6 +2932,8 @@ local states = {
         },
 
         onexit = function(inst)
+            inst.lastwhisper = nil
+            inst.lastwhispertime = nil
             StopTalkSound(inst)
             inst.Transform:SetFourFaced()
             inst.AnimState:ClearOverrideSymbol("flower")

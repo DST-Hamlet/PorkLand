@@ -262,7 +262,7 @@ local function ApplyShapeScale(inst, source, scale)
     end
 end
 
-function ActionSpeedDirty(inst)
+local function ActionSpeedDirty(inst)
     inst._actionspeed = inst._actionspeed_client:value()
 end
 
