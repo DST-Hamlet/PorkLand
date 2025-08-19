@@ -45,7 +45,7 @@ end
 prefabs = FlattenTree({ prefabs, start_inv }, true)
 
 local function OnBondLevelDirty(inst)
-	local bond_level = inst._bondlevel:value()
+	local bond_level = inst._bondlevel:value() -- 该值初始为0而非1
 	if inst.HUD ~= nil then
 		for i = 0, 3 do
 			if i ~= 1 then
@@ -136,12 +136,15 @@ end
 
 local function ondeath(inst)
 	inst.components.ghostlybond:Recall()
-	inst.components.ghostlybond:PauseBonding()
 end
 
 local function onresurrection(inst)
+	local ghost = inst.components.ghostlybond.ghost
+	if ghost == nil or not ghost:IsValid() then
+		return
+	end
 	inst.components.ghostlybond:SetBondLevel(1)
-	inst.components.ghostlybond:ResumeBonding()
+	ghost.components.health:SetPercent(0)
 end
 
 local function ghostlybond_onlevelchange(inst, ghost, level, prev_level, isloading)
@@ -209,7 +212,7 @@ local function ghostlybond_overrideupdate(inst, dt)
 	end
 	local level = inst.components.ghostlybond.bondlevel
 	if level == 1 then
-		if ghost.components.health.currenthealth > 100 then
+		if ghost.components.health.currenthealth >= 100 then
 			inst.components.ghostlybond:SetBondLevel(2)
 		end
 	elseif level == 2 then
