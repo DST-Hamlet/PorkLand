@@ -306,6 +306,8 @@ local function master_postinit(inst)
 	inst:ListenForEvent("ms_respawnedfromghost", onresurrection)
 
     inst.components.combat.damagemultiplier = TUNING.WENDY_DAMAGE_MULT
+	inst:AddComponent("efficientuser")
+    inst.components.efficientuser:AddMultiplier(ACTIONS.ATTACK, 0.75, "wendy")
 
 	inst.WhisperTalk = WhisperTalk
 
