@@ -145,7 +145,7 @@ local GROWTH_STAGES = {
             inst.AnimState:PushAnimation("idle", true)
             inst.components.storageloot:AddLoot("cutgrass")
             inst.components.storageloot:AddLoot("cutgrass")
-            inst.components.hackable:SetWorkLeft(2.5)
+            inst.components.hackable:SetWorkLeft(3)
             inst.components.shearable:SetCanShear(true)
             WeevoleNestTest(inst)
         end,
@@ -237,7 +237,7 @@ local function grass_tall()
     inst.components.workable:SetWorkLeft(1)
 
     inst:AddComponent("hackable")
-    inst.components.hackable:SetWorkLeft(2.5)
+    inst.components.hackable:SetWorkLeft(3)
     inst.components.hackable:SetOnWorkCallback(OnHack)
 
     inst:AddComponent("shearable")

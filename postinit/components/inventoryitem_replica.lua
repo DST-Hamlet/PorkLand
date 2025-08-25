@@ -12,6 +12,16 @@ function InventoryItem:CanDeploy(pt, mouseover, deployer, rot, ...)
     return ret
 end
 
+local _SetOwner = InventoryItem.SetOwner
+function InventoryItem:SetOwner(owner, ...)
+    if self.inst.prefab == "abigail_flower" then
+        if ThePlayer and ThePlayer.HUD and ThePlayer.HUD:GetCurrentOpenSpellBook() == self.inst then
+            ThePlayer.HUD.controls.spellcontrols:Close()
+        end
+    end
+    return _SetOwner(self, owner, ...)
+end
+
 local _SerializeUsage = InventoryItem.SerializeUsage
 function InventoryItem:SerializeUsage(...)
     _SerializeUsage(self, ...)

@@ -690,9 +690,6 @@ local function MakeTree(name, build, stage, data)
         inst.components.growable.springgrowth = true
         inst.components.growable:StartGrowing()
 
-        inst:AddComponent("simplemagicgrower")
-        inst.components.simplemagicgrower:SetLastStage(#inst.components.growable.stages)
-
         inst:AddComponent("bloomable")
         inst.components.bloomable:SetCanBloom(CanBloom)
         inst.components.bloomable:SetStartBloomFn(StartBloom)

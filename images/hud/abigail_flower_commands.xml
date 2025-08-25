@@ -1,0 +1,12 @@
+<Atlas>
+    <Texture filename="abigail_flower_commands.tex"/>
+    <Elements>
+        <Element name="haunt.tex" u1="0" u2="0.25" v1="0.75" v2="1"/>
+        <Element name="resume.tex" u1="0.25" u2="0.5" v1="0.75" v2="1"/>
+        <Element name="rileup.tex" u1="0.5" u2="0.75" v1="0.75" v2="1"/>
+        <Element name="smoothe.tex" u1="0.75" u2="1" v1="0.75" v2="1"/>
+        <Element name="unsummon.tex" u1="0" u2="0.25" v1="0.5" v2="0.75"/>
+        <Element name="freeze.tex" u1="0.75" u2="1" v1="0.5" v2="0.75"/>
+        <Element name="goto.tex" u1="0" u2="0.25" v1="0.25" v2="0.5"/>
+    </Elements>
+</Atlas>

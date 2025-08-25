@@ -47,3 +47,42 @@ function Inventory:GetNumSlots(...)
     end
     return get_num_slots(self, ...)
 end
+
+-- This is the same as the one postinit/widgets/invslot.lua,
+-- but we need to hook on both for the keyboard shortcuts
+
+local SUPPORTED_ITEMS = {
+    ["abigail_flower"] = true,
+}
+
+local function get_slot_position(inventory_bar, item)
+    local slots = JoinArrays(unpack(inventory_bar:GetInventoryLists()))
+    for _, slot in pairs(slots) do
+        if slot.tile and slot.tile.item == item then
+            return slot.tile:GetWorldPosition()
+        end
+    end
+end
+
+local use_item_from_inv_tile = Inventory.UseItemFromInvTile
+function Inventory:UseItemFromInvTile(item, ...)
+    if not (item and item:IsValid()) then
+        return
+    end
+
+    if not TheInput:ControllerAttached() and SUPPORTED_ITEMS[item.prefab] then
+        local action = self.inst.components.playeractionpicker:GetInventoryActions(item)[1]
+        if action then
+            if action.action == ACTIONS.USESPELLBOOK then
+                self.inst.HUD.controls.spellcontrols:Open(item.components.spellcommand:GetSpellCommands(), item.components.spellcommand.ui_background, item, get_slot_position(self.inst.HUD.controls.inv, item))
+                return
+            end
+            if action.action == ACTIONS.CLOSESPELLBOOK then
+                self.inst.HUD.controls.spellcontrols:Close()
+                return
+            end
+        end
+    end
+
+    return use_item_from_inv_tile(self, item, ...)
+end

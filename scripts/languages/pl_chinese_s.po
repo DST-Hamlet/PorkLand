@@ -440,6 +440,56 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.ACTIONFAIL.USEDOOR.LOCKED"
 msgid "It's locked."
 msgstr "它锁住了。"
 
+#. STRINGS.CHARACTERS.GENERIC.ANNOUNCE_ABIGAIL_GOTO.1
+msgctxt "STRINGS.CHARACTERS.GENERIC.ANNOUNCE_ABIGAIL_GOTO.1"
+msgid "only_used_by_wendy"
+msgstr "only_used_by_wendy"
+
+#. STRINGS.CHARACTERS.GENERIC.ANNOUNCE_ABIGAIL_GOTO.2
+msgctxt "STRINGS.CHARACTERS.GENERIC.ANNOUNCE_ABIGAIL_GOTO.2"
+msgid "only_used_by_wendy"
+msgstr "only_used_by_wendy"
+
+#. STRINGS.CHARACTERS.GENERIC.ANNOUNCE_ABIGAIL_GOTO.3
+msgctxt "STRINGS.CHARACTERS.GENERIC.ANNOUNCE_ABIGAIL_GOTO.3"
+msgid "only_used_by_wendy"
+msgstr "only_used_by_wendy"
+
+#. STRINGS.CHARACTERS.GENERIC.ANNOUNCE_ABIGAIL_HAUNT.1
+msgctxt "STRINGS.CHARACTERS.GENERIC.ANNOUNCE_ABIGAIL_HAUNT.1"
+msgid "only_used_by_wendy"
+msgstr "only_used_by_wendy"
+
+#. STRINGS.CHARACTERS.GENERIC.ANNOUNCE_ABIGAIL_HAUNT.2
+msgctxt "STRINGS.CHARACTERS.GENERIC.ANNOUNCE_ABIGAIL_HAUNT.2"
+msgid "only_used_by_wendy"
+msgstr "only_used_by_wendy"
+
+#. STRINGS.CHARACTERS.GENERIC.ANNOUNCE_ABIGAIL_HAUNT.3
+msgctxt "STRINGS.CHARACTERS.GENERIC.ANNOUNCE_ABIGAIL_HAUNT.3"
+msgid "only_used_by_wendy"
+msgstr "only_used_by_wendy"
+
+#. STRINGS.CHARACTERS.GENERIC.ANNOUNCE_ABIGAIL_MAKE_AGGRESSIVE
+msgctxt "STRINGS.CHARACTERS.GENERIC.ANNOUNCE_ABIGAIL_MAKE_AGGRESSIVE"
+msgid "only_used_by_wendy"
+msgstr "only_used_by_wendy"
+
+#. STRINGS.CHARACTERS.GENERIC.ANNOUNCE_ABIGAIL_MAKE_DEFENSIVE
+msgctxt "STRINGS.CHARACTERS.GENERIC.ANNOUNCE_ABIGAIL_MAKE_DEFENSIVE"
+msgid "only_used_by_wendy"
+msgstr "only_used_by_wendy"
+
+#. STRINGS.CHARACTERS.GENERIC.ANNOUNCE_ABIGAIL_MAKE_FOLLOW
+msgctxt "STRINGS.CHARACTERS.GENERIC.ANNOUNCE_ABIGAIL_MAKE_FOLLOW"
+msgid "only_used_by_wendy"
+msgstr "only_used_by_wendy""
+
+#. STRINGS.CHARACTERS.GENERIC.ANNOUNCE_ABIGAIL_MAKE_STAY
+msgctxt "STRINGS.CHARACTERS.GENERIC.ANNOUNCE_ABIGAIL_MAKE_STAY"
+msgid "only_used_by_wendy"
+msgstr "only_used_by_wendy"
+
 #. STRINGS.CHARACTERS.GENERIC.ANNOUCE_ALARMOVER
 msgctxt "STRINGS.CHARACTERS.GENERIC.ANNOUCE_ALARMOVER"
 msgid "I think I got away."
@@ -35794,6 +35844,56 @@ msgstr "（哎）我的一切都被它挡住了。"
 msgctxt "STRINGS.CHARACTERS.WENDY.ACTIONFAIL.USEDOOR.LOCKED"
 msgid "I could find a way in, but why bother."
 msgstr "我得想个办法进去，但是为什么会变得这么麻烦呢。"
+
+#. STRINGS.CHARACTERS.WENDY.ANNOUNCE_ABIGAIL_GOTO.1
+msgctxt "STRINGS.CHARACTERS.WENDY.ANNOUNCE_ABIGAIL_GOTO.1"
+msgid "Abigail, over here!"
+msgstr "阿比盖尔，到这儿来！"
+
+#. STRINGS.CHARACTERS.WENDY.ANNOUNCE_ABIGAIL_GOTO.2
+msgctxt "STRINGS.CHARACTERS.WENDY.ANNOUNCE_ABIGAIL_GOTO.2"
+msgid "Go there, Abby."
+msgstr "去吧，阿比。"
+
+#. STRINGS.CHARACTERS.WENDY.ANNOUNCE_ABIGAIL_GOTO.3
+msgctxt "STRINGS.CHARACTERS.WENDY.ANNOUNCE_ABIGAIL_GOTO.3"
+msgid "Run, Abigail, Run!"
+msgstr "跑，阿比盖尔，跑！"
+
+#. STRINGS.CHARACTERS.WENDY.ANNOUNCE_ABIGAIL_HAUNT.1
+msgctxt "STRINGS.CHARACTERS.WENDY.ANNOUNCE_ABIGAIL_HAUNT.1"
+msgid "I request your ghost power, Abigail..."
+msgstr "现在我需要你的鬼魂力量，阿比盖尔..."
+
+#. STRINGS.CHARACTERS.WENDY.ANNOUNCE_ABIGAIL_HAUNT.2
+msgctxt "STRINGS.CHARACTERS.WENDY.ANNOUNCE_ABIGAIL_HAUNT.2"
+msgid "Play your favorite prank, dear sister."
+msgstr "做你最喜欢的恶作剧吧，亲爱的妹妹。"
+
+#. STRINGS.CHARACTERS.WENDY.ANNOUNCE_ABIGAIL_HAUNT.3
+msgctxt "STRINGS.CHARACTERS.WENDY.ANNOUNCE_ABIGAIL_HAUNT.3"
+msgid "Try that, Abigail."
+msgstr "试试那个，阿比盖尔。"
+
+#. STRINGS.CHARACTERS.WENDY.ANNOUNCE_ABIGAIL_MAKE_AGGRESSIVE
+msgctxt "STRINGS.CHARACTERS.WENDY.ANNOUNCE_ABIGAIL_MAKE_AGGRESSIVE"
+msgid "Abigail, time to fight!"
+msgstr "阿比盖尔，来战斗吧！"
+
+#. STRINGS.CHARACTERS.WENDY.ANNOUNCE_ABIGAIL_MAKE_DEFENSIVE
+msgctxt "STRINGS.CHARACTERS.WENDY.ANNOUNCE_ABIGAIL_MAKE_DEFENSIVE"
+msgid "Calm down, Abby. I'm fine."
+msgstr "冷静，阿比，我没事。"
+
+#. STRINGS.CHARACTERS.WENDY.ANNOUNCE_ABIGAIL_MAKE_FOLLOW
+msgctxt "STRINGS.CHARACTERS.WENDY.ANNOUNCE_ABIGAIL_MAKE_FOLLOW"
+msgid "Statues game is over, Abigail."
+msgstr "木头人游戏结束了，阿比盖尔。"
+
+#. STRINGS.CHARACTERS.WENDY.ANNOUNCE_ABIGAIL_MAKE_STAY
+msgctxt "STRINGS.CHARACTERS.WENDY.ANNOUNCE_ABIGAIL_MAKE_STAY"
+msgid "Abigail, let's play statues game."
+msgstr "阿比盖尔，我们来玩会儿木头人游戏？"
 
 #. STRINGS.CHARACTERS.WENDY.ANNOUCE_ALARMOVER
 msgctxt "STRINGS.CHARACTERS.WENDY.ANNOUCE_ALARMOVER"
@@ -94090,6 +94190,171 @@ msgctxt "STRINGS.CITY_TALK_ANNOUNCE_APORKALYPSE.DEFAULT.7"
 msgid "BE ALL AND END ALL!"
 msgstr "一切都要完了！"
 
+#. STRINGS.LUCY.beaver_down_washigh.1
+msgctxt "STRINGS.LUCY.beaver_down_washigh.1"
+msgid "That was a close one!"
+msgstr "真够悬的！"
+
+#. STRINGS.LUCY.beaver_down_washigh.2
+msgctxt "STRINGS.LUCY.beaver_down_washigh.2"
+msgid "I think we'll be alright."
+msgstr "我想我们不会有事的。"
+
+#. STRINGS.LUCY.beaver_down_washigh.3
+msgctxt "STRINGS.LUCY.beaver_down_washigh.3"
+msgid "You're looking much better now."
+msgstr "你现在看起来好多了。"
+
+#. STRINGS.LUCY.beaver_down_washigh.4
+msgctxt "STRINGS.LUCY.beaver_down_washigh.4"
+msgid "It's passed. For now."
+msgstr "总算过去了。至少是这一次。"
+
+#. STRINGS.LUCY.beaver_down_washigh.5
+msgctxt "STRINGS.LUCY.beaver_down_washigh.5"
+msgid "I was silly to doubt you."
+msgstr "我真笨，不该怀疑你。"
+
+#. STRINGS.LUCY.beaver_down_washigh.6
+msgctxt "STRINGS.LUCY.beaver_down_washigh.6"
+msgid "Wow, I was afraid you were in for it!"
+msgstr "哇，我担心你会喜欢它！"
+
+#. STRINGS.LUCY.beaver_down_washigh.7
+msgctxt "STRINGS.LUCY.beaver_down_washigh.7"
+msgid "I think the colour's returning to your cheeks."
+msgstr "我想，你的脸颊颜色恢复正常了。"
+
+#. STRINGS.LUCY.beaver_down_washigh.8
+msgctxt "STRINGS.LUCY.beaver_down_washigh.8"
+msgid "It's back in the lodge. Phew!"
+msgstr "回复正常了。呼！"
+
+#. STRINGS.LUCY.beaver_up_early.1
+msgctxt "STRINGS.LUCY.beaver_up_early.1"
+msgid "Are you okay?"
+msgstr "你还好吗？"
+
+#. STRINGS.LUCY.beaver_up_early.2
+msgctxt "STRINGS.LUCY.beaver_up_early.2"
+msgid "You alright, big guy?"
+msgstr "你还好么，大个子？"
+
+#. STRINGS.LUCY.beaver_up_early.3
+msgctxt "STRINGS.LUCY.beaver_up_early.3"
+msgid "What's wrong?"
+msgstr "怎么了？"
+
+#. STRINGS.LUCY.beaver_up_early.4
+msgctxt "STRINGS.LUCY.beaver_up_early.4"
+msgid "Are you sure you're feeling alright?"
+msgstr "你确定你还好吗？"
+
+#. STRINGS.LUCY.beaver_up_early.5
+msgctxt "STRINGS.LUCY.beaver_up_early.5"
+msgid "You're looking extra gruff today."
+msgstr "今天你看起来特别粗暴。"
+
+#. STRINGS.LUCY.beaver_up_early.6
+msgctxt "STRINGS.LUCY.beaver_up_early.6"
+msgid "You look distracted."
+msgstr "你看上去魂不守舍。"
+
+#. STRINGS.LUCY.beaver_up_early.7
+msgctxt "STRINGS.LUCY.beaver_up_early.7"
+msgid "Why are you making that face?"
+msgstr "你为什么做一张那样的脸？"
+
+#. STRINGS.LUCY.beaver_up_early.8
+msgctxt "STRINGS.LUCY.beaver_up_early.8"
+msgid "Try to take deep breaths, okay?"
+msgstr "试着深呼吸，好吗？"
+
+#. STRINGS.LUCY.beaver_up_early.9
+msgctxt "STRINGS.LUCY.beaver_up_early.9"
+msgid "It's just a tree! Calm down!"
+msgstr "那只是一棵树！冷静！"
+
+#. STRINGS.LUCY.beaver_up_late.1
+msgctxt "STRINGS.LUCY.beaver_up_late.1"
+msgid "You're overdoing it!"
+msgstr "太过分了！"
+
+#. STRINGS.LUCY.beaver_up_late.2
+msgctxt "STRINGS.LUCY.beaver_up_late.2"
+msgid "You're not pacing yourself!"
+msgstr "调整好节奏！"
+
+#. STRINGS.LUCY.beaver_up_late.3
+msgctxt "STRINGS.LUCY.beaver_up_late.3"
+msgid "You're about to change!"
+msgstr "你快要变身了！"
+
+#. STRINGS.LUCY.beaver_up_late.4
+msgctxt "STRINGS.LUCY.beaver_up_late.4"
+msgid "Take it easy!"
+msgstr "放轻松！"
+
+#. STRINGS.LUCY.beaver_up_late.5
+msgctxt "STRINGS.LUCY.beaver_up_late.5"
+msgid "You've gotta slow down!"
+msgstr "你得慢下来！"
+
+#. STRINGS.LUCY.beaver_up_late.6
+msgctxt "STRINGS.LUCY.beaver_up_late.6"
+msgid "Slow down, I'm worried about you!"
+msgstr "慢点，我担心你！"
+
+#. STRINGS.LUCY.beaver_up_late.7
+msgctxt "STRINGS.LUCY.beaver_up_late.7"
+msgid "Watch out! You're going to turn!"
+msgstr "当心！你正在变身！"
+
+#. STRINGS.LUCY.beaver_up_late.8
+msgctxt "STRINGS.LUCY.beaver_up_late.8"
+msgid "No! Don't chop any more!"
+msgstr "不！别再砍了！"
+
+#. STRINGS.LUCY.beaver_up_late.9
+msgctxt "STRINGS.LUCY.beaver_up_late.9"
+msgid "The transformation is starting!"
+msgstr "变形开始了！"
+
+#. STRINGS.LUCY.beaver_up_late.10
+msgctxt "STRINGS.LUCY.beaver_up_late.10"
+msgid "One more chop and you're in trouble!"
+msgstr "再多砍一下你的麻烦就大了！"
+
+#. STRINGS.LUCY.beaver_up_late.11
+msgctxt "STRINGS.LUCY.beaver_up_late.11"
+msgid "Ease up, you're looking a little bucktoothed!"
+msgstr "放松，你的牙齿在变长！"
+
+#. STRINGS.LUCY.beaver_up_late.12
+msgctxt "STRINGS.LUCY.beaver_up_late.12"
+msgid "Stop chopping, I'm getting nervous!"
+msgstr "别砍了，我要吓死了！"
+
+#. STRINGS.LUCY.beaver_up_mid.1
+msgctxt "STRINGS.LUCY.beaver_up_mid.1"
+msgid "Hello? Can you hear me?"
+msgstr "喂？你能听到我说话吗？"
+
+#. STRINGS.LUCY.beaver_up_mid.2
+msgctxt "STRINGS.LUCY.beaver_up_mid.2"
+msgid "You might want to slow down a bit."
+msgstr "你也许该放慢一点。"
+
+#. STRINGS.LUCY.beaver_up_mid.3
+msgctxt "STRINGS.LUCY.beaver_up_mid.3"
+msgid "Careful, you're getting yourself worked up!"
+msgstr "小心点，你在给自己找麻烦！"
+
+#. STRINGS.LUCY.beaver_up_mid.4
+msgctxt "STRINGS.LUCY.beaver_up_mid.4"
+msgid "Don't chop too fast. You know what will happen!"
+msgstr "别砍太快。你知道会发生什么事！"
+
 #. STRINGS.MANDRAKEMANNAMES.1
 msgctxt "STRINGS.MANDRAKEMANNAMES.1"
 msgid "Bambuseae"
@@ -95742,8 +96007,8 @@ msgstr "矿工"
 
 #. STRINGS.NAMES.PIGMAN_QUEEN
 msgctxt "STRINGS.NAMES.PIGMAN_QUEEN"
-msgid "Pig Queen"
-msgstr "猪女王"
+msgid "Queen Malfalfa"
+msgstr "玛法拉法女王"
 
 #. STRINGS.NAMES.PIGMAN_ROYALGUARD
 msgctxt "STRINGS.NAMES.PIGMAN_ROYALGUARD"
@@ -97004,11 +97269,6 @@ msgstr "椭圆玻璃窗帘"
 msgctxt "STRINGS.NAMES.WOOD_DOOR"
 msgid "Hardwood Door"
 msgstr "硬木门"
-
-#. STRINGS.QUEENPIGNAMES.1
-msgctxt "STRINGS.QUEENPIGNAMES.1"
-msgid "Queen Malfalfa"
-msgstr "玛法拉法女王"
 
 #. STRINGS.RECIPE_DESC.ANTIVENOM
 msgctxt "STRINGS.RECIPE_DESC.ANTIVENOM"
@@ -98369,6 +98629,41 @@ msgstr "它的顶冠饰条已经加工到极致了。"
 msgctxt "STRINGS.SCRAPBOOK.SPECIALINFO.KEY_TO_CITY"
 msgid "Creat you own city."
 msgstr "建造你自己的城镇。"
+
+#. STRINGS.SPELLCOMMAND.TALK_TO_ABIGAIL.GOTO
+msgctxt "STRINGS.SPELLCOMMAND.TALK_TO_ABIGAIL.GOTO"
+msgid "Drift To"
+msgstr "飘向"
+
+#. STRINGS.SPELLCOMMAND.TALK_TO_ABIGAIL.HAUNT
+msgctxt "STRINGS.SPELLCOMMAND.TALK_TO_ABIGAIL.HAUNT"
+msgid "Haunt On"
+msgstr "作祟"
+
+#. STRINGS.SPELLCOMMAND.TALK_TO_ABIGAIL.MAKE_AGGRESSIVE
+msgctxt "STRINGS.SPELLCOMMAND.TALK_TO_ABIGAIL.MAKE_AGGRESSIVE"
+msgid "Rile Up"
+msgstr "激怒"
+
+#. STRINGS.SPELLCOMMAND.TALK_TO_ABIGAIL.MAKE_DEFENSIVE
+msgctxt "STRINGS.SPELLCOMMAND.TALK_TO_ABIGAIL.MAKE_DEFENSIVE"
+msgid "Soothe"
+msgstr "安抚"
+
+#. STRINGS.SPELLCOMMAND.TALK_TO_ABIGAIL.MAKE_FOLLOW
+msgctxt "STRINGS.SPELLCOMMAND.TALK_TO_ABIGAIL.MAKE_FOLLOW"
+msgid "Follow"
+msgstr "跟随"
+
+#. STRINGS.SPELLCOMMAND.TALK_TO_ABIGAIL.MAKE_STAY
+msgctxt "STRINGS.SPELLCOMMAND.TALK_TO_ABIGAIL.MAKE_STAY"
+msgid "Stay"
+msgstr "等待"
+
+#. STRINGS.SPELLCOMMAND.TALK_TO_ABIGAIL.UNSUMMON
+msgctxt "STRINGS.SPELLCOMMAND.TALK_TO_ABIGAIL.UNSUMMON"
+msgid "Unsummon"
+msgstr "解除召唤"
 
 #. STRINGS.UI.COOKBOOK.FOOD_EFFECTS_ANTIHISTAMINE
 msgctxt "STRINGS.UI.COOKBOOK.FOOD_EFFECTS_ANTIHISTAMINE"

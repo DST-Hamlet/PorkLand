@@ -264,6 +264,11 @@ PrefabFiles = {
     "windswirl",
     "windtrail",
     "worldsound",
+
+    "woodie_beaver_bag",
+
+    "waxwell_shield",
+    "waxwell_pillar"
 }
 
 Assets = {
@@ -288,6 +293,11 @@ Assets = {
     -- interior map toggle button and arrows
     Asset("ATLAS", "images/hud/pl_mapscreen_widgets.xml"),
     Asset("IMAGE", "images/hud/pl_mapscreen_widgets.tex"),
+
+    -- abigail flower spell command icons
+    Asset("ATLAS", "images/hud/abigail_flower_commands.xml"),
+    Asset("IMAGE", "images/hud/abigail_flower_commands.tex"),
+    Asset("ANIM", "anim/ui_abigail_command_5x1.zip"),
 
     -- falloff
     Asset("IMAGE", "levels/tiles/black_falloff.tex"),
@@ -506,3 +516,14 @@ local function AddCharacter(name, gender)
 end
 
 AddCharacter("wheeler", "FEMALE")
+
+local dst_chracters = {
+    "wortox",
+    "wurt",
+    "walter",
+    "wanda",
+}
+
+for _, v in pairs(dst_chracters) do
+    RemoveDefaultCharacter(v)
+end

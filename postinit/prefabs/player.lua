@@ -79,6 +79,14 @@ local function OnDeath(inst, data)
     if inst.components.hayfever ~= nil then
         inst.components.hayfever:Disable(true)
     end
+
+    local health = inst.components.health
+    if health.currenthealth > 0 then
+		-- 方便t键测试
+		health._ignore_maxdamagetakenperhit = true
+        health:DoDelta(-health.currenthealth, nil, nil, nil, nil, true)
+		health._ignore_maxdamagetakenperhit = nil
+    end
 end
 
 local function OnRespawnFromGhost(inst, data)
@@ -91,12 +99,16 @@ local function OnRespawnFromGhost(inst, data)
     end
 end
 
-local function OnLoad(inst, data, ...)
-    if data ~= nil then
-        if data.is_ghost then
-            --blockPoison(inst)
-        end
+local function OnSave(inst, data)
+    if inst._shapescale and data.health.health then
+        data.health.health = data.health.health / inst._shapescale
     end
+
+    return inst:__OnSave(data)
+end
+
+local function OnLoad(inst, data, ...)
+    -- 下面的这堆屎山是为了在船上载入游戏不会触发回岸保护机制
     -- Well this really sucks, thanks for making my life hell klei :) (I blame Zarklord specifically because funi)
     local _DoTaskInTime = inst.DoTaskInTime
     function inst:DoTaskInTime(time, fn, ...)
@@ -137,11 +149,129 @@ local function OnInteriorChange(inst, data)
     end
 end
 
+local function OnMounted(inst)
+    inst:ApplyAnimScale("mightiness", 1)
+end
+
+local function OnDismounted(inst)
+    inst:ApplyAnimScale("mightiness", inst._physics_scale)
+end
+
+local function SetShapeScale(inst, source, param_scale)
+    local scale = param_scale
+    scale = math.min(scale, 4)
+    scale = math.max(scale, 0.25)
+
+    inst._shapescale = scale
+
+    local health_percent = inst.components.health:GetPercent()
+    inst.components.health:SetMaxHealth(inst.components.health.basehealth * scale)
+    inst.components.health:SetPercent(health_percent, true)
+
+    if param_scale == 1 then
+        inst.components.combat.externaldamagemultipliers:RemoveModifier(source)
+        inst.components.efficientuser:RemoveMultiplier(ACTIONS.ATTACK, source)
+
+        inst.components.workmultiplier:RemoveMultiplier(ACTIONS.CHOP,   source)
+        inst.components.workmultiplier:RemoveMultiplier(ACTIONS.HACK,   source)
+        inst.components.workmultiplier:RemoveMultiplier(ACTIONS.MINE,   source)
+        inst.components.workmultiplier:RemoveMultiplier(ACTIONS.HAMMER, source)
+
+        inst.components.efficientuser:RemoveMultiplier(ACTIONS.CHOP,    source)
+        inst.components.efficientuser:RemoveMultiplier(ACTIONS.HACK,    source)
+        inst.components.efficientuser:RemoveMultiplier(ACTIONS.MINE,    source)
+        inst.components.efficientuser:RemoveMultiplier(ACTIONS.HAMMER,  source)
+    else
+        inst.components.combat.externaldamagemultipliers:SetModifier(source, scale)
+        inst.components.efficientuser:AddMultiplier(ACTIONS.ATTACK, scale, source)
+
+        inst.components.workmultiplier:AddMultiplier(ACTIONS.CHOP,    scale, source)
+        inst.components.workmultiplier:AddMultiplier(ACTIONS.HACK,    scale, source)
+        inst.components.workmultiplier:AddMultiplier(ACTIONS.MINE,    scale, source)
+        inst.components.workmultiplier:AddMultiplier(ACTIONS.HAMMER,  scale, source)
+
+        inst.components.efficientuser:AddMultiplier(ACTIONS.CHOP,     scale, source)
+        inst.components.efficientuser:AddMultiplier(ACTIONS.HACK,     scale, source)
+        inst.components.efficientuser:AddMultiplier(ACTIONS.MINE,     scale, source)
+        inst.components.efficientuser:AddMultiplier(ACTIONS.HAMMER,   scale, source)
+    end
+
+    local physics_scale = (scale ^ (1/2))
+    inst._physics_scale = physics_scale
+
+    if scale > 1 then -- 补偿：体型变大时动作速度的减少并不明显
+        inst._actionspeed = (scale ^ (1/4)) / (scale ^ (1/2))
+    elseif scale < 1 then
+        inst._actionspeed = (2 - scale)
+    else -- scale == 0
+        inst._actionspeed = 1
+    end
+
+    inst._actionspeed_client:set(inst._actionspeed)
+
+    inst.DynamicShadow:SetSize(1.3 * physics_scale, .6 * physics_scale)
+
+    inst.components.combat:SetRange(TUNING.DEFAULT_ATTACK_RANGE * physics_scale)
+    inst.components.combat:SetAttackPeriod(TUNING.WILSON_ATTACK_PERIOD / inst._actionspeed)
+
+    MakeCharacterPhysics(inst, 75, .5 * physics_scale)
+    if inst.components.rider:IsRiding() then
+        inst:ApplyAnimScale(source, 1)
+    else
+        inst:ApplyAnimScale(source, physics_scale)
+    end
+
+    if physics_scale >= 1 then
+        inst.components.locomotor:SetExternalSpeedMultiplier(inst, source, inst._actionspeed * physics_scale)
+    else -- 补偿：体型变小时移动速度的减少并不明显
+        inst.components.locomotor:SetExternalSpeedMultiplier(inst, source, (2.5 - scale * 1.5) * physics_scale)
+    end
+
+    if inst._actionspeed == 1 then
+        inst._actionspeed = nil
+    end
+end
+
+local function ApplyShapeScale(inst, source, scale)
+    if TheWorld.ismastersim and source ~= nil then
+        if scale ~= 1 and scale ~= nil then
+            if inst._shapescalesource == nil then
+                inst._shapescalesource = { [source] = scale }
+                SetShapeScale(inst, source, scale)
+            elseif inst._shapescalesource[source] ~= scale then
+                inst._shapescalesource[source] = scale
+                local scale = 1
+                for k, v in pairs(inst._shapescalesource) do
+                    scale = scale * v
+                end
+                SetShapeScale(inst, source, scale)
+            end
+        elseif inst._shapescalesource ~= nil and inst._shapescalesource[source] ~= nil then
+            inst._shapescalesource[source] = nil
+            if next(inst._shapescalesource) == nil then
+                inst._shapescalesource = nil
+                SetShapeScale(inst, source, 1)
+            else
+                local scale = 1
+                for k, v in pairs(inst._shapescalesource) do
+                    scale = scale * v
+                end
+                SetShapeScale(inst, source, scale)
+            end
+        end
+    end
+end
+
+local function ActionSpeedDirty(inst)
+    inst._actionspeed = inst._actionspeed_client:value()
+end
+
 AddPlayerPostInit(function(inst)
     if not TheNet:IsDedicated() then
         inst:DoStaticTaskInTime(0, function()
             if inst == ThePlayer then -- only do this for the local player character
                 inst:ListenForEvent("oincsounddirty", PlayOincSound)
+                inst:ListenForEvent("actionspeed_clientdirty", ActionSpeedDirty)
                 if TheWorld:HasTag("porkland") then
                     inst:AddComponent("windvisuals")
                     inst:AddComponent("cloudpuffmanager")
@@ -167,6 +297,9 @@ AddPlayerPostInit(function(inst)
 
     inst.components.lightwatcherproxy:UseHighPrecision()
 
+    inst._actionspeed_client = net_float(inst.GUID, "player._actionspeed_client", "actionspeed_clientdirty")
+    inst._actionspeed_client:set(1)
+
     if not TheWorld.ismastersim then
         return
     end
@@ -184,6 +317,10 @@ AddPlayerPostInit(function(inst)
 
     inst:AddComponent("uniqueidentity")
 
+    if inst.components.efficientuser == nil then
+		inst:AddComponent("efficientuser")
+	end
+
     inst:ListenForEvent("death", OnDeath)
     inst:ListenForEvent("respawnfromghost", OnRespawnFromGhost)
 
@@ -192,6 +329,16 @@ AddPlayerPostInit(function(inst)
 
     inst:ListenForEvent("enterinterior", OnInteriorChange)
     inst:ListenForEvent("leaveinterior", OnInteriorChange)
+
+    inst.ApplyShapeScale = ApplyShapeScale
+
+    inst:ListenForEvent("mounted", OnMounted)
+    inst:ListenForEvent("dismounted", OnDismounted)
+
+    if inst.OnSave then
+        inst.__OnSave = inst.OnSave
+        inst.OnSave = OnSave
+    end
 
     inst:ListenForEvent("onterraform", function(src, data)
         SendModRPCToClient(GetClientModRPC("PorkLand", "tile_changed"), nil, ZipAndEncodeString(data))

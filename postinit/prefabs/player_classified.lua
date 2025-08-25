@@ -209,6 +209,23 @@ local function ClearLastTarget(inst)
     inst.clearlastworktargettask = inst:DoTaskInTime(1, function() inst._last_work_target:set(nil) end)
 end
 
+local function get_slot_position(inventory_bar, item)
+    local slots = JoinArrays(unpack(inventory_bar:GetInventoryLists()))
+    for _, slot in pairs(slots) do
+        if slot.tile and slot.tile.item == item then
+            return slot.tile:GetWorldPosition()
+        end
+    end
+end
+
+local function SpellCommandItemDirty(inst)
+    local player = inst._parent
+    local item = inst._spellcommand_item:value()
+    if item and item:IsValid() and item.replica.inventoryitem:IsGrandOwner(player) and item ~= player.replica.inventory:GetActiveItem() then
+        player.HUD.controls.spellcontrols:Open(item.components.spellcommand:GetSpellCommands(), item.components.spellcommand.ui_background, item, get_slot_position(player.HUD.controls.inv, item))
+    end
+end
+
 local function RegisterNetListeners(inst)
     if TheWorld.ismastersim then
         inst._parent = inst.entity:GetParent()
@@ -220,7 +237,6 @@ local function RegisterNetListeners(inst)
     else
         inst.poisonpulse:set_local(false)
         inst.isquaking:set_local(false)
-        inst:ListenForEvent("poisonpulsedirty", OnPoisonPulseDirty)
     end
 
     if not TheNet:IsDedicated() and inst._parent == ThePlayer then
@@ -236,6 +252,7 @@ local function RegisterNetListeners(inst)
         inst:ListenForEvent("start_sanity_stun", function()
             inst._parent:PushEvent("sanity_stun")
         end)
+        inst:ListenForEvent("spellcommand_itemdirty", SpellCommandItemDirty)
     end
 
     inst:ListenForEvent("ironlorddirty", OverrideAction)
@@ -256,6 +273,8 @@ AddPrefabPostInit("player_classified", function(inst)
     inst.cityalarmevent = inst.cityalarmevent or net_event(inst.GUID, "cityalarms.startmusic", "start_city_alarm")
     inst.sanitystunevent = inst.sanitystunevent or net_event(inst.GUID, "antqueen.sanitystun", "start_sanity_stun")
 
+    inst._spellcommand_item = net_entity(inst.GUID, "player._spellcommand_item", "spellcommand_itemdirty")
+
     inst.ispoisoned:set(false)
     inst.isingas:set(false)
     inst.riderspeedmultiplier:set(1)
@@ -263,5 +282,5 @@ AddPrefabPostInit("player_classified", function(inst)
 
     inst.ClearLastTarget = ClearLastTarget
 
-    inst:DoTaskInTime(0, RegisterNetListeners)
+    inst:DoStaticTaskInTime(0, RegisterNetListeners)
 end)

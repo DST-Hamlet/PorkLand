@@ -8,6 +8,8 @@ local total_day_time = TUNING.TOTAL_DAY_TIME
 
 local wilson_attack = TUNING.SPEAR_DAMAGE
 local wilson_health = TUNING.WILSON_HEALTH
+local wilson_hunger = TUNING.WILSON_HUNGER
+local wilson_sanity = TUNING.WILSON_SANITY
 
 local tuning = {
     MAPWRAPPER_WARN_RANGE = 14,
@@ -791,10 +793,33 @@ local tuning = {
     TRUSTY_SHOOTER_USES = 400,
     WHEELER_TRACKER_FUEL = TUNING.COMPASS_FUEL * 2,
     WHEELER_TRACKER_ATTACK_DECAY_PERCENT = TUNING.COMPASS_ATTACK_DECAY_PERCENT * 0.5,
+
+    PL_BEAVER_DRAIN_TIME = 5 * total_day_time, -- time it takes the log meter to drain to transform threshold
 }
 
 
 --修改原版数值，不知道是否应该放这里
+
+-- 角色倒车相关的数值，也可能是新数值
+
+TUNING.WOLFGANG_HUNGER = 300
+
+TUNING.BEAVER_ABSORPTION = 0.8
+
+TUNING.ABIGAIL_HEALTH_LEVEL1 = TUNING.ABIGAIL_HEALTH_LEVEL3
+TUNING.ABIGAIL_LIGHTING[1] = TUNING.ABIGAIL_LIGHTING[3]
+
+-- for character selection screen
+TUNING.WX78_HEALTH = wilson_health
+TUNING.WX78_HUNGER = wilson_health
+TUNING.WES_HEALTH = math.ceil(wilson_health * 0.75)
+TUNING.WES_HUNGER = math.ceil(wilson_hunger * 0.75)
+TUNING.WES_SANITY = math.ceil(wilson_sanity * 0.75)
+
+TUNING.WOLFGANG_MIGHTY_SHAPE_SCALE = 1.5
+TUNING.WOLFGANG_WIMPY_SHAPE_SCALE = 0.75
+
+TUNING.WOLFGANG_SANITY_MULT_NORMAL = 1.25
 
 --使得黑暗范围更符合视觉效果
 TUNING.DARK_CUTOFF = 0.02
@@ -855,6 +880,27 @@ TUNING.PROTOTYPER_TREES.HOGUSPORKUSATOR = TechTree.Create({
 TUNING.PROTOTYPER_TREES.CITY = TechTree.Create({
     CITY = 2,
 })
+
+local default_starting_items = {
+    WILSON = {},
+    WILLOW = {"lighter", "bernie_inactive"},
+    WENDY = {"abigail_flower"},
+    WOLFGANG = {},
+    WX78 = {},
+    WICKERBOTTOM = {"papyrus", "papyrus"},
+    WES = {"balloons_empty"},
+    WAXWELL = {"waxwelljournal", "nightmarefuel", "nightmarefuel", "nightmarefuel", "nightmarefuel", "nightmarefuel", "nightmarefuel"},
+    WOODIE = {"lucy"},
+    WATHGRITHR = {"spear_wathgrithr", "wathgrithrhat", "meat", "meat", "meat", "meat"},
+    WEBBER = {"spidereggsack", "monstermeat", "monstermeat", "disguisehat"},
+    WINONA = {"sewing_tape", "sewing_tape", "sewing_tape"},
+    WORMWOOD = {},
+    WARLY = {"portablecookpot_item", "potato", "potato", "garlic"},
+}
+
+for character, starting_items in pairs(default_starting_items) do
+    TUNING.GAMEMODE_STARTING_ITEMS.DEFAULT[character] = starting_items
+end
 
 for key, value in pairs(tuning) do
     if TUNING[key] then

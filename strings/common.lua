@@ -2170,7 +2170,7 @@ return {
         PIGMAN_MAYOR = "Mayor Truffleston",
         PIGMAN_MECHANIC = "Worker",
         PIGMAN_MINER = "Miner",
-        PIGMAN_QUEEN = "Pig Queen",
+        PIGMAN_QUEEN = "Queen Malfalfa",
         PIGMAN_ROYALGUARD = "Royal Guard",
         PIGMAN_STOREOWNER = "Shopkeep",
         PIG_GUARD_TOWER = "Watch Tower",
@@ -2423,9 +2423,6 @@ return {
         WINDOW_TALL = "Tall Window",
         WINDOW_TALL_CURTAIN = "Tall Curtain Window",
         WOOD_DOOR = "Hardwood Door",
-    },
-    QUEENPIGNAMES = {
-        "Queen Malfalfa",
     },
     RECIPE_DESC = {
         ANTIVENOM = "Poison be gone!",
@@ -2807,6 +2804,64 @@ return {
                 LUSH = "Lush",
                 TEMPERATE = "Temperate",
             },
+        },
+    },
+    LUCY = {
+        beaver_up_early=
+        {
+            "Are you okay?",
+            "You alright, big guy?",
+            "What's wrong?",
+            "Are you sure you're feeling alright?",
+            "You're looking extra gruff today.",
+            "You look distracted.",
+            "Why are you making that face?",
+            "Try to take deep breaths, okay?",
+            "It's just a tree! Calm down!",
+        },
+        beaver_up_mid=
+        {
+            "Hello? Can you hear me?",
+            "You might want to slow down a bit.",
+            "Careful, you're getting yourself worked up!",
+            "Don't chop too fast. You know what will happen!",
+        },
+        beaver_up_late=
+        {
+            "You're overdoing it!",
+            "You're not pacing yourself!",
+            "You're about to change!",
+            "Take it easy!",
+            "You've gotta slow down!",
+            "Slow down, I'm worried about you!",
+            "Watch out! You're going to turn!",
+            "No! Don't chop any more!",
+            "The transformation is starting!",
+            "One more chop and you're in trouble!",
+            "Ease up, you're looking a little bucktoothed!",
+            "Stop chopping, I'm getting nervous!",
+        },
+        beaver_down_washigh=
+        {
+            "That was a close one!",
+            "I think we'll be alright.",
+            "You're looking much better now.",
+            "It's passed. For now.",
+            "I was silly to doubt you.",
+            "Wow, I was afraid you were in for it!",
+            "I think the colour's returning to your cheeks.",
+            "It's back in the lodge. Phew!",
+        },
+    },
+    SPELLCOMMAND = {
+        TALK_TO_ABIGAIL = {
+            MAKE_DEFENSIVE = "Soothe", 
+            MAKE_AGGRESSIVE = "Rile Up",
+            MAKE_STAY = "Stay",
+            MAKE_FOLLOW = "Follow",
+            GOTO = "Drift To",
+            HAUNT = "Haunt On",
+            UNSUMMON = "Unsummon",
         },
     },
 }

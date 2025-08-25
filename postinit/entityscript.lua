@@ -65,6 +65,14 @@ function EntityScript:ReplicateComponent(component, ...)
     Replicas[filename] = cmp
 end
 
+local _AddComponent = EntityScript.AddComponent
+function EntityScript:AddComponent(component, ...)
+    if component == "sentientaxe" then
+        return self:AddReplaceComponent("pl_sentientaxe", component)
+    end
+    return _AddComponent(self, component, ...)
+end
+
 ---@class entityscript
 ---@field pushevent_postfn table
 

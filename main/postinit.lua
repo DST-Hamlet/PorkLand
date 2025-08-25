@@ -55,6 +55,10 @@ local behaviour_posts = {
     "wander",
 }
 
+local brain_posts = {
+
+}
+
 local camera_posts = {
     "followcamera",
 }
@@ -64,6 +68,8 @@ local component_posts = {
     "ambientlighting",
     "amphibiouscreature",
     "areaaware",
+    "aura",
+    "beard",
     "blinkstaff",
     "builder_replica",
     "builder",
@@ -78,6 +84,7 @@ local component_posts = {
     "dest",
     "drownable",
     "dryer",
+    "eater",
     "dryingrack",
     "edible",
     "equippable_replica",
@@ -85,6 +92,7 @@ local component_posts = {
     "explosive",
     "fishingrod",
     "floater",
+    "ghostlybond",
     "grogginess",
     "grower",
     "grue",
@@ -128,12 +136,14 @@ local component_posts = {
     "undertile",
     "waterproofer",
     "wavemanager",
+    "weapon",
     "wisecracker",
     "workable",
     "worldstate",
 }
 
 local prefab_posts = {
+    "abigail_flower",
     "batwing",
     "birdcage",
     "boomerang",
@@ -162,10 +172,16 @@ local prefab_posts = {
     "walls",
     "waterballoon",
     "waterprojectiles",
-    "woodie",
     "world_network",
     "world",
-    "wormwood",
+    "shard_network",
+    "spoiledfood",
+    "spiderqueen",
+    "statueruins",
+    "shadowcreature",
+    "telestaff",
+    "walls",
+    "waterballoon",
     "wortox",
 }
 
@@ -201,16 +217,15 @@ local stategraph_posts = {
     "wilsonghost_client",
 }
 
-local brain_posts = {
-}
-
 local widget_posts = {
     "bloodover",
     "containerwidget",
+    "controls",
     "craftingmenu_ingredients",
     "craftingmenu_widget",
     "grid",
     "healthbadge",
+    "hoverer",
     "inventorybar",
     "itemtile",
     "mapwidget",
@@ -220,6 +235,7 @@ local widget_posts = {
     "statusdisplays",
     "targetindicator",
     "uiclock",
+    "werebadge",
     "widget",
 }
 
@@ -265,6 +281,10 @@ for _, file_name in ipairs(behaviour_posts) do
     modimport("postinit/behaviours/" .. file_name)
 end
 
+for _, file_name in ipairs(brain_posts) do
+    modimport("postinit/brains/" .. file_name)
+end
+
 for _, file_name in ipairs(camera_posts) do
     modimport("postinit/cameras/" .. file_name)
 end
@@ -291,10 +311,6 @@ end
 
 for _, file_name in ipairs(stategraph_posts) do
     modimport("postinit/stategraphs/SG" .. file_name)
-end
-
-for _, file_name in ipairs(brain_posts) do
-    modimport("postinit/brains/" .. file_name)
 end
 
 for _, file_name in ipairs(widget_posts) do

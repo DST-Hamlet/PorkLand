@@ -569,9 +569,6 @@ local function MakeTeaTree(name, stage, state)
         inst.components.growable:StartGrowing()
         inst.growfromseed = GrowFromSeed
 
-        inst:AddComponent("simplemagicgrower")
-        inst.components.simplemagicgrower:SetLastStage(#inst.components.growable.stages)
-
         inst:AddComponent("spawner")
         WorldSettings_Spawner_SpawnDelay(inst, TUNING.PIKO_RESPAWN_TIME, TUNING.PIKO_ENABLED)
         inst.components.spawner.delay = TUNING.PIKO_RESPAWN_TIME  -- This "delay" is actually respawn time

@@ -207,6 +207,7 @@ local function glowflyfn()
     inst:AddTag("flying")
     inst:AddTag("cattoyairborne")
     inst:AddTag("ignorewalkableplatformdrowning")
+    inst:AddTag("prey")
     -- inst:AddTag("pollinator")  -- pollinator (from pollinator component) added to pristine state for optimization
 
     inst.AnimState:PlayAnimation("idle")

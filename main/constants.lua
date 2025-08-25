@@ -72,12 +72,16 @@ TECH.HOME = {
     HOME = 2
 }
 
+TECH.WAXWELLJOURNAL = {
+    SHADOW = 4
+}
+
 -- Just an arbitrary number
 BUILDMODE.HOME_DECOR = 10
 
 LOCKTYPE.ROYAL = "royal"
 
--- City pigman is dont in pigman_city.lua
+-- City pigman is done in pigman_city.lua
 
 NAUGHTY_VALUE["hippopotamoose"] = 4
 NAUGHTY_VALUE["pangolden"] = 4

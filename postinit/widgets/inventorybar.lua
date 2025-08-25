@@ -8,6 +8,32 @@ local W = 68
 local SEP = 12
 local INTERSEP = 28
 
+local _GetInventoryLists = InventoryBar.GetInventoryLists
+function InventoryBar:GetInventoryLists(same_container_only, ...)
+    same_container_only = false
+    local lists = _GetInventoryLists(self, same_container_only, ...)
+    if not same_container_only then
+        local firstcontainer = self.owner.HUD:GetFirstOpenContainerWidget()
+        if firstcontainer then
+            if firstcontainer.boatEquip then
+                table.insert(lists, firstcontainer.boatEquip)
+            end
+        end
+        local containers = self.owner.HUD.controls.containers
+        if containers then
+            for k, v in pairs(containers) do
+                if v and v ~= firstcontainer then
+                    table.insert(lists, v.inv)
+                    if v.boatEquip then
+                        table.insert(lists, v.boatEquip)
+                    end
+                end
+            end
+        end
+    end
+    return lists
+end
+
 local RebuildLayout, scope_fn, i = ToolUtil.GetUpvalue(InventoryBar.Rebuild, "RebuildLayout")
 debug.setupvalue(scope_fn, i, function(self, inventory, overflow, do_integrated_backpack, do_self_inspect, ...)
     local boatwidget = self.boatwidget
@@ -36,10 +62,21 @@ debug.setupvalue(scope_fn, i, function(self, inventory, overflow, do_integrated_
 
     RebuildLayout(self, inventory, overflow, do_integrated_backpack, do_self_inspect, ...)
 
+    -- 适配薇勒尔的物品栏
     local bg_scale = (1.15 * total_w) / (1480) -- This is a bit ugly, the hardcoded 1480 is the standard width for a regular inventory total_w
     self.bg:SetScale(bg_scale, 1, 1)
     self.bgcover:SetScale(bg_scale, 1, 1)
 end)
+
+local _OnUpdate = InventoryBar.OnUpdate
+function InventoryBar:OnUpdate(dt, ...)
+    _OnUpdate(self, dt, ...)
+
+    local spellcontrols = self.owner.HUD.controls.spellcontrols
+    if spellcontrols and spellcontrols.isopen then
+        spellcontrols:UpdateAnchorPosition() 
+    end
+end
 
 AddClassPostConstruct("widgets/inventorybar", function(self)
     self.hudcompass_wheeler = self.root:AddChild(HudCompass_Wheeler(self.owner, true))

@@ -1,3 +1,4 @@
+-- Note: those items will not show up in menu even with free crafting
 local DISABLE_RECIPES = {
     "beefalohat",
     "turf_carpetfloor",
@@ -190,6 +191,67 @@ local DISABLE_RECIPES = {
     "ocean_trawler_kit",
     "fish_box",
     "rope_bridge_kit",
+    "thulecitebugnet",
+    "flotationcushion",
+    
+    -- Wendy --
+    "abigail_flower",
+    "sisturn",
+    "ghostlyelixir_slowregen",
+    "ghostlyelixir_fastregen",
+    "ghostlyelixir_shield",
+    "ghostlyelixir_retaliation",
+    "ghostlyelixir_attack",
+    "ghostlyelixir_speed",
+    "ghostlyelixir_revive",
+    "ghostlyelixir_shadow",
+    "ghostlyelixir_lunar",
+    "graveurn",
+    "wendy_gravestone",
+    "elixir_container",
+    "ghostflowerhat",
+    "wendy_butterfly",
+    "wendy_moonbutterfly",
+    "wendy_resurrectiongrave",
+    -- Wickerbottom --
+    "bookstation",
+    "book_horticulture",
+    "book_horticulture_upgraded",
+    "book_silviculture",
+    "book_research_station",
+    "book_birds",
+    "book_fish",
+    "book_bees",
+    "book_sleep",
+    "book_brimstone",
+    "book_fire",
+    "book_tentacles",
+    "book_web",
+    "book_moon",
+    "book_light",
+    "book_light_upgraded",
+    "book_rain",
+    "book_temperature",
+    -- Maxwell --
+    "shadowlumber_builder",
+    "shadowminer_builder",
+    "shadowdigger_builder",
+    "shadowduelist_builder",
+    -- Webber --
+    "spiderden_bedazzler",
+    -- "spider_whistle",
+    "spider_repellent",
+    "spider_healer_item",
+    "mutator_warrior",
+    "mutator_dropper",
+    "mutator_hider",
+    "mutator_spitter",
+    "mutator_moon",
+    "mutator_healer",
+    "mutator_water",
+    -- Wormwood --
+    "armor_bramble",
+    "trap_bramble",
 }
 
 local LOST_RECIPES = {
@@ -206,7 +268,16 @@ local LOST_RECIPES = {
     -- "trawlnet",
 }
 
+local OVERRIDE_RECIPES = {
+    cookbook = {Ingredient("papyrus", 1), Ingredient("radish", 1)},
+
+    -- Wathgrithr
+    spear_wathgrithr = {Ingredient("twigs", 2), Ingredient("flint", 2), Ingredient("iron", 2)},
+    wathgrithrhat = {Ingredient("goldnugget", 2), Ingredient("iron", 2)},
+}
+
 return {
     DISABLE_RECIPES = DISABLE_RECIPES,
     LOST_RECIPES = LOST_RECIPES,
+    OVERRIDE_RECIPES = OVERRIDE_RECIPES,
 }

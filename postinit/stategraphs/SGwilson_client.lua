@@ -106,6 +106,9 @@ local actionhandlers = {
             return "dodge"
         end
     end),
+    -- TODO: This is currently unused, left here in case we want to use it in the future
+    -- We later override it to match ACTION.CASTAOE's action handler
+    ActionHandler(ACTIONS.SPELL_COMMAND, "dolongaction"),
 }
 
 local eventhandlers = {
@@ -592,6 +595,9 @@ local states = {
             inst.components.locomotor:Stop()
 
             inst.AnimState:PlayAnimation("give")
+            if inst:HasTag("beaver") then
+                inst.AnimState:PlayAnimation("atk")
+            end
 
             inst:PerformPreviewBufferedAction()
             inst.sg:SetTimeout(TIMEOUT)
@@ -610,6 +616,9 @@ local states = {
                 end
             elseif inst.bufferedaction == nil then
                 inst.AnimState:PlayAnimation("give_pst")
+                if inst:HasTag("beaver") then
+                    inst.AnimState:PushAnimation("atk_pst")
+                end
                 inst.sg:GoToState("idle")
             end
         end,
@@ -796,15 +805,29 @@ local states = {
         tags = {"attack", "abouttoattack"},
 
         onenter = function(inst, target)
+            local combat = inst.replica.combat
+			if combat:InCooldown() then
+				inst.sg:RemoveStateTag("abouttoattack")
+				inst:ClearBufferedAction()
+				inst.sg:GoToState("idle", true)
+				return
+			end
+
             inst.components.locomotor:Stop()
             inst.AnimState:PlayAnimation("power_punch")
-            inst.sg.statemem.target = target
             inst.replica.combat:StartAttack()
 
             inst:PerformPreviewBufferedAction()
 
-            if target and target:IsValid() then
-                inst:FacePoint(inst.replica.combat:GetTarget().Transform:GetWorldPosition())
+			local buffaction = inst:GetBufferedAction()
+            if buffaction ~= nil then
+                inst:PerformPreviewBufferedAction()
+
+                if buffaction.target ~= nil and buffaction.target:IsValid() then
+                    inst:FacePoint(buffaction.target:GetPosition())
+                    inst.sg.statemem.attacktarget = buffaction.target
+                    inst.sg.statemem.retarget = buffaction.target
+                end
             end
 
         end,
@@ -1069,6 +1092,90 @@ local states = {
             end),
         }
     },
+    State{
+        name = "beaver_attack",
+        tags = {"attack", "abouttoattack"},
+
+        onenter = function(inst, target)
+            local combat = inst.replica.combat
+			if combat:InCooldown() then
+				inst.sg:RemoveStateTag("abouttoattack")
+				inst:ClearBufferedAction()
+				inst.sg:GoToState("idle", true)
+				return
+			end
+
+            inst.components.locomotor:Stop()
+            inst.AnimState:PlayAnimation("atk_pre")
+            inst.AnimState:PushAnimation("atk", false)
+            inst.SoundEmitter:PlaySound("dontstarve/wilson/attack_whoosh", nil, nil, true)
+            inst.replica.combat:StartAttack()
+            inst.replica.combat._laststartattacktime = inst.replica.combat._laststartattacktime - 0.2
+
+            inst:PerformPreviewBufferedAction()
+
+			local buffaction = inst:GetBufferedAction()
+            if buffaction ~= nil then
+                inst:PerformPreviewBufferedAction()
+
+                if buffaction.target ~= nil and buffaction.target:IsValid() then
+                    inst:FacePoint(buffaction.target:GetPosition())
+                    inst.sg.statemem.attacktarget = buffaction.target
+                    inst.sg.statemem.retarget = buffaction.target
+                end
+            end
+        end,
+
+        timeline = {
+            TimeEvent(6  * FRAMES, function(inst)
+                    inst:PerformPreviewBufferedAction()
+                    inst.sg:RemoveStateTag("abouttoattack")
+                end),
+            TimeEvent(7 * FRAMES, function(inst) inst.sg:RemoveStateTag("attack") inst.sg:AddStateTag("idle") end),
+        },
+
+        events = {
+            EventHandler("animqueueover", function(inst)
+                inst.sg:GoToState("idle")
+            end),
+        },
+
+        onexit = function(inst)
+            if inst.sg:HasStateTag("abouttoattack") and inst.replica.combat ~= nil then
+                inst.replica.combat:CancelAttack()
+            end
+        end,
+    },
+
+    State{
+        name = "beaver_eat",
+        tags = { "busy" },
+		server_states = { "beaver_eat" },
+
+        onenter = function(inst)
+            inst.components.locomotor:Stop()
+            inst.AnimState:PlayAnimation("eat_pre")
+            inst.AnimState:PushAnimation("eat_lag", false)
+
+            inst:PerformPreviewBufferedAction()
+            inst.sg:SetTimeout(TIMEOUT)
+        end,
+
+        onupdate = function(inst)
+			if inst.sg:ServerStateMatches() then
+                if inst.entity:FlattenMovementPrediction() then
+                    inst.sg:GoToState("idle", "noanim")
+                end
+            elseif inst.bufferedaction == nil then
+                inst.sg:GoToState("idle")
+            end
+        end,
+
+        ontimeout = function(inst)
+            inst:ClearBufferedAction()
+            inst.sg:GoToState("idle")
+        end,
+    },
 }
 
 for _, actionhandler in ipairs(actionhandlers) do
@@ -1086,6 +1193,8 @@ end
 AddStategraphPostInit("wilson_client", function(sg)
     local _run_start_timeevent_2 = sg.states["run_start"].timeline[2].fn
     DoFoleySounds = ToolUtil.GetUpvalue(_run_start_timeevent_2, "DoFoleySounds")
+
+    sg.actionhandlers[ACTIONS.SPELL_COMMAND].deststate = sg.actionhandlers[ACTIONS.CASTAOE].deststate
 
     local _locomote_eventhandler = sg.events.locomote.fn
     sg.events.locomote.fn = function(inst, data)
@@ -1171,20 +1280,26 @@ AddStategraphPostInit("wilson_client", function(sg)
     local _attack_deststate = sg.actionhandlers[ACTIONS.ATTACK].deststate
     sg.actionhandlers[ACTIONS.ATTACK].deststate = function(inst, action, ...)
         if not inst.sg:HasStateTag("sneeze") then
-            if inst:HasTag("ironlord") then
-                return "ironlord_attack"
-            end
-            if not (inst.sg:HasStateTag("attack") and action and action.target == inst.sg.statemem.attacktarget or inst.replica.health:IsDead()) then
-                local equip = inst.replica.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
-                if equip then
-                    if equip:HasTag("blunderbuss_loaded") then
-                        return "blunderbuss"
-                    elseif equip:HasTag("hand_gun_loaded") then
-                        return "hand_shoot"
+            local ret = _attack_deststate and _attack_deststate(inst, action, ...)
+            if ret then
+                if inst:HasTag("ironlord") then
+                    return "ironlord_attack"
+                end
+                if inst:HasTag("beaver") then
+                    return "beaver_attack"
+                end
+                if not (inst.sg:HasStateTag("attack") and action and action.target == inst.sg.statemem.attacktarget or inst.replica.health:IsDead()) then
+                    local equip = inst.replica.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
+                    if equip then
+                        if equip:HasTag("blunderbuss_loaded") then
+                            return "blunderbuss"
+                        elseif equip:HasTag("hand_gun_loaded") then
+                            return "hand_shoot"
+                        end
                     end
                 end
             end
-            return _attack_deststate and _attack_deststate(inst, action, ...)
+            return ret
         end
     end
 
@@ -1240,6 +1355,15 @@ AddStategraphPostInit("wilson_client", function(sg)
             return "ironlord_work"
         else
             return _hammer_deststate and _hammer_deststate(inst, action)
+        end
+    end
+
+    local _eat_deststate = sg.actionhandlers[ACTIONS.EAT].deststate
+    sg.actionhandlers[ACTIONS.EAT].deststate = function(inst, action)
+        if inst:HasTag("beaver") then
+            return "beaver_eat"
+        else
+            return _eat_deststate and _eat_deststate(inst, action)
         end
     end
 end)
