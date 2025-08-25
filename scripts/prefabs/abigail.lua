@@ -2,10 +2,10 @@ local SpDamageUtil = require("components/spdamageutil")
 
 local assets =
 {
-    Asset("ANIM", "anim/player_ghost_withhat.zip"),
     Asset("ANIM", "anim/ghost_abigail_build.zip"),
 
-    Asset("ANIM", "anim/ghost_abigail.zip"),
+    Asset("ANIM", "anim/pl_ghost_abigail.zip"),
+
     Asset("ANIM", "anim/ghost_abigail_gestalt.zip"),
 
     Asset("ANIM", "anim/lunarthrall_plant_front.zip"),
@@ -310,7 +310,25 @@ local function DoAppear(sg)
 end
 
 local function AbleToAcceptTest(inst, item)
+    if inst:IsInLimbo() then
+        return false
+    end
+    if item.components.equippable ~= nil and item.components.equippable.equipslot == EQUIPSLOTS.HEAD then
+        return true
+    end
     return false, (item:HasTag("reviver") and "ABIGAILHEART") or nil
+end
+
+local function OnGetItemFromPlayer(inst, giver, item)
+    --I wear hats
+    if item.components.equippable ~= nil and item.components.equippable.equipslot == EQUIPSLOTS.HEAD then
+        local current = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.HEAD)
+        if current ~= nil then
+            inst.components.inventory:DropItem(current)
+        end
+        inst.components.inventory:Equip(item)
+        inst.AnimState:Show("hat")
+    end
 end
 
 local function on_ghostlybond_level_change(inst, player, data)
@@ -426,10 +444,12 @@ local function fn()
     inst.entity:AddLight()
     inst.entity:AddNetwork()
 
-    inst.AnimState:SetBank("ghost")
+    inst.AnimState:SetBank("pl_ghost_abigail")
     inst.AnimState:SetBuild("ghost_abigail_build")
     inst.AnimState:PlayAnimation("idle", true)
     inst.AnimState:SetBloomEffectHandle("shaders/anim_bloom_ghost.ksh")
+
+    inst.AnimState:Hide("HAT")
 
     inst.AnimState:AddOverrideBuild("ghost_abigail_gestalt")
     inst.AnimState:AddOverrideBuild("ghost_abigail_human")
@@ -443,6 +463,7 @@ local function fn()
     inst:AddTag("NOBLOCK")
     inst:AddTag("notraptrigger")
     inst:AddTag("scarytoprey")
+    inst:AddTag("trader")
 
     inst:AddTag("trader") --trader (from trader component) added to pristine state for optimization
 
@@ -524,6 +545,9 @@ local function fn()
     follower.keepleaderduringminigame = true
 
     --
+    inst:AddComponent("inventory")
+
+    --
     inst.base_max_health = TUNING.ABIGAIL_HEALTH_LEVEL1
 
     local health = inst:AddComponent("health")
@@ -550,6 +574,9 @@ local function fn()
     -- Added so you can attempt to give hearts to trigger flavour text when the action fails
     inst:AddComponent("trader")
     inst.components.trader:SetAbleToAcceptTest(AbleToAcceptTest)
+    inst.components.trader.onaccept = OnGetItemFromPlayer
+    inst.components.trader.deleteitemonaccept = false
+
     --
     inst:ListenForEvent("attacked", OnAttacked)
     inst:ListenForEvent("blocked", OnBlocked)

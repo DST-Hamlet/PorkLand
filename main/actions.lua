@@ -1273,6 +1273,20 @@ function INVENTORY.summoningitem(inst, doer, actions, ...)
 	end
 end
 
+local _USEITEM_tradable = USEITEM.tradable
+function USEITEM.tradable(inst, doer, target, actions, ...)
+    if target:HasTag("trader") and
+        target:HasTag("abigail") and
+        not target:IsInLimbo() and
+        not (doer.replica.rider ~= nil and doer.replica.rider:IsRiding() and
+        not (target.replica.inventoryitem ~= nil and target.replica.inventoryitem:IsGrandOwner(doer))) then
+            
+        table.insert(actions, ACTIONS.GIVE)
+    else
+        return _USEITEM_tradable(inst, doer, target, actions, ...)
+    end
+end
+
 local PlayerController = require("components/playercontroller")
 
 local NON_AUTO_EQUIP_ACTIONS = {

@@ -178,10 +178,18 @@ local function ghostlybond_onrecall(inst, ghost, was_killed)
 	end
 
 	inst.components.ghostlybond.ghost.sg:GoToState("dissipate")
+	if ghost == nil or not ghost:IsValid() then
+		return
+	end
+	ghost.components.inventory:DropEverything()
 end
 
 local function ghostlybond_onsummoncomplete(inst, ghost)
 	inst.refreshflowertooltip:push()
+end
+
+local function ghostlybond_prerecallcompletefn(inst, ghost)
+
 end
 
 local function ghostlybond_changebehaviour(inst, ghost)
@@ -286,6 +294,7 @@ local function master_postinit(inst)
 	inst.components.ghostlybond.onsummonfn = ghostlybond_onsummon
 	inst.components.ghostlybond.onrecallfn = ghostlybond_onrecall
 	inst.components.ghostlybond.onsummoncompletefn = ghostlybond_onsummoncomplete
+	inst.components.ghostlybond.prerecallcompletefn = ghostlybond_prerecallcompletefn
 	inst.components.ghostlybond.changebehaviourfn = ghostlybond_changebehaviour
 	inst.components.ghostlybond.cansummonfn = ghostlybond_cansummon
 	inst.components.ghostlybond.overrideupdatefn = ghostlybond_overrideupdate

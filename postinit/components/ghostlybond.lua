@@ -22,6 +22,15 @@ function GhostlyBond:Summon(summoningitem, ...)
 	return ret
 end
 
+
+local _RecallComplete = GhostlyBond.RecallComplete
+function GhostlyBond:RecallComplete(...)
+	if self.prerecallcompletefn ~= nil then
+		self.prerecallcompletefn(self.inst, self.ghost)
+	end
+	return _RecallComplete(self, ...)
+end
+
 local _OnUpdate = GhostlyBond.OnUpdate
 function GhostlyBond:OnUpdate(...)
 	if self.overrideupdatefn then
