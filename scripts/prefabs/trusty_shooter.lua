@@ -182,13 +182,13 @@ local function OnProjectileLaunched(inst, attacker, target, proj)
 
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/characters/wheeler/air_horn/shoot")
 
-    if proj.components.projectile_gun == nil then
-        proj:AddComponent("projectile_gun")
+    if proj.components.projectile == nil then
+        proj:AddComponent("projectile")
     end
 
-    proj.components.projectile_gun.damage = damage
-    proj.components.projectile_gun:SetSpeed(35)
-    proj.components.projectile_gun:SetOnHitFn(OnProjectileHit)
+    proj.components.projectile.damage = damage
+    proj.components.projectile:SetSpeed(35)
+    proj.components.projectile:SetOnHitFn(OnProjectileHit)
 
     proj.components.inventoryitem.canbepickedup = false
 
@@ -205,7 +205,7 @@ local function OnProjectileLaunched(inst, attacker, target, proj)
         local x, y, z = attacker.Transform:GetWorldPosition()
         proj.Transform:SetPosition(x, y + 2.5, z)
     end
-    proj.components.projectile_gun:Throw(inst, target, attacker)
+    proj.components.projectile:Throw(inst, target, attacker)
 
     inst.components.finiteuses:Use(1)
 end
