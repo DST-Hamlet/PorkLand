@@ -91,7 +91,9 @@ local function DoGhostSpell(doer, event, state, data, speech, ...)
     elseif data.target then
         pos = data.target:GetPosition()
     end
-    if doer:GetDistanceSqToPoint(pos) > ABIGAIL_COMMAND_DISTANCE * ABIGAIL_COMMAND_DISTANCE then
+
+    print("GetDistanceSqToPoint", doer:GetDistanceSqToPoint(pos), ABIGAIL_COMMAND_DISTANCE * ABIGAIL_COMMAND_DISTANCE)
+    if doer:GetDistanceSqToPoint(pos) > (ABIGAIL_COMMAND_DISTANCE + 0.1) * (ABIGAIL_COMMAND_DISTANCE + 0.1) then -- 典中典之浮点数误差
         return
     end
 
