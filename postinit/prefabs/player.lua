@@ -138,6 +138,9 @@ local function OnInteriorChange(inst, data)
 end
 
 AddPlayerPostInit(function(inst)
+    -- inst.AnimState:AddOverrideBuild("player_actions_roll") -- 表现效果不太好
+    inst.AnimState:AddOverrideBuild("player_boat_death")
+
     if not TheNet:IsDedicated() then
         inst:DoStaticTaskInTime(0, function()
             if inst == ThePlayer then -- only do this for the local player character

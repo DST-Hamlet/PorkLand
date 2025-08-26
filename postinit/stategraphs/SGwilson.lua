@@ -1088,10 +1088,10 @@ local states = {
             local boat = inst.replica.sailor:GetBoat()
 
             if not inst:HasTag("mime") then -- 韦斯手中不显示桨
-                inst.AnimState:OverrideSymbol("paddle", "swap_paddle", "paddle")
+                inst.AnimState:OverrideSymbol("paddle", "swap_paddle", "paddle") -- 船桨
             end
             -- TODO allow custom paddles?
-            inst.AnimState:OverrideSymbol("wake_paddle", "swap_paddle", "wake_paddle")
+            inst.AnimState:OverrideSymbol("wake_paddle", "swap_paddle", "wake_paddle") -- 船桨与水面的交线
 
             -- RoT has row_pre, which is identical but uses the equipped item as paddle
 
@@ -2362,6 +2362,7 @@ local states = {
             inst:FacePoint(Point(pos.x, pos.y, pos.z))
 
             inst.components.locomotor:Stop()
+            inst.AnimState:OverrideSymbol("circle_puff_01", "player_actions_cropdust", "circle_puff_01")
             inst.AnimState:PlayAnimation("cropdust_pre")
             inst.AnimState:PushAnimation("cropdust_loop")
             inst.AnimState:PushAnimation("cropdust_pst", false)
@@ -2382,6 +2383,10 @@ local states = {
                 inst.sg:GoToState("idle")
             end),
         },
+
+        onexit = function(inst)
+            inst.AnimState:ClearOverrideSymbol("circle_puff_01")
+        end,
     },
 
     State{
@@ -2402,6 +2407,7 @@ local states = {
             inst.components.locomotor:Stop()
             local cooldown = math.max(20 * FRAMES)
 
+            inst.AnimState:AddOverrideBuild("player_pistol")
             inst.AnimState:PlayAnimation("hand_shoot")
 
             inst.sg:SetTimeout(cooldown)
@@ -2444,6 +2450,8 @@ local states = {
         },
 
         onexit = function(inst)
+            inst.AnimState:ClearOverrideBuild("player_pistol")
+
             inst.components.combat:SetTarget(nil)
             if inst.sg:HasStateTag("abouttoattack") then
                 inst.components.combat:CancelAttack()

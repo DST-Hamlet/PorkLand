@@ -321,7 +321,7 @@ Assets = {
     Asset("ANIM", "anim/player_actions_panning.zip"),
     Asset("ANIM", "anim/player_boat_onoff.zip"),
     Asset("ANIM", "anim/swap_paddle.zip"),
-    Asset("ANIM", "anim/player_action_sailing.zip"),
+    Asset("ANIM", "anim/player_actions_sailing.zip"),
     Asset("ANIM", "anim/player_boat_death.zip"),
     Asset("ANIM", "anim/werebeaver_boat_death.zip"),
     Asset("ANIM", "anim/player_lifeplant.zip"),
