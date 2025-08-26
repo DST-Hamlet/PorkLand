@@ -44,59 +44,60 @@ function InventoryItem:OnDropped(randomdir, speedmult, skipfall)
     self:SetLanded(false, true)
 end
 
+-- is_landed               用于确定物品是否完全停止
+-- should_poll_for_landing 用于在物品没有完全停止的情况下决定是否要通过update来追踪完全停止
 local _SetLanded = InventoryItem.SetLanded
 function InventoryItem:SetLanded(is_landed, should_poll_for_landing)
-    if is_landed or not should_poll_for_landing then
-        self.inst:RemoveTag("falling")
-    else
-        self.inst:AddTag("falling")
+    if not is_landed and should_poll_for_landing then
         self:KeepOnInterior()
     end
     _SetLanded(self, is_landed, should_poll_for_landing)
 end
 
-local _OnUpdate = InventoryItem.OnUpdate
-function InventoryItem:OnUpdate(dt, ...)
-    local x, y, z = self.inst.Transform:GetWorldPosition()
+function InventoryItem:OnUpdate(dt) -- 覆盖法
+    local x,y,z = self.inst.Transform:GetWorldPosition()
 
-    if x and y and z and self.inst.Physics and self.inst.Physics:GetCollisionGroup() == COLLISION.ITEMS then
-        local isimpassable = TheWorld.Map:IsImpassableAtPoint(x, 0, z)
+    if x and y and z then
+        local vely = 0
         if self.inst.Physics then
-            if not self.onimpassable and isimpassable then
-                self:SetLanded(false, true)
-                self.onimpassable = true
-                self.inst.Physics:ClearCollidesWith(COLLISION.GROUND - COLLISION.VOID_LIMITS)
-            elseif self.onimpassable and not isimpassable then
-                self.onimpassable = false
-                self.inst.Physics:CollidesWith(COLLISION.GROUND - COLLISION.VOID_LIMITS)
-                self.inst.AnimState:SetLayer(LAYER_WORLD)
-            end
-        end
-    end
-    if self.onimpassable and self.inst.Physics and self.inst.Physics:GetCollisionGroup() == COLLISION.ITEMS then
-        self:KeepOnInterior()
-        if y then
-            if y < -0.01 then
-                self.inst.AnimState:SetLayer(LAYER_BELOW_GROUND)
-                self.inst.Physics:CollidesWith(COLLISION.VOID_LIMITS)
-            else
-                self.inst.AnimState:SetLayer(LAYER_WORLD)  -- 虽然inventoryitem基本上都属于这个显示层级，但是保险起见，最好在改变显示层级的时候保存旧的显示层级
-                self.inst.Physics:ClearCollidesWith(COLLISION.VOID_LIMITS)
-            end
-            if y < -3 then
-                self:TryToSink()
-                if not self.inst:HasTag("irreplaceable") then
-                    self.inst:StopUpdatingComponent(self)
+            if self.inst.Physics:GetCollisionGroup() == COLLISION.ITEMS then
+                local isimpassable = TheWorld.Map:IsImpassableAtPoint(x, 0, z)
+                if not self.onimpassable and isimpassable then -- 进入虚空区域时执行
+                    self.onimpassable = true
+                    self.inst.Physics:ClearCollidesWith(COLLISION.GROUND - COLLISION.VOID_LIMITS)
+                elseif self.onimpassable and not isimpassable then -- 离开虚空区域时执行
+                    self.onimpassable = false
+                    self.inst.Physics:CollidesWith(COLLISION.GROUND - COLLISION.VOID_LIMITS)
+                    self.inst.AnimState:SetLayer(LAYER_WORLD)
+                end
+
+                if self.onimpassable then -- 坠入虚空判定
+                    if y < -0.01 then
+                        self.inst.AnimState:SetLayer(LAYER_BELOW_GROUND)
+                        self.inst.Physics:CollidesWith(COLLISION.VOID_LIMITS)
+                    else
+                        self.inst.AnimState:SetLayer(LAYER_WORLD)  -- 虽然inventoryitem基本上都属于这个显示层级，但是保险起见，最好在改变显示层级的时候保存旧的显示层级
+                        self.inst.Physics:ClearCollidesWith(COLLISION.VOID_LIMITS)
+                    end
+                    if y < -3 then
+                        self:TryToSink()
+                    end
                 end
             end
-        else
-            self:TryToSink()
-            if not self.inst:HasTag("irreplaceable") then
-                self.inst:StopUpdatingComponent(self)
+
+            if not self.onimpassable then -- 陆地完全停止判定
+                local vx, vy, vz = self.inst.Physics:GetVelocity()
+                vely = vy or 0
+
+                if (not vx) or (not vy) or (not vz) then
+                    self:SetLanded(true, false)
+                elseif (vx == 0) and (vy == 0) and (vz == 0) then
+                    self:SetLanded(true, false)
+                end
             end
         end
-    else
-        return _OnUpdate(self, dt, ...)
+    else -- 这不应该发生
+        self:SetLanded(true, false)
     end
 end
 

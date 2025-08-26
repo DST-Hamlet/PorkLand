@@ -64,7 +64,7 @@ function Throwable:SetOnHitFn(fn)
     end
 end
 
-function Throwable:FlatThrow(rotation, thrower, offset_vel)
+function Throwable:FlatThrow(rotation, thrower, offset_vel) -- 不保证落点正确的平射
     local tothrow = self.inst
 
     if thrower == nil and self.inst.components.inventoryitem then
@@ -117,8 +117,6 @@ function Throwable:FlatThrow(rotation, thrower, offset_vel)
     if self.onthrown then
         self.onthrown(tothrow, thrower, thrownpt, time_to_target)
     end
-
-    tothrow:AddTag("falling")
 
     return true
 end
@@ -175,8 +173,6 @@ function Throwable:Throw(pt, thrower)
     if self.onthrown then
         self.onthrown(tothrow, thrower, thrownpt, time_to_target)
     end
-
-    tothrow:AddTag("falling")
 
     return true
 end
