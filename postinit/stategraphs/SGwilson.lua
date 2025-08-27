@@ -706,19 +706,33 @@ local states = {
         tags = {"nopredict", "silentmorph"},
 
         onenter = function(inst, source)
+            inst.components.bloomer:PopBloom("playerghostbloom")
+            inst.AnimState:SetLightOverride(0)
+            inst:ApplySkinOverrides() -- 此函数已包含inst.AnimState:SetBank("wilson")
+            
+            if source and source:IsValid() then
+                inst.Physics:Teleport(source.Transform:GetWorldPosition())
+                if source.OnResurrect then
+                    source:OnResurrect(inst)
+                end
+            end
+            
             if inst.components.playercontroller ~= nil then
                 inst.components.playercontroller:Enable(false)
             end
             inst.AnimState:PlayAnimation("rebirth2")
+            inst.SoundEmitter:PlaySound("porkland_soundpackage/common/crafted/flower_of_life/rebirth")
 
             local skin_build = source and source:GetSkinBuild() or nil
             if skin_build ~= nil then
                 for k, v in pairs(plant_symbols) do
                     inst.AnimState:OverrideItemSkinSymbol(v, skin_build, v, inst.GUID, "lifeplant")
+                    inst.AnimState:SetSymbolBloom(v)
                 end
             else
                 for k, v in pairs(plant_symbols) do
                     inst.AnimState:OverrideSymbol(v, "lifeplant", v)
+                    inst.AnimState:SetSymbolBloom(v)
                 end
             end
 
@@ -731,6 +745,9 @@ local states = {
 
         timeline =
         {
+            TimeEvent(50 * FRAMES, function(inst)
+                inst.DynamicShadow:Enable(true)
+            end),
         },
 
         events =
@@ -745,13 +762,14 @@ local states = {
         onexit = function(inst)
             for k, v in pairs(plant_symbols) do
                 inst.AnimState:ClearOverrideSymbol(v)
+                inst.AnimState:ClearSymbolBloom(v)
             end
 
+            inst.components.health:SetInvincible(false)
             if inst.components.playercontroller ~= nil then
                 inst.components.playercontroller:Enable(true)
             end
 
-            inst.components.health:SetInvincible(false)
             inst:ShowHUD(true)
             inst:SetCameraDistance()
 
@@ -3057,6 +3075,17 @@ AddStategraphPostInit("wilson", function(sg)
                 inst.Transform:SetTwoFaced()
             end
         end
+    end
+
+    local _reviver_rebirth_onenter = sg.states["reviver_rebirth"].onenter
+    sg.states["reviver_rebirth"].onenter = function(inst, source, ...)
+        if inst.overridestate and inst.overridestate["reviver_rebirth"] then
+            inst.sg:GoToState(inst.overridestate["reviver_rebirth"], inst.overridrebirthsource or source)
+            inst.overridestate["reviver_rebirth"] = nil
+            inst.overridrebirthsource = nil
+            return 
+        end
+        return _reviver_rebirth_onenter(inst, source, ...)
     end
 
     local _locomote_eventhandler = sg.events.locomote.fn
