@@ -3140,7 +3140,8 @@ AddStategraphPostInit("wilson", function(sg)
     local _onsink_eventhandler = sg.events.onsink.fn
     sg.events.onsink.fn = function(inst, data, ...)
         if data and data.pl_boat and not inst.components.health:IsDead() and not inst.sg:HasStateTag("drowning") and
-        (inst.components.drownable ~= nil and inst.components.drownable:ShouldDrown()) then
+            (inst.components.drownable ~= nil and inst.components.drownable:ShouldDrown()) then
+                
             inst.sg:GoToState("sink_boat", data.shore_pt)
         else
             if inst.components.sailor and inst.components.sailor.boat and inst.components.sailor.boat.components.container then
