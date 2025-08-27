@@ -17,14 +17,7 @@ local PLAYER_PROX_NEAR = 6
 -- local PLAYER_PROX_FAR = 8
 
 local function FadeIn(inst)
-    inst.components.fader:StopAll()
-    inst.Light:Enable(true)
-    if inst:IsAsleep() then
-        inst.Light:SetIntensity(INTENSITY)
-    else
-        inst.Light:SetIntensity(0)
-        inst.components.fader:Fade(0, INTENSITY, 3 + math.random() * 2, function(v) inst.Light:SetIntensity(v) end)
-    end
+    inst.components.lighttweener:StartTween(inst.Light, 2, INTENSITY, 0.9, {180/255, 195/255, 150/255}, 2)
 end
 
 local function UpdateAnimations(inst)
@@ -53,7 +46,8 @@ local function DrainHunger(inst)
     local x, y, z = inst.Transform:GetWorldPosition()
     local players = FindPlayersInRange(x, y, z, PLAYER_PROX_NEAR, true)
     for _, player in pairs(players) do
-        if player.components.hunger:GetPercent() > 0 then
+        if player.components.hunger:GetPercent() > 0 
+            and (player.components.sanity:GetMaxWithPenalty() - player.components.sanity.current) >= 1 then
             player.components.hunger:DoDelta(-1)
             player.components.sanity:DoDelta(1)
         end
@@ -87,7 +81,6 @@ end
 
 local function OnDug(inst, digger)
     inst.components.lootdropper:SpawnLootPrefab("waterdrop")
-    inst.SoundEmitter:KillSound("drainloop")
     inst.dug = true
     inst:Remove()
 end
@@ -96,6 +89,7 @@ local function OnPlanted(inst, data)
     inst.AnimState:PlayAnimation("grow")
     inst.AnimState:PushAnimation("idle_loop",true)
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/flower_of_life/plant")
+    FadeIn(inst)
 end
 
 local function OnRemoved(inst)
@@ -103,10 +97,16 @@ local function OnRemoved(inst)
 end
 
 local function OnResurrect(inst, player)
+    local fx = SpawnPrefab("lifeplant_respawnlight")
+    fx.Transform:SetPosition(player:GetPosition():Get())
     inst:Remove()
 end
 
 local function OnHaunt(inst, player)
+    if inst.respawn_used then
+        return
+    end
+
     if not player:HasTag("playerghost") then
         return
     end
@@ -117,6 +117,10 @@ local function OnHaunt(inst, player)
     player.overridestate["reviver_rebirth"] = "rebirth_floweroflife"
     player.overridrebirthsource = inst
     player:PushEvent("respawnfromghost", { source = inst })
+    inst.respawn_used = true
+
+    inst.persists = false
+    inst:RemoveComponent("lootdropper")
 end
 
 local function OnSave(inst, data)
@@ -174,21 +178,17 @@ local function fn()
 
     inst:AddComponent("inspectable")
 
+    MakeMediumBurnable(inst, 10)
+    MakeLargePropagator(inst)
+
     inst:AddComponent("lootdropper")
 
-    inst:AddComponent("fader")
-    FadeIn(inst)
+    inst:AddComponent("lighttweener")
 
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.DIG)
     inst.components.workable:SetWorkLeft(1)
     inst.components.workable:SetOnFinishCallback(OnDug)
-
-    inst:AddComponent("burnable")
-    inst.components.burnable:SetFXLevel(3)
-    inst.components.burnable:SetBurnTime(10)
-    inst.components.burnable:AddBurnFX("fire", Vector3(0, 0, 0))
-    inst.components.burnable:SetOnBurntFn(OnBurnt)
 
     inst:AddComponent("playerprox")
     inst.components.playerprox:SetDist(6, 7)
@@ -281,5 +281,41 @@ local function sparklefn()
     return inst
 end
 
+local function lightfn()
+    local inst = CreateEntity()
+
+    inst.entity:AddTransform()
+    inst.entity:AddLight()
+    inst.entity:AddNetwork()
+
+    inst:AddTag("NOCLICK")
+    inst:AddTag("FX")
+
+    --Copy ghost light values from player_common
+    inst.Light:SetIntensity(INTENSITY)
+    inst.Light:SetRadius(2)
+    inst.Light:SetFalloff(0.9)
+    inst.Light:SetColour(180/255, 195/255, 150/255)
+    inst.Light:EnableClientModulation(true)
+
+    inst:AddComponent("lighttweener")
+    inst.components.lighttweener:StartTween(inst.Light, 2, INTENSITY + 0.1, 0.9, {225/255, 225/255, 225/255}, 3, function()
+        inst.components.lighttweener:StartTween(nil, 0, 0, 1, {0, 0, 0}, 6)
+    end)
+
+    inst.entity:SetPristine()
+
+    if not TheWorld.ismastersim then
+        return inst
+    end
+
+    inst.persists = false
+
+    inst:DoTaskInTime(10, inst.Remove)
+
+    return inst
+end
+
 return Prefab("lifeplant", fn, assets, prefabs),
-       Prefab("lifeplant_sparkle", sparklefn, assets, prefabs)
+       Prefab("lifeplant_sparkle", sparklefn, assets, prefabs),
+       Prefab("lifeplant_respawnlight", lightfn, assets, prefabs)
