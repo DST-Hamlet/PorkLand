@@ -91,8 +91,23 @@ function InventoryItem:OnUpdate(dt) -- 覆盖法
 
                 if (not vx) or (not vy) or (not vz) then
                     self:SetLanded(true, false)
+                    return
                 elseif (vx == 0) and (vy == 0) and (vz == 0) then
                     self:SetLanded(true, false)
+                    return
+                else
+                    if y + vely * dt * 1.5 < 0.01 and vely <= 0 then -- 接触地面时检测
+                        if self.pushlandedevents and not self.is_landed then
+                            self.inst:PushEvent("on_landed")
+                            self:TryToSink()
+                        end
+                        self.is_landed = true
+                    elseif y > 0.2 then
+                        if self.pushlandedevents and self.is_landed then
+                            self.inst:PushEvent("on_no_longer_landed")
+                        end
+                        self.is_landed = false
+                    end
                 end
             end
         end
