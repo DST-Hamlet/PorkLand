@@ -212,14 +212,13 @@ local MakePlayerCharacter = require("prefabs/player_common")
 local OnGotNewItem, RegisterActivePlayerEventListeners, i = ToolUtil.GetUpvalue(MakePlayerCharacter, "OnSetOwner.RegisterActivePlayerEventListeners.OnGotNewItem")
 if OnGotNewItem then
     debug.setupvalue(RegisterActivePlayerEventListeners, i, function(inst, data, ...)
-        if TheWorld:HasTag("porkland") then
-            if data.slot ~= nil or data.eslot ~= nil or data.toactiveitem ~= nil then
-                if inst.replica.sailor and inst.replica.sailor:GetBoat() then
-                    TheFocalPoint.SoundEmitter:PlaySound("dontstarve_DLC002/common/HUD_water_collect_resource")
-                    return
-                end
+        if data.slot ~= nil or data.eslot ~= nil or data.toactiveitem ~= nil then
+            if inst.replica.sailor and inst.replica.sailor:GetBoat() then
+                TheFocalPoint.SoundEmitter:OverrideSound("dontstarve/HUD/collect_resource", "dontstarve_DLC002/common/HUD_water_collect_resource")
             end
         end
-        return OnGotNewItem(inst, data, ...)
+        local rets = {OnGotNewItem(inst, data, ...)}
+        TheFocalPoint.SoundEmitter:OverrideSound("dontstarve/HUD/collect_resource", nil)
+        return unpack(rets)
     end)
 end
