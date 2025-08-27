@@ -113,16 +113,10 @@ function Combat:CalcDamage(target, weapon, multiplier, ...)
         return 0
     end
 
-    local rets = {_CalcDamage(self, target, weapon, multiplier, ...)}
-    local bonus = self.damagebonus or 0  -- not affected by multipliers
-
-    local dmg = rets[1]
-    dmg = (dmg - bonus) * self:GetDamageModifier() + bonus
-
     if self.overridecalcdamagefn then
-        rets = {self.overridecalcdamagefn(self, target, weapon, multiplier, ...)}
+        return self.overridecalcdamagefn(self, target, weapon, multiplier, ...)
     end
-    return unpack(rets)
+    return _CalcDamage(self, target, weapon, multiplier, ...)
 end
 
 local _DoAttack = Combat.DoAttack
@@ -136,7 +130,7 @@ function Combat:DoAttack(targ, weapon, projectile, ...)
         _weapon = self:GetWeapon()
     end
     if not (_weapon and ((_weapon.components.projectile ~= nil) or (_weapon.components.complexprojectile ~= nil) or _weapon.components.weapon:CanRangedAttack()))
-        or ((weapon ~= nil) and (weapon == projectile)) then
+        or ((weapon ~= nil) and (weapon == projectile)) then -- 近战武器攻击/发射物命中 时进行是否可击中的判定。发射物发射时不进行判定
 
         if _targ and _targ:HasTag("difficult_to_hit") then
             if not _targ:CanBeHit({ attacker = self.inst, weapon = _weapon or self:GetWeapon() }) then
@@ -147,7 +141,20 @@ function Combat:DoAttack(targ, weapon, projectile, ...)
             end
         end
     end
-    return _DoAttack(self, targ, weapon, projectile, ...)
+
+    local old_damagemultiplier
+    if projectile then
+        old_damagemultiplier = self.damagemultiplier
+        self.damagemultiplier = 1
+    end
+
+    local rets = {_DoAttack(self, targ, weapon, projectile, ...)}
+    
+    if old_damagemultiplier then
+        self.damagemultiplier = old_damagemultiplier
+    end
+
+    return unpack(rets)
 end
 
 local _SuggestTarget = Combat.SuggestTarget

@@ -143,7 +143,7 @@ local function fn()
     inst.components.resistance:SetShouldResistFn(ShouldResistFn)
     inst.components.resistance:SetOnResistDamageFn(OnResistDamage)
     inst.components.resistance.alltype_tags = true
-    inst.components.resistance:SetNoTags({"shadow"}) -- doesn't protect from shadow creatures
+    inst.components.resistance:SetNoTags({"shadow", "darkness"}) -- doesn't protect from shadow creatures
 
     inst:AddComponent("fueled")
     inst.components.fueled:InitializeFuelLevel(4 * TUNING.LARGE_FUEL)

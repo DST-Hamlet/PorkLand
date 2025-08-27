@@ -9,16 +9,32 @@ for _, recipe in pairs(foods) do
     AddCookerRecipe("archive_cookpot", recipe)
 end
 
-AddCookerRecipe("smelter", {
-    name = "alloy",
-    weight = 1,
-    priority = 1,
-    cooktime = 0.2,
-    test = function(cooker, name, tags)
-        return true  -- alway true
-    end,
-    no_cookbook = true
-})
+local smelter_recipes =
+{
+    alloy =
+    {
+        name = "alloy",
+        weight = 1,
+        priority = 1,
+        cooktime = 0.2,
+        test = function(cooker, name, tags)
+            if cooker == "smelter" then
+                return true  -- alway true
+            else
+                return false
+            end
+        end,
+        no_cookbook = true
+    },
+}
+
+for _, recipe in pairs(smelter_recipes) do
+    AddCookerRecipe("smelter", recipe)
+
+    AddCookerRecipe("cookpot", recipe) -- 与初版智能锅mod SmartCrockpot进行兼容(workshop-365119238)
+    AddCookerRecipe("portablecookpot", recipe)
+    AddCookerRecipe("archive_cookpot", recipe)
+end
 
 AddIngredientValues({"coffeebeans"}, {fruit = 0.5})
 AddIngredientValues({"coffeebeans_cooked"}, {fruit = 1})

@@ -1,7 +1,7 @@
 GLOBAL.setfenv(1, GLOBAL)
 
 require("behaviours/wander")
-function Wander:PickNewDirection()
+function Wander:PickNewDirection() -- 覆盖法
 
     self.far_from_home = self:IsFarFromHome()
     self.walking = true

@@ -26,7 +26,7 @@ if not rawget(_G, "HotReloading") then
         WEIGHDOWN = Action({distance = 1.5}),
         DISARM = Action({priority = 1, distance = 1.5}),
         REARM = Action({priority = 1, distance = 1.5}),
-        SPY = Action({distance = 2, mount_valid = true}),
+        SPY = Action({distance = 2}), -- 骑在牛上用放大镜不太合理
         PUTONSHELF = Action({ distance = 1.5 }),
         TAKEFROMSHELF = Action({ distance = 1.5, priority = 1 }),
         ASSEMBLE_ROBOT = Action({}),

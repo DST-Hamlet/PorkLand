@@ -155,10 +155,10 @@ local states = {
             local boat = inst.replica.sailor:GetBoat()
 
             if not inst:HasTag("mime") then
-                inst.AnimState:OverrideSymbol("paddle", "swap_paddle", "paddle")
+                inst.AnimState:OverrideSymbol("paddle", "swap_paddle", "paddle") -- 船桨
             end
             -- TODO allow custom paddles?
-            inst.AnimState:OverrideSymbol("wake_paddle", "swap_paddle", "wake_paddle")
+            inst.AnimState:OverrideSymbol("wake_paddle", "swap_paddle", "wake_paddle") -- 船桨与水面的交线
 
             local oar = inst.replica.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
 
@@ -858,6 +858,7 @@ local states = {
         onenter = function(inst)
             inst.components.locomotor:Stop()
 
+            inst.AnimState:OverrideSymbol("circle_puff_01", "player_actions_cropdust", "circle_puff_01")
             inst.AnimState:PlayAnimation("cropdust_pre")
             inst.AnimState:PushAnimation("cropdust_loop")
 
@@ -900,6 +901,7 @@ local states = {
             inst.sg:SetTimeout(20 * FRAMES)
             inst.components.locomotor:Stop()
 
+            inst.AnimState:AddOverrideBuild("player_pistol")
             inst.AnimState:PlayAnimation("hand_shoot")
 
             local buffaction = inst:GetBufferedAction()

@@ -152,7 +152,7 @@ local function CollectBatsForAttack()
     local target_players = {}
 
     for _, player in pairs(AllPlayers) do
-        if not player:GetIsInInterior() then
+        if not player:GetIsInInterior() and not player:HasTag("playerghost") then
             table.insert(target_players, player)
         end
     end
@@ -194,7 +194,7 @@ local function SpawnBatsForPlayer(player)
         return true
     end
 
-    if player:GetIsInInterior() then
+    if player:GetIsInInterior() or player:HasTag("playerghost") then
         return false
     end
 

@@ -182,22 +182,10 @@ local function OnProjectileLaunched(inst, attacker, target, proj)
 
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/characters/wheeler/air_horn/shoot")
 
-    if proj.components.projectile_gun == nil then
-        proj:AddComponent("projectile_gun")
+    if proj.components.weapon == nil then
+        proj:AddComponent("weapon")
+        proj.components.weapon:SetDamage(damage)
     end
-
-    proj.components.projectile_gun.damage = damage
-    proj.components.projectile_gun:SetSpeed(35)
-    proj.components.projectile_gun:SetOnHitFn(OnProjectileHit)
-
-    proj.components.inventoryitem.canbepickedup = false
-
-    proj:RemoveComponent("blowinwind")
-
-    proj.persists = false
-
-    -- If the projectile still exists in 2 seconds something went wrong
-    proj.self_destruct = proj:DoTaskInTime(2, proj.Remove)
 
     if attacker and attacker.AnimState then
         proj.Transform:SetPosition(attacker.AnimState:GetSymbolPosition("swap_object", 0, 0, 0))
@@ -205,7 +193,24 @@ local function OnProjectileLaunched(inst, attacker, target, proj)
         local x, y, z = attacker.Transform:GetWorldPosition()
         proj.Transform:SetPosition(x, y + 2.5, z)
     end
-    proj.components.projectile_gun:Throw(inst, target, attacker)
+
+    if proj.components.projectile == nil then
+        proj:AddComponent("projectile")
+        proj.components.projectile:SetSpeed(35)
+        proj.components.projectile:SetOnHitFn(OnProjectileHit)
+        proj.components.projectile.has_damage_set = true
+        proj.components.projectile:Throw(inst, target, attacker)
+        
+        proj.persists = false
+        -- If the projectile still exists in 2 seconds something went wrong
+        proj.self_destruct = proj:DoTaskInTime(1, proj.Remove)
+    
+        proj.components.inventoryitem.canbepickedup = false
+
+        RemoveBlowInHurricane(proj)
+    else
+        proj.components.projectile:Throw(attacker, target)
+    end
 
     inst.components.finiteuses:Use(1)
 end

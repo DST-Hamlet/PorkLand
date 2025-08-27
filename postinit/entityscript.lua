@@ -271,6 +271,7 @@ local _Remove = EntityScript.Remove
 function EntityScript:Remove(...)
     if self.SoundEmitter then
         self.SoundEmitter:KillAllSounds()
+        self.SoundEmitter:CleanOverrideSound()
     end
     return _Remove(self, ...)
 end

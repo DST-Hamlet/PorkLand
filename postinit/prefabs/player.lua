@@ -89,7 +89,7 @@ local function OnDeath(inst, data)
     end
 end
 
-local function OnRespawnFromGhost(inst, data)
+local function OnRespawnedFromGhost(inst, data)
     if inst.components.poisonable ~= nil and not inst:HasTag("beaver") then
         inst.components.poisonable:SetBlockAll(false)
     end
@@ -267,6 +267,9 @@ local function ActionSpeedDirty(inst)
 end
 
 AddPlayerPostInit(function(inst)
+    -- inst.AnimState:AddOverrideBuild("player_actions_roll") -- 表现效果不太好
+    inst.AnimState:AddOverrideBuild("player_boat_death")
+
     if not TheNet:IsDedicated() then
         inst:DoStaticTaskInTime(0, function()
             if inst == ThePlayer then -- only do this for the local player character
@@ -322,7 +325,8 @@ AddPlayerPostInit(function(inst)
 	end
 
     inst:ListenForEvent("death", OnDeath)
-    inst:ListenForEvent("respawnfromghost", OnRespawnFromGhost)
+    inst:ListenForEvent("ms_respawnedfromghost", OnRespawnedFromGhost)
+    -- ms_respawnedfromghost在复活后触发, respawnfromghost在将要复活时触发
 
     inst:ListenForEvent("itemget", OnItemGet)
     inst:ListenForEvent("itemlose", OnItemLose)

@@ -728,19 +728,33 @@ local states = {
         tags = {"nopredict", "silentmorph"},
 
         onenter = function(inst, source)
+            inst.components.bloomer:PopBloom("playerghostbloom")
+            inst.AnimState:SetLightOverride(0)
+            inst:ApplySkinOverrides() -- 此函数已包含inst.AnimState:SetBank("wilson")
+            
+            if source and source:IsValid() then
+                inst.Physics:Teleport(source.Transform:GetWorldPosition())
+                if source.OnResurrect then
+                    source:OnResurrect(inst)
+                end
+            end
+            
             if inst.components.playercontroller ~= nil then
                 inst.components.playercontroller:Enable(false)
             end
             inst.AnimState:PlayAnimation("rebirth2")
+            inst.SoundEmitter:PlaySound("porkland_soundpackage/common/crafted/flower_of_life/rebirth")
 
             local skin_build = source and source:GetSkinBuild() or nil
             if skin_build ~= nil then
                 for k, v in pairs(plant_symbols) do
                     inst.AnimState:OverrideItemSkinSymbol(v, skin_build, v, inst.GUID, "lifeplant")
+                    inst.AnimState:SetSymbolBloom(v)
                 end
             else
                 for k, v in pairs(plant_symbols) do
                     inst.AnimState:OverrideSymbol(v, "lifeplant", v)
+                    inst.AnimState:SetSymbolBloom(v)
                 end
             end
 
@@ -753,6 +767,9 @@ local states = {
 
         timeline =
         {
+            TimeEvent(50 * FRAMES, function(inst)
+                inst.DynamicShadow:Enable(true)
+            end),
         },
 
         events =
@@ -767,13 +784,14 @@ local states = {
         onexit = function(inst)
             for k, v in pairs(plant_symbols) do
                 inst.AnimState:ClearOverrideSymbol(v)
+                inst.AnimState:ClearSymbolBloom(v)
             end
 
+            inst.components.health:SetInvincible(false)
             if inst.components.playercontroller ~= nil then
                 inst.components.playercontroller:Enable(true)
             end
 
-            inst.components.health:SetInvincible(false)
             inst:ShowHUD(true)
             inst:SetCameraDistance()
 
@@ -1110,10 +1128,10 @@ local states = {
             local boat = inst.replica.sailor:GetBoat()
 
             if not inst:HasTag("mime") then -- 韦斯手中不显示桨
-                inst.AnimState:OverrideSymbol("paddle", "swap_paddle", "paddle")
+                inst.AnimState:OverrideSymbol("paddle", "swap_paddle", "paddle") -- 船桨
             end
             -- TODO allow custom paddles?
-            inst.AnimState:OverrideSymbol("wake_paddle", "swap_paddle", "wake_paddle")
+            inst.AnimState:OverrideSymbol("wake_paddle", "swap_paddle", "wake_paddle") -- 船桨与水面的交线
 
             -- RoT has row_pre, which is identical but uses the equipped item as paddle
 
@@ -2388,6 +2406,7 @@ local states = {
             inst:FacePoint(Point(pos.x, pos.y, pos.z))
 
             inst.components.locomotor:Stop()
+            inst.AnimState:OverrideSymbol("circle_puff_01", "player_actions_cropdust", "circle_puff_01")
             inst.AnimState:PlayAnimation("cropdust_pre")
             inst.AnimState:PushAnimation("cropdust_loop")
             inst.AnimState:PushAnimation("cropdust_pst", false)
@@ -2408,6 +2427,10 @@ local states = {
                 inst.sg:GoToState("idle")
             end),
         },
+
+        onexit = function(inst)
+            inst.AnimState:ClearOverrideSymbol("circle_puff_01")
+        end,
     },
 
     State{
@@ -2428,6 +2451,7 @@ local states = {
             inst.components.locomotor:Stop()
             local cooldown = math.max(20 * FRAMES)
 
+            inst.AnimState:AddOverrideBuild("player_pistol")
             inst.AnimState:PlayAnimation("hand_shoot")
 
             inst.sg:SetTimeout(cooldown)
@@ -2470,6 +2494,8 @@ local states = {
         },
 
         onexit = function(inst)
+            inst.AnimState:ClearOverrideBuild("player_pistol")
+
             inst.components.combat:SetTarget(nil)
             if inst.sg:HasStateTag("abouttoattack") then
                 inst.components.combat:CancelAttack()
@@ -3265,6 +3291,17 @@ AddStategraphPostInit("wilson", function(sg)
                 inst.Transform:SetTwoFaced()
             end
         end
+    end
+
+    local _reviver_rebirth_onenter = sg.states["reviver_rebirth"].onenter
+    sg.states["reviver_rebirth"].onenter = function(inst, source, ...)
+        if inst.overridestate and inst.overridestate["reviver_rebirth"] then
+            inst.sg:GoToState(inst.overridestate["reviver_rebirth"], inst.overridrebirthsource or source)
+            inst.overridestate["reviver_rebirth"] = nil
+            inst.overridrebirthsource = nil
+            return 
+        end
+        return _reviver_rebirth_onenter(inst, source, ...)
     end
 
     local _locomote_eventhandler = sg.events.locomote.fn

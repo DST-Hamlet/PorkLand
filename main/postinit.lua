@@ -51,6 +51,7 @@ end
 local behaviour_posts = {
     "chaseandattack",
     "runaway",
+    "useshield",
     "wander",
 }
 

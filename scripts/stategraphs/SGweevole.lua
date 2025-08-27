@@ -22,7 +22,7 @@ local events =
     end),
     EventHandler("attacked", function(inst)
         if not inst.components.health:IsDead() then
-            if not inst.sg:HasStateTag("attack") and not inst.sg:HasStateTag("shielding") then -- don't interrupt attack
+            if not inst.sg:HasStateTag("attack") and not inst.sg:HasStateTag("hiding") then -- don't interrupt attack
                 inst.sg:GoToState("hit") -- can still attack
             end
         end
@@ -155,9 +155,10 @@ local states =
 
     State{
         name = "burrow_shield",
-        tags = {"busy", "shielding"},
+        tags = {"busy", "hiding"},
 
         onenter = function(inst)
+            inst:ClearBufferedAction()
             inst:RemoveTag("canbetrapped")
             inst.Physics:Stop()
             inst.AnimState:PlayAnimation("burrow")
@@ -176,6 +177,7 @@ local states =
 
         onexit = function(inst)
             inst:AddTag("canbetrapped")
+            inst.DynamicShadow:Enable(true)
         end,
     },
 
@@ -222,6 +224,7 @@ local states =
             inst.Physics:Stop()
             inst.AnimState:PlayAnimation("unburrow")
             inst.AnimState:SetDeltaTimeMultiplier(GetRandomWithVariance(.9, .2))
+            inst.DynamicShadow:Enable(false)
 
             if inst.components.combat ~= nil and inst.components.combat.target ~= nil then
                 inst:ForceFacePoint(inst.components.combat.target:GetPosition())

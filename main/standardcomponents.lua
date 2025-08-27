@@ -11,18 +11,18 @@ function MakeBlowInHurricane(inst, min_scale, max_scale)
         return
     end
 
-    if not inst.components.pl_blowinwind then
-        inst:AddComponent("pl_blowinwind")
-    end
-
-    inst.components.pl_blowinwind:SetAverageSpeed(TUNING.WILSON_RUN_SPEED - 1)
-    inst.components.pl_blowinwind:SetMaxSpeedMultiplier(min_scale or 0.1)
-    inst.components.pl_blowinwind:SetMinSpeedMultiplier(max_scale or 1.0)
-    inst.components.pl_blowinwind:Start()
+    -- if not inst.components.pl_blowinwind then
+    --     inst:AddComponent("pl_blowinwind")
+    -- end
+    -- 
+    -- inst.components.pl_blowinwind:SetAverageSpeed(TUNING.WILSON_RUN_SPEED - 1)
+    -- inst.components.pl_blowinwind:SetMaxSpeedMultiplier(min_scale or 0.1)
+    -- inst.components.pl_blowinwind:SetMinSpeedMultiplier(max_scale or 1.0)
+    -- inst.components.pl_blowinwind:Start()
 end
 
 function RemoveBlowInHurricane(inst)
-    inst:RemoveComponent("pl_blowinwind")
+    -- inst:RemoveComponent("pl_blowinwind")
 end
 
 
