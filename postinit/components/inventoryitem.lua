@@ -72,6 +72,7 @@ function InventoryItem:OnUpdate(dt) -- 覆盖法
                 end
 
                 if self.onimpassable then -- 坠入虚空判定
+                    self:SetLanded(false, true) -- 试图推送离地事件
                     if y < -0.01 then
                         self.inst.AnimState:SetLayer(LAYER_BELOW_GROUND)
                         self.inst.Physics:CollidesWith(COLLISION.VOID_LIMITS)
@@ -85,7 +86,7 @@ function InventoryItem:OnUpdate(dt) -- 覆盖法
                 end
             end
 
-            if not self.onimpassable then -- 陆地完全停止判定
+            if not self.onimpassable then -- 在陆地区域时的判定
                 local vx, vy, vz = self.inst.Physics:GetVelocity()
                 vely = vy or 0
 
@@ -97,16 +98,13 @@ function InventoryItem:OnUpdate(dt) -- 覆盖法
                     return
                 else
                     if y + vely * dt * 1.5 < 0.01 and vely <= 0 then -- 接触地面时检测
-                        if self.pushlandedevents and not self.is_landed then
-                            self.inst:PushEvent("on_landed")
-                            self:TryToSink()
+                        if vx * vx + vz * vz > 0.25 then -- 接触地面且大于一定移动速度时强制推送落地事件
+                            self.is_landed = false
                         end
-                        self.is_landed = true
-                    elseif y > 0.2 then
-                        if self.pushlandedevents and self.is_landed then
-                            self.inst:PushEvent("on_no_longer_landed")
-                        end
-                        self.is_landed = false
+                        self:SetLanded(true, false) -- 试图推送落地事件
+                        StopUpdatingComponents[self] = nil -- SetLanded(true)会导致本组件的update停止更新
+                    elseif y + vely * dt * 1.5 > 0.2 and vely >= 0 then
+                        self:SetLanded(false, true) -- 试图推送离地事件
                     end
                 end
             end
