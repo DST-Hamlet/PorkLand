@@ -260,6 +260,7 @@ modimport("postinit/skilltrees")
 modimport("postinit/lightwatcher")
 modimport("postinit/shardindex")
 modimport("postinit/mixes")
+modimport("postinit/physics")
 
 for _, file_name in ipairs(behaviour_posts) do
     modimport("postinit/behaviours/" .. file_name)

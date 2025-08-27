@@ -123,7 +123,7 @@ function InventoryItem:Launch(veldirect)  --应当使用Launch函数替换所有
 
     self:SetLanded(false, true)
 
-    self.inst.Physics:SetVel(veldirect:Get())
+    self.inst.Physics:Old_SetVel(veldirect:Get())
 end
 
 local _SinkEntity = SinkEntity
