@@ -154,9 +154,11 @@ local function queen_fn()
 
     inst.entity:SetPristine()
 
-    if not TheWorld.ismastersim then
+    if not TheNet:IsDedicated() then
         inst:ListenForEvent("mixerdirty", OnMixerDirty)
+    end
 
+    if not TheWorld.ismastersim then
         inst.OnRemoveEntity = OnRemoveEntity_Client
 
         return inst

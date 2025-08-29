@@ -134,11 +134,10 @@ local function fn()
     if not TheNet:IsDedicated() then
         inst._playingmusic = false
         inst:DoPeriodicTask(1, PushMusic, 0)
+        inst:ListenForEvent("mixerdirty", OnMixerDirty)
     end
 
     if not TheWorld.ismastersim then
-        inst:ListenForEvent("mixerdirty", OnMixerDirty)
-
         inst.OnRemoveEntity = OnRemoveEntity_Client
 
         return inst

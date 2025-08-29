@@ -386,6 +386,12 @@ local states =
             end),
             TimeEvent(19 * FRAMES, function(inst) inst.mixer:set(false) end),
         },
+
+        onexit = function(inst)
+            if inst.mixer:value() then
+                inst.mixer:set(false)
+            end
+        end
     },
 
     State{
@@ -620,6 +626,9 @@ local states =
         },
 
         onexit = function(inst)
+            if inst.mixer:value() then
+                inst.mixer:set(false)
+            end
             inst.Transform:SetSixFaced()
             inst.components.timer:StartTimer("spin_cd", TUNING.ANCIENT_HULK_SPIN_CD)
             inst.components.combat.playerdamagepercent = 0.5
@@ -668,6 +677,9 @@ local states =
         },
 
         onexit = function(inst)
+            if inst.mixer:value() then
+                inst.mixer:set(false)
+            end
             inst.Transform:SetSixFaced()
             inst.components.timer:StartTimer("barrier_cd", TUNING.ANCIENT_HULK_BARRIER_CD)
             inst.components.groundpounder.damageRings = 2

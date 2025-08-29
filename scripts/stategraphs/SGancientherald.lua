@@ -94,6 +94,10 @@ local states =
                 inst.sg:GoToState("idle")
             end)
         },
+
+        onexit = function(inst)
+            inst.mixer:set(false)
+        end
     },
 
     State{
