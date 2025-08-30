@@ -119,9 +119,15 @@ end
 
 local function OnMixerDirty(inst, data)
     if inst.mixer:value() then
-        TheMixer:PushMix("mute")
+        if ThePlayer:IsNear(inst, 40) then
+            TheMixer:PushMix("mute")
+            inst.mixpushed = true
+        end
     else
-        TheMixer:PopMix("mute")
+        if inst.mixpushed then
+            TheMixer:PopMix("mute")
+            inst.mixpushed = nil
+        end
     end
 end
 

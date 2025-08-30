@@ -80,7 +80,7 @@ local states =
         onenter = function(inst)
             inst.AnimState:PlayAnimation("appear")
             inst.SoundEmitter:PlaySound("dontstarve/ghost/ghost_howl")
-            inst.mixer:set(true)
+            -- inst.mixer:set(true)
         end,
 
         timeline =
@@ -96,7 +96,7 @@ local states =
         },
 
         onexit = function(inst)
-            inst.mixer:set(false)
+            -- inst.mixer:set(false)
         end
     },
 
@@ -174,12 +174,16 @@ local states =
         onenter = function(inst)
             inst.Physics:Stop()
             inst.AnimState:PlayAnimation("summon")
+            inst.mixer:set(true)
         end,
 
         timeline =
         {
             TimeEvent(0  * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/ancient_herald/summon") end),
-            TimeEvent(1  * FRAMES, function(inst) inst.SoundEmitter:PlaySound("porkland_soundpackage/creatures/boss/ancient_herald/summon_2d") end),
+            TimeEvent(1  * FRAMES, function(inst)
+                inst.SoundEmitter:PlaySound("porkland_soundpackage/creatures/boss/ancient_herald/summon_2d")
+                inst.mixer:set(false)
+            end),
             TimeEvent(30 * FRAMES, function(inst) SpawnHeraldSummons(inst) end)
         },
 
@@ -189,6 +193,10 @@ local states =
                 inst.sg:GoToState("idle")
             end)
         },
+
+        onexit = function(inst)
+            inst.mixer:set(false)
+        end
     },
 
     State{
@@ -208,12 +216,14 @@ local states =
         timeline = {
             TimeEvent(0  * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/ancient_herald/attack") end),
             TimeEvent(1  * FRAMES, function(inst) inst.SoundEmitter:PlaySound("porkland_soundpackage/creatures/boss/ancient_herald/attack_2d") end),
+            TimeEvent(19 * FRAMES, function(inst) inst.mixer:set(true) end),
             TimeEvent(20 * FRAMES, function(inst)
                 local ring = SpawnPrefab("laser_ring")
                 ring.Transform:SetPosition(inst.Transform:GetWorldPosition())
                 ring.Transform:SetScale(1.1, 1.1, 1.1)
                 DoDamage(inst, 6)
-            end)
+                inst.mixer:set(false)
+            end),
         },
 
         events =
@@ -222,6 +232,10 @@ local states =
                 inst.sg:GoToState("idle")
             end),
         },
+
+        onexit = function(inst)
+            inst.mixer:set(false)
+        end
     },
 
     State{

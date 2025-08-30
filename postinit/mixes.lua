@@ -10,8 +10,6 @@ local player ="set_sfx/player"
 local HUD ="set_sfx/HUD"
 local sfx ="set_sfx/sfx"
 local slurp ="set_sfx/everything_else_muted"
-local mute ="set_sfx/everything_else_muted"
-local shadow ="set_sfx/shadow"
 
 --function Mixer:AddNewMix(name, fadetime, priority, levels, reverb)
 TheMixer:AddNewMix("mute", 0, 4,
@@ -25,9 +23,7 @@ TheMixer:AddNewMix("mute", 0, 4,
     [player] = 0,
     [HUD] = 1,
     [sfx] = 0,
-    [slurp] = 0,
-    [mute] = 1,
-    [shadow] = 0,
+    [slurp] = 1,
 })
 
 TheMixer:AddNewMix("shadow", 1, 3,
@@ -35,14 +31,13 @@ TheMixer:AddNewMix("shadow", 1, 3,
     [amb] = .2,
     [cloud] = 0,
     [music] = 1,
-    [voice] = 1,
-    [movement] = 1,
-    [creature] = 1,
-    [player] = 1,
-    [HUD] = 1,
-    [sfx] = 1,
-    [slurp] = 1,
-    [shadow] = .3,
+    [voice] = .2,
+    [movement] = .2,
+    [creature] = .2,
+    [player] = .2,
+    [HUD] = .2,
+    [sfx] = .2,
+    [slurp] = .2,
 })
 
 TheMixer:AddNewMix("boom", 0, 4,
@@ -57,5 +52,4 @@ TheMixer:AddNewMix("boom", 0, 4,
     [HUD] = 1,
     [sfx] = 1,
     [slurp] = 0,
-    [shadow] = 0,
 })
