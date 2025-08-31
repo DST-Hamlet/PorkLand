@@ -134,7 +134,7 @@ local function fn()
     inst.entity:AddNetwork()
 
     MakeInventoryPhysics(inst)
-    MakeInventoryFloatable(inst)
+    MakeInventoryFloatable(inst, "small", 0.15)
 
     inst.AnimState:SetBuild("roc_egg")
     inst.AnimState:SetBank("roc_egg")
