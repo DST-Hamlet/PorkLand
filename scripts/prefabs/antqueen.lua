@@ -132,7 +132,9 @@ local function OnMixerDirty(inst, data)
 end
 
 local function OnRemoveEntity_Client(inst)
-    TheMixer:PopMix("mute")
+    if inst.mixpushed then
+        TheMixer:PopMix("mute")
+    end
 end
 
 local brain = require("brains/antqueenbrain")

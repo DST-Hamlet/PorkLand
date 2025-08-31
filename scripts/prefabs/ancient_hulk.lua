@@ -124,19 +124,21 @@ end
 local function OnMixerDirty(inst, data)
     if inst.mixer:value() then
         if ThePlayer:IsNear(inst, 40) then
-            TheMixer:PushMix("mute")
+            TheMixer:PushMix("boom")
             inst.mixpushed = true
         end
     else
         if inst.mixpushed then
-            TheMixer:PopMix("mute")
+            TheMixer:PopMix("boom")
             inst.mixpushed = nil
         end
     end
 end
 
 local function OnRemoveEntity_Client(inst)
-    TheMixer:PopMix("boom")
+    if inst.mixpushed then
+        TheMixer:PopMix("boom")
+    end
 end
 
 local brain = require("brains/ancienthulkbrain")
