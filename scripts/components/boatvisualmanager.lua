@@ -11,6 +11,7 @@ function BoatVisualManager:SpawnBoatEquipVisuals(item, visualprefab)
     self.visuals[item] = visual
 
     item.visual = visual
+    self.inst.boatvisuals[visual] = true
     visual:SetVisual(self.inst)
 end
 

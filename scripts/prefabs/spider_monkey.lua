@@ -368,7 +368,7 @@ local function fn()
 
     inst:ListenForEvent("attacked", OnAttacked)
 
-    inst:DoPeriodicTask(0 + math.random() * 0.1, UpdateTreeStatus)
+    inst:DoPeriodicTask(1 + math.random() * 1, UpdateTreeStatus)
 
     inst:DoTaskInTime(0, function() TheWorld.components.spidermonkeyherd:AddToHerd(inst) end)
 

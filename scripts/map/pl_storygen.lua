@@ -282,7 +282,7 @@ function Story:Pl_AddBGNodes(min_count, max_count)
                         task:AddEdge({ node1id = newNode.id, node2id = nodeid })
                         -- This will probably cause crushng so it is commented out for now
                         -- if prevNode then
-                        --     task:AddEdge({node1id=newNode.id, node2id=prevNode.id})
+                        --     task:AddEdge({node1id = newNode.id, node2id = prevNode.id})
                         -- end
 
                         bg_idx = bg_idx + 1

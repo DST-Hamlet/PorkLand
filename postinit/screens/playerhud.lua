@@ -31,7 +31,7 @@ function PlayerHud:CreateOverlays(owner, ...)
     self.pollenover = self.overlayroot:AddChild(PollenOver(owner))
     self.pollenover:Hide()
     self.inst:ListenForEvent("updatepollen", function(inst, data) return self.pollenover:UpdateState(data.sneezetime) end, self.owner)
-
+    
     self.leavesover = self.overlayroot:AddChild(LeavesOver(owner))
 
     self.livingartifactover = self.overlayroot:AddChild(LivingArtifactOver(owner))
@@ -110,7 +110,21 @@ function PlayerHud:UpdateFogClouds(camera)
     TheFocalPoint.SoundEmitter:SetVolume("windsound", intensity)
 end
 
-function PlayerHud:OpenBoat(boat, sailing)
+local _OpenContainer = PlayerHud.OpenContainer
+function PlayerHud:OpenContainer(container, ...)
+    if container.replica.container.type == "boat" or container.replica.container.type == "boat_has_sailor" then
+        return self:OpenBoat(container)
+    end
+
+    return _OpenContainer(self, container, ...)
+end
+
+function PlayerHud:OpenBoat(boat) -- 此函数复制自OpenContainer，目的为使船容器的界面挂载在controls.inv.root上
+    local sailing = false
+    if self.owner and self.owner.replica.sailor:GetBoat() == boat then
+        sailing = true
+    end
+
     if boat then
         local boatwidget = nil
         if sailing then
@@ -126,16 +140,6 @@ function PlayerHud:OpenBoat(boat, sailing)
         end
 
         boatwidget:Open(boat, self.owner, not sailing)
-
-        for k, v in pairs(self.controls.containers) do
-            if v.container then
-                if v.parent == boatwidget.parent or k == boat then
-                    v:Close()
-                end
-            else
-                self.controls.containers[k] = nil
-            end
-        end
 
         self.controls.containers[boat] = boatwidget
     end

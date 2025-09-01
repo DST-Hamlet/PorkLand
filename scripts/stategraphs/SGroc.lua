@@ -94,7 +94,7 @@ local states =
             inst.components.shadeanimstate:PlayAnimation("roc_shadow_shadow")
         end,
 
-        ontimeout=function(inst)
+        ontimeout = function(inst)
             inst.sg:GoToState("flap")
         end,
 

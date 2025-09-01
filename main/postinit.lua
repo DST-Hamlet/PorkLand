@@ -51,6 +51,7 @@ end
 local behaviour_posts = {
     "chaseandattack",
     "runaway",
+    "useshield",
     "wander",
 }
 
@@ -70,11 +71,14 @@ local component_posts = {
     "clock",
     "colourcube",
     "combat",
+    "container_replica",
+    "container",
     "crop",
     "deployable",
     "dest",
     "drownable",
     "dryer",
+    "dryingrack",
     "edible",
     "equippable_replica",
     "equippable",
@@ -86,8 +90,8 @@ local component_posts = {
     "grue",
     "hauntable",
     "health",
-    "inventory",
     "inventory_replica",
+    "inventory",
     "inventoryitem_replica",
     "inventoryitem",
     "inventoryitemmoisture",
@@ -125,7 +129,6 @@ local component_posts = {
     "waterproofer",
     "wavemanager",
     "wisecracker",
-    "witherable",
     "workable",
     "worldstate",
 }
@@ -139,30 +142,29 @@ local prefab_posts = {
     "grass",
     "inventoryitem_classified",
     "mandrake",
-    "meatrack",
     "mosquitosack",
     "multiplayer_portal",
     "orangestaff",
     "pigskin",
-    "player",
     "player_classified",
     "player_common_extensions",
+    "player",
     "pocketdimensioncontainer_defs",
     "poop",
+    "shadowcreature",
+    "shard_network",
+    "spoiledfood",
+    "statueruins",
     "telebase",
+    "telestaff",
     "thunder_close",
     "torch",
+    "walls",
+    "waterballoon",
     "waterprojectiles",
     "woodie",
     "world_network",
     "world",
-    "shard_network",
-    "spoiledfood",
-    "statueruins",
-    "shadowcreature",
-    "telestaff",
-    "walls",
-    "waterballoon",
     "wormwood",
     "wortox",
 }
@@ -215,7 +217,7 @@ local widget_posts = {
     "recipepopup",
     "seasonclock",
     "skilltreetoast",
-    "statusdisplay",
+    "statusdisplays",
     "targetindicator",
     "uiclock",
     "widget",
@@ -257,6 +259,8 @@ modimport("postinit/preparedfoods")
 modimport("postinit/skilltrees")
 modimport("postinit/lightwatcher")
 modimport("postinit/shardindex")
+modimport("postinit/mixes")
+modimport("postinit/physics")
 
 for _, file_name in ipairs(behaviour_posts) do
     modimport("postinit/behaviours/" .. file_name)

@@ -215,7 +215,8 @@ local states =
             end
             inst.sg:SetTimeout(inst.AnimState:GetCurrentAnimationLength())
 
-            inst.Physics:SetMotorVel(0, math.random() * 10 - 20, 0)
+            inst.sg.statemem.speed = -20 + math.random() * 10
+            inst.Physics:SetMotorVel(0, inst.sg.statemem.speed, 0)
             inst.DynamicShadow:Enable(false)
         end,
 
@@ -230,9 +231,8 @@ local states =
 
         onupdate = function(inst)
             local x, y, z = inst.Transform:GetWorldPosition()
-            if y < 2 then
-                inst.Physics:SetMotorVel(0, 0, 0)
-            end
+            inst.Physics:SetMotorVel(0, inst.sg.statemem.speed, 0)
+
             if y <= 0.1 then
                 inst.Physics:Stop()
                 inst.Physics:Teleport(x, 0, z)

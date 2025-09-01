@@ -134,7 +134,7 @@ function Sailor:OnUpdate(dt)
             end
             self.boatspeed = current_speed
             local sailor_speed = self.boatspeed
-            sailor_speed = math.floor(self.boatspeed + 1)
+            sailor_speed = math.floor(self.boatspeed + 1) -- 船的应用速度从1开始计数，且尽可能取整数
             if sailor_speed > target_speed and
                 ((sailor_speed - target_speed) <= (math.floor(target_speed + 1) - target_speed)) and
                 self.perdictframe > 0 then
@@ -173,16 +173,6 @@ function Sailor:OnLoad(data)
         local boat = SpawnSaveRecord(data.boat)
         if boat then
             self:Embark(boat, true)
-            if boat.components.container then
-                boat:DoTaskInTime(0.3, function()
-                    if boat.components.container:IsOpen() then
-                        boat.components.container:Close(true)
-                    end
-                end)
-                boat:DoTaskInTime(1.5, function()
-                    boat.components.container:Open(self.inst)
-                end)
-            end
         end
     end
 end
@@ -194,8 +184,6 @@ function Sailor:Embark(boat, nostate)
 
     self.sailing = true
     self.boat = boat
-
-    boat:AddTag("NOCLICK")
 
     self.last_pos = boat:GetPosition()
     self.boatspeed = 0
@@ -250,17 +238,6 @@ function Sailor:Embark(boat, nostate)
     --     self.inst.components.farseer:AddBonus("boat", boat.components.sailable:GetMapRevealBonus())
     -- end
 
-    if boat.components.container then
-        if boat.components.container:IsOpen() then
-            boat.components.container:Close(true)
-        end
-        boat:DoTaskInTime(0.25, function()
-            if boat == self.boat then
-                boat.components.container:Open(self.inst)
-            end
-        end)
-    end
-
     if self.OnEmbarked then
         self.OnEmbarked(self.inst)
     end
@@ -278,10 +255,6 @@ function Sailor:Disembark(pos, boat_to_boat, no_state, boat_pos)
     self.sailing = false
     self.boatspeed = 0
 
-    if self.boat and self.boat:HasTag("NOCLICK") then
-        self.boat:RemoveTag("NOCLICK")
-    end
-
     self.inst:StopUpdatingComponent(self)
 
     self.last_pos = nil
@@ -289,10 +262,6 @@ function Sailor:Disembark(pos, boat_to_boat, no_state, boat_pos)
     UpdateSailorPathcaps(self.inst, false)
 
     self.inst:RemoveEventCallback("boathealthchange", OnBoatDelta, self.boat)
-
-    if self.boat.components.container then
-        self.boat.components.container:Close(true)
-    end
 
     -- dst no this
     -- if self.inst.components.farseer then

@@ -56,22 +56,19 @@ AncientRobot.States.AddTaunt(states, {
     TimeEvent(0  * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/metal_robot/head/servo") end),
     TimeEvent(2  * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/metal_robot/head/taunt") end),
     TimeEvent(12 * FRAMES, function(inst)
-        inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/metal_robot/head/step","steps")
-        inst.SoundEmitter:SetParameter("steps", "intensity", .05)
+        inst.SoundEmitter:PlaySoundWithParams("dontstarve_DLC003/creatures/boss/hulk_metal_robot/head/step", {intensity = 0.05})
     end),
     TimeEvent(17 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/metal_robot/head/servo") end),
     TimeEvent(19 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/metal_robot/head/taunt") end),
     TimeEvent(24 * FRAMES, function(inst)
-        inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/metal_robot/head/step","steps")
-        inst.SoundEmitter:SetParameter("steps", "intensity", 0.08)
+        inst.SoundEmitter:PlaySoundWithParams("dontstarve_DLC003/creatures/boss/hulk_metal_robot/head/step", {intensity = 0.08})
     end),
     TimeEvent(32 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/metal_robot/head/servo") end),
 })
 AncientRobot.States.AddLocomoteStates(states, {
     TimeEvent(0 * FRAMES, function(inst)
         inst.Physics:Stop()
-        inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/metal_robot/head/servo", "servo")
-        inst.SoundEmitter:SetParameter("servo", "intensity", math.random())
+        inst.SoundEmitter:PlaySoundWithParams("dontstarve_DLC003/creatures/boss/hulk_metal_robot/head/servo", {intensity = math.random()})
     end),
 },
 {
@@ -80,12 +77,10 @@ AncientRobot.States.AddLocomoteStates(states, {
         inst.components.locomotor:WalkForward()
     end),
     TimeEvent(1 * FRAMES, function(inst)
-        inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/metal_robot/head/servo", "servo")
-        inst.SoundEmitter:SetParameter("servo", "intensity", math.random())
+        inst.SoundEmitter:PlaySoundWithParams("dontstarve_DLC003/creatures/boss/hulk_metal_robot/head/servo", {intensity = math.random()})
     end),
     TimeEvent(17 * FRAMES, function(inst)
-        inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/metal_robot/head/step", "steps")
-        inst.SoundEmitter:SetParameter("steps", "intensity", math.random())
+        inst.SoundEmitter:PlaySoundWithParams("dontstarve_DLC003/creatures/boss/hulk_metal_robot/head/step", {intensity = math.random()})
     end),
     TimeEvent(48 * FRAMES, function(inst)
         inst.Physics:Stop()
@@ -115,8 +110,7 @@ AncientRobot.States.AddLeap(states, {
     TimeEvent(13 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/metal_robot/head/servo") end),
     TimeEvent(17 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/metal_robot/head/step") end),
     TimeEvent(31 * FRAMES, function(inst)
-        inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/metal_robot/head/step", "steps")
-        inst.SoundEmitter:SetParameter("steps", "intensity", 0.08)
+        inst.SoundEmitter:PlaySoundWithParams("dontstarve_DLC003/creatures/boss/hulk_metal_robot/head/step", {intensity = 0.08})
     end),
 })
 

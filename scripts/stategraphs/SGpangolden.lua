@@ -187,7 +187,7 @@ local states =
             inst.components.health:SetAbsorptionAmount(0)
         end,
 
-        ontimeout=function(inst)
+        ontimeout = function(inst)
             inst.sg:GoToState("ball_pst")
         end,
 

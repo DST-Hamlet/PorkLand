@@ -299,15 +299,14 @@ local states =
 
         onenter = function(inst)
             inst.Physics:SetDamping(0)
-            inst.Physics:SetMotorVel(0, -20 + math.random() * 10, 0)
+            inst.sg.statemem.speed = -20 + math.random() * 10
+            inst.Physics:SetMotorVel(0, inst.sg.statemem.speed, 0)
             inst.AnimState:PlayAnimation("stunned_loop", true)
         end,
 
         onupdate = function(inst)
             local x, y, z = inst.Transform:GetWorldPosition()
-            if y < 2 then
-                inst.Physics:SetMotorVel(0, 0, 0)
-            end
+            inst.Physics:SetMotorVel(0, inst.sg.statemem.speed, 0)
 
             if y <= .1 then
                 inst.Physics:Stop()

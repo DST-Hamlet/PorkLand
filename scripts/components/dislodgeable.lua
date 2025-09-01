@@ -66,7 +66,7 @@ function Dislodgeable:Dislodge(dislodger)
         local alwaysinfront = (pt == nil)
 
         for i = 1, self.product_num do
-            local loot = self.inst.components.lootdropper:DropLootPrefab(SpawnPrefab(self.product), pt, nil, nil, alwaysinfront)
+            local loot = self.inst.components.lootdropper:SpawnLootPrefab(self.product, pt)
 
             self.canbedislodged = false
 

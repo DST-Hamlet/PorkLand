@@ -8,6 +8,22 @@ local prefabs =
     "ancient_remnant",
 }
 
+SetSharedLootTable("ancient_herald_base",
+{
+    {"ancient_remnant", 1.0},
+    {"ancient_remnant", 1.0},
+    {"ancient_remnant", 1.0},
+    {"ancient_remnant", 1.0},
+    {"ancient_remnant", 1.0},
+})
+
+SetSharedLootTable("ancient_remnant_extra",
+{
+    {"nightmarefuel",               1.0},
+    {"nightmarefuel",               1.0},
+    {"armorvortexcloak_blueprint",  1.0},
+})
+
 local function CalcSanityAura(inst, observer)
     if inst.components.combat.target then
         return -TUNING.SANITYAURA_HUGE
@@ -65,6 +81,26 @@ local function PushMusic(inst)
     end
 end
 
+local function OnMixerDirty(inst, data)
+    if inst.mixer:value() then
+        if ThePlayer:IsNear(inst, 40) then
+            TheMixer:PushMix("shadow")
+            inst.mixpushed = true
+        end
+    else
+        if inst.mixpushed then
+            TheMixer:PopMix("shadow")
+            inst.mixpushed = nil
+        end
+    end
+end
+
+local function OnRemoveEntity_Client(inst)
+    if inst.mixpushed then
+        TheMixer:PopMix("shadow")
+    end
+end
+
 local brain = require("brains/ancientheraldbrain")
 
 local function fn()
@@ -99,14 +135,19 @@ local function fn()
     inst:AddTag("ancient_herald")
     inst:AddTag("shadow_aligned")
 
+    inst.mixer = net_bool(inst.GUID, "antqueen.mixer", "mixerdirty")
+
     inst.entity:SetPristine()
 
     if not TheNet:IsDedicated() then
         inst._playingmusic = false
         inst:DoPeriodicTask(1, PushMusic, 0)
+        inst:ListenForEvent("mixerdirty", OnMixerDirty)
     end
 
     if not TheWorld.ismastersim then
+        inst.OnRemoveEntity = OnRemoveEntity_Client
+
         return inst
     end
 
@@ -129,8 +170,9 @@ local function fn()
 
     inst:AddComponent("lootdropper")
     -- for wheeler_tracker
-    -- inst.components.lootdropper:AddExternalLoot("ancient_remnant")
-    -- inst.components.lootdropper:AddExternalLoot("nightmarefuel")
+    inst.components.lootdropper:AddChanceLoot("ancient_remnant", 1)
+    inst.components.lootdropper:AddChanceLoot("nightmarefuel", 1)
+    inst.components.lootdropper:AddChanceLoot("armorvortexcloak_blueprint", 1)
 
     inst:AddComponent("inspectable")
 
@@ -143,6 +185,7 @@ local function fn()
 
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
+    inst.OnRemoveEntity = OnRemoveEntity_Client
 
     inst:ListenForEvent("attacked", OnAttacked)
     inst:WatchWorldState("isaporkalypse", OnIsAporkalypse)

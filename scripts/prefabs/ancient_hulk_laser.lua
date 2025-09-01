@@ -216,7 +216,8 @@ local function scorchfn()
     inst._fade = net_byte(inst.GUID, "ancient_hulk_laserscorch._fade", "fadedirty")
     inst._fade:set(SCORCH_RED_FRAMES + SCORCH_DELAY_FRAMES + SCORCH_FADE_FRAMES)
 
-    inst:DoPeriodicTask(0, Scorch_OnUpdateFade)
+    inst:AddComponent("updatelooper")
+    inst.components.updatelooper:AddOnUpdateFn(Scorch_OnUpdateFade)
     Scorch_OnFadeDirty(inst)
 
     inst.entity:SetPristine()
@@ -327,7 +328,12 @@ local function SetTarget(inst, target)
             target.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
         end
         inst.flash = .8 + math.random() * .4
-        inst:DoPeriodicTask(0, UpdateHit, nil, target)
+        if not inst.components.updatelooper then
+            inst:AddComponent("updatelooper")   
+        end
+        inst.components.updatelooper:AddOnUpdateFn(function()
+            UpdateHit(inst, target)
+        end)
         UpdateHit(inst, target)
     end
 end
@@ -371,9 +377,11 @@ local function ringfn()
         return inst
     end
 
+    inst:AddComponent("updatelooper")
+
     inst.alpha = 1
     inst:DoTaskInTime(0.7, function()
-        inst:DoPeriodicTask(0, function()
+        inst.components.updatelooper:AddOnUpdateFn(function()
             inst.alpha = math.max(0, inst.alpha - 1 / 90)
             inst.AnimState:SetMultColour(1, 1, 1,  inst.alpha)
             if inst.alpha == 0 then

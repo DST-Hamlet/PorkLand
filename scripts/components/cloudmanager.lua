@@ -85,7 +85,7 @@ function CloudManager:UpdatePos(dt)
     if not self.enabled then
         return
     end
-    
+
     local c_down = TheCamera:GetPitchDownVec():Normalize()
     local c_right = TheCamera:GetRightVec():Normalize()
 

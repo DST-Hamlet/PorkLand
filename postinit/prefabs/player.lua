@@ -81,7 +81,7 @@ local function OnDeath(inst, data)
     end
 end
 
-local function OnRespawnFromGhost(inst, data)
+local function OnRespawnedFromGhost(inst, data)
     if inst.components.poisonable ~= nil and not inst:HasTag("beaver") then
         inst.components.poisonable:SetBlockAll(false)
     end
@@ -129,14 +129,18 @@ end
 
 local function OnInteriorChange(inst, data)
     UpdateHomeTechBonus(inst, data)
-    if data.to == nil then
+    if data.to == nil and inst.kramped_interior_up then
         -- We store the naughty value when the player is inside an interior,
         -- and triggers it once they go out
+        inst.kramped_interior_up = nil
         TheWorld.components.kramped:OnNaughtyAction(0, inst)
     end
 end
 
 AddPlayerPostInit(function(inst)
+    -- inst.AnimState:AddOverrideBuild("player_actions_roll") -- 表现效果不太好
+    inst.AnimState:AddOverrideBuild("player_boat_death")
+
     if not TheNet:IsDedicated() then
         inst:DoStaticTaskInTime(0, function()
             if inst == ThePlayer then -- only do this for the local player character
@@ -184,7 +188,8 @@ AddPlayerPostInit(function(inst)
     inst:AddComponent("uniqueidentity")
 
     inst:ListenForEvent("death", OnDeath)
-    inst:ListenForEvent("respawnfromghost", OnRespawnFromGhost)
+    inst:ListenForEvent("ms_respawnedfromghost", OnRespawnedFromGhost)
+    -- ms_respawnedfromghost在复活后触发, respawnfromghost在将要复活时触发
 
     inst:ListenForEvent("itemget", OnItemGet)
     inst:ListenForEvent("itemlose", OnItemLose)
@@ -207,14 +212,13 @@ local MakePlayerCharacter = require("prefabs/player_common")
 local OnGotNewItem, RegisterActivePlayerEventListeners, i = ToolUtil.GetUpvalue(MakePlayerCharacter, "OnSetOwner.RegisterActivePlayerEventListeners.OnGotNewItem")
 if OnGotNewItem then
     debug.setupvalue(RegisterActivePlayerEventListeners, i, function(inst, data, ...)
-        if TheWorld:HasTag("porkland") then
-            if data.slot ~= nil or data.eslot ~= nil or data.toactiveitem ~= nil then
-                if inst.replica.sailor and inst.replica.sailor:GetBoat() then
-                    TheFocalPoint.SoundEmitter:PlaySound("dontstarve_DLC002/common/HUD_water_collect_resource")
-                    return
-                end
+        if data.slot ~= nil or data.eslot ~= nil or data.toactiveitem ~= nil then
+            if inst.replica.sailor and inst.replica.sailor:GetBoat() then
+                TheFocalPoint.SoundEmitter:OverrideSound("dontstarve/HUD/collect_resource", "dontstarve_DLC002/common/HUD_water_collect_resource")
             end
         end
-        return OnGotNewItem(inst, data, ...)
+        local rets = {OnGotNewItem(inst, data, ...)}
+        TheFocalPoint.SoundEmitter:OverrideSound("dontstarve/HUD/collect_resource", nil)
+        return unpack(rets)
     end)
 end

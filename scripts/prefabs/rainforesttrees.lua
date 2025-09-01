@@ -140,6 +140,8 @@ local STAGES = {
 
 local function GetStageFn(stage)
     return function(inst)
+        inst.components.lootdropper:SetLoot({})
+
         inst.stage = inst.components.growable.stage
         if inst.components.workable then
             inst.components.workable:SetWorkLeft(TUNING["JUNGLETREE_CHOPS_" .. string.upper(stage)])
@@ -152,16 +154,24 @@ local function GetStageFn(stage)
 
         inst.components.lootdropper.chanceloot = {}
 
-        if math.random() < 0.5 and not inst:HasTag("rotten_tree") and not inst:HasTag("spider_monkey_tree") then
-            for i = 1, TUNING["SNAKE_JUNGLETREE_AMOUNT_" .. string.upper(stage)] do
-                if math.random() < 0.5 and TheWorld.state.cycles >= TUNING.SNAKE_POISON_START_DAY then
-                    inst.components.lootdropper:AddChanceLoot("scorpion", TUNING.SNAKE_JUNGLETREE_POISON_CHANCE)
+        if stage ~= "short" and not inst:HasTag("rotten_tree") and not inst:HasTag("spider_monkey_tree") then
+            if math.random() < 0.5 then
+                inst.components.lootdropper.loot = {"bird_egg"}
+            else
+                if math.random() < 0.5 then
+                    for i = 1, TUNING["SNAKE_JUNGLETREE_AMOUNT_" .. string.upper(stage)] do
+                        if math.random() < TUNING.SNAKE_JUNGLETREE_POISON_CHANCE then
+                            inst.components.lootdropper:AddChanceLoot("scorpion", 1)
+                        end
+                    end
                 else
-                    inst.components.lootdropper:AddChanceLoot("snake_amphibious", TUNING.SNAKE_JUNGLETREE_CHANCE)
+                    for i = 1, TUNING["SNAKE_JUNGLETREE_AMOUNT_" .. string.upper(stage)] do
+                        if math.random() < TUNING.SNAKE_JUNGLETREE_CHANCE then
+                            inst.components.lootdropper:AddChanceLoot("snake_amphibious", 1)
+                        end
+                    end
                 end
             end
-        elseif stage ~= "short" and not inst:HasTag("rotten_tree") and not inst:HasTag("spider_monkey_tree") then
-            inst.components.lootdropper:AddChanceLoot("bird_egg", 1.0)
         end
 
         local scale = scales[stage]
@@ -268,8 +278,7 @@ local function drop_burr(inst,pt)
         local num_seeds = inst.components.growable.stage == 3 and 2 or 1
 
         for i = 1, num_seeds do
-            local burr = SpawnPrefab("burr")
-            inst.components.lootdropper:DropLootPrefab(burr, pt)
+            inst.components.lootdropper:SpawnLootPrefab("burr", pt)
         end
     end
 end
@@ -397,15 +406,19 @@ local function OnIgnite(inst)
         return false
     end
 
-    if not inst.flushed and math.random() < 0.4 then
-        inst.flushed = true
+    if inst.components.lootdropper.chanceloot then
+        for k, v in pairs(inst.components.lootdropper.chanceloot) do
+            if (v.prefab == "snake_amphibious") or (v.prefab == "scorpion") then
+                local critter = inst.components.lootdropper:SpawnLootPrefab(v.prefab)
+                local pt = Vector3(critter.Transform:GetWorldPosition())
 
-        local prefab = math.random() < 0.5 and TheWorld.state.cycles >= TUNING.SNAKE_POISON_START_DAY and "scorpion" or "snake_amphibious"
+                critter.sg:GoToState("fall")
+                pt.y = pt.y + (2 * inst.stage)
 
-        inst:DoTaskInTime(math.random() * 0.5, function() drop_critter(inst, prefab) end)
-        if math.random() < 0.3 and prefab == "snake_amphibious" then
-            inst:DoTaskInTime(math.random() * 0.5, function() drop_critter(inst, prefab) end)
+                critter.Transform:SetPosition(pt:Get())
+            end
         end
+        inst.components.lootdropper.chanceloot = {}
     end
 end
 
@@ -478,7 +491,6 @@ local function OnSave(inst, data)
     end
     data.stump = inst:HasTag("stump")
     data.stage = inst.stage
-    data.flushed = inst.flushed
     if inst.build ~= "normal" then
         data.build = inst.build
     end
@@ -511,10 +523,6 @@ local function OnLoad(inst, data)
         else
             Sway(inst)
         end
-    end
-
-    if data.flushed then
-        inst.flushed = data.flushed
     end
 
     if data.spider then

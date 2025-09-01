@@ -82,8 +82,8 @@ local function OnProjectileLaunched(inst, attacker, target, proj)
         proj.Transform:SetPosition(x, y + 2.5, z)
     end
 
-    if proj.components.projectile_gun then
-        proj.components.projectile_gun:Throw(inst, target, attacker)
+    if proj.components.projectile then
+        proj.components.projectile:Throw(inst, target, attacker)
     end
 
     local removed_item = inst.components.inventory.itemslots[1]
@@ -196,10 +196,13 @@ local function projectile_fn()
         return inst
     end
 
-    inst:AddComponent("projectile_gun")
-    inst.components.projectile_gun.damage = TUNING.GUNPOWDER_DAMAGE
-    inst.components.projectile_gun:SetSpeed(50)
-    inst.components.projectile_gun:SetOnHitFn(OnHit)
+    inst:AddComponent("weapon")
+    inst.components.weapon:SetDamage(TUNING.GUNPOWDER_DAMAGE)
+
+    inst:AddComponent("projectile")
+    inst.components.projectile:SetSpeed(50)
+    inst.components.projectile:SetOnHitFn(OnHit)
+    inst.components.projectile.has_damage_set = true
 
     inst.persists = false
 

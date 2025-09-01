@@ -143,13 +143,6 @@ local function AporkalypseDisarm(inst, doer)
     TheWorld:PushEvent("ms_setrewindmult", {source = inst, mult = 0})
  end
 
-local function CheckStartDown(inst)
-    if inst:HasTag("startdown") then
-        inst.down = true
-        inst.AnimState:PlayAnimation("down_idle")
-    end
-end
-
 local function OnSave(inst, data)
     if inst:HasTag("trap_dart") then
         data.trap_type = "trap_dart"
@@ -162,9 +155,6 @@ local function OnSave(inst, data)
     end
     if inst:HasTag("reversetrigger") then
         data.reversetrigger = true
-    end
-    if inst:HasTag("startdown") then
-        data.startdown = true
     end
 end
 
@@ -179,9 +169,7 @@ local function OnLoad(inst, data)
         if data.reversetrigger then
             inst:AddTag("reversetrigger")
         end
-        if data.startdown then
-            inst:AddTag("startdown")
-        end
+
     end
 
     if not inst.components.disarmable.armed then
@@ -232,8 +220,6 @@ local function fn()
 
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
-
-    inst:DoTaskInTime(0, CheckStartDown)
 
     return inst
 end

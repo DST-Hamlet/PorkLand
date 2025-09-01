@@ -104,3 +104,35 @@ for k, v in pairs(PICKUPSOUNDS) do
 end
 
 INTERIOR_SPACEING = 4
+
+BOAT_ANIM_IDS = 
+{
+    ["row_pre"] = 1,
+    ["row_loop"] = 2,
+    ["row_pst"] = 3,
+
+    ["sail_pre"] = 4,
+    ["sail_loop"] = 5,
+    ["sail_pst"] = 6,
+
+    ["trawlover"] = 7,
+
+    ["idle_loop"] = 8,
+
+    ["hit"] = 9,
+
+    ["run_loop"] = 10,
+}
+
+BOAT_ID_TO_ANIM = {}
+for animname, id in pairs(BOAT_ANIM_IDS) do
+    BOAT_ID_TO_ANIM[id] = animname
+end
+
+LOOP_BOAT_ANIMS = 
+{
+    ["row_loop"] = true,
+    ["sail_loop"] = true,
+    ["idle_loop"] = true,
+    ["run_loop"] = true,
+}

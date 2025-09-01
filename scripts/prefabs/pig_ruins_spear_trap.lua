@@ -3,6 +3,12 @@ local assets =
     Asset("ANIM", "anim/spear_trap.zip"),
 }
 
+local SPEAR_STATUS =
+{
+    IDLE = 0,
+    EXTENDED = 1,
+}
+
 local function displaynamefn(inst, viewer)
     if inst:HasTag("hostile") then
         return STRINGS.NAMES.PIG_RUINS_SPEAR_TRAP_TRIGGERED
@@ -73,8 +79,8 @@ local function canbeattackedfn(inst)
 end
 
 local function OnSave(inst, data)
-    if inst.extended then
-        data.extended = true
+    if inst.targetstaus then
+        data.targetstaus = inst.targetstaus
     end
 
     if inst:HasTag("up_3") then
@@ -98,8 +104,9 @@ local function OnLoad(inst, data)
     if not data then
         return
     end
-    if data.extended then
+    if data.targetstaus and data.targetstaus == SPEAR_STATUS.EXTENDED then
         inst.sg:GoToState("extended")
+        inst.targetstaus = data.targetstaus
     end
     if data.up_3 then
         inst:AddTag("up_3")
@@ -189,6 +196,12 @@ local function fn()
         inst.triggertask = inst:DoTaskInTime(math.random() * 0.25, function()
             inst:PushEvent("spring")
         end)
+    end)
+    inst:ListenForEvent("triggertrap", function(inst, data)
+        inst.targetstaus = SPEAR_STATUS.EXTENDED
+    end)
+    inst:ListenForEvent("reset", function(inst, data)
+        inst.targetstaus = SPEAR_STATUS.IDLE
     end)
 
     inst.up_delay = 1

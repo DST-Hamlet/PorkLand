@@ -62,6 +62,7 @@ local function fn()
     inst:AddComponent("dryable")
     inst.components.dryable:SetProduct("walkingstick")
     inst.components.dryable:SetDryTime(TUNING.DRY_FAST)
+    inst.components.dryable:SetBuildFile("meat_rack_food_pl")
 
     MakeBlowInHurricane(inst, TUNING.WINDBLOWN_SCALE_MIN.MEDIUM, TUNING.WINDBLOWN_SCALE_MAX.MEDIUM)
     MakeSmallBurnable(inst, TUNING.SMALL_BURNTIME)

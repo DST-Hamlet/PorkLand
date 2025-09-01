@@ -51,6 +51,8 @@ local boat_lograft = {
         badgepos = Vector3(0, 40, 0),
         equipslotroot = Vector3(-80, 40, 0),
         --side_align_tip = -500,
+        opensound = "",
+        closesound = "",
     },
     inspectwidget = {
         slotpos = {},
@@ -64,21 +66,52 @@ local boat_lograft = {
     side_align_tip = -500,
     canbeopened = false,
     hasboatequipslots = false,
-    enableboatequipslots = true,
 }
+
+function BoatItemTestFn(container, item, slot)
+    local item_eslot = "INVALID"
+    if item.replica.equippable and item.replica.equippable:BoatEquipSlot() ~= "INVALID" then
+        item_eslot = item.replica.equippable:BoatEquipSlot()
+    end
+
+    for eslot, index in pairs(container.boatcontainerequips) do
+        if index == slot then
+            if eslot ~= item_eslot then
+                return false
+            end
+        end
+    end
+	return true
+end
 
 local boat_row = {
     widget = {
-        slotpos = {},
+        slotpos = {
+            Vector3(-80, 40, 0),
+            Vector3(-160, 40, 0),
+        },
+        slotbg = {
+            { image = "equip_slot_boat_utility.tex", atlas = "images/hud/pl_hud.xml" },
+			{ image = "equip_slot_boat_light.tex", atlas = "images/hud/pl_hud.xml" },
+        },
         animbank = "boat_hud_row",
         animbuild = "boat_hud_row",
         pos = Vector3(750, 75, 0),
         badgepos = Vector3(0, 40, 0),
         equipslotroot = Vector3(-80, 40, 0),
         --side_align_tip = -500,
+        opensound = "",
+        closesound = "",
     },
     inspectwidget = {
-        slotpos = {},
+        slotpos = {
+            Vector3(40, -45, 0),
+            Vector3(-40, -45, 0),
+        },
+        slotbg = {
+            { image = "equip_slot_boat_utility.tex", atlas = "images/hud/pl_hud.xml" },
+			{ image = "equip_slot_boat_light.tex", atlas = "images/hud/pl_hud.xml" },
+        },
         animbank = "boat_inspect_row",
         animbuild = "boat_inspect_row",
         pos = Vector3(200, 0, 0),
@@ -87,23 +120,46 @@ local boat_row = {
     },
     type = "boat",
     side_align_tip = -500,
-    canbeopened = false,
     hasboatequipslots = true,
-    enableboatequipslots = true,
+    boatcontainerequips =  -- 该表为装备与格子的对应关系
+    {
+        [BOATEQUIPSLOTS.BOAT_SAIL] = 1,
+        [BOATEQUIPSLOTS.BOAT_LAMP] = 2,
+    },
+    itemtestfn = BoatItemTestFn,
+    usespecificslotsforitems = true,
 }
+
+
 
 local boat_cork = {
     widget = {
-        slotpos = {},
+        slotpos = {
+            Vector3(-80, 40, 0),
+            Vector3(-160, 40, 0),
+        },
+        slotbg = {
+            { image = "equip_slot_boat_utility.tex", atlas = "images/hud/pl_hud.xml" },
+			{ image = "equip_slot_boat_light.tex", atlas = "images/hud/pl_hud.xml" },
+        },
         animbank = "boat_hud_row",
         animbuild = "boat_hud_row",
         pos = Vector3(750, 75, 0),
         badgepos = Vector3(0, 40, 0),
         equipslotroot = Vector3(-80, 40, 0),
         -- side_align_tip = -500,
+        opensound = "",
+        closesound = "",
     },
     inspectwidget = {
-        slotpos = {},
+        slotpos = {
+            Vector3(40, -45, 0),
+            Vector3(-40, -45, 0),
+        },
+        slotbg = {
+            { image = "equip_slot_boat_utility.tex", atlas = "images/hud/pl_hud.xml" },
+			{ image = "equip_slot_boat_light.tex", atlas = "images/hud/pl_hud.xml" },
+        },
         animbank = "boat_inspect_row",
         animbuild = "boat_inspect_row",
         pos = Vector3(200, 0, 0),
@@ -112,23 +168,44 @@ local boat_cork = {
     },
     type = "boat",
     side_align_tip = -500,
-    canbeopened = false,
     hasboatequipslots = true,
-    enableboatequipslots = true,
+    boatcontainerequips = 
+    {
+        [BOATEQUIPSLOTS.BOAT_SAIL] = 1,
+        [BOATEQUIPSLOTS.BOAT_LAMP] = 2,
+    },
+    itemtestfn = BoatItemTestFn,
+    usespecificslotsforitems = true,
 }
 
 local boat_cargo = {
     widget = {
-        slotpos = {},
+        slotpos = {
+            Vector3(-80, 40, 0),
+            Vector3(-160, 40, 0),
+        },
+        slotbg = {
+            [7] = { image = "equip_slot_boat_utility.tex", atlas = "images/hud/pl_hud.xml" },
+			[8] = { image = "equip_slot_boat_light.tex", atlas = "images/hud/pl_hud.xml" },
+        },
         animbank = "boat_hud_cargo",
         animbuild = "boat_hud_cargo",
         pos = Vector3(750, 75, 0),
         badgepos = Vector3(0, 40, 0),
         equipslotroot = Vector3(-80, 40, 0),
         -- side_align_tip = -500,
+        opensound = "",
+        closesound = "",
     },
     inspectwidget = {
-        slotpos = {},
+        slotpos = {
+            Vector3(40, 70, 0),
+            Vector3(-40, 70, 0),
+        },
+        slotbg = {
+            [7] = { image = "equip_slot_boat_utility.tex", atlas = "images/hud/pl_hud.xml" },
+			[8] = { image = "equip_slot_boat_light.tex", atlas = "images/hud/pl_hud.xml" },
+        },
         animbank = "boat_inspect_cargo",
         animbuild = "boat_inspect_cargo",
         pos = Vector3(200, 0, 0),
@@ -137,18 +214,24 @@ local boat_cargo = {
     },
     type = "boat",
     side_align_tip = -500,
-    canbeopened = false,
     hasboatequipslots = true,
-    enableboatequipslots = true,
+    boatcontainerequips = 
+    {
+        [BOATEQUIPSLOTS.BOAT_SAIL] = 7,
+        [BOATEQUIPSLOTS.BOAT_LAMP] = 8,
+    },
+    itemtestfn = BoatItemTestFn,
+    usespecificslotsforitems = true,
+    multispecificslots = true,
 }
 
 for i = 6, 1, -1 do
-    table.insert(boat_cargo.widget.slotpos, Vector3(-13 - (80 * (i + 2)), 40 ,0))
+    table.insert(boat_cargo.widget.slotpos, 7 - i, Vector3(-13 - (80 * (i + 2)), 40 ,0))
 end
 
 for y = 1, 3 do
     for x = 0, 1 do
-        table.insert(boat_cargo.inspectwidget.slotpos, Vector3(-40 + (x * 80), 70 + (y * -75), 0))
+        table.insert(boat_cargo.inspectwidget.slotpos, 1 + y * 2 - 2 + x, Vector3(-40 + (x * 80), 70 + (y * -75), 0))
     end
 end
 

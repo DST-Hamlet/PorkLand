@@ -95,15 +95,12 @@ local function OnHatchState(inst, state)
     if state == "uncomfy" then
         if inst.components.hatchable.toohot then
             inst.AnimState:PlayAnimation("idle_hot_smoulder", true)
-            inst.components.floater:UpdateAnimations("idle_water", "idle_hot_smoulder")
         elseif inst.components.hatchable.toocold then
             inst.AnimState:PlayAnimation("idle_cold_frost", true)
-            inst.components.floater:UpdateAnimations("idle_water", "idle_cold_frost")
         end
         PlayUncomfySound(inst)
     elseif state == "comfy" then
         inst.AnimState:PlayAnimation("idle", true)
-        inst.components.floater:UpdateAnimations("idle_water", "idle")
     elseif state == "hatch" then
         CheckHatch(inst)
     end
@@ -137,7 +134,7 @@ local function fn()
     inst.entity:AddNetwork()
 
     MakeInventoryPhysics(inst)
-    PorkLandMakeInventoryFloatable(inst, "idle_water", "idle")
+    MakeInventoryFloatable(inst, "small", 0.15)
 
     inst.AnimState:SetBuild("roc_egg")
     inst.AnimState:SetBank("roc_egg")

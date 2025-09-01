@@ -290,7 +290,8 @@ function RocController:UpdatePoop(dt)
     local cx, cy, cz = self.inst.Transform:GetWorldPosition()
     local roctile = TheWorld.Map:GetTileAtPoint(cx, cy, cz)
 
-    if roctile == WORLD_TILES.RAINFOREST or roctile == WORLD_TILES.PLAINS then
+    if (roctile == WORLD_TILES.RAINFOREST or roctile == WORLD_TILES.PLAINS)
+        and not TheWorld.Map:IsCloseToWater(cx, cy, cz, 4) then
         onvaliddungtiles = true
     end
 

@@ -31,9 +31,13 @@ local SPECIAL_LOOT_TABLE =
         ancient_robot_head = true,
         ancient_robots_assembly = true,
     },
-    ["waterdrop"] = 
+    ["waterdrop"] =
     {
         lifeplant = true,
+    },
+    ["boat_cork_item"] =
+    {
+        boat_cork = true,
     }
 }
 
@@ -499,7 +503,7 @@ local function fn()
         end
     end)
 
-    inst.refresh_tracking_owner_listener = function(owner) 
+    inst.refresh_tracking_owner_listener = function(owner)
         if inst.components.container:GetItemInSlot(1) and inst.components.equippable:IsEquipped() then
             StartTracking(inst)
         end

@@ -243,7 +243,7 @@ local function OnFinishCallback(inst, worker)
 end
 
 local function WorkMultiplierFn(inst, worker, numworks)
-    if worker:HasTag("player") or worker:HasTag("interior_destroyer") then -- only worked by the player
+    if inst:DoorCanBeRemoved() then
         return 1
     else
         return 0
@@ -435,6 +435,9 @@ end
 local function DoorCanBeRemoved(inst)
     local interior_spawner = TheWorld.components.interiorspawner
     local current_interior = interior_spawner:GetInteriorCenter(inst:GetCurrentInteriorID())
+    if not current_interior then
+        return true
+    end
     return interior_spawner:ConnectedToExitAndNoUnreachableRooms(current_interior, inst.baseanimname)
 end
 

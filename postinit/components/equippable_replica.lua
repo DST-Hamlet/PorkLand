@@ -20,7 +20,7 @@ function Equippable:IsEquipped(container)
         local inventoryitem = self.inst.replica.inventoryitem
         local parent = self.inst.entity:GetParent()
         isboatequipped = inventoryitem ~= nil and inventoryitem:IsHeld() and
-            parent and parent:HasTag("boatcontainer") and parent.replica.container:GetItemInBoatSlot(self:BoatEquipSlot()) == self.inst
+            parent and parent.replica.container and parent.replica.container.hasboatequipslots and parent.replica.container:GetItemInBoatSlot(self:BoatEquipSlot()) == self.inst
     end
     return isequipped or isboatequipped
 end

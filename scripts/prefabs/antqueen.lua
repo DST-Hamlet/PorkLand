@@ -117,6 +117,26 @@ local function OnSave(inst, data)
     data.warrior_count = inst.warrior_count or 0
 end
 
+local function OnMixerDirty(inst, data)
+    if inst.mixer:value() then
+        if ThePlayer:IsNear(inst, 40) then
+            TheMixer:PushMix("mute")
+            inst.mixpushed = true
+        end
+    else
+        if inst.mixpushed then
+            TheMixer:PopMix("mute")
+            inst.mixpushed = nil
+        end
+    end
+end
+
+local function OnRemoveEntity_Client(inst)
+    if inst.mixpushed then
+        TheMixer:PopMix("mute")
+    end
+end
+
 local brain = require("brains/antqueenbrain")
 
 local function queen_fn()
@@ -138,9 +158,17 @@ local function queen_fn()
     inst:AddTag("antqueen")
     inst:AddTag("epic")
 
+    inst.mixer = net_bool(inst.GUID, "antqueen.mixer", "mixerdirty")
+
     inst.entity:SetPristine()
 
+    if not TheNet:IsDedicated() then
+        inst:ListenForEvent("mixerdirty", OnMixerDirty)
+    end
+
     if not TheWorld.ismastersim then
+        inst.OnRemoveEntity = OnRemoveEntity_Client
+
         return inst
     end
 
@@ -190,6 +218,7 @@ local function queen_fn()
     inst.OnLoad = OnLoad
     inst.SpawnWarrior = SpawnWarrior
     inst.WarriorKilled = WarriorKilled
+    inst.OnRemoveEntity = OnRemoveEntity_Client
 
     inst.OnEntitySleep = function(inst)
         inst.sg:GoToState("sleep")

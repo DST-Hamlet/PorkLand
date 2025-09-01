@@ -11,6 +11,7 @@ local prefabs =
 
 local function reset(inst)
     inst.dry = nil
+    inst.components.storageloot:DestroyLoots()
     inst.components.storageloot:AddLoot("waterdrop")
     inst.components.activatable.inactive = true
     inst.AnimState:PlayAnimation("flow_pre")

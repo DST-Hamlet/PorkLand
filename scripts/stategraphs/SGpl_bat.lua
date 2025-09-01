@@ -107,11 +107,12 @@ local states =
             inst.AnimState:PlayAnimation("fly_away_pre")
             inst.AnimState:PushAnimation("fly_away_loop", true)
 
-            inst.Physics:SetMotorVel(0,10+math.random()*2,0)
+            inst.sg.statemem.speed = 10+math.random()*2
+            inst.Physics:SetMotorVel(0,inst.sg.statemem.speed,0)
         end,
 
         onupdate = function(inst)
-            inst.Physics:SetMotorVel(0,10+math.random()*2,0)
+            inst.Physics:SetMotorVel(0,inst.sg.statemem.speed,0)
         end,
 
         timeline = {
@@ -138,11 +139,12 @@ local states =
 
             local x, _, z = inst.Transform:GetWorldPosition()
             inst.Transform:SetPosition(x, 15, z)
-            inst.Physics:SetMotorVel(0, -10+math.random()*2, 0)
+            inst.sg.statemem.speed = -10-math.random()*2
+            inst.Physics:SetMotorVel(0,inst.sg.statemem.speed,0)
         end,
 
         onupdate= function(inst)
-            inst.Physics:SetMotorVel(0,-10+math.random()*2,0)
+            inst.Physics:SetMotorVel(0,inst.sg.statemem.speed,0)
             local pt = Point(inst.Transform:GetWorldPosition())
 
             if pt.y <= .1 or inst:IsAsleep() then
@@ -381,7 +383,10 @@ CommonStates.AddCombatStates(states,
     {
         TimeEvent(1*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/bat/death") end),
         TimeEvent(4*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/bat/flap") end ),
-        TimeEvent(15*FRAMES, PL_LandFlyingCreature),
+        TimeEvent(15*FRAMES, function(inst)
+            PL_LandFlyingCreature(inst)
+            RemovePhysicsColliders(inst)
+        end),
     },
 })
 

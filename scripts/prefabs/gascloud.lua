@@ -12,7 +12,7 @@ local function Despawn(inst)
     if inst.persists == false then
         return
     end
-    
+
     inst.AnimState:PlayAnimation("disappear")
     -- should probably disable DynamicShadow here
     inst:ListenForEvent("animover", function()

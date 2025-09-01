@@ -16,11 +16,11 @@ local function OnBoatBlinked(caster, self, pt, boat)
     if pt ~= nil then
         caster.Physics:Teleport(pt:Get())
     end
-    if boat.components.sailable then
-        boat.components.sailable.isembarking = false
-    end
     if boat ~= nil and boat.components.sailable and boat.components.sailable.sailor == nil then
         caster.components.sailor:Embark(boat)
+    end
+    if boat.components.sailable then
+        boat.components.sailable.isembarking = false
     end
     self:SpawnEffect(caster)
     if self.postsound and self.postsound ~= "" then
@@ -71,7 +71,7 @@ function BlinkStaff:BlinkToBoat(boat, caster, ...)
 end
 
 local _Blink = BlinkStaff.Blink
-function BlinkStaff:Blink(pt, caster, ...)
+function BlinkStaff:Blink(pt, caster, ...) -- 落点位于非船位置的传送函数
     local blink_success = _Blink(self, pt, caster, ...)
     if blink_success then
         if caster.components.sailor and caster.components.sailor:IsSailing() then

@@ -72,6 +72,7 @@ local function fn()
 
     inst:AddTag("sunkencontainer")
     inst:AddTag("fishable")
+    inst:AddTag("wet")
     inst:AddTag("NOBLOCK")
 
     inst._sunkenvisual = net_entity(inst.GUID, "_sunkenvisual", "sunkenvisualdirty")
@@ -103,6 +104,10 @@ local function fn()
             inst._sunkenvisual:set(inst.visual)
         end
         inst.visual:SetUp(inst, data.item)
+
+        if data.item and data.item.components.inventoryitem then
+            data.item.components.inventoryitem:AddMoisture(TUNING.OCEAN_WETNESS)
+        end
     end)
 
     inst.Initialize = init

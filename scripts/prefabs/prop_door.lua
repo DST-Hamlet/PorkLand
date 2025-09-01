@@ -112,21 +112,21 @@ local function UpdateDoorLight(inst)
         local r, g, b, light = targetdoor:GetLightColour()
 
         local door_percent = 1
-        if inst.animchangetime then
-            door_percent = math.max(0, math.min(1, (GetTime() - inst.animchangetime) * 7))
-        end
-        if inst.dooranimclosed then
-            door_percent = 1 - door_percent
-        end
         light = math.min(1.73205, math.max(0, light))
-        light = light * door_percent
 
         if light > TUNING.DARK_CUTOFF then
             inst.Light:Enable(true)
+            inst.Light:SetColour(r,g,b)
             inst.Light:SetFalloff(1 / (light * 1))
             inst.Light:SetIntensity(TUNING.DARK_CUTOFF + (light - TUNING.DARK_CUTOFF) / 3)
-            inst.Light:SetRadius(3)
-            inst.Light:SetColour(r,g,b)
+
+            if inst.animchangetime then
+                door_percent = math.max(0, math.min(1, (GetTime() - inst.animchangetime) * 7))
+            end
+            if inst.dooranimclosed then
+                door_percent = 1 - door_percent
+            end
+            inst.Light:SetRadius(3 * door_percent)
         else
             inst.Light:Enable(false)
         end
@@ -134,16 +134,16 @@ local function UpdateDoorLight(inst)
 end
 
 local function StartDoorLightUpdate(inst)
-    if not inst.doorlighttask then
-        inst.doorlighttask = inst:DoPeriodicTask(0, UpdateDoorLight)
+    if not inst.components.updatelooper then
+        inst:AddComponent("updatelooper")        
+        inst.components.updatelooper:AddOnUpdateFn(UpdateDoorLight)
+        inst.light_updating = true
     end
 end
 
 local function StopDoorLightUpdate(inst)
-    if inst.doorlighttask then
-        inst.doorlighttask:Cancel()
-        inst.doorlighttask = nil
-        inst.Light:Enable(false)
+    if inst.components.updatelooper then
+        inst:RemoveComponent("updatelooper")
     end
 end
 
@@ -483,7 +483,7 @@ local function OnEntitySleep(inst)
 end
 
 local function OnEntityWake(inst)
-    if inst.doorlightenable then
+    if inst.doorlightenable and not TheNet:IsDedicated() then
         inst:StartDoorLightUpdate()
     end
 end
