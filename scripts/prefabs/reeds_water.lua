@@ -7,6 +7,20 @@ local prefabs = {
     "cutreeds",
 }
 
+local makeemptyfn = nil
+
+AddPrefabRegisterPostInit("reeds", function(reeds)
+    local reeds_constructor = reeds.fn
+    local old_makeemptyfn = ToolUtil.GetUpvalue(reeds_constructor, "makeemptyfn")
+    if not old_makeemptyfn then
+        return
+    end
+    makeemptyfn = function(inst)
+        old_makeemptyfn(inst)
+        inst.AnimState:PushAnimation("picked", true)
+    end
+end)
+
 local fn = function()
     local inst = Prefabs["reeds"].fn()
 
@@ -25,6 +39,8 @@ local fn = function()
     -- inst.components.appeasement.appeasementvalue = TUNING.WRATH_SMALL
 
     MakePickableBlowInWindGust(inst, TUNING.REEDS_WINDBLOWN_SPEED, TUNING.REEDS_WINDBLOWN_FALL_CHANCE)
+
+    inst.components.pickable.makeemptyfn = makeemptyfn
 
     return inst
 end
