@@ -343,6 +343,8 @@ local function SetCurrentDoorHiddenStatus(door, show, direction)
         else
             door.sg:GoToState("open")
         end
+        door.animchangetime = GetTime()
+        door.dooranimclosed = nil
     elseif not show and not door.components.door.hidden then
         if isaleep then
             door.components.door:SetHidden(true)
@@ -350,6 +352,8 @@ local function SetCurrentDoorHiddenStatus(door, show, direction)
         else
             door.sg:GoToState("shut")
         end
+        door.animchangetime = GetTime()
+        door.dooranimclosed = true
     end
 end
 

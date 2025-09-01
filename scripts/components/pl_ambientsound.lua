@@ -230,6 +230,7 @@ end
 --------------------------------------------------------------------------
 
 function self:SetReverbPreset(preset)
+    self.reverbpreset = preset
     TheSim:SetReverbPreset(preset)
 end
 
