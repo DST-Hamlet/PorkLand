@@ -5,6 +5,7 @@ AddLevel(LEVELTYPE.SURVIVAL, {
     id = "PORKLAND_DEFAULT",
     name = STRINGS.UI.CUSTOMIZATIONSCREEN.PRESETLEVELS.PORKLAND,
     desc = STRINGS.UI.CUSTOMIZATIONSCREEN.PRESETLEVELDESC.PORKLAND,
+    version = 2,
     location = "porkland",
     overrides = {
         task_set = "porkland",
@@ -33,6 +34,23 @@ AddLevel(LEVELTYPE.SURVIVAL, {
         no_joining_islands = false,
 
         pl_clocktype = "plateau",
+    },
+
+    background_node_range = {0, 1},
+})
+
+AddLevel(LEVELTYPE.SURVIVAL, {
+    id = "PORKLAND_TEST",
+    name = "PORKLAND_TEST",
+    desc = "PORKLAND_TEST",
+    version = 2,
+    location = "porkland",
+    overrides = {
+        world_size = "small",
+        start_location = "PorkLandStart",
+        task_set = "porkland_test",
+        pl_clocktype = "plateau",
+        keep_disconnected_tiles = true,
     },
 
     background_node_range = {0, 1},
