@@ -290,12 +290,13 @@ function EntityScript:RunOnPostUpdate(fn)
     end)
 end
 
+local REGISTERED_LIGHT_TAGS = TheSim:RegisterFindTags({"lightsource"}, {"INLIMBO"})
 function EntityScript:GetLightColour()
     local x, y, z = self.Transform:GetWorldPosition()
     local position = Vector3(x, y, z)
 
     local sum_r, sum_g, sum_b = 0, 0, 0
-    for _, v in ipairs(TheSim:FindEntities(x, 0, z, TUNING.ROOM_FINDENTITIES_RADIUS, nil, {"INLIMBO"})) do
+    for _, v in ipairs(TheSim:FindEntities_Registered(x, 0, z, TUNING.ROOM_FINDENTITIES_RADIUS, REGISTERED_LIGHT_TAGS)) do
         if v ~= self and v.Light and v.Light:IsEnabled() then
             local _r, _g, _b = CalculateLight(v.Light, math.sqrt(v:GetPosition():DistSq(position)))
             sum_r = sum_r + _r

@@ -28,6 +28,7 @@ function CalculateLight(light, dist)
     return D * r, D * g, D * b
 end
 
+local REGISTERED_LIGHT_TAGS = TheSim:RegisterFindTags({"lightsource"}, {"INLIMBO"})
 local Sim = getmetatable(TheSim).__index
 local old_GetLightAtPoint = Sim.GetLightAtPoint
 Sim.GetLightAtPoint = function(sim, x, y, z, light_threshold, ...) -- 和原版GetLightAtPoint的算法还是存在差别
@@ -38,7 +39,7 @@ Sim.GetLightAtPoint = function(sim, x, y, z, light_threshold, ...) -- 和原版G
         if center then
             local sum = 0
             local center_position = center:GetPosition()
-            for _, v in ipairs(TheSim:FindEntities(center_position.x, 0, center_position.z, TUNING.ROOM_FINDENTITIES_RADIUS, nil, {"INLIMBO"})) do
+            for _, v in ipairs(TheSim:FindEntities_Registered(x, 0, z, TUNING.ROOM_FINDENTITIES_RADIUS, REGISTERED_LIGHT_TAGS)) do
                 if v.Light and v.Light:IsEnabled() then
                     local _r, _g, _b = CalculateLight(v.Light, math.sqrt(v:GetPosition():DistSq(position)))
                     sum = sum + 0.2126 * _r + 0.7152 * _g + 0.0722 * _b

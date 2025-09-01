@@ -91,7 +91,10 @@ local function PowerGlow(inst)
         inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
     end
     inst.flash = 1.7 -- .8 + math.random() * .4
-    inst.flashtask = inst:DoPeriodicTask(0, UpdateHit, nil, inst)
+    if not inst.components.updatelooper then
+        inst:AddComponent("updatelooper")   
+    end
+    inst.components.updatelooper:AddOnUpdateFn(UpdateHit)
 end
 
 local function SpawnLaser(inst)
