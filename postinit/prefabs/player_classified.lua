@@ -148,6 +148,11 @@ local function push_ironlord_music()
     end
 end
 
+local function OnPlayerRemoved(inst)
+    TheWorld:PushEvent("enabledynamicmusic", true)
+    TheFocalPoint.SoundEmitter:KillSound("ironlordmusic")
+end
+
 local function OnIronlordDirty(inst)
     local player = inst._parent
     -- if not player or not player:IsValid() then
@@ -210,16 +215,22 @@ local function ClearLastTarget(inst)
 end
 
 local function RegisterNetListeners(inst)
+    inst._parent = inst.entity:GetParent()
     if TheWorld.ismastersim then
-        inst._parent = inst.entity:GetParent()
         inst:ListenForEvent("poisondamage", OnPoisonDamage, inst._parent)
-        inst:ListenForEvent("start_city_alarm", function() inst.cityalarmevent:push() end)
-        inst:ListenForEvent("sanity_stun", function() inst.sanitystunevent:push() end)
+        inst:ListenForEvent("start_city_alarm", function() inst.cityalarmevent:push() end, inst._parent)
+        inst:ListenForEvent("sanity_stun", function() inst.sanitystunevent:push() end, inst._parent)
         inst:ListenForEvent("worktargetdirty", inst.ClearLastTarget)
     else
         inst.poisonpulse:set_local(false)
         inst.isquaking:set_local(false)
         inst:ListenForEvent("poisonpulsedirty", OnPoisonPulseDirty)
+        inst:ListenForEvent("start_city_alarm_dirty", function()
+            inst._parent:PushEvent("start_city_alarm")
+        end)
+        inst:ListenForEvent("sanity_stun_dirty", function()
+            inst._parent:PushEvent("sanity_stun")
+        end)
     end
 
     if not TheNet:IsDedicated() and inst._parent == ThePlayer then
@@ -228,12 +239,7 @@ local function RegisterNetListeners(inst)
         inst.ironlordtimeleft:set_local(0)
         inst:ListenForEvent("ironlordtimedirty", OnIronlordTimeDirty)
         inst.instantironlord:set_local(false)
-        inst:ListenForEvent("start_city_alarm", function()
-            inst._parent:PushEvent("start_city_alarm")
-        end)
-        inst:ListenForEvent("start_sanity_stun", function()
-            inst._parent:PushEvent("sanity_stun")
-        end)
+        inst:ListenForEvent("onremove", OnPlayerRemoved)
     end
 
     inst:ListenForEvent("ironlorddirty", OverrideAction)
@@ -250,8 +256,8 @@ AddPrefabPostInit("player_classified", function(inst)
     inst.isironlord = inst.isironlord or net_bool(inst.GUID, "livingartifact.isironlord", "ironlorddirty")
     inst.ironlordtimeleft = inst.ironlordtimeleft or net_float(inst.GUID, "livingartifact.ironlordtimeleft", "ironlordtimedirty")
     inst.instantironlord = inst.instant_ironlord or net_bool(inst.GUID, "livingartifact.instantironlord") -- just a flag for loading
-    inst.cityalarmevent = inst.cityalarmevent or net_event(inst.GUID, "cityalarms.startmusic", "start_city_alarm")
-    inst.sanitystunevent = inst.sanitystunevent or net_event(inst.GUID, "antqueen.sanitystun", "start_sanity_stun")
+    inst.cityalarmevent = inst.cityalarmevent or net_event(inst.GUID, "start_city_alarm_dirty")
+    inst.sanitystunevent = inst.sanitystunevent or net_event(inst.GUID, "sanity_stun_dirty")
 
     inst.ispoisoned:set(false)
     inst.isingas:set(false)

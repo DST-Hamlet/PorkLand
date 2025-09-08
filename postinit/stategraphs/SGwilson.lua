@@ -2596,17 +2596,12 @@ local states = {
 
             inst.sanity_stunned = true
 
-            inst.sg:SetTimeout(duration)
+            inst.sg:SetTimeout(duration or 3)
         end,
 
         ontimeout = function(inst)
             inst.sg:GoToState("idle")
         end,
-
-        events =
-        {
-            EventHandler("animqueueover", function(inst) inst.sg:GoToState("idle") end),
-        },
 
         onexit = function(inst)
             if inst.components.playercontroller then

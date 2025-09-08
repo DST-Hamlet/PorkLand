@@ -58,7 +58,7 @@ local RotatingBillboard = Class(function(self, inst)
     self._data_bank = net_string(inst.GUID, "_data_bank", "bankdirty")
     self._data_build = net_string(inst.GUID, "_data_build", "builddirty")
 
-    self._maskdirty = net_event(inst.GUID, "_maskdirty", "maskdirty")
+    self._maskdirty = net_event(inst.GUID, "_maskdirty")
 
     self._haunt_active = net_bool(inst.GUID, "_haunt_active", "hauntdirty")
 
@@ -67,7 +67,7 @@ local RotatingBillboard = Class(function(self, inst)
         inst:ListenForEvent("bankdirty", function() self:UpdateAnim_client() end)
         inst:ListenForEvent("builddirty", function() self:UpdateAnim_client() end)
 
-        inst:ListenForEvent("maskdirty", function() self:UpdateAnim_client() end)
+        inst:ListenForEvent("_maskdirty", function() self:UpdateAnim_client() end)
 
         inst:ListenForEvent("hauntdirty", function() self:UpdateMaskHaunt_client() end)
     end

@@ -194,14 +194,14 @@ local function aporkalypse_clock_fn()
     inst.AnimState:PlayAnimation("idle_loop", true)
 
     inst._rewind_mult = net_float(inst.GUID, "_rewind_mult", "rewind_mult_dirty")
-    inst._clock_spawndirty = net_event(inst.GUID, "_clock_spawndirty", "clock_spawndirty")
+    inst._clock_spawndirty = net_event(inst.GUID, "_clock_spawndirty")
     inst._timeuntilaporkalypse = net_float(inst.GUID, "_timeuntilaporkalypse")
 
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
         inst._clocks = {}
-        inst:ListenForEvent("clock_spawndirty", RegistClocks)
+        inst:ListenForEvent("_clock_spawndirty", RegistClocks)
         inst:DoStaticTaskInTime(0, RegistClocks)
 
         inst.count_dt = 0
