@@ -70,8 +70,8 @@ function MechAssembly:Dissemble()
     end
 
     local x, _, z = self.inst.Transform:GetWorldPosition()
-    local down = TheCamera:GetDownVec()
-    local angle = math.atan2(down.z, down.x) / DEGREES
+    local angle = self.inst.Transform:GetRotation()
+    local down = Vector3(math.cos(angle), 0, math.sin(angle))
 
     local spawn_data = {
         HEAD       = {prefab = "ancient_robot_head", xpos = x + down.x, zpos = z + down.z, rotation = math.random() * 360},

@@ -2006,7 +2006,6 @@ local states = {
         {
             EventHandler("animqueueover", function(inst)
                 inst.sg:GoToState("ironlord_idle")
-                inst:PushEvent("start_ironlord_music")
             end),
         },
 

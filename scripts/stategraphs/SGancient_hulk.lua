@@ -58,24 +58,6 @@ local function LaunchProjectile(inst, direction)
     end
 end
 
-local function SpawnBurns(inst, radius, start_angle, end_angle)
-    start_angle = start_angle * DEGREES
-    end_angle = end_angle * DEGREES
-
-    local num_burns = 5
-    local pt = inst:GetPosition()
-    local down = TheCamera:GetDownVec()
-    local angle = math.atan2(down.z, down.x) + start_angle
-    local angle_difference = (end_angle - start_angle) / num_burns
-    for _ = 1, num_burns do
-        local offset = Vector3(math.cos(angle), 0, math.sin(angle)) * radius
-        local burns_position = pt + offset
-        SpawnPrefab("ancient_hulk_laser").Transform:SetPosition(burns_position.x, burns_position.y, burns_position.z)
-        SpawnPrefab("ancient_hulk_laserscorch").Transform:SetPosition(burns_position.x, burns_position.y, burns_position.z)
-        angle = angle + angle_difference
-    end
-end
-
 local function DoFootstep(inst)
     inst.SoundEmitter:PlaySoundWithParams("dontstarve_DLC003/creatures/boss/hulk_metal_robot/head/step", {intensity = math.random()})
 end
@@ -583,45 +565,29 @@ local states =
             TimeEvent(51 * FRAMES, function(inst) inst.mixer:set(false) end),
 
             TimeEvent(37 * FRAMES, function(inst)
-                DoSectorAOE(inst, BEAM_RADIUS, 0, 45)
+                inst._spawnburns:push()
                 inst.SoundEmitter:PlaySoundWithParams("dontstarve_DLC003/creatures/boss/hulk_metal_robot/laser", {intensity = 0})
-                SpawnBurns(inst, BEAM_RADIUS, 0, 45)
             end),
             TimeEvent(39 * FRAMES, function(inst)
-                DoSectorAOE(inst, BEAM_RADIUS, 45, 90)
-                SpawnBurns(inst, BEAM_RADIUS, 45, 90)
             end),
             TimeEvent(40 * FRAMES, function(inst)
-                DoSectorAOE(inst, BEAM_RADIUS, 90, 135)
                 inst.SoundEmitter:PlaySoundWithParams("dontstarve_DLC003/creatures/boss/hulk_metal_robot/laser", {intensity = 0.3})
-                SpawnBurns(inst, BEAM_RADIUS, 90, 135)
             end),
             TimeEvent(41 * FRAMES, function(inst)
-                DoSectorAOE(inst, BEAM_RADIUS, 135, 180)
-                SpawnBurns(inst, BEAM_RADIUS, 135, 180)
             end),
             TimeEvent(42 * FRAMES, function(inst)
-                DoSectorAOE(inst, BEAM_RADIUS, 180, 225)
                 inst.SoundEmitter:PlaySoundWithParams("dontstarve_DLC003/creatures/boss/hulk_metal_robot/laser", {intensity = 0.5})
-                SpawnBurns(inst, BEAM_RADIUS, 180, 225)
             end),
             TimeEvent(45 * FRAMES, function(inst)
-                DoSectorAOE(inst, BEAM_RADIUS, 225, 270)
-                SpawnBurns(inst, BEAM_RADIUS, 225, 270)
+                DoSectorAOE(inst, BEAM_RADIUS)
             end),
             TimeEvent(47 * FRAMES, function(inst)
-                DoSectorAOE(inst, BEAM_RADIUS, 270, 315)
                 inst.SoundEmitter:PlaySoundWithParams("dontstarve_DLC003/creatures/boss/hulk_metal_robot/laser", {intensity = 0.7})
-                SpawnBurns(inst, BEAM_RADIUS, 270, 315)
             end),
             TimeEvent(48 * FRAMES, function(inst)
-                DoSectorAOE(inst, BEAM_RADIUS, 315, 360)
-                SpawnBurns(inst, BEAM_RADIUS, 315, 360)
             end),
             TimeEvent(50 * FRAMES, function(inst)
-                DoSectorAOE(inst, BEAM_RADIUS, 0, 45)
                 inst.SoundEmitter:PlaySoundWithParams("dontstarve_DLC003/creatures/boss/hulk_metal_robot/laser", {intensity = 1})
-                SpawnBurns(inst, BEAM_RADIUS, 0, 45)
             end),
         },
 

@@ -261,8 +261,7 @@ function DoSectorAOEDamageAndDestroy(inst, params, targets_hit, targets_tossed)
         local start_angle = params.start_angle + 90
         local end_angle = params.end_angle + 90
 
-        local down = TheCamera:GetDownVec()
-        local angle = math.atan2(down.z, down.x)/DEGREES
+        local angle = inst.Transform:GetRotation()
 
         local dodamage = true
         local dir = _inst:GetAngleToPoint(Vector3(v.Transform:GetWorldPosition()))

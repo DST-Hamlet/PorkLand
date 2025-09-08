@@ -234,6 +234,64 @@ local function scorchfn()
     return inst
 end
 
+local function Scorch_OnFadeDirty_Client(inst)
+    --V2C: hack alert: using SetHightlightColour to achieve something like OverrideAddColour
+    --     (that function does not exist), because we know this FX can never be highlighted!
+    if inst.fade > SCORCH_FADE_FRAMES + SCORCH_DELAY_FRAMES then
+        local k = (inst.fade - SCORCH_FADE_FRAMES - SCORCH_DELAY_FRAMES) / SCORCH_RED_FRAMES
+        inst.AnimState:OverrideMultColour(1, 1, 1, 1)
+        inst.AnimState:SetHighlightColour(k, 0, 0, 0)
+    elseif inst.fade >= SCORCH_FADE_FRAMES then
+        inst.AnimState:OverrideMultColour(1, 1, 1, 1)
+        inst.AnimState:SetHighlightColour()
+    else
+        local k = inst.fade / SCORCH_FADE_FRAMES
+        k = k * k
+        inst.AnimState:OverrideMultColour(1, 1, 1, k)
+        inst.AnimState:SetHighlightColour()
+    end
+end
+
+local function Scorch_OnUpdateFade_Client(inst)
+    if inst.fade > 1 then
+        inst.fade = inst.fade - 1
+        Scorch_OnFadeDirty_Client(inst)
+    else
+        inst:Remove()
+    end
+end
+
+local function scorch_client_fn()
+    local inst = CreateEntity()
+
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
+    --[[Non-networked entity]]
+
+    inst.AnimState:SetBuild("laser_burntground")
+    inst.AnimState:SetBank("burntground")
+    inst.AnimState:PlayAnimation("idle")
+    inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
+    inst.AnimState:SetLayer(LAYER_BACKGROUND)
+    inst.AnimState:SetSortOrder(3)
+
+    inst:AddTag("NOCLICK")
+    inst:AddTag("FX")
+
+    inst.fade = SCORCH_RED_FRAMES + SCORCH_DELAY_FRAMES + SCORCH_FADE_FRAMES
+
+    inst:AddComponent("updatelooper")
+    inst.components.updatelooper:AddOnUpdateFn(Scorch_OnUpdateFade_Client)
+    Scorch_OnFadeDirty_Client(inst)
+
+    inst.entity:SetPristine()
+
+    inst.Transform:SetRotation(math.random() * 360)
+    inst.persists = false
+
+    return inst
+end
+
 local function FastForwardTrail(inst, pct)
     if inst._task ~= nil then
         inst._task:Cancel()
@@ -398,6 +456,7 @@ end
 return Prefab("ancient_hulk_laser", fn, assets, prefabs),
     Prefab("ancient_hulk_laserempty", emptyfn, assets, prefabs),
     Prefab("ancient_hulk_laserscorch", scorchfn, assets_scorch),
+    Prefab("ancient_hulk_laserscorch_client", scorch_client_fn, assets_scorch),
     Prefab("ancient_hulk_lasertrail", trailfn, assets_trail),
     Prefab("ancient_hulk_laserhit", hitfn),
     Prefab("laser_ring", ringfn, assets_ring)

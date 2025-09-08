@@ -142,7 +142,7 @@ local function DoFlashTask(inst)
     inst._ironlord_flash_task = inst:DoTaskInTime(nextflash, DoFlashTask)
 end
 
-local function push_music()
+local function push_ironlord_music()
     if not TheFocalPoint.SoundEmitter:PlayingSound("ironlordmusic") then
         TheFocalPoint.SoundEmitter:PlaySound("dontstarve_DLC003/music/fight_epic_4", "ironlordmusic")
     end
@@ -159,7 +159,7 @@ local function OnIronlordDirty(inst)
         if inst.instantironlord then -- in case of loading
             inst:DoTaskInTime(151 * FRAMES, function()
                 if inst.instantironlord then -- 你永远不会知道自己在151帧后是否还是ironlord
-                    push_music()
+                    push_ironlord_music()
                 end
             end)
         end
@@ -213,7 +213,6 @@ local function RegisterNetListeners(inst)
     if TheWorld.ismastersim then
         inst._parent = inst.entity:GetParent()
         inst:ListenForEvent("poisondamage", OnPoisonDamage, inst._parent)
-        inst:ListenForEvent("start_ironlord_music", function() inst.startironlordmusic:push() end)
         inst:ListenForEvent("start_city_alarm", function() inst.cityalarmevent:push() end)
         inst:ListenForEvent("sanity_stun", function() inst.sanitystunevent:push() end)
         inst:ListenForEvent("worktargetdirty", inst.ClearLastTarget)
@@ -229,7 +228,6 @@ local function RegisterNetListeners(inst)
         inst.ironlordtimeleft:set_local(0)
         inst:ListenForEvent("ironlordtimedirty", OnIronlordTimeDirty)
         inst.instantironlord:set_local(false)
-        inst:ListenForEvent("startironlordmusicdirty", push_music)
         inst:ListenForEvent("start_city_alarm", function()
             inst._parent:PushEvent("start_city_alarm")
         end)
@@ -252,7 +250,6 @@ AddPrefabPostInit("player_classified", function(inst)
     inst.isironlord = inst.isironlord or net_bool(inst.GUID, "livingartifact.isironlord", "ironlorddirty")
     inst.ironlordtimeleft = inst.ironlordtimeleft or net_float(inst.GUID, "livingartifact.ironlordtimeleft", "ironlordtimedirty")
     inst.instantironlord = inst.instant_ironlord or net_bool(inst.GUID, "livingartifact.instantironlord") -- just a flag for loading
-    inst.startironlordmusic = inst.startironlordmusic or net_event(inst.GUID, "livingartifact.startironlordmusic", "startironlordmusicdirty")
     inst.cityalarmevent = inst.cityalarmevent or net_event(inst.GUID, "cityalarms.startmusic", "start_city_alarm")
     inst.sanitystunevent = inst.sanitystunevent or net_event(inst.GUID, "antqueen.sanitystun", "start_sanity_stun")
 

@@ -141,6 +141,38 @@ local function OnRemoveEntity_Client(inst)
     end
 end
 
+local BEAM_RADIUS = 7
+
+local function SpawnBurns(inst, radius, start_angle, end_angle, vec)
+    start_angle = start_angle * DEGREES
+    end_angle = end_angle * DEGREES
+
+    local num_burns = 5
+    local pt = inst:GetPosition()
+    local down = vec or TheCamera:GetDownVec()
+    local angle = math.atan2(down.z, down.x) + start_angle
+    local angle_difference = (end_angle - start_angle) / num_burns
+    for _ = 1, num_burns do
+        local offset = Vector3(math.cos(angle), 0, math.sin(angle)) * radius
+        local burns_position = pt + offset
+        SpawnPrefab("ancient_hulk_laserscorch_client").Transform:SetPosition(burns_position.x, burns_position.y, burns_position.z)
+        angle = angle + angle_difference
+    end
+end
+
+local function OnSpawnBurnsDirty(inst)
+    local vec = TheCamera:GetDownVec()
+    SpawnBurns(inst, BEAM_RADIUS, 0, 45, vec)
+    inst:DoTaskInTime(2 * FRAMES, function() SpawnBurns(inst, BEAM_RADIUS, 45, 90, vec) end)
+    inst:DoTaskInTime(3 * FRAMES, function() SpawnBurns(inst, BEAM_RADIUS, 90, 135, vec) end)
+    inst:DoTaskInTime(4 * FRAMES, function() SpawnBurns(inst, BEAM_RADIUS, 135, 180, vec) end)
+    inst:DoTaskInTime(5 * FRAMES, function() SpawnBurns(inst, BEAM_RADIUS, 180, 225, vec) end)
+    inst:DoTaskInTime(8 * FRAMES, function() SpawnBurns(inst, BEAM_RADIUS, 225, 270, vec) end)
+    inst:DoTaskInTime(10 * FRAMES, function() SpawnBurns(inst, BEAM_RADIUS, 270, 315, vec) end)
+    inst:DoTaskInTime(11 * FRAMES, function() SpawnBurns(inst, BEAM_RADIUS, 315, 360, vec) end)
+    inst:DoTaskInTime(13 * FRAMES, function() SpawnBurns(inst, BEAM_RADIUS, 360, 90, vec) end)
+end
+
 local brain = require("brains/ancienthulkbrain")
 
 local function fn()
@@ -189,12 +221,14 @@ local function fn()
 
     inst.mixer = net_bool(inst.GUID, "antqueen.mixer", "mixerdirty")
 
-    inst.entity:SetPristine()
+    inst._spawnburns = net_event(inst.GUID, "acient_hulk._spawnburns")
 
     if not TheNet:IsDedicated() then
         inst._playingmusic = false
         inst:DoPeriodicTask(1, PushMusic, 0)
         inst:ListenForEvent("mixerdirty", OnMixerDirty)
+
+        inst:ListenForEvent("acient_hulk._spawnburns", OnSpawnBurnsDirty)
     end
 
     if not TheWorld.ismastersim then

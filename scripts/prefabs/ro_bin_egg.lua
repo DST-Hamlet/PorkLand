@@ -23,10 +23,9 @@ local function Hatch(inst)
         local pt = Point(inst.Transform:GetWorldPosition())
         stone.Transform:SetPosition(pt.x,pt.y,pt.z)
 
-        local down = TheCamera:GetDownVec()
-        local angle = math.atan2(down.z, down.x) + (math.random()*60-30) * DEGREES
+        local angle = math.random() * 360 * DEGREES
         local speed = 3
-        stone.components.inventoryitem:Launch(Vector3(speed*math.cos(angle), GetRandomWithVariance(8, 4), speed*math.sin(angle)))
+        stone.components.inventoryitem:Launch(Vector3(speed*math.cos(angle), GetRandomWithVariance(8, 4), -speed*math.sin(angle)))
 
         stone:SpawnRoBin(pt)
     end)
