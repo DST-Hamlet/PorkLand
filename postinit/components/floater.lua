@@ -76,7 +76,7 @@ end
 
 local _ShouldShowEffect = Floater.ShouldShowEffect
 function Floater:ShouldShowEffect()
-    if not TheWorld:HasTag("porkland") then
+    if not TheWorld.has_pl_ocean then
         return _ShouldShowEffect(self)
     end
 

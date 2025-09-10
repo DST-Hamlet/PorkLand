@@ -52,7 +52,7 @@ end
 local _GetFallingReason = Drownable.GetFallingReason
 function Drownable:GetFallingReason()
     local reason = _GetFallingReason(self)
-    if (reason == FALLINGREASON.VOID) and TheWorld:HasTag("porkland") then
+    if (reason == FALLINGREASON.VOID) and TheWorld.has_pl_ocean then
         return -- 视为不跌落
     end
     return reason

@@ -4,7 +4,7 @@ is_fogtest = false -- 全局变量加在这里？
 
 local _TempTile_HandleTileChange_Void = TempTile_HandleTileChange_Void
 function TempTile_HandleTileChange_Void(x, y, z)
-    if TheWorld and TheWorld:HasTag("porkland") then
+    if TheWorld and TheWorld.has_pl_ocean then
         return
     end
     return _TempTile_HandleTileChange_Void(x, y, z)

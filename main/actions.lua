@@ -636,7 +636,7 @@ end
 
 local _ExtraDropDist = ACTIONS.DROP.extra_arrive_dist
 local ExtraDropDist = function (doer, dest, bufferedaction, ...) -- copied from scripts/actions.lua
-    if not TheWorld:HasTag("porkland") then
+    if not TheWorld.has_pl_ocean then
         return _ExtraDropDist(doer, dest, bufferedaction, ...)
     end
     if dest ~= nil then
@@ -669,7 +669,7 @@ ACTIONS.COMBINESTACK.extra_arrive_dist = ExtraDropDist
 
 local _ExtraPickupRange = ACTIONS.PICK.extra_arrive_dist
 local function ExtraPickupRange(doer, dest, ...)
-    if not TheWorld:HasTag("porkland") then
+    if not TheWorld.has_pl_ocean then
         return _ExtraPickupRange(doer, dest, ...)
     end
     if dest ~= nil then
@@ -1225,7 +1225,7 @@ end
 
 local _POINT_fishingrod = POINT.fishingrod
 function POINT.fishingrod(inst, doer, pos, actions, right, target, ...)
-    if TheWorld:HasTag("porkland") then
+    if TheWorld.has_pl_ocean then
         return
     end
     return _POINT_fishingrod(inst, doer, pos, actions, right, target, ...)
