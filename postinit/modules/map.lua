@@ -78,9 +78,14 @@ function Map:ReverseIsVisualGroundAtPoint(x, y, z)
 end
 
 function Map:ReverseIsVisualWaterAtPoint(x, y, z)
+    if not TheWorld.has_pl_ocean then -- 在世界不使用哈姆雷特海洋类型时候, 新函数调用老函数; 在世界使用哈姆雷特海洋类型时, 老函数调用新函数
+        return self:IsOceanAtPoint(x, y, z)
+    end
+
     if self:IsOceanTileAtPoint(x, y, z) then
         return true
     end
+
     if TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
         return false
     end
@@ -288,7 +293,7 @@ function Map:IsVisualGroundAtPoint(x, y, z, ...)
     if TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
         return TheWorld.components.interiorspawner:IsInInteriorRoom(x, z)
     end
-    if TheWorld.has_pl_ocean then
+    if TheWorld.has_pl_ocean then -- 在世界不使用哈姆雷特海洋类型时候, 新函数调用老函数; 在世界使用哈姆雷特海洋类型时, 老函数调用新函数
         return self:ReverseIsVisualGroundAtPoint(x, y, z)
     end
     return self:_IsVisualGroundAtPoint(x, y, z, ...)
