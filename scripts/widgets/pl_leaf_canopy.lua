@@ -35,7 +35,7 @@ function LeavesOver:OnUpdate(dt)
         self.leavestopmultiplycurrent = {r = 1, g = 1, b = 1}
     end
 
-    local r, g, b = TheSim:GetAmbientColour()
+    local r, g, b = TheSim:GetVisualAmbientColour()
     local colourstrength = math.min(1, ((r + g + b) / 3) / 255 + 0.1)
 
     if TheWorld.state.isdusk then

@@ -54,6 +54,25 @@ Sim.GetLightAtPoint = function(sim, x, y, z, light_threshold, ...) -- 和原版G
     return old_GetLightAtPoint(sim, x, y, z, light_threshold, ...)
 end
 
+local sim_visualambientcolour = nil
+
+local old_SetVisualAmbientColour = Sim.SetVisualAmbientColour
+Sim.SetVisualAmbientColour = function(sim, r, g, b, ...)
+    if r and g and b then
+        sim_visualambientcolour = {r * 255, g * 255, b * 255}
+    else
+        sim_visualambientcolour = nil
+    end
+    return old_SetVisualAmbientColour(sim, r, g, b, ...)
+end
+
+Sim.GetVisualAmbientColour = function(sim)
+    if sim_visualambientcolour then
+        return unpack(sim_visualambientcolour)
+    end
+    return Sim.GetAmbientColour(sim)
+end
+
 local _CanEntitySeeTarget = CanEntitySeeTarget
 function CanEntitySeeTarget(inst, target, ...)
     if inst and inst.player_classified then
@@ -106,7 +125,7 @@ function Update(dt, ...)
         print("--------------START UPDATE--------------")
         update_start_time = os.clock()
     end
-    
+
     _Update(dt, ...)
 
     -- 警告：出于未知原因，在一帧新的加载范围中生成新生物会导致生物的OnEntityWake和OnEntitySleep都没有被执行
