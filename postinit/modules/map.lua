@@ -97,9 +97,9 @@ function Map:ReverseIsVisualWaterAtPoint(x, y, z)
     end
 
     local offset_x = x - center_x
-    local abs_offset_x = math.abs(offset_x)
+    local abs_offset_x = math.abs(offset_x) -- 离中心点的距离
     local near_x
-    if abs_offset_x >= 1 then
+    if abs_offset_x >= 1 then -- 离x边界的距离小于1, 检查此方向的相邻地皮
         near_x = center_x + (offset_x > 0 and 1 or -1) * TILE_SCALE
         if self:IsOceanTileAtPoint(near_x, 0, center_z) then
             return true
@@ -109,25 +109,24 @@ function Map:ReverseIsVisualWaterAtPoint(x, y, z)
     local offset_z = z - center_z
     local abs_offset_z = math.abs(offset_z)
     local near_z
-    if abs_offset_z >= 1 then
+    if abs_offset_z >= 1 then -- 离z边界的距离小于1, 检查此方向的相邻地皮
         near_z = center_z + (offset_z > 0 and 1 or -1) * TILE_SCALE
         if self:IsOceanTileAtPoint(center_x, 0, near_z) then
             return true
         end
     end
 
-    if near_x and near_z and abs_offset_z + abs_offset_x >= 3 then
+    if near_x and near_z and abs_offset_z + abs_offset_x >= 3 then -- 离z边界和x边界的距离均小于1, 且离z边界和x边界的距离和小于1, 检查是否是外角
         if self:IsOceanTileAtPoint(near_x, 0, near_z) then
             return true
         end
     end
 
-    if not near_x and not near_z and abs_offset_z + abs_offset_x >= 1 then
+    if not near_x and not near_z and abs_offset_z + abs_offset_x >= 1 then -- 离z边界和x边界的距离均大于1, 但离z边界和x边界的距离和小于3, 检查是否是内角
         near_x = center_x + (offset_x > 0 and 1 or -1) * TILE_SCALE
         near_z = center_z + (offset_z > 0 and 1 or -1) * TILE_SCALE
         if self:IsOceanTileAtPoint(near_x, 0, center_z)
-            and self:IsOceanTileAtPoint(center_x, 0, near_z)
-            and self:IsOceanTileAtPoint(near_x, 0, near_z) then
+            and self:IsOceanTileAtPoint(center_x, 0, near_z) then
             return true
         end
     end
