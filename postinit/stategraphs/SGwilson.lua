@@ -891,7 +891,7 @@ local states = {
         end,
 
         onexit = function(inst)
-            if inst.sg.statemem.boattarget ~= nil then
+            if inst.sg.statemem.boattarget ~= nil and inst.sg.statemem.boattarget:IsValid() then
                 inst.sg.statemem.boattarget.components.sailable.isembarking = false
             end
 
@@ -1698,7 +1698,9 @@ local states = {
         end,
 
         onexit = function(inst)
-            inst.sg.statemem.dest_target.components.sailable.isembarking = false
+            if inst.sg.statemem.dest_target and inst.sg.statemem.dest_target:IsValid() then
+                inst.sg.statemem.dest_target.components.sailable.isembarking = false
+            end
             if not inst.sg.statemem.portaljumping then
                 inst.components.health:SetInvincible(false)
                 inst.DynamicShadow:Enable(true)
