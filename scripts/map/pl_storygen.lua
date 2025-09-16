@@ -61,7 +61,7 @@ function Story:GenerateIslandFromTask(task, randomize)
             local newNode = task_node:AddNode({
                 id = new_room.id,
                 data = {
-                    type = new_room.entrance and "blocker" or new_room.type,
+                    type = new_room.entrance and NODE_TYPE.Blocker or new_room.type,
                     colour = new_room.colour,
                     value = new_room.value,
                     internal_type = new_room.internal_type,
@@ -241,7 +241,7 @@ function Story:Pl_AddBGNodes(min_count, max_count)
                 local blocker_blank_template = self:GetRoom(self.level.blocker_blank_room_name)
                 if blocker_blank_template == nil then
                     blocker_blank_template = {
-                        type = "blank",
+                        type = NODE_TYPE.Blank,
                         tags = { "RoadPoison", "ForceDisconnected" },
                         colour = { r = 0.3, g = .8, b = .5, a = .50 },
                         value = self.impassible_value
@@ -267,7 +267,9 @@ function Story:Pl_AddBGNodes(min_count, max_count)
                         local newNode = task:AddNode({
                             id = new_room.id,
                             data = {
-                                type = "background",
+                                type= ( new_room.type == NODE_TYPE.Room and NODE_TYPE.BackgroundRoom)
+                                    or (new_room.type == NODE_TYPE.Default and NODE_TYPE.Background)
+                                    or new_room.type,
                                 colour = new_room.colour,
                                 value = new_room.value,
                                 internal_type = new_room.internal_type,
