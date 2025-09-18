@@ -1,6 +1,7 @@
 local AddComponentPostInit = AddComponentPostInit
 GLOBAL.setfenv(1, GLOBAL)
 
+
 local function GetElapsedTime(cycles, phase, segs, remainingtimeinphase)
     local NUM_SEGS = 16
     local PHASES = {day = 1, dusk = 2, night = 3}
@@ -45,29 +46,42 @@ local function MakeDefaultClock(self, inst)
         self.clocks["default"]["ms_setmoonphasestyle"] = inst:GetEventCallbacks("ms_setmoonphasestyle",_world, "scripts/components/clock.lua")
         self.clocks["default"]["ms_simunpaused"] = inst:GetEventCallbacks("ms_simunpaused", _world, "scripts/components/clock.lua")
     end
+    -- 用于监听来自子世界的月亮风暴
+    inst:ListenForEvent("ms_setclocksegs_default", self.clocks["default"]["ms_setclocksegs"], _world)
+    inst:ListenForEvent("ms_setmoonphase_default", self.clocks["default"]["ms_setmoonphase"], _world)
+    inst:ListenForEvent("ms_lockmoonphase_default", self.clocks["default"]["ms_lockmoonphase"], _world)
 
     self["GetTimeUntilPhase_default"] = self.GetTimeUntilPhase
     self["AddMoonPhaseStyle_default"] = self.AddMoonPhaseStyle
 
+
     local _OnUpdate = self.OnUpdate
-    self["OnUpdate_default"] = function(self, dt, data)
-        if data and _world.ismastershard then
-            local _data = self:OnSave()
-            local _elapsedtime = GetElapsedTime(_data.cycles, _data.phase, _data.segs, _data.remainingtimeinphase)  -- tihs clock time
-            local elapsedtime = GetElapsedTime(data.cycles, data.phase, data.segs, data.remainingtimeinphase)
 
-            dt = elapsedtime - _elapsedtime
+    self["OnUpdate_default"] = function(self, dt)
+        self.default_clock_dt = dt
 
-            if dt >= TUNING.SEG_TIME then
-                _world:DoTaskInTime(0, _world.PushEvent, "forcesyncclock")
-            end
-        end
-
-        local __OnUpdate = self.OnUpdate
+        local custom_OnUpdate = self.OnUpdate
         self.OnUpdate = _OnUpdate
         _OnUpdate(self, dt)  -- Prevent calling OnUpdate of other clocks
-        self.OnUpdate = __OnUpdate
+        self.OnUpdate = custom_OnUpdate
     end
+
+    --asgerrr: since the moonstorms causing the locked moon phase might be happening on a secondary shard, it's best to just save that information rather than relying on it being resent by the secondary shard in moonstormmanager's OnLoad via some RPC that might not be received if the master is still loading.
+    -- 保存和恢复_moonphaselocked
+    if TheWorld.ismastersim then
+        local _OnSave = self.OnSave
+        function self:OnSave(...)
+            local data = _OnSave(self, ...)
+            data.moonphaselockeddefault = ToolUtil.GetUpvalue(self.clocks["default"]["ms_lockmoonphase"], "_moonphaselocked")
+            return data
+        end
+        local _OnLoad = self.OnLoad
+        function self:OnLoad(data, ...)
+            ToolUtil.SetUpvalue(self.clocks["default"]["ms_lockmoonphase"], "_moonphaselocked", data.moonphaselockeddefault)
+            return _OnLoad(self, data, ...)
+        end
+    end
+
 end
 
 local function MakeClock(self, clocktype)
@@ -153,7 +167,7 @@ local function MakeClock(self, clocktype)
     local _isplateau = clocktype == "plateau"
     local _aporkalypse = nil
     local _mooomphasecycle = 1
-    local _moonphaselocked = false  -- Note: This does not save/load
+    local _moonphaselocked = false
     local _activeaporkalypse = false
 
     local _segsdirty = true
@@ -235,7 +249,6 @@ local function MakeClock(self, clocktype)
 
         _moonphasestyle:set(MOON_PHASE_STYLES.default - 1)
     end end
-
     --------------------------------------------------------------------------
     --[[ Private member functions ]]
     --------------------------------------------------------------------------
@@ -274,8 +287,8 @@ local function MakeClock(self, clocktype)
 
     local CalcTimeOfDay = _ismastersim and function()
         local time_of_day = _totaltimeinphase:value() - _remainingtimeinphase:value()
-        for i = 1, _phase:value() - 1 do
-            time_of_day = time_of_day + _segs[i]:value() * TUNING.SEG_TIME
+        for i = 1, _phase:value()-1 do
+            time_of_day = time_of_day + _segs[i]:value()*TUNING.SEG_TIME
         end
         return time_of_day
     end or nil
@@ -429,16 +442,15 @@ local function MakeClock(self, clocktype)
         self.clocks[clocktype]["ms_simunpaused"] = OnSimUnpaused
 
         inst:ListenForEvent("ms_setclocksegs_" .. clocktype, OnSetClockSegs, _world)
-        inst:ListenForEvent("ms_setmoonphase", OnSetMoonPhase, _world)
-        inst:ListenForEvent("ms_lockmoonphase", OnLockMoonPhase, _world)
-        inst:ListenForEvent("ms_setmoonphasestyle", OnSetMoonPhaseStyle, _world)
+        inst:ListenForEvent("ms_setmoonphase_" .. clocktype, OnSetMoonPhase, _world)
+        inst:ListenForEvent("ms_lockmoonphase_" .. clocktype, OnLockMoonPhase, _world)
+        inst:ListenForEvent("ms_setmoonphasestyle_" .. clocktype, OnSetMoonPhaseStyle, _world)
 
         if not _ismastershard then
             -- Register secondary shard events
             inst:ListenForEvent("secondary_clockupdate_" .. clocktype, OnClockUpdate, _world)
         end
     end
-
     --------------------------------------------------------------------------
     --[[ Post initialization ]]
     --------------------------------------------------------------------------
@@ -458,48 +470,42 @@ local function MakeClock(self, clocktype)
     --[[ Update ]]
     --------------------------------------------------------------------------
 
+    local update_full_dt = nil
+
     --[[
         Client updates time on its own, while server force syncs to correct it
         at the end of each segment.  Client cannot change segments on its own,
         and must wait for a server sync to change segments.
     --]]
-    local function OnUpdate(self, dt, data)
-        if data and _ismastershard then
-            local segs = {}
-            for i, v in ipairs(_segs) do
-                segs[i] = v:value()
-            end
+    local function OnUpdate(self, dt)
 
-            local _elapsedtime = GetElapsedTime(_cycles:value(), _phase:value(), segs, _remainingtimeinphase:value())  -- tihs clock time
-            local elapsedtime = GetElapsedTime(data.cycles, data.phase, data.segs, data.remainingtimeinphase)
-
-            dt = elapsedtime - _elapsedtime
-
-            if dt >= TUNING.SEG_TIME then
-                _world:DoTaskInTime(0, _world.PushEvent, "forcesyncclock")
-            end
+        if not update_full_dt then
+            update_full_dt = dt
         end
 
         local remainingtimeinphase = _remainingtimeinphase:value() - dt
 
         if remainingtimeinphase > 0 then
-            -- Advance time in czurrent phase
+            --Advance time in current phase
             local numsegsinphase = _segs[_phase:value()]:value()
             local prevseg = numsegsinphase > 0 and math.ceil(_remainingtimeinphase:value() / _totaltimeinphase:value() * numsegsinphase) or 0
             local nextseg = numsegsinphase > 0 and math.ceil(remainingtimeinphase / _totaltimeinphase:value() * numsegsinphase) or 0
 
             if prevseg == nextseg then
-                -- Client and server tick independently within current segment
+                --Client and server tick independently within current segment
                 _remainingtimeinphase:set_local(remainingtimeinphase)
             elseif _ismastersim then
-                -- Server sync to client when segment changes
+                --Server sync to client when segment changes
                 _remainingtimeinphase:set(remainingtimeinphase)
+                --asgerrr: master shard also syncs to secondaries when segment changes
+                if _ismastershard then
+                    _world:DoTaskInTime(0, _world.PushEvent, "forcesyncclock")
+                end
             else
-                -- Client must wait at end of segment for a server sync
+                --Client must wait at end of segment for a server sync
                 remainingtimeinphase = numsegsinphase > 0 and nextseg / numsegsinphase * _totaltimeinphase:value() or 0
                 _remainingtimeinphase:set_local(math.min(remainingtimeinphase + .001, _remainingtimeinphase:value()))
             end
-
             if _aporkalypse then
                 _aporkalypse:OnUpdate(dt)
             end
@@ -507,8 +513,7 @@ local function MakeClock(self, clocktype)
             if _aporkalypse then
                 _aporkalypse:OnUpdate(_remainingtimeinphase:value())
             end
-
-            -- Advance to next phase
+            --Advance to next phase
             _remainingtimeinphase:set_local(0)
 
             while _remainingtimeinphase:value() <= 0 do
@@ -517,7 +522,7 @@ local function MakeClock(self, clocktype)
                 _remainingtimeinphase:set(_totaltimeinphase:value())
 
                 if _phase:value() == 1 then
-                    -- Advance to next cycle
+                    --Advance to next cycle
                     _cycles:set(_cycles:value() + 1)
                     _world:PushEvent("ms_cyclecomplete_" .. clocktype, _cycles:value())
                     -- Note: It is the seasons component that handles adjusting the number of day/dusk/night segments
@@ -526,7 +531,7 @@ local function MakeClock(self, clocktype)
                         _mooomphasecycle = (_mooomphasecycle % #MOON_PHASE_CYCLES) + 1
                     end
 
-                    -- Advance to next moon phase. After waxing/waning changes, moon phase is now advanced at the beginning of each day.
+                    --Advance to next moon phase. After waxing/waning changes, moon phase is now advanced at the beginning of each day.
                     local moonphase, waxing = GetMoonPhase()
                     if moonphase ~= _moonphase:value() then
                         _moonphase:set(moonphase)
@@ -538,13 +543,11 @@ local function MakeClock(self, clocktype)
             end
 
             if remainingtimeinphase < 0 then
-                OnUpdate(self, -remainingtimeinphase)
-                return
+                return OnUpdate(self, -remainingtimeinphase)
             end
         else
-            -- Clients and secondary shards must wait at end of phase for a server sync
+            --Clients and secondary shards must wait at end of phase for a server sync
             _remainingtimeinphase:set_local(math.min(.001, _remainingtimeinphase:value()))
-
             if _aporkalypse then
                 _aporkalypse:OnUpdate(dt)
             end
@@ -570,7 +573,7 @@ local function MakeClock(self, clocktype)
         end
 
         if _moonphasedirty then
-            -- "moonphasechanged" deprecated, still pushing for old mods
+            --"moonphasechanged" deprecated, still pushing for old mods
             _world:PushEvent("moonphasechanged_" .. clocktype, MOON_PHASE_NAMES[_moonphase:value()])
             _world:PushEvent("moonphasechanged2_" .. clocktype, { moonphase = MOON_PHASE_NAMES[_moonphase:value()], waxing = _mooniswaxing:value() })
             _moonphasedirty = false
@@ -603,12 +606,15 @@ local function MakeClock(self, clocktype)
                 phase = _phase:value(),
                 totaltimeinphase = _totaltimeinphase:value(),
                 remainingtimeinphase = _remainingtimeinphase:value(),
+                dt = update_full_dt,
             }
             for i, v in ipairs(_segs) do
                 table.insert(data.segs, v:value())
             end
             _world:PushEvent("master_clockupdate_" .. clocktype, data)
         end
+
+        update_full_dt = nil
     end
 
     self["OnUpdate_" .. clocktype] = OnUpdate
@@ -627,6 +633,7 @@ local function MakeClock(self, clocktype)
             data["mooomphasecycle" .. clocktype] = _mooomphasecycle
             data["totaltimeinphase" .. clocktype] = _totaltimeinphase:value()
             data["remainingtimeinphase" .. clocktype] = _remainingtimeinphase:value()
+            data["moonphaselocked" .. clocktype] = _moonphaselocked -- 保存_moonphaselocked
 
             for i, v in ipairs(_segs) do
                 data["segs" .. clocktype][PHASE_NAMES[i]] = v:value()
@@ -688,6 +695,8 @@ local function MakeClock(self, clocktype)
 
                 _totaltimeinphase:set(data["totaltimeinphase" .. clocktype] or _segs[_phase:value()]:value() * TUNING.SEG_TIME)
                 _remainingtimeinphase:set(math.min(data["remainingtimeinphase" .. clocktype] or _totaltimeinphase:value(), _totaltimeinphase:value()))
+
+                _moonphaselocked = data["moonphaselocked" .. clocktype] or false -- 恢复_moonphaselocked
             end
 
             return _OnLoad(self, data, ...)
@@ -714,10 +723,10 @@ local function MakeClock(self, clocktype)
         print(clocktype .. " totaltimeinphase ",  _totaltimeinphase:value())
         print(clocktype .. " remainingtimeinphase ",  _remainingtimeinphase:value())
         print(clocktype .. " total segs phase ",  _totaltimeinphase:value()/TUNING.SEG_TIME)
-        print(clocktype .. " remaining segs inphase ",  _remainingtimeinphase:value() / TUNING.SEG_TIME)
+        print(clocktype .. " remaining segs inphase ",  _remainingtimeinphase:value()/TUNING.SEG_TIME)
 
         local to_night =  _remainingtimeinphase:value() + (PHASE_NAMES[_phase:value()] == "day" and _segs[2]:value() or 0) * TUNING.SEG_TIME
-        print(clocktype .. " Time Until Night:", to_night, to_night / TUNING.SEG_TIME)
+        print(clocktype .. " Time Until Night:", to_night, to_night/TUNING.SEG_TIME)
     end
 
     self["GetDebugString_" .. clocktype] = function()
@@ -764,13 +773,15 @@ local function SetClock(self, clocktype)
         end
     end
 
-    local suffix = self.current_clock == "default" and "" or ("_" .. self.current_clock)
     for _, event in ipairs(events) do
-        for _clocktype in pairs(self.clocks) do
-            local suffix = _clocktype == "default" and "" or ("_" .. _clocktype)
-            _world:AddPushEventPostFn(event .. suffix, SilenceEvent)
+        for clock in pairs(self.clocks) do
+            local suffix = clock == "default" and "" or ("_" .. clock)
+            if clock ~= self.current_clock then
+                TheWorld:AddPushEventPostFn(event .. suffix, function() return event .. "_" .. clock end)
+            else
+                TheWorld:AddPushEventPostFn(event .. suffix, function() return event end)
+            end
         end
-        _world:AddPushEventPostFn(event .. suffix, function() return event end)
     end
 
     self.OnUpdate = self["OnUpdate_" .. self.current_clock]
@@ -784,7 +795,7 @@ end
 
 local function AddMoonPhaseStyle(self, style, ...)
     for clocktype in pairs(self.clocks) do
-        self["AddMoonPhaseStyle_" .. clocktype](self, style, ...)
+        self["AddMoonPhaseStyle_" .. clocktype](self, style, ...) --thank you klei for making this accessible!
     end
 end
 
@@ -796,7 +807,7 @@ AddComponentPostInit("clock", function(self, inst)
     self.clocks = {}
 
     MakeDefaultClock(self, inst)
-
+    self.MakeClock = MakeClock
     self.SetClock = SetClock
     self.GetTimeUntilPhase = GetTimeUntilPhase
     self.AddMoonPhaseStyle = AddMoonPhaseStyle
@@ -804,15 +815,19 @@ AddComponentPostInit("clock", function(self, inst)
     self.OnClockUpdate = _ismastershard and function (src, data)
         for clocktype in pairs(self.clocks) do
             if clocktype ~= self.current_clock then
-                self["OnUpdate_" .. clocktype](self, 0, data)
+                if data.dt then
+                    self["OnUpdate_" .. clocktype](self, data.dt)
+                else
+                    self["OnUpdate_" .. clocktype](self, self.default_clock_dt)
+                end
             end
         end
     end or nil
 
-    self.MakeClock = MakeClock
+    self:MakeClock("plateau") 
+    self:AddMoonPhaseStyle("blood") 
 
     local _clocktype = _world:HasTag("porkland") and "plateau" or "default"
-    self:MakeClock("plateau")
-    self:AddMoonPhaseStyle("blood")
+    --print("Final clock type:", _clocktype)
     self:SetClock(_clocktype)
 end)
