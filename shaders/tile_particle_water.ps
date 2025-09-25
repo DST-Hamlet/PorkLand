@@ -73,12 +73,12 @@ float noise(vec2 p) {
 // 分形噪声（多层级噪声叠加）
 float fbm(vec2 p) {
     float value = 0.0;
-    float amplitude = 0.5;
+    float amplitude = 0.3333333;
     
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 4; i++) {
         value += amplitude * noise(p);
         p *= 1.8;
-        amplitude *= 0.5;
+        amplitude *= 0.6666667;
     }
     
     return value;
@@ -88,13 +88,28 @@ void main()
 {
 	float time = PS_TEXCOORD_LIFE.z * 1000000000.0;
 	vec2 new_uv = PS_POS.xz;
-    vec2 distortion = new_uv + vec2(
-    	fbm(new_uv * 0.15 + time * 0.5) - 0.5,
-    	fbm(new_uv * 0.15 + vec2(10.0) + time * 0.5) - 0.5
-    ) * 1.0;
+    new_uv += vec2(
+    	fbm(new_uv * 0.2 + time * 0.5) - 0.5,
+    	0.0
+    ) * 0.5;
 
-	float noise_x = mod(distortion.x, 29.0) * 0.0344827586 * 0.25 + 0.0078125;
-	float noise_z = mod(distortion.y, 29.0) * 0.0344827586 * 0.25 + 0.0078125;
+    new_uv += vec2(
+    	fbm(new_uv * 0.2 + - time * 0.5 + vec2(10.0)) - 0.5,
+        0.0
+    ) * 0.5;
+
+    new_uv += vec2(
+        0.0,
+    	fbm(new_uv * 0.2 + + time * 0.5 + vec2(20.0)) - 0.5
+    ) * 0.5;
+
+    new_uv += vec2(
+        0.0,
+    	fbm(new_uv * 0.2 + - time * 0.5 + vec2(30.0)) - 0.5
+    ) * 0.5;
+
+	float noise_x = mod(new_uv.x, 29.0) * 0.0344827586 * 0.25 + 0.0078125;
+	float noise_z = mod(new_uv.y, 29.0) * 0.0344827586 * 0.25 + 0.0078125;
 	vec2 noise_texcoord = vec2(noise_x, noise_z);
 	vec4 colour = texture2D( SAMPLER[0], PS_TEXCOORD_LIFE.xy );
 	vec4 colour2 = texture2D( SAMPLER[0], noise_texcoord.xy );
