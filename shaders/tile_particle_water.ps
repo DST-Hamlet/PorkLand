@@ -1,0 +1,106 @@
+#if defined( GL_ES )
+precision mediump float;
+#endif
+
+uniform sampler2D SAMPLER[4];
+
+varying vec3 PS_TEXCOORD_LIFE;
+varying vec4 PS_COLOUR;
+
+#ifndef LIGHTING_H
+#define LIGHTING_H
+
+#if !defined( UI_CC )
+// Lighting
+varying vec3 PS_POS;
+#endif
+
+// xy = min, zw = max
+uniform vec4 LIGHTMAP_WORLD_EXTENTS;
+
+#define LIGHTMAP_TEXTURE SAMPLER[3]
+
+#ifndef LIGHTMAP_TEXTURE
+	#error If you use lighting, you must #define the sampler that the lightmap belongs to
+#endif
+
+#if defined( UI_CC )
+vec3 CalculateLightingContribution(vec2 pos)
+{
+	vec2 uv = ( pos - LIGHTMAP_WORLD_EXTENTS.xy ) * LIGHTMAP_WORLD_EXTENTS.zw;
+	return texture2D( LIGHTMAP_TEXTURE, uv.xy ).rgb;
+}
+#else
+vec3 CalculateLightingContribution()
+{
+	vec2 uv = ( PS_POS.xz - LIGHTMAP_WORLD_EXTENTS.xy ) * LIGHTMAP_WORLD_EXTENTS.zw;
+	return texture2D( LIGHTMAP_TEXTURE, uv.xy ).rgb;
+}
+
+vec3 CalculateLightingContribution( vec3 normal )
+{
+	return vec3( 1, 1, 1 );
+}
+#endif
+
+#endif //LIGHTING.h
+
+// 简单的伪随机数生成器
+float rand(vec2 co) {
+    return fract(sin(dot(co.xy, vec2(12.9898, 78.233))) * 43758.5453);
+}
+
+// 简单的2D噪声函数（基于随机值插值）
+float noise(vec2 p) {
+    vec2 i = floor(p);
+    vec2 f = fract(p);
+    
+    // 四个角点的随机值
+    float a = rand(i);
+    float b = rand(i + vec2(1.0, 0.0));
+    float c = rand(i + vec2(0.0, 1.0));
+    float d = rand(i + vec2(1.0, 1.0));
+    
+    // 平滑插值
+    vec2 u = f * f * (3.0 - 2.0 * f);
+    
+    // 双线性插值
+    return mix(a, b, u.x) + 
+           (c - a) * u.y * (1.0 - u.x) + 
+           (d - b) * u.x * u.y;
+}
+
+// 分形噪声（多层级噪声叠加）
+float fbm(vec2 p) {
+    float value = 0.0;
+    float amplitude = 0.5;
+    
+    for (int i = 0; i < 5; i++) {
+        value += amplitude * noise(p);
+        p *= 1.8;
+        amplitude *= 0.5;
+    }
+    
+    return value;
+}
+
+void main()
+{
+	float time = PS_TEXCOORD_LIFE.z * 1000000000.0;
+	vec2 new_uv = PS_POS.xz;
+    vec2 distortion = new_uv + vec2(
+    	fbm(new_uv * 0.15 + time * 0.5) - 0.5,
+    	fbm(new_uv * 0.15 + vec2(10.0) + time * 0.5) - 0.5
+    ) * 1.0;
+
+	float noise_x = mod(distortion.x, 29.0) * 0.0344827586 * 0.25 + 0.0078125;
+	float noise_z = mod(distortion.y, 29.0) * 0.0344827586 * 0.25 + 0.0078125;
+	vec2 noise_texcoord = vec2(noise_x, noise_z);
+	vec4 colour = texture2D( SAMPLER[0], PS_TEXCOORD_LIFE.xy );
+	vec4 colour2 = texture2D( SAMPLER[0], noise_texcoord.xy );
+	gl_FragColor = vec4( colour.rgb * PS_COLOUR.rgb * colour2.rgb * colour.a , colour.a * PS_COLOUR.a * colour2.a );
+
+	vec3 light = CalculateLightingContribution();
+
+	gl_FragColor.rgb *= CalculateLightingContribution();
+}

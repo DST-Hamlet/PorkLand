@@ -5,12 +5,13 @@ local SHADER = "shaders/tile_particle.ksh"
 local COLOUR_ENVELOPE_NAME = "pl_tilecolourenvelope"
 local SCALE_ENVELOPE_NAME = "pl_tilescaleenvelope"
 
-local MAX_LIFETIME = 1e10
+local MAX_LIFETIME = 2 * 1e9 -- shader中的PS_TEXCOORD_LIFE.z为生命周期进度百分比
 
 local assets =
 {
     Asset("IMAGE", "levels/merged_tex/lilypond_merged.tex"),
-    Asset("SHADER", SHADER),
+    Asset("SHADER", "shaders/tile_particle.ksh"),
+    Asset("SHADER", "shaders/tile_particle_water.ksh"),
 }
 
 -- local OVERHANG_SIZE = 80.0 -- 可能的 tile 种类数量
@@ -176,7 +177,7 @@ local function fn()
     effect:InitEmitters(GetTableSize(tile_fx_datas))
     for name, data in pairs(tile_fx_datas) do
         local i = data.id
-        effect:SetRenderResources(i, resolvefilepath(data.texture), resolvefilepath(SHADER))
+        effect:SetRenderResources(i, resolvefilepath(data.texture), resolvefilepath(data.shader or SHADER))
         effect:SetMaxNumParticles(i, 10000)
         effect:SetMaxLifetime(i, MAX_LIFETIME)
         effect:SetColourEnvelope(i, COLOUR_ENVELOPE_NAME)
