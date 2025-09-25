@@ -5,7 +5,7 @@ local SHADER = "shaders/tile_particle.ksh"
 local COLOUR_ENVELOPE_NAME = "pl_tilecolourenvelope"
 local SCALE_ENVELOPE_NAME = "pl_tilescaleenvelope"
 
-local MAX_LIFETIME = 1 * 1e9 -- shader中的PS_TEXCOORD_LIFE.z为生命周期进度百分比
+local MAX_LIFETIME = 2 * 1e9 -- shader中的PS_TEXCOORD_LIFE.z为生命周期进度百分比
 
 local assets =
 {
