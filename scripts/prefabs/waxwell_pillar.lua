@@ -6,7 +6,7 @@ local prefabs = {
     "statue_transition_2",
 }
 
--- 现在的数值是寻找3地皮内的生物 
+-- 现在的数值是寻找3地皮内的生物
 -- 生物走到3地皮外时 拽到2地皮内
 -- 走到4地皮外就扯断锁链
 
@@ -93,7 +93,7 @@ DoChainTask = function(inst)
     inst._target.components.physicsmodifiedexternally:AddSource(inst)
     inst._pull_task = inst:DoPeriodicTask(0.1, DoPullTask)
     inst._damage_task = inst:DoPeriodicTask(1, function()
-        if not inst._target or inst:GetDistanceSqToInst(inst._target) < FIND_CHAIN_RANGE * FIND_CHAIN_RANGE then
+        if not inst._target or not inst._target:IsValid() or inst:GetDistanceSqToInst(inst._target) < FIND_CHAIN_RANGE * FIND_CHAIN_RANGE then
             return
         end
         inst._target.components.combat:GetAttacked(inst, 10)
