@@ -85,30 +85,29 @@ float fbm(vec2 p) {
 }
 
 const float size = 0.2; // 该值越大，扭曲细节的尺度越小
-const float strength = 0.666667; // 该值越大，纹理扭曲的力度越大
+const float strength = 1.0; // 该值越大，纹理扭曲的力度越大
 
 void main()
 {
 	float time = PS_TEXCOORD_LIFE.z * 1000000000.0;
 	vec2 new_uv = PS_POS.xz;
-    new_uv += vec2(
+    // 计算旋转角度（随时间变化）
+    float rotation_angle = time * 0.1; // 控制旋转速度，可根据需要调整
+    
+    // 创建旋转矩阵
+    mat2 rotation_matrix = mat2(
+        cos(rotation_angle), -sin(rotation_angle),
+        sin(rotation_angle), cos(rotation_angle)
+    );
+
+    new_uv += rotation_matrix * vec2(
     	fbm(new_uv * size + time * 0.5) - 0.5,
     	0.0
     ) * strength;
 
-    new_uv += vec2(
+    new_uv += rotation_matrix * vec2(
     	fbm(new_uv * size + - time * 0.5 + vec2(10.0)) - 0.5,
         0.0
-    ) * strength;
-
-    new_uv += vec2(
-        0.0,
-    	fbm(new_uv * size + + time * 0.5 + vec2(20.0)) - 0.5
-    ) * strength;
-
-    new_uv += vec2(
-        0.0,
-    	fbm(new_uv * size + - time * 0.5 + vec2(30.0)) - 0.5
     ) * strength;
 
 	float noise_x = mod(new_uv.x, 29.0) * 0.0344827586 * 0.25 + 0.0078125;
