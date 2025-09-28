@@ -92,7 +92,7 @@ void main()
 	float time = PS_TEXCOORD_LIFE.z * 1000000000.0;
 	vec2 new_uv = PS_POS.xz;
     // 计算旋转角度（随时间变化）
-    float rotation_angle = time * 0.1; // 控制旋转速度，可根据需要调整
+    float rotation_angle = time; // 控制旋转速度，可根据需要调整
     
     // 创建旋转矩阵
     mat2 rotation_matrix = mat2(
@@ -119,5 +119,5 @@ void main()
 
 	vec3 light = CalculateLightingContribution();
 
-	gl_FragColor.rgb *= CalculateLightingContribution();
+	gl_FragColor.rgb *= light;
 }
