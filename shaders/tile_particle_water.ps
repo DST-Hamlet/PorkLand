@@ -75,7 +75,7 @@ float fbm(vec2 p) {
     float value = 0.0;
     float amplitude = 0.5;
     
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 6; i++) {
         value += amplitude * noise(p);
         p *= 2.5;
         amplitude *= 0.5;
@@ -92,7 +92,7 @@ void main()
 	float time = PS_TEXCOORD_LIFE.z * 1000000000.0;
 	vec2 new_uv = PS_POS.xz;
     // 计算旋转角度（随时间变化）
-    float rotation_angle = time; // 控制旋转速度，可根据需要调整
+    float rotation_angle = time * 0.1; // 控制旋转速度，可根据需要调整
     
     // 创建旋转矩阵
     mat2 rotation_matrix = mat2(
@@ -106,8 +106,8 @@ void main()
     ) * strength;
 
     new_uv += rotation_matrix * vec2(
-    	fbm(new_uv * size + - time * 0.5 + vec2(10.0)) - 0.5,
-        0.0
+        0.0,
+    	fbm(new_uv * size + - time * 0.5 + vec2(10.0)) - 0.5
     ) * strength;
 
 	float noise_x = mod(new_uv.x, 29.0) * 0.0344827586 * 0.25 + 0.0078125;
