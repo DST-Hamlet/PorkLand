@@ -393,9 +393,10 @@ Assets = {
     -- Billboard
     Asset("SHADER", "shaders/animrotatingbillboard.ksh"),
 
-    -- Waterfall
+    -- Waterfall and Clouds
     Asset("SHADER", "shaders/anim_waterfall.ksh"),
     Asset("SHADER", "shaders/anim_waterfall_corner.ksh"),
+    Asset("SHADER", "shaders/vfx_particle_cutout.ksh"),
 
     -- Vertical
     Asset("SHADER", "shaders/anim_vertical.ksh"),
