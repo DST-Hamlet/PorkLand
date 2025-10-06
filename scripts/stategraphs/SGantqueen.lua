@@ -216,12 +216,20 @@ local states =
             inst.AnimState:PlayAnimation("death")
             inst.Physics:Stop()
             RemovePhysicsColliders(inst)
+
+            inst.components.lootdropper:DropLoot()
+
+            local throne = SpawnPrefab("antqueen_throne")
+            local x, y, z = inst.Transform:GetWorldPosition()
+            throne.Transform:SetPosition(x - 0.025, y, z)
+
+            inst.AnimState:ClearOverrideBuild("throne")
         end,
 
         timeline =
         {
             TimeEvent(6  * FRAMES, function (inst) inst.SoundEmitter:PlaySound("porkland_soundpackage/creatures/boss/antqueen/death") end),
-            TimeEvent(6  * FRAMES, function (inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/antqueen/explode", nil, 0.2) end),
+            TimeEvent(7  * FRAMES, function (inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/antqueen/explode", nil, 0.2) end),
             TimeEvent(10 * FRAMES, function (inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/antqueen/explode", nil, 0.3) end),
             TimeEvent(14 * FRAMES, function (inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/antqueen/explode", nil, 0.4) end),
             TimeEvent(18 * FRAMES, function (inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/antqueen/explode", nil, 0.5) end),
@@ -230,14 +238,6 @@ local states =
             TimeEvent(28 * FRAMES, function (inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/antqueen/explode") end),
             TimeEvent(43 * FRAMES, function (inst)
                 inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/antqueen/land")
-                inst.components.lootdropper:DropLoot()
-            end),
-            TimeEvent(2, function(inst)
-                local throne = SpawnPrefab("antqueen_throne")
-                local x, y, z = inst.Transform:GetWorldPosition()
-                throne.Transform:SetPosition(x - 0.025, y, z)
-
-                inst.AnimState:ClearOverrideBuild("throne")
             end),
         },
     },
