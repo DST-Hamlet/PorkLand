@@ -180,7 +180,7 @@ return Class(function(self, inst)
         end
 
         if not _ismastershard then
-            SendModRPCToShard(SHARD_MOD_RPC["Porkland"]["SetAporkalypseClockRewindMult"], 1, {mult = data.mult})
+            SendModRPCToShard(SHARD_MOD_RPC["Porkland"]["SetAporkalypseClockRewindMult"], 1, data.mult) -- 传递的数据由键值对类型改为数值类型
         end
     end or nil
 
@@ -314,7 +314,7 @@ return Class(function(self, inst)
             })
         end
 
-        if _activeaporkalypse then
+        if _isplateau and _activeaporkalypse then -- 仅在猪镇世界发生蝙蝠和远古先驱袭击
             _bat_time = _bat_time - dt
             if _bat_time <= 0 then
                 if GetWorldSetting("vampirebat") == "never" then
