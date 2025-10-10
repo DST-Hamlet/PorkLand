@@ -89,7 +89,7 @@ return Class(function(self, inst)
             return
         end
 
-        TUNING.PERISH_GLOBAL_MULT = TUNING.PERISH_APORKALYPSE_MULT -- 大灾变腐烂加速, 很难找到更好的写法
+        TUNING.PERISH_GLOBAL_MULT = _isplateau and TUNING.PERISH_APORKALYPSE_MULT or TUNING.PERISH_GLOBAL_MULT -- 大灾变腐烂加速, 很难找到更好的写法 -- 腐烂加速只在哈姆雷特生效
 
         _activeaporkalypse = true
         _timeuntilaporkalypse:set(0)
