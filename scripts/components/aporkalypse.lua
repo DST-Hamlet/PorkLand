@@ -89,7 +89,7 @@ return Class(function(self, inst)
             return
         end
 
-        TUNING.PERISH_GLOBAL_MULT = TUNING.PERISH_APORKALYPSE_MULT -- 大灾变腐烂加速, 很难找到更好的写法
+        TUNING.PERISH_GLOBAL_MULT = _isplateau and TUNING.PERISH_APORKALYPSE_MULT or TUNING.PERISH_GLOBAL_MULT -- 大灾变腐烂加速, 很难找到更好的写法 -- 腐烂加速只在哈姆雷特生效
 
         _activeaporkalypse = true
         _timeuntilaporkalypse:set(0)
@@ -180,7 +180,7 @@ return Class(function(self, inst)
         end
 
         if not _ismastershard then
-            SendModRPCToShard(SHARD_MOD_RPC["Porkland"]["SetAporkalypseClockRewindMult"], 1, {mult = data.mult})
+            SendModRPCToShard(SHARD_MOD_RPC["Porkland"]["SetAporkalypseClockRewindMult"], 1, data.mult) -- 传递的数据由键值对类型改为数值类型
         end
     end or nil
 
@@ -314,7 +314,7 @@ return Class(function(self, inst)
             })
         end
 
-        if _activeaporkalypse then
+        if _isplateau and _activeaporkalypse then -- 仅在猪镇世界发生蝙蝠和远古先驱袭击
             _bat_time = _bat_time - dt
             if _bat_time <= 0 then
                 if GetWorldSetting("vampirebat") == "never" then

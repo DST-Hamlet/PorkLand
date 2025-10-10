@@ -19,7 +19,7 @@ AddShardModRPCHandler("Porkland", "SetAporkalypseClockRewindMult", function(shar
         return
     end
 
-    TheWorld:PushEvent("ms_setrewindmult", rewind_mult)
+    TheWorld:PushEvent("ms_setrewindmult", {mult = rewind_mult}) -- 传入的变量是单个数值，包装成键值对后推送事件
 end)
 
 AddShardModRPCHandler("Porkland", "SwitchAporkalypse", function(shardid, active)
