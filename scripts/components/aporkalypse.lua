@@ -58,13 +58,13 @@ return Class(function(self, inst)
         _activefiestadirty = true
     end
 
-    local BeginFiesta = _ismastersim and _isplateau and function()
+    local BeginFiesta = _ismastersim and function() -- 其他世界也可以开启猪人庆典——因为主世界会同步_activefiesta到从世界，这会导致猪镇作为从世界时无法开启庆典
         if not _activefiesta:value() then
             _activefiesta:set(true)
         end
     end
 
-    local EndFiesta = _ismastersim and _isplateau and function()
+    local EndFiesta = _ismastersim and function()
         if _activefiesta:value() then
             _activefiesta:set(false)
             _timeuntilfiestaend = APORKALYPSE_FIESTA_TIME
@@ -102,9 +102,7 @@ return Class(function(self, inst)
             _seasons:BeginAporkalypse(_firstaporkalypse)
         end
 
-        if _isplateau then
-            EndFiesta()
-        end
+        EndFiesta()
 
         ScheduleBatAttack()
         ScheduleHeraldAttack()
@@ -131,7 +129,7 @@ return Class(function(self, inst)
             _seasons:EndAporkalypse()
         end
 
-        if _isplateau and elapseddaysinaporkalypse >= 2 then
+        if elapseddaysinaporkalypse >= 2 then
             BeginFiesta()
         end
 
