@@ -307,7 +307,7 @@ end
 local function OnSaveShadow(inst, data)
     if inst.taskinfo then
         data.time = inst:TimeRemainingInTask(inst.taskinfo)
-        if inst.hunttarget.GUID then
+        if inst.hunttarget and inst.hunttarget:IsValid() then
             data.player = inst.hunttarget.GUID
             return {player = inst.hunttarget.GUID}
         end
