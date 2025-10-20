@@ -62,6 +62,16 @@ AnimState.PushAnimation = function(self, animname, ...)
     end
 end
 
+local _IsCurrentAnimation = AnimState.IsCurrentAnimation
+AnimState.IsCurrentAnimation = function(self, animname, ...)
+    local bank = animstate_banks[self]
+    if REPLACE_ANIMS[bank] and REPLACE_ANIMS[bank][animname] then
+        return _IsCurrentAnimation(self, REPLACE_ANIMS[bank][animname], ...)
+    else
+        return _IsCurrentAnimation(self, animname, ...)
+    end
+end
+
 AnimState._Hide = AnimState.Hide
 AnimState.Hide = function(self, layername, ...)
     local inst = anim_to_entity[self]
