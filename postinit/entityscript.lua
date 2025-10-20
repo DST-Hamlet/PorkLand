@@ -222,33 +222,6 @@ function EntityScript:GetIsWet(...) -- 危险的写法
     return ret or self:HasTag("temporary_wet")
 end
 
-function EntityScript:GetShouldBrainStopped()
-    local stopped = false
-    if self.components.freezable and self.components.freezable:IsFrozen() then
-        stopped = true
-    end
-    if self.components.sleeper and self.components.sleeper:IsAsleep() then
-        stopped = true
-    end
-    return stopped
-end
-
-local _RestartBrain = EntityScript.RestartBrain
-function EntityScript:RestartBrain(...)
-    if self:GetShouldBrainStopped() then
-        self:StopBrain()
-        if self.brainfn ~= nil then
-            self.brain = self.brainfn()
-            if self.brain ~= nil then
-                self.brain.inst = self
-                self.brain:Stop()
-            end
-        end
-        return
-    end
-    return _RestartBrain(self, ...)
-end
-
 local _GetAdjectivedName = EntityScript.GetAdjectivedName
 function EntityScript:GetAdjectivedName(...)
     local name = self:GetBasicDisplayName()
