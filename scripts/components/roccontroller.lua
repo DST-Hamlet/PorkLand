@@ -234,7 +234,19 @@ function RocController:Spawnbodyparts()
 end
 
 function RocController:GetTarget()
-    if not self.target or not self.target:IsValid() or self.target == self.target_player then
+    if self.target and self.target:IsValid() then
+        if self.target ~= self.target_player then -- 追踪建筑中
+            if self.target.components.workable and self.target.components.workable:CanBeWorked() then
+                -- 建筑仍可被破坏, 保持追踪
+            else
+                self.target = nil-- 建筑已损毁, 取消追踪
+            end
+        end
+    else
+        self.target = nil
+    end
+        
+    if not self.target or self.target == self.target_player then -- 目标非建筑时, 试图寻找建筑
         -- look for structures..
         local structure = FindClosestEntity(self.inst, FIND_TARGET_DIST, true, STRUCTURE_MUST_TAGS, nil, STRUCTURE_ONE_OF_TAGS, function(ent)
             local x, y, z = ent.Transform:GetWorldPosition()
@@ -265,7 +277,7 @@ function RocController:GetTarget()
     end
 end
 
-function RocController:CheckTargetPlayer()
+function RocController:CheckTarget()
     if self.liftoff then
         self.target = nil
         self.target_player = nil
@@ -279,6 +291,7 @@ function RocController:CheckTargetPlayer()
             self.target_player = nil
         end
     end
+
     if not self.target_player then
         self:GetTarget()
     end
@@ -505,7 +518,7 @@ function RocController:OnUpdate(dt)
         self.inst:PushEvent("liftoff")
     end
 
-    self:CheckTargetPlayer()
+    self:CheckTarget()
 
     local player = self.target_player
 
