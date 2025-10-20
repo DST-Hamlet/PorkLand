@@ -28,3 +28,17 @@ AddPrefabPostInit("wall_hay", function(inst)
     inst.components.blowinwindgust:SetDestroyFn(ongusthammerfn)
     inst.components.blowinwindgust:Start()
 end)
+
+AddPrefabPostInit("wall_pig_ruins_item", function(inst)
+    if not TheWorld.ismastersim then
+        return
+    end
+    inst.components.repairer.repairmaterial = "stone"
+end)
+
+AddPrefabPostInit("wall_pig_ruins", function(inst)
+    if not TheWorld.ismastersim then
+        return
+    end
+    inst.components.repairable.repairmaterial = "stone"
+end)
