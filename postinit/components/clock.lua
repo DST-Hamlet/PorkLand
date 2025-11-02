@@ -638,19 +638,19 @@ local function MakeClock(self, clocktype)
         local _OnLoad = self.OnLoad
         function self:OnLoad(data, ...)
             if not data["cycles" .. clocktype] and data.cycles then
-                inst:DoTaskInTime(0, function()
-                    local segs = NUM_SEGS * data.cycles
-                    local phasenum = PHASES[data.phase] - 1
-                    while phasenum > 0 do
-                        if PHASE_NAMES[phasenum] then
-                            segs = segs + data.segs[PHASE_NAMES[phasenum]]
-                        end
-                        phasenum = phasenum - 1
-                    end
-                    OnUpdate(self, (TUNING.SEG_TIME * segs) + data.remainingtimeinphase)
-                    self["Dump_" .. clocktype]()
-                    print('"Retrofit" complete')
-                end)
+                -- inst:DoTaskInTime(0, function()
+                --     local segs = NUM_SEGS * data.cycles
+                --     local phasenum = PHASES[data.phase] - 1
+                --     while phasenum > 0 do
+                --         if PHASE_NAMES[phasenum] then
+                --             segs = segs + data.segs[PHASE_NAMES[phasenum]]
+                --         end
+                --         phasenum = phasenum - 1
+                --     end
+                --     OnUpdate(self, (TUNING.SEG_TIME * segs) + data.remainingtimeinphase)
+                --     self["Dump_" .. clocktype]()
+                --     print('"Retrofit" complete')
+                -- end)
             else
                 local totalsegs = 0
                 for i, v in ipairs(_segs) do
