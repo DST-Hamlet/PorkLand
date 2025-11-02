@@ -106,35 +106,11 @@ void main()
     }
 #endif
 
-float alpha_val = 0.7; // 表层水流纹理透明度
+colour = mix(colour, colour_2, 0.5);
 
-if (colour_2.a < 0.95)
+if (PS_POS.y < -1.)
 {
-    alpha_val = 0.35; // 降低表层水流半透明部分的权重影响
-}
-
-colour.rgb = colour_2.rgb * alpha_val + colour.rgb * (1.0 - alpha_val) ;
-
-if (colour.a < 0.95)
-{
-    colour.a = 1. + PS_POS.y * 0.5; // 世界坐标越低的纹理越偏白色
-}
-
-if (PS_POS.y < -2.)
-{
-    if (colour.a > 0.)
-    {
-        colour.a *= 1. + (2. + PS_POS.y) * 0.5; // 世界坐标越低的纹理越透明
-    }
-}
-
-if (colour.a > 1.0)
-{
-    colour.a = 1.0;
-}
-if (colour.a < 0.0)
-{
-    colour.a = 0.0;
+    colour.a *= 1. + (1. + PS_POS.y) * 0.5; // 世界坐标越低的纹理越透明. 不知为何, 实际上还会改变灰度
 }
 
 #if defined ( FADE_OUT )
@@ -161,13 +137,6 @@ if (colour.a < 0.0)
 		gl_FragColor.rgb = mix(gl_FragColor.rgb, gl_FragColor.rgb * world_tint.rgb, OCEAN_BLEND_PARAMS.x);
 
         vec3 light = CalculateLightingContribution();
-
-        if (PS_POS.y < -2.)
-        {
-            light.r *= 1. + (2. + PS_POS.y) * 0.5; // 减少低坐标透明纹理的光照贴图的透明度
-            light.g *= 1. + (2. + PS_POS.y) * 0.5;
-            light.b *= 1. + (2. + PS_POS.y) * 0.5;
-        }
 
         gl_FragColor.rgb *= max( light.rgb, vec3( LIGHT_OVERRIDE, LIGHT_OVERRIDE, LIGHT_OVERRIDE ) );
     }

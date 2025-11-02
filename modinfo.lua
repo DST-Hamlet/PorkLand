@@ -9,7 +9,7 @@ name = "云霄国度-Above the Clouds"
 author = "Jerry, Tony, ziwbi, 亚丹, 鲁鲁, 小巫, 每年睡8760小时, 老王"
 description = "*本mod仍处于测试阶段*"
 
-version = "1.0.32"
+version = "1.0.35"
 forumthread = ""
 api_version = 10
 api_version_dst = 10

@@ -79,9 +79,9 @@ function PollenOver:OnUpdate(dt)
         self.level = leveltarget
     end
 
-    -- if TheCamera.interior then
-    --     self.level = self.level * 0.3
-    -- end
+    if TheCamera.inside_interior then
+        self.level = self.level * 0.3
+    end
 
     -- add some noise
     if self.level > 0 then

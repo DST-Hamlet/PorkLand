@@ -51,6 +51,8 @@ local function fn()
 
     inst.AnimState:SetLayer(LAYER_BELOW_GROUND)
     inst.AnimState:SetSortOrder(3)
+    inst.AnimState:SetDepthTestEnabled(true)
+    inst.AnimState:SetDepthWriteEnabled(true)
 
     inst._paramrotation = net_float(inst.GUID, "_paramrotation", "paramrotationdirty")
 
@@ -97,6 +99,8 @@ local function corner_fn()
 
     inst.AnimState:SetLayer(LAYER_BELOW_GROUND)
     inst.AnimState:SetSortOrder(3)
+    inst.AnimState:SetDepthTestEnabled(true)
+    inst.AnimState:SetDepthWriteEnabled(true)
 
     inst._paramrotation = net_float(inst.GUID, "_paramrotation")
 

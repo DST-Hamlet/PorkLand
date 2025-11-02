@@ -72,6 +72,8 @@ local function setloot(inst)
     local loot = inst.components.lootdropper:PickRandomLoot()
     inst.components.lootdropper:ClearRandomLoot()
     inst.components.storageloot:AddLoot(loot)
+
+    inst.loot_generated = true
 end
 
 local function onpickedfn(inst, picker)
@@ -82,6 +84,8 @@ local function onpickedfn(inst, picker)
     for i, v in ipairs(loots) do
         inst.components.lootdropper:SpawnLootPrefab(v)
     end
+
+    inst.loot_generated = nil
 end
 
 local function onregenfn(inst)
@@ -114,6 +118,18 @@ local function OnEntityWake(inst)
         inst.fliptask:Cancel()
     end
     inst.fliptask = inst:DoPeriodicTask(10 + (math.random() * 10), dowobbletest)
+end
+
+local function OnSave(inst, data)
+    if inst.loot_generated then
+        data.loot_generated = true
+    end
+end
+
+local function OnLoad(inst, data)
+    if not (data and data.loot_generated) then
+        setloot(inst) -- 由于小石板的战利品表和位置有关, 因此需要在实体初始化之后在决定随机战利品
+    end
 end
 
 local function OnWorked(inst, worker, workleft)
@@ -177,7 +193,6 @@ local function fn(Sim)
     -- inst.components.lootdropper.alwaysinfront = true
 
     inst:AddComponent("storageloot")
-    setloot(inst)
 
     inst:AddComponent("inspectable")
 
@@ -185,6 +200,9 @@ local function fn(Sim)
 
     inst.OnEntitySleep = OnEntitySleep
     inst.OnEntityWake = OnEntityWake
+
+    inst.OnSave = OnSave
+    inst.OnLoad = OnLoad
 
     MakeHauntableWork(inst)
 

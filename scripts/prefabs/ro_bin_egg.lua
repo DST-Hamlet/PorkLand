@@ -11,24 +11,30 @@ local prefabs =
     "spoiled_food",
 }
 
+local function FinishHatch(inst)
+    if inst.persists == false then
+        return
+    end
+
+    local stone = SpawnPrefab("ro_bin_gizzard_stone")
+    local pt = Point(inst.Transform:GetWorldPosition())
+    stone.Transform:SetPosition(pt.x,pt.y,pt.z)
+
+    local angle = math.random() * 360 * DEGREES
+    local speed = 3
+    stone.components.inventoryitem:Launch(Vector3(speed*math.cos(angle), GetRandomWithVariance(8, 4), -speed*math.sin(angle)))
+
+    stone:SpawnRoBin(pt)
+
+    inst.persists = false
+end
+
 local function Hatch(inst)
     inst.components.inventoryitem.canbepickedup = false
     inst.AnimState:PlayAnimation("hatch")
-    inst.persists = false
-    inst:ListenForEvent("animover", inst.Remove)
-    inst:ListenForEvent("entitysleep", inst.Remove)
+    inst:DoTaskInTime(50 * FRAMES, FinishHatch)
 
-    inst:DoTaskInTime(50/30, function()
-        local stone = SpawnPrefab("ro_bin_gizzard_stone")
-        local pt = Point(inst.Transform:GetWorldPosition())
-        stone.Transform:SetPosition(pt.x,pt.y,pt.z)
-
-        local angle = math.random() * 360 * DEGREES
-        local speed = 3
-        stone.components.inventoryitem:Launch(Vector3(speed*math.cos(angle), GetRandomWithVariance(8, 4), -speed*math.sin(angle)))
-
-        stone:SpawnRoBin(pt)
-    end)
+    inst:DoTaskInTime(69 * FRAMES, inst.Remove)
 end
 
 local function CheckHatch(inst)

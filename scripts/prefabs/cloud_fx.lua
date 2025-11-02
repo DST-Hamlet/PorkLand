@@ -1,5 +1,5 @@
 local TEXTURE = "images/cloud/fog_cloud_long.tex"
-local SHADER = "shaders/vfx_particle.ksh"
+local SHADER = "shaders/vfx_particle_cutout.ksh"
 
 local COLOUR_ENVELOPE_NAME = "pl_cloudcolourenvelope"
 local SCALE_ENVELOPE_NAME = "pl_cloudscaleenvelope"
@@ -60,6 +60,7 @@ local function fn()
     effect:SetLayer(0, LAYER_BELOW_GROUND)
     effect:SetSortOrder(0, -2)
     effect:EnableDepthTest(0, true)
+    effect:EnableDepthWrite(0, true)
     effect:SetKillOnEntityDeath(0, true)
 
     return inst

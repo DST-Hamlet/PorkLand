@@ -78,8 +78,7 @@ local function UpdateHit(inst)
                 end
             end
         else
-            inst.flashtask:Cancel()
-            inst.flashtask = nil
+            inst.components.updatelooper:RemoveOnUpdateFn(UpdateHit)
         end
     end
 end
@@ -92,7 +91,7 @@ local function PowerGlow(inst)
     end
     inst.flash = 1.7 -- .8 + math.random() * .4
     if not inst.components.updatelooper then
-        inst:AddComponent("updatelooper")   
+        inst:AddComponent("updatelooper")
     end
     inst.components.updatelooper:AddOnUpdateFn(UpdateHit)
 end

@@ -3,6 +3,7 @@ local TILE_TYPES =
     [WORLD_TILES.LILYPOND] =
     {
         texture = "levels/merged_tex/lilypond_merged.tex",
+        shader = "shaders/tile_particle_water.ksh",
     },
 }
 
@@ -43,6 +44,7 @@ function PL_TileManager:SpawnTiles()
                 self.tiletest:SpawnTile(data.position, data.overhang_type, id)
             end
         end
+        self.tiletest.VFXEffect:FastForward(id, GetTime())
     end
 end
 
