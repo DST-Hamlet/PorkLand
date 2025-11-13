@@ -127,7 +127,13 @@ local function OnSave(inst, data)
 end
 
 local function OnLoad(inst, data)
-    if not (data and data.loot_generated) then
+    if data then
+        if data.loot_generated then
+            inst.loot_generated = true
+        end
+    end
+    
+    if not inst.loot_generated then
         setloot(inst) -- 由于小石板的战利品表和位置有关, 因此需要在实体初始化之后在决定随机战利品
     end
 end

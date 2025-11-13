@@ -46,7 +46,7 @@ end
 
 local KEEP_TAGET_DIST = 15
 local function KeepTargetFn(inst, target)
-    if not (inst.keeptargetevenifnofood and not inst:GetShouldBrainStopped())
+    if not inst.keeptargetevenifnofood
         and (target:HasTag("plantkin") and not findfood(inst,target)) then
         return false
     end
