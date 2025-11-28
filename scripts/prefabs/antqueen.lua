@@ -12,24 +12,25 @@ local prefabs =
     "throne_wall",
 }
 
-local loot = {
-    "pigcrownhat",
-    "monstermeat",
-    "monstermeat",
-    "monstermeat",
-    "monstermeat",
-    "monstermeat",
-    "chitin",
-    "chitin",
-    "chitin",
-    "chitin",
-    "honey",
-    "honey",
-    "honey",
-    "honey",
-    "honey",
-    "bundlewrap_blueprint",
-}
+SetSharedLootTable("antqueen",
+{
+    {"pigcrownhat",                 1.00},
+    {"monstermeat",                 1.00},
+    {"monstermeat",                 1.00},
+    {"monstermeat",                 1.00},
+    {"monstermeat",                 1.00},
+    {"monstermeat",                 1.00},
+    {"chitin",                      1.00},
+    {"chitin",                      1.00},
+    {"chitin",                      1.00},
+    {"chitin",                      1.00},
+    {"honey",                       1.00},
+    {"honey",                       1.00},
+    {"honey",                       1.00},
+    {"honey",                       1.00},
+    {"honey",                       1.00},
+    {"bundlewrap_blueprint",        1.00},
+})
 
 local spawn_positions =
 {
@@ -189,7 +190,7 @@ local function queen_fn()
     inst.components.health:StartRegen(1, 4)
 
     inst:AddComponent("lootdropper")
-    inst.components.lootdropper:SetLoot(loot)
+    inst.components.lootdropper:SetChanceLootTable("antqueen")
     inst.components.lootdropper.alwaysinfront = true
     inst.components.lootdropper.speed = 3
 
