@@ -252,29 +252,33 @@ local function ClientPerdictPosition(inst, dt)
     dt = dt or FRAMES
     local hit = inst._hit:value()
 
-    for _, seg in pairs(inst.segs) do
-        if seg._segtime and inst._speed and inst._speed:value() > 0 then
-            local animation_percent = math.clamp(seg._segtime:value() / 1, 0, 1)
+    if inst.needposupdate then
+        inst.needposupdate = false
 
-            if inst._start_point and inst._end_point then
-                local end_point = Vector3(inst._end_point.x:value(), 0, inst._end_point.z:value())
-                local start_point = Vector3(inst._start_point.x:value(), 0, inst._start_point.z:value())
-                local displacement = end_point - start_point
-                local target_position = (displacement * animation_percent) + start_point
-                seg.Physics:Teleport(target_position.x, 0, target_position.z)
+        for _, seg in pairs(inst.segs) do
+            if seg._segtime and inst._speed and inst._speed:value() > 0 then
+                local animation_percent = math.clamp(seg._segtime:value() / 1, 0, 1)
 
-                local animation_delay = (dt * inst._speed:value())/1
-                updatesegmentart(seg, animation_percent - animation_delay)
-                if hit > 0 then
-                    local s = 1.5
-                    s = Remap(hit, 1, 0, 1, 1.5)
-                    seg.Transform:SetScale(s,s,s)
+                if inst._start_point and inst._end_point then
+                    local end_point = Vector3(inst._end_point.x:value(), 0, inst._end_point.z:value())
+                    local start_point = Vector3(inst._start_point.x:value(), 0, inst._start_point.z:value())
+                    local displacement = end_point - start_point
+                    local target_position = (displacement * animation_percent) + start_point
+                    seg.Physics:Teleport(target_position.x, 0, target_position.z)
+
+                    local animation_delay = (dt * inst._speed:value())/1
+                    updatesegmentart(seg, animation_percent - animation_delay)
+                    if hit > 0 then
+                        local s = 1.5
+                        s = Remap(hit, 1, 0, 1, 1.5)
+                        seg.Transform:SetScale(s,s,s)
+                    end
                 end
             end
         end
-    end
 
-    inst.SoundEmitter:SetParameter("speed", "intensity", inst._speed:value()) -- 本地可以实现修改特定网络同步音效的参数
+        inst.SoundEmitter:SetParameter("speed", "intensity", inst._speed:value()) -- 本地可以实现修改特定网络同步音效的参数
+    end
 
     if inst.count_dt > 0 then
         local ease = inst._speed:value()
@@ -291,6 +295,8 @@ local function ClientPerdictPosition(inst, dt)
             seg._segtime:set_local(seg._segtime:value() + (inst.count_dt * inst._speed:value()))
         end
         inst.count_dt = 0
+
+        inst.needposupdate = true
     end
 end
 
