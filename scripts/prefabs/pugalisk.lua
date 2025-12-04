@@ -533,7 +533,9 @@ local function OnBodyComplete(inst, data)
         ShakeAllCameras(CAMERASHAKE.VERTICAL, 0.3, 0.03, 1, inst, SHAKE_DIST)
         inst.components.groundpounder:GroundPound()
 
-        inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/pugalisk/emerge", "emerge")
+        if not inst.SoundEmitter:PlayingSound("emerge") then
+            inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/pugalisk/emerge", "emerge")
+        end
         inst.SoundEmitter:SetParameter("emerge", "start", math.random())
 
         PugaliskUtil.DetermineAction(inst)
