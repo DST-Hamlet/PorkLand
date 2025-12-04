@@ -101,7 +101,7 @@ end
 
 local function OnSave(inst, data)
     if inst._shapescale and data.health.health then
-        data.health.health = data.health.health / inst._shapescale
+        data.health.health = data.health.health / inst._shapescale -- 或许可以改用health.save_maxhealth = true
     end
 
     return inst:__OnSave(data)
