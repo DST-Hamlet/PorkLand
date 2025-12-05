@@ -100,15 +100,15 @@ local function isItemUnique(item)
 end
 
 local function hasUniqueItem(inst)
-    for k,v in pairs(inst.components.inventory.itemslots) do
+    local has_unique_item = false
+    inst.components.inventory:ForEachItem(function(v)  
         for i = 1, #UNIQUE_ITEMS do
             if UNIQUE_ITEMS[i] == v then
-                return true
+                has_unique_item = true
             end
-        end
-    end
+        end)
 
-    return false
+    return has_unique_item
 end
 
 local function getLootList(inst)
@@ -153,10 +153,9 @@ local function droploot(inst, owner)
     chest.Transform:SetPosition(pt.x, pt.y, pt.z)
 
     local slotnum = 1
-    for k,v in pairs(inst.components.inventory.itemslots) do
+    inst.components.inventory:ForEachItem(function(v)         
         chest.components.container:GiveItem(v, slotnum)
-        slotnum = slotnum + 1
-    end
+        slotnum = slotnum + 1 end)
 
     if owner and owner.components.sailable and owner.components.sailable.sailor then
         local sailor = owner.components.sailable.sailor

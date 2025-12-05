@@ -5,13 +5,21 @@ local Shopper = Class(function(self, inst)
 end)
 
 local function RemoveMoney(inventory, prefab, amount)
-    for i = 1, amount do
-        local item = next(inventory:GetItemByName(prefab, 1, true))
-        if not item then
-            print("Can't remove all the amount of money requested")
-            return false
+    print("RemoveMoney", prefab, amount)
+    local need_removed_amount = amount
+    local items = inventory:GetItemByName(prefab, amount, true)
+    for item, v in pairs(items) do
+        if item:IsValid() then -- 可能会在前一组remove的时候触发
+            local stacksize = item.components.stackable:StackSize()
+            if need_removed_amount > stacksize then
+                item:Remove()
+            elseif need_removed_amount > 0 then
+                item.components.stackable:Get(need_removed_amount):Remove()
+            end
         end
-        inventory:RemoveItem(item, false, true):Remove()
+    end
+    if need_removed_amount > 0 then
+        return false
     end
     return true
 end
