@@ -106,7 +106,8 @@ local function hasUniqueItem(inst)
             if UNIQUE_ITEMS[i] == v then
                 has_unique_item = true
             end
-        end)
+        end
+    end)
 
     return has_unique_item
 end

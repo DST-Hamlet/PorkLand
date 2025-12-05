@@ -57,8 +57,12 @@ function Map:IsPassableAtPoint(x, y, z, allow_water, ...)
     if TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
         return TheWorld.components.interiorspawner:IsInInteriorRoom(x, z)
     end
-    if not allow_water and self:ReverseIsVisualWaterAtPoint(x, y, z) then
-        return false
+    if TheWorld.has_pl_ocean and self:ReverseIsVisualWaterAtPoint(x, y, z) then
+        if allow_water then
+            return true
+        else
+            return false
+        end
     end
     return _IsPassableAtPoint(self, x, y, z, allow_water, ...)
 end
