@@ -249,6 +249,7 @@ local function CheckAction(player)
             not ((target:HasTag("prey") and not target:HasTag("hostile")) or
                 target:HasTag("bird") or
                 target:HasTag("butterfly") or
+                target:HasTag("glowfly") or
                 target:HasTag("shadow") or
                 target:HasTag("shadowchesspiece") or
                 target:HasTag("noepicmusic") or
