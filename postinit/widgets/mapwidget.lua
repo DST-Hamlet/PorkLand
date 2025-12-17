@@ -102,7 +102,7 @@ local function BuildInteriorMinimapLayout(widgets, data, visited_rooms, room_id,
     room_tile.position_offset = offset
     room_tile.tile_scale_x = room.width / INTERIOR_MINIMAP_TILE_SCALE
     room_tile.tile_scale_y = room.depth / INTERIOR_MINIMAP_TILE_SCALE
-    room_tile.inst.ImageWidget:SetEffect(resolvefilepath("shaders/ui_fillmode.ksh"))
+    room_tile:SetEffect(resolvefilepath("shaders/ui_fillmode.ksh"))
     room_tile:SetEffectParams(0, 0, 0, 0)
     if not is_current_room then
         room_tile:SetTint(unpack(INACTIVE_TINT))
@@ -576,8 +576,8 @@ end
 -- Delay a frame so this is loaded after Global Positions to OnUpdate compatible with it
 scheduler:ExecuteInTime(0, function()
     AddClassPostConstruct("widgets/mapwidget", function(self)
-        self.bg.inst.ImageWidget:SetTexture("images/hud/pl_hud.xml", "blackbg.tex")
-        self.bg:SetTint(0,0,0,1)
+        self.bg:SetTexture("images/hud/pl_hud.xml", "blackbg.tex")
+        -- self.bg:SetTint(0,0,0,0)
 
         self.interior_frontend = self:AddChild(Image("images/hud/pl_minimaphud.xml", "pl_minimaphud.tex"))
         self.interior_frontend:SetVRegPoint(ANCHOR_MIDDLE)
@@ -585,7 +585,7 @@ scheduler:ExecuteInTime(0, function()
         self.interior_frontend:SetVAnchor(ANCHOR_MIDDLE)
         self.interior_frontend:SetHAnchor(ANCHOR_MIDDLE)
         self.interior_frontend:SetScaleMode(SCALEMODE_FILLSCREEN)
-        self.interior_frontend.inst.ImageWidget:SetBlendMode(BLENDMODE.Additive)
+        self.interior_frontend:SetBlendMode(BLENDMODE.Additive)
         self.interior_frontend:MoveToFront()
         self.interior_frontend:Show()
 
