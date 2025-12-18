@@ -103,6 +103,32 @@ local function KeepTargetFn(inst, target)
     return inst.components.follower:IsNearLeader(14) and inst.components.combat:CanTarget(target)
 end
 
+local function WorkListener(inst, data)
+    if not data.target then
+        return
+    end
+
+    if inst.sg:HasStateTag("working") then
+        inst._queued_task = data.target.components.workable.action.id
+    else
+        inst._current_task = data.target.components.workable.action.id
+        inst._queued_task = nil
+    end
+end
+
+local function OnFinishedWork(inst, data)
+    if not data or not data.action then
+        return
+    end
+
+    if not inst._queued_task then
+        return
+    end
+
+    inst._current_task = inst._queued_task
+    inst._queued_task = nil
+end
+
 --------------------------------------------------------------------------
 
 local function OnRippleAnimOver(inst)
@@ -219,7 +245,7 @@ local function fn()
     inst:AddComponent("locomotor")
     inst.components.locomotor.runspeed = TUNING.SHADOWWAXWELL_SPEED
     inst.components.locomotor:SetTriggersCreep(false)
-    inst.components.locomotor.pathcaps = { ignorecreep = true }
+    inst.components.locomotor.pathcaps = { ignorecreep = true, allowocean = true }
     inst.components.locomotor:SetSlowMultiplier(.6)
 
     inst:AddComponent("health")
@@ -240,14 +266,24 @@ local function fn()
     inst.components.follower.keepdeadleader = true
     inst.components.follower.keepleaderduringminigame = true
 
+    inst:AddComponent("inventory")
+    inst.components.inventory.maxslots = 1
+
+    -- action id, e.g. "CHOP"
     inst._current_task = nil
     inst._queued_task = nil
-
 
     inst:ListenForEvent("attacked", OnAttacked)
     inst:ListenForEvent("death", DropAggro)
     inst:ListenForEvent("seekoblivion", OnSeekOblivion)
     inst:ListenForEvent("dancingplayerdata", function(world, data) OnDancingPlayerData(inst, data) end, TheWorld)
+    inst:ListenForEvent("finishedwork", OnFinishedWork)
+
+    inst:DoTaskInTime(0, function()
+        inst:ListenForEvent("working", function(_, data)
+            WorkListener(inst, data)
+        end, inst.components.follower.leader)
+    end)
 
     inst:SetBrain(brain)
     inst:SetStateGraph("SGshadowwaxwell")

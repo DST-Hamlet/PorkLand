@@ -73,21 +73,27 @@ local function ShouldAvoidExplosive(target)
         or target.components.burnable:IsBurning()
 end
 
-local function GetTask(inst)
-    return inst._current_task or inst._queued_task or nil
-end
-
 local function ShouldKite(target, inst)
     return inst.components.combat:TargetIs(target)
         and target.components.health ~= nil
         and not target.components.health:IsDead()
 end
 
+local WORK_CANT_TAGS = { "fire", "smolder", "event_trigger", "INLIMBO", "NOCLICK", "citypossession"}
+
 local function DoWork(inst)
-    -- chop
-    -- mine
-    -- dig
-    -- give item
+    if not inst._current_task then
+        return
+    end
+
+    local leader = GetLeader(inst) -- TODO: implement pillar
+    if not leader or not leader:IsValid() then
+        return
+    end
+
+    -- dig stump not bushes!
+    local target = FindEntity(leader, SEE_WORK_DIST, inst._current_task == "DIG" and {"stump"} or nil, {inst._current_task .. "_workable"}, WORK_CANT_TAGS)
+    return (target and target:IsValid()) and BufferedAction(inst, target, ACTIONS[inst._current_task]) or nil
 end
 
 local WaxwellMinionBrain = Class(Brain, function(self, inst)
@@ -110,19 +116,14 @@ function WaxwellMinionBrain:OnStart()
                 notags = {"INLIMBO"}
             }, AVOID_EXPLOSIVE_DIST, AVOID_EXPLOSIVE_DIST),
 
-            WhileNode(function() return GetTask(self.inst) ~= nil end, "Do Task",
-                DoAction(self.inst, function()
-                    return nil
-                end, "Do Work")),
-
             -- try to fight
             WhileNode(function() return self.inst.components.combat:GetCooldown() > .5 and ShouldKite(self.inst.components.combat.target, self.inst) end, "Dodge",
                 RunAway(self.inst, { fn = ShouldKite, tags = { "_combat", "_health" }, notags = { "INLIMBO" } }, KITING_DIST, STOP_KITING_DIST)),
             ChaseAndAttack(self.inst),
 
             -- try to work
-            -- WhileNode(function() return not self.inst.sg:HasStateTag("phasing") end, "Keep Working",
-            --     DoAction(self.inst, function() return DoWork(self.inst) end)),
+            WhileNode(function() return not self.inst.sg:HasStateTag("phasing") end, "Keep Working",
+                DoAction(self.inst, function() return DoWork(self.inst) end)),
         }, 0.25)),
 
         Follow(self.inst, GetLeader, MIN_FOLLOW_DIST, TARGET_FOLLOW_DIST, MAX_FOLLOW_DIST),

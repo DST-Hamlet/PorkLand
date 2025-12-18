@@ -43,8 +43,7 @@ local function SummonMinionSpell(inst, doer, position)
 
     doer.sg:GoToState("book")
 
-    local pt = position or doer:GetPosition() -- FindSpawnPoints(doer, pos, NUM_MINIONS_PER_SPAWN, 1)
-
+    local pt = position or doer:GetPosition()
     local pet = doer.components.petleash:SpawnPetAt(pt.x, 0, pt.z, "waxwell_minion")
     if pet ~= nil then
         if pet.SaveSpawnPoint ~= nil then
