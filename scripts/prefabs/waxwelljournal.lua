@@ -5,8 +5,8 @@ local assets =
     Asset("SOUND", "sound/together.fsb"),
 }
 
-
 local SUMMON_MINION_DIST = PLAYER_CAMERA_SEE_DISTANCE * 0.5
+local SHIELD_RANGE = 10
 
 local function ReticuleMouseTargetFn(inst, pos)
     local doer_pos = inst:GetPosition()
@@ -31,9 +31,14 @@ local function CheckMaxSanity(doer)
         and (doer.components.sanity:GetPenaltyPercent() + TUNING.WAXWELL_MINION_SANITY_PENALTY) <= TUNING.MAXIMUM_SANITY_PENALTY
 end
 
+local function CheckSanityCost(doer)
+    return doer.components.sanity ~= nil
+        and (doer.components.sanity.current >= TUNING.WAXWELL_SHIELD_SANITY_COST)
+end
+
 local function SummonMinionSpell(inst, doer, position)
     if not CheckMaxSanity(doer) then
-        doer:PushEvent("summon_fail")
+        doer:PushEvent("spell_fail")
         return false
     end
 
@@ -53,8 +58,25 @@ local function SummonMinionSpell(inst, doer, position)
     return true
 end
 
-local function ShadowShieldSpell(inst, doer, position)
+local SHIELD_MUST_TAGS = {"_combat"}
+local SHIELD_NO_TAGS = {"hostile", "INLIMBO", "ghost"}
+local SHIELD_ONEOF_TAGS = {"character", "player"} -- TODO: sort out tags
 
+local function ShadowShieldSpell(inst, doer, position)
+    if not CheckSanityCost(doer) then
+        doer:PushEvent("spell_fail")
+        return false
+    end
+
+    local x, y, z = doer.Transform:GetWorldPosition()
+    local ents = TheSim:FindEntities(x, 0, z, SHIELD_RANGE, SHIELD_MUST_TAGS, SHIELD_NO_TAGS, SHIELD_ONEOF_TAGS)
+
+    for _, ent in pairs(ents) do
+        local shield = SpawnPrefab("waxwell_shield")
+        shield:SetOwner(ent)
+    end
+
+    return true
 end
 
 local function ShadowChainSpell(inst, doer, position)
@@ -145,61 +167,58 @@ local COMMANDS = {
     --     atlas = ATLAS,
     --     normal = "shadow_chain.tex",
     -- },
-    -- {
-    --     id = "shadow_shield",
-    --     label = STRINGS.SPELLCOMMAND.WAXWELL.SHADOW_SHIELD,
-    --     on_execute_on_server = function(inst, doer)
-    --         ShadowShieldSpell(inst, doer)
-    --     end,
-    --     on_execute_on_client = function(inst)
-    --         inst.components.spellcommand:SetSelectedCommand("shadow_shield")
+    {
+        id = "shadow_shield",
+        label = STRINGS.SPELLCOMMAND.WAXWELL.SHADOW_SHIELD,
+        on_execute_on_server = function(inst, doer)
+            ShadowShieldSpell(inst, doer)
+        end,
+        on_execute_on_client = function(inst)
+            inst.components.spellcommand:SetSelectedCommand("shadow_shield")
 
-    -- 		local aoetargeting = inst.components.aoetargeting
-    --         aoetargeting:SetDeployRadius(0)
-    -- 		aoetargeting:SetShouldRepeatCastFn(function()
-    --             return true
-    --         end)
-    --         inst.components.aoetargeting.reticule.reticuleprefab = "reticulemultitarget"
-    --         inst.components.aoetargeting.reticule.pingprefab = "reticulemultitargetping"
+    		local aoetargeting = inst.components.aoetargeting
+            aoetargeting:SetDeployRadius(0)
+    		aoetargeting:SetShouldRepeatCastFn(function() return true end)
+            aoetargeting.reticule.reticuleprefab = "reticulemultitarget"
+            aoetargeting.reticule.pingprefab = "reticulemultitargetping"
 
-    --         aoetargeting.reticule.mousetargetfn = function(inst, mousepos)
-    --             if mousepos == nil then
-    --                 return nil
-    --             end
-    --             local inventoryitem = inst.replica.inventoryitem
-    --             local owner = inventoryitem and inventoryitem:IsGrandOwner(ThePlayer) and ThePlayer
-    --             if owner then
-    --                 local pos = Vector3(owner.Transform:GetWorldPosition())
-    --                 return pos
-    --             end
-    --         end
-    --         aoetargeting.reticule.targetfn = function(inst)
-    --             if ThePlayer and ThePlayer.components.playercontroller ~= nil and ThePlayer.components.playercontroller.isclientcontrollerattached then
-    --                 local inventoryitem = inst.replica.inventoryitem
-    --                 local owner =  inventoryitem and inventoryitem:IsGrandOwner(ThePlayer) and ThePlayer
-    --                 if owner then
-    --                     local pos = Vector3(owner.Transform:GetWorldPosition())
-    --                     return pos
-    --                 end
-    --             end
-    --         end
-    --         aoetargeting.reticule.updatepositionfn = function(inst, pos, reticule, ease, smoothing, dt)
-    --             local inventoryitem = inst.replica.inventoryitem
-    --             local owner = inventoryitem and inventoryitem:IsGrandOwner(ThePlayer) and ThePlayer
+            aoetargeting.reticule.mousetargetfn = function(inst, mousepos)
+                if mousepos == nil then
+                    return nil
+                end
+                local inventoryitem = inst.replica.inventoryitem
+                local owner = inventoryitem and inventoryitem:IsGrandOwner(ThePlayer) and ThePlayer
+                if owner then
+                    local pos = Vector3(owner.Transform:GetWorldPosition())
+                    return pos
+                end
+            end
+            aoetargeting.reticule.targetfn = function(inst)
+                if ThePlayer and ThePlayer.components.playercontroller ~= nil and ThePlayer.components.playercontroller.isclientcontrollerattached then
+                    local inventoryitem = inst.replica.inventoryitem
+                    local owner =  inventoryitem and inventoryitem:IsGrandOwner(ThePlayer) and ThePlayer
+                    if owner then
+                        local pos = Vector3(owner.Transform:GetWorldPosition())
+                        return pos
+                    end
+                end
+            end
+            aoetargeting.reticule.updatepositionfn = function(inst, pos, reticule, ease, smoothing, dt)
+                local inventoryitem = inst.replica.inventoryitem
+                local owner = inventoryitem and inventoryitem:IsGrandOwner(ThePlayer) and ThePlayer
 
-    --             if owner then
-    --                 reticule.Transform:SetPosition(Vector3(owner.Transform:GetWorldPosition()):Get())
-    --                 reticule.Transform:SetRotation(0)
-    --             end
-    --         end
-    -- 		-- aoetargeting.reticule.twinstickrange = 15
+                if owner then
+                    reticule.Transform:SetPosition(Vector3(owner.Transform:GetWorldPosition()):Get())
+                    reticule.Transform:SetRotation(0)
+                end
+            end
 
-    --         StartAOETargeting(inst)
-    --     end,
-    --     widget_scale = SCALE,
-    --     atlas = ATLAS,
-    --     normal = "shadow_shield.tex",
-    -- },
+            StartAOETargeting(inst)
+        end,
+        widget_scale = SCALE,
+        atlas = ATLAS,
+        normal = "haunt.tex"--"shadow_shield.tex",
+    },
 }
 
 --[==[

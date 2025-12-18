@@ -135,7 +135,7 @@ local function master_postinit(inst)
     inst:ListenForEvent("death", OnDeath)
     inst:ListenForEvent("ms_becameghost", OnDeath)
     inst:ListenForEvent("ms_playerreroll", OnReroll)
-    inst:ListenForEvent("summon_fail", function(inst)
+    inst:ListenForEvent("spell_fail", function(inst)
         inst.components.talker:Say(STRINGS.SPELLCOMMAND.WAXWELL.NO_MAX_SANITY)
     end)
 end

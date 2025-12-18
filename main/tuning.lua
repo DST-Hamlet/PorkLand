@@ -797,6 +797,7 @@ local tuning = {
     PL_BEAVER_DRAIN_TIME = 5 * total_day_time, -- time it takes the log meter to drain to transform threshold
 
     WAXWELL_MINION_SANITY_PENALTY = 50 / wilson_sanity,
+    WAXWELL_SHIELD_SANITY_COST = 10,
 }
 
 
