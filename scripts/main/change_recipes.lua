@@ -233,10 +233,12 @@ local DISABLE_RECIPES = {
     "book_rain",
     "book_temperature",
     -- Maxwell --
-    "shadowlumber_builder",
-    "shadowminer_builder",
+    "magician_chest",
     "shadowdigger_builder",
     "shadowduelist_builder",
+    "shadowlumber_builder",
+    "shadowminer_builder",
+    "tophat_magician",
     -- Webber --
     "spiderden_bedazzler",
     -- "spider_whistle",

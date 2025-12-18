@@ -21,13 +21,12 @@ end
 
 local function StartAOETargeting(inst)
     if ThePlayer.components.playercontroller then
-        print(inst.components.aoetargeting:IsEnabled())
         ThePlayer.components.playercontroller:StartAOETargetingUsing(inst)
     end
 end
 
 local function CheckMaxSanity(doer)
-	return doer.components.sanity ~= nil
+    return doer.components.sanity ~= nil
         and (doer.components.sanity:GetPenaltyPercent() + TUNING.WAXWELL_MINION_SANITY_PENALTY) <= TUNING.MAXIMUM_SANITY_PENALTY
 end
 
@@ -68,6 +67,8 @@ local function ShadowShieldSpell(inst, doer, position)
         return false
     end
 
+    doer.sg:GoToState("book")
+
     local x, y, z = doer.Transform:GetWorldPosition()
     local ents = TheSim:FindEntities(x, 0, z, SHIELD_RANGE, SHIELD_MUST_TAGS, SHIELD_NO_TAGS, SHIELD_ONEOF_TAGS)
 
@@ -80,10 +81,16 @@ local function ShadowShieldSpell(inst, doer, position)
 end
 
 local function ShadowChainSpell(inst, doer, position)
-    doer.sg:GoToState("")
+    if not CheckSanityCost(doer) then
+        doer:PushEvent("spell_fail")
+        return false
+    end
 
-    local chain = SpawnPrefab("shadow_chain")
-    chain.Transform:SetPosition(position.x, 0, position.y)
+    doer.sg:GoToState("book")
+
+    local pillar = SpawnPrefab("waxwell_pillar")
+    pillar.Transform:SetPosition(position.x, 0, position.y)
+    return true
 end
 
 local ATLAS = "images/hud/abigail_flower_commands.xml"
@@ -103,13 +110,11 @@ local COMMANDS = {
             local aoetargeting = inst.components.aoetargeting
             aoetargeting:SetAllowWater(true)
             aoetargeting:SetDeployRadius(0)
-            aoetargeting:SetRange(40)
-            aoetargeting:SetShouldRepeatCastFn(function ()
-                return true
-            end)
+            aoetargeting:SetRange(20)
+            aoetargeting:SetShouldRepeatCastFn(function () return true end)
 
-            aoetargeting.reticule.validcolour = { 1, .75, 0, 1 }
-            aoetargeting.reticule.invalidcolour = { .5, 0, 0, 1 }
+            aoetargeting.reticule.validcolour = {1, 0.75, 0, 1}
+            aoetargeting.reticule.invalidcolour = {0.5, 0, 0, 1}
             aoetargeting.reticule.reticuleprefab = "reticuleaoeghosttarget"
             aoetargeting.reticule.pingprefab = "reticuleaoeghosttarget_ping"
             aoetargeting.reticule.mousetargetfn = ReticuleMouseTargetFn
@@ -123,50 +128,36 @@ local COMMANDS = {
         atlas = ATLAS,
         normal = "haunt.tex"--"summon_minion.tex",
     },
-    -- {
-    --     id = "shadow_chain",
-    --     label = STRINGS.SPELLCOMMAND.WAXWELL.SHADOW_CHAIN,
-    --     on_execute_on_server = function(inst, doer, position)
-    --         -- TODO: See if we still want this
-    --         inst.components.aoetargeting:SetTargetFX("reticuleaoeghosttarget")
-    --         local fx = inst.components.aoetargeting:SpawnTargetFXAt(position)
-    --         if fx then
-    --             -- This is normally done in SG to align with the animations,
-    --             -- but since we don't want it to have animations right now,
-    --             -- we remove it after a fixed time
-    --             fx:DoTaskInTime(15* FRAMES, function(inst)
-    --                 if inst.KillFX then
-    --                     inst:KillFX()
-    --                 else
-    --                     inst:Remove()
-    --                 end
-    --             end)
-    --         end
+    {
+        id = "shadow_chain",
+        label = STRINGS.SPELLCOMMAND.WAXWELL.SHADOW_CHAIN,
+        on_execute_on_server = function(inst, doer, position)
+            ShadowChainSpell(inst, doer, position)
+        end,
+        on_execute_on_client = function(inst)
+            inst.components.spellcommand:SetSelectedCommand("shadow_chain")
 
-    --         ShadowChainSpell(inst, doer, position)
-    --     end,
-    --     on_execute_on_client = function(inst)
-    --         inst.components.spellcommand:SetSelectedCommand("shadow_chain")
+            local aoetargeting = inst.components.aoetargeting
+            aoetargeting:SetAllowWater(true)
+            aoetargeting:SetDeployRadius(0)
+            aoetargeting:SetRange(20)
+            aoetargeting:SetShouldRepeatCastFn(function () return true end)
 
-    -- 		local aoetargeting = inst.components.aoetargeting
-    --         aoetargeting:SetDeployRadius(0)
-    -- 		aoetargeting:SetRange(20)
-    -- 		aoetargeting:SetShouldRepeatCastFn(function()
-    --             return true
-    --         end)
-    --         aoetargeting.reticule.pingprefab = "reticuleaoeghosttarget_ping"
+            aoetargeting.reticule.validcolour = {1, 0.75, 0, 1}
+            aoetargeting.reticule.invalidcolour = {0.5, 0, 0, 1}
+            aoetargeting.reticule.reticuleprefab = "reticuleaoeghosttarget"
+            aoetargeting.reticule.pingprefab = "reticuleaoeghosttarget_ping"
+            aoetargeting.reticule.mousetargetfn = ReticuleMouseTargetFn
+            aoetargeting.reticule.targetfn = ReticuleTargetFn
+            aoetargeting.reticule.updatepositionfn = nil
+            aoetargeting.reticule.twinstickrange = 15
 
-    --         aoetargeting.reticule.mousetargetfn = nil
-    --         aoetargeting.reticule.targetfn = ReticuleTargetFn
-    --         aoetargeting.reticule.updatepositionfn = nil
-    -- 		aoetargeting.reticule.twinstickrange = 15
-
-    --         StartAOETargeting(inst)
-    --     end,
-    --     widget_scale = SCALE,
-    --     atlas = ATLAS,
-    --     normal = "shadow_chain.tex",
-    -- },
+            StartAOETargeting(inst)
+        end,
+        widget_scale = SCALE,
+        atlas = ATLAS,
+        normal = "haunt.tex"--shadow_chain.tex",
+    },
     {
         id = "shadow_shield",
         label = STRINGS.SPELLCOMMAND.WAXWELL.SHADOW_SHIELD,
@@ -176,9 +167,9 @@ local COMMANDS = {
         on_execute_on_client = function(inst)
             inst.components.spellcommand:SetSelectedCommand("shadow_shield")
 
-    		local aoetargeting = inst.components.aoetargeting
+            local aoetargeting = inst.components.aoetargeting
             aoetargeting:SetDeployRadius(0)
-    		aoetargeting:SetShouldRepeatCastFn(function() return true end)
+            aoetargeting:SetShouldRepeatCastFn(function() return true end)
             aoetargeting.reticule.reticuleprefab = "reticulemultitarget"
             aoetargeting.reticule.pingprefab = "reticulemultitargetping"
 
