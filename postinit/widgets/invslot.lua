@@ -3,6 +3,7 @@ local InvSlot = require("widgets/invslot")
 
 local SUPPORTED_ITEMS = {
     ["abigail_flower"] = true,
+    ["waxwelljournal"] = true
 }
 
 local use_item = InvSlot.UseItem

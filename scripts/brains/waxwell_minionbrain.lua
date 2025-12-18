@@ -30,6 +30,10 @@ local TASK_TYPES = {
     PICK = 5,
 }
 
+local function GetLeader(inst)
+    return inst.components.follower.leader
+end
+
 local function DanceParty(inst)
     inst:PushEvent("dance")
 end
@@ -37,10 +41,6 @@ end
 local function ShouldDanceParty(inst)
     local leader = GetLeader(inst)
     return leader and leader.sg:HasStateTag("dancing")
-end
-
-local function GetLeader(inst)
-    return inst.components.follower.leader
 end
 
 local function GetLeaderPos(inst)
@@ -62,7 +62,7 @@ local function IsNearLeader(inst, dist)
 end
 
 local function IsNearPillar(inst)
-    local x, y, z = inst:GetPosition()
+    local x, y, z = inst.Transform:GetWorldPosition()
     local ents = TheSim:FindEntities(x, y, z, KEEP_WORKING_DIST, {"waxwell_pillar"})
     return next(ents) ~= nil
 end
@@ -121,8 +121,8 @@ function WaxwellMinionBrain:OnStart()
             ChaseAndAttack(self.inst),
 
             -- try to work
-            WhileNode(function() return not self.inst.sg:HasStateTag("phasing") end, "Keep Working",
-                DoAction(self.inst, function() return DoWork(self.inst) end)),
+            -- WhileNode(function() return not self.inst.sg:HasStateTag("phasing") end, "Keep Working",
+            --     DoAction(self.inst, function() return DoWork(self.inst) end)),
         }, 0.25)),
 
         Follow(self.inst, GetLeader, MIN_FOLLOW_DIST, TARGET_FOLLOW_DIST, MAX_FOLLOW_DIST),

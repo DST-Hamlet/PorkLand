@@ -211,6 +211,7 @@ local screens_posts = {
 local stategraph_posts = {
     "multiplayerportal",
     "shadowcreature",
+    "shadowwaxwell",
     "wilson",
     "wilson_client",
     "wilsonghost",

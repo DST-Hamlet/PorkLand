@@ -268,7 +268,8 @@ PrefabFiles = {
     "woodie_beaver_bag",
 
     "waxwell_shield",
-    "waxwell_pillar"
+    "waxwell_pillar",
+    "waxwell_minion",
 }
 
 Assets = {

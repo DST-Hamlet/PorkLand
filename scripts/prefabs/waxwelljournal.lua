@@ -5,6 +5,227 @@ local assets =
     Asset("SOUND", "sound/together.fsb"),
 }
 
+
+local SUMMON_MINION_DIST = PLAYER_CAMERA_SEE_DISTANCE * 0.5
+
+local function ReticuleMouseTargetFn(inst, pos)
+    local doer_pos = inst:GetPosition()
+    if inst:GetDistanceSqToPoint(pos) > SUMMON_MINION_DIST * SUMMON_MINION_DIST then
+        return doer_pos + (pos - doer_pos):Normalize() * SUMMON_MINION_DIST
+    end
+end
+
+local function ReticuleTargetFn(inst)
+    return Vector3(ThePlayer.entity:LocalToWorldSpace(7, 0.001, 0))
+end
+
+local function StartAOETargeting(inst)
+    if ThePlayer.components.playercontroller then
+        print(inst.components.aoetargeting:IsEnabled())
+        ThePlayer.components.playercontroller:StartAOETargetingUsing(inst)
+    end
+end
+
+local function CheckMaxSanity(doer)
+	return doer.components.sanity ~= nil
+        and (doer.components.sanity:GetPenaltyPercent() + TUNING.WAXWELL_MINION_SANITY_PENALTY) <= TUNING.MAXIMUM_SANITY_PENALTY
+end
+
+local function SummonMinionSpell(inst, doer, position)
+    if not CheckMaxSanity(doer) then
+        doer:PushEvent("summon_fail")
+        return false
+    end
+
+    if not doer.components.petleash then
+        return false
+    end
+
+    doer.sg:GoToState("book")
+
+    local pt = position or doer:GetPosition() -- FindSpawnPoints(doer, pos, NUM_MINIONS_PER_SPAWN, 1)
+
+    local pet = doer.components.petleash:SpawnPetAt(pt.x, 0, pt.z, "waxwell_minion")
+    if pet ~= nil then
+        if pet.SaveSpawnPoint ~= nil then
+            pet:SaveSpawnPoint() -- TODO: manage minion activity range
+        end
+    end
+    return true
+end
+
+local function ShadowShieldSpell(inst, doer, position)
+
+end
+
+local function ShadowChainSpell(inst, doer, position)
+    doer.sg:GoToState("")
+
+    local chain = SpawnPrefab("shadow_chain")
+    chain.Transform:SetPosition(position.x, 0, position.y)
+end
+
+local ATLAS = "images/hud/abigail_flower_commands.xml"
+local SCALE = 0.9
+
+-- maybe we should write templates for these commands?
+local COMMANDS = {
+    {
+        id = "summon_minion",
+        label = STRINGS.SPELLCOMMAND.WAXWELL.SUMMON_MINION,
+        on_execute_on_server = function(inst, doer, position)
+            SummonMinionSpell(inst, doer, position)
+        end,
+        on_execute_on_client = function(inst)
+            inst.components.spellcommand:SetSelectedCommand("summon_minion")
+
+            local aoetargeting = inst.components.aoetargeting
+            aoetargeting:SetAllowWater(true)
+            aoetargeting:SetDeployRadius(0)
+            aoetargeting:SetRange(40)
+            aoetargeting:SetShouldRepeatCastFn(function ()
+                return true
+            end)
+
+            aoetargeting.reticule.validcolour = { 1, .75, 0, 1 }
+            aoetargeting.reticule.invalidcolour = { .5, 0, 0, 1 }
+            aoetargeting.reticule.reticuleprefab = "reticuleaoeghosttarget"
+            aoetargeting.reticule.pingprefab = "reticuleaoeghosttarget_ping"
+            aoetargeting.reticule.mousetargetfn = ReticuleMouseTargetFn
+            aoetargeting.reticule.targetfn = ReticuleTargetFn
+            aoetargeting.reticule.updatepositionfn = nil
+            aoetargeting.reticule.twinstickrange = 15
+
+            StartAOETargeting(inst)
+        end,
+        widget_scale = SCALE,
+        atlas = ATLAS,
+        normal = "haunt.tex"--"summon_minion.tex",
+    },
+    -- {
+    --     id = "shadow_chain",
+    --     label = STRINGS.SPELLCOMMAND.WAXWELL.SHADOW_CHAIN,
+    --     on_execute_on_server = function(inst, doer, position)
+    --         -- TODO: See if we still want this
+    --         inst.components.aoetargeting:SetTargetFX("reticuleaoeghosttarget")
+    --         local fx = inst.components.aoetargeting:SpawnTargetFXAt(position)
+    --         if fx then
+    --             -- This is normally done in SG to align with the animations,
+    --             -- but since we don't want it to have animations right now,
+    --             -- we remove it after a fixed time
+    --             fx:DoTaskInTime(15* FRAMES, function(inst)
+    --                 if inst.KillFX then
+    --                     inst:KillFX()
+    --                 else
+    --                     inst:Remove()
+    --                 end
+    --             end)
+    --         end
+
+    --         ShadowChainSpell(inst, doer, position)
+    --     end,
+    --     on_execute_on_client = function(inst)
+    --         inst.components.spellcommand:SetSelectedCommand("shadow_chain")
+
+    -- 		local aoetargeting = inst.components.aoetargeting
+    --         aoetargeting:SetDeployRadius(0)
+    -- 		aoetargeting:SetRange(20)
+    -- 		aoetargeting:SetShouldRepeatCastFn(function()
+    --             return true
+    --         end)
+    --         aoetargeting.reticule.pingprefab = "reticuleaoeghosttarget_ping"
+
+    --         aoetargeting.reticule.mousetargetfn = nil
+    --         aoetargeting.reticule.targetfn = ReticuleTargetFn
+    --         aoetargeting.reticule.updatepositionfn = nil
+    -- 		aoetargeting.reticule.twinstickrange = 15
+
+    --         StartAOETargeting(inst)
+    --     end,
+    --     widget_scale = SCALE,
+    --     atlas = ATLAS,
+    --     normal = "shadow_chain.tex",
+    -- },
+    -- {
+    --     id = "shadow_shield",
+    --     label = STRINGS.SPELLCOMMAND.WAXWELL.SHADOW_SHIELD,
+    --     on_execute_on_server = function(inst, doer)
+    --         ShadowShieldSpell(inst, doer)
+    --     end,
+    --     on_execute_on_client = function(inst)
+    --         inst.components.spellcommand:SetSelectedCommand("shadow_shield")
+
+    -- 		local aoetargeting = inst.components.aoetargeting
+    --         aoetargeting:SetDeployRadius(0)
+    -- 		aoetargeting:SetShouldRepeatCastFn(function()
+    --             return true
+    --         end)
+    --         inst.components.aoetargeting.reticule.reticuleprefab = "reticulemultitarget"
+    --         inst.components.aoetargeting.reticule.pingprefab = "reticulemultitargetping"
+
+    --         aoetargeting.reticule.mousetargetfn = function(inst, mousepos)
+    --             if mousepos == nil then
+    --                 return nil
+    --             end
+    --             local inventoryitem = inst.replica.inventoryitem
+    --             local owner = inventoryitem and inventoryitem:IsGrandOwner(ThePlayer) and ThePlayer
+    --             if owner then
+    --                 local pos = Vector3(owner.Transform:GetWorldPosition())
+    --                 return pos
+    --             end
+    --         end
+    --         aoetargeting.reticule.targetfn = function(inst)
+    --             if ThePlayer and ThePlayer.components.playercontroller ~= nil and ThePlayer.components.playercontroller.isclientcontrollerattached then
+    --                 local inventoryitem = inst.replica.inventoryitem
+    --                 local owner =  inventoryitem and inventoryitem:IsGrandOwner(ThePlayer) and ThePlayer
+    --                 if owner then
+    --                     local pos = Vector3(owner.Transform:GetWorldPosition())
+    --                     return pos
+    --                 end
+    --             end
+    --         end
+    --         aoetargeting.reticule.updatepositionfn = function(inst, pos, reticule, ease, smoothing, dt)
+    --             local inventoryitem = inst.replica.inventoryitem
+    --             local owner = inventoryitem and inventoryitem:IsGrandOwner(ThePlayer) and ThePlayer
+
+    --             if owner then
+    --                 reticule.Transform:SetPosition(Vector3(owner.Transform:GetWorldPosition()):Get())
+    --                 reticule.Transform:SetRotation(0)
+    --             end
+    --         end
+    -- 		-- aoetargeting.reticule.twinstickrange = 15
+
+    --         StartAOETargeting(inst)
+    --     end,
+    --     widget_scale = SCALE,
+    --     atlas = ATLAS,
+    --     normal = "shadow_shield.tex",
+    -- },
+}
+
+--[==[
+local AddPrefabPostInit = AddPrefabPostInit
+GLOBAL.setfenv(1, GLOBAL)
+
+
+AddPrefabRegisterPostInit("abigail_flower", function(abigail_flower)
+    ToolUtil.SetUpvalue(abigail_flower.fn, "updatespells", function(inst, owner)
+        if not owner then
+            return
+        end
+        if owner:HasTag("ghostfriend_summoned") then
+            if owner.HUD and owner.HUD.controls.spellcontrols:IsOpen() then
+                owner.HUD.controls.spellcontrols:RefreshItemStates()
+            end
+        else
+            if owner.HUD and owner.HUD.controls.spellcontrols:IsOpen() then
+                owner.HUD.controls.spellcontrols:Close()
+            end
+        end
+    end)
+end)
+]==]
+
 local function tryplaysound(inst, id, sound)
     inst._soundtasks[id] = nil
     if inst.AnimState:IsCurrentAnimation("proximity_pst") then
@@ -172,8 +393,19 @@ local function fn()
 
     inst:AddTag("shadowmagic")
 
-    --prototyper (from prototyper component) added to pristine state for optimization
+    -- prototyper (from prototyper component) added to pristine state for optimization
     inst:AddTag("prototyper")
+
+    local aoetargeting = inst:AddComponent("aoetargeting")
+    aoetargeting:SetAllowWater(true)
+    aoetargeting.reticule.mouseenabled = true
+    aoetargeting.reticule.twinstickmode = 1
+    aoetargeting.reticule.twinstickrange = 15
+
+
+    local spellbook = inst:AddComponent("spellbook")
+    spellbook:SetRequiredTag("shadowmagic")
+    spellbook:SetItems(COMMANDS)
 
     inst.entity:SetPristine()
 
@@ -195,6 +427,15 @@ local function fn()
 
     inst:AddComponent("fuel")
     inst.components.fuel.fuelvalue = TUNING.MED_FUEL
+
+    inst:AddComponent("aoespell") -- need both aoespell and aoetargeting to work, obviously...
+
+    inst:AddComponent("spellcommand")
+    inst.components.spellcommand:SetSpellCommands(COMMANDS)
+    inst.components.spellcommand.ui_background = {
+        bank = "ui_abigail_command_5x1",
+        build = "ui_abigail_command_5x1",
+    }
 
     MakeSmallBurnable(inst, TUNING.MED_BURNTIME)
     MakeSmallPropagator(inst)

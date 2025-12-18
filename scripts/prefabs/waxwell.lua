@@ -61,7 +61,7 @@ local function OnSpawnPet(inst, pet)
         pet:DoTaskInTime(0, DoEffects)
 
         if not (inst.components.health:IsDead() or inst:HasTag("playerghost")) then
-            inst.components.sanity:AddSanityPenalty(pet, TUNING.SHADOWWAXWELL_SANITY_PENALTY[string.upper(pet.prefab)])
+            inst.components.sanity:AddSanityPenalty(pet, TUNING.WAXWELL_MINION_SANITY_PENALTY)
             inst:ListenForEvent("onremove", inst._onpetlost, pet)
         elseif pet._killtask == nil then
             pet._killtask = pet:DoTaskInTime(math.random(), KillPet)
@@ -126,7 +126,7 @@ local function master_postinit(inst)
     inst.components.petleash:SetOnSpawnFn(OnSpawnPet)
     inst.components.petleash:SetOnDespawnFn(OnDespawnPet)
 
-    inst.components.sanity.dapperness = TUNING.DAPPERNESS_LARGE
+    inst.components.sanity.dapperness = 12*8/TUNING.TOTAL_DAY_TIME
     inst.components.health:SetMaxHealth(TUNING.WILSON_HEALTH * .5)
     inst.soundsname = "maxwell"
 
@@ -135,6 +135,9 @@ local function master_postinit(inst)
     inst:ListenForEvent("death", OnDeath)
     inst:ListenForEvent("ms_becameghost", OnDeath)
     inst:ListenForEvent("ms_playerreroll", OnReroll)
+    inst:ListenForEvent("summon_fail", function(inst)
+        inst.components.talker:Say(STRINGS.SPELLCOMMAND.WAXWELL.NO_MAX_SANITY)
+    end)
 end
 
 return MakePlayerCharacter("waxwell", prefabs, assets, common_postinit, master_postinit)

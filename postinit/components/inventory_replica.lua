@@ -50,9 +50,11 @@ end
 
 -- This is the same as the one postinit/widgets/invslot.lua,
 -- but we need to hook on both for the keyboard shortcuts
+-- ziwbi: should've made this a global constant
 
 local SUPPORTED_ITEMS = {
     ["abigail_flower"] = true,
+    ["waxwelljournal"] = true
 }
 
 local function get_slot_position(inventory_bar, item)

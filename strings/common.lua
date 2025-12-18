@@ -2863,5 +2863,11 @@ return {
             HAUNT = "Haunt On",
             UNSUMMON = "Unsummon",
         },
+        WAXWELL = {
+            SUMMON_MINION = "Summon",
+            SHADOW_CHAIN = "Chain",
+            SHADOW_SHIELD = "Shield",
+            NO_MAX_SANITY = "I fear my mind can't take the strain...", -- I need to rewrite this...
+        }
     },
 }
