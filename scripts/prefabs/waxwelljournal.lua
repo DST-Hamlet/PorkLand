@@ -37,15 +37,12 @@ end
 
 local function SummonMinionSpell(inst, doer, position)
     if not CheckMaxSanity(doer) then
-        doer:PushEvent("spell_fail")
-        return false
+        return false, "NO_MAX_SANITY"
     end
 
     if not doer.components.petleash then
         return false
     end
-
-    doer.sg:GoToState("book")
 
     local pt = position or doer:GetPosition()
     local pet = doer.components.petleash:SpawnPetAt(pt.x, 0, pt.z, "waxwell_minion")
@@ -102,7 +99,7 @@ local COMMANDS = {
         id = "summon_minion",
         label = STRINGS.SPELLCOMMAND.WAXWELL.SUMMON_MINION,
         on_execute_on_server = function(inst, doer, position)
-            SummonMinionSpell(inst, doer, position)
+            inst.components.aoespell:SetSpellFn(function() return SummonMinionSpell(inst, doer, position) end)
         end,
         on_execute_on_client = function(inst)
             inst.components.spellcommand:SetSelectedCommand("summon_minion")
@@ -123,6 +120,9 @@ local COMMANDS = {
             aoetargeting.reticule.twinstickrange = 15
 
             StartAOETargeting(inst)
+        end,
+        action = function(inst, doer, position, target)
+            return BufferedAction(doer, nil, ACTIONS.CASTAOE, inst, position) -- doer, target, action, invobject
         end,
         widget_scale = SCALE,
         atlas = ATLAS,
@@ -400,6 +400,7 @@ local function fn()
     inst.AnimState:SetBuild("book_maxwell")
     inst.AnimState:PlayAnimation("idle")
 
+    inst:AddTag("book")
     inst:AddTag("shadowmagic")
     -- prototyper (from prototyper component) added to pristine state for optimization
     inst:AddTag("prototyper")
@@ -429,6 +430,8 @@ local function fn()
 
     inst._activetask = nil
     inst._soundtasks = {}
+    inst.swap_build = "book_maxwell" -- for book2 stategraph animation
+    inst.castsound = "maxwell_rework/shadow_magic/cast" -- ditto
 
     inst:AddComponent("inspectable")
     inst:AddComponent("inventoryitem")

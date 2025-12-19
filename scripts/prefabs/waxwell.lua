@@ -11,6 +11,12 @@ local prefabs =
 {
     "statue_transition_2",
     "waxwell_shadowstriker",
+    "book_fx",
+	"book_fx_mount",
+	"waxwell_book_fx",
+	"waxwell_book_fx_mount",
+	"waxwell_shadow_book_fx",
+	"waxwell_shadow_book_fx_mount",
 }
 
 local start_inv =
