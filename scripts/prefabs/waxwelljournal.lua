@@ -401,7 +401,6 @@ local function fn()
     inst.AnimState:PlayAnimation("idle")
 
     inst:AddTag("shadowmagic")
-
     -- prototyper (from prototyper component) added to pristine state for optimization
     inst:AddTag("prototyper")
 
@@ -411,10 +410,16 @@ local function fn()
     aoetargeting.reticule.twinstickmode = 1
     aoetargeting.reticule.twinstickrange = 15
 
-
     local spellbook = inst:AddComponent("spellbook")
     spellbook:SetRequiredTag("shadowmagic")
     spellbook:SetItems(COMMANDS)
+
+    inst:AddComponent("spellcommand")
+    inst.components.spellcommand:SetSpellCommands(COMMANDS)
+    inst.components.spellcommand.ui_background = {
+        bank = "ui_abigail_command_5x1",
+        build = "ui_abigail_command_5x1",
+    }
 
     inst.entity:SetPristine()
 
@@ -438,13 +443,6 @@ local function fn()
     inst.components.fuel.fuelvalue = TUNING.MED_FUEL
 
     inst:AddComponent("aoespell") -- need both aoespell and aoetargeting to work, obviously...
-
-    inst:AddComponent("spellcommand")
-    inst.components.spellcommand:SetSpellCommands(COMMANDS)
-    inst.components.spellcommand.ui_background = {
-        bank = "ui_abigail_command_5x1",
-        build = "ui_abigail_command_5x1",
-    }
 
     MakeSmallBurnable(inst, TUNING.MED_BURNTIME)
     MakeSmallPropagator(inst)
