@@ -143,16 +143,21 @@ local function create_node_set()
     return {
         data = {},
         add = function(self, node)
-            local key = node.x .. "," .. node.y
-            self.data[key] = node
+            if self.data[node.x] == nil then
+                self.data[node.x] = {}
+            end
+            self.data[node.x][node.y] = node
+        end,
+        remove = function(self, node)
+            if self.data[node.x] ~= nil then
+                self.data[node.x][node.y] = nil
+            end
         end,
         contains = function(self, node)
-            local key = node.x .. "," .. node.y
-            return self.data[key] ~= nil
+            return self.data[node.x] and (self.data[node.x][node.y] ~= nil) or false
         end,
         get = function(self, node)
-            local key = node.x .. "," .. node.y
-            return self.data[key]
+            return self.data[node.x] and self.data[node.x][node.y] or nil
         end
     }
 end
@@ -172,7 +177,7 @@ local function a_star(start, goal, grid, width, depth, ignorewalls)
         max_search_times = max_search_times - 1
 
         local current = open_set:pop()
-        open_set_hash.data[current.x .. "," .. current.y] = nil
+        open_set_hash:remove(current)
 
         if current.x == goal.x and current.y == goal.y then
             local path = {}
@@ -180,6 +185,8 @@ local function a_star(start, goal, grid, width, depth, ignorewalls)
                 table.insert(path, 1, {current.x, current.y})
                 current = current.parent
             end
+
+            -- print("path find use", 512 - max_search_times)
             return path
         end
 
@@ -333,6 +340,7 @@ function InteriorPathfinder:CalculateSearch(x, y, z, tx, ty, tz, data) -- 计算
 
     local isclear, cantfindpath = self:IsClear(x, y, z, tx, ty, tz, data)
     if isclear or cantfindpath then
+        -- print("dont need path find")
         return {
             isinterior = true,
             path = {steps = {}},
