@@ -21,6 +21,7 @@ local function OnDeath(inst, data)
         if inst._owner:IsValid() then
             inst._owner.components.health:DoDelta(-1)
             inst._owner.components.combat.redirectdamagefn = nil
+            inst._owner:Remove("has_shadow_shield")
         end
 
         RemoveShield(inst)
@@ -32,6 +33,7 @@ local function SetOwner(inst, owner)
         return
     end
     inst._owner = owner
+    inst._owner:AddTag("has_shadow_shield")
     assert(inst._owner.components.combat.redirectdamagefn == nil) -- THIS NEEDS TO BE NIL!!!! -- TODO: remove assert in product
     inst._owner.components.combat.redirectdamagefn = function(owner_inst, attacker, damage, weapon, stimuli, spdamage)
         return inst -- you might want to specify which damage this can block

@@ -798,6 +798,7 @@ local tuning = {
 
     WAXWELL_MINION_SANITY_PENALTY = 50 / wilson_sanity,
     WAXWELL_SHIELD_SANITY_COST = 10,
+    WAXWELL_CHAIN_SANITY_COST = 10,
 }
 
 

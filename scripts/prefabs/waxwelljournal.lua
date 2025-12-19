@@ -30,11 +30,6 @@ local function CheckMaxSanity(doer)
         and (doer.components.sanity:GetPenaltyPercent() + TUNING.WAXWELL_MINION_SANITY_PENALTY) <= TUNING.MAXIMUM_SANITY_PENALTY
 end
 
-local function CheckSanityCost(doer)
-    return doer.components.sanity ~= nil
-        and (doer.components.sanity.current >= TUNING.WAXWELL_SHIELD_SANITY_COST)
-end
-
 local function SummonMinionSpell(inst, doer, position)
     if not CheckMaxSanity(doer) then
         return false, "NO_MAX_SANITY"
@@ -55,16 +50,11 @@ local function SummonMinionSpell(inst, doer, position)
 end
 
 local SHIELD_MUST_TAGS = {"_combat"}
-local SHIELD_NO_TAGS = {"hostile", "INLIMBO", "ghost"}
+local SHIELD_NO_TAGS = {"hostile", "INLIMBO", "ghost", "has_shadow_shield"}
 local SHIELD_ONEOF_TAGS = {"character", "player"} -- TODO: sort out tags
 
 local function ShadowShieldSpell(inst, doer, position)
-    if not CheckSanityCost(doer) then
-        doer:PushEvent("spell_fail")
-        return false
-    end
-
-    doer.sg:GoToState("book")
+    doer.components.sanity:DoDelta(-TUNING.WAXWELL_SHIELD_SANITY_COST)
 
     local x, y, z = doer.Transform:GetWorldPosition()
     local ents = TheSim:FindEntities(x, 0, z, SHIELD_RANGE, SHIELD_MUST_TAGS, SHIELD_NO_TAGS, SHIELD_ONEOF_TAGS)
@@ -78,12 +68,7 @@ local function ShadowShieldSpell(inst, doer, position)
 end
 
 local function ShadowChainSpell(inst, doer, position)
-    if not CheckSanityCost(doer) then
-        doer:PushEvent("spell_fail")
-        return false
-    end
-
-    doer.sg:GoToState("book")
+    doer.components.sanity:DoDelta(-TUNING.WAXWELL_CHAIN_SANITY_COST)
 
     local pillar = SpawnPrefab("waxwell_pillar")
     pillar.Transform:SetPosition(position.x, 0, position.y)
@@ -132,7 +117,7 @@ local COMMANDS = {
         id = "shadow_chain",
         label = STRINGS.SPELLCOMMAND.WAXWELL.SHADOW_CHAIN,
         on_execute_on_server = function(inst, doer, position)
-            ShadowChainSpell(inst, doer, position)
+            inst.components.aoespell:SetSpellFn(function() return ShadowChainSpell(inst, doer, position) end)
         end,
         on_execute_on_client = function(inst)
             inst.components.spellcommand:SetSelectedCommand("shadow_chain")
@@ -154,6 +139,9 @@ local COMMANDS = {
 
             StartAOETargeting(inst)
         end,
+        action = function(inst, doer, position, target)
+            return BufferedAction(doer, nil, ACTIONS.CASTAOE, inst, position) -- doer, target, action, invobject
+        end,
         widget_scale = SCALE,
         atlas = ATLAS,
         normal = "haunt.tex"--shadow_chain.tex",
@@ -161,8 +149,8 @@ local COMMANDS = {
     {
         id = "shadow_shield",
         label = STRINGS.SPELLCOMMAND.WAXWELL.SHADOW_SHIELD,
-        on_execute_on_server = function(inst, doer)
-            ShadowShieldSpell(inst, doer)
+        on_execute_on_server = function(inst, doer, position)
+            inst.components.aoespell:SetSpellFn(function() return ShadowShieldSpell(inst, doer, position) end)
         end,
         on_execute_on_client = function(inst)
             inst.components.spellcommand:SetSelectedCommand("shadow_shield")
@@ -206,34 +194,14 @@ local COMMANDS = {
 
             StartAOETargeting(inst)
         end,
+        action = function(inst, doer, position, target)
+            return BufferedAction(doer, nil, ACTIONS.CASTAOE, inst, position) -- doer, target, action, invobject
+        end,
         widget_scale = SCALE,
         atlas = ATLAS,
         normal = "haunt.tex"--"shadow_shield.tex",
     },
 }
-
---[==[
-local AddPrefabPostInit = AddPrefabPostInit
-GLOBAL.setfenv(1, GLOBAL)
-
-
-AddPrefabRegisterPostInit("abigail_flower", function(abigail_flower)
-    ToolUtil.SetUpvalue(abigail_flower.fn, "updatespells", function(inst, owner)
-        if not owner then
-            return
-        end
-        if owner:HasTag("ghostfriend_summoned") then
-            if owner.HUD and owner.HUD.controls.spellcontrols:IsOpen() then
-                owner.HUD.controls.spellcontrols:RefreshItemStates()
-            end
-        else
-            if owner.HUD and owner.HUD.controls.spellcontrols:IsOpen() then
-                owner.HUD.controls.spellcontrols:Close()
-            end
-        end
-    end)
-end)
-]==]
 
 local function tryplaysound(inst, id, sound)
     inst._soundtasks[id] = nil
