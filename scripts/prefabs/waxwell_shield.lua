@@ -21,7 +21,7 @@ local function OnDeath(inst, data)
         if inst._owner:IsValid() then
             inst._owner.components.health:DoDelta(-1)
             inst._owner.components.combat.redirectdamagefn = nil
-            inst._owner:Remove("has_shadow_shield")
+            inst._owner:RemoveTag("has_shadow_shield")
         end
 
         RemoveShield(inst)
