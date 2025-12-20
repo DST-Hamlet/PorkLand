@@ -15,21 +15,25 @@ local function displaynamefn(inst, viewer)
     end
 end
 
+local function OnBurnt(inst)
+    local debris = SpawnPrefab("pig_ruins_spear_trap_broken")
+    debris.AnimState:PlayAnimation("burnt")
+    debris.Transform:SetPosition(inst.Transform:GetWorldPosition())
+    debris.isburnt = true
+    inst:Remove()
+end
+
 local function OnKilled(inst)
+    if inst.components.burnable:IsBurning() then
+        OnBurnt(inst)
+        return
+    end
     local debris = SpawnPrefab("pig_ruins_spear_trap_broken")
     debris.AnimState:PlayAnimation("breaking")
     debris.AnimState:PushAnimation("broken", true)
     debris.Transform:SetPosition(inst.Transform:GetWorldPosition())
 
-    inst:PushEvent("dead")
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/traps/speartrap_break")
-    inst:Remove()
-end
-
-local function OnBurnt(inst)
-    local debris = SpawnPrefab("pig_ruins_spear_trap_broken")
-    debris.AnimState:PlayAnimation("burnt")
-    debris.Transform:SetPosition(inst.Transform:GetWorldPosition())
     inst:Remove()
 end
 
@@ -171,6 +175,7 @@ local function fn()
 
     inst:AddComponent("health")
     inst.components.health:SetMaxHealth(TUNING.SPEAR_TRAP_HEALTH)
+    inst.components.health.nofadeout = true
 
     inst:AddComponent("combat")
     inst.components.combat:SetOnHit(OnHit)
@@ -178,11 +183,11 @@ local function fn()
     inst.components.combat.canbeattackedfn = canbeattackedfn
 
     MakeSmallBurnable(inst)
-    inst.components.burnable.disabled = true
-
-    MakeSmallPropagator(inst)
     inst.components.burnable:SetFXLevel(2)
     inst.components.burnable:SetOnBurntFn(OnBurnt)
+
+    MakeSmallPropagator(inst)
+    inst.components.propagator.flashpoint = 2 + math.random()*2
 
     inst:SetStateGraph("SGspear_trap")
 
@@ -233,6 +238,21 @@ local function fn()
     return inst
 end
 
+local function OnSave_Debris(inst, data)
+    data.isburnt = inst.isburnt
+end
+
+local function OnLoad_Debris(inst, data)
+    if not data then
+        return
+    end
+
+    inst.isburnt = data.isburnt
+    if inst.isburnt then
+        inst.AnimState:PlayAnimation("burnt")
+    end
+end
+
 local function debrisfn()
     local inst = CreateEntity()
 
@@ -253,6 +273,9 @@ local function debrisfn()
     inst:AddComponent("inspectable")
 
     MakeHauntable(inst)
+
+    inst.OnSave = OnSave_Debris
+    inst.OnLoad = OnLoad_Debris
 
     return inst
 end
