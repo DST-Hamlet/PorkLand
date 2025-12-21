@@ -123,6 +123,11 @@ ACTIONS.PAN.validfn = function(act)
 end
 
 ACTIONS.SHEAR.fn = function(act)
+    if act.doer and act.doer.player_classified then
+        act.doer.player_classified._last_work_target:set(act.target)
+        act.doer.player_classified:ClearLastTarget()
+    end
+
     if act.target and act.target.components.shearable then
         act.target.components.shearable:Shear(act.doer)
         return true
