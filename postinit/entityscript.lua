@@ -87,22 +87,32 @@ function EntityScript:AddPushEventPostFn(event, fn, source)
     source.pushevent_postfn[event] = fn
 end
 
+function EntityScript:SetEventOverride(event, override_event)
+    if not self.override_events then
+        self.override_events = {}
+    end
+
+    self.override_events[event] = override_event
+end
+
 local _PushEvent = EntityScript.PushEvent
 function EntityScript:PushEvent(event, data, ...)
-    local eventfn = self.pushevent_postfn ~= nil and self.pushevent_postfn[event] or nil
+    local new_event = self.override_events and self.override_events[event] or event
+
+    local eventfn = self.pushevent_postfn ~= nil and self.pushevent_postfn[new_event] or nil
 
     if eventfn ~= nil then
-        local newevent, newdata = eventfn(event, data, ...)
+        local newevent, newdata = eventfn(new_event, data, ...)
 
         if newevent ~= nil then
-            event = newevent
+            new_event = newevent
         end
         if newdata ~= nil then
             data = newdata
         end
     end
 
-    _PushEvent(self, event, data, ...)
+    _PushEvent(self, new_event, data, ...)
 end
 
 ---@param event string

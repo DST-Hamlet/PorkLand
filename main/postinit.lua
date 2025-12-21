@@ -175,6 +175,7 @@ local multipleprefab_posts = {
     "edible",
     "firepit",
     "health",
+    "lightwatcherproxy",
     "notraptrigger",
     "poisonable",
     "seeds",

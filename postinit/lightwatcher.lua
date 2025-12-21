@@ -42,12 +42,36 @@ LightWatcher.IsInLight = function(self)
     end
 end
 
-LightWatcher.SetDarkThresh = function(self, val)
+local _SetDarkThresh = LightWatcher.SetDarkThresh
+LightWatcher.SetDarkThresh = function(self, val, ...)
     local inst = light_watcher_to_entity[self]
     inst.components.lightwatcherproxy.darkthresh = val
+    return _SetDarkThresh(self, val, ...)
 end
 
-LightWatcher.SetLightThresh = function(self, val)
+local _SetLightThresh = LightWatcher.SetLightThresh
+LightWatcher.SetLightThresh = function(self, val, ...)
     local inst = light_watcher_to_entity[self]
     inst.components.lightwatcherproxy.lightthresh = val
+    return _SetLightThresh(self, val, ...)
+end
+
+local _GetTimeInLight = LightWatcher.GetTimeInLight
+LightWatcher.GetTimeInLight = function(self, ...)
+    local inst = light_watcher_to_entity[self]
+    if inst:GetIsInInterior() then
+        return inst.components.lightwatcherproxy:GetTimeInLight()
+    else
+        return _GetTimeInLight(self, val, ...)
+    end
+end
+
+local _GetTimeInDark = LightWatcher.GetTimeInDark
+LightWatcher.GetTimeInDark = function(self, ...)
+    local inst = light_watcher_to_entity[self]
+    if inst:GetIsInInterior() then
+        return inst.components.lightwatcherproxy:GetTimeInDark()
+    else
+        return _GetTimeInDark(self, val, ...)
+    end
 end

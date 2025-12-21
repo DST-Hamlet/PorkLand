@@ -56,49 +56,9 @@ AddComponentPostInit("wisecracker", function(cmp)
     cmp.inst:ListenForEvent("trackitem_close", track_close)
     cmp.inst:ListenForEvent("canttrackitem", canttrack)
     cmp.inst:WatchWorldState("cycles", OnNewDay)
-
-    cmp.pl_enterlight_time = math.huge
-    cmp.pl_enterdark_time = math.huge
 end)
-
-local function GetTimeInDark(self)
-    return GetTime() - self.pl_enterdark_time
-end
-
-local function GetTimeInLight(self)
-    return GetTime() - self.pl_enterlight_time
-end
 
 local _OnUpdate = WiseCracker.OnUpdate
 function WiseCracker:OnUpdate(dt)
-    if not self.inst:HasTag("inside_interior") then
-        self.pl_enterdark_time = math.huge
-        self.pl_enterlight_time = math.huge
-        _OnUpdate(self, dt)
-        return
-    end
-
-    local night_vision = CanEntitySeeInDark(self.inst)
-    if night_vision or self.inst:IsInLight() then
-        if self.pl_enterlight_time == math.huge then
-            self.pl_enterlight_time = GetTime(self)
-            self.pl_enterdark_time = math.huge
-        end
-        if not self.inlight and (night_vision or GetTimeInLight(self) >= 0.5) then
-            self.inlight = true
-            if self.inst.components.talker ~= nil and not self.inst:HasTag("playerghost") then
-                self.inst.components.talker:Say(GetString(self.inst, "ANNOUNCE_ENTER_LIGHT"))
-            end
-        end
-    elseif self.inlight and GetTimeInDark(self) >= 0.5 then
-        self.inlight = false
-        if self.inst.components.talker ~= nil then
-            self.inst.components.talker:Say(GetString(self.inst, "ANNOUNCE_ENTER_DARK"))
-        end
-    else
-        if self.pl_enterdark_time == math.huge then
-            self.pl_enterdark_time = GetTime(self)
-            self.pl_enterlight_time = math.huge
-        end
-    end
+    return _OnUpdate(self, dt)
 end
