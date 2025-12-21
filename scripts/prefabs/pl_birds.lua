@@ -128,11 +128,6 @@ local function MakeBird(name, sounds, feather_name, isreplace)
         inst.Physics:SetMass(1)
         inst.Physics:SetSphere(1)
 
-        if TheWorld:HasTag("porkland") then
-            inst.Physics:ClearCollidesWith(COLLISION.LIMITS)
-            inst.Physics:ClearCollidesWith(COLLISION.VOID_LIMITS)
-        end
-
         inst.AnimState:SetBank("crow")
         inst.AnimState:SetBuild(name .. "_build")
         inst.AnimState:PlayAnimation("idle")

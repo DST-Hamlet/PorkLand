@@ -217,6 +217,8 @@ local states =
 
             inst.sg.statemem.speed = -20 + math.random() * 10
             inst.Physics:SetMotorVel(0, inst.sg.statemem.speed, 0)
+            inst.Physics:ClearCollidesWith(COLLISION.LIMITS)
+            inst.Physics:ClearCollidesWith(COLLISION.VOID_LIMITS)
             inst.DynamicShadow:Enable(false)
         end,
 
@@ -261,6 +263,8 @@ local states =
 
         onexit = function(inst)
             inst:RemoveTag("NOCLICK")
+            inst.Physics:CollidesWith(COLLISION.LIMITS)
+            inst.Physics:CollidesWith(COLLISION.VOID_LIMITS)
             inst.DynamicShadow:Enable(true)
         end,
     },
@@ -336,8 +340,8 @@ local states =
 
         onupdate = function(inst)
             local position = inst:GetPosition()
-            if TheWorld.components.interiorspawner:IsInInteriorRegion(position.x, position.z) then
-                local room = TheWorld.components.interiorspawner:GetInteriorCenter(position)
+            if inst:GetIsInInterior() then
+                local room = inst:GetCurrentInteriorCenter()
                 if room and room.height then
                     if position.y >= room.height then
                         inst.components.combat:GetAttacked(nil, 5, nil)
@@ -359,6 +363,8 @@ local states =
                 inst.AnimState:PushAnimation("takeoff_diagonal_loop", true)
                 inst.Physics:SetMotorVel(math.random() * 8 + 8, math.random() * 5 + 15,math.random() * 4 - 2)
             end
+            inst.Physics:ClearCollidesWith(COLLISION.LIMITS)
+            inst.Physics:ClearCollidesWith(COLLISION.VOID_LIMITS)
             inst.DynamicShadow:Enable(false)
         end,
 
@@ -368,12 +374,16 @@ local states =
                 inst.DynamicShadow:SetSize(.6, .5)
             end),
             TimeEvent(2, function(inst)
-                inst:Remove()
+                if not inst:GetIsInInterior() then
+                    inst:Remove()
+                end
             end),
         },
 
         onexit = function(inst)
             inst:RemoveTag("NOCLICK")
+            inst.Physics:CollidesWith(COLLISION.LIMITS)
+            inst.Physics:CollidesWith(COLLISION.VOID_LIMITS)
             inst.DynamicShadow:SetSize(1, .75)
             inst.DynamicShadow:Enable(true)
         end,

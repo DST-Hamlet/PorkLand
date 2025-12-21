@@ -75,7 +75,7 @@ function InventoryItem:OnUpdate(dt) -- 覆盖法
                     self:SetLanded(false, true) -- 试图推送离地事件
                     if y < -0.01 then
                         self.inst.AnimState:SetLayer(LAYER_BELOW_GROUND)
-                        self.inst.Physics:CollidesWith(COLLISION.VOID_LIMITS)
+                        self.inst.Physics:CollidesWith(COLLISION.VOID_LIMITS) -- 不应该穿透地面下的岩壁
                     else
                         self.inst.AnimState:SetLayer(LAYER_WORLD)  -- 虽然inventoryitem基本上都属于这个显示层级，但是保险起见，最好在改变显示层级的时候保存旧的显示层级
                         self.inst.Physics:ClearCollidesWith(COLLISION.VOID_LIMITS)
