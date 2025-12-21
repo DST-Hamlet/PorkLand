@@ -15,23 +15,18 @@ local function PlayOincSound(inst)
 end
 
 local function ScheduleOincSoundEvent(inst, amount)
-    if not inst.oinc_transaction then
-        inst.oinc_transaction = 0
-    end
-    if not inst.max_oinc_transaction then
-        inst.max_oinc_transaction = 0
-    end
+    print("ScheduleOincSoundEvent", amount)
     inst.oinc_transaction = inst.oinc_transaction + amount
     if math.abs(inst.oinc_transaction) > inst.max_oinc_transaction then
-        inst.max_oinc_transaction = math.abs(inst.oinc_transaction)
+        inst.max_oinc_transaction = math.abs(inst.oinc_transaction) -- max_oinc_transaction为物品数量变化的最大值或者单次物品数量变化的值
     end
 
     if not inst.oinc_transaction_task then
-        inst.oinc_transaction_task = inst:DoTaskInTime(0, function()
+        inst.oinc_transaction_task = inst:DoStaticTaskInTime(0, function()
             inst._oinc_sound:set_local(0)
             inst._oinc_sound:set(inst.max_oinc_transaction)
-            inst.max_oinc_transaction = nil
-            inst.oinc_transaction = nil
+            inst.max_oinc_transaction = 0
+            inst.oinc_transaction = 0
             inst.oinc_transaction_task = nil
         end)
     end
@@ -67,6 +62,27 @@ local function OnItemLose(inst, data)
             item:RemoveEventCallback("stacksizechange", item.oinc_sound_stackchange_listener)
             item.oinc_sound_stackchange_listener = nil
         end
+    end
+end
+
+local function OnSetOverFlow(inst, data)
+    if inst.overflow and inst.overflow:IsValid() then
+        print("OnRemoveOverFlow", inst.overflow.OnOverFlowItemGet, inst.overflow)
+        inst:RemoveEventCallback("itemget", inst.overflow.OnOverFlowItemGet, inst.overflow)
+        inst:RemoveEventCallback("itemlose", inst.overflow.OnOverFlowItemLose, inst.overflow)
+    end
+
+    inst.overflow = data.overflow
+    if inst.overflow then
+        inst.overflow.OnOverFlowItemGet = function(backpack, data)
+            OnItemGet(inst, data)
+        end
+        inst.overflow.OnOverFlowItemLose = function(backpack, data)
+            OnItemLose(inst, data)
+        end
+        print("OnSetOverFlow", inst.overflow.OnOverFlowItemGet, inst.overflow)
+        inst:ListenForEvent("itemget", inst.overflow.OnOverFlowItemGet, inst.overflow)
+        inst:ListenForEvent("itemlose", inst.overflow.OnOverFlowItemLose, inst.overflow)
     end
 end
 
@@ -191,8 +207,12 @@ AddPlayerPostInit(function(inst)
     inst:ListenForEvent("ms_respawnedfromghost", OnRespawnedFromGhost)
     -- ms_respawnedfromghost在复活后触发, respawnfromghost在将要复活时触发
 
+
+    inst.oinc_transaction = 0
+    inst.max_oinc_transaction = 0
     inst:ListenForEvent("itemget", OnItemGet)
     inst:ListenForEvent("itemlose", OnItemLose)
+    inst:ListenForEvent("setoverflow", OnSetOverFlow)
 
     inst:ListenForEvent("enterinterior", OnInteriorChange)
     inst:ListenForEvent("leaveinterior", OnInteriorChange)
