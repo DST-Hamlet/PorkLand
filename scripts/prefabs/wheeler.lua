@@ -27,7 +27,8 @@ end
 
 local function AllowDodge_Client(inst)
     return AllowDodge(inst)
-        or (inst._candodge:value() == true)
+        or ((inst._candodge:value() == true)
+        and not inst.replica.sailor:IsSailing() and not inst.replica.rider:IsRiding())
 end
 
 local function GetPointSpecialActions(inst, pos, useitem, right)
