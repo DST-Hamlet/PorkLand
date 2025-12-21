@@ -254,7 +254,7 @@ return  DecoCreator:Create("window_round",                 "interior_window", "i
         DecoCreator:Create("deco_cave_ceiling_trim_3", "interior_wall_decals_batcave", "interior_wall_decals_cave", "ceiling_trim_3"),
         DecoCreator:Create("deco_cave_floor_trim", "interior_wall_decals_batcave", "interior_wall_decals_cave", "floor_trim_1",                 {decal = true, background=3}),
         DecoCreator:Create("deco_cave_floor_trim_2", "interior_wall_decals_batcave", "interior_wall_decals_cave", "floor_trim_2",               {decal = true, background=3}),
-        DecoCreator:Create("deco_cave_floor_trim_front", "interior_wall_decals_batcave", "interior_wall_decals_cave", "floor_trim_3"),
+        DecoCreator:Create("deco_cave_floor_trim_front", "interior_wall_decals_batcave", "interior_wall_decals_cave", "floor_trim_3",           {finaloffset = 1}),
         DecoCreator:Create("deco_cave_stalactite", "interior_wall_decals_batcave", "interior_wall_decals_cave", "stalactite"),
         DecoCreator:Create("deco_cave_bat_burrow", "interior_wall_decals_batcave", "interior_wall_decals_cave", "bat_burrow",                   {decal = true, physics="pond_physics", prefabname="deco_cave_bat_burrow", minimapicon="vamp_cave_burrow.tex"}),
         DecoCreator:Create("deco_cave_bat_burrow_front", "interior_wall_decals_batcave_2", "interior_wall_decals_cave", "bat_burrow_front"),

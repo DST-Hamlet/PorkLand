@@ -220,7 +220,7 @@ local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, on_r
 
             inst:ListenForEvent("onremove", OnRemove)
         else
-            -- MakeInteriorPhysics(inst, 2, 1, 0.5) -- 暂时取消这些贴边物体的碰撞体和寻路，以减少卡位的可能性
+            MakeInteriorPhysics(inst, 2, 1, 0.5) -- 暂时取消这些贴边物体的碰撞体和寻路，以减少卡位的可能性
             -- inst:DoTaskInTime(0, MakeObstacle)
         end
 
