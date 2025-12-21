@@ -285,6 +285,10 @@ local function SetWindIntensity(intensity)
     inst.SoundEmitter:SetParameter("WIND", "intensity", intensity)
 end
 
+local function SetWindInterior(intensity)
+    inst.SoundEmitter:SetParameter("WIND", "interior", intensity)
+end
+
 local function StopWindSound()
     inst.SoundEmitter:KillSound("WIND")
 end
@@ -300,7 +304,6 @@ end
 
 StartSanitySound()
 SetSanity(_sanityparam)
-SetWindIntensity(_wind_intensity)
 
 inst:StartUpdatingComponent(self)
 
@@ -474,6 +477,12 @@ function self:OnUpdate(dt)
         if _playing_wind then
             _wind_intensity = math.min(TheWorld.net.components.plateauwind:GetWindSpeed(), 1) -- cap at 1
             SetWindIntensity(_wind_intensity)
+
+            if player:HasTag("inside_interior") then
+                SetWindInterior(0.75)
+            else
+                SetWindInterior(0)
+            end
         end
     else
         _wind_intensity = 0
