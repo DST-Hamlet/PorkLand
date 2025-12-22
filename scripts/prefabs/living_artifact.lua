@@ -9,7 +9,7 @@ local function SavePlayerData(player)
 
     data.build = player.AnimState:GetBuild()
 
-    data.health_redirect = player.components.health.redirect
+    -- data.health_redirect = player.components.health.redirect
 
     -- Wagstaff stuff
     -- data.wasnearsighted = player.components.vision.nearsighted
@@ -29,7 +29,7 @@ local function LoadPlayerData(player, data)
         player.components.skinner:SetSkinMode()
     end
 
-    player.components.health.redirect = data.health_redirect
+    -- player.components.health.redirect = data.health_redirect
 
     -- Wagstaff stuff
     -- player.components.vision.nearsighted = data.wasnearsighted
@@ -88,7 +88,7 @@ local function BecomeIronLord(inst, instant)
     player.components.temperature:SetTemp(TUNING.STARTING_TEMP)
 
     player.components.health:SetPercent(1)
-    player.components.health.redirect = function() return true end
+    player.components.health:SetMaxDamageTakenPerHit(0)
 
     if player.components.oldager then
         player:StopUpdatingComponent(player.components.oldager)
@@ -184,6 +184,7 @@ local function Revert(inst)
         player.components.poisonable:SetBlockAll(nil)
     end
 
+    player.components.health:SetMaxDamageTakenPerHit(nil)
     player.components.hunger:Resume()
     player.components.sanity.ignore = false
 
