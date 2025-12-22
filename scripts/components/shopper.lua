@@ -5,7 +5,7 @@ local Shopper = Class(function(self, inst)
 end)
 
 local function RemoveMoney(inventory, prefab, amount)
-    print("RemoveMoney", prefab, amount)
+    -- print("RemoveMoney", prefab, amount)
     local need_removed_amount = amount
     local items = inventory:GetItemByName(prefab, amount, true)
     for item, v in pairs(items) do

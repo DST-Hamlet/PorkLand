@@ -62,7 +62,7 @@ LightWatcher.GetTimeInLight = function(self, ...)
     if inst:GetIsInInterior() then
         return inst.components.lightwatcherproxy:GetTimeInLight()
     else
-        return _GetTimeInLight(self, val, ...)
+        return _GetTimeInLight(self, ...)
     end
 end
 
@@ -72,6 +72,6 @@ LightWatcher.GetTimeInDark = function(self, ...)
     if inst:GetIsInInterior() then
         return inst.components.lightwatcherproxy:GetTimeInDark()
     else
-        return _GetTimeInDark(self, val, ...)
+        return _GetTimeInDark(self, ...)
     end
 end

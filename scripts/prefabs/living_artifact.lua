@@ -114,10 +114,6 @@ local function BecomeIronLord(inst, instant)
     inst.nightlight = SpawnPrefab("living_artifact_light")
     player:AddChild(inst.nightlight)
 
-    if player:HasTag("lightsource") then
-        player:RemoveTag("lightsource")
-    end
-
     inst:AddTag("notslippery")
     inst:AddTag("cantdrop")
 
@@ -322,18 +318,13 @@ local function lightfn()
 
     inst:AddTag("NOCLICK")
     inst:AddTag("NOBLOCK")
+    inst:AddTag("FX")
 
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
         return inst
     end
-
-    inst:DoTaskInTime(0, function()
-        if inst:HasTag("lightsource") then
-            inst:RemoveTag("lightsource")
-        end
-    end)
 
     return inst
 end
