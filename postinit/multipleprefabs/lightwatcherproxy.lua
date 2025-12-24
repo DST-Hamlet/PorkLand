@@ -5,7 +5,7 @@ local HIGHT_PRECISION_PREFABS =
 {
     "creepyeyes",
     "shadowwatcher",
-    "shadowhand",
+    "shadowhand_arm",
 }
 
 -- 对于特定实体使用低频刷新进行优化
