@@ -468,7 +468,7 @@ function self:OnUpdate(dt)
         _sanityparam = sanityparam
     end
 
-    if TheWorld.net ~= nil and TheWorld.net.components.plateauwind:GetWindSpeed() > 0 then  -- 在世界刚刚初始化的时候，TheWorld.net可能为nil
+    if player ~= nil and TheWorld.net ~= nil and TheWorld.net.components.plateauwind:GetWindSpeed() > 0 then  -- 在世界刚刚初始化的时候，TheWorld.net可能为nil
         if not _playing_wind then
             StartWindSound()
             _playing_wind = true
