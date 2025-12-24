@@ -133,7 +133,7 @@ local function OnLoad(inst, data)
         end
     end
     
-    if not inst.loot_generated then
+    if not inst.loot_generated and inst.components.pickable.canbepicked then
         setloot(inst) -- 由于小石板的战利品表和位置有关, 因此需要在实体初始化之后在决定随机战利品
     end
 end
