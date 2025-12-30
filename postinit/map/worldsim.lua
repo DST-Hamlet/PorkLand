@@ -65,14 +65,74 @@ function WorldSim__index:SetNodeData(node_id, data)
 end
 
 function WorldSim__index:CaculateTopologies(topology_save, map_width)
-    local i = 1
-    local j = 1
     local size = 30
     local node_datas = {}
-    for task_id, task_node in pairs(topology_save.root:GetChildren(false)) do -- 计算node的位置
+    local tasks = topology_save.root:GetChildren(false)
+
+    local start_task
+
+    local current_task_nodes = {}
+
+    local last_node
+
+    for task_id, task_node in pairs(tasks) do -- 先找起点
+        if task_id == "Edge_of_the_unknown" then
+            start_task = task_node
+            tasks[task_id] = nil
+        end
+    end
+
+    for room_id, room_node in pairs(start_task:GetNodes()) do
+        local site_x = 0.5 * map_width
+        local site_y = 0.5 * map_width
+        if last_node ~= nil then
+            local random_angle = 360 * math.random()
+            local offset = math.random(20,30)
+            local has_point = false
+            for i = 0, 360, 30 do
+                local has_place = true
+                local new_site_x = last_node.site_centroid.x + offset * math.cos((random_angle + i) * DEGREES)
+                local new_site_y = last_node.site_centroid.y - offset * math.sin((random_angle + i) * DEGREES)
+                for id, node in pairs(node_datas) do
+                    local dist = (node.site_centroid.x - new_site_x) ^ 2 + (node.site_centroid.y - new_site_y) ^ 2
+                    if dist < 15 * 15 then
+                        has_place = false
+                    end
+                end
+                if has_place then
+                    site_x = new_site_x
+                    site_y = new_site_y
+                    break
+                end
+            end
+        end
+        local centroid_x = site_x
+        local centroid_y = site_y
+
+        local data = {
+            area = size * size,
+            site = { x = site_x, y = site_y } ,
+            site_centroid = { x = centroid_x, y = centroid_y },
+            site_points = { x = {}, y = {}, map = {} },
+            polygon_vertexs = { x = {}, y = {} },
+            children = nil,
+            tile = room_node.data.value or WORLD_TILES.IMPASSABLE,
+            task_id = "Edge_of_the_unknown",
+        }
+        data.polygon_vertexs.x = {site_x + 10, site_x - 10, site_x - 10, site_x + 10}
+        data.polygon_vertexs.y = {site_y + 10, site_y + 10, site_y - 10, site_y - 10}
+
+        node_datas[room_id] = data
+        current_task_nodes[room_id] = data
+
+        last_node = data
+    end
+
+    for task_id, task_node in pairs(tasks) do -- 计算node的位置
         print("generate task: ", task_node.id)
+        current_task_nodes = {}
         for room_id, room_node in pairs(task_node:GetNodes()) do
-            print("generate room: ", room_node.id)
+            -- print("generate room: ", room_node.id)
             local site_x = math.random() * map_width
             local site_y = math.random() * map_width
             local centroid_x = site_x
@@ -86,17 +146,13 @@ function WorldSim__index:CaculateTopologies(topology_save, map_width)
                 polygon_vertexs = { x = {}, y = {} },
                 children = nil,
                 tile = room_node.data.value or WORLD_TILES.IMPASSABLE,
+                task_id = task_id,
             }
-            data.polygon_vertexs.x = {i, i, i + size - 1, i + size - 1}
-            data.polygon_vertexs.y = {j, j + size - 1, j + size - 1, j}
+            data.polygon_vertexs.x = {0, 0, 0, 0}
+            data.polygon_vertexs.y = {0, 0, 0, 0}
 
             node_datas[room_id] = data
-
-            i = i + size
-            if i >= map_width - size then
-                i = 0
-                j = j + size
-            end
+            current_task_nodes[room_id] = data
         end
     end
     for x = 1, map_width do -- 计算node的具体区域
@@ -104,10 +160,12 @@ function WorldSim__index:CaculateTopologies(topology_save, map_width)
             local closet_node_id = nil
             local min_dist_sq = 10000000 * 10000000
             for id, node in pairs(node_datas) do
-                local dist = (node.site_centroid.x - x) ^ 2 + (node.site_centroid.y - y) ^ 2
-                if dist < min_dist_sq then
-                    min_dist_sq = dist
-                    closet_node_id = id
+                if node.task_id == "Edge_of_the_unknown" then
+                    local dist = (node.site_centroid.x - x) ^ 2 + (node.site_centroid.y - y) ^ 2
+                    if dist < min_dist_sq then
+                        min_dist_sq = dist
+                        closet_node_id = id
+                    end
                 end
             end
             if closet_node_id and min_dist_sq < size * size then

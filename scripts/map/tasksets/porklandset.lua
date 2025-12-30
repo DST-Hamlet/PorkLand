@@ -37,43 +37,35 @@ AddTaskSet("porkland", {
     location = "porkland",
 
     tasks = {
-        "Pigtopia",
-        "Pigtopia_capital",
-        "Edge_of_civilization",
-        "Edge_of_the_unknown",
-        "Edge_of_the_unknown_2",
-        "Lilypond_land",
-        "Lilypond_land_2",
-        "Deep_rainforest",
-        "Deep_rainforest_2",
-        "Deep_lost_ruins_gas",
-        "Lost_Ruins_1",
-        "Deep_rainforest_3",
-        "Deep_rainforest_mandrake",
-        "Path_to_the_others",
-        "Other_pigtopia_capital",
-        "Other_pigtopia",
-        "Other_edge_of_civilization",
-        "this_is_how_you_get_ants",
-
-        "Deep_lost_ruins4",
-        "lost_rainforest",
-
-        "Land_Divide_1",
-        "Land_Divide_2",
-        "Land_Divide_3",
-        "Land_Divide_4",
-
-        "painted_sands",
-        "plains",
-        "rainforests",
-        "rainforest_ruins",
-        "plains_ruins",
-        "pincale",
-
-        "Deep_wild_ruins4",
-        "wild_rainforest",
-        "wild_ancient_ruins",
+        "Edge_of_the_unknown",             
+        "Edge_of_civilization",            
+    
+        -- 基础区
+        "painted_sands",                    
+        "plains",                          
+        "rainforests",                     
+        "rainforest_ruins",                
+        "plains_ruins",                    
+    
+        --  过度区，在基础区之后
+        -- "Deep_rainforest",                  
+        -- "Deep_rainforest_2",               
+    -- 
+        -- -- 终端区，在过渡区之后
+        -- "Lost_Ruins_1",                     
+        -- "Deep_lost_ruins_gas",             
+    -- 
+        -- -- 城市区
+        -- "Pigtopia",                         
+        -- "Pigtopia_capital",                
+        -- "Edge_of_the_unknown_2",           
+    -- 
+        -- -- 莲花区，连在基础区后
+        -- "Lilypond_land",                    
+        -- "Lilypond_land_2",                 
+    -- 
+        -- -- 蚁人区，在莲花区、过度区之后，可能在终端区之前
+        -- "this_is_how_you_get_ants",   
     },
 
     numoptionaltasks = 0,

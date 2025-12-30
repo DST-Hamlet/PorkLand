@@ -13,7 +13,11 @@ AddTask("Edge_of_the_unknown", {
     keys_given = KEYS.JUNGLE_DEPTH_1,
     room_tags = {"island_accademy"},
     room_choices = {
-        ["BG_plains_base"] = 2,
+        ["BG_plains_base"] = 1,
+        ["BG_painted_base"] = 1,
+        ["BG_rainforest_base"] = 1,
+        ["plains_pogs"] = 1,
+        ["cultivated_base_1"] = 1,
     },
     room_bg = WORLD_TILES.PLAINS,
     background_room = "BG_plains_base",

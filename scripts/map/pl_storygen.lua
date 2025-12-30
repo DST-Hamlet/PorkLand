@@ -587,7 +587,7 @@ local function BuildPorkLandStory(tasks, story_gen_params, level)
     local min_bg = (level.background_node_range and level.background_node_range[1] or 0) + world_size
     local max_bg = (level.background_node_range and level.background_node_range[2] or 2) + world_size
 
-    story:Pl_AddBGNodes(min_bg, max_bg)
+    -- story:Pl_AddBGNodes(min_bg, max_bg)
     story:Pl_InsertAdditionalSetPieces()
 
     return { root = story.rootNode, startNode = story.startNode, GlobalTags = story.GlobalTags }, story
