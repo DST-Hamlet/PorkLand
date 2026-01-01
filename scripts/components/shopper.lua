@@ -12,6 +12,7 @@ local function RemoveMoney(inventory, prefab, amount)
         if item:IsValid() then -- 可能会在前一组remove的时候触发
             local stacksize = item.components.stackable:StackSize()
             if need_removed_amount > stacksize then
+                need_removed_amount = need_removed_amount - stacksize
                 item:Remove()
             elseif need_removed_amount > 0 then
                 item.components.stackable:Get(need_removed_amount):Remove()
