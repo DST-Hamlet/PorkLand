@@ -13,7 +13,11 @@ AddTask("Edge_of_the_unknown", {
     keys_given = KEYS.JUNGLE_DEPTH_1,
     room_tags = {"island_accademy"},
     room_choices = {
-        ["BG_plains_base"] = 2,
+        ["BG_plains_base"] = 1,
+        ["BG_painted_base"] = 1,
+        ["BG_rainforest_base"] = 1,
+        ["plains_pogs"] = 1,
+        ["cultivated_base_1"] = 1,
     },
     room_bg = WORLD_TILES.PLAINS,
     background_room = "BG_plains_base",
@@ -540,4 +544,15 @@ AddTask("Land_Divide_5", {
     room_bg = WORLD_TILES.DEEPRAINFOREST,
     background_room = "ForceDisconnectedRoom",
     colour = {r = 1, g = 1, b = 1, a = 0.3}
+})
+
+AddTask("porkland_test", {
+    locks = {},
+    keys_given = {},
+    room_choices = {
+        ["Blank"] = 1,
+    },
+    room_bg = GROUND.IMPASSABLE,
+    background_room = "Blank",
+    colour = { r = 0, g = 1, b = 0, a = 1 },
 })
