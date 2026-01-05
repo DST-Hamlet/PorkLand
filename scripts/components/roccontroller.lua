@@ -212,15 +212,17 @@ function RocController:Spawnbodyparts()
     self.leg2 = leg2
 
     self.inst:DoTaskInTime(0.5,function()
-        offset = Vector3(HEADDIST * math.cos( angle ), 0, -HEADDIST * math.sin( angle ))
-        local head = SpawnPrefab("roc_head")
-        head.Transform:SetPosition(pos.x + offset.x,0,pos.z + offset.z)
-        head.Transform:SetRotation(self.inst.Transform:GetRotation())
-        head.sg:GoToState("enter")
-        head.body = self.inst
-        table.insert(self.inst.bodyparts,head)
-        self.head = head
-        head.controller = self
+        if self.inst.bodyparts then
+            offset = Vector3(HEADDIST * math.cos( angle ), 0, -HEADDIST * math.sin( angle ))
+            local head = SpawnPrefab("roc_head")
+            head.Transform:SetPosition(pos.x + offset.x,0,pos.z + offset.z)
+            head.Transform:SetRotation(self.inst.Transform:GetRotation())
+            head.sg:GoToState("enter")
+            head.body = self.inst
+            table.insert(self.inst.bodyparts,head)
+            self.head = head
+            head.controller = self
+        end
     end)
 
     offset = Vector3(TAILDIST * math.cos( angle -PI ), 0, -TAILDIST * math.sin( angle -PI ))
@@ -722,7 +724,9 @@ function RocController:OnLoad(data)
 end
 
 function RocController:LoadPostPass(ents, data)
-    self.inst.bodyparts = {}
+    if data.head or data.tail or data.leg1 or data.leg2 then
+        self.inst.bodyparts = {}
+    end
     if data.currentleg then
         self.currentleg = ents[data.currentleg].entity
     end
