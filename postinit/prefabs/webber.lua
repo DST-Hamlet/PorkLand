@@ -1,16 +1,23 @@
 local AddPrefabPostInit = AddPrefabPostInit
 GLOBAL.setfenv(1, GLOBAL)
 
-local function CLIENT_Webber_HostileTest(inst, target)
-	if target.HostileToPlayerTest ~= nil then
-		return target:HostileToPlayerTest(inst)
+local _CLIENT_Webber_HostileTest = nil
+
+local function CLIENT_Webber_HostileTest(inst, target, ...)
+	if target.HostileToPlayerTest == nil 
+        and (not inst:HasTag("playermonster") and (target:HasTag("pig") or target:HasTag("catcoon")))
+        and not target:HasTag("hostile") then
+
+		return false
 	end
-    return (target:HasTag("hostile") or (inst:HasTag("playermonster") and (target:HasTag("pig") or target:HasTag("catcoon"))))
-        and (not target:HasTag("spiderden"))
-        and (not target:HasTag("spider") or target:HasTag("spiderqueen"))
+    return _CLIENT_Webber_HostileTest(inst, target, ...)
 end
 
 local function client_postinit(inst)
+    if _CLIENT_Webber_HostileTest == nil then
+        _CLIENT_Webber_HostileTest = inst.HostileTest
+    end
+
     inst.HostileTest = CLIENT_Webber_HostileTest
 end
 
