@@ -40,7 +40,28 @@ function Story:GenerateRectangleNodesFromTask(task)
         end
     end
 
-    if task.room_choices then
+    if task.room_choices_sorted then
+        for i, roomdata in ipairs(task.room_choices_sorted) do
+            local room = roomdata[1]
+            local count = roomdata[2]
+            if type(count) == "function" then
+                count = count()
+            end
+            for id = 1, count do
+                local new_room = self:GetRoom(room)
+
+                assert(new_room, "Couldn't find room with name "..room)
+                if new_room.contents == nil then
+                    new_room.contents = {}
+                end
+
+                if new_room.contents.fn then
+                    new_room.contents.fn(new_room)
+                end
+                table.insert(room_choices, new_room)
+            end
+        end
+    elseif task.room_choices then
         for room, count in pairs(task.room_choices) do
             if type(count) == "function" then
                 count = count()
@@ -75,6 +96,7 @@ function Story:GenerateRectangleNodesFromTask(task)
     })
 
     task_node.substitutes = task.substitutes
+    task_node.sorted = task.room_choices_sorted and true or false
 
     for roomID, next_room in ipairs(room_choices) do
         next_room.id = task.id .. ":" .. roomID .. ":" .. next_room.name  -- TODO: add room names for special rooms
@@ -107,6 +129,9 @@ function Story:GenerateRectangleNodesFromTask(task)
             id = next_room.id,
             data = next_room_data
         })
+
+        newNode.sortID = roomID
+        newNode.name = next_room.name
     end
 
     return task_node

@@ -223,6 +223,7 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
     assert(level.overrides ~= nil, "Level must have overrides specified.")
 
     local is_porkland = level.location == "porkland"
+    Graph.is_porkland = is_porkland -- 这是什么原理？
     Node.is_porkland = is_porkland
     if not is_porkland then
         return _Generate(prefab, map_width, map_height, tasks, level, level_type, ...)
@@ -247,7 +248,12 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
 
     modimport("postinit/map/worldsim")
 
-    WorldSim:CaculateTopologies(topology_save, map_width)
+    local success = WorldSim:CaculateTopologies(topology_save, map_width)
+
+    if not success then
+        print("CaculateTopologies failed")
+        return nil
+    end
 
     local entities = {}
     local save = {

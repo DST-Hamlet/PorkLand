@@ -24,6 +24,7 @@ modimport("postinit/map/object_layout")
 
 modimport("postinit/map/task")
 modimport("postinit/map/level")
+modimport("postinit/map/network")
 modimport("postinit/map/node")
 modimport("postinit/map/forest_map")
 
