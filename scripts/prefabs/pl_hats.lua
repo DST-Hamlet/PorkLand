@@ -348,6 +348,7 @@ local function MakeHat(name)
         fns.opentop_onequip(inst, owner)
         inst.monster = owner:HasTag("monster")
         owner:RemoveTag("monster")
+        owner:RemoveTag("playermonster")
     end
 
     local function disguise_unequip(inst, owner)
@@ -355,6 +356,7 @@ local function MakeHat(name)
         if inst.monster then
             inst.monster = nil
             owner:AddTag("monster")
+            owner:AddTag("playermonster")
         end
     end
 

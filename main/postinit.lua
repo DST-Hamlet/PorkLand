@@ -162,6 +162,7 @@ local prefab_posts = {
     "walls",
     "waterballoon",
     "waterprojectiles",
+    "webber",
     "woodie",
     "world_network",
     "world",

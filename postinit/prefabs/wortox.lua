@@ -39,6 +39,18 @@ local function OnSetOwner(inst)
     end
 end
 
+local function CLIENT_Wortox_HostileTest(inst, target)
+	if target.HostileToPlayerTest ~= nil then
+		return target:HostileToPlayerTest(inst)
+	end
+    return (target:HasTag("hostile")
+        or (inst:HasTag("playermonster") and (target:HasTag("pig") or target:HasTag("catcoon"))))
+        and (not target:HasTag("spiderden"))
+        and (not target:HasTag("spider") or target:HasTag("spiderqueen"))
+end
+
 AddPrefabPostInit("wortox", function(inst)
     inst:ListenForEvent("setowner", OnSetOwner)
+
+    inst.HostileTest = CLIENT_Wortox_HostileTest
 end)
