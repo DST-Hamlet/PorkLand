@@ -52,6 +52,7 @@ ISLAND_TAGS = {
     "island_pugalisk",
     "island_BFB",
     "island_ancient",
+    "island_default",
 }
 
 NUTRIENT_TILES = {
