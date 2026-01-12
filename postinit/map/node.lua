@@ -136,3 +136,7 @@ function Node:ConvertGround(...)
 
     obj_layout.Convert = _Convert
 end
+
+function Node:HasRoomTag(tagname)
+    return self.data.tags and table.contains(self.data.tags, tagname) or nil
+end

@@ -44,6 +44,10 @@ if WorldSim__index.hooked then
 end
 WorldSim__index.hooked = true
 
+local function CreateNodeData()
+
+end
+
 ---@param node_id string,
 ---@param data NodeData
 function WorldSim__index:SetNodeData(node_id, data)
@@ -68,46 +72,276 @@ end
 local NODE_MIN_SIZZE = 12
 local NODE_MAX_SIZZE = 18
 
-local function DefaultFindNodePos(node_datas, last_node, map_width, current_task_id) -- 倾向于全局收敛的节点寻找函数
+local function FindNodePos_Default(island_node_datas, last_node, map_width, current_task_id) -- 倾向于局部收敛的节点寻找函数
     local site_x
     local site_y
     if last_node == nil then
-        site_x = 0.5 * map_width
-        site_y = 0.5 * map_width
-        return site_x, site_y
-    end
-
-    local max_neighbor_num = -100
-    for i = 1, 32 do
-        local has_place = true
-        local neighbor_num = 0
-
-        local random_angle = 360 * math.random()
-        local radius = math.random(NODE_MIN_SIZZE, NODE_MAX_SIZZE)
-        local new_site_x = last_node.site_centroid.x + radius * math.cos((random_angle) * DEGREES)
-        local new_site_y = last_node.site_centroid.y - radius * math.sin((random_angle) * DEGREES)
-        for id, node in pairs(node_datas) do
-            local dist = (node.site_centroid.x - new_site_x) ^ 2 + (node.site_centroid.y - new_site_y) ^ 2
-            if dist < NODE_MIN_SIZZE * NODE_MIN_SIZZE then
-                has_place = false
+        if next(island_node_datas) then -- 地形的初始节点寻找, 其更倾向于全局收敛
+            local max_neighbor_num = -100
+            local radius = math.random(NODE_MIN_SIZZE, NODE_MAX_SIZZE)
+            for i = 1, 128 do
+                local rand_node = GetRandomItem(island_node_datas)
+                local has_place = true
+                local neighbor_num = 0
+        
+                local random_angle = 360 * math.random()
+                local new_site_x = rand_node.site_centroid.x + radius * math.cos((random_angle) * DEGREES)
+                local new_site_y = rand_node.site_centroid.y - radius * math.sin((random_angle) * DEGREES)
+                for id, node in pairs(island_node_datas) do
+                    local dist = (node.site_centroid.x - new_site_x) ^ 2 + (node.site_centroid.y - new_site_y) ^ 2
+                    if dist < NODE_MIN_SIZZE * NODE_MIN_SIZZE then
+                        has_place = false
+                    end
+                    if dist < NODE_MAX_SIZZE * NODE_MAX_SIZZE then
+                        neighbor_num = neighbor_num + 1
+                    else
+                        neighbor_num = neighbor_num + NODE_MAX_SIZZE / math.sqrt(dist)
+                    end
+                end
+                if has_place and neighbor_num > max_neighbor_num then
+                    max_neighbor_num = neighbor_num
+                    site_x = new_site_x
+                    site_y = new_site_y
+                end
             end
-            if dist < NODE_MAX_SIZZE * NODE_MAX_SIZZE then
-                neighbor_num = neighbor_num + 1
-            else
-                neighbor_num = neighbor_num + NODE_MAX_SIZZE / math.sqrt(dist)
-            end
+        else
+            site_x = 0.5 * map_width
+            site_y = 0.5 * map_width
+            return site_x, site_y
         end
-        if has_place and neighbor_num > max_neighbor_num then
-            max_neighbor_num = neighbor_num
-            site_x = new_site_x
-            site_y = new_site_y
+    else
+        local max_neighbor_num = -100
+        local radius = math.random(NODE_MIN_SIZZE, NODE_MAX_SIZZE)
+        for i = 1, 32 do
+            local has_place = true
+            local neighbor_num = 0
+
+            local random_angle = 360 * math.random()
+            local new_site_x = last_node.site_centroid.x + radius * math.cos((random_angle) * DEGREES)
+            local new_site_y = last_node.site_centroid.y - radius * math.sin((random_angle) * DEGREES)
+            for id, node in pairs(island_node_datas) do
+                local dist = (node.site_centroid.x - new_site_x) ^ 2 + (node.site_centroid.y - new_site_y) ^ 2
+                if dist < NODE_MIN_SIZZE * NODE_MIN_SIZZE then
+                    has_place = false
+                end
+                if current_task_id ~= nil and current_task_id == node.task_id then
+
+                    if dist < NODE_MAX_SIZZE * NODE_MAX_SIZZE then
+                        neighbor_num = neighbor_num + 1
+                    else
+                        neighbor_num = neighbor_num + NODE_MAX_SIZZE / math.sqrt(dist)
+                    end
+                end
+            end
+            if has_place and neighbor_num > max_neighbor_num then
+                max_neighbor_num = neighbor_num
+                site_x = new_site_x
+                site_y = new_site_y
+            end
         end
     end
 
     return site_x, site_y
 end
 
-ISLAND_TAGS = {
+local function FindNodePos_Bridge(island_node_datas, last_node, map_width, current_task_id) -- 过渡地形的节点寻找函数
+    local site_x
+    local site_y
+    if last_node == nil then
+        if next(island_node_datas) then -- 地形的初始节点寻找, 其更倾向于全局收敛
+            local max_neighbor_num = -100
+            local radius = math.random(NODE_MIN_SIZZE, NODE_MAX_SIZZE)
+            for i = 1, 128 do
+                local rand_node = GetRandomItem(island_node_datas)
+                local has_place = true
+                local neighbor_num = 0
+        
+                local random_angle = 360 * math.random()
+                local new_site_x = rand_node.site_centroid.x + radius * math.cos((random_angle) * DEGREES)
+                local new_site_y = rand_node.site_centroid.y - radius * math.sin((random_angle) * DEGREES)
+                for id, node in pairs(island_node_datas) do
+                    local dist = (node.site_centroid.x - new_site_x) ^ 2 + (node.site_centroid.y - new_site_y) ^ 2
+                    if dist < NODE_MIN_SIZZE * NODE_MIN_SIZZE then
+                        has_place = false
+                    end
+                    if dist < NODE_MAX_SIZZE * NODE_MAX_SIZZE then
+                        neighbor_num = neighbor_num + 1
+                    else
+                        neighbor_num = neighbor_num + NODE_MAX_SIZZE / math.sqrt(dist)
+                    end
+                end
+                if has_place and neighbor_num > max_neighbor_num then
+                    max_neighbor_num = neighbor_num
+                    site_x = new_site_x
+                    site_y = new_site_y
+                end
+            end
+        else
+            site_x = 0.5 * map_width
+            site_y = 0.5 * map_width
+            return site_x, site_y
+        end
+    else
+        local max_neighbor_num = -100
+        for i = 1, 32 do
+            local has_place = true
+            local neighbor_num = 0
+
+            local random_angle = 360 * math.random()
+            local radius = math.random(NODE_MIN_SIZZE, NODE_MAX_SIZZE)
+            local new_site_x = last_node.site_centroid.x + radius * math.cos((random_angle) * DEGREES)
+            local new_site_y = last_node.site_centroid.y - radius * math.sin((random_angle) * DEGREES)
+            for id, node in pairs(island_node_datas) do
+                local dist = (node.site_centroid.x - new_site_x) ^ 2 + (node.site_centroid.y - new_site_y) ^ 2
+                if dist < NODE_MIN_SIZZE * NODE_MIN_SIZZE then
+                    has_place = false
+                end
+                if dist < NODE_MAX_SIZZE * NODE_MAX_SIZZE then
+                    neighbor_num = neighbor_num - 1
+                else
+                    neighbor_num = neighbor_num - NODE_MAX_SIZZE / math.sqrt(dist)
+                end
+            end
+            if has_place and neighbor_num > max_neighbor_num then
+                max_neighbor_num = neighbor_num
+                site_x = new_site_x
+                site_y = new_site_y
+            end
+        end
+    end
+
+    return site_x, site_y
+end
+
+local function GenerateIsland_Default(node_datas, island_tasks, map_width) -- 默认的岛屿内部task生成规则
+
+    local island_node_datas = {}
+
+    for _, task_node in pairs(island_tasks) do -- 先别管task的连接顺序
+        local task_id = task_node.id
+        local last_node = nil
+        local rooms = {}
+
+        if task_node.sorted then -- task内部的room进行排序
+            for room_id, room_node in pairs(task_node:GetNodes()) do
+                rooms[room_node.sortID] = room_node
+            end
+        else
+            rooms = task_node:GetNodes()
+        end
+    
+        for room_index, room_node in pairs(rooms) do
+            local room_id = room_node.id
+            local site_x, site_y = FindNodePos_Default(island_node_datas, last_node, map_width, task_id)
+    
+            if site_x == nil then
+                return false
+            end
+    
+            local data = {
+                area = NODE_MAX_SIZZE * NODE_MAX_SIZZE,
+                site = { x = site_x, y = site_y } ,
+                site_centroid = { x = site_x, y = site_y },
+                site_points = { x = {}, y = {}, map = {} },
+                polygon_vertexs = { x = {}, y = {} },
+                children = nil,
+                tile = room_node.data.value or WORLD_TILES.IMPASSABLE,
+                task_id = task_id,
+                tags = room_node.data.tags or {},
+            }
+            data.polygon_vertexs.x = {site_x + 10, site_x - 10, site_x - 10, site_x + 10}
+            data.polygon_vertexs.y = {site_y + 10, site_y + 10, site_y - 10, site_y - 10}
+    
+            node_datas[room_id] = data
+            island_node_datas[room_id] = data
+    
+            last_node = data
+        end
+    end
+end
+
+local function GenerateIsland_Accademy(node_datas, island_tasks, map_width) -- 默认的岛屿内部task生成规则
+
+    local island_node_datas = {}
+
+    local task_proprity = 
+    {
+        {"Edge_of_the_unknown"},
+
+        {"Edge_of_civilization"},
+
+        {        
+            "painted_sands",                    
+            "plains",                          
+            "rainforests",                     
+            "rainforest_ruins",                
+            "plains_ruins",   
+        }
+    }
+
+    local island_tasks_sorted = {}
+    for i, v in ipairs(task_proprity) do
+        shuffleArray(v) -- 同一优先级的task打乱顺序生成
+        for _, taskname in pairs(v) do
+            for _, task_node in pairs(island_tasks) do
+                if task_node.id == taskname then
+                    table.insert(island_tasks_sorted, task_node)
+                    break
+                end
+            end
+        end
+    end
+
+    for _, task_node in pairs(island_tasks_sorted) do
+        local task_id = task_node.id
+        local last_node = nil
+        print("Generate Task", task_id)
+        local findnodefn = FindNodePos_Default
+        if task_id == "Edge_of_civilization" then
+            findnodefn = FindNodePos_Bridge
+        end
+        local rooms = {}
+
+        if task_node.sorted then -- task内部的room进行排序
+            for room_id, room_node in pairs(task_node:GetNodes()) do
+                rooms[room_node.sortID] = room_node
+            end
+        else
+            rooms = task_node:GetNodes()
+        end
+    
+        for room_index, room_node in pairs(rooms) do
+            local room_id = room_node.id
+            local site_x, site_y = findnodefn(island_node_datas, last_node, map_width, task_id)
+    
+            if site_x == nil then
+                return false
+            end
+    
+            local data = {
+                area = NODE_MAX_SIZZE * NODE_MAX_SIZZE,
+                site = { x = site_x, y = site_y } ,
+                site_centroid = { x = site_x, y = site_y },
+                site_points = { x = {}, y = {}, map = {} },
+                polygon_vertexs = { x = {}, y = {} },
+                children = nil,
+                tile = room_node.data.value or WORLD_TILES.IMPASSABLE,
+                task_id = task_id,
+                tags = room_node.data.tags,
+            }
+            data.polygon_vertexs.x = {site_x + 10, site_x - 10, site_x - 10, site_x + 10}
+            data.polygon_vertexs.y = {site_y + 10, site_y + 10, site_y - 10, site_y - 10}
+    
+            node_datas[room_id] = data
+            island_node_datas[room_id] = data
+    
+            last_node = data
+        end
+    end
+end
+
+-- 这是一个来自constans的常量
+local ISLAND_TAGS = {
     "island_accademy",
     "island_royal",
     "island_pugalisk",
@@ -116,13 +350,22 @@ ISLAND_TAGS = {
     "island_default",
 }
 
+local island_generatefns = 
+{
+    ["island_accademy"] = GenerateIsland_Accademy,
+}
+
+function WorldSim__index:AddIslandGenerateFn(island_name, fn)
+    island_generatefns[island_name] = fn
+end
+
 function WorldSim__index:CaculateTopologies(topology_save, map_width)
     local node_datas = {}
     local tasks = deepcopy(topology_save.root:GetChildren(false))
 
     local island_groups = {}
 
-    for task_id, task_node in pairs(tasks) do
+    for task_id, task_node in pairs(tasks) do -- 将task存入不同的岛屿表
         local island = "island_default"
         for _, v in pairs(ISLAND_TAGS) do
             if task_node:HasRoomTag(v) then
@@ -136,50 +379,10 @@ function WorldSim__index:CaculateTopologies(topology_save, map_width)
 
     for i, v in ipairs(ISLAND_TAGS) do
         if island_groups[v] then
-            local island_node_datas = {}
-            local last_node = nil
-
-            print("Generate Island", v)
-    
-            for _, task_node in pairs(island_groups[v]) do -- 先别管task的连接顺序
-            local task_id = task_node.id
-                print("Generate Task", task_id)
-                local rooms = {}
-
-                if task_node.sorted then -- task内部的room进行排序
-                    for room_id, room_node in pairs(task_node:GetNodes()) do
-                        rooms[room_node.sortID] = room_node
-                    end
-                else
-                    rooms = task_node:GetNodes()
-                end
-            
-                for room_index, room_node in pairs(rooms) do
-                    local room_id = room_node.id
-                    local site_x, site_y = DefaultFindNodePos(island_node_datas, last_node, map_width)
-            
-                    if site_x == nil then
-                        return false
-                    end
-            
-                    local data = {
-                        area = NODE_MAX_SIZZE * NODE_MAX_SIZZE,
-                        site = { x = site_x, y = site_y } ,
-                        site_centroid = { x = site_x, y = site_y },
-                        site_points = { x = {}, y = {}, map = {} },
-                        polygon_vertexs = { x = {}, y = {} },
-                        children = nil,
-                        tile = room_node.data.value or WORLD_TILES.IMPASSABLE,
-                        task_id = task_id,
-                    }
-                    data.polygon_vertexs.x = {site_x + 10, site_x - 10, site_x - 10, site_x + 10}
-                    data.polygon_vertexs.y = {site_y + 10, site_y + 10, site_y - 10, site_y - 10}
-            
-                    node_datas[room_id] = data
-                    island_node_datas[room_id] = data
-            
-                    last_node = data
-                end
+            if island_generatefns[v] then
+                island_generatefns[v](node_datas, island_groups[v], map_width)
+            else
+                GenerateIsland_Default(node_datas, island_groups[v], map_width)
             end
         end
     end
@@ -280,7 +483,7 @@ function WorldSim__index:GetPointsForSite(node_id, ignore_reserved)
         end
         return posints_x, posints_y, tiles
     end
-    return _GetPointsForSite(self, node_id, ignore_reserved)
+    return _GetPointsForSite(self, node_id, ignore_reserved) -- 或许返回的结果需要是随机顺序的, 否则和countprefabs不兼容
 end
 
 local _GetSitePolygon = WorldSim__index.GetSitePolygon

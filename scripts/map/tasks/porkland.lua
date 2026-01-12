@@ -16,8 +16,8 @@ AddTask("Edge_of_the_unknown", {
         ["BG_plains_base"] = 2,
     },
     room_choices_sorted = {
+        {"rainforest_START", 1},
         {"BG_plains_base", 1},
-        {"BG_rainforest_base", 1},
         {"BG_plains_base", 1},
     },
     room_bg = WORLD_TILES.PLAINS,
@@ -96,8 +96,20 @@ AddTask("Edge_of_civilization", {
     keys_given = KEYS.CIVILIZATION_1,
     room_tags = {"island_accademy", "City1"},
     room_choices = {
-        ["cultivated_base_1"] = math.random(3, 5),
+        ["cultivated_base_1"] = math.random(1, 2),
         ["piko_land"] = math.random(2, 3),
+    },
+    room_bg = WORLD_TILES.FIELDS,
+    background_room = "cultivated_base_1",
+    colour = {r = 1, g = 1, b = 1, a = 0.3}
+})
+
+AddTask("Edge_of_civilization2", {
+    locks = LOCKS.JUNGLE_DEPTH_1,
+    keys_given = KEYS.CIVILIZATION_1,
+    room_tags = {"island_accademy", "City1"},
+    room_choices = {
+        ["cultivated_base_1"] = math.random(2, 3),
     },
     room_bg = WORLD_TILES.FIELDS,
     background_room = "cultivated_base_1",
