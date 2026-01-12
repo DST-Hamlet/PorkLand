@@ -97,6 +97,7 @@ function Story:GenerateRectangleNodesFromTask(task)
 
     task_node.substitutes = task.substitutes
     task_node.sorted = task.room_choices_sorted and true or false
+    task_node.generate_mode = task.generate_mode
 
     for roomID, next_room in ipairs(room_choices) do
         next_room.id = task.id .. ":" .. roomID .. ":" .. next_room.name  -- TODO: add room names for special rooms

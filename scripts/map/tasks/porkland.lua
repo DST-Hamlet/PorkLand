@@ -96,21 +96,23 @@ AddTask("Edge_of_civilization", {
     keys_given = KEYS.CIVILIZATION_1,
     room_tags = {"island_accademy", "City1"},
     room_choices = {
-        ["cultivated_base_1"] = math.random(1, 2),
-        ["piko_land"] = math.random(2, 3),
+        ["cultivated_base_1"] = 2,
+        ["piko_land"] = 3,
     },
+    generate_mode = "road",
     room_bg = WORLD_TILES.FIELDS,
     background_room = "cultivated_base_1",
     colour = {r = 1, g = 1, b = 1, a = 0.3}
 })
 
-AddTask("Edge_of_civilization2", {
+AddTask("Edge_of_civilization_2", {
     locks = LOCKS.JUNGLE_DEPTH_1,
     keys_given = KEYS.CIVILIZATION_1,
     room_tags = {"island_accademy", "City1"},
     room_choices = {
-        ["cultivated_base_1"] = math.random(2, 3),
+        ["cultivated_base_1"] = math.random(3, 5),
     },
+    generate_mode = "road",
     room_bg = WORLD_TILES.FIELDS,
     background_room = "cultivated_base_1",
     colour = {r = 1, g = 1, b = 1, a = 0.3}

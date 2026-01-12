@@ -39,6 +39,7 @@ AddTaskSet("porkland", {
     tasks = {
         "Edge_of_the_unknown",             
         "Edge_of_civilization",            
+        -- "Edge_of_civilization_2", 
     
         -- 基础区
         "painted_sands",                    
