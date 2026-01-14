@@ -67,8 +67,13 @@ local function BecomeIronLord(inst, instant)
     player.components.inventory:Hide()
 
     player:DoTaskInTime(0, function() -- wait for player_classified to be constructed
-        player.player_classified.instantironlord:set(true)
+        if instant then
+            player.player_classified.instantironlord:set(true)
+        else
+            player.player_classified.instantironlord:set(false)
+        end
         player.player_classified.isironlord:set(true)
+        player.player_classified.ironlordtimeleft:set(inst.components.livingartifact.time_left)
     end)
 
     player.components.combat.overridecalcdamagefn = function()
@@ -111,6 +116,8 @@ local function BecomeIronLord(inst, instant)
     -- player.components.vision.nearsighted = false
     -- player.components.vision:CheckForGlasses()
 
+    inst.Physics:SetActive(false)
+
     inst.nightlight = SpawnPrefab("living_artifact_light")
     player:AddChild(inst.nightlight)
 
@@ -137,7 +144,6 @@ local function BecomeIronLord(inst, instant)
         end)
     else
         BecomeIronLord_post(inst)
-        inst:StartUpdatingComponent(inst.components.livingartifact)
         inst.player.components.inventory.ignoresound = true -- hacky
         inst.player.components.inventory:GiveItem(inst)
         inst.player.components.inventory.ignoresound = false
@@ -196,6 +202,7 @@ local function Revert(inst)
     player:DoTaskInTime(0, function() player.sg:GoToState("bucked_post") end)
 
     player.components.inventory:RemoveItem(inst)
+
     inst:Remove()
 end
 
@@ -207,19 +214,20 @@ local function OnActivate(inst, player, instant)
         end
 
         inst:AddTag("enabled")
+        inst.components.inventoryitem.canbepickedup = false
         inst:ListenForEvent("revert", function() Revert(inst) end, inst.player)
         BecomeIronLord(inst, true)
-        inst.player.components.inventory:GiveItem(inst)
         return
     end
 
     if player.components.inventory:FindItem(function(item) if inst == item then return true end end) then
         player.components.inventory:RemoveItem(inst)
         local x, y, z = player.Transform:GetWorldPosition()
-        inst.Transform:SetPosition(x, y, z)
+        inst.Physics:Teleport(x, y, z)
     end
 
     inst:AddTag("enabled")
+    inst.components.inventoryitem.canbepickedup = false
     inst.player = player
 
     inst.AnimState:PlayAnimation("activate")
@@ -253,9 +261,10 @@ end
 
 local function OnLoad(inst, data)
     if data and data.enabled then
+        inst:AddTag("enabled")
         inst:Hide()
         inst.player_data = data.player_data
-        inst:DoTaskInTime(0, function()
+        inst:DoTaskInTime(0, function() -- 在RestoreSnapshotUserSession阶段，这部分代码不一定会被执行。且由于各种执行顺序的原因，不能用DoStaticTaskInTime代替
             inst.components.livingartifact:Activate(nil, true)
         end)
     end

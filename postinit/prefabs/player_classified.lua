@@ -154,6 +154,8 @@ local function OnPlayerRemoved(inst)
 end
 
 local function OnIronlordDirty(inst)
+    OverrideAction(inst)
+
     local player = inst._parent
     -- if not player or not player:IsValid() then
     --     return
@@ -161,9 +163,11 @@ local function OnIronlordDirty(inst)
 
     if inst.isironlord:value() then
         TheWorld:PushEvent("enabledynamicmusic", false)
-        if inst.instantironlord then -- in case of loading
+        if inst.instantironlord:value() then -- in case of loading
+            push_ironlord_music()
+        else
             inst:DoTaskInTime(151 * FRAMES, function()
-                if inst.instantironlord then -- 你永远不会知道自己在151帧后是否还是ironlord
+                if inst.isironlord:value() then -- 你永远不会知道自己在151帧后是否还是ironlord
                     push_ironlord_music()
                 end
             end)
@@ -221,6 +225,7 @@ local function RegisterNetListeners(inst)
         inst:ListenForEvent("start_city_alarm", function() inst.cityalarmevent:push() end, inst._parent)
         inst:ListenForEvent("sanity_stun", function() inst.sanitystunevent:push() end, inst._parent)
         inst:ListenForEvent("worktargetdirty", inst.ClearLastTarget)
+        inst:ListenForEvent("ironlorddirty", OverrideAction)
     else
         inst.poisonpulse:set_local(false)
         inst.isquaking:set_local(false)
@@ -234,15 +239,11 @@ local function RegisterNetListeners(inst)
     end
 
     if not TheNet:IsDedicated() and inst._parent == ThePlayer then
-        inst.isironlord:set_local(false)
+        OnIronlordDirty(inst)
         inst:ListenForEvent("ironlorddirty", OnIronlordDirty)
-        inst.ironlordtimeleft:set_local(0)
         inst:ListenForEvent("ironlordtimedirty", OnIronlordTimeDirty)
-        inst.instantironlord:set_local(false)
         inst:ListenForEvent("onremove", OnPlayerRemoved)
     end
-
-    inst:ListenForEvent("ironlorddirty", OverrideAction)
 end
 
 AddPrefabPostInit("player_classified", function(inst)
@@ -264,7 +265,11 @@ AddPrefabPostInit("player_classified", function(inst)
     inst.riderspeedmultiplier:set(1)
     inst.isquaking:set(false)
 
+    inst.isironlord:set(false)
+    inst.ironlordtimeleft:set(180)
+    inst.instantironlord:set(false)
+
     inst.ClearLastTarget = ClearLastTarget
 
-    inst:DoTaskInTime(0, RegisterNetListeners)
+    inst:DoStaticTaskInTime(0, RegisterNetListeners)
 end)

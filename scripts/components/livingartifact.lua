@@ -58,6 +58,10 @@ function LivingArtifact:Activate(doer, instant)
 end
 
 function LivingArtifact:OnUpdate(dt)
+    local player = self.inst.player
+    if player and player.sg.currentstate.name == "ironlord_morph" then
+        return
+    end
     self:DoDelta(-dt)
 end
 

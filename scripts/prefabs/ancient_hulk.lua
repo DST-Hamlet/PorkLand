@@ -542,7 +542,7 @@ local function orb_small_fn()
     inst.components.throwable:SetOnHitFn(OnCollidesmall)
     inst.components.throwable.yOffset = 1.5
     inst.components.throwable.xOffset = 1.5
-    inst.components.throwable.speed = 60
+    inst.components.throwable.speed = 60 -- 速度过快，导致可能会穿过目标物体
 
     inst:DoTaskInTime(2, inst.Remove)
 
