@@ -225,6 +225,7 @@ local widget_posts = {
     "widget",
 }
 
+-- 这些文件会在mod加载后加载，因此需要特殊处理
 local module_posts = {
     ["components/map"] = "map",
     ["shadeeffects"] = "shadeeffects",
