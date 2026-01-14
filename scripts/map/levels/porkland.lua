@@ -37,3 +37,20 @@ AddLevel(LEVELTYPE.SURVIVAL, {
 
     background_node_range = {0, 1},
 })
+
+AddLevel(LEVELTYPE.SURVIVAL, {
+    id = "PORKLAND_TEST",
+    name = "PORKLAND_TEST",
+    desc = "PORKLAND_TEST",
+    version = 2,
+    location = "porkland",
+    overrides = {
+        world_size = "small",
+        start_location = "PorkLandStart",
+        task_set = "porkland_test",
+        pl_clocktype = "plateau",
+        keep_disconnected_tiles = true,
+    },
+
+    background_node_range = {0, 1},
+})

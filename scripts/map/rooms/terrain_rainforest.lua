@@ -1,4 +1,32 @@
 
+AddRoom("rainforest_START", {
+    colour = {r = 1.0, g = 1.0, b = 1.0, a = 0.3},
+    value = WORLD_TILES.RAINFOREST,
+    tags = {"ExitPiece"},
+    contents = {
+        distributepercent = .38,  -- .5
+        distributeprefabs = {
+            rainforesttree = 0.6,  -- 1.4,
+            grass_tall = .5,
+            sapling = .6,
+            flower_rainforest = 0.15,
+            -- flower = 0.05,
+            dungpile = 0.03,
+            fireflies = 0.05,
+            peagawk = 0.01,
+            -- randomrelic = 0.008,
+            -- randomruin = 0.005,
+            randomdust = 0.005,
+            rock_flippable = 0.08,
+            radish_planted = 0.05,
+            asparagus_planted = 0.05,
+        },
+        countprefabs = {
+            vampirebatcave_potential = 1,
+        },
+    }
+})
+
 AddRoom("BG_rainforest_base", {
     colour = {r = 1.0, g = 1.0, b = 1.0, a = 0.3},
     value = WORLD_TILES.RAINFOREST,

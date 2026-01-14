@@ -3,6 +3,42 @@ local function SetTaskRegion(task_name, region)
     task_region_mapping[task_name] = region
 end
 
+local Island_Accademy =
+{
+    -- 起点区
+    "START",                            
+    "Edge_of_the_unknown",             
+    "Edge_of_civilization",            
+
+    -- 基础区
+    "painted_sands",                    
+    "plains",                          
+    "rainforests",                     
+    "rainforest_ruins",                
+    "plains_ruins",                    
+
+    -- 过度区，在基础区之后
+    "Deep_rainforest",                  
+    "Deep_rainforest_2",               
+
+    -- 终端区，在过渡区之后
+    "Lost_Ruins_1",                     
+    "Deep_lost_ruins_gas",             
+
+    -- 城市区
+    "Pigtopia",                         
+    "Pigtopia_capital",                
+    "Edge_of_the_unknown_2",           
+
+    -- 莲花区，连在基础区后
+    "Lilypond_land",                    
+    "Lilypond_land_2",                 
+
+    -- 蚁人区，在莲花区、过度区之后，可能在终端区之前
+    "this_is_how_you_get_ants",         
+}
+
+
 SetTaskRegion("START",                           "A")
 SetTaskRegion("Edge_of_the_unknown",             "A")
 SetTaskRegion("painted_sands",                   "A")
