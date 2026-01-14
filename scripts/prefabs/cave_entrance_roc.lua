@@ -146,8 +146,7 @@ local function Open(inst)
     inst:RemoveComponent("workable")
     inst:RemoveComponent("lootdropper")
 
-    inst.open = true
-    inst.name = STRINGS.NAMES.CAVE_ENTRANCE_OPEN
+    inst._open:set(true)
 
     inst.MiniMapEntity:SetIcon("cave_open.png")
 
@@ -211,16 +210,22 @@ local function Close(inst)
     inst:AddComponent("lootdropper")
     inst.components.lootdropper:SetLoot({"rocks", "rocks", "flint", "flint", "flint"})
 
-    inst.name = STRINGS.NAMES.CAVE_ENTRANCE
-
-    inst.open = false
+    inst._open:set(false)
 
    inst.components.door:SetDoorDisabled(true, "plug")
 end
 
 local function GetStatus(inst)
-    if inst.open then
+    if inst._open:value() then
         return "OPEN"
+    end
+end
+
+local function OnOpenDirty(inst)
+    if inst._open:value() then
+        inst:SetPrefabNameOverride("cave_entrance_open")    
+    else
+        inst:SetPrefabNameOverride("cave_entrance")
     end
 end
 
@@ -363,7 +368,7 @@ local function InitMaze(inst)
 end
 
 local function OnSave(inst, data)
-    data.open = inst.open
+    data.open = inst._open:value()
     data.interiorID = inst.interiorID
 end
 
@@ -387,6 +392,11 @@ local function fn()
     inst.entity:AddNetwork()
 
     MakeObstaclePhysics(inst, 1)
+
+    inst:SetPrefabNameOverride("cave_entrance")
+    inst._open = net_bool(inst.GUID, "_open", "opendirty")
+    inst._open:set(false)
+    inst:ListenForEvent("opendirty", OnOpenDirty)
 
     inst.AnimState:SetBank("cave_entrance")
     inst.AnimState:SetBuild("cave_entrance")
