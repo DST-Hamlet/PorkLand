@@ -73,6 +73,9 @@ local function UpdateGrowthStatus(inst)
             inst.components.pickable:MakeBarren()
             inst.components.pickable:Pause()
         end
+    elseif inst.components.pickable:IsBarren() then
+        inst.components.pickable:MakeEmpty()
+        inst.components.pickable.cycles_left = nil
     end
 end
 
@@ -81,6 +84,7 @@ local function OnTransplanted(inst)
         inst.components.pickable:MakeBarren()
     else
         inst.components.pickable:MakeEmpty()
+        inst.components.pickable.cycles_left = nil
     end
     inst.components.pickable:Pause()
     UpdateGrowthStatus(inst)
@@ -135,14 +139,6 @@ local function OnTerraform(inst, data)
     end
 
     OnTransplanted(inst)
-end
-
-local function OnEntityWake(inst)
-    inst:ListenForEvent("onterraform", inst.OnTerraform, TheWorld)
-end
-
-local function OnEntitySleep(inst)
-    inst:RemoveEventCallback("onterraform", inst.OnTerraform, TheWorld)
 end
 
 local function fn()
@@ -204,8 +200,7 @@ local function fn()
     inst.OnTerraform = function(src, data)
         OnTerraform(inst, data)
     end
-    inst.OnEntityWake = OnEntityWake
-    inst.OnEntitySleep = OnEntitySleep
+    inst:ListenForEvent("onterraform", inst.OnTerraform, TheWorld)
 
     inst.wet = false
     inst:DoPeriodicTask(1, UpdateMoisture)

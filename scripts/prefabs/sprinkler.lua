@@ -125,7 +125,6 @@ local function UpdateSpray(inst)
 
         if not v.components.moistureoverride and use_override then
             v:AddComponent("moistureoverride")
-            v:StartUpdatingComponent(v.components.moistureoverride)
         end
         if v.components.moistureoverride and use_override then
             v.components.moistureoverride:SetAddMoisture(inst, TUNING.MOISTURE_SPRINKLER_PERCENT_INCREASE_PER_SPRAY / UPDATE_TIME) -- +2.5 per sec

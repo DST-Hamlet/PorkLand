@@ -14,7 +14,6 @@ local function OnSpreadProtection(inst, x, y, z)
 
         if not v.components.moistureoverride and not v.components.moisture and not v.components.inventoryitemmoisture then
             v:AddComponent("moistureoverride")
-            v:StartUpdatingComponent(v.components.moistureoverride)
         end
 
         if v.components.moistureoverride then

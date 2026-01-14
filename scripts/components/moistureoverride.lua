@@ -4,6 +4,10 @@ local WETNESS_SOURCE_WEATHER = "plateauweather"
 local DRY_THRESHOLD = TUNING.MOISTURE_DRY_THRESHOLD
 local WET_THRESHOLD = TUNING.MOISTURE_WET_THRESHOLD
 
+local function OnUpdate(inst, self)
+    self:DoUpdate()
+end
+
 local MoistureOverride = Class(function(self, inst)
     self.inst = inst
 
@@ -11,6 +15,9 @@ local MoistureOverride = Class(function(self, inst)
 
     self.rate_add = SourceModifierList(self.inst, 0, SourceModifierList.additive)
     self.rate_mult = SourceModifierList(self.inst, 1)
+
+    self.last_update_time = GetTime()
+    self.task = self.inst:DoPeriodicTask(1, OnUpdate, math.random() * 1, self)
 end)
 
 ---@param moisture number
@@ -34,7 +41,22 @@ function MoistureOverride:AddOnce(wetness)
     self.wetness = math.clamp(self.wetness + wetness, 0, TUNING.MAX_WETNESS)
 end
 
-function MoistureOverride:OnUpdate(dt)
+function MoistureOverride:Stop()
+    if self.task ~= nil then
+        self.task:Cancel()
+        self.task = nil
+    end
+end
+
+MoistureOverride.OnRemoveEntity = MoistureOverride.Stop
+MoistureOverride.OnRemoveFromEntity = MoistureOverride.Stop
+
+function MoistureOverride:DoUpdate(dt)
+    if dt == nil then
+        dt = GetTime() - self.last_update_time
+    end
+    self.last_update_time = GetTime()
+
     local rate_additive = self.rate_add:Get() * dt
     if rate_additive <= 0 then
         local wetrate = TheWorld.net.components.plateauweather:GetMoistureRate()
@@ -44,6 +66,7 @@ function MoistureOverride:OnUpdate(dt)
     self.wetness = math.clamp(self.wetness + self.rate_mult:Get() * dt + self.rate_add:Get() * dt, 0, TUNING.MAX_WETNESS)
 
     if self.wetness == 0 then
+        self:Stop()
         self.inst:RemoveComponent("moistureoverride")
         return
     end
@@ -52,6 +75,25 @@ function MoistureOverride:OnUpdate(dt)
         self.inst:AddTag("temporary_wet")
     elseif self.wetness < DRY_THRESHOLD then
         self.inst:RemoveTag("temporary_wet")
+    end
+end
+
+function MoistureOverride:LongUpdate(dt)
+    self:DoUpdate(dt)
+end
+
+function MoistureOverride:OnSave()
+    local savedata = {
+        add_component_if_missing = true,
+        wetness = self.wetness,
+    }
+
+    return savedata
+end
+
+function MoistureOverride:OnLoad(data)
+    if data and data.wetness then
+        self.wetness = data.wetness
     end
 end
 
