@@ -14,7 +14,7 @@ function ShardIndex:GeneratePorklandWorldGenOverride(callback)
             if success then
                 if worldgenoverride.preset ~= "PORKLAND_DEFAULT" then
                     worldgenoverride.preset = "PORKLAND_DEFAULT"
-                    local data = DataDumper(worldgenoverride, nil, false)
+                    print("TheSim:SetPersistentString")
                     TheSim:SetPersistentString(filename, data, true, function(success, err)
                         if success then
                             print("Successfully overwrote " .. filename .. " to Master Shard")
@@ -43,6 +43,12 @@ AddSimPostInit(function()
     local is_workshop_version = modname:find("workshop-")
     -- run only on dedicated servers and master shard
     if TheNet:IsDedicated() and not TheShard:IsSecondary() then -- and is_workshop_version Wait for test to be completed
+        ShardGameIndex:GeneratePorklandWorldGenOverride()
+    elseif not TheNet:IsDedicated()     -- 不是专用服务器的服务器端
+        and not TheNet:GetIsClient()    -- 不是专用服务器的客户端
+        and TheNet:GetIsServerOwner()   -- 是世界拥有者
+        then                            -- 可以认为是本地无洞穴世界
+                                        -- 不知为何, worldgenoverride无法在本地无洞穴世界生效
         ShardGameIndex:GeneratePorklandWorldGenOverride()
     end
 end)
