@@ -273,7 +273,7 @@ SortAfter("bugrepellent", nil, "TOOLS")
 AddRecipe2("machete", {Ingredient("twigs", 1),Ingredient("flint", 3)}, TECH.NONE, {}, {"TOOLS"})
 SortAfter("machete", "axe", "TOOLS")
 
-AddRecipe2("goldenmachete", {Ingredient("twigs", 4),Ingredient("goldnugget", 2)}, TECH.SCIENCE_ONE, {}, {"TOOLS"})
+AddRecipe2("goldenmachete", {Ingredient("twigs", 4),Ingredient("goldnugget", 2)}, TECH.SCIENCE_TWO, {}, {"TOOLS"})
 SortAfter("goldenmachete", "goldenaxe", "TOOLS")
 
 AddRecipe2("shears", {Ingredient("twigs", 2),Ingredient("iron", 2)}, TECH.SCIENCE_ONE, {}, {"TOOLS"})
