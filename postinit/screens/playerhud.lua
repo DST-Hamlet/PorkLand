@@ -112,7 +112,7 @@ end
 
 local _OpenContainer = PlayerHud.OpenContainer
 function PlayerHud:OpenContainer(container, ...)
-    if container.replica.container.type == "boat" or container.replica.container.type == "boat_has_sailor" then
+    if container.replica.container.type == "boat" then
         return self:OpenBoat(container)
     end
 

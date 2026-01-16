@@ -64,10 +64,18 @@ end
 
 local __ctor = WorldGenScreen._ctor
 function WorldGenScreen:_ctor(profile, cb, world_gen_data, hidden, ...)
+    local location = world_gen_data and world_gen_data.level_data and world_gen_data.level_data and world_gen_data.level_data.location or nil
+
+    print("TESTING WORLDGENSCREEN", location)
+    if location == nil then -- 一般发生在服务器重置世界时的客机
+        location = "porkland"
+    end
 
     if not hidden then
         PL_WorldGenScreen_LoadAssets(self)
-        TheFrontEnd:GetSound():OverrideSound("dontstarve/HUD/worldGen", "dontstarve_DLC003/HUD/worldGen")
+        if location == "porkland" or location == nil then
+            TheFrontEnd:GetSound():OverrideSound("dontstarve/HUD/worldGen", "dontstarve_DLC003/HUD/worldGen")
+        end
     end
 
     __ctor(self, profile, cb, world_gen_data, hidden, ...)
@@ -85,12 +93,6 @@ function WorldGenScreen:_ctor(profile, cb, world_gen_data, hidden, ...)
             nouns = STRINGS.UI.WORLDGEN.NOUNS,
         },
     }
-
-    local location = world_gen_data and world_gen_data.level_data and world_gen_data.level_data and world_gen_data.level_data.location or nil
-    print("TESTING WORLDGENSCREEN", location)
-    if location == nil then -- 一般发生在客机
-        location = "porkland"
-    end
 
     local location_data = location and PL_LOCATION_DATA[location] or nil
     if not location_data then return end

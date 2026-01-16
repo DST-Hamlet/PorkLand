@@ -56,21 +56,20 @@ function Container:WidgetSetup(...)
 end
 
 local _GetSpecificSlotForItem = Container.GetSpecificSlotForItem
-function Container:GetSpecificSlotForItem(item, ...)
-    local ret = _GetSpecificSlotForItem(self, item, ...)
-    if ret and self.multispecificslots then
-        if self:GetItemInSlot(ret) then
-            for i = 1, self:GetNumSlots() do
-                if self:itemtestfn(item, i)
-                    and (not self:GetItemInSlot(i)
-                    or (self:GetItemInSlot(i) ~= nil and self:GetItemInSlot(i).components.stackable and self:GetItemInSlot(i).prefab == item.prefab and self:GetItemInSlot(i).skinname == item.skinname and not self:GetItemInSlot(i).components.stackable:IsFull())) then
-                    -- 总之是烦人的可堆叠检测，复制自原组件Container:GiveItem
-
-                    return i
-                end
-            end
-        end
+function Container:GetSpecificSlotForItem(...)
+    removesetter(self, "itemtestfn")
+    local _itemtestfn = self.itemtestfn
+    self.itemtestfn = function(container, item, i, ...)
+        local slotitem = container:GetItemInSlot(i)
+        return _itemtestfn(container, item, i, ...)
+            and (not slotitem
+            or (slotitem.components.stackable and slotitem.prefab == item.prefab and slotitem.skinname == item.skinname and not slotitem.components.stackable:IsFull()))
+            -- 总之是烦人的可堆叠检测，复制自原组件Container:GiveItem
     end
+
+    local ret = _GetSpecificSlotForItem(self, ...)
+    self.itemtestfn = _itemtestfn
+    makereadonly(self, "itemtestfn")
 
     return ret
 end

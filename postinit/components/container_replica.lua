@@ -22,6 +22,23 @@ function Container:GetItemInBoatSlot(eslot)
     end
 end
 
+local _GetSpecificSlotForItem = Container.GetSpecificSlotForItem
+function Container:GetSpecificSlotForItem(...)
+    local _itemtestfn = self.itemtestfn
+    self.itemtestfn = function(container, item, i, ...)
+        local slotitem = container:GetItemInSlot(i)
+        return _itemtestfn(container, item, i, ...)
+            and (not slotitem
+            or (slotitem.replica.stackable ~= nil and slotitem.prefab == item.prefab and item:StackableSkinHack(slotitem) and not slotitem.replica.stackable:IsFull()))
+            -- 总之是烦人的可堆叠检测，复制自原组件container_classified
+    end
+
+    local ret = _GetSpecificSlotForItem(self, ...)
+    self.itemtestfn = _itemtestfn
+
+    return ret
+end
+
 local _GetWidget = Container.GetWidget
 function Container:GetWidget(boatwidget)
     if not boatwidget then

@@ -287,7 +287,9 @@ local function OnAttacked(player, data)
             data.attacker:HasTag("shadowchesspiece") or
             data.attacker:HasTag("noepicmusic") or
             data.attacker:HasTag("thorny") or
-            data.attacker:HasTag("smolder")))) then
+            data.attacker:HasTag("smolder") or
+            data.attacker:HasTag("gnat")
+            ))) then
 
         StartDanger(player)
     end

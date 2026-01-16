@@ -74,7 +74,11 @@ local function OnEquip(inst, owner)
 
     inst.components.container:Open(owner)
 
-    inst.fx_task = inst:DoPeriodicTask(0.1, function() SpawnFx(owner) end)
+    inst.fx_task = inst:DoPeriodicTask(0.1, function() 
+        if not inst.components.fueled:IsEmpty() then
+            SpawnFx(owner)
+        end
+    end)
 
     -- 由于许多人反映这个音效干扰性过强，因此暂时禁用这个音效——或许可以仅在玩家移动时播放这个音效？
     -- inst.SoundEmitter:PlaySound("porkland_soundpackage/common/crafted/vortex_armour/LP", "vortex")

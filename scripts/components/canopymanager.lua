@@ -90,6 +90,14 @@ return Class(function(self, inst)
     --[[ Public member functions ]]
     --------------------------------------------------------------------------
 
+    function self:ClearAllShade()
+        if _canopy_grid == nil then return end
+        for index, data in pairs(_canopy_grid.grid) do
+            local _cx, _cz = _canopy_grid:GetXYFromIndex(index)
+            DespawnShadeTile(_cx, _cz)
+        end
+    end
+
     -- TODO: enable/disable the canopy manager based on if the shaderenderer is enabled
     function self:SetEnabled(enable)
         _isenabled = enable
@@ -97,6 +105,7 @@ return Class(function(self, inst)
             self.inst:StartUpdatingComponent(self)
         else
             self.inst:StopUpdatingComponent(self)
+            self:ClearAllShade()
         end
     end
 
@@ -104,14 +113,8 @@ return Class(function(self, inst)
         _tile_to_shade[tile] = shade
     end
 
-    function self:OnRemoveEntity()
-        if _canopy_grid == nil then return end
-        for index, data in pairs(_canopy_grid.grid) do
-            local _cx, _cz = _canopy_grid:GetXYFromIndex(index)
-            DespawnShadeTile(_cx, _cz)
-        end
-    end
-    self.OnRemoveFromEntity = self.OnRemoveEntity
+    self.OnRemoveEntity = self.ClearAllShade
+    self.OnRemoveFromEntity = self.ClearAllShade
 
     --------------------------------------------------------------------------
     --[[ Update ]]
@@ -122,10 +125,7 @@ return Class(function(self, inst)
         if player == nil then return end
 
         if self.inst:GetIsInInterior() then
-            for index, data in pairs(_canopy_grid.grid) do
-                local _cx, _cz = _canopy_grid:GetXYFromIndex(index)
-                DespawnShadeTile(_cx, _cz)
-            end
+            self:ClearAllShade()
             return
         end
 
