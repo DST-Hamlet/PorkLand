@@ -138,9 +138,9 @@ local function OnPickupedCorkBoat(inst, doer)
     return true
 end
 
-local function OnSaveCorkBoatItem(inst)
+local function OnSaveCorkBoatItem(inst, data)
     if inst.boat_data then
-        return {boat_data = inst.boat_data}
+        data.boat_data = inst.boat_data
     end
 end
 
