@@ -83,7 +83,7 @@ local _GetLevelDataOverride = function(slot, shard, cb, ...)
     print("trying Generate Porkland WorldGen Override...")
     local is_workshop_version = modname:find("workshop-")
     -- only running on master shard.
-    if not TheShard:IsSecondary() then -- and is_workshop_version
+    if not TheNet:GetIsClient() and not TheShard:IsSecondary() then -- and is_workshop_version
         ShardGameIndex:GeneratePorklandWorldGenOverride(slot, shard)
 
         print("Huh? Generate Porkland WorldGen Override done?")
