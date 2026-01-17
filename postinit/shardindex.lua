@@ -22,8 +22,9 @@ function ShardIndex:GeneratePorklandWorldGenOverride(slot, shard)
 
             local success, worldgenoverride = RunInSandbox(str)
             if success and worldgenoverride then
-                if worldgenoverride.override_enabled ~= nil then
-                    worldgenoverride.override_enabled = override_enabled
+                if not override_enabled then
+                    print("Force Porkland Preset is disabled")
+                else
                     if worldgenoverride.preset ~= "PORKLAND_DEFAULT" then
                         worldgenoverride.preset = "PORKLAND_DEFAULT"
                     end
@@ -40,16 +41,20 @@ function ShardIndex:GeneratePorklandWorldGenOverride(slot, shard)
                 end
             end
         else
-            local data = "return {override_enabled = " .. tostring(override_enabled) .. ", preset = \"PORKLAND_DEFAULT\",}"
-            local onload = function(success, err)
-                if success then
-                    print("Successfully wrote " .. filename .. " to Master Shard")
-                else
-                    print("Failed to write " .. filename .. " to Master Shard \n Error: " .. tostring(err))
+            if not override_enabled then
+                print("Force Porkland Preset is disabled")
+            else
+                local data = "return {override_enabled = true, preset = \"PORKLAND_DEFAULT\",}"
+                local onload = function(success, err)
+                    if success then
+                        print("Successfully wrote " .. filename .. " to Master Shard")
+                    else
+                        print("Failed to write " .. filename .. " to Master Shard \n Error: " .. tostring(err))
+                    end
                 end
-            end
 
-            SetPersistentString(data, onload)
+                SetPersistentString(data, onload)
+            end
         end
     end
 
