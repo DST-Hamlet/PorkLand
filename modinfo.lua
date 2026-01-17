@@ -35,5 +35,16 @@ local function Breaker(title_en, title_zh) -- hover does not work, as this item 
 end
 
 configuration_options = {
-	-- Breaker("Misc", "杂项"),
+	Breaker("Misc", "杂项"),
+    {
+        name = "enable_porkland_preset",
+        label = en_zh("Force Porkland Preset", "强制使用猪镇预设"),
+        hover = en_zh("Force the Porkland worldgen preset when creating a new world.", "创建新世界时强制使用猪镇世界生成预设。"),
+        options =
+        {
+            { description = en_zh("Enabled", "启用"), data = true },
+            { description = en_zh("Disabled", "禁用"), data = false },
+        },
+        default = true,
+    }
 }
