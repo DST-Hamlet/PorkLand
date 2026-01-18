@@ -11,17 +11,25 @@ local TEMPLATES = require("widgets/redux/templates")
 local PopupDialogScreen = require("screens/redux/popupdialog")
 local ChooseWorldSreen = require("widgets/redux/chooseworldscreen")
 
-local world_locations = {
-    [1] = {PORKLAND = true},
-}
+local world_locations = nil
+
+PL_EnableWorldLocations = function(enable)
+    if enable then
+        world_locations = {
+            [1] = {FOREST = true, PORKLAND = true, CAVE = true},
+            [2] = {CAVE = true}
+        }
+    else
+        world_locations = {
+            [1] = {PORKLAND = true},
+            [1] = {CAVE = true},
+        }
+    end
+end
 
 local DEV = not modname:find("workshop-")
-if DEV then
-    world_locations = {
-        [1] = {FOREST = true, PORKLAND = true, CAVE = true},
-        [2] = {CAVE = true}
-    }
-end
+
+PL_EnableWorldLocations(DEV or PL_ENABLE_WORLD_LOCATION or false)
 
 local function SetLevelLocations(servercreationscreen, location, i)
     local server_level_locations = {}

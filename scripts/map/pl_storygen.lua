@@ -120,7 +120,7 @@ function Story:GenerateIslandFromTask(task, randomize)
     return task_node
 end
 
-function Story:Pl_GenerateNodesFromTasks(linkFn)
+function Story:PL_GenerateNodesFromTasks(linkFn)
     -- print("Story:GenerateNodesFromTasks creating stories")
 
     local unusedTasks = {}
@@ -212,7 +212,7 @@ function Story:Pl_GenerateNodesFromTasks(linkFn)
     startParentNode:AddEdge({ node1id = self.startNode.id, node2id = randomStartNode.id })
 end
 
-function Story:Pl_AddBGNodes(min_count, max_count)
+function Story:PL_AddBGNodes(min_count, max_count)
     local tasksnodes = self.rootNode:GetChildren(false)
     local bg_idx = 0
 
@@ -320,7 +320,7 @@ function Story:Pl_AddBGNodes(min_count, max_count)
     end
 end
 
-function Story:Pl_InsertAdditionalSetPieces(task_nodes)
+function Story:PL_InsertAdditionalSetPieces(task_nodes)
     local obj_layout = require("map/object_layout")
 
     local function is_tile_ok(room, layout)
@@ -575,7 +575,7 @@ local function BuildPorkLandStory(tasks, story_gen_params, level)
 
     local story = Story("GAME", tasks, terrain, story_gen_params, level)
     AddPlMaptags(story.map_tags)
-    story:Pl_GenerateNodesFromTasks(RestrictNodesByKey)
+    story:PL_GenerateNodesFromTasks(RestrictNodesByKey)
 
     local world_size = 0
     if story_gen_params.world_size == "medium" then
@@ -589,8 +589,8 @@ local function BuildPorkLandStory(tasks, story_gen_params, level)
     local min_bg = (level.background_node_range and level.background_node_range[1] or 0) + world_size
     local max_bg = (level.background_node_range and level.background_node_range[2] or 2) + world_size
 
-    story:Pl_AddBGNodes(min_bg, max_bg)
-    story:Pl_InsertAdditionalSetPieces()
+    story:PL_AddBGNodes(min_bg, max_bg)
+    story:PL_InsertAdditionalSetPieces()
 
     return { root = story.rootNode, startNode = story.startNode, GlobalTags = story.GlobalTags }, story
 end

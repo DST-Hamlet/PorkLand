@@ -4,8 +4,8 @@ local MULTIPLY = require("map/forest_map").MULTIPLY
 local tasks = require("map/tasks")
 local tasksets = require("map/tasksets")
 
-local Pl_Boons = require("map/pl_boons")
-local Pl_Traps = require("map/pl_traps")
+local PL_Boons = require("map/pl_boons")
+local PL_Traps = require("map/pl_traps")
 
 local function GetRandomFromLayouts(layouts)
     local area_keys = {}
@@ -86,13 +86,13 @@ local function AddSingleSetPeice(level, choicefile, type, area, name)
 end
 
 local function AddAllPlSetPiece(level)
-    for area, layouts in pairs(Pl_Boons.Sandbox) do
+    for area, layouts in pairs(PL_Boons.Sandbox) do
         for _, name in ipairs(layouts) do
             AddSingleSetPeice(level, "map/boons", "boons", area, name)
         end
     end
 
-    for area, layouts in pairs(Pl_Traps.Sandbox) do
+    for area, layouts in pairs(PL_Traps.Sandbox) do
         for _, name in ipairs(layouts) do
             AddSingleSetPeice(level, "map/traps", "traps", area, name)
         end

@@ -134,7 +134,7 @@ function InteriorVisitor:OnUpdate()
                 self.inst.MiniMapEntity:SetEnabled(false)
             end
             if ambientlighting then
-                ambientlighting:Pl_Refresh()
+                ambientlighting:PL_Refresh()
             end
 
             if TheWorld and TheWorld.components.cloudmanager then
@@ -161,7 +161,7 @@ function InteriorVisitor:OnUpdate()
                 self.inst.MiniMapEntity:SetEnabled(true)
             end
             if ambientlighting then
-                ambientlighting:Pl_Refresh()
+                ambientlighting:PL_Refresh()
             end
 
             if TheWorld and TheWorld.components.cloudmanager then

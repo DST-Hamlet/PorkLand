@@ -12,11 +12,11 @@ local function GetWanderPos(inst)
     return inst.components.teamattacker.teamleader == nil and inst.components.knownlocations:GetLocation("home")
 end
 
-local Pl_BatBrain = Class(Brain, function(self, inst)
+local PL_BatBrain = Class(Brain, function(self, inst)
     Brain._ctor(self, inst)
 end)
 
-function Pl_BatBrain:OnStart()
+function PL_BatBrain:OnStart()
     local root = PriorityNode(
     {
         WhileNode(
@@ -35,8 +35,8 @@ function Pl_BatBrain:OnStart()
     self.bt = BT(self.inst, root)
 end
 
-function Pl_BatBrain:OnInitializationComplete()
+function PL_BatBrain:OnInitializationComplete()
     self.inst.components.knownlocations:RememberLocation("home", self.inst:GetPosition(), true)
 end
 
-return Pl_BatBrain
+return PL_BatBrain

@@ -44,7 +44,7 @@ AddComponentPostInit("ambientlighting", function(self, inst)
     local _overridecolour = ToolUtil.GetUpvalue(DoUpdateFlash, "_overridecolour")
     local ComputeTargetColour, scope_fn, i = ToolUtil.GetUpvalue(DoUpdateFlash, "ComputeTargetColour")
 
-    local function Pl_ComputeTargetColour(targetsettings, timeoverride, ...)
+    local function PL_ComputeTargetColour(targetsettings, timeoverride, ...)
         if targetsettings == _overridecolour and ThePlayer and ThePlayer:HasTag("inside_interior") then
             if _overridecolour.currentcolourset.PHASE_COLOURS and _overridecolour.currentcolourset.PHASE_COLOURS.spring then
                 -- when player have no nightvision, change to no light mode
@@ -64,9 +64,9 @@ AddComponentPostInit("ambientlighting", function(self, inst)
         ComputeTargetColour(targetsettings, timeoverride, ...)
     end
 
-    debug.setupvalue(scope_fn, i, Pl_ComputeTargetColour)
+    debug.setupvalue(scope_fn, i, PL_ComputeTargetColour)
 
-    function self:Pl_Refresh()
-        Pl_ComputeTargetColour(_overridecolour, 0.1)
+    function self:PL_Refresh()
+        PL_ComputeTargetColour(_overridecolour, 0.1)
     end
 end)

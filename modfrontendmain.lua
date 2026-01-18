@@ -4,6 +4,8 @@ GLOBAL.setfenv(1, GLOBAL)
 local function OnUnloadlevel()
     local servercreationscreen = TheFrontEnd:GetOpenScreenOfType("ServerCreationScreen")
 
+    PL_EnableWorldLocations = nil
+
     if not (servercreationscreen and servercreationscreen.world_tabs)  then
         return
     end

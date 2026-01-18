@@ -96,7 +96,7 @@ Node.AddEntity = function(self, prefab, points_x, points_y, current_pos_idx, ent
     return PopulateWorld_AddEntity(prefab, points_x[current_pos_idx], points_y[current_pos_idx], tile, entitiesOut, ...)
 end
 
-local function Pl_PopulateVoronoi_AddEntity(self, prefab, points_x, points_y, current_pos_idx, entitiesOut, ...)
+local function PL_PopulateVoronoi_AddEntity(self, prefab, points_x, points_y, current_pos_idx, entitiesOut, ...)
     local tile = WorldSim:GetTile(points_x[current_pos_idx], points_y[current_pos_idx])
     if SpawntestFn(prefab, points_x[current_pos_idx], points_y[current_pos_idx], entitiesOut) then
         return PopulateWorld_AddEntity(prefab, points_x[current_pos_idx], points_y[current_pos_idx], tile, entitiesOut, ...)
@@ -110,7 +110,7 @@ function Node:PopulateVoronoi(...)
     end
 
     local _AddEntity = self.AddEntity
-    self.AddEntity = Pl_PopulateVoronoi_AddEntity
+    self.AddEntity = PL_PopulateVoronoi_AddEntity
     _PopulateVoronoi(self, ...)
     self.AddEntity = _AddEntity
 end
