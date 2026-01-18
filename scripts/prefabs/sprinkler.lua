@@ -171,8 +171,9 @@ local function GetValidWaterPointNearby(pt)
         for z = pt.z - range, pt.z + range, 1 do
             local tx, ty = TheWorld.Map:GetTileCoordsAtPoint(x, 0, z)
             local tile = TheWorld.Map:GetTile(tx, ty)
+            local IsVisualWater = TheWorld.Map:ReverseIsVisualWaterAtPoint(x, y, z)
 
-            if IsValidSprinklerTile(center_tile) and TileGroupManager:IsOceanTile(tile) then
+            if IsValidSprinklerTile(center_tile) and TileGroupManager:IsOceanTile(tile) and IsVisualWater then
                 local cur_point = Vector3(x, 0, z)
                 local cur_sq_dist = cur_point:DistSq(pt)
 
