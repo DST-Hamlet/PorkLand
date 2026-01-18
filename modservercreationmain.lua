@@ -11,18 +11,19 @@ local TEMPLATES = require("widgets/redux/templates")
 local PopupDialogScreen = require("screens/redux/popupdialog")
 local ChooseWorldSreen = require("widgets/redux/chooseworldscreen")
 
-local world_locations = nil
+pl_world_locations = nil
 
 PL_EnableWorldLocations = function(enable)
+    print("PL_EnableWorldLocations", enable)
     if enable then
-        world_locations = {
+        pl_world_locations = {
             [1] = {FOREST = true, PORKLAND = true, CAVE = true},
             [2] = {CAVE = true}
         }
     else
-        world_locations = {
+        pl_world_locations = {
             [1] = {PORKLAND = true},
-            [1] = {CAVE = true},
+            [2] = {CAVE = true},
         }
     end
 end
@@ -45,7 +46,7 @@ local function OnWorldButton(world_tab, i)
         world_tab:GetParentScreen().last_focus = TheFrontEnd:GetFocusWidget()
     end
     local currentworld = world_tab:GetLocation()
-    local chooseworldscreen = ChooseWorldSreen(world_tab, currentworld, i, SetLevelLocations, world_locations)
+    local chooseworldscreen = ChooseWorldSreen(world_tab, currentworld, i, SetLevelLocations, pl_world_locations)
     TheFrontEnd:PushScreen(chooseworldscreen)
 end
 
