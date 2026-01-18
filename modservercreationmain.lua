@@ -30,7 +30,7 @@ end
 
 local DEV = not modname:find("workshop-")
 
-PL_EnableWorldLocations(DEV or PL_ENABLE_WORLD_LOCATION or false)
+PL_EnableWorldLocations(DEV or rawget(_G, "PL_ENABLE_WORLD_LOCATION") or false)
 
 local function SetLevelLocations(servercreationscreen, location, i)
     local server_level_locations = {}
