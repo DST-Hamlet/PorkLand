@@ -12,7 +12,8 @@ local PopupDialogScreen = require("screens/redux/popupdialog")
 local ChooseWorldSreen = require("widgets/redux/chooseworldscreen")
 
 local world_locations = {
-    [1] = {PORKLAND = true},
+    [1] = {FOREST = true, PORKLAND = true},
+    [2] = {CAVE = true},
 }
 
 local DEV = not modname:find("workshop-")
