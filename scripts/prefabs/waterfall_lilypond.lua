@@ -48,6 +48,7 @@ local function fn()
     inst.AnimState:PlayAnimation("idle", false)
     inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
     inst.AnimState:SetDefaultEffectHandle(resolvefilepath("shaders/anim_waterfall.ksh"))
+    inst.AnimState:UsePointFiltering(true) -- 会降低物体的抗锯齿效果, 但是可以避免开启深度测试的物体之间的接缝
 
     inst.AnimState:SetLayer(LAYER_BELOW_GROUND)
     inst.AnimState:SetSortOrder(3)
@@ -96,6 +97,7 @@ local function corner_fn()
     inst.AnimState:PlayAnimation("idle", false)
     inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
     inst.AnimState:SetDefaultEffectHandle(resolvefilepath("shaders/anim_waterfall_corner.ksh"))
+    inst.AnimState:UsePointFiltering(true) -- 会降低物体的抗锯齿效果, 但是可以避免开启深度测试的物体之间的接缝
 
     inst.AnimState:SetLayer(LAYER_BELOW_GROUND)
     inst.AnimState:SetSortOrder(3)
