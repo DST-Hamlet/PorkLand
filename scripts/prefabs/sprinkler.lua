@@ -397,6 +397,7 @@ local function fn()
     inst.OnLoadPostPass = OnLoadPostPass
     inst.OnEntitySleep = OnEntitySleep
     inst.UpdateSpray = UpdateSpray
+    inst.CreatePipes = CreatePipes
 
     inst.moisturizing = 2
     inst.water_spray = nil
@@ -406,7 +407,7 @@ local function fn()
 
     inst:DoTaskInTime(0.1, function()
         if not inst.pipes or #inst.pipes < 1 then
-            CreatePipes(inst)
+            inst:CreatePipes()
         end
         ExtendPipes(inst)
     end)
