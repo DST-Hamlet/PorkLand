@@ -171,8 +171,9 @@ local function GetValidWaterPointNearby(pt)
         for z = pt.z - range, pt.z + range, 1 do
             local tx, ty = TheWorld.Map:GetTileCoordsAtPoint(x, 0, z)
             local tile = TheWorld.Map:GetTile(tx, ty)
+            local IsVisualWater = TheWorld.Map:ReverseIsVisualWaterAtPoint(x, 0, z)
 
-            if IsValidSprinklerTile(center_tile) and TileGroupManager:IsOceanTile(tile) then
+            if IsValidSprinklerTile(center_tile) and TileGroupManager:IsOceanTile(tile) and IsVisualWater then
                 local cur_point = Vector3(x, 0, z)
                 local cur_sq_dist = cur_point:DistSq(pt)
 
@@ -396,6 +397,7 @@ local function fn()
     inst.OnLoadPostPass = OnLoadPostPass
     inst.OnEntitySleep = OnEntitySleep
     inst.UpdateSpray = UpdateSpray
+    inst.CreatePipes = CreatePipes
 
     inst.moisturizing = 2
     inst.water_spray = nil
@@ -405,7 +407,7 @@ local function fn()
 
     inst:DoTaskInTime(0.1, function()
         if not inst.pipes or #inst.pipes < 1 then
-            CreatePipes(inst)
+            inst:CreatePipes()
         end
         ExtendPipes(inst)
     end)
