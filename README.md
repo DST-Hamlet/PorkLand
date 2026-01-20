@@ -1,3 +1,5 @@
+Copyright 2025 [亚丹]。此产品不授权在 Steam 上发布，除非在 Steam 帐户 oldhunter101 下
+
 # Pork Land
 
 Bring Hamlet DLC from Don't Starve to Don't Starve Together
