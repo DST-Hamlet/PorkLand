@@ -59,7 +59,7 @@ function Container:IsBoatSlot(slot)
     if not self.hasboatequipslots then
         return
     end
-    
+
     for eslot, index in pairs(self.boatcontainerequips) do
         if slot == index then
             return true
@@ -88,7 +88,7 @@ function Container:GetSpecificSlotForItem(...)
     return ret
 end
 
-function Container:BoatEquip(item)
+function Container:BoatEquip(item, doer)
     if not self.hasboatequipslots then
         return
     end
@@ -99,21 +99,39 @@ function Container:BoatEquip(item)
 
         if slot ~= nil then
             local old_item = self:GetItemInSlot(slot)
-            local inventory = item.components.inventoryitem.owner and item.components.inventoryitem.owner.components.inventory or nil -- 可以是物品栏或容器
+            if old_item ~= nil and old_item.components.equippable:ShouldPreventUnequipping() then
+                return
+            end
+
+            local owner = item.components.inventoryitem.owner
+            local inventory = owner and owner.components.inventory or nil -- 可以是物品栏或容器
             if inventory == nil then
-                inventory = item.components.inventoryitem.owner and item.components.inventoryitem.owner.components.container or nil
+                inventory = owner and owner.components.container or nil
             end
 
             if inventory then
                 inventory:RemoveItem(item)
             end
+            local prevcontainer = item.prevcontainer
+            local prevslot = item.prevslot
+
             if old_item then
-                self:DropItem(old_item)
-                if inventory then
-                    inventory:GiveItem(old_item)
+                local drop_item = self:BoatUnequip(eslot)
+                
+                if drop_item and drop_item:IsValid() then
+                    if doer and doer.components.inventory then
+                        doer.components.inventory:GiveItem(drop_item)
+                    elseif inventory then
+                        inventory:GiveItem(drop_item)
+                    else
+                        self:GiveItem(drop_item)
+                    end
                 end
             end
             self:GiveItem(item, slot)
+
+            item.prevcontainer = prevcontainer
+            item.prevslot = prevslot
         end
     end
 end
@@ -132,7 +150,15 @@ function Container:BoatUnequip(eslot)
         end
 
         if item and item.components.equippable then
+            local prevcontainer = item.prevcontainer
+            local prevslot = item.prevslot
+
            self:DropItem(item)
+
+           item.prevcontainer = prevcontainer
+           item.prevslot = prevslot
+
+           return item
        end
     end
 end

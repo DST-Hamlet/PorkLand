@@ -634,7 +634,7 @@ function ACTIONS.EQUIP.fn(act, ...)
     if act.doer.components.sailor and act.doer.components.sailor.boat and act.invobject.components.equippable.boatequipslot then
         local boat = act.doer.components.sailor.boat
         if boat.components.container and boat.components.container.hasboatequipslots then
-            boat.components.container:BoatEquip(act.invobject)
+            boat.components.container:BoatEquip(act.invobject, act.doer)
         end
     end
 end
