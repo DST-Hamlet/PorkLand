@@ -76,7 +76,7 @@ local states=
             elseif inst.AnimState:IsCurrentAnimation("idle") or inst.AnimState:IsCurrentAnimation("idle2") then
                 inst.AnimState:PushAnimation(anim, true)
             else
-                inst.AnimState:PlayAnimation(anim)
+                inst.AnimState:PlayAnimation(anim, true)
             end
 
             inst.sg:SetTimeout(1*math.random()+.5)
