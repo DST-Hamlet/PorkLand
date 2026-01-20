@@ -4,22 +4,24 @@ GLOBAL.setfenv(1, GLOBAL)
 local Container = require("components/container_replica")
 
 function Container:GetItemInBoatSlot(eslot)
+    if self.inst.components.container ~= nil then
+        return self.inst.components.container:GetItemInBoatSlot(eslot)
+    else
+        return self.opener ~= nil and self.classified ~= nil and self.classified:GetItemInBoatSlot(eslot)
+    end
+end
+
+function Container:IsBoatSlot(slot)
     if not self.hasboatequipslots then
         return
     end
 
-    if self.inst.components.container ~= nil then
-        return self.inst.components.container:GetItemInBoatSlot(eslot)
-    else
-        if self.classified ~= nil then
-            local slot = self.boatcontainerequips[eslot]
-            if slot == nil then
-                return
-            end
-
-            return self.classified:GetItemInSlot(slot)
+    for eslot, index in pairs(self.boatcontainerequips) do
+        if slot == index then
+            return true
         end
     end
+    return false
 end
 
 local _GetSpecificSlotForItem = Container.GetSpecificSlotForItem
@@ -30,11 +32,16 @@ function Container:GetSpecificSlotForItem(...)
         return _itemtestfn(container, item, i, ...)
             and (not slotitem
             or (slotitem.replica.stackable ~= nil and slotitem.prefab == item.prefab and item:StackableSkinHack(slotitem) and not slotitem.replica.stackable:IsFull()))
+            and not self:IsBoatSlot(i) -- 不能通过快速移动装备船装备
             -- 总之是烦人的可堆叠检测，复制自原组件container_classified
     end
 
     local ret = _GetSpecificSlotForItem(self, ...)
     self.itemtestfn = _itemtestfn
+
+    if ret == nil then -- 如果找不到可用的物品格子但该容器有其他空余的格子, 那么就返回一个已被占据的格子(仅对同时有装备栏和物品栏的船那么做)
+        return 1
+    end
 
     return ret
 end

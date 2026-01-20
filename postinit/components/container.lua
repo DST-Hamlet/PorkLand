@@ -55,6 +55,19 @@ function Container:WidgetSetup(...)
     end
 end
 
+function Container:IsBoatSlot(slot)
+    if not self.hasboatequipslots then
+        return
+    end
+    
+    for eslot, index in pairs(self.boatcontainerequips) do
+        if slot == index then
+            return true
+        end
+    end
+    return false
+end
+
 local _GetSpecificSlotForItem = Container.GetSpecificSlotForItem
 function Container:GetSpecificSlotForItem(...)
     removesetter(self, "itemtestfn")
@@ -64,6 +77,7 @@ function Container:GetSpecificSlotForItem(...)
         return _itemtestfn(container, item, i, ...)
             and (not slotitem
             or (slotitem.components.stackable and slotitem.prefab == item.prefab and slotitem.skinname == item.skinname and not slotitem.components.stackable:IsFull()))
+            and not self:IsBoatSlot(i) -- 不能通过快速移动装备船装备
             -- 总之是烦人的可堆叠检测，复制自原组件Container:GiveItem
     end
 

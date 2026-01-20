@@ -68,7 +68,7 @@ local boat_lograft = {
     hasboatequipslots = false,
 }
 
-function BoatItemTestFn(container, item, slot)
+function BoatItemTestFnCargo(container, item, slot)
     local item_eslot = "INVALID"
     if item.replica.equippable and item.replica.equippable:BoatEquipSlot() ~= "INVALID" then
         item_eslot = item.replica.equippable:BoatEquipSlot()
@@ -82,6 +82,14 @@ function BoatItemTestFn(container, item, slot)
         end
     end
 	return true
+end
+
+function BoatItemTestFn(container, item, slot)
+    if slot == nil then
+        return false
+    end
+
+	return BoatItemTestFnCargo(container, item, slot)
 end
 
 local boat_row = {
@@ -220,7 +228,7 @@ local boat_cargo = {
         [BOATEQUIPSLOTS.BOAT_SAIL] = 7,
         [BOATEQUIPSLOTS.BOAT_LAMP] = 8,
     },
-    itemtestfn = BoatItemTestFn,
+    itemtestfn = BoatItemTestFnCargo,
     usespecificslotsforitems = true,
     multispecificslots = true,
 }
