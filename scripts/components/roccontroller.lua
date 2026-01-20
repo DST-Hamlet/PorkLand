@@ -289,7 +289,10 @@ function RocController:CheckTarget()
     if self.target_player then
         if not self.target_player:IsValid() then
             self.target_player = nil
-        elseif not self.target_player:IsNear(self.inst, KEPP_PLAYER_TARGET_DIST) then
+        elseif not self.target_player:IsNear(self.inst, KEPP_PLAYER_TARGET_DIST) 
+            or IsEntityDeadOrGhost(self.target_player) 
+            or not self.target_player.entity:IsVisible() then
+
             self.target_player = nil
         end
     end
@@ -347,7 +350,7 @@ function RocController:MoveBodyParts(dt, player)
     if player then
         local player_on_valid_tile = is_player_on_valid_tile(player)
 
-        if not player_on_valid_tile or TheWorld.state.isnight or IsEntityDeadOrGhost(player) then
+        if not player_on_valid_tile or TheWorld.state.isnight then
             self.inst:PushEvent("liftoff")
             return
         end
