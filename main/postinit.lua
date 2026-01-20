@@ -138,6 +138,7 @@ local prefab_posts = {
     "birdcage",
     "boomerang",
     "buff_workeffectiveness",
+    "container_classified",
     "earmuffshat",
     "grass",
     "inventoryitem_classified",

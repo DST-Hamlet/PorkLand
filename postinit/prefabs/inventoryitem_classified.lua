@@ -27,10 +27,6 @@ local function RegisterNetListeners(inst)
     inst:ListenForEvent("fusedirty", DeserializeFuse)
 end
 
-----------------------------------------------------------------------------------------
---Try to initialise all functions locally outside of the post-init so they exist in RAM only once
-----------------------------------------------------------------------------------------
-
 AddPrefabPostInit("inventoryitem_classified", function(inst)
     inst.invspace = net_smallbyte(inst.GUID, "inventory.invspace", "invspacedirty")
     inst.fuse = net_smallbyte(inst.GUID, "fuse.fuse", "fusedirty")
@@ -43,7 +39,7 @@ AddPrefabPostInit("inventoryitem_classified", function(inst)
         inst.DeserializeFuse = DeserializeFuse
 
         --Delay net listeners until after initial values are deserialized
-        inst:DoTaskInTime(0, RegisterNetListeners)
+        inst:DoStaticTaskInTime(0, RegisterNetListeners)
         return
 
     end
