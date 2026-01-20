@@ -564,7 +564,7 @@ function RocController:OnUpdate(dt)
         self.inst:PushEvent("liftoff")
 
         local x, y, z = self.inst.Transform:GetWorldPosition()
-        local players = FindPlayersInRange(x, y, z, TURN_DIST * 2, true)
+        local players = FindPlayersInRange(x, y, z, TURN_DIST * 2, false)
         if self.liftoff and not self.inst.teleporting
             and not next(players) then
             self.inst:Remove()
