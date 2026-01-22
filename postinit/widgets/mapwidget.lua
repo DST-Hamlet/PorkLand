@@ -522,6 +522,8 @@ function MapWidget:UpdateInteriorMapIconPriorities()
     for _, v in ipairs(values) do
         v.widget:MoveToFront()
     end
+    
+    self.interior_frontend:MoveToFront()
 end
 
 function MapWidget:UpdateInteriorWidgets()
