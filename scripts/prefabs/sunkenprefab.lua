@@ -22,6 +22,20 @@ local function dobubblefx(inst)
     inst:DoTaskInTime((math.random() * 15 + 15), dobubblefx)
 end
 
+local function UpdateVisual(inst)
+    if not inst.visual then
+        inst.visual = SpawnPrefab("sunkenvisual")
+        inst.highlightchildren = {inst.visual}
+        inst._sunkenvisual:set(inst.visual)
+    end
+    inst.visual:SetUp(inst, inst.components.container:GetItemInSlot(1))
+
+    if inst.components.container:IsEmpty() then
+        inst.persists = false
+        inst:DoTaskInTime(0, inst.Remove)
+    end
+end
+
 local function init(inst, item)
     if not item then
         inst:Remove()
@@ -30,7 +44,7 @@ local function init(inst, item)
 
     inst.Transform:SetPosition(item.Transform:GetWorldPosition())
 
-    if item and (item.components.health or item.components.murderable) then
+    if item and (item.components.health or item.components.murderable) then -- 复制自ACTIONS.MURDER.fn
         if item.components.lootdropper then
             local stacksize = item.components.stackable and item.components.stackable:StackSize() or 1
             for i = 1, stacksize do
@@ -61,6 +75,23 @@ local function init(inst, item)
     inst.components.timer:StartTimer("destroy", TUNING.SUNKENPREFAB_REMOVE_TIME)
 end
 
+local function OnItemGet(inst, data)
+    inst:UpdateVisual()
+
+    if data.item and data.item.components.inventoryitemmoisture then
+        data.item.components.inventoryitemmoisture:DoDelta(TUNING.MAX_WETNESS)
+        data.item.components.inventoryitemmoisture.moisture_override = TUNING.MAX_WETNESS
+    end
+end
+
+local function OnItemLose(inst, data)
+    inst:UpdateVisual()
+
+    if data.prev_item and data.prev_item:IsValid() and data.prev_item.components.inventoryitemmoisture then
+        data.prev_item.components.inventoryitemmoisture.moisture_override = nil
+    end
+end
+
 local function fn()
     local inst = CreateEntity()
     inst.entity:AddTransform()
@@ -74,8 +105,11 @@ local function fn()
     inst:AddTag("fishable")
     inst:AddTag("wet")
     inst:AddTag("NOBLOCK")
+    inst:AddTag("spoiler")
 
     inst._sunkenvisual = net_entity(inst.GUID, "_sunkenvisual", "sunkenvisualdirty")
+
+    inst:SetPrefabNameOverride("SUNKEN_RELIC")
 
     inst.entity:SetPristine()
 
@@ -86,8 +120,6 @@ local function fn()
 
     inst:AddComponent("inspectable")
 
-    inst:SetPrefabNameOverride("SUNKEN_RELIC")
-
     inst:AddComponent("container")
     inst.components.container:WidgetSetup("sunkenprefab")
     inst.components.container.canbeopened = false
@@ -97,26 +129,21 @@ local function fn()
 
     inst:DoTaskInTime((math.random() * 15 + 15), dobubblefx)
 
-    inst:ListenForEvent("itemget", function(inst, data)
-        if not inst.visual then
-            inst.visual = SpawnPrefab("sunkenvisual")
-            inst.highlightchildren = {inst.visual}
-            inst._sunkenvisual:set(inst.visual)
-        end
-        inst.visual:SetUp(inst, data.item)
+    inst:ListenForEvent("itemget", OnItemGet)
+    inst:ListenForEvent("itemlose", OnItemLose)
 
-        if data.item and data.item.components.inventoryitem then
-            data.item.components.inventoryitem:AddMoisture(TUNING.OCEAN_WETNESS)
-        end
-    end)
-
+    inst.UpdateVisual = UpdateVisual
     inst.Initialize = init
 
     return inst
 end
 
 local function SetUp(inst, parent, item)
-    inst.AnimState:OverrideSymbol("visual_slot", item.replica.inventoryitem:GetAtlas(), item.replica.inventoryitem:GetImage())
+    if item ~= nil then
+        inst.AnimState:OverrideSymbol("visual_slot", item.replica.inventoryitem:GetAtlas(), item.replica.inventoryitem:GetImage())
+    else
+        inst.AnimState:ClearOverrideSymbol("visual_slot")
+    end
 
     inst.entity:SetParent(parent.entity)
     inst.Transform:SetPosition(0, 0, 0)

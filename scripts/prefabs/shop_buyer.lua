@@ -156,7 +156,7 @@ local function OnItemGet(inst, data)
 end
 
 local function OnItemLose(inst, data)
-    if data and data.prev_item and data.prev_item.components.perishable then
+    if data.prev_item and data.prev_item:IsValid() and data.prev_item.components.perishable then
         data.prev_item.components.perishable:StartPerishing()
     end
 end

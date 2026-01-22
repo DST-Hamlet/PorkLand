@@ -384,7 +384,12 @@ params["armorvortexcloak"] = widget_armor_vortex_cloak
 params["ro_bin"] = deepcopy(params["chester"])
 
 params["trawlnetdropped"] = deepcopy(params["treasurechest"])
-params["sunkenprefab"] = deepcopy(params["treasurechest"])
+params["sunkenprefab"] = 
+{
+    widget = {
+        slotpos = { Vector3(0, 0, 0) }
+    },
+}
 
 params.trusty_shooter =
 {
