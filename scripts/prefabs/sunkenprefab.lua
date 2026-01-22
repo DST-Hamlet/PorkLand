@@ -16,10 +16,21 @@ local function ontimerdone(inst, data)
 end
 
 local function dobubblefx(inst)
-    inst.AnimState:PlayAnimation("bubble_pre")
-    inst.AnimState:PushAnimation("bubble_loop")
-    inst.AnimState:PushAnimation("bubble_pst", false)
-    inst:DoTaskInTime((math.random() * 15 + 15), dobubblefx)
+    inst.AnimState:PlayAnimation("bubble_loop")
+end
+
+local function OnEntityWake(inst)
+    if inst.bubbletask then
+        inst.bubbletask:Cancel()
+    end
+    inst.bubbletask = inst:DoPeriodicTask(5 + (math.random() * 5), dobubblefx)
+end
+
+local function OnEntitySleep(inst)
+    if inst.bubbletask then
+        inst.bubbletask:Cancel()
+        inst.bubbletask = nil
+    end
 end
 
 local function UpdateVisual(inst)
@@ -28,11 +39,22 @@ local function UpdateVisual(inst)
         inst.highlightchildren = {inst.visual}
         inst._sunkenvisual:set(inst.visual)
     end
-    inst.visual:SetUp(inst, inst.components.container:GetItemInSlot(1))
-
+    if inst.visual_atlas == nil then -- 用最初的物品作为沉水剪影
+        local item = inst.components.container:GetItemInSlot(1)
+        if item then
+            inst.visual_atlas = item.replica.inventoryitem:GetAtlas()
+            inst.visual_image = item.replica.inventoryitem:GetImage()
+        end
+    end
+    inst.visual:SetUp(inst, inst.visual_atlas, inst.visual_image)
+    
     if inst.components.container:IsEmpty() then
-        inst.persists = false
-        inst:DoTaskInTime(0, inst.Remove)
+        inst.visual:SetUp(inst)
+        inst:DoTaskInTime(0, function()
+            if inst.components.container:IsEmpty() then
+                inst:Remove()
+            end
+        end)
     end
 end
 
@@ -44,28 +66,12 @@ local function init(inst, item)
 
     inst.Transform:SetPosition(item.Transform:GetWorldPosition())
 
-    if item and (item.components.health or item.components.murderable) then -- 复制自ACTIONS.MURDER.fn
-        if item.components.lootdropper then
-            local stacksize = item.components.stackable and item.components.stackable:StackSize() or 1
-            for i = 1, stacksize do
-                if item.inventoryloot then
-                    item.components.lootdropper:SetChanceLootTable(item.inventoryloot)
-                end
-                local loots = item.components.lootdropper:GenerateLoot()
-                for k, v in pairs(loots) do
-                    local loot = SpawnPrefab(v)
-                    if loot then
-                        loot.Transform:SetPosition(item.Transform:GetWorldPosition())
-                        SinkEntity(loot)
-                    end
-                end
-            end
-        end
+    if not inst.components.container:GiveItem(item, nil, nil, false) then
         item:Remove()
-    else
-        if not inst.components.container:GiveItem(item, nil, nil, false) then
-            item:Remove()
-        end
+    end
+
+    if item and (item.components.health or item.components.murderable) and item.components.perishable then
+        item.components.perishable:Perish()
     end
 
     if inst.components.container:IsEmpty() then
@@ -90,6 +96,24 @@ local function OnItemLose(inst, data)
     if data.prev_item and data.prev_item:IsValid() and data.prev_item.components.inventoryitemmoisture then
         data.prev_item.components.inventoryitemmoisture.moisture_override = nil
     end
+
+    
+    if data.prev_item and (data.prev_item.components.health or data.prev_item.components.murderable) and data.prev_item.components.perishable then
+        data.prev_item.components.perishable:Perish()
+    end
+end
+
+local function OnSave(inst, data)
+    data.visual_atlas = inst.visual_atlas
+    data.visual_image = inst.visual_image
+end
+
+local function OnLoad(inst, data)
+    if data then
+        inst.visual_atlas = data.visual_atlas
+        inst.visual_image = data.visual_image
+        inst:UpdateVisual()
+    end
 end
 
 local function fn()
@@ -100,6 +124,7 @@ local function fn()
 
     inst.AnimState:SetBank("bubbles_sunk")
     inst.AnimState:SetBuild("bubbles_sunk")
+    inst.AnimState:PlayAnimation("bubble_loop")
 
     inst:AddTag("sunkencontainer")
     inst:AddTag("fishable")
@@ -127,20 +152,24 @@ local function fn()
     inst:AddComponent("timer")
     inst:ListenForEvent("timerdone", ontimerdone)
 
-    inst:DoTaskInTime((math.random() * 15 + 15), dobubblefx)
-
     inst:ListenForEvent("itemget", OnItemGet)
     inst:ListenForEvent("itemlose", OnItemLose)
+
+    inst.OnEntityWake = OnEntityWake
+    inst.OnEntitySleep = OnEntitySleep
 
     inst.UpdateVisual = UpdateVisual
     inst.Initialize = init
 
+    inst.OnSave = OnSave
+    inst.OnLoad = OnLoad
+
     return inst
 end
 
-local function SetUp(inst, parent, item)
-    if item ~= nil then
-        inst.AnimState:OverrideSymbol("visual_slot", item.replica.inventoryitem:GetAtlas(), item.replica.inventoryitem:GetImage())
+local function SetUp(inst, parent, atlas, image)
+    if atlas ~= nil then
+        inst.AnimState:OverrideSymbol("visual_slot", atlas, image)
     else
         inst.AnimState:ClearOverrideSymbol("visual_slot")
     end

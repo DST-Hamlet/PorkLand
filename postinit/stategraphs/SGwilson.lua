@@ -619,7 +619,7 @@ local states = {
                         fishingrod.target.components.inventoryitem:Launch(Vector3(0,10,0) + delta * 2)
                         inst.sg.statemem.item = item
                     end
-                    target:Remove()
+                    target.components.container:DropEverything()
                 end
 
                 if fishingrod then
@@ -631,8 +631,8 @@ local states = {
             end),
             TimeEvent(70*FRAMES, function(inst)
                 local item = inst.sg.statemem.item ~= nil and inst.sg.statemem.item:IsValid() and inst.sg.statemem.item or nil
-                if item and item.components.inventoryitem and item.components.inventoryitem.canbepickedup then
-                    inst.components.inventory:GiveItem(item)
+                if item and item:IsValid() then
+                    BufferedAction(inst, item, ACTIONS.PICKUP):Do()
                 end
                 local fishingrod = inst.sg.statemem.tool ~= nil and inst.sg.statemem.tool:IsValid() and inst.sg.statemem.tool.components.fishingrod or nil
                 if fishingrod ~= nil then

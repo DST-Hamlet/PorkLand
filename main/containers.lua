@@ -387,7 +387,11 @@ params["trawlnetdropped"] = deepcopy(params["treasurechest"])
 params["sunkenprefab"] = 
 {
     widget = {
-        slotpos = { Vector3(0, 0, 0) }
+        slotpos = { 
+            Vector3(0, 0, 0),
+            Vector3(80, 0, 0), 
+            Vector3(160, 0, 0), 
+        }
     },
 }
 
