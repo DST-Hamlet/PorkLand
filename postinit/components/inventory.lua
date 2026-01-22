@@ -21,6 +21,21 @@ function Inventory:Equip(item, ...)
     end
 end
 
+local _GiveItem = Inventory.GiveItem
+function Inventory:GiveItem(item, ...)
+    -- 多余物品优先进入船容器
+    if self:GetOverflowContainer() == nil and self:GetNextAvailableSlot(item) == nil then -- 如果有背包, 那么背包会处理多余物品
+        local sailor = self.inst.replica.sailor
+        local boatcontainer = sailor and sailor:GetBoat() and sailor:GetBoat().components.container
+
+        if boatcontainer and boatcontainer:GiveItem(item, ...) then
+            return true
+        end
+    end
+
+    return _GiveItem(self, item, ...)
+end
+
 function Inventory:HasPoisonBlockerEquip()
     for k, v in pairs (self.equipslots) do
         if v.components.equippable ~= nil and v.components.equippable:IsPoisonBlocker() then

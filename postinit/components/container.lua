@@ -88,6 +88,41 @@ function Container:GetSpecificSlotForItem(...)
     return ret
 end
 
+function Container:IsOverflow(owner)
+    if owner == nil then
+        owner = self.inst.components.inventoryitem and self.inst.components.inventoryitem.owner
+    end
+
+    if owner == nil then
+        return
+    end
+
+    return owner.components.inventory and (owner.components.inventory:GetOverflowContainer() == self) or nil
+end
+
+local _GiveItem = Container.GiveItem
+function Container:GiveItem(...)
+    local ret = _GiveItem(self, ...)
+
+    -- 多余物品优先进入船容器
+    if ret == false and self:IsOverflow() then -- 如果该容器是背包且无法装下所有物品
+        local owner = self.inst.components.inventoryitem and self.inst.components.inventoryitem.owner
+
+        if owner == nil then
+            return
+        end
+        
+        local sailor = owner.replica.sailor
+        local boatcontainer = sailor and sailor:GetBoat() and sailor:GetBoat().components.container
+
+        if boatcontainer and self ~= boatcontainer then
+            return boatcontainer:GiveItem(...)
+        end
+    end
+
+    return ret
+end
+
 function Container:BoatEquip(item, doer)
     if not self.hasboatequipslots then
         return
@@ -117,7 +152,13 @@ function Container:BoatEquip(item, doer)
 
             if old_item then
                 local drop_item = self:BoatUnequip(eslot)
-                
+
+                local iscontroller = doer and doer.components.playercontroller and doer.components.playercontroller.isclientcontrollerattached
+                if iscontroller and prevslot then
+                    drop_item.prevcontainer = prevcontainer
+                    drop_item.prevslot = prevslot
+                end
+
                 if drop_item and drop_item:IsValid() then
                     if doer and doer.components.inventory then
                         doer.components.inventory:GiveItem(drop_item)
@@ -128,7 +169,7 @@ function Container:BoatEquip(item, doer)
                     end
                 end
             end
-            self:GiveItem(item, slot)
+            self:GiveItem(item, slot) -- 会导致item.prevcontainer和item.prevslot发生变化
 
             item.prevcontainer = prevcontainer
             item.prevslot = prevslot
