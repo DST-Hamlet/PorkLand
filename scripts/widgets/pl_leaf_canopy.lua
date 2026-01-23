@@ -19,6 +19,7 @@ local LeavesOver = Class(Widget, function(self, owner)
     self.leavesTop:GetAnimState():SetMultColour(1, 1, 1, 1)
     self.leavesTop:GetAnimState():AnimateWhilePaused(false)
     self.leavesTop:SetScaleMode(SCALEMODE_FIXEDSCREEN_NONDYNAMIC)
+    self.leavesTop:SetPosition(0, 50, 0) -- 略微上调了屏幕顶部树叶的位置
     -- self.leavesTop:GetAnimState():SetEffectParams( 0.784, 0.784, 0.784, 1)
     self.leavesTop:Hide()
 end)
@@ -73,10 +74,10 @@ function LeavesOver:OnUpdate(dt)
     self.under_leaves = TheWorld.Map:IsVisualCanopyAtPoint(x, y, z)
 
     if self.under_leaves then
-        SetShadeMaxStrengthMult(0.7)
+        SetShadeStrengthMult(0.7)
         self.leavestop_intensity = math.min(1, self.leavestop_intensity + (1/30))
     else
-        SetShadeMaxStrengthMult(1)
+        SetShadeStrengthMult(1)
         self.leavestop_intensity = math.max(0, self.leavestop_intensity - (1/30))
     end
 

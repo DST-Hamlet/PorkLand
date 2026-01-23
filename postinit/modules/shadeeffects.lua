@@ -40,23 +40,23 @@ AddAnimShadeRenderer("roc_shadow_ground_loop", "images/shade_anim/roc_shadow/gro
 AddAnimShadeRenderer("roc_shadow_ground_pst", "images/shade_anim/roc_shadow/ground_pst/ground_pst-", 54)
 AddAnimShadeRenderer("roc_shadow_shadow_flap_loop", "images/shade_anim/roc_shadow/shadow_flap_loop/shadow_flap_loop-", 37)
 
-local current_shade_max_strength = 1
-local target_shade_max_strength = 1
+local current_mult = 1
+local target_mult = 1
 
-function SetShadeMaxStrengthMult(val)
-    target_shade_max_strength = val
+function SetShadeStrengthMult(val)
+    target_mult = val
 end
 
 local _ShadeEffectUpdate = ShadeEffectUpdate
 function ShadeEffectUpdate(dt, ...)
     local r, g, b = TheSim:GetAmbientColour()
 
-    current_shade_max_strength = Lerp(current_shade_max_strength, target_shade_max_strength, dt)
-    ShadeRenderer:SetShadeStrength(ShadeTypes.RainforestCanopy, Lerp(TUNING.RAINFOREST_CANOPY_MIN_STRENGTH, TUNING.RAINFOREST_CANOPY_MAX_STRENGTH * current_shade_max_strength, ((r + g + b) / 3) / 255))
+    current_mult = Lerp(current_mult, target_mult, dt)
+    ShadeRenderer:SetShadeStrength(ShadeTypes.RainforestCanopy, current_mult * Lerp(TUNING.RAINFOREST_CANOPY_MIN_STRENGTH, TUNING.RAINFOREST_CANOPY_MAX_STRENGTH, ((r + g + b) / 3) / 255))
 
     for name, shadeanim in pairs(AnimShadeRenderers) do
         for _, framedata in pairs(shadeanim["datas"]) do
-            ShadeRenderer:SetShadeStrength(framedata.typeid, Lerp(TUNING.ANIMSHADE_MIN_STRENGTH, TUNING.ANIMSHADE_MAX_STRENGTH * current_shade_max_strength, ((r + g + b) / 3) / 255))
+            ShadeRenderer:SetShadeStrength(framedata.typeid, current_mult * Lerp(TUNING.ANIMSHADE_MIN_STRENGTH, TUNING.ANIMSHADE_MAX_STRENGTH, ((r + g + b) / 3) / 255))
         end
     end
     return _ShadeEffectUpdate(dt, ...)
