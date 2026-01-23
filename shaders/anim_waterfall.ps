@@ -108,9 +108,16 @@ void main()
 
 colour = mix(colour, colour_2, 0.5);
 
+if (colour.a < 1.0)
+{
+	discard;
+}
+
+colour.a *= 0.9;
+
 if (PS_POS.y < -1.)
 {
-    colour.a *= 1. + (1. + PS_POS.y) * 0.5; // 世界坐标越低的纹理越透明. 不知为何, 实际上还会改变灰度
+    colour.a *= 1. + (1. + PS_POS.y) * 0.5; // 世界坐标越低的纹理越透明, 不知为何, 实际上还会改变灰度
 }
 
 #if defined ( FADE_OUT )
@@ -130,7 +137,7 @@ if (PS_POS.y < -1.)
     else
 #endif
     {
-        gl_FragColor.rgba = colour.rgba * COLOUR_XFORM;
+        gl_FragColor.rgba = colour.rgba * COLOUR_XFORM; // + vec4(0.0, 0.0, 0.0, 10.0);
 		
 		vec2 world_uv = ( PS_POS.xz - OCEAN_WORLD_EXTENTS.xy ) * OCEAN_WORLD_EXTENTS.zw;
 		vec3 world_tint = texture2D( OCEAN_SAMPLER, world_uv ).rgb;

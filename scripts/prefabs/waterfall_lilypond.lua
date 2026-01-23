@@ -48,7 +48,7 @@ local function fn()
     inst.AnimState:PlayAnimation("idle", false)
     inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
     inst.AnimState:SetDefaultEffectHandle(resolvefilepath("shaders/anim_waterfall.ksh"))
-    inst.AnimState:UsePointFiltering(true) -- 会降低物体的抗锯齿效果, 但是可以避免开启深度测试的物体之间的接缝
+    -- inst.AnimState:UsePointFiltering(true) -- 会降低物体的抗锯齿效果, 但是可以避免开启深度测试的物体之间的接缝
 
     inst.AnimState:SetLayer(LAYER_BELOW_GROUND)
     inst.AnimState:SetSortOrder(3)
@@ -92,12 +92,12 @@ local function corner_fn()
     inst.entity:AddSoundEmitter()
     inst.entity:AddNetwork()
 
-    inst.AnimState:SetBuild("waterfall_lilypond_corner_base")
+    inst.AnimState:SetBuild("waterfall_lilypond_base")
     inst.AnimState:SetBank("waterfall_corner_pl")
     inst.AnimState:PlayAnimation("idle", false)
     inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
     inst.AnimState:SetDefaultEffectHandle(resolvefilepath("shaders/anim_waterfall_corner.ksh"))
-    inst.AnimState:UsePointFiltering(true) -- 会降低物体的抗锯齿效果, 但是可以避免开启深度测试的物体之间的接缝
+    -- inst.AnimState:UsePointFiltering(true) -- 会降低物体的抗锯齿效果, 但是可以避免开启深度测试的物体之间的接缝
 
     inst.AnimState:SetLayer(LAYER_BELOW_GROUND)
     inst.AnimState:SetSortOrder(3)
