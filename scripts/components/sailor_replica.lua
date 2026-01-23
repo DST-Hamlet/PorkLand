@@ -55,10 +55,18 @@ local Sailor = Class(function(self, inst)
 
     self._currentspeed = net_float(inst.GUID, "sailor._currentspeed")
     self._currentspeed:set(1)
+    self.predict_currentspeed = nil
+
+    self.acceleration = 6
+    self.deceleration = 6
+    
+    self.perdictframe = 0
 
     if TheWorld.ismastersim then
         inst:ListenForEvent("boatattacked", OnBoatAttacked)
     end
+
+    self.inst:StartUpdatingComponent(self)
 end)
 
 -- not in use, but leaving here since it doesn't really cause problems
@@ -72,6 +80,49 @@ function Sailor:GetBoat()
     end
 
     return self._currentboat
+end
+
+function Sailor:GetSpeed()
+    return self.predict_speed or self._currentspeed:value()
+end
+
+function Sailor:OnUpdate(dt)
+    local boat = self:GetBoat()
+    if not TheWorld.ismastersim 
+        and boat and boat.replica.sailable 
+        and self.inst.sg then -- 延迟补偿开启时
+
+        local current_speed = self.predict_speed or self._currentspeed:value()
+        local target_speed = boat.replica.sailable._externalspeedmultiplier:value() + 6
+        local deceleration = self.deceleration * (1 + boat.replica.sailable._externalaccelerationmultiplier:value())
+        local acceleration = self.deceleration * (1 + boat.replica.sailable._externalaccelerationmultiplier:value())
+
+        if not self.inst.sg:HasStateTag("boating") then
+            self.perdictframe = self.perdictframe - 1
+        else
+            self.perdictframe = 1
+        end
+        if self.perdictframe <= 0 then
+            self.perdictframe = 0
+            target_speed = 1
+        end
+
+        if(target_speed > current_speed) then
+            current_speed = current_speed + acceleration * dt
+            if(current_speed > target_speed) then
+               current_speed = target_speed
+           end
+        elseif (target_speed < current_speed) then
+            current_speed = current_speed - deceleration * dt
+            if(current_speed < 1) then
+                current_speed = 1
+            end
+        end
+
+        self.predict_speed = current_speed
+    else -- 延迟补偿关闭时
+        self.predict_speed = nil
+    end
 end
 
 function Sailor:GetBoatHealth()

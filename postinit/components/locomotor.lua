@@ -48,7 +48,7 @@ local function ServerGetSpeedMultiplier(self)
                 mult = mult + (saddle.components.saddler:GetBonusSpeedMult() - 1)
             end
         elseif self.inst.replica.sailor and self.inst.replica.sailor:GetBoat() then
-            mult = self.inst.replica.sailor._currentspeed:value() / self:RunSpeed()
+            mult = self.inst.replica.sailor:GetSpeed() / self:RunSpeed()
         elseif self.inst.components.inventory.isopen then
             -- NOTE: Check if inventory is open because client GetEquips returns
             --       nothing if inventory is closed.
@@ -85,7 +85,7 @@ local function ClientGetSpeedMultiplier(self)
                 mult = mult + (inventoryitem:GetWalkSpeedMult() - 1)
             end
         elseif self.inst.replica.sailor and self.inst.replica.sailor:GetBoat() then
-            mult = self.inst.replica.sailor._currentspeed:value() / self:RunSpeed()
+            mult = self.inst.replica.sailor:GetSpeed() / self:RunSpeed()
         else
             -- NOTE: GetEquips returns empty if inventory is closed! (Hidden still returns items.)
             local is_mighty = self.inst:HasTag("mightiness_mighty")

@@ -183,6 +183,8 @@ function Sailable:SetExternalSpeedMultiplier(source, key, m)
         src_params.multipliers[key] = m
         self.externalspeedmultiplier = self:RecalculateExternalSpeedMultiplier(self._externalspeedmultipliers)
     end
+
+    self.inst.replica.sailable._externalspeedmultiplier:set(self.externalspeedmultiplier)
 end
 
 function Sailable:RemoveExternalSpeedMultiplier(source, key)
@@ -201,6 +203,8 @@ function Sailable:RemoveExternalSpeedMultiplier(source, key)
     self.inst:RemoveEventCallback("onremove", src_params.onremove, source)
     self._externalspeedmultipliers[source] = nil
     self.externalspeedmultiplier = self:RecalculateExternalSpeedMultiplier(self._externalspeedmultipliers)
+    
+    self.inst.replica.sailable._externalspeedmultiplier:set(self.externalspeedmultiplier)
 end
 
 function Sailable:RecalculateExternalAccelerationMultiplier(sources)
@@ -235,6 +239,8 @@ function Sailable:SetExternalAccelerationMultiplier(source, key, m)
         src_params.multipliers[key] = m
         self.externalaccelerationmultiplier = self:RecalculateExternalAccelerationMultiplier(self._externalaccelerationmultipliers)
     end
+
+    self.inst.replica.sailable._externalaccelerationmultiplier:set(self.externalaccelerationmultiplier)
 end
 
 function Sailable:RemoveExternalAccelerationMultiplier(source, key)
@@ -252,6 +258,8 @@ function Sailable:RemoveExternalAccelerationMultiplier(source, key)
     self.inst:RemoveEventCallback("onremove", src_params.onremove, source)
     self._externalaccelerationmultipliers[source] = nil
     self.externalaccelerationmultiplier = self:RecalculateExternalAccelerationMultiplier(self._externalaccelerationmultipliers)
+
+    self.inst.replica.sailable._externalaccelerationmultiplier:set(self.externalaccelerationmultiplier)
 end
 
 function Sailable:GetExternalAccelerationMultiplier(source, key, m)

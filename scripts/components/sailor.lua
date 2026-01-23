@@ -60,8 +60,8 @@ local Sailor = Class(function(self, inst)
         { percent = 0.1, string = "ANNOUNCE_BOAT_SINKING_IMMINENT" },
     }
 
-    self.acceleration = 6
-    self.deceleration = 6
+    self.acceleration = 6 -- 目前是固定值
+    self.deceleration = 6 -- 目前是固定值
     self.boatspeed = 0
     self.perdictframe = 0
 
@@ -118,7 +118,7 @@ function Sailor:OnUpdate(dt)
             end
             if self.perdictframe <= 0 then
                 self.perdictframe = 0
-                target_speed = 0
+                target_speed = 1
             end
 
             if(target_speed > current_speed) then
@@ -128,20 +128,14 @@ function Sailor:OnUpdate(dt)
                end
             elseif (target_speed < current_speed) then
                 current_speed = current_speed - deceleration * dt
-                if(current_speed < 0) then
-                    current_speed = 0
-                end
-            end
-            self.boatspeed = current_speed
-            local sailor_speed = self.boatspeed
-            sailor_speed = math.floor(self.boatspeed + 1) -- 船的应用速度从1开始计数，且尽可能取整数
-            if sailor_speed > target_speed and
-                ((sailor_speed - target_speed) <= (math.floor(target_speed + 1) - target_speed)) and
-                self.perdictframe > 0 then
-                    sailor_speed = target_speed
             end
 
-            self.inst.replica.sailor._currentspeed:set(sailor_speed)
+            if(current_speed < 1) then
+                current_speed = 1
+            end
+
+            self.boatspeed = current_speed
+            self.inst.replica.sailor._currentspeed:set(current_speed)
         end
 
         local pos = self.inst:GetPosition()

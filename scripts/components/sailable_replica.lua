@@ -9,6 +9,12 @@ local Sailable = Class(function(self, inst)
     self._haunt = net_bool(inst.GUID, "sailable._haunt", "hauntdirty")
     self._haunt:set(false)
 
+    self._externalaccelerationmultiplier = net_float(inst.GUID, "sailable._externalaccelerationmultiplier")
+    self._externalaccelerationmultiplier:set(0)
+
+    self._externalspeedmultiplier = net_float(inst.GUID, "sailable._externalspeedmultiplier")
+    self._externalspeedmultiplier:set(0)
+
     if not TheWorld.ismastersim then
         inst:ListenForEvent("animdirty", function()
             if self:CheckIsPredict() then
