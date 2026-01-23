@@ -112,7 +112,7 @@ local function FindFirstNodePos_Default(island_node_datas, last_node, map_width,
                 site_y = new_site_y
             end
         end
-    else
+    else -- 是该岛屿的第一个节点
         site_x = 0.5 * map_width
         site_y = 0.5 * map_width
     end
@@ -307,12 +307,6 @@ local function GenerateTask_Road(node_datas, island_node_datas, map_width, task_
         data.polygon_vertexs.x = {site_x + 10, site_x - 10, site_x - 10, site_x + 10}
         data.polygon_vertexs.y = {site_y + 10, site_y + 10, site_y - 10, site_y - 10}
 
-        if last_node == nil then
-            table.insert(data.tags, "taskstart")
-        else
-            table.insert(data.tags, "noconnect")
-        end
-
         node_datas[room_id] = data
         island_node_datas[room_id] = data
 
@@ -368,13 +362,18 @@ local function GenerateIsland_Accademy(node_datas, island_tasks, map_width) -- �
     for i, v in ipairs(task_proprity) do
         shuffleArray(v) -- 同一优先级的task打乱顺序生成
         for _, taskname in pairs(v) do
-            for _, task_node in pairs(island_tasks) do
+            for task_i, task_node in pairs(island_tasks) do
                 if task_node.id == taskname then
                     table.insert(island_tasks_sorted, task_node)
+                    island_tasks[task_i] = nil
                     break
                 end
             end
         end
+    end
+
+    for task_i, task_node in pairs(island_tasks) do
+        table.insert(island_tasks_sorted, task_node)
     end
 
     for _, task_node in pairs(island_tasks_sorted) do
