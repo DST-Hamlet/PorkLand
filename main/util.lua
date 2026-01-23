@@ -10,6 +10,32 @@ function TempTile_HandleTileChange_Void(x, y, z)
     return _TempTile_HandleTileChange_Void(x, y, z)
 end
 
+function FindNearbyPassable(position, range) -- 复制自simutil
+    local finaloffset = FindValidPositionByFan(math.random() * TWOPI, range or 8, 8, function(offset)
+        local x, z = position.x + offset.x, position.z + offset.z
+        return TheWorld.Map:IsAboveGroundAtPoint(x, 0, z, true) -- 允许水体
+            and not TheWorld.Map:IsPointNearHole(Vector3(x, 0, z))
+    end)
+    if finaloffset ~= nil then
+        finaloffset.x = finaloffset.x + position.x
+        finaloffset.z = finaloffset.z + position.z
+        return finaloffset
+    end
+end
+
+function FindNearbyWater(position, range) -- 不宜hook IsOceanAtPoint, 因此创建一个新函数适配哈姆雷特的水体
+    local finaloffset = FindValidPositionByFan(math.random() * TWOPI, range or 8, 8, function(offset)
+        local x, z = position.x + offset.x, position.z + offset.z
+        return TheWorld.Map:ReverseIsVisualWaterAtPoint(x, 0, z)
+            and not TheWorld.Map:IsPointNearHole(Vector3(x, 0, z))
+    end)
+    if finaloffset ~= nil then
+        finaloffset.x = finaloffset.x + position.x
+        finaloffset.z = finaloffset.z + position.z
+        return finaloffset
+    end
+end
+
 function GetWorldSetting(setting, default)
     local worldsettings = TheWorld and TheWorld.components.worldsettings
     if worldsettings then

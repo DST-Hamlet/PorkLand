@@ -7,7 +7,7 @@ local function Init(inst)
     end
 
     -- Disable for now for performance reason and also player might get squeezed out of world bound
-    if not inst:HasTag("nokeeponpassable") then
+    if TheWorld.has_pl_ocean and not inst:HasTag("nokeeponpassable") then
         inst:AddComponent("keeponpassable")
     end
 end

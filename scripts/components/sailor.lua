@@ -148,7 +148,7 @@ function Sailor:OnUpdate(dt)
         local x, y, z = pos:Get()
         if TheWorld.Map:ReverseIsVisualWaterAtPoint(x, y, z) then
             self.last_pos = pos
-        elseif TheWorld.Map:ReverseIsVisualGroundAtPoint(x, y, z) then
+        else
             local target_pos = Vector3(x, y, z)
             self:Disembark(target_pos, nil, true, self.last_pos)
         end
@@ -268,43 +268,45 @@ function Sailor:Disembark(pos, boat_to_boat, no_state, boat_pos)
     --     self.inst.components.farseer:RemoveBonus("boat")
     -- end
 
-    self.inst:RemoveChild(self.boat)
+    if self.boat ~= nil then
+        self.inst:RemoveChild(self.boat)
+    
+        if self.boat.components.highlightchild then
+            self.boat.components.highlightchild:SetOwner(nil)
+        end
+        if self.inst.components.colouradder then
+            self.boat.AnimState:SetAddColour(0, 0, 0, 0) -- clear freezable effects etc
+            self.inst.components.colouradder:DetachChild(self.boat)
+        end
+        if self.inst.components.eroder then
+            self.inst.components.eroder:DetachChild(self.boat)
+        end
 
-    if self.boat.components.highlightchild then
-        self.boat.components.highlightchild:SetOwner(nil)
-    end
-    if self.inst.components.colouradder then
-        self.boat.AnimState:SetAddColour(0, 0, 0, 0) -- clear freezable effects etc
-        self.inst.components.colouradder:DetachChild(self.boat)
-    end
-    if self.inst.components.eroder then
-        self.inst.components.eroder:DetachChild(self.boat)
-    end
+        local x, y, z = self.inst.Transform:GetWorldPosition()
+        if boat_pos then
+            x, y, z = boat_pos:Get()
+        end
+        self.inst.Physics:Stop()
+        self.inst.components.locomotor:StopMoving()
+        if no_state and pos then
+            self.inst.Transform:SetPosition(pos.x, pos.y, pos.z)
+        else
+            self.inst.Transform:SetPosition(x, y, z)
+        end
 
-    local x, y, z = self.inst.Transform:GetWorldPosition()
-    if boat_pos then
-        x, y, z = boat_pos:Get()
+        local offset = self.boat.components.sailable.offset
+        if offset ~= nil then
+            x = x + offset.x
+            y = y + offset.y
+            z = z + offset.z
+        end
+        if self.boat.Physics then
+            self.boat.Physics:Teleport(x, y, z)
+        else
+            self.boat.Transform:SetPosition(x, y, z)
+        end
+        self:AlignBoat()
     end
-    self.inst.Physics:Stop()
-    self.inst.components.locomotor:StopMoving()
-    if no_state and pos then
-        self.inst.Transform:SetPosition(pos.x, pos.y, pos.z)
-    else
-        self.inst.Transform:SetPosition(x, y, z)
-    end
-
-    local offset = self.boat.components.sailable.offset
-    if offset ~= nil then
-        x = x + offset.x
-        y = y + offset.y
-        z = z + offset.z
-    end
-    if self.boat.Physics then
-        self.boat.Physics:Teleport(x, y, z)
-    else
-        self.boat.Transform:SetPosition(x, y, z)
-    end
-    self:AlignBoat()
 
     self.inst:RemoveTag("sailing")
 
@@ -314,7 +316,7 @@ function Sailor:Disembark(pos, boat_to_boat, no_state, boat_pos)
 
     self.inst:PushEvent("disembarkboat", {target = self.boat, pos = pos, boat_to_boat = boat_to_boat})
 
-    if self.boat.components.sailable then
+    if self.boat and self.boat.components.sailable then
         self.boat.components.sailable:OnDisembarked(self.inst)
     end
 

@@ -289,7 +289,7 @@ local states =
             inst.Physics:Stop()
             RemovePhysicsColliders(inst)
             inst.components.lootdropper:DropLoot()
-            inst.components.inventory:DropEverything(false, false)
+            inst.components.inventory:DropEverything()
         end,
     },
 

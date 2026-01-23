@@ -2,8 +2,10 @@ GLOBAL.setfenv(1, GLOBAL)
 
 local Drownable = require("components/drownable")
 
-function Drownable:DrownToDeath()
-    self.inst.components.health:DoDelta(-self.inst.components.health.currenthealth, nil, "drowning", true, nil, true)
+function Drownable:DrownToDeath()    
+    local x, y, z = self.inst.Transform:GetWorldPosition()
+    local death_type = TheWorld.Map:IsAboveGroundAtPoint(x, y, z, true) and "drowning" or "gravity"
+    self.inst.components.health:DoDelta(-self.inst.components.health.currenthealth, nil, death_type, true, nil, true)
 end
 
 function Drownable:ShouldDrownToDeath()
@@ -16,15 +18,6 @@ end
 local _ShouldDrown = Drownable.ShouldDrown
 function Drownable:ShouldDrown(...)
     return (self.inst.components.sailor == nil or not self.inst.components.sailor:IsSailing()) and _ShouldDrown(self, ...)
-end
-
-function Drownable:IsOverWater() -- 覆盖法
-    if self:IsSafeFromFalling() then
-        return false
-    end
-
-    local x, y, z = self.inst.Transform:GetWorldPosition()
-    return TheWorld.Map:ReverseIsVisualWaterAtPoint(x, y, z)
 end
 
 local function _never_invincible()
@@ -49,13 +42,22 @@ function Drownable:CanDrownOverWater(allow_invincible)
     return ret and not self.inst:HasTag("playerghost") -- HACK: Playerghosts dont drown because they lack the onsink sg event
 end
 
-local _GetFallingReason = Drownable.GetFallingReason
-function Drownable:GetFallingReason()
-    local reason = _GetFallingReason(self)
-    if (reason == FALLINGREASON.VOID) and TheWorld.has_pl_ocean then
-        return -- 视为不跌落
+function Drownable:IsOverVoid() -- 覆盖法
+    if self:IsSafeFromFalling() then
+        return false
     end
-    return reason
+
+    local x, y, z = self.inst.Transform:GetWorldPosition()
+    return TheWorld.Map:IsImpassableAtPoint(x, y, z)
+end
+
+function Drownable:IsOverWater() -- 覆盖法
+    if self:IsSafeFromFalling() then
+        return false
+    end
+
+    local x, y, z = self.inst.Transform:GetWorldPosition()
+    return TheWorld.Map:ReverseIsVisualWaterAtPoint(x, y, z)
 end
 
 Drownable._WashAshore = Drownable.WashAshore

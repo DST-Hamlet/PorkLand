@@ -1602,6 +1602,8 @@ local states = {
         onenter = function(inst, data)
             assert(inst.deathcause ~= nil, "Entered death state without cause.")
 
+            inst.components.sailor:Disembark()
+
             ClearStatusAilments(inst)
             ForceStopHeavyLifting(inst)
 
@@ -1635,6 +1637,85 @@ local states = {
             end
         end,
     },
+
+    State{
+		name = "abyss_fall_death",
+		tags = { "busy", "nopredict", "nomorph", "noattack", "nointerrupt", "nodangle", "falling" },
+        onenter = function(inst, teleport_pt)
+            ForceStopHeavyLifting(inst)
+            inst:ClearBufferedAction()
+
+            inst.components.locomotor:Stop()
+            inst.components.locomotor:Clear()
+
+			inst.AnimState:PlayAnimation("abyss_fall")
+
+            if inst.components.drownable then
+                local teleport_x, teleport_y, teleport_z
+                if teleport_pt then
+                    teleport_x, teleport_y, teleport_z = teleport_pt:Get()
+                end
+                inst.components.drownable:OnFallInVoid(teleport_x, teleport_y, teleport_z)
+            end
+
+            if inst.components.rider:IsRiding() then
+                inst.sg:AddStateTag("dismounting")
+            end
+
+            ToggleOffPhysics(inst)
+
+            inst.DynamicShadow:Enable(false)
+            inst:ShowHUD(false)
+        end,
+
+        timeline =
+        {
+			FrameEvent(22, function(inst)
+				inst.AnimState:SetLayer(LAYER_BELOW_GROUND)
+			end),
+            
+			FrameEvent(30, function(inst)
+                StartTeleporting(inst)
+
+                if inst.components.rider ~= nil and inst.components.rider:IsRiding() then
+                    local mount = inst.components.rider:GetMount()
+                    inst.components.rider:ActualDismount()
+                    if mount ~= nil then
+                        if mount.components.drownable ~= nil then
+                            mount:PushEvent("onsink", {noanim = true, shore_pt = Vector3(inst.components.drownable.dest_x, inst.components.drownable.dest_y, inst.components.drownable.dest_z)})
+                        elseif mount.components.health ~= nil then
+                            mount:Hide()
+                            mount.components.health:Kill()
+                        end
+                    end
+                end
+
+                inst.components.drownable:WashAshore() -- 此项决定是否使用云霄国度的溺水判定
+            end),
+        },
+
+        events =
+        {
+            EventHandler("on_washed_ashore", function(inst)
+                inst.sg:GoToState("washed_ashore")
+            end),
+        },
+
+        onexit = function(inst)
+            inst.AnimState:SetLayer(LAYER_WORLD)
+			inst.DynamicShadow:Enable(true)
+			inst:Show()
+			inst:ShowHUD(true)
+
+            if inst.sg.statemem.isphysicstoggle then
+                ToggleOnPhysics(inst)
+            end
+
+            if inst.sg.statemem.isteleporting then
+                DoneTeleporting(inst)
+            end
+        end,
+	},
 
     State{
         name = "portal_jumpin_boat",
@@ -3084,6 +3165,15 @@ AddStategraphPostInit("wilson", function(sg)
         return _reviver_rebirth_onenter(inst, source, ...)
     end
 
+    local _abyss_fall_onenter = sg.states["abyss_fall"].onenter
+    sg.states["abyss_fall"].onenter = function(inst, ...)
+        if TheWorld.has_pl_ocean then
+            inst.sg:GoToState("abyss_fall_death", ...)
+            return 
+        end
+        return _reviver_rebirth_onenter(inst, ...)
+    end
+
     local _locomote_eventhandler = sg.events.locomote.fn
     sg.events.locomote.fn = function(inst, data, ...)
         local is_attacking = inst.sg:HasStateTag("attack")
@@ -3149,7 +3239,7 @@ AddStategraphPostInit("wilson", function(sg)
 
     local _death_eventhandler = sg.events.death.fn
     sg.events.death.fn = function(inst, data)
-        if data.cause == "drowning" then
+        if data.cause == "drowning" or data.cause == "gravity" then
             inst.sg:GoToState("death_drown")
         else
             if inst.components.sailor and inst.components.sailor.boat and inst.components.sailor.boat.components.container then
