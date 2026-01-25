@@ -135,7 +135,7 @@ local boat_row = {
         [BOATEQUIPSLOTS.BOAT_LAMP] = 2,
     },
     itemtestfn = BoatItemTestFn,
-    usespecificslotsforitems = true,
+    usespecificslotsforitems = true, -- 为了让普通物品无法进入船的装备格子, 或许写法还可以进一步优化
 }
 
 
@@ -177,7 +177,7 @@ local boat_cork = {
     type = "boat",
     side_align_tip = -500,
     hasboatequipslots = true,
-    boatcontainerequips = 
+    boatcontainerequips =
     {
         [BOATEQUIPSLOTS.BOAT_SAIL] = 1,
         [BOATEQUIPSLOTS.BOAT_LAMP] = 2,
@@ -223,7 +223,7 @@ local boat_cargo = {
     type = "boat",
     side_align_tip = -500,
     hasboatequipslots = true,
-    boatcontainerequips = 
+    boatcontainerequips =
     {
         [BOATEQUIPSLOTS.BOAT_SAIL] = 7,
         [BOATEQUIPSLOTS.BOAT_LAMP] = 8,
@@ -384,13 +384,13 @@ params["armorvortexcloak"] = widget_armor_vortex_cloak
 params["ro_bin"] = deepcopy(params["chester"])
 
 params["trawlnetdropped"] = deepcopy(params["treasurechest"])
-params["sunkenprefab"] = 
+params["sunkenprefab"] =
 {
     widget = {
-        slotpos = { 
+        slotpos = {
             Vector3(0, 0, 0),
-            Vector3(80, 0, 0), 
-            Vector3(160, 0, 0), 
+            Vector3(80, 0, 0),
+            Vector3(160, 0, 0),
         }
     },
 }

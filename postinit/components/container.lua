@@ -69,7 +69,7 @@ function Container:IsBoatSlot(slot)
 end
 
 local _GetSpecificSlotForItem = Container.GetSpecificSlotForItem
-function Container:GetSpecificSlotForItem(...)
+function Container:GetSpecificSlotForItem(...) -- 为了让普通物品无法进入船的装备格子, 或许写法还可以进一步优化
     removesetter(self, "itemtestfn")
     local _itemtestfn = self.itemtestfn
     self.itemtestfn = function(container, item, i, ...)
@@ -111,7 +111,7 @@ function Container:GiveItem(...)
         if owner == nil then
             return
         end
-        
+
         local sailor = owner.replica.sailor
         local boatcontainer = sailor and sailor:GetBoat() and sailor:GetBoat().components.container
 
