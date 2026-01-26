@@ -133,6 +133,14 @@ function FollowCamera:ZoomOut(step, ...)
     end
 end
 
+function FollowCamera:GetPosDepth(pos) -- 求摄像机坐标系下物体的深度
+    return self:GetPitchDownVec():Dot(distanceAlongCameraDirection(pos - self.camera_pos))
+end
+
+function FollowCamera:GetWidthMult() -- 求fov对视野的缩放效果
+    return math.tan(self.fov / 2 * DEGREES) / math.tan(35 / 2 * DEGREES)
+end
+
 function ShakeAllCamerasInRoom(interiorID, mode, duration, speed, scale, source_or_point, max_distance)
     if not interiorID then
         return

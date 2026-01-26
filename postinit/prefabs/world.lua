@@ -23,11 +23,6 @@ AddPrefabPostInit("world", function(inst)
         inst:AddComponent("uptile")
     end
 
-    if not TheWorld.components.scenariorunner then
-        inst:AddComponent("scenariorunner")
-        inst.components.scenariorunner:SetScript("set_uptiles")
-    end
-
     if not TheWorld.components.periodicpoopmanager then
         inst:AddComponent("periodicpoopmanager")
     end

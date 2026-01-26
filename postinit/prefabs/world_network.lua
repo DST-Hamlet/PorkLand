@@ -7,4 +7,6 @@ AddPrefabPostInitAny(function(inst)
     end
 
     inst:AddComponent("aporkalypse")
+
+    inst:AddComponent("worldtimesync")
 end)

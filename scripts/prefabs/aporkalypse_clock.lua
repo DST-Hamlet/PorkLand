@@ -157,20 +157,35 @@ local function RegistClocks(inst)
     end
 end
 
-local function UpdateRotation(inst, dt)
+local function ClientUpdateRotation(inst, dt)
     if TheWorld.state.isaporkalypse then
         return
     end
 
     local clocks = inst.clocks or inst._clocks
-    for k, clock in pairs(clocks) do
-        local angle = inst._timeuntilaporkalypse:value() / TUNING.APORKALYPSE_PERIOD_LENGTH * 360 * rotation_speeds[k]
-        set_rotation(clock, angle)
+    if inst.client_angle then
+        for k, clock in pairs(clocks) do
+            local angle = inst.client_angle / TUNING.APORKALYPSE_PERIOD_LENGTH * 360 * rotation_speeds[k]
+            set_rotation(clock, angle)
+        end
     end
 
     if inst.count_dt > 0 then
-        local offset = - inst.count_dt - inst._rewind_mult:value() * 250 * inst.count_dt
-        inst._timeuntilaporkalypse:set_local(inst._timeuntilaporkalypse:value() + offset)
+        if inst.client_angle then
+            if inst.interpolation_dt > 0 then -- 先插值
+                inst.interpolation_dt = inst.interpolation_dt - inst.count_dt
+                inst.client_angle = inst.client_angle + inst.count_dt * inst.client_speed
+            else -- 插值结束后, 如果没有收到新的服务器信息, 则进行预测
+                local offset = - inst.count_dt - inst._rewind_mult:value() * 250 * inst.count_dt
+                inst.client_angle = inst.client_angle + offset
+            end
+
+            if inst.client_angle > TUNING.APORKALYPSE_PERIOD_LENGTH then
+                inst.client_angle = inst.client_angle - TUNING.APORKALYPSE_PERIOD_LENGTH
+            elseif inst.client_angle < 0 then
+                inst.client_angle = inst.client_angle + TUNING.APORKALYPSE_PERIOD_LENGTH
+            end
+        end
         inst.should_update_time = false
         inst.count_dt = 0
     end
@@ -205,13 +220,46 @@ local function aporkalypse_clock_fn()
         inst:DoStaticTaskInTime(0, RegistClocks)
 
         inst.count_dt = 0
+        inst.interpolation_dt = 0
+        inst.client_speed = 0
+        inst.last_sync_time = 0
+
         inst:AddComponent("updatelooper")
         inst.components.updatelooper:AddOnWallUpdateFn(function(inst, dt)
-            inst:RunOnPostUpdate(function() UpdateRotation(inst, dt) end)
-        end)
 
-        inst.components.updatelooper:AddOnUpdateFn(function(inst, dt)
+            if TheWorld.net.components.worldtimesync:IsCurrentFrameSynced()
+                and inst.last_sync_time ~= TheWorld.net.components.worldtimesync:GetServerTime() then -- 说明此帧客户端已经使用了服务器的数据进行覆盖
+
+                inst.last_sync_time = TheWorld.net.components.worldtimesync:GetServerTime()
+                if not inst.client_angle then
+                    inst.client_angle = inst._timeuntilaporkalypse:value()
+                    inst.target_angle = inst._timeuntilaporkalypse:value()
+                end
+                inst.target_angle = inst._timeuntilaporkalypse:value()
+                inst.interpolation_dt = math.min(FRAMES * 4 - TheWorld.net.components.worldtimesync:GetDeltaTime(), FRAMES * 2) -- 旋转插值的持续时间, 最多30个逻辑帧
+
+                if inst.client_angle > 0.8 * TUNING.APORKALYPSE_PERIOD_LENGTH and
+                    inst.target_angle < 0.2 * TUNING.APORKALYPSE_PERIOD_LENGTH then
+
+                    inst.client_speed = (inst.target_angle - inst.client_angle + TUNING.APORKALYPSE_PERIOD_LENGTH)
+                        / inst.interpolation_dt
+
+                elseif inst.client_angle < 0.2 * TUNING.APORKALYPSE_PERIOD_LENGTH and
+                    inst.target_angle > 0.8 * TUNING.APORKALYPSE_PERIOD_LENGTH then
+
+                    inst.client_speed = (inst.target_angle - inst.client_angle - TUNING.APORKALYPSE_PERIOD_LENGTH)
+                        / inst.interpolation_dt
+
+                else
+                    inst.client_speed = (inst.target_angle - inst.client_angle)
+                        / inst.interpolation_dt
+                end
+            end
+
+            print(inst.client_angle, inst.target_angle, inst.client_speed, inst.interpolation_dt)
+
             inst.count_dt = inst.count_dt + dt
+            inst:RunOnPostUpdate(function() ClientUpdateRotation(inst, dt) end)
         end)
 
         return inst
