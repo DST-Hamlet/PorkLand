@@ -43,7 +43,7 @@ function WorldTimeSync:IsCurrentFrameSynced() -- 本帧是否发生过同步
     return self.last_static_sync_time == GetStaticTime()
 end
 
-function WorldTimeSync:GetDeltaTime() -- 和上一次同步得到的服务器数据之间的时间差
+function WorldTimeSync:GetDeltaTime() -- 和上一次同步得到的服务器数据之间的本地时间差
     return self.delta_time
 end
 
