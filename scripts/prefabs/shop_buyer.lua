@@ -163,6 +163,7 @@ end
 
 local function CreateClocheVisual(inst) -- 玻璃罩
     local clochevisual = SpawnPrefab("shop_buyer_clochevisual")
+    clochevisual.AnimState:SetFinalOffset(5)
     clochevisual.parentshelf = inst
     clochevisual.entity:SetParent(inst.entity)
     return clochevisual
@@ -181,8 +182,6 @@ local function clochevisual_fn() -- 玻璃罩
     inst.AnimState:SetBuild("pedestal_crate_cloche")
     inst.AnimState:SetBank("pedestal")
     inst.AnimState:PlayAnimation("idle")
-
-    inst.AnimState:SetFinalOffset(3)
 
     return inst
 end
@@ -204,11 +203,9 @@ local front_cost_visuals =
 local function UpdateCostVisual(inst, anim)
     inst.AnimState:PlayAnimation(anim)
     if front_cost_visuals[anim] then
-        inst.AnimState:SetFinalOffset(4)
-        inst.Follower:FollowSymbol(inst.parentshelf.GUID, nil, 0, 0, 0.002) -- 毫无疑问，这是为了解决层级bug的屎山，因为有时SetFinalOffset会失效（特别是在离0点特别远的位置）
+        inst.AnimState:SetFinalOffset(6)
     else
-        inst.AnimState:SetFinalOffset(0)
-        inst.Follower:FollowSymbol(inst.parentshelf.GUID, nil, 0, 0, 0.0005) -- 价格牌默认图层低于玻璃罩和物品，高于货架本体
+        inst.AnimState:SetFinalOffset(-1)
     end
 end
 
@@ -257,7 +254,7 @@ local function fn()
     inst.AnimState:SetBank("pedestal")
     inst.AnimState:SetBuild("pedestal_crate")
     inst.AnimState:PlayAnimation("idle")
-    inst.AnimState:SetFinalOffset(-1)
+    inst.AnimState:SetFinalOffset(-5)
 
     inst.anim_def = {}
     inst.anim_def.slot_bank = "lock12_west_visual_slot"
@@ -291,7 +288,7 @@ local function fn()
     inst.clochevisual = CreateClocheVisual(inst)
 
     inst:DoStaticTaskInTime(0, function()
-        inst.clochevisual.Follower:FollowSymbol(inst.GUID, nil, 0, 0, 0.0015) -- 毫无疑问，这是为了解决层级bug的屎山，因为有时SetFinalOffset会失效（特别是在离0点特别远的位置）
+        inst.clochevisual.Follower:FollowSymbol(inst.GUID, nil, 0, 0, 0) -- 毫无疑问，这是为了解决层级bug的屎山，因为有时SetFinalOffset会失效（特别是在离0点特别远的位置）
     end)
 
     inst.costvisual = CreateCostVisual(inst)

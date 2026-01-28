@@ -123,7 +123,7 @@ local function CreateFrontVisual(inst, name, anim_def) -- 柜子前方用于遮�
         frontvisual.AnimState:SetSortOrder(anim_def.order)
     end
 
-    frontvisual.AnimState:SetFinalOffset(3)
+    frontvisual.AnimState:SetFinalOffset(5)
 
     frontvisual.parentshelf = inst
     frontvisual.entity:SetParent(inst.entity)
@@ -140,8 +140,6 @@ local function frontvisual_fn(inst, name, anim_def)
     inst:AddTag("FX")
     inst.persists = false
     inst.Transform:SetTwoFaced()
-
-    inst.AnimState:SetFinalOffset(3)
     return inst
 end
 
@@ -158,7 +156,7 @@ local function CreateLockVisual(inst, name, anim_def) -- 柜子前方用于遮�
         lockvisual.AnimState:SetSortOrder(anim_def.order)
     end
 
-    lockvisual.AnimState:SetFinalOffset(4)
+    lockvisual.AnimState:SetFinalOffset(6)
 
     lockvisual.parentshelf = inst
     lockvisual.entity:SetParent(inst.entity)
@@ -198,6 +196,10 @@ local function IsHighPriorityAction(act, force_inspect)
 end
 
 local function CanMouseThrough(inst)
+    if inst:HasTag("locked") then
+        return false
+    end
+    
     if not inst:HasTag("fire") and ThePlayer ~= nil and ThePlayer.components.playeractionpicker ~= nil then
         local force_inspect = ThePlayer.components.playercontroller ~= nil and ThePlayer.components.playercontroller:IsControlPressed(CONTROL_FORCE_INSPECT)
         local lmb, rmb = ThePlayer.components.playeractionpicker:DoGetMouseActions(inst:GetPosition(), inst)
@@ -249,7 +251,7 @@ local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, on_r
             inst._lockvisual = net_entity(inst.GUID, "_lockvisual", "lockvisualdirty")
         end
 
-        inst.AnimState:SetFinalOffset(-1)
+        inst.AnimState:SetFinalOffset(-5)
 
         inst.anim_def = anim_def
         inst.anim_def.slot_bank = animation .. "_visual_slot"
@@ -290,12 +292,7 @@ local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, on_r
         end
 
         inst:DoStaticTaskInTime(0, function()
-            if inst.frontvisual then
-                inst.frontvisual.Follower:FollowSymbol(inst.GUID, nil, 0, 0, 0.0015) -- 毫无疑问，这是为了解决层级bug的屎山，因为有时SetFinalOffset会失效（特别是在离0点特别远的位置）
-            end
-            if inst.lockvisual then
-                inst.lockvisual.Follower:FollowSymbol(inst.GUID, nil, 0, 0, 0.002) -- 毫无疑问，这是为了解决层级bug的屎山，因为有时SetFinalOffset会失效（特别是在离0点特别远的位置）
-            end
+
         end)
 
         inst.highlightchildren = {}

@@ -70,7 +70,7 @@ function VisualSlotManager:SetVisualSlot(slot, item)
 
     visual_slot.components.visualslot:SetShelf(self.inst, slot)
     visual_slot.entity:SetParent(self.inst.entity)
-    visual_slot.Follower:FollowSymbol(self.inst.GUID, self.inst:GetSlotSymbol(slot), 0, 0, 0.001)
+    visual_slot.Follower:FollowSymbol(self.inst.GUID, self.inst:GetSlotSymbol(slot), 0, 0, 0)
 
     if item then
         self:ForceOutOfLimbo(item)

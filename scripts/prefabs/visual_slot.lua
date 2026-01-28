@@ -28,8 +28,13 @@ end
 
 local function CanMouseThrough(inst)
     local shelf = inst.replica.visualslot and inst.replica.visualslot:GetShelf() or nil
+
     if not inst:HasTag("fire") and ThePlayer ~= nil and ThePlayer.components.playeractionpicker ~= nil
         and shelf and shelf:IsValid() then
+
+        if shelf:HasTag("unlockable") then
+            return true
+        end
         local force_inspect = ThePlayer.components.playercontroller ~= nil and ThePlayer.components.playercontroller:IsControlPressed(CONTROL_FORCE_INSPECT)
         local lmb, rmb = ThePlayer.components.playeractionpicker:DoGetMouseActions(inst:GetPosition(), shelf)
         return IsLowPriorityAction(rmb, force_inspect)

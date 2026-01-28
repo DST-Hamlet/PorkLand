@@ -17,8 +17,6 @@ local VisualSlot = Class(function(self, inst)
     self.slot = 1
     self.item = nil
     self.shelf = nil
-
-    self.inst:AddTag("visual_slot")
 end, nil, {
     slot = onslot,
     item = onitem,
@@ -68,7 +66,7 @@ function VisualSlot:SetArt()
     if self.shelf.anim_def.order then
         self.inst.AnimState:SetSortOrder(self.shelf.anim_def.layer)
     end
-    self.inst.AnimState:SetFinalOffset(2) -- 保证不会因为followsymbol的小概率奇怪bug而被挡住
+    self.inst.AnimState:SetFinalOffset(0)
 
     if self.item then
         local fn = master_postinitfns[self.item.prefab]
