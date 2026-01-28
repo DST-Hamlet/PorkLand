@@ -17,6 +17,8 @@ local VisualSlot = Class(function(self, inst)
     self.slot = 1
     self.item = nil
     self.shelf = nil
+
+    self.inst:AddTag("visual_slot")
 end, nil, {
     slot = onslot,
     item = onitem,

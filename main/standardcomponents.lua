@@ -711,6 +711,8 @@ function MakeInteriorPhysics(inst, rad, height, width)
     inst.Physics:ClearCollisionMask()
     inst.Physics:CollidesWith(COLLISION.ITEMS)
     inst.Physics:CollidesWith(COLLISION.CHARACTERS)
+
+    inst.rectangle_collison = {rad = rad, height = height, width = width or rad}
 end
 
 function MakeInteriorWallPhysics(inst, rad, height, width)
@@ -725,6 +727,8 @@ function MakeInteriorWallPhysics(inst, rad, height, width)
     inst.Physics:CollidesWith(COLLISION.ITEMS)
     inst.Physics:CollidesWith(COLLISION.CHARACTERS)
     inst.Physics:CollidesWith(COLLISION.FLYERS)
+
+    inst.rectangle_collison = {rad = rad, height = height, width = width or rad}
 end
 
 --- Compatible with Don't Starve's MakeInventoryFloatable

@@ -3,6 +3,44 @@ local AddComponentAction = AddComponentAction
 local PLENV = env
 GLOBAL.setfenv(1, GLOBAL)
 
+local function circleRectIntersect(circleX, circleY, radius, rectX, rectY, width, height) -- 亚丹: AI真是太好用了你们知道吗
+    local halfWidth = width * 0.5
+    local halfHeight = height * 0.5
+    
+    -- 找到矩形上距离圆心最近的点
+    local closestX = math.max(rectX - halfWidth, math.min(circleX, rectX + halfWidth))
+    local closestY = math.max(rectY - halfHeight, math.min(circleY, rectY + halfHeight))
+    
+    -- 计算该最近点到圆心的距离
+    local distanceX = circleX - closestX
+    local distanceY = circleY - closestY
+    local distanceSquared = distanceX * distanceX + distanceY * distanceY
+
+    -- 检查距离是否小于半径平方
+    return distanceSquared <= (radius * radius)
+end
+
+local function DefaultCheckRange(doer, dest) -- 复制自locomotor
+    local destpos_x, destpos_y, destpos_z = dest:GetPoint()
+    local mypos_x, mypos_y, mypos_z = doer.Transform:GetWorldPosition()
+
+    local dsq = distsq(destpos_x, destpos_z, mypos_x, mypos_z)
+    local arrive_dst = doer.components.locomotor and doer.components.locomotor.arrive_dist or 1
+    return dsq <= arrive_dst * arrive_dst
+end
+
+local function CheckShelfRange(doer, dest)
+    print("CheckShelfRange")
+    local shelf = dest.inst and dest.inst.replica.visualslot and dest.inst.replica.visualslot:GetShelf()
+    if shelf and shelf.rectangle_collison then
+        local x, _, z = doer.Transform:GetWorldPosition()
+        local dx, _, dz = dest:GetPoint()
+        return circleRectIntersect(x, z, doer:GetPhysicsRadius(0) + 0.5, dx, dz, shelf.rectangle_collison.width, shelf.rectangle_collison.rad) -- 自定义碰撞体不受旋转影响
+    end
+
+    return DefaultCheckRange(doer, dest)
+end
+
 if not rawget(_G, "HotReloading") then
     _G.PL_ACTIONS = {
         HACK = Action({mindistance = 1.75, silent_fail = true}),
@@ -27,8 +65,8 @@ if not rawget(_G, "HotReloading") then
         DISARM = Action({priority = 1, distance = 1.5}),
         REARM = Action({priority = 1, distance = 1.5}),
         SPY = Action({distance = 2}), -- 骑在牛上用放大镜不太合理
-        PUTONSHELF = Action({ distance = 1.5 }),
-        TAKEFROMSHELF = Action({ distance = 1.5, priority = 1 }),
+        PUTONSHELF = Action({ distance = 0.5, customarrivecheck = CheckShelfRange }),
+        TAKEFROMSHELF = Action({ distance = 0.5, priority = 1, customarrivecheck = CheckShelfRange  }),
         ASSEMBLE_ROBOT = Action({}),
         CHARGE_UP = Action({priority = 2, rmb = true, distance = 36}),
         CHARGE_RELEASE = Action({priority = 2, rmb = true, distance = 36}),
@@ -50,7 +88,7 @@ if not rawget(_G, "HotReloading") then
         STOCK = Action({}),
         PIG_BANDIT_EXIT = Action({}),
 
-        SHOP = Action({ distance = 1.5 }),
+        SHOP = Action({ distance = 0.5, customarrivecheck = CheckShelfRange }),
         RENOVATE = Action({}),
         BUILD_ROOM = Action({}),
         DEMOLISH_ROOM = Action({}),

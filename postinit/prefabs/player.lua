@@ -15,7 +15,6 @@ local function PlayOincSound(inst)
 end
 
 local function ScheduleOincSoundEvent(inst, amount)
-    print("ScheduleOincSoundEvent", amount)
     inst.oinc_transaction = inst.oinc_transaction + amount
     if math.abs(inst.oinc_transaction) > inst.max_oinc_transaction then
         inst.max_oinc_transaction = math.abs(inst.oinc_transaction) -- max_oinc_transaction为物品数量变化的最大值或者单次物品数量变化的值
