@@ -30,7 +30,6 @@ local function DefaultCheckRange(doer, dest) -- 复制自locomotor
 end
 
 local function CheckShelfRange(doer, dest)
-    print("CheckShelfRange")
     local shelf = dest.inst and dest.inst.replica.visualslot and dest.inst.replica.visualslot:GetShelf()
     if shelf and shelf.rectangle_collison then
         local x, _, z = doer.Transform:GetWorldPosition()
