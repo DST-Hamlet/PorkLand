@@ -52,6 +52,37 @@ function Inventory:HasPoisonGasBlockerEquip()
     end
 end
 
+function Inventory:DisableOnEquip(eslot, disable) -- 此函数可以控制装备的onequip是否生效
+    if self.onequipdisabled == nil then
+        self.onequipdisabled = {}
+    end
+
+    local old_disabled = self.onequipdisabled[eslot]
+    self.onequipdisabled[eslot] = disable
+
+    if not disable and old_disabled then
+        local item = self:GetEquippedItem(eslot)
+        if item then
+            item.components.equippable.onequipfn(item, self.inst)
+        end
+    elseif disable and not old_disabled then
+        local item = self:GetEquippedItem(eslot)
+        if item then
+            item.components.equippable.onunequipfn(item, self.inst)
+            if item.components.inventoryitem.onputininventoryfn then -- 额外保障
+                item.components.inventoryitem.onputininventoryfn(item, self.inst)
+            end
+        end
+    end
+end
+
+function Inventory:CanDisableOnEquip(eslot)
+    if self.onequipdisabled == nil then
+        return false
+    end
+    return self.onequipdisabled[eslot] == true
+end
+
 local function InvSpaceChanged(inst)
     inst:PushEvent("invspacechange", {percent = inst.components.inventory:NumItems() / inst.components.inventory.maxslots})
 end

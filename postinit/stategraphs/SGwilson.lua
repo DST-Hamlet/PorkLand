@@ -24,10 +24,7 @@ local function OnExitRow(inst)
     if inst.sg.nextstate ~= "pl_row" and inst.sg.nextstate ~= "sail" then
         inst.components.locomotor:Stop(nil, true)
         if inst.sg.nextstate ~= "row_stop" and inst.sg.nextstate ~= "sail_stop" then -- Make sure equipped items are pulled back out (only really for items with flames right now)
-            local equipped = inst.replica.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
-            if equipped then
-                equipped:PushEvent("stoprowing", {owner = inst})
-            end
+            inst.components.inventory:DisableOnEquip(EQUIPSLOTS.HANDS, false)
             if boat and boat.replica.sailable then
                 -- boat.replica.sailable:PlayIdleAnims()
                 boat.replica.sailable:PlayAnim("idle_loop")
@@ -1123,7 +1120,8 @@ local states = {
 
             DoFoleySounds(inst)
 
-            inst:PushEvent("startrowing")
+            inst:PushEvent("startrowing", {owner = inst})
+            inst.components.inventory:DisableOnEquip(EQUIPSLOTS.HANDS, true)
         end,
 
         onupdate = function(inst)
@@ -1238,22 +1236,12 @@ local states = {
             end
         end,
 
-        onexit = function(inst)
-            local boat = inst.replica.sailor:GetBoat()
-            if boat and boat.replica.sailable then
-                boat.replica.sailable:PlayAnim("idle_loop")
-            end
-        end,
+        onexit = OnExitRow,
 
         events = {
             EventHandler("animqueueover", function(inst)
                 if inst.AnimState:AnimDone() then
                     local equipped = inst.replica.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
-                    if equipped then
-                        equipped:PushEvent("stoprowing", {owner = inst})
-                    end
-                    inst:PushEvent("stoprowing")
-                    -- If the player had something in their hand before starting to row, put it back.
                     if equipped and not equipped:HasTag("oar") then
                         inst.sg:GoToState("item_out")
                         return

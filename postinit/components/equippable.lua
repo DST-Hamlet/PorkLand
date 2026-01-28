@@ -29,6 +29,23 @@ function Equippable:IsToggledOn()
     return self.toggled
 end
 
+local _Equip = Equippable.Equip
+function Equippable:Equip(owner, ...)
+    local _onequipfn
+    if owner and owner.components.inventory and owner.components.inventory:CanDisableOnEquip(self.equipslot) then
+        _onequipfn = self.onequipfn
+        self.onequipfn = nil
+    end
+    
+    local rets = {_Equip(self, owner, ...)}
+
+    if _onequipfn then
+        self.onequipfn = _onequipfn
+    end
+
+    return unpack(rets)
+end
+
 local _OnSave = Equippable.OnSave
 function Equippable:OnSave(...)
     local data = _OnSave and _OnSave(self, ...) or{}
