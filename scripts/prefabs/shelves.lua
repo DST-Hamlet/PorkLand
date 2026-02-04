@@ -179,13 +179,15 @@ local function lockvisual_fn() -- 锁
     return inst
 end
 
-local function OnVisualChange(inst)
+local function OnFrontVisualChange(inst)
     local frontvisual = inst._frontvisual and inst._frontvisual:value() or nil
-    local lockvisual = inst._lockvisual and inst._lockvisual:value() or nil
-    inst.highlightchildren = {}
     if frontvisual then
         table.insert(inst.highlightchildren, frontvisual)
     end
+end
+
+local function OnLockVisualChange(inst)
+    local lockvisual = inst._lockvisual and inst._lockvisual:value() or nil
     if lockvisual then
         table.insert(inst.highlightchildren, lockvisual)
     end
@@ -243,6 +245,7 @@ local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, on_r
             inst.AnimState:SetSortOrder(anim_def.order)
         end
 
+        inst.highlightchildren = {}
         if anim_def.has_front then
             inst._frontvisual = net_entity(inst.GUID, "_frontvisual", "frontvisualdirty")
         end
@@ -276,8 +279,8 @@ local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, on_r
         inst.entity:SetPristine()
 
         if not TheWorld.ismastersim then
-            inst:ListenForEvent("frontvisualdirty", OnVisualChange)
-            inst:ListenForEvent("lockvisualdirty", OnVisualChange)
+            inst:ListenForEvent("frontvisualdirty", OnFrontVisualChange)
+            inst:ListenForEvent("lockvisualdirty", OnLockVisualChange)
             return inst
         end
 
@@ -295,7 +298,6 @@ local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, on_r
 
         end)
 
-        inst.highlightchildren = {}
         if inst.frontvisual then
             table.insert(inst.highlightchildren, inst.frontvisual)
         end

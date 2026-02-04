@@ -238,6 +238,27 @@ local function costvisual_fn() -- 价格牌
     return inst
 end
 
+local function OnClocheVisualChange(inst)
+    local clochevisual = inst._clochevisual and inst._clochevisual:value() or nil
+    if clochevisual then
+        table.insert(inst.highlightchildren, clochevisual)
+    end
+end
+
+local function OnCostVisualChange(inst)
+    local costvisual = inst._costvisual and inst._costvisual:value() or nil
+    if costvisual then
+        table.insert(inst.highlightchildren, costvisual)
+    end
+end
+
+local function CanMouseThrough(inst)
+    if not inst:HasTag("ignoreburning") and (inst:HasTag("fire") or inst:HasTag("smolder")) then
+        return
+    end
+    return true, true
+end
+
 local function fn()
     local inst = CreateEntity()
 
@@ -261,7 +282,6 @@ local function fn()
     inst.anim_def.slot_symbol_prefix = "SWAP_SIGN"
     inst.GetSlotSymbol = GetSlotSymbol
 
-    inst:AddTag("NOCLICK")
     inst:AddTag("shop_pedestal")
 
     ------- Copied from prefabs/wall.lua -------
@@ -272,12 +292,18 @@ local function fn()
     -- but we don't to handle it until after our position is set
     inst:DoTaskInTime(0, InitializePathFinding)
 
+    inst.highlightchildren = {}
+    inst._clochevisual = net_entity(inst.GUID, "_clochevisual", "clochevisualdirty")
+    inst._costvisual = net_entity(inst.GUID, "_costvisual", "costvisualdirty")
+
     inst:ListenForEvent("onremove", onremove)
     --------------------------------------------
 
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
+        inst:ListenForEvent("clochevisualdirty", OnClocheVisualChange)
+        inst:ListenForEvent("costvisualdirty", OnCostVisualChange)
         return inst
     end
 
@@ -286,21 +312,31 @@ local function fn()
     inst.animation = "idle"
 
     inst.clochevisual = CreateClocheVisual(inst)
+    inst._clochevisual:set(inst.clochevisual)
 
     inst:DoStaticTaskInTime(0, function()
         inst.clochevisual.Follower:FollowSymbol(inst.GUID, nil, 0, 0, 0) -- 毫无疑问，这是为了解决层级bug的屎山，因为有时SetFinalOffset会失效（特别是在离0点特别远的位置）
     end)
 
     inst.costvisual = CreateCostVisual(inst)
+    inst._costvisual:set(inst.costvisual)
 
     inst:DoStaticTaskInTime(0, function()
-        inst.costvisual:UpdateVisual(inst.animation) -- 毫无疑问，这是为了解决层级bug的屎山，因为有时SetFinalOffset会失效（特别是在离0点特别远的位置）
+        inst.costvisual:UpdateVisual(inst.animation)
     end)
+
+    if inst.clochevisual then
+        table.insert(inst.highlightchildren, inst.clochevisual)
+    end
+    if inst.costvisual then
+        table.insert(inst.highlightchildren, inst.costvisual)
+    end
 
     inst:AddComponent("container")
     inst.components.container:WidgetSetup("shop_buyer")
     inst.components.container.CanTakeItemInSlot = function() return true end
     inst.components.container.Open = function() end
+    inst.components.container.canbeopened = false
     inst.components.container.skipopensnd = true
 
     inst:AddComponent("visualslotmanager")
@@ -314,6 +350,7 @@ local function fn()
     inst.MakeShopkeeperSpeech = MakeShopkeeperSpeech
     inst.Restock = Restock
     inst.InitShop = InitShop
+    inst.CanMouseThrough = CanMouseThrough
 
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad

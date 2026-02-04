@@ -64,8 +64,8 @@ if not rawget(_G, "HotReloading") then
         DISARM = Action({priority = 1, distance = 1.5}),
         REARM = Action({priority = 1, distance = 1.5}),
         SPY = Action({distance = 2}), -- 骑在牛上用放大镜不太合理
-        PUTONSHELF = Action({ distance = 0.5, customarrivecheck = CheckShelfRange }),
-        TAKEFROMSHELF = Action({ distance = 0.5, priority = 1, customarrivecheck = CheckShelfRange  }),
+        PUTONSHELF = Action({ distance = 1, customarrivecheck = CheckShelfRange }),
+        TAKEFROMSHELF = Action({ distance = 1, priority = 1, customarrivecheck = CheckShelfRange  }),
         ASSEMBLE_ROBOT = Action({}),
         CHARGE_UP = Action({priority = 2, rmb = true, distance = 36}),
         CHARGE_RELEASE = Action({priority = 2, rmb = true, distance = 36}),
@@ -87,7 +87,7 @@ if not rawget(_G, "HotReloading") then
         STOCK = Action({}),
         PIG_BANDIT_EXIT = Action({}),
 
-        SHOP = Action({ distance = 0.5, customarrivecheck = CheckShelfRange }),
+        SHOP = Action({ distance = 1, customarrivecheck = CheckShelfRange }),
         RENOVATE = Action({}),
         BUILD_ROOM = Action({}),
         DEMOLISH_ROOM = Action({}),

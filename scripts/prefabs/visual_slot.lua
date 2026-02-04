@@ -23,12 +23,12 @@ local function GetItemDescription(inst, viewer)
 end
 
 local function CanMouseThrough(inst)
-    if not inst:HasTag("fire") and ThePlayer ~= nil and ThePlayer.components.playeractionpicker ~= nil
+    if ThePlayer ~= nil and ThePlayer.components.playeractionpicker ~= nil
         and inst and inst:IsValid() then
 
         local force_inspect = ThePlayer.components.playercontroller ~= nil and ThePlayer.components.playercontroller:IsControlPressed(CONTROL_FORCE_INSPECT)
         local lmb, rmb = ThePlayer.components.playeractionpicker:DoGetMouseActions(inst:GetPosition(), inst)
-        return (lmb == nil) and (rmb == nil)
+        return (lmb == nil) and (rmb == nil), true
     end
 end
 
