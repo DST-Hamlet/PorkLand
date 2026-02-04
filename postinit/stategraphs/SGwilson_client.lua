@@ -24,9 +24,9 @@ local function OnExitSail(inst)
     local boat = inst.replica.sailor:GetBoat()
     if inst.sg.nextstate ~= "sail" then
         inst.SoundEmitter:KillSound("sail_loop")
-        if inst.sg.nextstate ~= "pl_row" then
-            inst.components.locomotor:Stop(nil, true)
-        end
+    end
+    if inst.sg.nextstate ~= "pl_row" and inst.sg.nextstate ~= "sail" then
+        inst.components.locomotor:Stop(nil, true)
         if inst.sg.nextstate ~= "row_stop" and inst.sg.nextstate ~= "sail_stop" then
             if boat and boat.replica.sailable then
                 boat.replica.sailable:ClientPlayAnim("idle_loop")

@@ -16,6 +16,12 @@ local ToggleOffPhysics = nil
 local DoneTeleporting = nil
 local DoWortoxPortalTint = nil
 
+local function RowEquipUpdate(inst)
+    if inst.sg.nextstate ~= "pl_row" and inst.sg.nextstate ~= "sail" and inst.sg.nextstate ~= "row_stop" and inst.sg.nextstate ~= "sail_stop" then
+        inst.components.inventory:DisableOnEquip(EQUIPSLOTS.HANDS, false)
+    end
+end
+
 local function OnExitRow(inst)
     local boat = inst.replica.sailor:GetBoat()
     if boat and boat.components.rowboatwakespawner then
@@ -23,14 +29,15 @@ local function OnExitRow(inst)
     end
     if inst.sg.nextstate ~= "pl_row" and inst.sg.nextstate ~= "sail" then
         inst.components.locomotor:Stop(nil, true)
-        if inst.sg.nextstate ~= "row_stop" and inst.sg.nextstate ~= "sail_stop" then -- Make sure equipped items are pulled back out (only really for items with flames right now)
-            inst.components.inventory:DisableOnEquip(EQUIPSLOTS.HANDS, false)
+        if inst.sg.nextstate ~= "row_stop" and inst.sg.nextstate ~= "sail_stop" then
             if boat and boat.replica.sailable then
                 -- boat.replica.sailable:PlayIdleAnims()
                 boat.replica.sailable:PlayAnim("idle_loop")
             end
         end
     end
+
+    RowEquipUpdate(inst)
 end
 
 local function OnExitSail(inst)
@@ -41,9 +48,9 @@ local function OnExitSail(inst)
 
     if inst.sg.nextstate ~= "sail" then
         inst.SoundEmitter:KillSound("sail_loop")
-        if inst.sg.nextstate ~= "PL_row" then
-            inst.components.locomotor:Stop(nil, true)
-        end
+    end
+    if inst.sg.nextstate ~= "pl_row" and inst.sg.nextstate ~= "sail" then
+        inst.components.locomotor:Stop(nil, true)
         if inst.sg.nextstate ~= "row_stop" and inst.sg.nextstate ~= "sail_stop" then
             if boat and boat.replica.sailable then
                 -- boat.replica.sailable:PlayIdleAnims()
@@ -1236,7 +1243,7 @@ local states = {
             end
         end,
 
-        onexit = OnExitRow,
+        onexit = RowEquipUpdate,
 
         events = {
             EventHandler("animqueueover", function(inst)
@@ -3192,6 +3199,7 @@ AddStategraphPostInit("wilson", function(sg)
         if inst.components.sailor and inst.components.sailor:IsSailing() then
             if not is_attacking then
                 if is_moving and not should_move then
+                    print("row_stop", is_moving, is_moving, should_move)
                     if hasSail then
                         inst.sg:GoToState("sail_stop")
                     else
@@ -3201,6 +3209,7 @@ AddStategraphPostInit("wilson", function(sg)
                     if hasSail then
                         inst.sg:GoToState("sail_start")
                     else
+                        print("row_start", is_moving, is_moving, should_move)
                         inst.sg:GoToState("row_start")
                     end
                 end

@@ -315,7 +315,7 @@ local function fn()
     inst._clochevisual:set(inst.clochevisual)
 
     inst:DoStaticTaskInTime(0, function()
-        inst.clochevisual.Follower:FollowSymbol(inst.GUID, nil, 0, 0, 0) -- 毫无疑问，这是为了解决层级bug的屎山，因为有时SetFinalOffset会失效（特别是在离0点特别远的位置）
+        inst.clochevisual.Follower:FollowSymbol(inst.GUID, nil, 0, 0, 0)
     end)
 
     inst.costvisual = CreateCostVisual(inst)
