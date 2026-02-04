@@ -23,7 +23,7 @@ local function DoStep(inst)
         local fx = SpawnPrefab("clouds_bombsplash")
         fx.Transform:SetPosition(x, y - 1, z)
     elseif TheWorld.Map:ReverseIsVisualWaterAtPoint(x, y, z) then
-        SpawnWaves(inst, 8, 360, 6, nil, nil, nil, true)
+        TheWorld.components.worldwavemanager:SpawnWaveCircle(inst, 8, 360, 6, nil, nil, nil, true)
 
         inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/volcano/volcano_rock_splash")
 

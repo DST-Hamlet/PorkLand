@@ -204,7 +204,7 @@ AddPlayerPostInit(function(inst)
 
     inst:ListenForEvent("death", OnDeath)
     inst:ListenForEvent("ms_respawnedfromghost", OnRespawnedFromGhost)
-    -- ms_respawnedfromghost在复活后触发, respawnfromghost在将要复活时触发
+    -- ms_respawnedfromghost在复活后触发, respawnfromghost在将要复活前触发
 
 
     inst.oinc_transaction = 0
@@ -215,10 +215,6 @@ AddPlayerPostInit(function(inst)
 
     inst:ListenForEvent("enterinterior", OnInteriorChange)
     inst:ListenForEvent("leaveinterior", OnInteriorChange)
-
-    inst:ListenForEvent("onterraform", function(src, data)
-        SendModRPCToClient(GetClientModRPC("PorkLand", "tile_changed"), nil, ZipAndEncodeString(data))
-    end, TheWorld)
 
     if inst.OnLoad then
         inst.__OnLoad = inst.OnLoad

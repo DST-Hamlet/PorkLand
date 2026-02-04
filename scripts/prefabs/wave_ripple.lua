@@ -41,8 +41,27 @@ local function Splash(inst, isboost)
     inst:Remove()
 end
 
+local function TestHitGround(inst, other)
+    if other == TheWorld then
+        inst:Remove()
+        return true
+    end
+end
+
+local function OnCollideClient(inst, other)
+    if not other or not other:IsValid() then
+        return
+    end
+
+    TestHitGround(inst, other)
+end
+
 local function OnCollideRipple(inst, other)
     if not other or not other:IsValid() then
+        return
+    end
+
+    if TestHitGround(inst, other) then
         return
     end
 
@@ -78,26 +97,16 @@ local function OnCollideRogue(inst, other)
         return
     end
 
+    if TestHitGround(inst, other) then
+        return
+    end
+
     if other:HasTag("player") then
         WetAndDamage(inst, other)
         Splash(inst)
     elseif other:HasTag("waveobstacle") then
         -- other.components.waveobstacle:OnCollide(inst)
         WetAndDamage(inst, other)
-        Splash(inst)
-    end
-end
-
--- Check if I'm about to hit land
-local function CheckGround(inst, dt)
-    local x, y, z = inst.Transform:GetWorldPosition()
-    local vx, _, vz = inst.Physics:GetVelocity()
-
-    local checkx = x + vx
-    local checky = y
-    local checkz = z + vz
-
-    if not TheWorld.Map:IsOceanTileAtPoint(checkx, checky, checkz) then
         Splash(inst)
     end
 end
@@ -124,14 +133,14 @@ end
 
 local function ActivateCollision(inst)
     local phys = inst.Physics
-    phys:SetCollisionGroup(COLLISION.CHARACTERS)
-    phys:SetCollisionMask(
-        COLLISION.WORLD,
-        COLLISION.OBSTACLES,
-        COLLISION.SMALLOBSTACLES,
-        COLLISION.CHARACTERS,
-        COLLISION.GIANTS
-    )
+    phys:SetCollisionGroup(COLLISION.ITEMS)
+	phys:SetCollisionMask(
+		COLLISION.WORLD,
+		COLLISION.OBSTACLES,
+		COLLISION.SMALLOBSTACLES,
+		COLLISION.CHARACTERS,
+		COLLISION.GIANTS
+	)
     phys:SetCollides(false)  -- Still will get collision callback, just not dynamic collisions.
 end
 
@@ -161,13 +170,27 @@ local function RoguePostinit(inst)
     inst:ListenForEvent("onremove", OnRemove)
 end
 
-local function MakeWave(build, collision_callback, master_postinit)
+local function OnEntitySleepClient(inst)
+    inst.sleeptime = GetTime()
+end
+
+local function OnEntityWakeClient(inst)
+    if inst.sleeptime then
+        local delta_time = GetTime() - inst.sleeptime
+
+        local x, y, z = inst.Transform:GetWorldPosition()
+        local vx, _, vz = inst.Physics:GetVelocity()
+
+        inst.Transform:SetPosition(x + vx * delta_time, y, z + vz * delta_time)
+    end
+end
+
+local function MakeWave(build, collision_callback, postinit)
     local function fn()
         local inst = CreateEntity()
 
         inst.entity:AddTransform()
         inst.entity:AddSoundEmitter()
-        inst.entity:AddNetwork()
         inst.entity:AddAnimState()
 
         inst.AnimState:SetBuild(build)
@@ -181,22 +204,21 @@ local function MakeWave(build, collision_callback, master_postinit)
         inst:AddTag("FX")
         inst:AddTag("wave")
 
-        inst.entity:SetPristine()
+        if postinit then
+            postinit(inst)
+        end
+
+        inst:SetStateGraph("SGpl_wave")
+        inst.ActivateCollision = ActivateCollision
 
         if not TheWorld.ismastersim then
+            inst.Physics:SetCollisionCallback(OnCollideClient)
+            inst.entity:SetCanSleep(false)
+    
             return inst
         end
 
-        if master_postinit then
-            master_postinit(inst)
-        end
-
         inst.Physics:SetCollisionCallback(collision_callback)
-
-        inst:SetStateGraph("SGpl_wave")
-        inst.checkgroundtask = inst:DoPeriodicTask(0.5, CheckGround)
-
-        inst.ActivateCollision = ActivateCollision
 
         inst.OnSave = OnSave
         inst.OnLoad = OnLoad

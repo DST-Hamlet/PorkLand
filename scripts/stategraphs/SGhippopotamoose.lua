@@ -177,7 +177,7 @@ local states=
                     end
                 end)
             else
-                SpawnWaves(inst, 12, 360, 4, nil, nil, nil, true)
+                TheWorld.components.worldwavemanager:SpawnWaveCircle(inst, 12, 360, 4, nil, nil, nil, true)
 
                 local old_damageRings = inst.components.groundpounder.damageRings
                 local old_numRings = inst.components.groundpounder.numRings
@@ -329,7 +329,7 @@ local states=
         {
             TimeEvent(10 * FRAMES, function(inst)
                 inst.SoundEmitter:PlaySound("dontstarve_DLC002/creatures/seacreature_movement/water_submerge_med")
-                SpawnWaves(inst, 6, 360, 2, "wave_ripple", nil, nil, nil, true)
+                TheWorld.components.worldwavemanager:SpawnWaveCircle(inst, 6, 360, 2, "wave_ripple", nil, nil, nil, true)
             end),
         },
 
@@ -368,7 +368,7 @@ CommonStates.AddWalkStates(states, {
             if TheWorld.Map:IsVisualGroundAtPoint(x, y, z) then
                 ShakeAllCameras(CAMERASHAKE.VERTICAL, 0.3, 0.05, 0.05, inst, 40)
             else
-                SpawnWaves(inst, 6, 360, 2, "wave_ripple", nil, nil, nil, true)
+                TheWorld.components.worldwavemanager:SpawnWaveCircle(inst, 6, 360, 2, "wave_ripple", nil, nil, nil, true)
             end
             inst.Physics:Stop()
         end),
@@ -397,7 +397,7 @@ CommonStates.AddRunStates(states,{
             if TheWorld.Map:IsVisualGroundAtPoint(x, y, z) then
                 ShakeAllCameras(CAMERASHAKE.VERTICAL, 0.3, 0.05, 0.05, inst, 40)
             else
-                SpawnWaves(inst, 6, 360, 2, "wave_ripple", nil, nil, nil, true)
+                TheWorld.components.worldwavemanager:SpawnWaveCircle(inst, 6, 360, 2, "wave_ripple", nil, nil, nil, true)
             end
             inst.Physics:Stop()
         end),

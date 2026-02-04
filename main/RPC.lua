@@ -114,6 +114,14 @@ AddClientModRPCHandler("Porkland", "tile_changed", function(data)
     end
 end)
 
+AddClientModRPCHandler("Porkland", "spawn_wave", function(prefab, x, y, z, angle, speed, idle_time, instantActive, id)
+    TheWorld.components.worldwavemanager:SpawnClientWave(prefab, Vector3(x, y, z), angle, speed, idle_time, instantActive, id)
+end)
+
+AddClientModRPCHandler("Porkland", "remove_wave", function(id)
+    TheWorld.components.worldwavemanager:RemoveWave(id)
+end)
+
 AddUserCommand("saveme", {
     aliases = nil,
     prettyname = nil,

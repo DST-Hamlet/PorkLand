@@ -6,6 +6,10 @@ AddPrefabPostInit("world", function(inst)
         inst:AddComponent("interiorspawner")
     end
 
+    if not TheWorld.components.worldwavemanager then
+        inst:AddComponent("worldwavemanager")
+    end
+    
     if not TheNet:IsDedicated() then
         inst:AddComponent("interiorhudindicatablemanager")
     end
@@ -42,4 +46,8 @@ AddPrefabPostInit("world", function(inst)
     if not TheWorld.components.teammanager then
         inst:AddComponent("teammanager")
     end
+
+    inst:ListenForEvent("onterraform", function(src, data)
+        SendModRPCToClient(GetClientModRPC("PorkLand", "tile_changed"), nil, ZipAndEncodeString(data))
+    end, TheWorld)
 end)
