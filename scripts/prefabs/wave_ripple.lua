@@ -30,13 +30,15 @@ local function WetAndDamage(inst, other)
 end
 
 local function Splash(inst, isboost)
-    local fxname = "splash_water"
-    if isboost then
-        fxname = "splash_water_boost"
+    if inst.cansplash then
+        local fxname = "splash_water"
+        if isboost then
+            fxname = "splash_water_boost"
+        end
+        local splash_water = SpawnPrefab(fxname)
+        local x, y, z = inst.Transform:GetWorldPosition()
+        splash_water.Transform:SetPosition(x, y, z)
     end
-    local splash_water = SpawnPrefab(fxname)
-    local x, y, z = inst.Transform:GetWorldPosition()
-    splash_water.Transform:SetPosition(x, y, z)
 
     inst:Remove()
 end
@@ -132,16 +134,12 @@ local function OnLoad(inst, data)
 end
 
 local function ActivateCollision(inst)
-    local phys = inst.Physics
-    phys:SetCollisionGroup(COLLISION.CHARACTERS)
-	phys:SetCollisionMask(
+	inst.Physics:SetCollisionMask(
 		COLLISION.WORLD,
 		COLLISION.OBSTACLES,
-		COLLISION.SMALLOBSTACLES,
-		COLLISION.CHARACTERS,
-		COLLISION.GIANTS
+		COLLISION.CHARACTERS
 	)
-    phys:SetCollides(false)  -- Still will get collision callback, just not dynamic collisions.
+    inst.cansplash = true
 end
 
 local function OnRemove(inst)
@@ -194,12 +192,18 @@ local function MakeWave(build, collision_callback, postinit)
         inst.entity:AddAnimState()
 
         inst.AnimState:SetBuild(build)
-        -- inst.AnimState:SetBank(build)
+        inst.AnimState:SetBank(build)
         inst.Transform:SetFourFaced()
 
         inst.entity:AddPhysics()
         inst.Physics:SetSphere(1)
         inst.Physics:ClearCollisionMask()
+        inst.Physics:SetCollisionGroup(COLLISION.CHARACTERS)
+        inst.Physics:SetCollisionMask(
+            COLLISION.WORLD,
+            COLLISION.OBSTACLES
+        )
+        inst.Physics:SetCollides(false)  -- Still will get collision callback, just not dynamic collisions.
 
         inst:AddTag("FX")
         inst:AddTag("wave")
