@@ -3199,7 +3199,6 @@ AddStategraphPostInit("wilson", function(sg)
         if inst.components.sailor and inst.components.sailor:IsSailing() then
             if not is_attacking then
                 if is_moving and not should_move then
-                    print("row_stop", is_moving, is_moving, should_move)
                     if hasSail then
                         inst.sg:GoToState("sail_stop")
                     else
@@ -3209,7 +3208,6 @@ AddStategraphPostInit("wilson", function(sg)
                     if hasSail then
                         inst.sg:GoToState("sail_start")
                     else
-                        print("row_start", is_moving, is_moving, should_move)
                         inst.sg:GoToState("row_start")
                     end
                 end

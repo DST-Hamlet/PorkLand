@@ -133,7 +133,7 @@ end
 
 local function ActivateCollision(inst)
     local phys = inst.Physics
-    phys:SetCollisionGroup(COLLISION.ITEMS)
+    phys:SetCollisionGroup(COLLISION.CHARACTERS)
 	phys:SetCollisionMask(
 		COLLISION.WORLD,
 		COLLISION.OBSTACLES,
@@ -194,7 +194,7 @@ local function MakeWave(build, collision_callback, postinit)
         inst.entity:AddAnimState()
 
         inst.AnimState:SetBuild(build)
-        inst.AnimState:SetBank(build)
+        -- inst.AnimState:SetBank(build)
         inst.Transform:SetFourFaced()
 
         inst.entity:AddPhysics()

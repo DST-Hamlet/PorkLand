@@ -2,6 +2,18 @@ local AddModRPCHandler = AddModRPCHandler
 local AddShardModRPCHandler = AddShardModRPCHandler
 GLOBAL.setfenv(1, GLOBAL)
 
+
+No_Tick_Queue_RPC = {}
+
+local function SetClientModRPCIngoreTick(namespace, name)
+    if CLIENT_MOD_RPC[namespace] and CLIENT_MOD_RPC[namespace][name] then
+        if No_Tick_Queue_RPC[namespace] == nil then
+            No_Tick_Queue_RPC[namespace] = {}
+        end
+        No_Tick_Queue_RPC[namespace][CLIENT_MOD_RPC[namespace][name].id] = true
+    end
+end
+
 local function printinvalid(rpcname, player)
     print(string.format("Invalid %s RPC from (%s) %s", rpcname, player.userid or "", player.name or ""))
 
@@ -115,12 +127,18 @@ AddClientModRPCHandler("Porkland", "tile_changed", function(data)
 end)
 
 AddClientModRPCHandler("Porkland", "spawn_wave", function(prefab, x, y, z, angle, speed, idle_time, instantActive, id)
-    TheWorld.components.worldwavemanager:SpawnClientWave(prefab, Vector3(x, y, z), angle, speed, idle_time, instantActive, id)
+    if not TheWorld.ismastersim then
+        TheWorld.components.worldwavemanager:SpawnClientWave(prefab, Vector3(x, y, z), angle, speed, idle_time, instantActive, id)
+    end
 end)
+SetClientModRPCIngoreTick("porkland", "spawn_wave")
 
 AddClientModRPCHandler("Porkland", "remove_wave", function(id)
-    TheWorld.components.worldwavemanager:RemoveWave(id)
+    if not TheWorld.ismastersim then
+        TheWorld.components.worldwavemanager:RemoveWave(id)
+    end
 end)
+SetClientModRPCIngoreTick("porkland", "remove_wave")
 
 AddUserCommand("saveme", {
     aliases = nil,
@@ -139,3 +157,38 @@ AddUserCommand("saveme", {
         end)
     end,
 })
+
+local RPC_Client_Queue_No_Tick = {}
+
+local _HandleClientModRPC = HandleClientModRPC
+function HandleClientModRPC(tick, namespace, code, data)
+    if No_Tick_Queue_RPC[namespace] and No_Tick_Queue_RPC[namespace][code] then
+        
+        if CLIENT_MOD_RPC_HANDLERS[namespace] ~= nil then
+            local fn = CLIENT_MOD_RPC_HANDLERS[namespace][code]
+            if fn ~= nil then
+                table.insert(RPC_Client_Queue_No_Tick, { fn, data, tick })
+            else
+                print("Invalid RPC code: ", namespace, code)
+            end
+        else
+            print("Invalid RPC namespace: ", namespace, code)
+        end
+
+        return
+    end
+    return _HandleClientModRPC(tick, namespace, code, data)
+end
+
+local _HandleRPCQueue = HandleRPCQueue
+function HandleRPCQueue(...)
+    _HandleRPCQueue(...)
+    local RPC_Client_Queue_No_Tick_len = #RPC_Client_Queue_No_Tick
+    for i = 1, RPC_Client_Queue_No_Tick_len do
+        local rpcdata = RPC_Client_Queue_No_Tick[i]
+        local fn, data, tick = unpack(rpcdata)
+
+        TheNet:CallClientRPC(fn, data)
+    end
+    RPC_Client_Queue_No_Tick = {}
+end
