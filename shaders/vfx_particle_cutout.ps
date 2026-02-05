@@ -49,10 +49,12 @@ vec3 CalculateLightingContribution( vec3 normal )
 void main()
 {
 	vec4 colour = texture2D( SAMPLER[0], PS_TEXCOORD_LIFE.xy );
-    if(colour.a < 0.105)
+    if(colour.a < 0.99)
 	{
 		discard;
 	}
+
+	colour.a = 1.0;
 
 	gl_FragColor = vec4( colour.rgb * PS_COLOUR.rgb, colour.a * PS_COLOUR.a );
 	gl_FragColor.rgb *= CalculateLightingContribution();

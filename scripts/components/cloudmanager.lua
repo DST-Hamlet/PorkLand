@@ -22,13 +22,14 @@ function CloudManager:Init()
     self.cloud_fx = SpawnPrefab("cloud_fx")
     local random_offset_z = 0
     for i = 1, self.num do
-        local cloud = SpawnPrefab("group_child")
+        local cloud = {}
         self.clouds[i] = cloud
         self.clouds_move_offset[i] = math.random() * PI2
 
-        cloud.entity:SetParent(self.clouds_parent.entity)
         random_offset_z = random_offset_z + 2 + math.random() * self.width / 2
-        cloud.Transform:SetPosition((i - self.num / 2) * self.cloud_dist, 0, random_offset_z)
+        cloud.x = (i - self.num / 2) * self.cloud_dist
+        cloud.y = 0
+        cloud.z = random_offset_z
 
         self.top_index = i
     end
@@ -46,18 +47,19 @@ function CloudManager:Move(offset_x, offset_z)
     if self.clouds_parent and self.clouds_parent:IsValid() then
         for i = 1, self.num do
             local cloud = self.clouds[i]
-            if cloud and cloud:IsValid() then
-                local x, y, z = cloud.Transform:GetWorldPosition()
-                x, y, z = self.clouds_parent.entity:WorldToLocalSpace(x, y, z)
-                x = x + offset_x
-                z = z + offset_z
+            local x, y, z = cloud.x, cloud.y, cloud.z
+            x = x + offset_x
+            z = z + offset_z
+            if x > self.num * self.cloud_dist / 2 or x < - self.num * self.cloud_dist / 2 then -- 多次执行这部分代码会导致浮点数精度问题
                 x = (x + self.num * self.cloud_dist / 2) % (self.num * self.cloud_dist) - self.num * self.cloud_dist / 2
+            end
+            if z > self.width / 2 or z < - self.width / 2 then
                 z = (z + self.width / 2) % (self.width) - self.width / 2
-                cloud.Transform:SetPosition(x, y, z)
+            end
+            cloud.x, cloud.y, cloud.z = x, y, z
 
-                if - x > self.num * self.cloud_dist / 2 - self.cloud_dist and - x <= self.num * self.cloud_dist / 2 then
-                    self.top_index = i -- 遮挡排序
-                end
+            if - x > self.num * self.cloud_dist / 2 - self.cloud_dist and - x <= self.num * self.cloud_dist / 2 then
+                self.top_index = i -- 遮挡排序
             end
         end
     end
@@ -81,6 +83,7 @@ function CloudManager:UpdatePos(dt)
     self.clouds_parent.Transform:SetRotation(- TheCamera.heading)
 
     self.cloud_fx.VFXEffect:ClearAllParticles(0)
+    self.cloud_fx.VFXEffect:ClearAllParticles(1)
 
     if not self.enabled then
         return
@@ -95,31 +98,29 @@ function CloudManager:UpdatePos(dt)
     local offset_y = 0
     local offset_x = 0
 
+    local visual_clouds = {}
     for i = self.top_index, self.num do -- 根据遮挡关系执行
-        local cloud = self.clouds[i]
-        if cloud and cloud:IsValid() then
-            offset_y = math.sin(time * 0.3 + self.clouds_move_offset[i]) * 0.25
-            offset_x = math.sin(time * 0.3 + self.clouds_move_offset[i]) * 0.5
-            local x, y, z = (cloud:GetPosition() + c_up * offset_y + c_right * offset_x):Get()
-            self.cloud_fx.Transform:SetPosition(x, y, z)
-            self.cloud_fx.VFXEffect:AddParticle(
-                0,
-                1e10,           -- lifetime
-                0, 0, 0,         -- position
-                0, 0, 0)          -- velocity
-        end
+        table.insert(visual_clouds, i)
     end
     for i = 1, self.top_index - 1 do
-        local cloud = self.clouds[i]
-        if cloud and cloud:IsValid() then
-            offset_y = math.sin(time * 0.3 + self.clouds_move_offset[i]) * 0.25
-            offset_x = math.sin(time * 0.3 + self.clouds_move_offset[i]) * 0.5
-            local x, y, z = (cloud:GetPosition() + c_up * offset_y + c_right * offset_x):Get()
-            self.cloud_fx.Transform:SetPosition(x, y, z)
+        table.insert(visual_clouds, i)
+    end
+
+    for k, index in pairs(visual_clouds) do
+        local cloud = self.clouds[index]
+        if cloud then
+            offset_y = math.sin(time * 0.3 + self.clouds_move_offset[index]) * 0.25
+            offset_x = math.sin(time * 0.3 + self.clouds_move_offset[index]) * 0.5
+            local x, y, z = (Vector3(self.clouds_parent.entity:LocalToWorldSpace(cloud.x, cloud.y, cloud.z)) + c_up * offset_y + c_right * offset_x):Get()
+            self.cloud_fx.VFXEffect:AddParticle(
+                1,
+                1e10,           -- lifetime
+                x, y, z,         -- position
+                0, 0, 0)          -- velocity
             self.cloud_fx.VFXEffect:AddParticle(
                 0,
                 1e10,           -- lifetime
-                0, 0, 0,         -- position
+                x, y, z,         -- position
                 0, 0, 0)          -- velocity
         end
     end
