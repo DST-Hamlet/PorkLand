@@ -131,7 +131,7 @@ AddClientModRPCHandler("Porkland", "spawn_wave", function(prefab, x, y, z, angle
         TheWorld.components.worldwavemanager:SpawnClientWave(prefab, Vector3(x, y, z), angle, speed, idle_time, instantActive, id)
     end
 end)
-SetClientModRPCIngoreTick("porkland", "spawn_wave")
+SetClientModRPCIngoreTick("porkland", "spawn_wave") -- 不计入RPC帧排队即可执行
 
 AddClientModRPCHandler("Porkland", "remove_wave", function(id)
     if not TheWorld.ismastersim then

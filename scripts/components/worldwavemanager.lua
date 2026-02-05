@@ -1,3 +1,6 @@
+local CLIENT_WAVE_DIST = 120
+local CLIENT_WAVE_DIST_SQ = CLIENT_WAVE_DIST * CLIENT_WAVE_DIST
+
 local WorldWaveManager = Class(function(self, inst)
     self.inst = inst
 
@@ -54,7 +57,11 @@ function WorldWaveManager:SpawnServerWave(prefab, wavepos, angle, speed, idle_ti
         wave.SoundEmitter:PlaySound("dontstarve_DLC002/common/rogue_waves/"..wave.soundtidal)
     end
 
-    SendModRPCToClient(GetClientModRPC("PorkLand", "spawn_wave"), nil, prefab, wavepos.x, wavepos.y, wavepos.z, angle, speed, idle_time, instantActive, wave.id) -- 当数据量特别大时, RPC数据存在一定的滞后性, 并不会像其他游戏数据一样即时同步
+    for _, player in pairs(AllPlayers) do
+        if player:GetDistanceSqToPoint(wavepos) < CLIENT_WAVE_DIST_SQ and player.userid then
+            SendModRPCToClient(GetClientModRPC("PorkLand", "spawn_wave"), player.userid, prefab, wavepos.x, wavepos.y, wavepos.z, angle, speed, idle_time, instantActive, wave.id)
+        end
+    end
 
     local function OnServerWaveRemove(wave)
         if self.waves[wave.id] then
@@ -71,7 +78,7 @@ function WorldWaveManager:SpawnClientWave(prefab, wavepos, angle, speed, idle_ti
         return
     end
 
-    if ThePlayer:GetDistanceSqToPoint(wavepos) > 120 * 120 then
+    if self.waves[id] then
         return
     end
 

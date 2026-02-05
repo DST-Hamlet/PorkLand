@@ -93,7 +93,7 @@ local states=
 
     State{
         name = "leap_attack_pre",
-        tags = {"attack", "canrotate", "busy", "leapattack_pre"},
+        tags = {"attack", "canrotate", "busy", "leapattack"},
 
         onenter = function(inst, target)
             inst.components.locomotor:Stop()
@@ -199,10 +199,6 @@ local states=
 
             inst.components.locomotor:Stop()
             inst.AnimState:PlayAnimation("jump_atk_pst")
-        end,
-
-        onexit = function(inst)
-            inst.components.combat.lastattacktime = GetTime()
         end,
 
         events =

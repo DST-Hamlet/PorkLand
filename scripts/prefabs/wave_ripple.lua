@@ -165,20 +165,20 @@ local function RoguePostinit(inst)
     inst:ListenForEvent("onremove", OnRemove)
 end
 
-local function OnEntitySleepClient(inst)
-    inst.sleeptime = GetTime()
-end
-
-local function OnEntityWakeClient(inst)
-    if inst.sleeptime then
-        local delta_time = GetTime() - inst.sleeptime
-
-        local x, y, z = inst.Transform:GetWorldPosition()
-        local vx, _, vz = inst.Physics:GetVelocity()
-
-        inst.Transform:SetPosition(x + vx * delta_time, y, z + vz * delta_time)
-    end
-end
+-- local function OnEntitySleepClient(inst)
+--     inst.sleeptime = GetTime()
+-- end
+-- 
+-- local function OnEntityWakeClient(inst)
+--     if inst.sleeptime then
+--         local delta_time = GetTime() - inst.sleeptime
+-- 
+--         local x, y, z = inst.Transform:GetWorldPosition()
+--         local vx, _, vz = inst.Physics:GetVelocity()
+-- 
+--         inst.Transform:SetPosition(x + vx * delta_time, y, z + vz * delta_time)
+--     end
+-- end
 
 local function MakeWave(build, collision_callback, postinit)
     local function fn()
@@ -214,7 +214,7 @@ local function MakeWave(build, collision_callback, postinit)
 
         if not TheWorld.ismastersim then
             inst.Physics:SetCollisionCallback(OnCollideClient)
-            inst.entity:SetCanSleep(false)
+            inst.entity:SetCanSleep(false) -- 只有生成位置距离玩家小于CLIENT_WAVE_DIST格的浪才会被同步至客户端, 因此浪最好有比较短的持续时间, 不然玩家附近的浪不一定被同步至客户端
     
             return inst
         end
