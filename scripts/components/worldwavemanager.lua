@@ -97,12 +97,13 @@ function WorldWaveManager:SpawnClientWave(prefab, wavepos, angle, speed, idle_ti
 end
 
 -- ThePlayer:DoPeriodicTask(0, function(inst) TheWorld.components.worldwavemanager:SpawnWaveCircle(inst, 6, 360, 2) end)
-function WorldWaveManager:SpawnWaveCircle(inst, num_waves, total_angle, wave_speed, wave_prefab, initialOffset, wave_idle_time, instantActive, random_angle)
+-- ThePlayer:DoPeriodicTask(0.5, function(inst) TheWorld.components.worldwavemanager:SpawnWaveCircle(inst, 2, 360, 1, "wave_ripple", nil, 1, nil, nil, inst.Transform:GetRotation() + 90) end)
+function WorldWaveManager:SpawnWaveCircle(inst, num_waves, total_angle, wave_speed, wave_prefab, initialOffset, wave_idle_time, instantActive, random_angle, current_angle)
     wave_prefab = wave_prefab or "wave_rogue"
     total_angle = math.clamp(total_angle, 1, 360)
 
     local pos = inst:GetPosition()
-    local start_angle = (random_angle and math.random(-180, 180)) or inst.Transform:GetRotation()
+    local start_angle = current_angle or (random_angle and math.random(-180, 180)) or inst.Transform:GetRotation()
     local angle_per_wave = total_angle/(num_waves - 1)
 
     if total_angle == 360 then

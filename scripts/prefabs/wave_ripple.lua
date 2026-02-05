@@ -30,22 +30,20 @@ local function WetAndDamage(inst, other)
 end
 
 local function Splash(inst, isboost)
-    if inst.cansplash then
-        local fxname = "splash_water"
-        if isboost then
-            fxname = "splash_water_boost"
-        end
-        local splash_water = SpawnPrefab(fxname)
-        local x, y, z = inst.Transform:GetWorldPosition()
-        splash_water.Transform:SetPosition(x, y, z)
+    local fxname = "splash_water"
+    if isboost then
+        fxname = "splash_water_boost"
     end
+    local splash_water = SpawnPrefab(fxname)
+    local x, y, z = inst.Transform:GetWorldPosition()
+    splash_water.Transform:SetPosition(x, y, z)
 
     inst:Remove()
 end
 
 local function TestHitGround(inst, other)
     if other == TheWorld then
-        inst:Remove()
+        Splash(inst)
         return true
     end
 end
@@ -133,13 +131,12 @@ local function OnLoad(inst, data)
     end
 end
 
-local function ActivateCollision(inst)
+local function ActivateCollision(inst) -- 修改碰撞层级以与玩家产生碰撞
 	inst.Physics:SetCollisionMask(
 		COLLISION.WORLD,
 		COLLISION.OBSTACLES,
 		COLLISION.CHARACTERS
 	)
-    inst.cansplash = true
 end
 
 local function OnRemove(inst)
