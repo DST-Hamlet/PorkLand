@@ -47,7 +47,7 @@ AddPrefabPostInit("world", function(inst)
         inst:AddComponent("teammanager")
     end
 
-    inst:ListenForEvent("onterraform", function(src, data)
+    inst:ListenForEvent("onterraform", function(src, data) -- 或许应该把变化数据打包, 每帧集中发送一次
         SendModRPCToClient(GetClientModRPC("PorkLand", "tile_changed"), nil, ZipAndEncodeString(data))
         if not TheNet:IsDedicated() then
             if ThePlayer and ThePlayer.components.tilechangewatcher then

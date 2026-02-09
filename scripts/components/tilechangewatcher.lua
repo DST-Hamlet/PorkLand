@@ -57,8 +57,6 @@ function TileChangeWatcher:OnPostUpdate()
     end
 
     self.shouldpostupdate = nil
-    local width, height = TheWorld.Map:GetSize()
-    self.tile_cache = DataGrid(width, height)
 end
 
 function TileChangeWatcher:GetCachedTile(grid_x, grid_z) -- 请确保在NotifyUpdate内部被调用
