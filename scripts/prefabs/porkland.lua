@@ -43,26 +43,12 @@ local ex_fns = require("prefabs/player_common_extensions")
 
 -- https://forums.kleientertainment.com/forums/topic/140904-tiles-changes-and-more/
 local function tile_physics_init(inst, ...)
-    -- a slightly modified version of the forest map's primary collider.
-    inst.Map:AddTileCollisionSet(
-        COLLISION.LAND_OCEAN_LIMITS,
-        TileGroups.TransparentOceanTiles, true,
-        TileGroups.LandTiles, true,
-        0.25, 64
-    )
     -- PL's ocean collider
     inst.Map:AddTileCollisionSet(
         COLLISION.LAND_OCEAN_LIMITS,
-        TileGroups.LandTiles, true,
+        TileGroups.PlOceanTiles, false,
         TileGroups.PlOceanTiles, true,
-        0.25, 64
-    )
-    -- PL's ocean impassable collider
-    inst.Map:AddTileCollisionSet(
-        COLLISION.LAND_OCEAN_LIMITS,
-        TileGroups.ImpassableTiles, true,
-        TileGroups.PlOceanTiles, true,
-        0.25, 128
+        0.25, 128 -- 亚丹: 最后一个参数是在C层切分的碰撞体的大小, 值越小重建越快但是性能越差
     )
     -- standard impassable collider
     inst.Map:AddTileCollisionSet(
