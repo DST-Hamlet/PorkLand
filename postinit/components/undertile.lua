@@ -25,21 +25,10 @@ function UnderTile:NotifyUnderTileChanged(data, userid)
     }))
 end
 
-function UnderTile:CheckInSize(x, y)
-    local width, height = TheWorld.Map:GetSize()
-    if x < 0 or x > width - 1 then
-        return false
-    end
-    if y < 0 or y > height - 1 then
-        return false
-    end
-    return true
-end
-
 AddComponentPostInit("undertile", function(self, inst)
     local set_tile_underneath = self.SetTileUnderneath
     self.SetTileUnderneath = function(self, x, y, tile, ...)
-        if not self:CheckInSize(x, y) then
+        if not TheWorld.Map:CheckInSize(x, y) then
             return
         end
         if not _underneath_tiles then
@@ -67,7 +56,7 @@ AddComponentPostInit("undertile", function(self, inst)
 
     local clear_tile_underneath = self.ClearTileUnderneath
     self.ClearTileUnderneath = function(self, x, y, ...)
-        if not self:CheckInSize(x, y) then
+        if not TheWorld.Map:CheckInSize(x, y) then
             return
         end
         if not _underneath_tiles then
@@ -87,7 +76,7 @@ AddComponentPostInit("undertile", function(self, inst)
 
     local get_tile_underneath = self.GetTileUnderneath
     self.GetTileUnderneath = function(self, x, y, ...)
-        if not self:CheckInSize(x, y) then
+        if not TheWorld.Map:CheckInSize(x, y) then
             return
         end
         return get_tile_underneath(self, x, y, ...)

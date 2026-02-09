@@ -9,19 +9,8 @@ local ClientUnderTile = Class(function(self, inst)
     self.inst:ListenForEvent("worldmapsetsize", InitializeDataGrid)
 end)
 
-function ClientUnderTile:CheckInSize(x, y)
-    local width, height = TheWorld.Map:GetSize()
-    if x < 0 or x > width - 1 then
-        return false
-    end
-    if y < 0 or y > height - 1 then
-        return false
-    end
-    return true
-end
-
 function ClientUnderTile:GetTileUnderneath(x, y)
-    if not self:CheckInSize(x, y) then
+    if not TheWorld.Map:CheckInSize(x, y) then
         return
     end
 

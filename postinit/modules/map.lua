@@ -561,3 +561,15 @@ function Map:IsPhysicsClearAtPoint(pt, inst)
     end
     return true
 end
+
+
+function Map:CheckInSize(x, y)
+    local width, height = self:GetSize()
+    if x < 0 or x > width - 1 then
+        return false
+    end
+    if y < 0 or y > height - 1 then
+        return false
+    end
+    return true
+end

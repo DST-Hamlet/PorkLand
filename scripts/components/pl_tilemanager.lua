@@ -1,59 +1,3 @@
-local TILE_TYPES =
-{
-    [WORLD_TILES.LILYPOND] =
-    {
-        texture = "levels/merged_tex/lilypond_merged.tex",
-        shader = "shaders/tile_particle_water.ksh",
-    },
-}
-
-local tile_id = 0
-for name, data in pairs(TILE_TYPES) do
-    TILE_TYPES[name].id = tile_id
-    tile_id = tile_id + 1
-end
-
--- PLAYER_CAMERA_SEE_DISTANCE (40) / TILE_SCALE (4) + 5 = 15
-local REFRESH_RADIUS = (PLAYER_CAMERA_SEE_DISTANCE / TILE_SCALE) + 5
-
-local PL_TileManager = Class(function(self, inst)
-    self.inst = inst
-
-    self.falloffs = {}
-
-    self.tiletest = SpawnTileFxEntity(TILE_TYPES)
-
-    self.inst.components.tilechangewatcher:ListenToUpdate(function()
-        self:UpdateTiles()
-    end)
-end)
-
-function PL_TileManager:ClearTiles()
-    for name, data in pairs(TILE_TYPES) do
-        self.tiletest:ClearTile(data.id)
-    end
-    self.tiles = {}
-end
-
-function PL_TileManager:SpawnTiles()
-    for i = 1, GetTableSize(TILE_TYPES) do
-        local id = i - 1
-        local datas = self.tiles[id]
-        if datas then
-            for _, data in ipairs(datas) do
-                self.tiletest:SpawnTile(data.position, data.overhang_type, id)
-            end
-        end
-        self.tiletest.VFXEffect:FastForward(id, GetTime())
-    end
-end
-
-function PL_TileManager:OnRemoveEntity()
-    self:ClearTiles()
-    self.tiletest:Remove()
-end
-
-PL_TileManager.OnRemoveFromEntity = PL_TileManager.OnRemoveEntity
 
 local WEST = 1
 local NORTH_WEST = 2
@@ -171,6 +115,63 @@ AddToTileMap(45, {WEST, NORTH, SOUTH_EAST})
 AddToTileMap(46, {NORTH, EAST, SOUTH_WEST})
 AddToTileMap(47, {EAST, SOUTH, NORTH_WEST})
 AddToTileMap(48, {SOUTH, WEST, NORTH_EAST})
+
+local TILE_TYPES =
+{
+    [WORLD_TILES.LILYPOND] =
+    {
+        texture = "levels/merged_tex/lilypond_merged.tex",
+        shader = "shaders/tile_particle_water.ksh",
+    },
+}
+
+local tile_id = 0
+for name, data in pairs(TILE_TYPES) do
+    TILE_TYPES[name].id = tile_id
+    tile_id = tile_id + 1
+end
+
+-- PLAYER_CAMERA_SEE_DISTANCE (40) / TILE_SCALE (4) + 5 = 15
+local REFRESH_RADIUS = (PLAYER_CAMERA_SEE_DISTANCE / TILE_SCALE) + 5
+
+local PL_TileManager = Class(function(self, inst)
+    self.inst = inst
+
+    self.falloffs = {}
+
+    self.tiletest = SpawnTileFxEntity(TILE_TYPES)
+
+    self.inst.components.tilechangewatcher:ListenToUpdate(function()
+        self:UpdateTiles()
+    end)
+end)
+
+function PL_TileManager:ClearTiles()
+    for name, data in pairs(TILE_TYPES) do
+        self.tiletest:ClearTile(data.id)
+    end
+    self.tiles = {}
+end
+
+function PL_TileManager:SpawnTiles()
+    for i = 1, GetTableSize(TILE_TYPES) do
+        local id = i - 1
+        local datas = self.tiles[id]
+        if datas then
+            for _, data in ipairs(datas) do
+                self.tiletest:SpawnTile(data.position, data.overhang_type, id)
+            end
+        end
+        self.tiletest.VFXEffect:FastForward(id, GetTime())
+    end
+end
+
+function PL_TileManager:OnRemoveEntity()
+    self:ClearTiles()
+    self.tiletest:Remove()
+end
+
+PL_TileManager.OnRemoveFromEntity = PL_TileManager.OnRemoveEntity
 
 local function GetTileVariant(x, z)
     -- 将 x 和 y 组合成一个种子

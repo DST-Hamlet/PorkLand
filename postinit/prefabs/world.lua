@@ -18,7 +18,7 @@ AddPrefabPostInit("world", function(inst)
         return
     end
 
-    if not TheWorld.components.economy then
+    if not TheWorld.components.economy then -- 世界穿越兼容
         inst:AddComponent("economy")
         inst.components.economy:AddCity(1)
     end
@@ -27,7 +27,7 @@ AddPrefabPostInit("world", function(inst)
         inst:AddComponent("uptile")
     end
 
-    if not TheWorld.components.periodicpoopmanager then
+    if not TheWorld.components.periodicpoopmanager then -- 世界穿越兼容
         inst:AddComponent("periodicpoopmanager")
     end
 

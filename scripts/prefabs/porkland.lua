@@ -48,7 +48,7 @@ local function tile_physics_init(inst, ...)
         COLLISION.LAND_OCEAN_LIMITS,
         TileGroups.PlOceanTiles, false,
         TileGroups.PlOceanTiles, true,
-        0.25, 128 -- 亚丹: 最后一个参数是在C层切分的碰撞体的大小, 值越小重建越快但是性能越差
+        0.25, 128 -- 亚丹: 最后一个参数是在C层切分的碰撞体的大小, 值越小碰撞体重建越快, 但是不重建时的性能越差
     )
     -- standard impassable collider
     inst.Map:AddTileCollisionSet(
@@ -114,7 +114,6 @@ local function common_postinit(inst)
 
     inst:AddComponent("interiorspawner")
     inst:AddComponent("worldpathfindermanager")
-    inst:AddComponent("interiorquaker")
     inst:AddComponent("worldsoundmanager")
     inst:AddComponent("clientundertile")
     inst:AddComponent("interiormaprevealer")
@@ -167,6 +166,7 @@ local function master_postinit(inst)
     if METRICS_ENABLED then
         inst:AddComponent("worldoverseer")
     end
+    inst:AddComponent("interiorquaker")
 
     inst:AddComponent("economy")
     inst.components.economy:AddCity(1)
