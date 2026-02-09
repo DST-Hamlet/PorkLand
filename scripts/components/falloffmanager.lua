@@ -34,23 +34,23 @@ local offset_x = 0
 
 local adjacent = {
     {
-        x = TILE_SCALE + offset_x,
+        x = 1 + offset_x,
         z = 0,
         angle = 0,
     },
     {
-        x = -(TILE_SCALE + offset_x),
+        x = -(1 + offset_x),
         z = 0,
         angle = 180,
     },
     {
         x = 0,
-        z = TILE_SCALE + offset_x,
+        z = 1 + offset_x,
         angle = 270,
     },
     {
         x = 0,
-        z = -(TILE_SCALE + offset_x),
+        z = -(1 + offset_x),
         angle = 90,
     },
 }
@@ -147,17 +147,17 @@ function FalloffManager:UpdateFalloffs()
                 end
             else
                 local visual_datas = {}
-                local tile = tilechangewatcher:CachedTileAtPoint(center.x, center.y, center.z)
+                local tile = tilechangewatcher:GetCachedTile(grid_x, grid_z)
                 if tile then
                     for _, v in ipairs(adjacent) do
-                        local adjacent_tile = tilechangewatcher:CachedTileAtPoint(center.x + v.x, center.y, center.z + v.z)
+                        local adjacent_tile = tilechangewatcher:GetCachedTile(grid_x + v.x, grid_z + v.z)
                         if adjacent then
                             for falloff_name, falloff_data in pairs(FALLOFF_TYPES) do
                                 if falloff_data.testfn(tile, adjacent_tile) then
                                     local data = {
-                                        position = Vector3(center.x + v.x / 2, center.y, center.z + v.z / 2),
+                                        position = Vector3(center.x + v.x * TILE_SCALE / 2, center.y, center.z + v.z * TILE_SCALE / 2),
                                         angle = v.angle,
-                                        variant = GetFalloffVariant(center.x + v.x / 2, center.z + v.z / 2),
+                                        variant = GetFalloffVariant(center.x + v.x * TILE_SCALE / 2, center.z + v.z * TILE_SCALE / 2),
                                         name = falloff_name,
                                     }
                                     table.insert(self.falloffs[falloff_data.id], data)
@@ -173,7 +173,7 @@ function FalloffManager:UpdateFalloffs()
         end
     end
     self:SpawnFalloffs()
-    print("使用的缓存falloff数据：", use_cache)
+    -- print("使用的缓存的falloff数据：", use_cache)
 end
 
 return FalloffManager

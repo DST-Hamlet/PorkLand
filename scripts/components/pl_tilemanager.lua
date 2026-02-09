@@ -134,12 +134,20 @@ end
 -- PLAYER_CAMERA_SEE_DISTANCE (40) / TILE_SCALE (4) + 5 = 15
 local REFRESH_RADIUS = (PLAYER_CAMERA_SEE_DISTANCE / TILE_SCALE) + 5
 
+local function InitializeDataGrid(inst, data)
+    inst.components.falloffmanager.cached_visual = DataGrid(data.width, data.height)
+end
+
 local PL_TileManager = Class(function(self, inst)
     self.inst = inst
 
     self.falloffs = {}
 
-    self.tiletest = SpawnTileFxEntity(TILE_TYPES)
+    local w, h = TheWorld.Map:GetSize()
+    self.cached_visual = DataGrid(w, h)
+    self.inst:ListenForEvent("worldmapsetsize", InitializeDataGrid, TheWorld)
+
+    self.tile_fx = SpawnTileFxEntity(TILE_TYPES)
 
     self.inst.components.tilechangewatcher:ListenToUpdate(function()
         self:UpdateTiles()
@@ -148,9 +156,13 @@ end)
 
 function PL_TileManager:ClearTiles()
     for name, data in pairs(TILE_TYPES) do
-        self.tiletest:ClearTile(data.id)
+        self.tile_fx:ClearTile(data.id)
     end
     self.tiles = {}
+    for name, data in pairs(TILE_TYPES) do
+        local id = data.id
+        self.tiles[id] = {}
+    end
 end
 
 function PL_TileManager:SpawnTiles()
@@ -159,16 +171,16 @@ function PL_TileManager:SpawnTiles()
         local datas = self.tiles[id]
         if datas then
             for _, data in ipairs(datas) do
-                self.tiletest:SpawnTile(data.position, data.overhang_type, id)
+                self.tile_fx:SpawnTile(data.position, data.overhang_type, id)
             end
         end
-        self.tiletest.VFXEffect:FastForward(id, GetTime())
+        self.tile_fx.VFXEffect:FastForward(id, GetTime())
     end
 end
 
 function PL_TileManager:OnRemoveEntity()
     self:ClearTiles()
-    self.tiletest:Remove()
+    self.tile_fx:Remove()
 end
 
 PL_TileManager.OnRemoveFromEntity = PL_TileManager.OnRemoveEntity
@@ -190,6 +202,7 @@ local function GetTileVariant(x, z)
 end
 
 function PL_TileManager:UpdateTiles()
+    local use_cache = 0
     self:ClearTiles()
     if self.inst:GetIsInInterior() then
         return
@@ -199,54 +212,75 @@ function PL_TileManager:UpdateTiles()
     for x = -REFRESH_RADIUS, REFRESH_RADIUS do
         for z = -REFRESH_RADIUS, REFRESH_RADIUS do
             local center = current_tile_center + Vector3(x * TILE_SCALE, 0, z * TILE_SCALE)
-            local tile = tilechangewatcher:CachedTileAtPoint(center.x, center.y, center.z)
-            if tile then
-                if TILE_TYPES[tile] then
-                    if self.tiles[TILE_TYPES[tile].id] == nil then
-                        self.tiles[TILE_TYPES[tile].id] = {}
-                    end
-                    table.insert(self.tiles[TILE_TYPES[tile].id], {
-                        position = Vector3(center.x, center.y, center.z),
-                        overhang_type = 1,
-                    })
-                    -- self.tiletest:SpawnTile(center, 1, TILE_TYPES[tile].id)
-                end
+            local grid_x, grid_z = TheWorld.Map:GetTileCoordsAtPoint(center.x, center.y, center.z)
+            if not TheWorld.Map:CheckInSize(grid_x, grid_z) then -- 在地图边界外
 
-                local neighbor_datas = {}
-                for dir, v in pairs(NEIGHBOR_TILES) do
-                    local adjacent_tile = tilechangewatcher:CachedTileAtPoint(center.x + v.x * TILE_SCALE, center.y, center.z + v.z * TILE_SCALE)
-                    if TILE_TYPES[adjacent_tile] then
-                        if neighbor_datas[adjacent_tile] == nil then
-                            neighbor_datas[adjacent_tile] = {}
+            elseif self.cached_visual:GetDataAtPoint(grid_x, grid_z) then -- 使用缓存的数据
+                use_cache = use_cache + 1
+                for i, v in ipairs(self.cached_visual:GetDataAtPoint(grid_x, grid_z)) do
+                    table.insert(self.tiles[v.id], v.data)
+                end
+            else
+                local visual_datas = {}
+                local tile = tilechangewatcher:GetCachedTile(grid_x, grid_z)
+                if tile then
+                    if TILE_TYPES[tile] then
+                        if self.tiles[TILE_TYPES[tile].id] == nil then
+                            self.tiles[TILE_TYPES[tile].id] = {}
                         end
-                        table.insert(neighbor_datas[adjacent_tile], dir)
+                        local data = {
+                            position = Vector3(center.x, center.y, center.z),
+                            overhang_type = 1,
+                        }
+                        table.insert(self.tiles[TILE_TYPES[tile].id], data)
+
+                        table.insert(visual_datas, {id = TILE_TYPES[tile].id, data = data})
+                        -- self.tile_fx:SpawnTile(center, 1, TILE_TYPES[tile].id)
                     end
-                end
 
-                for tile_type, data in pairs(neighbor_datas) do
-                    if tile ~= tile_type then
-                        local key = GetKeyForNeighbors(data)
-
-                        if key > 0 then
-                            local value = tile_map[key]
-                            if value < 17 then
-                                value = value + GetTileVariant(center.x, center.z) * 48 -- 随机变体
+                    local neighbor_datas = {}
+                    for dir, v in pairs(NEIGHBOR_TILES) do
+                        local adjacent_tile = tilechangewatcher:GetCachedTile(grid_x + v.x, grid_z + v.z)
+                        if TILE_TYPES[adjacent_tile] then
+                            if neighbor_datas[adjacent_tile] == nil then
+                                neighbor_datas[adjacent_tile] = {}
                             end
-                            if self.tiles[TILE_TYPES[tile_type].id] == nil then
-                                self.tiles[TILE_TYPES[tile_type].id] = {}
-                            end
-                            table.insert(self.tiles[TILE_TYPES[tile_type].id], {
-                                position = Vector3(center.x, center.y, center.z),
-                                overhang_type = value,
-                            })
-                            -- self.tiletest:SpawnTile(center, value or 1, TILE_TYPES[tile_type].id)
+                            table.insert(neighbor_datas[adjacent_tile], dir)
                         end
                     end
+
+                    for tile_type, data in pairs(neighbor_datas) do
+                        if tile ~= tile_type then
+                            local key = GetKeyForNeighbors(data)
+
+                            if key > 0 then
+                                local value = tile_map[key]
+                                if value < 17 then
+                                    value = value + GetTileVariant(center.x, center.z) * 48 -- 随机变体
+                                end
+                                if self.tiles[TILE_TYPES[tile_type].id] == nil then
+                                    self.tiles[TILE_TYPES[tile_type].id] = {}
+                                end
+
+                                local data = {
+                                    position = Vector3(center.x, center.y, center.z),
+                                    overhang_type = value,
+                                }
+                                table.insert(self.tiles[TILE_TYPES[tile_type].id], data)
+
+                                table.insert(visual_datas, {id = TILE_TYPES[tile_type].id, data = data})
+
+                                -- self.tile_fx:SpawnTile(center, value or 1, TILE_TYPES[tile_type].id)
+                            end
+                        end
+                    end
                 end
+                self.cached_visual:SetDataAtPoint(grid_x, grid_z, visual_datas)
             end
         end
     end
     self:SpawnTiles()
+    -- print("使用的缓存的tile数据：", use_cache)
 end
 
 return PL_TileManager

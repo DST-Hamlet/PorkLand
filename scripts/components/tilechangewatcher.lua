@@ -37,7 +37,7 @@ function TileChangeWatcher:NotifyUpdate()
     self.tile_cache = DataGrid(width, height)
 end
 
-function TileChangeWatcher:CachedTile(grid_x, grid_z)
+function TileChangeWatcher:GetCachedTile(grid_x, grid_z)
     local cache = self.tile_cache:GetDataAtPoint(grid_x, grid_z)
     if cache then
         return cache
@@ -48,7 +48,7 @@ function TileChangeWatcher:CachedTile(grid_x, grid_z)
 end
 
 -- You can use this in the listeners to replace TheWorld.Map:GetTileAtPoint calls with a cache
-function TileChangeWatcher:CachedTileAtPoint(x, y, z)
+function TileChangeWatcher:GetCachedTileAtPoint(x, y, z)
     local grid_x, grid_z = TheWorld.Map:GetTileCoordsAtPoint(x, y, z)
     local cache = self.tile_cache:GetDataAtPoint(grid_x, grid_z)
     if cache then

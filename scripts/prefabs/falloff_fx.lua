@@ -110,12 +110,10 @@ local VARIANT_UV = {
 }
 
 local function SpawnFalloff(inst, index, pos, angle, variant)
-    inst.child_effects[angle].Transform:SetPosition(pos.x, pos.y, pos.z)
-
     inst.child_effects[angle].VFXEffect:AddParticleUV(
         index,
         MAX_LIFETIME,           -- lifetime
-        0, -4, 0,         -- position
+        pos.x, pos.y -4, pos.z,         -- position
         0, 0, 0,          -- velocity
         VARIANT_UV[variant][1], VARIANT_UV[variant][2]        -- uvoffset_x, uvoffset_y        -- uv offset
     )

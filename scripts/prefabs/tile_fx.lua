@@ -126,12 +126,10 @@ end
 
 
 local function SpawnTile(inst, pos, overhang_type, index)
-    inst.Transform:SetPosition(pos.x, pos.y, pos.z)
-
     inst.VFXEffect:AddParticleUV(
         index,
         MAX_LIFETIME,           -- lifetime
-        0, 0, 0,         -- position
+        pos.x, pos.y, pos.z,         -- position
         0, 0, 0,          -- velocity
         TileTexcoord[overhang_type or 1][1], TileTexcoord[overhang_type or 1][2]
     )
