@@ -161,6 +161,10 @@ AddPlayerPostInit(function(inst)
             if inst == ThePlayer then -- only do this for the local player character
                 inst:ListenForEvent("oincsounddirty", PlayOincSound)
                 if TheWorld:HasTag("porkland") then
+                    if inst.components.updatelooper == nil then
+                        inst:AddComponent("updatelooper")
+                    end
+
                     inst:AddComponent("windvisuals")
                     inst:AddComponent("cloudpuffmanager")
                     inst:AddComponent("persistencevision")

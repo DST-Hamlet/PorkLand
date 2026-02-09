@@ -49,5 +49,10 @@ AddPrefabPostInit("world", function(inst)
 
     inst:ListenForEvent("onterraform", function(src, data)
         SendModRPCToClient(GetClientModRPC("PorkLand", "tile_changed"), nil, ZipAndEncodeString(data))
+        if not TheNet:IsDedicated() then
+            if ThePlayer and ThePlayer.components.tilechangewatcher then
+                ThePlayer.components.tilechangewatcher:OnTileChanged(data)
+            end
+        end
     end, TheWorld)
 end)

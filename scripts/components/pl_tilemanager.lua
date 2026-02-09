@@ -152,6 +152,9 @@ local PL_TileManager = Class(function(self, inst)
     self.inst.components.tilechangewatcher:ListenToUpdate(function()
         self:UpdateTiles()
     end)
+    self.inst.components.tilechangewatcher:ListenToTileChanged(function(data)
+        self:OnTileChanged(data)
+    end)
 end)
 
 function PL_TileManager:ClearTiles()
@@ -240,12 +243,14 @@ function PL_TileManager:UpdateTiles()
 
                     local neighbor_datas = {}
                     for dir, v in pairs(NEIGHBOR_TILES) do
-                        local adjacent_tile = tilechangewatcher:GetCachedTile(grid_x + v.x, grid_z + v.z)
-                        if TILE_TYPES[adjacent_tile] then
-                            if neighbor_datas[adjacent_tile] == nil then
-                                neighbor_datas[adjacent_tile] = {}
+                        if TheWorld.Map:CheckInSize(grid_x + v.x, grid_z + v.z) then
+                            local adjacent_tile = tilechangewatcher:GetCachedTile(grid_x + v.x, grid_z + v.z)
+                            if TILE_TYPES[adjacent_tile] then
+                                if neighbor_datas[adjacent_tile] == nil then
+                                    neighbor_datas[adjacent_tile] = {}
+                                end
+                                table.insert(neighbor_datas[adjacent_tile], dir)
                             end
-                            table.insert(neighbor_datas[adjacent_tile], dir)
                         end
                     end
 
@@ -281,6 +286,17 @@ function PL_TileManager:UpdateTiles()
     end
     self:SpawnTiles()
     -- print("使用的缓存的tile数据：", use_cache)
+end
+
+function PL_TileManager:OnTileChanged(data)
+    if data and data.x and data.y then
+        self.cached_visual:SetDataAtPoint(data.x, data.y, nil)
+        for dir, v in pairs(NEIGHBOR_TILES) do
+            if TheWorld.Map:CheckInSize(data.x + v.x, data.y + v.z) then
+                self.cached_visual:SetDataAtPoint(data.x + v.x, data.y + v.z, nil)
+            end
+        end
+    end
 end
 
 return PL_TileManager

@@ -32,7 +32,7 @@ end
 
 local offset_x = 0
 
-local adjacent = {
+local ADJACENTS = {
     {
         x = 1 + offset_x,
         z = 0,
@@ -81,6 +81,9 @@ local FalloffManager = Class(function(self, inst)
 
     self.inst.components.tilechangewatcher:ListenToUpdate(function()
         self:UpdateFalloffs()
+    end)
+    self.inst.components.tilechangewatcher:ListenToTileChanged(function(data)
+        self:OnTileChanged(data)
     end)
 end)
 
@@ -149,20 +152,22 @@ function FalloffManager:UpdateFalloffs()
                 local visual_datas = {}
                 local tile = tilechangewatcher:GetCachedTile(grid_x, grid_z)
                 if tile then
-                    for _, v in ipairs(adjacent) do
-                        local adjacent_tile = tilechangewatcher:GetCachedTile(grid_x + v.x, grid_z + v.z)
-                        if adjacent then
-                            for falloff_name, falloff_data in pairs(FALLOFF_TYPES) do
-                                if falloff_data.testfn(tile, adjacent_tile) then
-                                    local data = {
-                                        position = Vector3(center.x + v.x * TILE_SCALE / 2, center.y, center.z + v.z * TILE_SCALE / 2),
-                                        angle = v.angle,
-                                        variant = GetFalloffVariant(center.x + v.x * TILE_SCALE / 2, center.z + v.z * TILE_SCALE / 2),
-                                        name = falloff_name,
-                                    }
-                                    table.insert(self.falloffs[falloff_data.id], data)
+                    for _, v in ipairs(ADJACENTS) do
+                        if TheWorld.Map:CheckInSize(grid_x + v.x, grid_z + v.z) then
+                            local adjacent_tile = tilechangewatcher:GetCachedTile(grid_x + v.x, grid_z + v.z)
+                            if adjacent_tile then
+                                for falloff_name, falloff_data in pairs(FALLOFF_TYPES) do
+                                    if falloff_data.testfn(tile, adjacent_tile) then
+                                        local data = {
+                                            position = Vector3(center.x + v.x * TILE_SCALE / 2, center.y, center.z + v.z * TILE_SCALE / 2),
+                                            angle = v.angle,
+                                            variant = GetFalloffVariant(center.x + v.x * TILE_SCALE / 2, center.z + v.z * TILE_SCALE / 2),
+                                            name = falloff_name,
+                                        }
+                                        table.insert(self.falloffs[falloff_data.id], data)
 
-                                    table.insert(visual_datas, {id = falloff_data.id,data = data})
+                                        table.insert(visual_datas, {id = falloff_data.id,data = data})
+                                    end
                                 end
                             end
                         end
@@ -174,6 +179,17 @@ function FalloffManager:UpdateFalloffs()
     end
     self:SpawnFalloffs()
     -- print("使用的缓存的falloff数据：", use_cache)
+end
+
+function FalloffManager:OnTileChanged(data)
+    if data and data.x and data.y then
+        self.cached_visual:SetDataAtPoint(data.x, data.y, nil)
+        for dir, v in pairs(ADJACENTS) do
+            if TheWorld.Map:CheckInSize(data.x + v.x, data.y + v.z) then
+                self.cached_visual:SetDataAtPoint(data.x + v.x, data.y + v.z, nil)
+            end
+        end
+    end
 end
 
 return FalloffManager
