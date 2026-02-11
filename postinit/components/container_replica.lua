@@ -27,19 +27,23 @@ end
 local _GetSpecificSlotForItem = Container.GetSpecificSlotForItem
 function Container:GetSpecificSlotForItem(...)
     local _itemtestfn = self.itemtestfn
-    self.itemtestfn = function(container, item, i, ...)
-        local slotitem = container:GetItemInSlot(i)
-        return _itemtestfn(container, item, i, ...)
-            and (not slotitem
-            or (slotitem.replica.stackable ~= nil and slotitem.prefab == item.prefab and item:StackableSkinHack(slotitem) and not slotitem.replica.stackable:IsFull()))
-            and not self:IsBoatSlot(i) -- 不能通过快速移动装备船装备
-            -- 总之是烦人的可堆叠检测，复制自原组件container_classified
+    if _itemtestfn then
+        self.itemtestfn = function(container, item, i, ...)
+            local slotitem = container:GetItemInSlot(i)
+            return _itemtestfn(container, item, i, ...)
+                and (not slotitem
+                or (slotitem.replica.stackable ~= nil and slotitem.prefab == item.prefab and item:StackableSkinHack(slotitem) and not slotitem.replica.stackable:IsFull()))
+                and not self:IsBoatSlot(i) -- 不能通过快速移动装备船装备
+                -- 总之是烦人的可堆叠检测，复制自原组件container_classified
+        end
     end
 
     local ret = _GetSpecificSlotForItem(self, ...)
     self.itemtestfn = _itemtestfn
 
-    if ret == nil then -- 如果找不到可用的物品格子但该容器有其他空余的格子, 那么就返回一个已被占据的格子(仅对同时有装备栏和物品栏的船那么做)
+    if _itemtestfn and ret == nil then
+        -- 如果找不到可用的物品格子但该容器有其他空余的格子, 那么就返回一个已被占据的格子(仅对同时有装备栏和物品栏的船那么做)
+        -- 这是为了防止客户端强制将物品塞入装备格子
         return 1
     end
 

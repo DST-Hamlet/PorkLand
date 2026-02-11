@@ -297,6 +297,8 @@ local function fn()
     inst._costvisual = net_entity(inst.GUID, "_costvisual", "costvisualdirty")
 
     inst:ListenForEvent("onremove", onremove)
+
+    inst.CanMouseThrough = CanMouseThrough
     --------------------------------------------
 
     inst.entity:SetPristine()
@@ -350,7 +352,6 @@ local function fn()
     inst.MakeShopkeeperSpeech = MakeShopkeeperSpeech
     inst.Restock = Restock
     inst.InitShop = InitShop
-    inst.CanMouseThrough = CanMouseThrough
 
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad

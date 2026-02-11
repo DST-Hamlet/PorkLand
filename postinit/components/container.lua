@@ -72,13 +72,15 @@ local _GetSpecificSlotForItem = Container.GetSpecificSlotForItem
 function Container:GetSpecificSlotForItem(...) -- 为了让普通物品无法进入船的装备格子, 或许写法还可以进一步优化
     removesetter(self, "itemtestfn")
     local _itemtestfn = self.itemtestfn
-    self.itemtestfn = function(container, item, i, ...)
-        local slotitem = container:GetItemInSlot(i)
-        return _itemtestfn(container, item, i, ...)
-            and (not slotitem
-            or (slotitem.components.stackable and slotitem.prefab == item.prefab and slotitem.skinname == item.skinname and not slotitem.components.stackable:IsFull()))
-            and not self:IsBoatSlot(i) -- 不能通过快速移动装备船装备
-            -- 总之是烦人的可堆叠检测，复制自原组件Container:GiveItem
+    if _itemtestfn then
+        self.itemtestfn = function(container, item, i, ...)
+            local slotitem = container:GetItemInSlot(i)
+            return _itemtestfn(container, item, i, ...)
+                and (not slotitem
+                or (slotitem.components.stackable and slotitem.prefab == item.prefab and slotitem.skinname == item.skinname and not slotitem.components.stackable:IsFull()))
+                and not self:IsBoatSlot(i) -- 不能通过快速移动装备船装备
+                -- 总之是烦人的可堆叠检测，复制自原组件Container:GiveItem
+        end
     end
 
     local ret = _GetSpecificSlotForItem(self, ...)
