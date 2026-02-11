@@ -17,6 +17,7 @@ local foods = {
         end,
         is_shipwreck_food = true,
         card_def = {ingredients = {{"coffeebeans_cooked", 3}, {"honey", 1}}},
+        tags = { "fooddrink" },
     },
 
     snakebonesoup =
@@ -38,7 +39,7 @@ local foods = {
     {
         test = function(cooker, names, tags) return names.piko_orange and names.piko_orange >= 2 and tags.sweetener and not tags.meat and not tags.veggie and not tags.inedible end,
         priority = 25,
-        foodtype = FOODTYPE.VEGGIE, -- still veggie, otherwise what's the point of Wigfird?
+        foodtype = FOODTYPE.GOODIES,
         health = TUNING.HEALING_SMALL,
         hunger = TUNING.CALORIES_SMALL,
         perishtime = TUNING.PERISH_ONE_DAY,
@@ -53,13 +54,14 @@ local foods = {
         oneatenfn = function(inst, eater)
             eater:AddDebuff("buff_speed_tea", "buff_speed_tea")
         end,
+        tags = { "fooddrink" },
     },
 
     icedtea =
     {
         test = function(cooker, names, tags) return names.piko_orange and names.piko_orange >= 2 and tags.sweetener and tags.frozen end,
         priority = 30,
-        foodtype = FOODTYPE.VEGGIE, -- still veggie, otherwise what's the point of Wigfird?
+        foodtype = FOODTYPE.GOODIES,
         health = TUNING.HEALING_SMALL,
         hunger = TUNING.CALORIES_SMALL,
         perishtime = TUNING.PERISH_FAST,
@@ -73,6 +75,7 @@ local foods = {
         oneatenfn = function(inst, eater)
             eater:AddDebuff("buff_speed_icedtea", "buff_speed_icedtea")
         end,
+        tags = { "fooddrink" },
     },
 
     gummy_cake =
