@@ -70,9 +70,9 @@ end
 
 local _GetSpecificSlotForItem = Container.GetSpecificSlotForItem
 function Container:GetSpecificSlotForItem(...) -- 为了让普通物品无法进入船的装备格子, 或许写法还可以进一步优化
-    removesetter(self, "itemtestfn")
-    local _itemtestfn = self.itemtestfn
-    if _itemtestfn then
+    if self.hasboatequipslots then
+        removesetter(self, "itemtestfn")
+        local _itemtestfn = self.itemtestfn
         self.itemtestfn = function(container, item, i, ...)
             local slotitem = container:GetItemInSlot(i)
             return _itemtestfn(container, item, i, ...)
@@ -81,13 +81,15 @@ function Container:GetSpecificSlotForItem(...) -- 为了让普通物品无法进
                 and not self:IsBoatSlot(i) -- 不能通过快速移动装备船装备
                 -- 总之是烦人的可堆叠检测，复制自原组件Container:GiveItem
         end
+
+        local ret = _GetSpecificSlotForItem(self, ...)
+        self.itemtestfn = _itemtestfn
+        makereadonly(self, "itemtestfn")
+
+        return ret
     end
 
-    local ret = _GetSpecificSlotForItem(self, ...)
-    self.itemtestfn = _itemtestfn
-    makereadonly(self, "itemtestfn")
-
-    return ret
+    return _GetSpecificSlotForItem(self, ...)
 end
 
 function Container:IsOverflow(owner)
