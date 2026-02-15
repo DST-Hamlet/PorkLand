@@ -349,7 +349,7 @@ local function MakeHat(name)
         inst.monster = owner:HasTag("monster")
         owner:RemoveTag("monster")
         owner:RemoveTag("playermonster")
-        owner.AddTag("disguise")
+        owner:AddTag("disguise")
     end
 
     local function disguise_unequip(inst, owner)
@@ -360,7 +360,7 @@ local function MakeHat(name)
             owner:AddTag("playermonster")
             
         end
-        owner.RemoveTag("disguise")
+        owner:RemoveTag("disguise")
     end
 
     local function disguise_custom_init(inst)
