@@ -61,7 +61,10 @@ end
 
 
 local function OnNewPlayerSpawned(src, player)
-    ex_fns.GivePlayerStartingItems(player, { "machete" })
+    ex_fns.GivePlayerStartingItems(player, { "machete"})
+    if player.prefab == "webber" or player.prefab == "wortox" then
+        ex_fns.GivePlayerStartingItems(player, {"disguisehat"})
+    end
 end
 
 local TileManager = require "tilemanager"
