@@ -1,6 +1,6 @@
 GLOBAL.setfenv(1, GLOBAL)
 
-local REPLACE_ANIMS =
+local PLAYER_REPLACE_ANIMS =
 {
     ["wilson"] =
     {
@@ -13,79 +13,63 @@ local REPLACE_ANIMS =
     }
 }
 
-local anim_to_entity = {}
+AnimState_Player = Class(function(self, inst)
+    self.inst = inst
+    self._AnimState = inst.AnimState
+    inst.AnimState = self
+end)
 
-local animstate_banks = {}
-
-local function clean_up_mapping(inst)
-    if inst.AnimState then
-        anim_to_entity[inst.AnimState] = nil
-        animstate_banks[inst.AnimState] = nil
+for k, v in pairs(AnimState) do
+    AnimState_Player[k] = function(self, ...)
+        return v(self._AnimState, ...)
     end
 end
 
-local _AddAnimState = Entity.AddAnimState
-function Entity:AddAnimState(...)
-    local animstate = _AddAnimState(self, ...)
-
-    local guid = self:GetGUID()
-    local inst = Ents[guid]
-    anim_to_entity[animstate] = inst
-    inst:ListenForEvent("onremove", clean_up_mapping)
-
-    return animstate
-end
-
 local _SetBank = AnimState.SetBank
-function AnimState:SetBank(bank, ...)
-    animstate_banks[self] = bank
-    return _SetBank(self, bank, ...)
+function AnimState_Player:SetBank(bank, ...)
+    self.bank = bank
+    return _SetBank(self._AnimState, bank, ...)
 end
 
 local _PlayAnimation = AnimState.PlayAnimation
-AnimState.PlayAnimation = function(self, animname, ...)
-    local bank = animstate_banks[self]
-    if REPLACE_ANIMS[bank] and REPLACE_ANIMS[bank][animname] then
-        return _PlayAnimation(self, REPLACE_ANIMS[bank][animname], ...)
+AnimState_Player.PlayAnimation = function(self, animname, ...)
+    if PLAYER_REPLACE_ANIMS[self.bank] and PLAYER_REPLACE_ANIMS[self.bank][animname] then
+        return _PlayAnimation(self._AnimState, PLAYER_REPLACE_ANIMS[self.bank][animname], ...)
     else
-        return _PlayAnimation(self, animname, ...)
+        return _PlayAnimation(self._AnimState, animname, ...)
     end
 end
 
 local _PushAnimation = AnimState.PushAnimation
-AnimState.PushAnimation = function(self, animname, ...)
-    local bank = animstate_banks[self]
-    if REPLACE_ANIMS[bank] and REPLACE_ANIMS[bank][animname] then
-        return _PushAnimation(self, REPLACE_ANIMS[bank][animname], ...)
+AnimState_Player.PushAnimation = function(self, animname, ...)
+    if PLAYER_REPLACE_ANIMS[self.bank] and PLAYER_REPLACE_ANIMS[self.bank][animname] then
+        return _PushAnimation(self._AnimState, PLAYER_REPLACE_ANIMS[self.bank][animname], ...)
     else
-        return _PushAnimation(self, animname, ...)
+        return _PushAnimation(self._AnimState, animname, ...)
     end
 end
 
 local _IsCurrentAnimation = AnimState.IsCurrentAnimation
-AnimState.IsCurrentAnimation = function(self, animname, ...)
-    local bank = animstate_banks[self]
-    if REPLACE_ANIMS[bank] and REPLACE_ANIMS[bank][animname] then
-        return _IsCurrentAnimation(self, REPLACE_ANIMS[bank][animname], ...)
+AnimState_Player.IsCurrentAnimation = function(self, animname, ...)
+    if PLAYER_REPLACE_ANIMS[self.bank] and PLAYER_REPLACE_ANIMS[self.bank][animname] then
+        return _IsCurrentAnimation(self._AnimState, PLAYER_REPLACE_ANIMS[self.bank][animname], ...)
     else
-        return _IsCurrentAnimation(self, animname, ...)
+        return _IsCurrentAnimation(self._AnimState, animname, ...)
     end
 end
 
-AnimState._Hide = AnimState.Hide
-AnimState.Hide = function(self, layername, ...)
-    local inst = anim_to_entity[self]
-    if inst and inst.Anim_Hide_Hook then
-        return inst.Anim_Hide_Hook(self, layername, ...)
+AnimState_Player._Hide = AnimState_Player.Hide
+AnimState_Player.Hide = function(self, layername, ...)
+    if self.Anim_Hide_Hook then
+        return self.Anim_Hide_Hook(self, layername, ...)
     end
-    return AnimState._Hide(self, layername, ...)
+    return AnimState_Player._Hide(self._AnimState, layername, ...)
 end
 
-AnimState._Show = AnimState.Show
-AnimState.Show = function(self, layername, ...)
-    local inst = anim_to_entity[self]
-    if inst and inst.Anim_Show_Hook then
-        return inst.Anim_Show_Hook(self, layername, ...)
+AnimState_Player._Show = AnimState_Player.Show
+AnimState_Player.Show = function(self, layername, ...)
+    if self.Anim_Show_Hook then
+        return self.Anim_Show_Hook(self, layername, ...)
     end
-    return AnimState._Show(self, layername, ...)
+    return AnimState_Player._Show(self._AnimState, layername, ...)
 end

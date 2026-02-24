@@ -57,20 +57,6 @@ local common_postinit = function(inst)
 
     inst.MiniMapEntity:SetIcon("wheeler.tex")
 
-    inst.Anim_Hide_Hook = function(animstate, layername, ...)
-        if layername == "HAIR" then
-            animstate:_Hide("HAIRFRONT")
-        end
-        return animstate:_Hide(layername, ...)
-    end
-
-    inst.Anim_Show_Hook = function(animstate, layername, ...)
-        if layername == "HAIR" then
-            animstate:_Show("HAIRFRONT")
-        end
-        return animstate:_Show(layername, ...)
-    end
-
     inst:AddTag("trusty_shooter")
     inst:AddTag("tracker_user")
     inst:ListenForEvent("setowner", OnSetOwner)
