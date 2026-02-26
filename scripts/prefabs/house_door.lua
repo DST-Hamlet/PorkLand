@@ -126,7 +126,6 @@ local function InitHouseDoorInteriorPrefab(inst, doer, prefab_definition, interi
         inst.baseanimname = GetBaseAnimName(inst)
         if prefab_definition.animdata.background then
             inst.AnimState:SetLayer(LAYER_WORLD_BACKGROUND)
-            inst.components.rotatingbillboard:SetAnimation_Server(prefab_definition.animdata)
             inst.AnimState:SetSortOrder(3)
             inst.door_data_background = prefab_definition.animdata.background
         else
@@ -421,7 +420,6 @@ local function OnBuilt(inst)
         inst.animdata.anim = inst.prefab .. "_close_" .. PLAYER_INTERIOR_EXIT_DIR_DATA[GetBaseAnimName(inst)].anim
         inst.animdata.animation = inst.animdata.anim
         inst.AnimState:PlayAnimation(inst.animdata.anim)
-        inst.components.rotatingbillboard:SetAnimation_Server(inst.animdata)
 
         local background = PLAYER_INTERIOR_EXIT_DIR_DATA[inst.baseanimname].background
         if background then
@@ -475,8 +473,7 @@ local function MakeHouseDoor(name)
         inst:AddTag("wallsection")
         inst:AddTag("house_door")
 
-        inst:AddComponent("rotatingbillboard")
-        inst.components.rotatingbillboard.animdata = anim_data
+        AnimState_RotatingBillBoard(inst)
 
         inst.entity:SetPristine()
 

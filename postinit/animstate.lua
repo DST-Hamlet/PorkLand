@@ -73,3 +73,56 @@ AnimState_Player.Show = function(self, layername, ...)
     end
     return AnimState_Player._Show(self._AnimState, layername, ...)
 end
+
+----------------------------------------------------------------------------------
+
+Transform_RotatingBillBoard = Class(function(self, inst)
+    self.inst = inst
+    self._Transform = inst.Transform
+    inst.Transform = self
+end)
+
+for k, v in pairs(Transform) do
+    Transform_RotatingBillBoard[k] = function(self, ...)
+        return v(self._Transform, ...)
+    end
+end
+
+Transform_RotatingBillBoard._SetRotation = Transform_RotatingBillBoard.SetRotation
+Transform_RotatingBillBoard.SetRotation = function(self, rot, ...)
+    self.inst.components.rotatingbillboard:SetRotation(rot)
+    self:_SetRotation(0, ...)
+end
+
+Transform_RotatingBillBoard._GetRotation = Transform_RotatingBillBoard.GetRotation
+Transform_RotatingBillBoard.GetRotation = function(self, ...)
+    self.inst.components.rotatingbillboard:GetRotation()
+end
+
+local _SetPosition = Transform.SetPosition
+Transform_RotatingBillBoard.SetPosition = function(self, ...)
+    _SetPosition(self._Transform, ...)
+    self.inst.components.rotatingbillboard:UpdateAnim()
+end
+
+AnimState_RotatingBillBoard = Class(function(self, inst)
+
+    Transform_RotatingBillBoard(inst)
+
+    self.inst = inst
+    self._AnimState = inst.AnimState
+    inst.AnimState = self
+
+    inst:AddComponent("rotatingbillboard")
+    inst.Transform:SetRotation(inst.Transform:_GetRotation())
+end)
+
+for k, v in pairs(AnimState) do
+    AnimState_RotatingBillBoard[k] = function(self, ...)
+        return v(self._AnimState, ...)
+    end
+end
+
+AnimState_RotatingBillBoard.SetHaunted = function(self, haunted, ...)
+    self.inst.components.rotatingbillboard:SetHaunt(haunted, ...)
+end

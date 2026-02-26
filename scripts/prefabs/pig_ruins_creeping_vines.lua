@@ -52,8 +52,6 @@ local function Regrow(inst)
         inst:RemoveTag("NOCLICK")
         inst.AnimState:PlayAnimation(GetAnimName(inst) .. "_pre", true)
         inst.AnimState:PushAnimation(GetAnimName(inst), true)
-        inst.components.rotatingbillboard.animdata.anim = GetAnimName(inst)
-        inst.components.rotatingbillboard:SyncMaskAnimation()
     end
 end
 
@@ -64,8 +62,6 @@ local function hackedopen(inst)
     inst.components.shearable:SetCanShear(false)
     inst:AddTag("NOCLICK")
     inst.AnimState:PlayAnimation(GetAnimName(inst), true)
-    inst.components.rotatingbillboard.animdata.anim = GetAnimName(inst)
-    inst.components.rotatingbillboard:SyncMaskAnimation()
 end
 
 local function OnHacked(inst, hacker, hacksleft)
@@ -137,8 +133,7 @@ local function makefn()
 
     inst.Transform:SetRotation(-90) -- 使得rotatingbillboard默认正对室内摄像机显示
 
-    inst:AddComponent("rotatingbillboard")
-    inst.components.rotatingbillboard.animdata = anim_data
+    AnimState_RotatingBillBoard(inst)
 
     inst.entity:SetPristine()
 
@@ -191,8 +186,7 @@ local function makewallfn(facing)
 
         inst.Transform:SetRotation(-90)
 
-        inst:AddComponent("rotatingbillboard")
-        inst.components.rotatingbillboard.animdata = anim_data
+        AnimState_RotatingBillBoard(inst)
 
         inst.entity:SetPristine()
 

@@ -202,8 +202,6 @@ local function InitInteriorPrefab(inst, doer, prefab_definition, interior_defini
         return
     end
 
-    inst.components.rotatingbillboard:SetAnimation_Server(animdata)
-
     inst.AnimState:SetBank(animdata.bank)
     inst.door_data_bank = animdata.bank
 
@@ -291,11 +289,6 @@ local function OnLoad(inst, data)
         inst.AnimState:PlayAnimation(data.door_data_animstate, true)
         inst.door_data_animstate = data.door_data_animstate
     end
-    inst.components.rotatingbillboard:SetAnimation_Server({
-        bank = data.door_data_bank,
-        build = data.door_data_build,
-        anim = data.door_data_animstate,
-    })
     if data.door_data_background
         or (data.door_data_animstate and data.door_data_animstate == "day_loop") then -- 第二个条件用于旧存档兼容
 
@@ -510,7 +503,7 @@ local function fn()
     inst:DoTaskInTime(0, function() inst.Physics:SetActive(false) end)
 
     inst.Transform:SetRotation(-90)
-    inst:AddComponent("rotatingbillboard")
+    AnimState_RotatingBillBoard(inst)
 
     inst._minimap_name = net_string(inst.GUID, "prop_door._minimap_name")
     inst._minimap_name:set_local("")

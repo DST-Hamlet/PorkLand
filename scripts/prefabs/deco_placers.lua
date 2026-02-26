@@ -120,7 +120,7 @@ local function MakePillarPlacer(name, bank, build, anim)
         }
 
         inst.Transform:SetRotation(-90)
-        inst:AddComponent("rotatingbillboard")
+        AnimState_RotatingBillBoard(inst)
         inst.components.rotatingbillboard.animdata =
         {
             bank = bank,

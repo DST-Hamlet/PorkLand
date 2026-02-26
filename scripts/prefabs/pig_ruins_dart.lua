@@ -177,12 +177,7 @@ local function MakeDart(name, build, bank, animframe, facing)
 
         inst.name = STRINGS.NAMES.PIG_RUINS_DART_TRAP
 
-        inst:AddComponent("rotatingbillboard")
-        inst.components.rotatingbillboard.animdata = {
-            bank = bank,
-            build = build,
-            animation = animframe,
-        }
+        AnimState_RotatingBillBoard(inst)
 
         inst.entity:SetPristine()
 

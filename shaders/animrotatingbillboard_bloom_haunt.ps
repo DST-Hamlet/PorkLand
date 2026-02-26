@@ -1,0 +1,182 @@
+#if defined( GL_ES )
+precision mediump float;
+#endif
+
+uniform mat4 MatrixW;
+
+#if defined( TRIPLE_ATLAS )
+    uniform sampler2D SAMPLER[6];
+#else
+    uniform sampler2D SAMPLER[5];
+#endif
+
+#ifndef LIGHTING_H
+#define LIGHTING_H
+
+#if !defined( UI_CC )
+// Lighting
+varying vec3 PS_POS;
+#endif
+
+// xy = min, zw = max
+uniform vec4 LIGHTMAP_WORLD_EXTENTS;
+
+#define LIGHTMAP_TEXTURE SAMPLER[3]
+
+#ifndef LIGHTMAP_TEXTURE
+	#error If you use lighting, you must #define the sampler that the lightmap belongs to
+#endif
+
+#if defined( UI_CC )
+vec3 CalculateLightingContribution(vec2 pos)
+{
+	vec2 uv = ( pos - LIGHTMAP_WORLD_EXTENTS.xy ) * LIGHTMAP_WORLD_EXTENTS.zw;
+	return texture2D( LIGHTMAP_TEXTURE, uv.xy ).rgb;
+}
+#else
+vec3 CalculateLightingContribution()
+{
+	vec2 uv = ( PS_POS.xz - LIGHTMAP_WORLD_EXTENTS.xy ) * LIGHTMAP_WORLD_EXTENTS.zw;
+	return texture2D( LIGHTMAP_TEXTURE, uv.xy ).rgb;
+}
+
+vec3 CalculateLightingContribution( vec3 normal )
+{
+	return vec3( 1, 1, 1 );
+}
+#endif
+
+#endif //LIGHTING.h
+
+
+varying vec3 PS_TEXCOORD;
+varying vec3 HAUNT_POS;
+
+uniform vec4 TIMEPARAMS;
+uniform mat4 COLOUR_XFORM;
+uniform vec2 PARAMS;
+uniform vec3 FLOAT_PARAMS;
+uniform vec4 HAUNTPARAMS;
+uniform vec4 HAUNTPARAMS2;
+uniform vec4 OCEAN_BLEND_PARAMS;
+uniform vec3 CAMERARIGHT;
+
+#define ALPHA_TEST PARAMS.x
+#define LIGHT_OVERRIDE PARAMS.y
+
+uniform vec4 OCEAN_WORLD_EXTENTS;
+#define OCEAN_SAMPLER SAMPLER[4]
+
+float CalculatePix(float strength, float scale, vec2 uv, float time)
+{
+    // 原始坐标变换（保持原样，也可根据需要调整缩放因子使 x/y 更均匀）
+    float xp = - uv.x * 8.0;
+    float yp = uv.y * 8.0;
+
+    xp *= 5.0;
+    yp *= 5.0;
+
+    float x = xp * scale;
+    float y = yp * scale;
+
+    // 频率系数（可根据需要外部传入，此处作为常量定义）
+    const float freq1 = 5.0;
+    const float freq2 = 7.0;
+
+    // ---------- 修改部分：增加两个旋转方向的波形 ----------
+    float pix = (
+        sin((x + time * 2.0) * freq1) +                     // 原水平方向
+        cos((y + time * 2.0) * freq2) +                     // 原垂直方向
+        // 新增：沿45°方向（方向向量归一化因子 0.707 ≈ √2/2）
+        sin((0.707*x + 0.4*y - time * 8.) * freq1) +
+        // 新增：沿-45°方向
+        cos((0.3* - 0.707*y - time * 5.) * freq2)
+    ) / 4.0;  // 总项数变为6，保持幅度大致在 [-1,1]
+
+    // 映射到 [0,1] 区间（保留原始映射方式）
+    pix = (0.5 + 0.5 * sin(pix * 3.14159)) * strength;
+
+    return pix;
+}
+
+
+// 感谢AI
+vec4 ApplyHaunt(vec4 colour, float pix) {
+    // 计算亮度因子并应用
+    float factor = 1.0 + 2.0 * pix;
+    return vec4(colour.rgb * factor, colour.a);
+}
+
+void main()
+{
+    vec4 colour;
+
+#if defined( TRIPLE_ATLAS )
+    if( PS_TEXCOORD.z < 0.5 )
+    {
+        colour.rgba = texture2D( SAMPLER[0], PS_TEXCOORD.xy );
+    }
+    else if( PS_TEXCOORD.z < 1.5 )
+    {
+        colour.rgba = texture2D( SAMPLER[1], PS_TEXCOORD.xy );
+    }
+    else
+    {
+        colour.rgba = texture2D( SAMPLER[5], PS_TEXCOORD.xy );
+    }
+#else
+    if( PS_TEXCOORD.z < 0.5 )
+    {
+        colour.rgba = texture2D( SAMPLER[0], PS_TEXCOORD.xy );
+    }
+    else
+    {
+        colour.rgba = texture2D( SAMPLER[1], PS_TEXCOORD.xy );
+    }
+#endif
+
+    // if(FLOAT_PARAMS.y > 0.0)
+    // {
+    // 	if(PS_POS.y < FLOAT_PARAMS.x)
+    // 	{
+    // 		discard;
+    // 	}
+    // }
+
+	if (ALPHA_TEST > 0.0)
+	{
+		if (colour.a >= ALPHA_TEST)
+		{
+			gl_FragColor = colour.rgba;	
+		}
+		else
+		{
+			discard;
+		}
+	}
+    else
+    {
+        float orig_a = colour.a;
+        float strength = OCEAN_BLEND_PARAMS.x;
+        float pix = CalculatePix(strength, 0.01, HAUNT_POS.xz, TIMEPARAMS.x * 0.07);
+        colour = ApplyHaunt(colour, pix);
+
+        gl_FragColor.rgba = colour.rgba * COLOUR_XFORM;
+		
+		vec2 world_uv = ( PS_POS.xz - OCEAN_WORLD_EXTENTS.xy ) * OCEAN_WORLD_EXTENTS.zw;
+		vec3 world_tint = texture2D( OCEAN_SAMPLER, world_uv ).rgb;
+		gl_FragColor.rgb = mix(gl_FragColor.rgb, gl_FragColor.rgb * world_tint.rgb, OCEAN_BLEND_PARAMS.y);
+
+        vec3 light = CalculateLightingContribution();
+
+        gl_FragColor.rgb *= max( light.rgb, vec3( LIGHT_OVERRIDE, LIGHT_OVERRIDE, LIGHT_OVERRIDE ) );
+
+        // BloomEffect
+        float v = pix;
+		v *= 0.5;
+		v *= orig_a;
+		v *= strength;
+		// To stop OpenGL on crapping out on unused samplers.....
+		gl_FragColor = gl_FragColor * 0.0001 + vec4(v,v,v,orig_a) * 0.9999;
+    }
+}
