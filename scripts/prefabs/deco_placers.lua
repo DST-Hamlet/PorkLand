@@ -14,52 +14,7 @@ local function placer_override_build_point(inst)
     return inst:GetPosition()
 end
 
-local function CreateMarkers(inst, pts)
-    for _, subpt in pairs(pts) do
-        local marker = SpawnPrefab(inst.prefab)
-        marker.AnimState:SetBank(inst.animdata.bank)
-        marker.AnimState:SetBuild(inst.animdata.build)
-
-        local anim = inst.animdata.anim
-        if subpt.anim then
-            anim = anim .. subpt.anim
-        end
-
-        marker.AnimState:PlayAnimation(anim)
-
-        if subpt.billboard then
-            marker.Transform:SetTwoFaced()
-            marker.Transform:SetRotation(-90)
-        end
-
-        marker.AnimState:SetAddColour(0.025, 0.075, 0.025, 1)
-        marker.AnimState:SetMultColour(0.1, 0.1, 0.1, 0.1)
-        marker.Transform:SetPosition(subpt.coord.x, subpt.coord.y, subpt.coord.z)
-        if subpt.rot then
-            marker.Transform:SetRotation(subpt.rot)
-        end
-
-        table.insert(inst.markers, marker)
-    end
-end
-
-local function ClearMarkers(inst)
-    if inst.markers then
-        for _, marker in ipairs(inst.markers) do
-            marker:Remove()
-        end
-    end
-end
-
-local function CornerPillarPlacerAnim(inst)
-    inst.Transform:SetTwoFaced()
-end
-
 local function CornerPillarPlaceTest(inst)
-    inst.Transform:SetTwoFaced()
-    -- inst.Transform:SetRotation(-90)
-    inst.components.rotatingbillboard:SetRotation(-90)
-
     local pt = inst.components.placer.selected_pos or TheInput:GetWorldPosition()
     local current_interior = TheWorld.components.interiorspawner:GetInteriorCenter(ThePlayer:GetPosition())
     if current_interior then
@@ -86,21 +41,11 @@ local function CornerPillarPlaceTest(inst)
 
             subpt.rot = rot
         end
-
-        if not inst.markers then
-            inst.markers = {}
-            CreateMarkers(inst, pts)
-        end
-
+        
         for i, subpt in ipairs(pts) do
             if distsq(subpt.coord.x, subpt.coord.z, pt.x, pt.z) < 2 then
                 inst.Transform:SetPosition(subpt.coord.x, subpt.coord.y, subpt.coord.z)
-                -- inst.Transform:SetRotation(subpt.rot)
-                if subpt.rot < 0 then
-                    inst.components.rotatingbillboard:SetRotation(-90)
-                else
-                    inst.components.rotatingbillboard:SetRotation(90)
-                end
+                inst.Transform:SetRotation(subpt.rot)
 
                 inst.accept_placement = true
                 return
@@ -121,19 +66,11 @@ local function MakePillarPlacer(name, bank, build, anim)
 
         inst.Transform:SetRotation(-90)
         AnimState_RotatingBillBoard(inst)
-        inst.components.rotatingbillboard.animdata =
-        {
-            bank = bank,
-            build = build,
-            animation = anim,
-        }
 
-        CornerPillarPlacerAnim(inst)
         inst.components.placer.onupdatetransform = CornerPillarPlaceTest
         inst.components.placer.override_build_point_fn = placer_override_build_point
         inst.components.placer.override_testfn = placer_override_testfn
         inst.accept_placement = false
-        inst:ListenForEvent("onremove", ClearMarkers)
     end)
 end
 

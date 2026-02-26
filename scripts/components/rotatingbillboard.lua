@@ -8,6 +8,18 @@
 -- 4. never use with AnimState:SetBloomEffectHandle()
 -- 5. never use with object that pos.y ~= 0
 
+local function UpdateAnim(inst)
+    inst.components.rotatingbillboard:UpdateAnim()
+end
+
+local function CheckHaunt(inst)
+    if inst.components.rotatingbillboard._haunt_active:value() then
+        inst.components.rotatingbillboard:StartHaunt()
+    else
+        inst.components.rotatingbillboard:StopHaunt()
+    end
+end
+
 local RotatingBillboard = Class(function(self, inst)
     self.inst = inst
     self._rotation_net = net_float(inst.GUID, "rotatingbillboard.rotation_net", "rotationdirty")
@@ -23,18 +35,10 @@ local RotatingBillboard = Class(function(self, inst)
     inst.AnimState:SetDefaultEffectHandle(resolvefilepath("shaders/animrotatingbillboard.ksh"))
     inst.AnimState:SetBloomEffectHandle(resolvefilepath("shaders/animrotatingbillboard_bloom_haunt.ksh"))
 
-    if not TheNet:IsDedicated() then
-        inst:ListenForEvent("rotationdirty", function()
-            self:UpdateAnim()
-        end)
+    if not TheWorld.ismastersim then
+        inst:ListenForEvent("rotationdirty", UpdateAnim)
 
-        inst:ListenForEvent("hauntdirty", function()
-            if self._haunt_active:value() then
-                self:StartHaunt()
-            else
-                self:StopHaunt()
-            end
-        end)
+        inst:ListenForEvent("hauntdirty", CheckHaunt)
     end
 end, nil)
 
@@ -55,10 +59,12 @@ end
 function RotatingBillboard:SetRotation(rotation)
     self.rotation = rotation
     self._rotation_net:set(rotation)
+    UpdateAnim(self.inst)
 end
 
 function RotatingBillboard:SetHaunt(active)
     self._haunt_active:set(active)
+    CheckHaunt(self.inst)
 end
 
 function RotatingBillboard:StartHaunt()

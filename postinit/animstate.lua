@@ -96,7 +96,7 @@ end
 
 Transform_RotatingBillBoard._GetRotation = Transform_RotatingBillBoard.GetRotation
 Transform_RotatingBillBoard.GetRotation = function(self, ...)
-    self.inst.components.rotatingbillboard:GetRotation()
+    return self.inst.components.rotatingbillboard:GetRotation()
 end
 
 local _SetPosition = Transform.SetPosition
