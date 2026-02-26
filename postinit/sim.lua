@@ -141,7 +141,7 @@ Sim.GetEntitiesAtScreenPoint = function(sim, screen_x, screen_y, ...)
                     table.insert(entities, i, v)
                     break
                 end
-                if TheCamera:GetPosDepth(v:GetPosition()) < TheCamera:GetPosDepth(entities[i]:GetPosition()) then
+                if entities[i].Transform and TheCamera:GetPosDepth(v:GetPosition()) < TheCamera:GetPosDepth(entities[i]:GetPosition()) then
                     table.insert(entities, i, v)
                     break
                 end
