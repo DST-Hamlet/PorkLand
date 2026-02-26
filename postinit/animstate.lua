@@ -105,6 +105,14 @@ Transform_RotatingBillBoard.SetPosition = function(self, ...)
     self.inst.components.rotatingbillboard:UpdateAnim()
 end
 
+local function UpdateAnim_RotatingBillboard(inst)
+    inst.components.rotatingbillboard:UpdateAnim()
+end
+
+local function OnReplica_RotatingBillboard(inst)
+    inst:RunOnPostUpdate(UpdateAnim_RotatingBillboard)
+end
+
 AnimState_RotatingBillBoard = Class(function(self, inst)
 
     Transform_RotatingBillBoard(inst)
@@ -115,6 +123,8 @@ AnimState_RotatingBillBoard = Class(function(self, inst)
 
     inst:AddComponent("rotatingbillboard")
     inst.Transform:SetRotation(inst.Transform:_GetRotation())
+
+    inst:AddOnReplicatedPost(OnReplica_RotatingBillboard)
 end)
 
 for k, v in pairs(AnimState) do

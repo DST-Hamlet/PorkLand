@@ -40,12 +40,22 @@ local function CornerPillarPlaceTest(inst)
             end
 
             subpt.rot = rot
+
+            if subpt.coord.x > originpt.x then
+                subpt.front = true
+            end
         end
         
         for i, subpt in ipairs(pts) do
             if distsq(subpt.coord.x, subpt.coord.z, pt.x, pt.z) < 2 then
                 inst.Transform:SetPosition(subpt.coord.x, subpt.coord.y, subpt.coord.z)
                 inst.Transform:SetRotation(subpt.rot)
+
+                if subpt.front then
+                    inst.AnimState:PlayAnimation(inst.animdata.front_anim)
+                else
+                    inst.AnimState:PlayAnimation(inst.animdata.anim)
+                end
 
                 inst.accept_placement = true
                 return
@@ -56,12 +66,11 @@ local function CornerPillarPlaceTest(inst)
     inst.accept_placement = false
 end
 
-local function MakePillarPlacer(name, bank, build, anim)
+local function MakePillarPlacer(name, bank, build, anim, front_anim)
     return MakePlacer(name, bank, build, anim, nil, nil, nil, nil, nil, nil, function(inst)
         inst.animdata = {
-            build = build,
             anim = anim,
-            bank = bank,
+            front_anim = front_anim,
         }
 
         inst.Transform:SetRotation(-90)
@@ -488,10 +497,10 @@ local function MakeRugPlacer(name, bank, build, anim, animation_postinit, on_upd
     end)
 end
 
-return  MakePillarPlacer("deco_wood_cornerbeam_placer",       "wall_decals",           "interior_wall_decals",             "4"),
-        MakePillarPlacer("deco_millinery_cornerbeam_placer",  "wall_decals_millinery", "interior_wall_decals_millinery",   "pillar_corner"),
-        MakePillarPlacer("deco_round_cornerbeam_placer",      "wall_decals_accademia", "interior_wall_decals_accademia",   "pillar_round_corner"),
-        MakePillarPlacer("deco_marble_cornerbeam_placer",     "wall_decals_hoofspa",   "interior_wall_decals_hoofspa",     "pillar_corner"),
+return  MakePillarPlacer("deco_wood_cornerbeam_placer",       "wall_decals",           "interior_wall_decals",             "4",                     "3"),
+        MakePillarPlacer("deco_millinery_cornerbeam_placer",  "wall_decals_millinery", "interior_wall_decals_millinery",   "pillar_corner",         "pillar_front"),
+        MakePillarPlacer("deco_round_cornerbeam_placer",      "wall_decals_accademia", "interior_wall_decals_accademia",   "pillar_round_corner",   "pillar_round_front"),
+        MakePillarPlacer("deco_marble_cornerbeam_placer",     "wall_decals_hoofspa",   "interior_wall_decals_hoofspa",     "pillar_corner",         "pillar"),
 
         -- CHAIRS
         MakePlacer("chair_classic_placer",  "interior_chair", "interior_chair", "chair_classic",  nil, nil, nil, nil, nil, "two"),

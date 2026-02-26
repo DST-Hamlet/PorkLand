@@ -343,6 +343,25 @@ function EntityScript:IsInSameArea(target)
     return self:IsInSameIsland(target) or self:IsInSameRoomGroup(target)
 end
 
+function EntityScript:AddOnReplicatedPost(fn)
+    if not self.replicate_post_fns then
+        self.replicate_post_fns = {}
+    end
+    table.insert(self.replicate_post_fns, fn)
+end
+
+local _ReplicateEntity = EntityScript.ReplicateEntity
+function EntityScript:ReplicateEntity(...)
+    _ReplicateEntity(self, ...)
+
+    if self.replicate_post_fns then
+        for i, v in ipairs(self.replicate_post_fns) do
+            v(self)
+        end
+        self.replicate_post_fns = nil
+    end
+end
+
 -- local _DoPeriodicTask = EntityScript.DoPeriodicTask
 -- function EntityScript:DoPeriodicTask(time, fn, ...)
 --     local hooked_fn = function(...)
