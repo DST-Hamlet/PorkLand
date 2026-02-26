@@ -342,3 +342,25 @@ end
 function EntityScript:IsInSameArea(target)
     return self:IsInSameIsland(target) or self:IsInSameRoomGroup(target)
 end
+
+-- local _DoPeriodicTask = EntityScript.DoPeriodicTask
+-- function EntityScript:DoPeriodicTask(time, fn, ...)
+--     local hooked_fn = function(...)
+--         if self.prefab then
+--             scheduled_prefabs[self.prefab] = scheduled_prefabs[self.prefab] and scheduled_prefabs[self.prefab] + 1 or 1
+--         end
+--         return fn(...)
+--     end
+--     return _DoPeriodicTask(self, time, hooked_fn, ...)
+-- end
+-- 
+-- local _DoTaskInTime = EntityScript.DoTaskInTime
+-- function EntityScript:DoTaskInTime(time, fn, ...)
+--     local hooked_fn = function(...)
+--         if self.prefab then
+--             scheduled_prefabs[self.prefab] = scheduled_prefabs[self.prefab] and scheduled_prefabs[self.prefab] + 1 or 1
+--         end
+--         return fn(...)
+--     end
+--     return _DoTaskInTime(self, time, hooked_fn, ...)
+-- end

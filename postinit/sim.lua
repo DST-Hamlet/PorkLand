@@ -115,16 +115,26 @@ function SpawnPrefab(...)
     return inst
 end
 
-pl_ProfilerPop = false
-
-local update_start_time = os.clock()
+scheduled_prefabs = {}
+scheduler_hooked = false
 
 local _Update = Update
 function Update(dt, ...)
-    if pl_ProfilerPop then
-        print("--------------START UPDATE--------------")
-        update_start_time = os.clock()
-    end
+    -- if not scheduler_hooked then
+    --     local Scheduler = getmetatable(scheduler).__index
+    --     local _ExecutePeriodic = Scheduler.ExecutePeriodic
+    --     function Scheduler:ExecutePeriodic(period, fn, limit, initialdelay, id, ...)
+    --         local hooked_fn = function(...)
+    --             if id and Ents[id] and Ents[id].prefab then
+    --                 scheduled_prefabs[Ents[id].prefab] = scheduled_prefabs[Ents[id].prefab] and scheduled_prefabs[Ents[id].prefab] + 1 or 1
+    --             end
+    --             return fn(...)
+    --         end
+    --         return _ExecutePeriodic(self, period, hooked_fn, limit, initialdelay, id, ...)
+    --     end
+    --     scheduler_hooked = true
+    -- end
+    -- scheduled_prefabs = {}
 
     _Update(dt, ...)
 
@@ -146,25 +156,14 @@ function Update(dt, ...)
 
     NewFrameEnts = {}
 
-    if pl_ProfilerPop then
-        print("Update Spend Time:", os.clock() - update_start_time)
-        print("--------------STOP UPDATE--------------")
-    end
-end
-
-local _WallUpdate = WallUpdate
-function WallUpdate(dt, ...)
-    if pl_ProfilerPop then
-        print("--------------START WALLUPDATE--------------")
-        update_start_time = os.clock()
-    end
-
-    _WallUpdate(dt, ...)
-
-    if pl_ProfilerPop then
-        print("WallUpdate Spend Time:", os.clock() - update_start_time)
-        print("--------------STOP WALLUPDATE--------------")
-    end
+    -- local count_s = 0
+    -- for k, v in pairs(scheduled_prefabs) do
+    --     count_s = count_s + v
+    --     print(k, v)
+    -- end
+    -- print("------------------------")
+    -- print("count", count_s)
+    -- print("------------------------")
 end
 
 local scheduled_post_update_functions = {}
@@ -181,23 +180,4 @@ end
 
 function RunOnPostUpdate(fn)
     table.insert(scheduled_post_update_functions, fn)
-end
-
-local last_profiler_time = os.clock()
-local last_profiler_name = "default"
-
-local _ProfilerPush = Sim.ProfilerPush
-function Sim.ProfilerPush(sim, name, ...)
-    last_profiler_time = os.clock()
-    last_profiler_name = name
-    return _ProfilerPush(sim, name, ...)
-end
-
-local _ProfilerPop = Sim.ProfilerPop
-function Sim.ProfilerPop(sim, ...)
-    if pl_ProfilerPop then
-        local spend_time = os.clock() - last_profiler_time
-        print("ProfilerPop", last_profiler_name, spend_time)
-    end
-    return _ProfilerPop(sim, ...)
 end
