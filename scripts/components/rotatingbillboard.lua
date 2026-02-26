@@ -99,7 +99,16 @@ function RotatingBillboard:OnLoad(data)
     end
 end
 
+function RotatingBillboard:OnEntityWake()
+    SetRotatingBillBoardTest(self.inst, true)
+end
+
+function RotatingBillboard:OnEntitySleep()
+    SetRotatingBillBoardTest(self.inst, nil)
+end
+
 function RotatingBillboard:OnRemoveFromEntity()
+    SetRotatingBillBoardTest(self.inst, nil)
     self.inst.AnimState:SetOrientation(ANIM_ORIENTATION.BillBoard)
     self.inst.AnimState:SetDefaultEffectHandle("")
 end

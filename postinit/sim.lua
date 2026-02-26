@@ -86,6 +86,80 @@ function CanEntitySeeTarget(inst, target, ...)
     return _CanEntitySeeTarget(inst, target, ...)
 end
 
+local mousetest_rotatingbillboard = {}
+
+function SetRotatingBillBoardTest(entity, active) -- 会造成额外的性能开销
+    mousetest_rotatingbillboard[entity] = active
+end
+
+local _GetEntitiesAtScreenPoint = Sim.GetEntitiesAtScreenPoint
+Sim.GetEntitiesAtScreenPoint = function(sim, screen_x, screen_y, ...)
+    local entities = _GetEntitiesAtScreenPoint(sim, screen_x, screen_y, ...)
+    if next(mousetest_rotatingbillboard) then
+        for i = #entities, 1, -1 do
+            if mousetest_rotatingbillboard[entities[i]] then
+                table.remove(entities,i)
+            end
+        end
+
+        local rb_entities = {}
+
+        for entity in pairs(mousetest_rotatingbillboard) do
+            local origin_pos = Vector3(TheSim:ProjectScreenPos(screen_x, screen_y))
+            local plane_pos = entity:GetPosition()
+            local plane_normal = Vector3(2, 1, 0)
+            local camera_pos = TheCamera:GetRealPos()
+            local mouse_dir = (origin_pos - camera_pos):Normalize()
+
+            local fake_pos = PlaneLineIntersection(plane_pos, plane_normal, camera_pos, mouse_dir)
+
+            fake_pos = fake_pos + Vector3(- fake_pos.y * 0.03, fake_pos.y * 0.06, 0)
+            fake_pos = fake_pos + Vector3(- fake_pos.y * 0.5, - fake_pos.y, 0)
+
+            local angle = 90 * DEGREES
+            local d_pos = fake_pos - plane_pos
+            if entity.Transform:GetRotation() < 0 then
+                d_pos.z = - d_pos.z
+            end
+            d_pos = Vector3(d_pos.x * math.cos(angle) - d_pos.z * math.sin(angle), d_pos.y, d_pos.x * math.sin(angle) + d_pos.z * math.cos(angle))
+            fake_pos = plane_pos + d_pos
+
+            local fakse_screen_x, fakse_screen_y = TheSim:GetScreenPos(fake_pos:Get())
+
+            local entities_fake = _GetEntitiesAtScreenPoint(sim, fakse_screen_x, fakse_screen_y, ...)
+            for i, v in ipairs(entities_fake) do
+                if v == entity then
+                    table.insert(rb_entities, entity)
+                    break
+                end
+            end
+        end
+
+        for k, v in pairs(rb_entities) do
+            for i = 1, #entities + 1 do
+                if entities[i] == nil then
+                    table.insert(entities, i, v)
+                    break
+                end
+                if TheCamera:GetPosDepth(v:GetPosition()) < TheCamera:GetPosDepth(entities[i]:GetPosition()) then
+                    table.insert(entities, i, v)
+                    break
+                end
+            end
+        end
+    end
+
+    return entities
+end
+
+
+-------------------------------------------------
+
+------------ EntitySleep and Update -------------
+
+-------------------------------------------------
+
+
 local _OnEntitySleep = OnEntitySleep
 function OnEntitySleep(guid, ...)
     _OnEntitySleep(guid, ...)

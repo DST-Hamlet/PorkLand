@@ -44,6 +44,45 @@ function GetWorldSetting(setting, default)
     return default
 end
 
+function PlaneLineIntersection(planePoint, planeNormal, linePoint, lineDir) -- 亚丹: AI真是太好用了你们知道吗
+    local eps = 1e-10  -- 用于浮点数比较的容差
+
+    -- 计算从直线上的点到平面上点的向量
+    local dx = planePoint.x - linePoint.x
+    local dy = planePoint.y - linePoint.y
+    local dz = planePoint.z - linePoint.z
+
+    -- 计算直线方向与平面法向的点积 (v·n)
+    local vn = lineDir.x * planeNormal.x +
+               lineDir.y * planeNormal.y +
+               lineDir.z * planeNormal.z
+
+    -- 如果方向向量与法向量垂直（平行于平面）
+    if math.abs(vn) < eps then
+        -- 检查直线是否在平面上：(linePoint - planePoint)·n 应等于 0
+        local pn = dx * planeNormal.x +
+                   dy * planeNormal.y +
+                   dz * planeNormal.z
+        if math.abs(pn) < eps then
+            -- 直线在平面上，有无穷多交点
+            return nil
+        else
+            -- 直线平行于平面且不在平面上，无交点
+            return nil
+        end
+    end
+
+    -- 计算参数 t，使得 linePoint + t * lineDir 满足平面方程
+    local t = (dx * planeNormal.x + dy * planeNormal.y + dz * planeNormal.z) / vn
+
+    -- 计算交点坐标
+    local ix = linePoint.x + t * lineDir.x
+    local iy = linePoint.y + t * lineDir.y
+    local iz = linePoint.z + t * lineDir.z
+
+    return Vector3(ix, iy, iz)
+end
+
 ---FindWalkableOffset and allow_water but not allow_boats
 ---@param position Vector3
 ---@param start_angle number
