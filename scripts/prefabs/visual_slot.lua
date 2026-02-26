@@ -22,13 +22,13 @@ local function GetItemDescription(inst, viewer)
     return ""
 end
 
-local function CanMouseThrough(inst)
+local function MouseTest(inst)
     if ThePlayer ~= nil and ThePlayer.components.playeractionpicker ~= nil
         and inst and inst:IsValid() then
 
         local force_inspect = ThePlayer.components.playercontroller ~= nil and ThePlayer.components.playercontroller:IsControlPressed(CONTROL_FORCE_INSPECT)
         local lmb, rmb = ThePlayer.components.playeractionpicker:DoGetMouseActions(inst:GetPosition(), inst)
-        return (lmb == nil) and (rmb == nil), true
+        return (lmb ~= nil) or (rmb ~= nil)
     end
 end
 
@@ -55,7 +55,7 @@ local function fn()
 
     inst.displaynamefn = GetItemName
 
-    inst.CanMouseThrough = CanMouseThrough
+    inst.MouseTest = MouseTest
 
     inst.DestOverride = DestOverride
 

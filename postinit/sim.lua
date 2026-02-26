@@ -99,7 +99,7 @@ Sim.GetEntitiesAtScreenPoint = function(sim, screen_x, screen_y, dont_ignore_ui,
         -- Do Nothing
     elseif next(mousetest_rotatingbillboard) then
         for i = #entities, 1, -1 do
-            if mousetest_rotatingbillboard[entities[i]] then
+            if entities[i] and mousetest_rotatingbillboard[entities[i]] then
                 table.remove(entities,i)
             end
         end
@@ -148,6 +148,12 @@ Sim.GetEntitiesAtScreenPoint = function(sim, screen_x, screen_y, dont_ignore_ui,
                     break
                 end
             end
+        end
+    end
+
+    for i = #entities, 1, -1 do
+        if entities[i] and entities[i].MouseTest and not entities[i]:MouseTest() then
+            table.remove(entities,i)
         end
     end
 
