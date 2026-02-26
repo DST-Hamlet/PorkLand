@@ -93,9 +93,11 @@ function SetRotatingBillBoardTest(entity, active) -- 会造成额外的性能开
 end
 
 local _GetEntitiesAtScreenPoint = Sim.GetEntitiesAtScreenPoint
-Sim.GetEntitiesAtScreenPoint = function(sim, screen_x, screen_y, ...)
-    local entities = _GetEntitiesAtScreenPoint(sim, screen_x, screen_y, ...)
-    if next(mousetest_rotatingbillboard) then
+Sim.GetEntitiesAtScreenPoint = function(sim, screen_x, screen_y, dont_ignore_ui, ...)
+    local entities = _GetEntitiesAtScreenPoint(sim, screen_x, screen_y, dont_ignore_ui, ...)
+    if entities[1] and entities[1].UITransform then
+        -- Do Nothing
+    elseif next(mousetest_rotatingbillboard) then
         for i = #entities, 1, -1 do
             if mousetest_rotatingbillboard[entities[i]] then
                 table.remove(entities,i)
@@ -118,7 +120,7 @@ Sim.GetEntitiesAtScreenPoint = function(sim, screen_x, screen_y, ...)
 
             local angle = 90 * DEGREES
             local d_pos = fake_pos - plane_pos
-            if entity.Transform:GetRotation() < 0 then
+            if entity.Transform:GetRotation() < 0 or entity.Transform:GetRotation() > 180 then
                 d_pos.z = - d_pos.z
             end
             d_pos = Vector3(d_pos.x * math.cos(angle) - d_pos.z * math.sin(angle), d_pos.y, d_pos.x * math.sin(angle) + d_pos.z * math.cos(angle))
@@ -126,7 +128,7 @@ Sim.GetEntitiesAtScreenPoint = function(sim, screen_x, screen_y, ...)
 
             local fakse_screen_x, fakse_screen_y = TheSim:GetScreenPos(fake_pos:Get())
 
-            local entities_fake = _GetEntitiesAtScreenPoint(sim, fakse_screen_x, fakse_screen_y, ...)
+            local entities_fake = _GetEntitiesAtScreenPoint(sim, fakse_screen_x, fakse_screen_y, false, ...)
             for i, v in ipairs(entities_fake) do
                 if v == entity then
                     table.insert(rb_entities, entity)

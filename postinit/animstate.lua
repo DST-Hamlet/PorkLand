@@ -58,7 +58,7 @@ AnimState_Player.IsCurrentAnimation = function(self, animname, ...)
     end
 end
 
-AnimState_Player._Hide = AnimState_Player.Hide
+AnimState_Player._Hide = AnimState.Hide
 AnimState_Player.Hide = function(self, layername, ...)
     if self.Anim_Hide_Hook then
         return self.Anim_Hide_Hook(self, layername, ...)
@@ -66,7 +66,7 @@ AnimState_Player.Hide = function(self, layername, ...)
     return AnimState_Player._Hide(self._AnimState, layername, ...)
 end
 
-AnimState_Player._Show = AnimState_Player.Show
+AnimState_Player._Show = AnimState.Show
 AnimState_Player.Show = function(self, layername, ...)
     if self.Anim_Show_Hook then
         return self.Anim_Show_Hook(self, layername, ...)
