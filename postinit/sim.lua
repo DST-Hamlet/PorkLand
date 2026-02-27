@@ -106,33 +106,40 @@ Sim.GetEntitiesAtScreenPoint = function(sim, screen_x, screen_y, dont_ignore_ui,
 
         local rb_entities = {}
 
+        local origin_pos = Vector3(TheSim:ProjectScreenPos(screen_x, screen_y))
+        local plane_pos
+        local plane_normal = Vector3(2, 1, 0)
+        local camera_pos = TheCamera:GetRealPos()
+        local mouse_dir = (origin_pos - camera_pos):Normalize()
+        local fake_pos
         for entity in pairs(mousetest_rotatingbillboard) do
-            local origin_pos = Vector3(TheSim:ProjectScreenPos(screen_x, screen_y))
-            local plane_pos = entity:GetPosition()
-            local plane_normal = Vector3(2, 1, 0)
-            local camera_pos = TheCamera:GetRealPos()
-            local mouse_dir = (origin_pos - camera_pos):Normalize()
+            if entity == nil or not entity:IsValid() then
+                mousetest_rotatingbillboard[entity] = nil
+            else
+                plane_pos = entity:GetPosition()
+                if plane_pos and plane_pos:DistSq(origin_pos) < PLAYER_CAMERA_SEE_DISTANCE * PLAYER_CAMERA_SEE_DISTANCE then
+                    fake_pos = PlaneLineIntersection(plane_pos, plane_normal, camera_pos, mouse_dir)
 
-            local fake_pos = PlaneLineIntersection(plane_pos, plane_normal, camera_pos, mouse_dir)
+                    fake_pos = fake_pos + Vector3(- fake_pos.y * 0.03, fake_pos.y * 0.06, 0)
+                    fake_pos = fake_pos + Vector3(- fake_pos.y * 0.5, - fake_pos.y, 0)
 
-            fake_pos = fake_pos + Vector3(- fake_pos.y * 0.03, fake_pos.y * 0.06, 0)
-            fake_pos = fake_pos + Vector3(- fake_pos.y * 0.5, - fake_pos.y, 0)
+                    local angle = 90 * DEGREES
+                    local d_pos = fake_pos - plane_pos
+                    if entity.Transform:GetRotation() < 0 or entity.Transform:GetRotation() > 180 then -- 由于目前平面法线向量是固定的, 因此需要这么做
+                        d_pos.z = - d_pos.z
+                    end
+                    d_pos = Vector3(d_pos.x * math.cos(angle) - d_pos.z * math.sin(angle), d_pos.y, d_pos.x * math.sin(angle) + d_pos.z * math.cos(angle))
+                    fake_pos = plane_pos + d_pos
 
-            local angle = 90 * DEGREES
-            local d_pos = fake_pos - plane_pos
-            if entity.Transform:GetRotation() < 0 or entity.Transform:GetRotation() > 180 then
-                d_pos.z = - d_pos.z
-            end
-            d_pos = Vector3(d_pos.x * math.cos(angle) - d_pos.z * math.sin(angle), d_pos.y, d_pos.x * math.sin(angle) + d_pos.z * math.cos(angle))
-            fake_pos = plane_pos + d_pos
+                    local fakse_screen_x, fakse_screen_y = TheSim:GetScreenPos(fake_pos:Get())
 
-            local fakse_screen_x, fakse_screen_y = TheSim:GetScreenPos(fake_pos:Get())
-
-            local entities_fake = _GetEntitiesAtScreenPoint(sim, fakse_screen_x, fakse_screen_y, false, ...)
-            for i, v in ipairs(entities_fake) do
-                if v == entity then
-                    table.insert(rb_entities, entity)
-                    break
+                    local entities_fake = _GetEntitiesAtScreenPoint(sim, fakse_screen_x, fakse_screen_y, false, ...)
+                    for i, v in ipairs(entities_fake) do
+                        if v == entity then
+                            table.insert(rb_entities, entity)
+                            break
+                        end
+                    end
                 end
             end
         end

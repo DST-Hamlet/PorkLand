@@ -26,7 +26,7 @@ function HealthBadge:OnUpdate(...)
         end
     end
 
-    local anim = "neutral"
+    local anim = "neutral" -- 有特殊的箭头逻辑时, 隐藏原版箭头, 播放云霄国度的箭头. 反之亦然.
 
     if self.arrowdir ~= "arrow_loop_decrease_more" and self.arrowdir ~= "arrow_loop_decrease_most" then
         if self.poison then
