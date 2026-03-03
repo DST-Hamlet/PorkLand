@@ -51,7 +51,7 @@ local _ShadeEffectUpdate = ShadeEffectUpdate
 function ShadeEffectUpdate(dt, ...)
     local r, g, b = TheSim:GetAmbientColour()
 
-    current_mult = Lerp(current_mult, target_mult, dt)
+    current_mult = Lerp(current_mult, target_mult, dt * 1.0)
     ShadeRenderer:SetShadeStrength(ShadeTypes.RainforestCanopy, current_mult * Lerp(TUNING.RAINFOREST_CANOPY_MIN_STRENGTH, TUNING.RAINFOREST_CANOPY_MAX_STRENGTH, ((r + g + b) / 3) / 255))
 
     for name, shadeanim in pairs(AnimShadeRenderers) do

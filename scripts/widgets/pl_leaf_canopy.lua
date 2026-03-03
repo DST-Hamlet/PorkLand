@@ -74,7 +74,7 @@ function LeavesOver:OnUpdate(dt)
     self.under_leaves = TheWorld.Map:IsVisualCanopyAtPoint(x, y, z)
 
     if self.under_leaves then
-        SetShadeStrengthMult(0.7)
+        SetShadeStrengthMult(0.6)
         self.leavestop_intensity = math.min(1, self.leavestop_intensity + (1/30))
     else
         SetShadeStrengthMult(1)

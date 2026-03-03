@@ -24,9 +24,11 @@ function TileChangeWatcher:UnlistenToUpdate(listener)
 end
 
 function TileChangeWatcher:NotifyUpdate()
+    TheSim:ProfilerPush("TileChangeWatcher:NotifyUpdate")
     for _, listener in ipairs(self.update_listeners) do
         listener()
     end
+    TheSim:ProfilerPop()
 end
 
 function TileChangeWatcher:ListenToTileChanged(listener)
