@@ -713,14 +713,14 @@ local states = {
             inst.components.bloomer:PopBloom("playerghostbloom")
             inst.AnimState:SetLightOverride(0)
             inst:ApplySkinOverrides() -- 此函数已包含inst.AnimState:SetBank("wilson")
-            
+
             if source and source:IsValid() then
                 inst.Physics:Teleport(source.Transform:GetWorldPosition())
                 if source.OnResurrect then
                     source:OnResurrect(inst)
                 end
             end
-            
+
             if inst.components.playercontroller ~= nil then
                 inst.components.playercontroller:Enable(false)
             end
@@ -1194,7 +1194,7 @@ local states = {
 
         onupdate = function(inst)
             inst.components.locomotor:RunForward()
-            
+
             local boat = inst.replica.sailor:GetBoat()
             if boat and boat.replica.sailable and boat.replica.sailable:GetIsSailEquipped() then
                 inst.sg:GoToState("sail")
@@ -1291,7 +1291,7 @@ local states = {
             local boat = inst.replica.sailor:GetBoat()
             if boat and boat.replica.sailable and not boat.replica.sailable:GetIsSailEquipped() then
                 inst.sg:GoToState("pl_row")
-        
+
                 if not inst:HasTag("mime") then
                     inst.AnimState:OverrideSymbol("paddle", "swap_paddle", "paddle")
                 end
@@ -1377,7 +1377,7 @@ local states = {
             local boat = inst.replica.sailor:GetBoat()
             if boat and boat.replica.sailable and not boat.replica.sailable:GetIsSailEquipped() then
                 inst.sg:GoToState("pl_row")
-        
+
                 if not inst:HasTag("mime") then
                     inst.AnimState:OverrideSymbol("paddle", "swap_paddle", "paddle")
                 end
@@ -1668,7 +1668,7 @@ local states = {
 			FrameEvent(22, function(inst)
 				inst.AnimState:SetLayer(LAYER_BELOW_GROUND)
 			end),
-            
+
 			FrameEvent(30, function(inst)
                 StartTeleporting(inst)
 
@@ -3155,7 +3155,7 @@ AddStategraphPostInit("wilson", function(sg)
             inst.sg:GoToState(inst.overridestate["reviver_rebirth"], inst.overridrebirthsource or source)
             inst.overridestate["reviver_rebirth"] = nil
             inst.overridrebirthsource = nil
-            return 
+            return
         end
         return _reviver_rebirth_onenter(inst, source, ...)
     end
@@ -3164,9 +3164,9 @@ AddStategraphPostInit("wilson", function(sg)
     sg.states["abyss_fall"].onenter = function(inst, ...)
         if TheWorld.has_pl_ocean then
             inst.sg:GoToState("abyss_fall_death", ...)
-            return 
+            return
         end
-        return _reviver_rebirth_onenter(inst, ...)
+        return _abyss_fall_onenter(inst, ...)
     end
 
     local _locomote_eventhandler = sg.events.locomote.fn
@@ -3222,7 +3222,7 @@ AddStategraphPostInit("wilson", function(sg)
     sg.events.onsink.fn = function(inst, data, ...)
         if data and data.pl_boat and not inst.components.health:IsDead() and not inst.sg:HasStateTag("drowning") and
             (inst.components.drownable ~= nil and inst.components.drownable:ShouldDrown()) then
-                
+
             inst.sg:GoToState("sink_boat", data.shore_pt)
         else
             if inst.components.sailor and inst.components.sailor.boat and inst.components.sailor.boat.components.container then
