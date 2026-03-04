@@ -4,6 +4,9 @@ function CalculateLight(light, dist)
     if dist > light:GetCalculatedRadius() then
         return 0, 0, 0
     end
+    if light:GetRadius() == 0 then
+        return 0, 0, 0
+    end
     -- thanks to HalfEnder776
     local A = math.log(light:GetIntensity())
     local B
