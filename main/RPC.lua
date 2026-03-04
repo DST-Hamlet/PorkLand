@@ -46,16 +46,9 @@ AddShardModRPCHandler("Porkland", "SwitchAporkalypse", function(shardid, active)
     end
 end)
 
-AddModRPCHandler("Porkland", "teleport_to_home", function(inst)
-    -- TODO: 以后可以做一个倒计时...
-    local pos = inst:GetPosition()
-    if TheWorld.components.interiorspawner:IsInInteriorRegion(pos.x, pos.z) then
-        TheWorld.components.playerspawner:SpawnAtNextLocation(inst)
-    end
-end)
-
 AddModRPCHandler("Porkland", "ReleaseControlSecondary", function(player, x, z)
     if not (checknumber(x) and checknumber(z)) then
+        printinvalid("ReleaseControlSecondary", player)
         return
     end
     local playercontroller = player.components.playercontroller
@@ -133,30 +126,12 @@ AddClientModRPCHandler("Porkland", "remove_wave", function(id)
 end)
 SetClientModRPCIngoreTick("porkland", "remove_wave")
 
-AddUserCommand("saveme", {
-    aliases = nil,
-    prettyname = nil,
-    desc = nil,
-    permission = COMMAND_PERMISSION.USER,
-    confirm = false,
-    slash = true,
-    usermenu = false,
-    servermenu = false,
-    params = {},
-    vote = false,
-    localfn = function(params, caller)
-        ThePlayer:DoTaskInTime(0, function()
-            SendModRPCToServer(MOD_RPC["Porkland"]["teleport_to_home"])
-        end)
-    end,
-})
-
 local RPC_Client_Queue_No_Tick = {}
 
 local _HandleClientModRPC = HandleClientModRPC
 function HandleClientModRPC(tick, namespace, code, data)
     if No_Tick_Queue_RPC[namespace] and No_Tick_Queue_RPC[namespace][code] then
-        
+
         if CLIENT_MOD_RPC_HANDLERS[namespace] ~= nil then
             local fn = CLIENT_MOD_RPC_HANDLERS[namespace][code]
             if fn ~= nil then
