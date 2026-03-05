@@ -136,3 +136,38 @@ LOOP_BOAT_ANIMS =
     ["idle_loop"] = true,
     ["run_loop"] = true,
 }
+
+PL_TILE_TYPES =
+{
+    [WORLD_TILES.LILYPOND] =
+    {
+        texture = "levels/merged_tex/lilypond_merged.tex",
+        shader = "shaders/tile_particle_water.ksh",
+    },
+}
+
+local tile_id = 0
+for name, data in pairs(PL_TILE_TYPES) do
+    PL_TILE_TYPES[name].id = tile_id
+    tile_id = tile_id + 1
+end
+
+local WEST = 1
+local NORTH_WEST = 2
+local NORTH = 4
+local NORTH_EAST = 8
+local EAST = 16
+local SOUTH_EAST = 32
+local SOUTH = 64
+local SOUTH_WEST = 128
+
+PL_NEIGHBOR_TILES = {
+    [WEST]       = {x = -1, z =  0},
+    [NORTH_WEST] = {x = -1, z =  1},
+    [NORTH]      = {x =  0, z =  1},
+    [NORTH_EAST] = {x =  1, z =  1},
+    [EAST]       = {x =  1, z =  0},
+    [SOUTH_EAST] = {x =  1, z = -1},
+    [SOUTH]      = {x =  0, z = -1},
+    [SOUTH_WEST] = {x = -1, z = -1},
+}

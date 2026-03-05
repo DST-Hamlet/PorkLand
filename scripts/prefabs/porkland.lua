@@ -69,9 +69,9 @@ local GroundTiles = require "worldtiledefs"
 
 local function common_preinit(inst)
     mod_protect_TileManager = false
-    for k, v in pairs(GroundTiles.falloff) do
-        GroundTiles.falloff[k] = nil
-    end
+    -- for k, v in pairs(GroundTiles.falloff) do
+    --     GroundTiles.falloff[k] = nil
+    -- end
     mod_protect_TileManager = true
 end
 

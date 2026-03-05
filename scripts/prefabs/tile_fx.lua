@@ -148,14 +148,7 @@ local function TestSpawn(inst)
     end
 end
 
-local tile_fx_datas = {}
-
-function SpawnTileFxEntity(tile_datas)
-    tile_fx_datas = tile_datas
-    local tile_fx = SpawnPrefab("tile_fx")
-    tile_fx_datas = {}
-    return tile_fx
-end
+local tile_fx_datas = PL_TILE_TYPES
 
 local function fn()
     local inst = CreateEntity()
@@ -189,6 +182,8 @@ local function fn()
             0, 0, 1
         )
     end
+
+    inst:AddComponent("pl_tilespawner")
 
     inst.SpawnTile = SpawnTile
     inst.ClearTile = ClearTile
