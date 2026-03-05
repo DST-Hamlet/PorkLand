@@ -1,6 +1,6 @@
 local SHADER = "shaders/tile_particle.ksh"
 
--- ShaderCompiler.exe -little “tile_particle” “tile_particle.vs” “tile_particle.ps” “tile_particle.ksh” -oglsl
+-- ShaderCompiler.exe -little "tile_particle" "tile_particle.vs" "tile_particle.ps" "tile_particle.ksh" -oglsl
 
 local COLOUR_ENVELOPE_NAME = "pl_tilecolourenvelope"
 local SCALE_ENVELOPE_NAME = "pl_tilescaleenvelope"
