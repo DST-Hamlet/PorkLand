@@ -6,11 +6,11 @@ GLOBAL.setfenv(1, GLOBAL)
 local function circleRectIntersect(circleX, circleY, radius, rectX, rectY, width, height) -- 亚丹: AI真是太好用了你们知道吗
     local halfWidth = width * 0.5
     local halfHeight = height * 0.5
-    
+
     -- 找到矩形上距离圆心最近的点
     local closestX = math.max(rectX - halfWidth, math.min(circleX, rectX + halfWidth))
     local closestY = math.max(rectY - halfHeight, math.min(circleY, rectY + halfHeight))
-    
+
     -- 计算该最近点到圆心的距离
     local distanceX = circleX - closestX
     local distanceY = circleY - closestY
@@ -27,6 +27,14 @@ local function DefaultCheckRange(doer, dest) -- 复制自locomotor
     local dsq = distsq(destpos_x, destpos_z, mypos_x, mypos_z)
     local arrive_dst = doer.components.locomotor and doer.components.locomotor.arrive_dist or 1
     return dsq <= arrive_dst * arrive_dst
+end
+local function ExtraShelfRange(doer, dest, bufferedaction)
+    local shelf = dest.inst and dest.inst.replica.visualslot and dest.inst.replica.visualslot:GetShelf()
+    if shelf and not shelf.rectangle_collison then
+        return shelf:GetPhysicsRadius(0)
+    end
+
+    return 0
 end
 
 local function CheckShelfRange(doer, dest)
@@ -64,8 +72,8 @@ if not rawget(_G, "HotReloading") then
         DISARM = Action({priority = 1, distance = 1.5}),
         REARM = Action({priority = 1, distance = 1.5}),
         SPY = Action({distance = 2}), -- 骑在牛上用放大镜不太合理
-        PUTONSHELF = Action({ distance = 1, customarrivecheck = CheckShelfRange }),
-        TAKEFROMSHELF = Action({ distance = 1, priority = 1, customarrivecheck = CheckShelfRange  }),
+        PUTONSHELF = Action({customarrivecheck = CheckShelfRange, extra_arrive_dist = ExtraShelfRange }),
+        TAKEFROMSHELF = Action({priority = 1, customarrivecheck = CheckShelfRange, extra_arrive_dist = ExtraShelfRange  }),
         ASSEMBLE_ROBOT = Action({}),
         CHARGE_UP = Action({priority = 2, rmb = true, distance = 36}),
         CHARGE_RELEASE = Action({priority = 2, rmb = true, distance = 36}),
@@ -87,7 +95,7 @@ if not rawget(_G, "HotReloading") then
         STOCK = Action({}),
         PIG_BANDIT_EXIT = Action({}),
 
-        SHOP = Action({ distance = 1, customarrivecheck = CheckShelfRange }),
+        SHOP = Action({customarrivecheck = CheckShelfRange, extra_arrive_dist = ExtraShelfRange }),
         RENOVATE = Action({}),
         BUILD_ROOM = Action({}),
         DEMOLISH_ROOM = Action({}),
