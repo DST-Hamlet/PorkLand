@@ -1243,7 +1243,13 @@ local states = {
             end
         end,
 
-        onexit = RowEquipUpdate,
+        onexit = function(inst)
+            local boat = inst.replica.sailor:GetBoat()
+            if boat and boat.replica.sailable then
+                boat.replica.sailable:PlayAnim("idle_loop")
+            end
+            RowEquipUpdate(inst)
+        end,
 
         events = {
             EventHandler("animqueueover", function(inst)
