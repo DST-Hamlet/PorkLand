@@ -99,11 +99,11 @@ AddToTileMap(42, {EAST, NORTH_WEST})
 AddToTileMap(43, {SOUTH, NORTH_EAST})
 AddToTileMap(44, {WEST, SOUTH_EAST})
 
--- 有1条边和1个角相邻
+-- 有2条边和1个角相邻
 AddToTileMap(45, {WEST, NORTH, SOUTH_EAST})
 AddToTileMap(46, {NORTH, EAST, SOUTH_WEST})
-AddToTileMap(47, {EAST, SOUTH, NORTH_WEST})
-AddToTileMap(48, {SOUTH, WEST, NORTH_EAST})
+AddToTileMap(47, {SOUTH, WEST, NORTH_EAST})
+AddToTileMap(48, {EAST, SOUTH, NORTH_WEST})
 
 local REGION_RADIUS = 3
 

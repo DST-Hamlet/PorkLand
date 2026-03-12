@@ -171,3 +171,17 @@ PL_NEIGHBOR_TILES = {
     [SOUTH]      = {x =  0, z = -1},
     [SOUTH_WEST] = {x = -1, z = -1},
 }
+
+PL_ADJACENT_TILES = {
+    [WEST]       = {x = -1, z =  0},
+    [NORTH]      = {x =  0, z =  1},
+    [EAST]       = {x =  1, z =  0},
+    [SOUTH]      = {x =  0, z = -1},
+}
+
+PL_DIAGONAL_TILES = {
+    [NORTH_WEST] = {x = -1, z =  1},
+    [NORTH_EAST] = {x =  1, z =  1},
+    [SOUTH_EAST] = {x =  1, z = -1},
+    [SOUTH_WEST] = {x = -1, z = -1},
+}

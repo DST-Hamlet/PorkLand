@@ -28,7 +28,13 @@ local PL_TileManager = Class(function(self, inst)
 end)
 
 function PL_TileManager:OnRemoveEntity()
-
+    for fx, data in pairs(self.tile_fxs) do
+        if data.x then
+            self.cached_fxs:SetDataAtPoint(data.x, data.z, nil)
+        end
+        fx:Remove()
+        self.tile_fxs[fx] = nil
+    end
 end
 
 PL_TileManager.OnRemoveFromEntity = PL_TileManager.OnRemoveEntity
@@ -44,6 +50,23 @@ function PL_TileManager:GetNewTileFx()
     return fx
 end
 
+function PL_TileManager:GetCenterPointFromXZ(grid_x, grid_z)
+    return TheWorld.Map:GetPointAtTile(grid_x * REGION_SIZE + math.floor(REGION_SIZE / 2), grid_z * REGION_SIZE + math.floor(REGION_SIZE / 2))
+end
+
+function PL_TileManager:GetXZFromTileCoord(x, z)
+    return math.floor(x / REGION_SIZE), math.floor(z / REGION_SIZE)
+end
+
+function PL_TileManager:GetXZFromPoint(x, y, z)
+    local tile_x, tile_z = TheWorld.Map:GetTileCoordsAtPoint(x, y, z)
+    if TheWorld.Map:CheckInSize(tile_x, tile_z) then
+        return self:GetXZFromTileCoord(tile_x, tile_z)
+    end
+
+    return nil
+end
+
 function PL_TileManager:UpdateTiles()
     if self.inst:GetIsInInterior() then
         return
@@ -53,10 +76,10 @@ function PL_TileManager:UpdateTiles()
 
     for fx, data in pairs(self.tile_fxs) do
         if data.x then
-            local pt = Vector3(TheWorld.Map:GetPointAtTile(data.x * REGION_SIZE, data.z * REGION_SIZE))
+            local pt = Vector3(self:GetCenterPointFromXZ(data.x, data.z))
             if self.inst:GetDistanceSqToPoint(pt) > MAX_CAMERA_SEE_DIST_SQ then
                 fx.components.pl_tilespawner:ClearTiles()
-                self.cached_fxs:SetDataAtPoint(self.tile_fxs[fx].x, self.tile_fxs[fx].z, nil)
+                self.cached_fxs:SetDataAtPoint(data.x, data.z, nil)
                 self.tile_fxs[fx] = {canreuse = true}
             end
         end
@@ -66,11 +89,9 @@ function PL_TileManager:UpdateTiles()
     for x = -MAX_REGION_SEE_DIST, MAX_REGION_SEE_DIST do
         for z = -MAX_REGION_SEE_DIST, MAX_REGION_SEE_DIST do
             local center = current_tile_center + Vector3(x * REGION_SIZE * TILE_SCALE, 0, z * REGION_SIZE * TILE_SCALE)
-            local grid_x, grid_z = TheWorld.Map:GetTileCoordsAtPoint(center.x, center.y, center.z)
-            if TheWorld.Map:CheckInSize(grid_x, grid_z) then
-
-                grid_x, grid_z = math.floor(grid_x / REGION_SIZE), math.floor(grid_z / REGION_SIZE)
-                center = Vector3(TheWorld.Map:GetPointAtTile(grid_x * REGION_SIZE, grid_z * REGION_SIZE))
+            local grid_x, grid_z = self:GetXZFromPoint(center.x, center.y, center.z)
+            if grid_x ~= nil then
+                center = Vector3(self:GetCenterPointFromXZ(grid_x, grid_z))
 
                 if self.inst:GetDistanceSqToPoint(center) < MIN_CAMERA_SEE_DIST_SQ then
                     local fx = self.cached_fxs:GetDataAtPoint(grid_x, grid_z) 
@@ -88,7 +109,7 @@ function PL_TileManager:UpdateTiles()
     TheSim:ProfilerPush("PL_TileSpawner:SpawnVFX")
     for tile_fx, data in pairs(self.tile_fxs) do
         if data.need_update and not data.canreuse then
-            local pt = Vector3(TheWorld.Map:GetPointAtTile(data.x * REGION_SIZE, data.z * REGION_SIZE))
+            local pt = Vector3(self:GetCenterPointFromXZ(data.x, data.z))
             tile_fx.components.pl_tilespawner:UpdateTiles(pt)
             data.need_update = false
         end
@@ -99,9 +120,20 @@ end
 function PL_TileManager:OnTileChanged(data)
     if data and data.x and data.y then
         self.cached_visual:SetDataAtPoint(data.x, data.y, nil)
+        local grid_x, grid_z = self:GetXZFromTileCoord(data.x, data.y)
+        local fx = self.cached_fxs:GetDataAtPoint(grid_x, grid_z)
+        if fx ~= nil then
+            self.tile_fxs[fx].need_update = true
+        end
+
         for dir, v in pairs(PL_NEIGHBOR_TILES) do
             if TheWorld.Map:CheckInSize(data.x + v.x, data.y + v.z) then
                 self.cached_visual:SetDataAtPoint(data.x + v.x, data.y + v.z, nil)
+                grid_x, grid_z = self:GetXZFromTileCoord(data.x + v.x, data.y + v.z)
+                fx = self.cached_fxs:GetDataAtPoint(grid_x, grid_z)
+                if fx ~= nil then
+                    self.tile_fxs[fx].need_update = true
+                end
             end
         end
     end
