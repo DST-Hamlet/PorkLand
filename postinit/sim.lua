@@ -32,7 +32,6 @@ function CalculateLight(light, dist)
 end
 
 local REGISTERED_LIGHT_TAGS = TheSim:RegisterFindTags({"lightsource"}, {"INLIMBO"})
-local Sim = getmetatable(TheSim).__index
 local old_GetLightAtPoint = Sim.GetLightAtPoint
 Sim.GetLightAtPoint = function(sim, x, y, z, light_threshold, ...) -- 和原版GetLightAtPoint的算法还是存在差别
     if TheWorld and TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
