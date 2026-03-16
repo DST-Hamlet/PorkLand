@@ -1,7 +1,12 @@
+-- .\ShaderCompiler.exe -little "anim_waterfall" "anim_waterfall.vs" "anim_waterfall.ps" "anim_waterfall.ksh" -oglsl
+-- .\ShaderCompiler.exe -little "anim_waterfall_corner" "anim_waterfall_corner.vs" "anim_waterfall_corner.ps" "anim_waterfall_corner.ksh" -oglsl
+
 local assets =
 {
     Asset("ANIM", "anim/waterfall_lilypond_base.zip"),
     Asset("ANIM", "anim/waterfall_lilypond_corner_base.zip"),
+    Asset("SHADER", "shaders/anim_waterfall.ksh"),
+    Asset("SHADER", "shaders/anim_waterfall_corner.ksh"),
 }
 
 local function OnSave(inst, data)

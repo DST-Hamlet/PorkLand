@@ -140,7 +140,6 @@ end
 
 function PL_TileSpawner:OnRemoveEntity()
     self:ClearTiles()
-    self.tile_fx:Remove()
 end
 
 PL_TileSpawner.OnRemoveFromEntity = PL_TileSpawner.OnRemoveEntity

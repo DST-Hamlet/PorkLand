@@ -19,22 +19,28 @@ local PL_TileManager = Class(function(self, inst)
 
     self.tile_fxs = {}
 
-    self.inst.components.tilechangewatcher:ListenToUpdate(function()
+    self.update_listener = function()
         self:UpdateTiles()
-    end)
-    self.inst.components.tilechangewatcher:ListenToTileChanged(function(data)
+    end
+    self.tilechanged_listener = function(data)
         self:OnTileChanged(data)
-    end)
+    end
+
+    self.inst.components.tilechangewatcher:ListenToUpdate(self.update_listener)
+    self.inst.components.tilechangewatcher:ListenToTileChanged(self.tilechanged_listener)
 end)
 
 function PL_TileManager:OnRemoveEntity()
+    self.inst.components.tilechangewatcher:UnlistenToUpdate(self.update_listener)
+    self.inst.components.tilechangewatcher:UnlistenToTileChanged(self.tilechanged_listener)
+    
     for fx, data in pairs(self.tile_fxs) do
         if data.x then
             self.cached_fxs:SetDataAtPoint(data.x, data.z, nil)
         end
         fx:Remove()
-        self.tile_fxs[fx] = nil
     end
+    self.tile_fxs = nil
 end
 
 PL_TileManager.OnRemoveFromEntity = PL_TileManager.OnRemoveEntity

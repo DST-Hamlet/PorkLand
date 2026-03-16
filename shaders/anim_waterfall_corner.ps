@@ -50,6 +50,8 @@ vec3 CalculateLightingContribution( vec3 normal )
 
 
 varying vec3 PS_TEXCOORD;
+varying vec3 PS_TEXCOORD_2;
+varying float VERTEX_WEIGHT;
 
 uniform vec4 TIMEPARAMS;
 uniform mat4 COLOUR_XFORM;
@@ -73,7 +75,12 @@ void main()
 
     float tex_x = PS_TEXCOORD.x * 0.25 - mod(TIMEPARAMS.x, 1.0) * 0.125 + 0.125; // 纹理平移
     float tex_x_2 = PS_TEXCOORD.x * 0.25 - mod(TIMEPARAMS.x, 2.0) * 0.0625 + 0.125; // 表层水流纹理平移，速度更慢
-    float tex_y = PS_TEXCOORD.y;
+    float tex_y = PS_TEXCOORD_2.y;
+    if (VERTEX_WEIGHT > 0.0)
+    {
+        float weight = mod(tex_y, 0.25) / VERTEX_WEIGHT;
+        tex_y = mix(PS_TEXCOORD_2.y, PS_TEXCOORD.y, weight);
+    }
     vec3 new_texcoord = vec3(tex_x, tex_y, PS_TEXCOORD.z);
     vec3 new_texcoord_2 = vec3(tex_x_2, tex_y, PS_TEXCOORD.z);
 

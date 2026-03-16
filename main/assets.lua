@@ -400,9 +400,7 @@ Assets = {
     Asset("SHADER", "shaders/animrotatingbillboard_bloom.ksh"),
     Asset("SHADER", "shaders/animrotatingbillboard_bloom_haunt.ksh"),
 
-    -- Waterfall and Clouds
-    Asset("SHADER", "shaders/anim_waterfall.ksh"),
-    Asset("SHADER", "shaders/anim_waterfall_corner.ksh"),
+    -- Clouds
     Asset("SHADER", "shaders/vfx_particle_cutout.ksh"),
 
     -- Vertical
