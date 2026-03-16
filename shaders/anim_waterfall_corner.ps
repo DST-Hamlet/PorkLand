@@ -78,6 +78,7 @@ void main()
     float tex_y = PS_TEXCOORD_2.y;
     if (VERTEX_WEIGHT > 0.0)
     {
+        tex_y += 0.01; // 解决mipmap纹理采样错误问题
         float weight = mod(tex_y, 0.25) / VERTEX_WEIGHT;
         tex_y = mix(PS_TEXCOORD_2.y, PS_TEXCOORD.y, weight);
     }
