@@ -1,5 +1,16 @@
 GLOBAL.setfenv(1, GLOBAL)
 
+local AnimState_Hooked = {
+    __index = function(t, key)
+        local function forwarded(self, ...)
+            local original = self.inst.Old_AnimState[key]
+            return original(self.inst.Old_AnimState, ...)
+        end
+        t[key] = forwarded
+        return forwarded
+    end
+}
+
 local PLAYER_REPLACE_ANIMS =
 {
     ["wilson"] =
@@ -13,99 +24,107 @@ local PLAYER_REPLACE_ANIMS =
     }
 }
 
-AnimState_Player = Class(function(self, inst)
-    self.inst = inst
-    self._AnimState = inst.AnimState
-    inst.AnimState = self
-end)
+local AnimState_Player = {}
+AnimState_Player.__index = AnimState_Player
+setmetatable(AnimState_Player, AnimState_Hooked)
 
-for k, v in pairs(AnimState) do
-    AnimState_Player[k] = function(self, ...)
-        return v(self._AnimState, ...)
-    end
+function MakeAnimStatePlayer(inst)
+    local new_AnimState = {inst = inst}
+    setmetatable(new_AnimState, AnimState_Player)
+    inst.Old_AnimState = inst.AnimState
+    inst.AnimState = new_AnimState
 end
 
-local _SetBank = AnimState.SetBank
 function AnimState_Player:SetBank(bank, ...)
     self.bank = bank
-    return _SetBank(self._AnimState, bank, ...)
+    return self.inst.Old_AnimState:SetBank(bank, ...)
 end
 
-local _PlayAnimation = AnimState.PlayAnimation
 AnimState_Player.PlayAnimation = function(self, animname, ...)
     if PLAYER_REPLACE_ANIMS[self.bank] and PLAYER_REPLACE_ANIMS[self.bank][animname] then
-        return _PlayAnimation(self._AnimState, PLAYER_REPLACE_ANIMS[self.bank][animname], ...)
+        return self.inst.Old_AnimState:PlayAnimation(PLAYER_REPLACE_ANIMS[self.bank][animname], ...)
     else
-        return _PlayAnimation(self._AnimState, animname, ...)
+        return self.inst.Old_AnimState:PlayAnimation(animname, ...)
     end
 end
 
-local _PushAnimation = AnimState.PushAnimation
 AnimState_Player.PushAnimation = function(self, animname, ...)
     if PLAYER_REPLACE_ANIMS[self.bank] and PLAYER_REPLACE_ANIMS[self.bank][animname] then
-        return _PushAnimation(self._AnimState, PLAYER_REPLACE_ANIMS[self.bank][animname], ...)
+        return self.inst.Old_AnimState:PushAnimation(PLAYER_REPLACE_ANIMS[self.bank][animname], ...)
     else
-        return _PushAnimation(self._AnimState, animname, ...)
+        return self.inst.Old_AnimState:PushAnimation(animname, ...)
     end
 end
 
 local _IsCurrentAnimation = AnimState.IsCurrentAnimation
 AnimState_Player.IsCurrentAnimation = function(self, animname, ...)
     if PLAYER_REPLACE_ANIMS[self.bank] and PLAYER_REPLACE_ANIMS[self.bank][animname] then
-        return _IsCurrentAnimation(self._AnimState, PLAYER_REPLACE_ANIMS[self.bank][animname], ...)
+        return self.inst.Old_AnimState:IsCurrentAnimation(PLAYER_REPLACE_ANIMS[self.bank][animname], ...)
     else
-        return _IsCurrentAnimation(self._AnimState, animname, ...)
+        return self.inst.Old_AnimState:IsCurrentAnimation(animname, ...)
     end
 end
 
-
-local _Hide = AnimState.Hide
-AnimState_Player._Hide = AnimState_Player.Hide
 AnimState_Player.Hide = function(self, layername, ...)
-    if self.Anim_Hide_Hook then
-        return self.Anim_Hide_Hook(self, layername, ...)
+    if layername == "HAIR" then
+        self.inst.Old_AnimState:Hide("HAIRFRONT")
     end
-    return _Hide(self._AnimState, layername, ...)
+    return self.inst.Old_AnimState:Hide(layername, ...)
 end
 
-local _Show = AnimState.Show
-AnimState_Player._Show = AnimState_Player.Show
 AnimState_Player.Show = function(self, layername, ...)
-    if self.Anim_Show_Hook then
-        return self.Anim_Show_Hook(self, layername, ...)
+    if layername == "HAIR" then
+        self.inst.Old_AnimState:Show("HAIRFRONT")
     end
-    return _Show(self._AnimState, layername, ...)
+    return self.inst.Old_AnimState:Show(layername, ...)
 end
 
 ----------------------------------------------------------------------------------
 
-Transform_RotatingBillBoard = Class(function(self, inst)
-    self.inst = inst
-    self._Transform = inst.Transform
-    inst.Transform = self
-end)
 
-for k, v in pairs(Transform) do
-    Transform_RotatingBillBoard[k] = function(self, ...)
-        return v(self._Transform, ...)
+local Transform_Hooked = {
+    __index = function(t, key)
+        local function forwarded(self, ...)
+            local original = self.inst.Old_Transform[key]
+            return original(self.inst.Old_Transform, ...)
+        end
+        t[key] = forwarded
+        return forwarded
     end
-end
+}
 
-Transform_RotatingBillBoard._SetRotation = Transform_RotatingBillBoard.SetRotation
+local Transform_RotatingBillBoard = {}
+Transform_RotatingBillBoard.__index = Transform_RotatingBillBoard
+setmetatable(Transform_RotatingBillBoard, Transform_Hooked)
+
 Transform_RotatingBillBoard.SetRotation = function(self, rot, ...)
     self.inst.components.rotatingbillboard:SetRotation(rot)
-    self:_SetRotation(0, ...)
+    return self.inst.Old_Transform:SetRotation(0, ...)
 end
 
-Transform_RotatingBillBoard._GetRotation = Transform_RotatingBillBoard.GetRotation
 Transform_RotatingBillBoard.GetRotation = function(self, ...)
     return self.inst.components.rotatingbillboard:GetRotation()
 end
 
-local _SetPosition = Transform.SetPosition
 Transform_RotatingBillBoard.SetPosition = function(self, ...)
-    _SetPosition(self._Transform, ...)
+    self.inst.Old_Transform:SetPosition(...)
     self.inst.components.rotatingbillboard:UpdateAnim()
+end
+
+function MakeTransformRotatingBillBoard(inst)
+    local new_Transform = {inst = inst}
+    setmetatable(new_Transform, Transform_RotatingBillBoard)
+    inst.Old_Transform = inst.Transform
+    inst.Transform = new_Transform
+end
+
+
+local AnimState_RotatingBillBoard = {}
+AnimState_RotatingBillBoard.__index = AnimState_RotatingBillBoard
+setmetatable(AnimState_RotatingBillBoard, AnimState_Hooked)
+
+AnimState_RotatingBillBoard.SetHaunted = function(self, ...)
+    self.inst.components.rotatingbillboard:SetHaunt(haunted, ...)
 end
 
 local function UpdateAnim_RotatingBillboard(inst)
@@ -116,26 +135,16 @@ local function OnReplica_RotatingBillboard(inst)
     inst:RunOnPostUpdate(UpdateAnim_RotatingBillboard)
 end
 
-AnimState_RotatingBillBoard = Class(function(self, inst)
+function MakeAnimStateRotatingBillBoard(inst)
+    MakeTransformRotatingBillBoard(inst)
 
-    Transform_RotatingBillBoard(inst)
-
-    self.inst = inst
-    self._AnimState = inst.AnimState
-    inst.AnimState = self
+    local new_AnimState = {inst = inst}
+    setmetatable(new_AnimState, AnimState_RotatingBillBoard)
+    inst.Old_AnimState = inst.AnimState
+    inst.AnimState = new_AnimState
 
     inst:AddComponent("rotatingbillboard")
-    inst.Transform:SetRotation(inst.Transform:_GetRotation())
+    inst.Transform:SetRotation(inst.Old_Transform:GetRotation())
 
     inst:AddOnReplicatedPost(OnReplica_RotatingBillboard)
-end)
-
-for k, v in pairs(AnimState) do
-    AnimState_RotatingBillBoard[k] = function(self, ...)
-        return v(self._AnimState, ...)
-    end
-end
-
-AnimState_RotatingBillBoard.SetHaunted = function(self, haunted, ...)
-    self.inst.components.rotatingbillboard:SetHaunt(haunted, ...)
 end

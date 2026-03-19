@@ -593,13 +593,13 @@ local function MakeDeco(build, bank, animframe, data, name)
                 or (bank and bank:find("wall_decals"))
                 or data.rotatingbillboard then
 
-                AnimState_RotatingBillBoard(inst)
+                MakeAnimStateRotatingBillBoard(inst)
             else
                 inst.Transform:SetTwoFaced()
             end
         else
             if data.rotatingbillboard then
-                AnimState_RotatingBillBoard(inst)
+                MakeAnimStateRotatingBillBoard(inst)
             else
                 inst.Transform:SetTwoFaced()
             end

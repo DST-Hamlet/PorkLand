@@ -74,7 +74,7 @@ local function MakePillarPlacer(name, bank, build, anim, front_anim)
         }
 
         inst.Transform:SetRotation(-90)
-        AnimState_RotatingBillBoard(inst)
+        MakeAnimStateRotatingBillBoard(inst)
 
         inst.components.placer.onupdatetransform = CornerPillarPlaceTest
         inst.components.placer.override_build_point_fn = placer_override_build_point

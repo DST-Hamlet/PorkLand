@@ -503,7 +503,7 @@ local function fn()
     inst:DoTaskInTime(0, function() inst.Physics:SetActive(false) end)
 
     inst.Transform:SetRotation(-90)
-    AnimState_RotatingBillBoard(inst)
+    MakeAnimStateRotatingBillBoard(inst)
 
     inst._minimap_name = net_string(inst.GUID, "prop_door._minimap_name")
     inst._minimap_name:set_local("")

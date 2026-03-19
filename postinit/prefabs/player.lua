@@ -153,24 +153,8 @@ local function OnInteriorChange(inst, data)
 end
 
 AddPlayerPostInit(function(inst)
-    inst.AnimStateHooked = AnimState_Player(inst)
-    inst.AnimStateHooked.bank = "wilson"
-
-    if inst.prefab == "wheeler" then
-        inst.AnimState.Anim_Hide_Hook = function(animstate, layername, ...)
-            if layername == "HAIR" then
-                animstate:_Hide("HAIRFRONT")
-            end
-            return animstate:_Hide(layername, ...)
-        end
-
-        inst.AnimState.Anim_Show_Hook = function(animstate, layername, ...)
-            if layername == "HAIR" then
-                animstate:_Show("HAIRFRONT")
-            end
-            return animstate:_Show(layername, ...)
-        end
-    end
+    MakeAnimStatePlayer(inst)
+    inst.AnimState.bank = "wilson"
 
     -- inst.AnimState:AddOverrideBuild("player_actions_roll") -- 表现效果不太好
     inst.AnimState:AddOverrideBuild("player_boat_death")

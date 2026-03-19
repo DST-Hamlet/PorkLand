@@ -133,7 +133,7 @@ local function makefn()
 
     inst.Transform:SetRotation(-90) -- 使得rotatingbillboard默认正对室内摄像机显示
 
-    AnimState_RotatingBillBoard(inst)
+    MakeAnimStateRotatingBillBoard(inst)
 
     inst.entity:SetPristine()
 
@@ -186,7 +186,7 @@ local function makewallfn(facing)
 
         inst.Transform:SetRotation(-90)
 
-        AnimState_RotatingBillBoard(inst)
+        MakeAnimStateRotatingBillBoard(inst)
 
         inst.entity:SetPristine()
 

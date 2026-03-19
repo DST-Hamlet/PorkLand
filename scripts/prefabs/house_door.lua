@@ -473,7 +473,7 @@ local function MakeHouseDoor(name)
         inst:AddTag("wallsection")
         inst:AddTag("house_door")
 
-        AnimState_RotatingBillBoard(inst)
+        MakeAnimStateRotatingBillBoard(inst)
 
         inst.entity:SetPristine()
 
