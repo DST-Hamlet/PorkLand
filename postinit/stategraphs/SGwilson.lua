@@ -1868,11 +1868,6 @@ local states = {
             inst.components.locomotor:Stop()
             inst.AnimState:PlayAnimation("give")
             inst.AnimState:PushAnimation("give_pst", false)
-            if inst.components.playercontroller then
-                -- inst.components.playercontroller:EnableMapControls(false)
-                inst.components.playercontroller:Enable(false)
-            end
-
             local buffaction = inst:GetBufferedAction()
             local target = buffaction ~= nil and buffaction.target or nil
             if target and target.components.door then
@@ -1883,16 +1878,22 @@ local states = {
         timeline =
         {
             TimeEvent(2 * FRAMES, function(inst)
+                if inst.components.playercontroller then
+                    -- inst.components.playercontroller:EnableMapControls(false) -- 用于让玩家强制退出地图界面
+                    inst.components.playercontroller:Enable(false)
+                end
+    
                 local buffaction = inst:GetBufferedAction()
                 local target = buffaction ~= nil and buffaction.target or nil
                 if target and not target.components.door:IsLocked() then
                     inst:ScreenFade(false, 0.4)
-                    inst.sg.mem.screenfaded = true
+                    inst.sg.statemem.screenfaded = true
                 end
-                inst:DoStaticTaskInTime(0.6, function()
-                    if inst.sg.mem.screenfaded then
+
+                inst.sg.statemem.fadetask = inst:DoStaticTaskInTime(2, function() -- 用于防止服务器暂停导致卡死
+                    if inst.sg.statemem.screenfaded then
                         inst:ScreenFade(true, 0.4)
-                        inst.sg.mem.screenfaded = false
+                        inst.sg.statemem.screenfaded = false
                     end
                 end)
             end),
@@ -1916,12 +1917,16 @@ local states = {
 
         onexit = function(inst)
             if inst.components.playercontroller then
-                inst.components.playercontroller:EnableMapControls(true)
+                -- inst.components.playercontroller:EnableMapControls(true)
                 inst.components.playercontroller:Enable(true)
             end
-            if inst.sg.mem.screenfaded then
+            if inst.sg.statemem.screenfaded then
                 inst:ScreenFade(true, 0.4)
-                inst.sg.mem.screenfaded = false
+                inst.sg.statemem.screenfaded = false
+            end
+            if inst.sg.statemem.fadetask then
+                inst.sg.statemem.fadetask:Cancel()
+                inst.sg.statemem.fadetask = nil
             end
         end,
     },

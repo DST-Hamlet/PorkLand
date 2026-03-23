@@ -26,12 +26,38 @@ local states = {
         timeline =
         {
             TimeEvent(2 * FRAMES, function(inst)
-                inst:ScreenFade(false, 0.4)
+                if inst.components.playercontroller then
+                    inst.components.playercontroller:Enable(false)
+                end
+
+                local buffaction = inst:GetBufferedAction()
+                local target = buffaction ~= nil and buffaction.target or nil
+                if target and not target.components.door:IsLocked() then
+                    inst:ScreenFade(false, 0.4)
+                    inst.sg.statemem.screenfaded = true
+                end
+
+                inst.sg.statemem.fadetask = inst:DoStaticTaskInTime(2, function() -- 用于防止服务器暂停导致卡死
+                    if inst.sg.statemem.screenfaded then
+                        inst:ScreenFade(true, 0.4)
+                        inst.sg.statemem.screenfaded = false
+                    end
+                end)
             end),
         },
 
         onexit = function(inst)
-            inst:ScreenFade(true, 0.4)
+            if inst.components.playercontroller then
+                inst.components.playercontroller:Enable(true)
+            end
+            if inst.sg.statemem.screenfaded then
+                inst:ScreenFade(true, 0.4)
+                inst.sg.statemem.screenfaded = false
+            end
+            if inst.sg.statemem.fadetask then
+                inst.sg.statemem.fadetask:Cancel()
+                inst.sg.statemem.fadetask = nil
+            end
         end,
 
         events =
