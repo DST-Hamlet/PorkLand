@@ -7,6 +7,7 @@
 -- 3. don't use when accurate interaction behavior is needed
 -- 4. never use with AnimState:SetBloomEffectHandle()
 -- 5. never use with object that pos.y ~= 0
+-- 6. 以上限制需要重新评估
 
 local function UpdateAnim(inst)
     inst.components.rotatingbillboard:UpdateAnim()

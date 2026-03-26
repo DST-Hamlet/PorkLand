@@ -49,7 +49,7 @@ function TileChangeWatcher:OnTileChanged(data)
     self.shouldpostupdate = true
 end
 
-function TileChangeWatcher:OnPostUpdate()
+function TileChangeWatcher:OnPostUpdate() -- 或许可以考虑让地皮计算帧和逻辑帧错开?
     local current_tile_center = Vector3(TheWorld.Map:GetTileCenterPoint(self.inst.Transform:GetWorldPosition()))
     if current_tile_center and current_tile_center ~= self.last_tile_center then
         self.last_tile_center = current_tile_center
