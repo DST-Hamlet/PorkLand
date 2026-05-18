@@ -936,7 +936,7 @@ local PL_COMPONENT_ACTIONS =
         visualslot = function(inst, doer, actions, right)
             if not inst:HasTag("empty") then
                 local shelf = inst.replica.visualslot:GetShelf()
-                if not shelf:HasTag("locked")
+                if shelf ~= nil and not shelf:HasTag("locked")
                     and inst.replica.visualslot:GetItem() ~= nil
                     and inst.replica.visualslot:GetItem():IsValid() then
 

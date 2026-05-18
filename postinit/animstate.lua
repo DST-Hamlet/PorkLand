@@ -123,7 +123,7 @@ local AnimState_RotatingBillBoard = {}
 AnimState_RotatingBillBoard.__index = AnimState_RotatingBillBoard
 setmetatable(AnimState_RotatingBillBoard, AnimState_Hooked)
 
-AnimState_RotatingBillBoard.SetHaunted = function(self, ...)
+AnimState_RotatingBillBoard.SetHaunted = function(self, haunted, ...)
     self.inst.components.rotatingbillboard:SetHaunt(haunted, ...)
 end
 
