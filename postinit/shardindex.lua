@@ -138,6 +138,7 @@ end
 local _SetServerShardData = ShardIndex.SetServerShardData
 local GetLevelDataOverride, scope_fn, i = ToolUtil.GetUpvalue(_SetServerShardData, "GetLevelDataOverride")
 local _GetLevelDataOverride = function(slot, shard, cb, ...)
+    local ret = { GetLevelDataOverride(slot, shard, cb, ...) }
     print("trying Generate Porkland WorldGen Override...")
     local is_workshop_version = modname:find("workshop-")
     -- only running on master shard.
@@ -145,12 +146,12 @@ local _GetLevelDataOverride = function(slot, shard, cb, ...)
         HasCustomPorklandLevelSettings(slot, shard, function(has_custom_settings)
             ShardGameIndex:GeneratePorklandWorldGenOverride(slot, shard, has_custom_settings, function()
                 print("Huh? Generate Porkland WorldGen Override done?")
-                GetLevelDataOverride(slot, shard, cb, ...)
+                return unpack(ret)
             end)
         end)
         return
     end
-    return GetLevelDataOverride(slot, shard, cb, ...)
+    return unpack(ret)
 end
 
 if i then
