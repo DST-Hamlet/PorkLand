@@ -12,7 +12,7 @@ function AutoDartThrower:TurnOn(time)
 
         if self.task then
             self.task:Cancel()
-            self.task, self.taskinfo = nil
+            self.task, self.taskinfo = nil, nil
         end
         self.task, self.taskinfo = self.inst:ResumeTask(time or 15, function() self:TurnOff() end)
     end
@@ -27,7 +27,7 @@ function AutoDartThrower:TurnOff()
 
     if self.task then
         self.task:Cancel()
-        self.task, self.taskinfo = nil
+        self.task, self.taskinfo = nil, nil
     end
 end
 
