@@ -1,11 +1,12 @@
 local SHADER = "shaders/tile_particle.ksh"
 
--- ShaderCompiler.exe -little "tile_particle" "tile_particle.vs" "tile_particle.ps" "tile_particle.ksh" -oglsl
+-- .\ShaderCompiler.exe -little "tile_particle" "tile_particle.vs" "tile_particle.ps" "tile_particle.ksh" -oglsl
+-- .\ShaderCompiler.exe -little "tile_particle_water" "tile_particle_water.vs" "tile_particle_water.ps" "tile_particle_water.ksh" -oglsl
 
 local COLOUR_ENVELOPE_NAME = "pl_tilecolourenvelope"
 local SCALE_ENVELOPE_NAME = "pl_tilescaleenvelope"
 
-local MAX_LIFETIME = 2 * 1e9 -- shader中的PS_TEXCOORD_LIFE.z为生命周期进度百分比
+local MAX_LIFETIME = 2 * 1e6 -- shader中的PS_TEXCOORD_LIFE.z为生命周期进度百分比
 
 local assets =
 {

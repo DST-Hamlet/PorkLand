@@ -1,7 +1,7 @@
 local TEXTURE = "images/cloud/fog_cloud_long.tex"
 local SHADER = "shaders/particle.ksh"
 local SHADER_1 = "shaders/vfx_particle_cutout.ksh"
--- ShaderCompiler.exe -little "vfx_particle_cutout" "vfx_particle_cutout.vs" "vfx_particle_cutout.ps" "vfx_particle_cutout.ksh" -oglsl
+-- .\ShaderCompiler.exe -little "vfx_particle_cutout" "vfx_particle_cutout.vs" "vfx_particle_cutout.ps" "vfx_particle_cutout.ksh" -oglsl
 
 local COLOUR_ENVELOPE_NAME = "pl_cloudcolourenvelope"
 local SCALE_ENVELOPE_NAME = "pl_cloudscaleenvelope"
