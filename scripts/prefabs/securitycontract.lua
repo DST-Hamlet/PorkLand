@@ -18,6 +18,8 @@ local function fn(inst)
 
     inst:AddTag("securitycontract")
 
+    inst.pickupsound = "paper"
+
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then

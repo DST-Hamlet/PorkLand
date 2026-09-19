@@ -29,6 +29,10 @@ return Class(function(self, inst)
         [WORLD_TILES.PAINTED] =  {"kingfisher", "pl_crow"},
         [WORLD_TILES.INTERIOR] = {},
         [WORLD_TILES.LILYPOND] = {},
+
+        --ATC new
+        [WORLD_TILES.SALTBEACH] = {"pl_crow"},
+        [WORLD_TILES.SALTLAKE] = {},
     }
 
     --------------------------------------------------------------------------

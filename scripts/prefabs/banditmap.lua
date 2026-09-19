@@ -88,6 +88,8 @@ local function banditmapfn()
 
     inst.no_wet_prefix = true
 
+    inst.pickupsound = "paper"
+
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then

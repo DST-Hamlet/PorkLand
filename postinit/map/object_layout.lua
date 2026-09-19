@@ -101,6 +101,16 @@ local function FindLayoutPositions(radius, edge_dist, checkFn, count)
 end
 
 function obj_layout.PlaceWaterLayout(layout, prefabs, add_entity, checkFn, radius)
+    if layout.allow_tiles then
+        local _checkFn = checkFn
+        checkFn = function(ground, x, y)
+            if layout.allow_tiles[ground] ~= true then
+                return false
+            end
+            return _checkFn == nil or _checkFn(ground, x, y)
+        end
+    end
+
     local layoutsize = GetLayoutRadius(layout, prefabs)
     local r = math.max(layoutsize, radius or 0)
     local positions = FindLayoutPositions(r, TUNING.MAPWRAPPER_WARN_RANGE + 8, checkFn, 1)

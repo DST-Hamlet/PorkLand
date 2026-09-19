@@ -29,6 +29,12 @@ return {
         wilba = "Slim",
         wheeler = "Slim",
     },
+    CHARACTER_QUOTES = 
+    {
+        wagstaff = "\"Eureka! My destiny awaits!\"",
+        wilba = "\"MAKE KINGDOM PROUD!\"",
+        wheeler = "\"The whole world's mine to explore!\"",
+    },
     ACTIONS = {
         DODGE = "Dodge",
         BUILD_ROOM = "Build Room",
@@ -2397,6 +2403,7 @@ return {
         TURF_PIGRUINS = "Ancient Stone Turf",
         TURF_PLAINS = "Wild Plains Turf",
         TURF_RAINFOREST = "Rainforest Turf",
+        TURF_SALTBEACH = "Salt Desert Turf",
         VAMPIREBAT = "Vampire Bat",
         VAMPIREBATCAVE = "Cave Cleft",
         VAMPIRE_BAT_WING = "Batilisk Wing?",

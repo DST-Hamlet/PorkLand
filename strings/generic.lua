@@ -822,6 +822,7 @@ return {
         TURF_PIGRUINS = "It's a chunk of stone ground.",
         TURF_PLAINS = "It's a chunk of ground.",
         TURF_RAINFOREST = "It's a chunk of ground.",
+        TURF_SALTBEACH = "It's a chunk of ground.",
         VAMPIREBAT = {
             DEAD = "I feel a bit safer.",
             GENERIC = "I'd prefer to keep all of my blood.",

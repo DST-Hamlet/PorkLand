@@ -19,6 +19,8 @@ local function fn()
 
     inst.foleysound = "dontstarve/movement/foley/jewlery"
 
+    inst.pickupsound = "paper"
+
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then

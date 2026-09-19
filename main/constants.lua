@@ -1,3 +1,4 @@
+local GetModConfigData = GetModConfigData
 GLOBAL.setfenv(1, GLOBAL)
 
 TOOLACTIONS.HACK = true
@@ -97,12 +98,13 @@ NAUGHTY_VALUE["piko"] = 1
 MAX_PHYSICS_RADIUS = 5.2 -- the biggest lilypad
 
 -- Revert all pickup sounds back
-for k, v in pairs(PICKUPSOUNDS) do
-    if k ~= "NONE" then
-        PICKUPSOUNDS[k] = "dontstarve/HUD/collect_resource"
+if not GetModConfigData("classical_pickupsound") then
+    for k, v in pairs(PICKUPSOUNDS) do
+        if k ~= "NONE" then
+            PICKUPSOUNDS[k] = "dontstarve/HUD/collect_resource"
+        end
     end
 end
-
 INTERIOR_SPACEING = 4
 
 BOAT_ANIM_IDS = 
@@ -142,6 +144,11 @@ PL_TILE_TYPES =
     [WORLD_TILES.LILYPOND] =
     {
         texture = "levels/merged_tex/lilypond_merged.tex",
+        shader = "shaders/tile_particle_water.ksh",
+    },
+    [WORLD_TILES.SALTLAKE] =
+    {
+        texture = "levels/merged_tex/saltlake_merged.tex",
         shader = "shaders/tile_particle_water.ksh",
     },
 }

@@ -11,6 +11,7 @@ local MAX_LIFETIME = 2 * 1e6 -- shader中的PS_TEXCOORD_LIFE.z为生命周期进
 local assets =
 {
     Asset("IMAGE", "levels/merged_tex/lilypond_merged.tex"),
+    Asset("IMAGE", "levels/merged_tex/saltlake_merged.tex"),
     Asset("SHADER", "shaders/tile_particle.ksh"),
     Asset("SHADER", "shaders/tile_particle_water.ksh"),
 }

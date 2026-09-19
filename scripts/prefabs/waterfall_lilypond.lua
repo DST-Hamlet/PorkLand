@@ -5,6 +5,10 @@ local assets =
 {
     Asset("ANIM", "anim/waterfall_lilypond_base.zip"),
     Asset("ANIM", "anim/waterfall_lilypond_corner_base.zip"),
+
+    Asset("ANIM", "anim/waterfall_saltlake_base.zip"),
+    Asset("ANIM", "anim/waterfall_saltlake_corner_base.zip"),
+
     Asset("SHADER", "shaders/anim_waterfall.ksh"),
     Asset("SHADER", "shaders/anim_waterfall_corner.ksh"),
 }
@@ -40,103 +44,113 @@ local function register_pool(inst)
     TheWorld:PushEvent("ms_registerwaterfall", {waterfall = inst})
 end
 
-local function fn()
-    local inst = CreateEntity()
+local function MakeWaterFall(name, build)
+    local function fn()
+        local inst = CreateEntity()
 
-    inst.entity:AddTransform()
-    inst.entity:AddAnimState()
-    inst.entity:AddSoundEmitter()
-    inst.entity:AddNetwork()
+        inst.entity:AddTransform()
+        inst.entity:AddAnimState()
+        inst.entity:AddSoundEmitter()
+        inst.entity:AddNetwork()
 
-    inst.AnimState:SetBuild("waterfall_lilypond_base")
-    inst.AnimState:SetBank("waterfall_pl")
-    inst.AnimState:PlayAnimation("idle", false)
-    inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
-    inst.AnimState:SetDefaultEffectHandle(resolvefilepath("shaders/anim_waterfall.ksh"))
-    -- inst.AnimState:UsePointFiltering(true) -- 会降低物体的抗锯齿效果, 但是可以避免开启深度测试的物体之间的接缝
+        inst.AnimState:SetBuild(build)
+        inst.AnimState:SetBank("waterfall_pl")
+        inst.AnimState:PlayAnimation("idle", false)
+        inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
+        inst.AnimState:SetDefaultEffectHandle(resolvefilepath("shaders/anim_waterfall.ksh"))
+        -- inst.AnimState:UsePointFiltering(true) -- 会降低物体的抗锯齿效果, 但是可以避免开启深度测试的物体之间的接缝
 
-    inst.AnimState:SetLayer(LAYER_BELOW_GROUND)
-    inst.AnimState:SetSortOrder(-2)
-    inst.AnimState:SetDepthTestEnabled(true)
-    inst.AnimState:SetDepthWriteEnabled(true)
+        inst.AnimState:SetLayer(LAYER_BELOW_GROUND)
+        inst.AnimState:SetSortOrder(-2)
+        inst.AnimState:SetDepthTestEnabled(true)
+        inst.AnimState:SetDepthWriteEnabled(true)
 
-    inst._paramrotation = net_float(inst.GUID, "_paramrotation", "paramrotationdirty")
+        inst._paramrotation = net_float(inst.GUID, "_paramrotation", "paramrotationdirty")
 
-    inst:DoStaticTaskInTime(0, function()
-        local x, _, z = inst.Transform:GetWorldPosition()
-        inst.AnimState:SetFloatParams(x, z, (inst._paramrotation:value() or 0) * DEGREES) -- 不要用setrotation，直接修改paramrotation的参数就行
-    end)
+        inst:DoStaticTaskInTime(0, function()
+            local x, _, z = inst.Transform:GetWorldPosition()
+            inst.AnimState:SetFloatParams(x, z, (inst._paramrotation:value() or 0) * DEGREES) -- 不要用setrotation，直接修改paramrotation的参数就行
+        end)
 
-    inst:AddTag("FX")
-    inst:AddTag("NOCLICK")
+        inst:AddTag("FX")
+        inst:AddTag("NOCLICK")
 
-    if not TheNet:IsDedicated() then
-        inst:DoTaskInTime(0, register_pool)
-    end
+        if not TheNet:IsDedicated() then
+            inst:DoTaskInTime(0, register_pool)
+        end
 
-    inst.entity:SetPristine()
+        inst.entity:SetPristine()
 
-    if not TheWorld.ismastersim then
+        if not TheWorld.ismastersim then
+            return inst
+        end
+
+        inst.OnSave = OnSave
+        inst.OnLoad = OnLoad
+
+        inst.OnEntitySleep = OnEntitySleep
+        inst.OnEntityWake = OnEntityWake
+
         return inst
     end
 
-    inst.OnSave = OnSave
-    inst.OnLoad = OnLoad
-
-    inst.OnEntitySleep = OnEntitySleep
-    inst.OnEntityWake = OnEntityWake
-
-    return inst
+    return Prefab(name, fn, assets)
 end
 
-local function corner_fn()
-    local inst = CreateEntity()
+local function MakeWaterFallCorner(name, build)
+    local function fn_corner()
+        local inst = CreateEntity()
 
-    inst.entity:AddTransform()
-    inst.entity:AddAnimState()
-    inst.entity:AddSoundEmitter()
-    inst.entity:AddNetwork()
+        inst.entity:AddTransform()
+        inst.entity:AddAnimState()
+        inst.entity:AddSoundEmitter()
+        inst.entity:AddNetwork()
 
-    inst.AnimState:SetBuild("waterfall_lilypond_base")
-    inst.AnimState:SetBank("waterfall_corner_pl")
-    inst.AnimState:PlayAnimation("idle", false)
-    inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
-    inst.AnimState:SetDefaultEffectHandle(resolvefilepath("shaders/anim_waterfall_corner.ksh"))
-    -- inst.AnimState:UsePointFiltering(true) -- 会降低物体的抗锯齿效果, 但是可以避免开启深度测试的物体之间的接缝
+        inst.AnimState:SetBuild(build)
+        inst.AnimState:SetBank("waterfall_corner_pl")
+        inst.AnimState:PlayAnimation("idle", false)
+        inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
+        inst.AnimState:SetDefaultEffectHandle(resolvefilepath("shaders/anim_waterfall_corner.ksh"))
+        -- inst.AnimState:UsePointFiltering(true) -- 会降低物体的抗锯齿效果, 但是可以避免开启深度测试的物体之间的接缝
 
-    inst.AnimState:SetLayer(LAYER_BELOW_GROUND)
-    inst.AnimState:SetSortOrder(-2)
-    inst.AnimState:SetDepthTestEnabled(true)
-    inst.AnimState:SetDepthWriteEnabled(true)
+        inst.AnimState:SetLayer(LAYER_BELOW_GROUND)
+        inst.AnimState:SetSortOrder(-2)
+        inst.AnimState:SetDepthTestEnabled(true)
+        inst.AnimState:SetDepthWriteEnabled(true)
 
-    inst._paramrotation = net_float(inst.GUID, "_paramrotation")
+        inst._paramrotation = net_float(inst.GUID, "_paramrotation")
 
-    inst:DoStaticTaskInTime(0, function()
-        local x, _, z = inst.Transform:GetWorldPosition()
-        inst.AnimState:SetFloatParams(x, z, (inst._paramrotation:value() or 0) * DEGREES) -- 不要用setrotation，直接修改paramrotation的参数就行
-    end)
+        inst:DoStaticTaskInTime(0, function()
+            local x, _, z = inst.Transform:GetWorldPosition()
+            inst.AnimState:SetFloatParams(x, z, (inst._paramrotation:value() or 0) * DEGREES) -- 不要用setrotation，直接修改paramrotation的参数就行
+        end)
 
-    inst:AddTag("FX")
-    inst:AddTag("NOCLICK")
+        inst:AddTag("FX")
+        inst:AddTag("NOCLICK")
 
-    if not TheNet:IsDedicated() then
-        inst:DoTaskInTime(0, register_pool)
-    end
+        if not TheNet:IsDedicated() then
+            inst:DoTaskInTime(0, register_pool)
+        end
+    
+        inst.entity:SetPristine()
 
-    inst.entity:SetPristine()
+        if not TheWorld.ismastersim then
+            return inst
+        end
 
-    if not TheWorld.ismastersim then
+        inst.OnSave = OnSave
+        inst.OnLoad = OnLoad
+
+        inst.OnEntitySleep = OnEntitySleep
+        inst.OnEntityWake = OnEntityWake
+
         return inst
     end
 
-    inst.OnSave = OnSave
-    inst.OnLoad = OnLoad
-
-    inst.OnEntitySleep = OnEntitySleep
-    inst.OnEntityWake = OnEntityWake
-
-    return inst
+    return Prefab(name, fn_corner, assets)
 end
 
-return Prefab("waterfall_lilypond", fn, assets),
-    Prefab("waterfall_lilypond_corner", corner_fn, assets)
+return MakeWaterFall("waterfall_lilypond", "waterfall_lilypond_base"),
+    MakeWaterFallCorner("waterfall_lilypond_corner", "waterfall_lilypond_base"),
+    MakeWaterFall("waterfall_saltlake", "waterfall_saltlake_base"),
+    MakeWaterFallCorner("waterfall_saltlake_corner", "waterfall_saltlake_base")

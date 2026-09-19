@@ -38,6 +38,7 @@ SetTaskRegion("pincale",                        "E")
 SetTaskRegion("Deep_wild_ruins4",               "F")
 SetTaskRegion("wild_rainforest",                "F")
 SetTaskRegion("wild_ancient_ruins",             "F")
+SetTaskRegion("Its_All_Pink!",             "F")
 
 ---@param nodes table<string, node>
 ---@param dist number

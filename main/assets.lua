@@ -274,6 +274,10 @@ Assets = {
     Asset("ATLAS", "images/hud/pl_inventoryimages.xml"),
     Asset("ATLAS_BUILD", "images/hud/pl_inventoryimages.xml", 256), -- for minisign
 
+    -- inventoryimages for ATC original contents
+    Asset("ATLAS", "images/hud/pl_inventoryimages_atc.xml"),
+    Asset("ATLAS_BUILD", "images/hud/pl_inventoryimages_atc.xml", 256), -- for minisign
+
     -- boat
     Asset("ATLAS", "images/hud/pl_hud.xml"),
     Asset("IMAGE", "images/hud/pl_hud.tex"),
@@ -459,6 +463,7 @@ for _, v in ipairs(require("main/interior_texture_defs").Assets) do
 end
 
 ToolUtil.RegisterInventoryItemAtlas("images/hud/pl_inventoryimages.xml")
+ToolUtil.RegisterInventoryItemAtlas("images/hud/pl_inventoryimages_atc.xml")
 AddMinimapAtlas("images/minimap/pl_minimap.xml")
 AddMinimapAtlas("interior_minimap/interior_minimap.xml")
 

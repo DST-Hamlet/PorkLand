@@ -29,7 +29,10 @@ local ground_types = {
     WORLD_TILES.PIGRUINS, WORLD_TILES.LILYPOND, WORLD_TILES.GASJUNGLE, WORLD_TILES.SUBURB,
     WORLD_TILES.RAINFOREST, WORLD_TILES.PIGRUINS_NOCANOPY, WORLD_TILES.PLAINS, WORLD_TILES.PAINTED, -- 64
 
-    WORLD_TILES.BATTLEGROUND, WORLD_TILES.INTERIOR, WORLD_TILES.FIELDS
+    WORLD_TILES.BATTLEGROUND, WORLD_TILES.INTERIOR, WORLD_TILES.FIELDS, --67
+
+    --ATC new
+    WORLD_TILES.SALTBEACH, WORLD_TILES.SALTLAKE, -- 69
 }
 
 local allow_tiles_deeprainforest =
@@ -37,6 +40,11 @@ local allow_tiles_deeprainforest =
     [WORLD_TILES.DEEPRAINFOREST] = true,
     [WORLD_TILES.GASJUNGLE] = true,
     [WORLD_TILES.PIGRUINS] = true,
+}
+local allow_tiles_lilypad =
+{
+    [WORLD_TILES.LILYPOND] = true,
+    [WORLD_TILES.SALTLAKE] = false,
 }
 
 AllLayouts["PorkLandStart"] = StaticLayout.Get("map/static_layouts/porkland_start", {
@@ -57,6 +65,7 @@ AllLayouts["lilypad"] = StaticLayout.Get("map/static_layouts/lilypad", {
     }
 })
 AllLayouts["lilypad"].ground_types = ground_types
+AllLayouts["lilypad"].allow_tiles = allow_tiles_lilypad
 
 AllLayouts["lilypad2"] = StaticLayout.Get("map/static_layouts/lilypad_2", {
     water = true,
@@ -66,6 +75,7 @@ AllLayouts["lilypad2"] = StaticLayout.Get("map/static_layouts/lilypad_2", {
     }
 })
 AllLayouts["lilypad2"].ground_types = ground_types
+AllLayouts["lilypad2"].allow_tiles = allow_tiles_lilypad
 
 AllLayouts["PigRuinsHead"] = StaticLayout.Get("map/static_layouts/pig_ruins_head", {
     areas = {

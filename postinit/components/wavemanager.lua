@@ -48,6 +48,7 @@ end
 
 local shimmer = {
     [WORLD_TILES.LILYPOND] = {per_sec = 80, spawn_rate = 0, tryspawn = TrySpawnIAWavesOrShore},
+    [WORLD_TILES.SALTLAKE] = {per_sec = 80, spawn_rate = 0, tryspawn = TrySpawnIAWavesOrShore},
 }
 
 AddComponentPostInit("wavemanager", function(self)

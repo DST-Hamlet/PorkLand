@@ -3730,6 +3730,11 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.TURF_RAINFOREST"
 msgid "It's a chunk of ground."
 msgstr "一块地皮。"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.TURF_SALTBEACH
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.TURF_SALTBEACH"
+msgid "It's a chunk of ground."
+msgstr "一块地皮。"
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.VAMPIREBAT.DEAD
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.VAMPIREBAT.DEAD"
 msgid "I feel a bit safer."
@@ -96875,6 +96880,11 @@ msgctxt "STRINGS.NAMES.TURF_RAINFOREST"
 msgid "Rainforest Turf"
 msgstr "雨林地皮"
 
+#. STRINGS.NAMES.TURF_SALTBEACH
+msgctxt "STRINGS.NAMES.TURF_SALTBEACH"
+msgid "Salt Desert Turf"
+msgstr "盐漠地皮"
+
 #. STRINGS.NAMES.VAMPIREBAT
 msgctxt "STRINGS.NAMES.VAMPIREBAT"
 msgid "Vampire Bat"
@@ -98809,6 +98819,21 @@ msgstr "梅贝尔·多罗西·薇勒尔"
 msgctxt "STRINGS.CHARACTER_NAMES.wagstaff"
 msgid "Robert Wagstaff"
 msgstr "罗伯特·瓦格斯塔夫"
+
+#. STRINGS.CHARACTER_QUOTES.wilba
+msgctxt "STRINGS.CHARACTER_QUOTES.wilba"
+msgid "\"MAKE KINGDOM PROUD!\""
+msgstr "“让王国为我骄傲！”"
+
+#. STRINGS.CHARACTER_QUOTES.wheeler
+msgctxt "STRINGS.CHARACTER_QUOTES.wheeler"
+msgid "\"The whole world's mine to explore!\""
+msgstr "“整个世界都在等着我去探索！”"
+
+#. STRINGS.CHARACTER_QUOTES.wagstaff
+msgctxt "STRINGS.CHARACTER_QUOTES.wagstaff"
+msgid "\"Eureka! My destiny awaits!\""
+msgstr "“尤里卡！我的宿命在等着我！”"
 
 #. STRINGS.SKIN_NAMES.wilba_none
 msgctxt "STRINGS.SKIN_NAMES.wilba_none"

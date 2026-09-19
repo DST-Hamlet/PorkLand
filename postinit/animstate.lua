@@ -1,3 +1,4 @@
+local GetModConfigData = GetModConfigData
 GLOBAL.setfenv(1, GLOBAL)
 
 local AnimState_Hooked = {
@@ -11,7 +12,8 @@ local AnimState_Hooked = {
     end
 }
 
-local PLAYER_REPLACE_ANIMS =
+local PLAYER_REPLACE_ANIMS ={}
+local PLAYER_REPLACE_ANIMS_FOR_CLASSICAL =
 {
     ["wilson"] =
     {
@@ -20,9 +22,39 @@ local PLAYER_REPLACE_ANIMS =
         ["atk"] = "atk_old",
         ["hit"] = "hit_old",
         ["hit_goo"] = "hit_goo_old",
+        --["idle_inaction_sanity"] = "idle_inaction_sanity_fixed",
+    }
+}
+local PLAYER_REPLACE_ANIMS_FOR_FIX =
+{
+    ["wilson"] =
+    {
+        --["atk_pre"] = "atk_pre_old",
+        --["atk_lag"] = "atk_lag_old",
+        --["atk"] = "atk_old",
+        --["hit"] = "hit_old",
+        --["hit_goo"] = "hit_goo_old",
         ["idle_inaction_sanity"] = "idle_inaction_sanity_fixed",
     }
 }
+
+local function MergePlayerReplaceAnims(anims)
+    for bank, replacements in pairs(anims) do
+        PLAYER_REPLACE_ANIMS[bank] = PLAYER_REPLACE_ANIMS[bank] or {}
+        for animname, replacement in pairs(replacements) do
+            PLAYER_REPLACE_ANIMS[bank][animname] = replacement
+        end
+    end
+end
+
+-- Compatibility fixes always apply
+MergePlayerReplaceAnims(PLAYER_REPLACE_ANIMS_FOR_FIX)
+
+-- Classical (old) animations only when enabled
+if not GetModConfigData("classical_animations") then
+    MergePlayerReplaceAnims(PLAYER_REPLACE_ANIMS_FOR_CLASSICAL)
+end
+
 
 local AnimState_Player = {}
 AnimState_Player.__index = AnimState_Player
