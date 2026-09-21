@@ -7,7 +7,6 @@ local assets =
     Asset("ANIM", "anim/waterfall_lilypond_corner_base.zip"),
 
     Asset("ANIM", "anim/waterfall_saltlake_base.zip"),
-    Asset("ANIM", "anim/waterfall_saltlake_corner_base.zip"),
 
     Asset("SHADER", "shaders/anim_waterfall.ksh"),
     Asset("SHADER", "shaders/anim_waterfall_corner.ksh"),

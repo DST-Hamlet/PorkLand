@@ -84,6 +84,7 @@ PrefabFiles = {
     "falloff_fx",
     "fast_farmplot_planted",
     "firerain",
+    "flamingo",
     "flotsam",
     "flower_rainforest",
     "floweroflife",
