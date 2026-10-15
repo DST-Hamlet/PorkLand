@@ -48,18 +48,19 @@ return Class(function(self, inst)
     -- NOTE: In ds lush have no moisture gain at all, this is bad as
     -- percip will get stuck at the same value all season long
     -- so the values have been slightly modified to be more immersive
+    -- 蓄雨速度
     local MOISTURE_RATES = {
         MIN = {
             temperate = .25,
             humid = 3,
             lush = 0,
-            aporkalypse = .1
+            aporkalypse = 0
         },
         MAX = {
             temperate = 1.0,
             humid = 3.75,
             lush = -0.2,  -- in ds it's 0
-            aporkalypse = .5
+            aporkalypse = 0
         }
     }
     local MOISTURE_SYNC_PERIOD = 100
@@ -69,7 +70,7 @@ return Class(function(self, inst)
         temperate = {min = 2, max = 5.5},
         humid = {min = 1, max = 4},
         lush = {min = 2, max = 5.5},
-        aporkalypse = {min = 2, max = 8},
+        aporkalypse = {min = 2, max = 5.5},
     }
 
     local MOISTURE_FLOOR_MULTIPLIERS =
@@ -823,7 +824,7 @@ return Class(function(self, inst)
             end
         elseif _moistureceil:value() > 0 then
             -- Accumulate moisture
-            local moisture = _moisture:value() + _moisturerate:value() * dt
+            local moisture = math.max(0, _moisture:value() + _moisturerate:value() * dt)
             if moisture >= _moistureceil:value() then
                 if _ismastersim then
                     StartPrecipitation(_temperature)
