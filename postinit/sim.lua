@@ -4,6 +4,9 @@ function CalculateLight(light, dist)
     if dist > light:GetCalculatedRadius() then
         return 0, 0, 0
     end
+    if light:GetRadius() == 0 then
+        return 0, 0, 0
+    end
     -- thanks to HalfEnder776
     local A = math.log(light:GetIntensity())
     local B
@@ -29,7 +32,6 @@ function CalculateLight(light, dist)
 end
 
 local REGISTERED_LIGHT_TAGS = TheSim:RegisterFindTags({"lightsource"}, {"INLIMBO"})
-local Sim = getmetatable(TheSim).__index
 local old_GetLightAtPoint = Sim.GetLightAtPoint
 Sim.GetLightAtPoint = function(sim, x, y, z, light_threshold, ...) -- 和原版GetLightAtPoint的算法还是存在差别
     if TheWorld and TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
@@ -86,6 +88,95 @@ function CanEntitySeeTarget(inst, target, ...)
     return _CanEntitySeeTarget(inst, target, ...)
 end
 
+local mousetest_rotatingbillboard = {}
+
+function SetRotatingBillBoardTest(entity, active) -- 会造成额外的性能开销
+    mousetest_rotatingbillboard[entity] = active
+end
+
+local _GetEntitiesAtScreenPoint = Sim.GetEntitiesAtScreenPoint
+Sim.GetEntitiesAtScreenPoint = function(sim, screen_x, screen_y, dont_ignore_ui, ...)
+    local entities = _GetEntitiesAtScreenPoint(sim, screen_x, screen_y, dont_ignore_ui, ...)
+    if entities[1] and entities[1].UITransform then
+        -- Do Nothing
+    elseif next(mousetest_rotatingbillboard) then
+        for i = #entities, 1, -1 do
+            if entities[i] and mousetest_rotatingbillboard[entities[i]] then
+                table.remove(entities,i)
+            end
+        end
+
+        local rb_entities = {}
+
+        local origin_pos = Vector3(TheSim:ProjectScreenPos(screen_x, screen_y))
+        local plane_pos
+        local plane_normal = Vector3(2, 1, 0)
+        local camera_pos = TheCamera:GetRealPos()
+        local mouse_dir = (origin_pos - camera_pos):Normalize()
+        local fake_pos
+        for entity in pairs(mousetest_rotatingbillboard) do
+            if entity == nil or not entity:IsValid() then
+                mousetest_rotatingbillboard[entity] = nil
+            else
+                plane_pos = entity:GetPosition()
+                if plane_pos and plane_pos:DistSq(origin_pos) < PLAYER_CAMERA_SEE_DISTANCE * PLAYER_CAMERA_SEE_DISTANCE then
+                    fake_pos = PlaneLineIntersection(plane_pos, plane_normal, camera_pos, mouse_dir)
+
+                    fake_pos = fake_pos + Vector3(- fake_pos.y * 0.03, fake_pos.y * 0.06, 0)
+                    fake_pos = fake_pos + Vector3(- fake_pos.y * 0.5, - fake_pos.y, 0)
+
+                    local angle = 90 * DEGREES
+                    local d_pos = fake_pos - plane_pos
+                    if entity.Transform:GetRotation() < 0 or entity.Transform:GetRotation() > 180 then -- 由于目前平面法线向量是固定的, 因此需要这么做
+                        d_pos.z = - d_pos.z
+                    end
+                    d_pos = Vector3(d_pos.x * math.cos(angle) - d_pos.z * math.sin(angle), d_pos.y, d_pos.x * math.sin(angle) + d_pos.z * math.cos(angle))
+                    fake_pos = plane_pos + d_pos
+
+                    local fakse_screen_x, fakse_screen_y = TheSim:GetScreenPos(fake_pos:Get())
+
+                    local entities_fake = _GetEntitiesAtScreenPoint(sim, fakse_screen_x, fakse_screen_y, false, ...)
+                    for i, v in ipairs(entities_fake) do
+                        if v == entity then
+                            table.insert(rb_entities, entity)
+                            break
+                        end
+                    end
+                end
+            end
+        end
+
+        for k, v in pairs(rb_entities) do
+            for i = 1, #entities + 1 do
+                if entities[i] == nil then
+                    table.insert(entities, i, v)
+                    break
+                end
+                if entities[i].Transform and TheCamera:GetPosDepth(v:GetPosition()) < TheCamera:GetPosDepth(entities[i]:GetPosition()) then
+                    table.insert(entities, i, v)
+                    break
+                end
+            end
+        end
+    end
+
+    for i = #entities, 1, -1 do
+        if entities[i] and entities[i].MouseTest and not entities[i]:MouseTest() then
+            table.remove(entities,i)
+        end
+    end
+
+    return entities
+end
+
+
+-------------------------------------------------
+
+------------ EntitySleep and Update -------------
+
+-------------------------------------------------
+
+
 local _OnEntitySleep = OnEntitySleep
 function OnEntitySleep(guid, ...)
     _OnEntitySleep(guid, ...)
@@ -115,16 +206,26 @@ function SpawnPrefab(...)
     return inst
 end
 
-pl_ProfilerPop = false
-
-local update_start_time = os.clock()
+scheduled_prefabs = {}
+scheduler_hooked = false
 
 local _Update = Update
 function Update(dt, ...)
-    if pl_ProfilerPop then
-        print("--------------START UPDATE--------------")
-        update_start_time = os.clock()
-    end
+    -- if not scheduler_hooked then
+    --     local Scheduler = getmetatable(scheduler).__index
+    --     local _ExecutePeriodic = Scheduler.ExecutePeriodic
+    --     function Scheduler:ExecutePeriodic(period, fn, limit, initialdelay, id, ...)
+    --         local hooked_fn = function(...)
+    --             if id and Ents[id] and Ents[id].prefab then
+    --                 scheduled_prefabs[Ents[id].prefab] = scheduled_prefabs[Ents[id].prefab] and scheduled_prefabs[Ents[id].prefab] + 1 or 1
+    --             end
+    --             return fn(...)
+    --         end
+    --         return _ExecutePeriodic(self, period, hooked_fn, limit, initialdelay, id, ...)
+    --     end
+    --     scheduler_hooked = true
+    -- end
+    -- scheduled_prefabs = {}
 
     _Update(dt, ...)
 
@@ -146,25 +247,14 @@ function Update(dt, ...)
 
     NewFrameEnts = {}
 
-    if pl_ProfilerPop then
-        print("Update Spend Time:", os.clock() - update_start_time)
-        print("--------------STOP UPDATE--------------")
-    end
-end
-
-local _WallUpdate = WallUpdate
-function WallUpdate(dt, ...)
-    if pl_ProfilerPop then
-        print("--------------START WALLUPDATE--------------")
-        update_start_time = os.clock()
-    end
-
-    _WallUpdate(dt, ...)
-
-    if pl_ProfilerPop then
-        print("WallUpdate Spend Time:", os.clock() - update_start_time)
-        print("--------------STOP WALLUPDATE--------------")
-    end
+    -- local count_s = 0
+    -- for k, v in pairs(scheduled_prefabs) do
+    --     count_s = count_s + v
+    --     print(k, v)
+    -- end
+    -- print("------------------------")
+    -- print("count", count_s)
+    -- print("------------------------")
 end
 
 local scheduled_post_update_functions = {}
@@ -181,23 +271,4 @@ end
 
 function RunOnPostUpdate(fn)
     table.insert(scheduled_post_update_functions, fn)
-end
-
-local last_profiler_time = os.clock()
-local last_profiler_name = "default"
-
-local _ProfilerPush = Sim.ProfilerPush
-function Sim.ProfilerPush(sim, name, ...)
-    last_profiler_time = os.clock()
-    last_profiler_name = name
-    return _ProfilerPush(sim, name, ...)
-end
-
-local _ProfilerPop = Sim.ProfilerPop
-function Sim.ProfilerPop(sim, ...)
-    if pl_ProfilerPop then
-        local spend_time = os.clock() - last_profiler_time
-        print("ProfilerPop", last_profiler_name, spend_time)
-    end
-    return _ProfilerPop(sim, ...)
 end

@@ -110,7 +110,7 @@ local function MakeRelic(num)
 
         inst.OnEntityWake = OnEntityWake
         inst.OnRemoveEntity = OnRemoveEntity
-        inst.relicnum = num
+        inst.relicnum = tostring(num)
 
         MakeHauntableLaunch(inst)
 

@@ -168,7 +168,6 @@ function PlayerController:OnUpdate(dt)
     return unpack(ret)
 end
 
-local Sim = getmetatable(TheSim).__index
 local _FindEntities_Registered = Sim.FindEntities_Registered
 local _GetAttackTarget = PlayerController.GetAttackTarget
 function PlayerController:GetAttackTarget(force_attack, force_target, isretarget, use_remote_predict)

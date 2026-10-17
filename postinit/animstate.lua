@@ -1,6 +1,17 @@
 GLOBAL.setfenv(1, GLOBAL)
 
-local REPLACE_ANIMS =
+local AnimState_Hooked = {
+    __index = function(t, key)
+        local function forwarded(self, ...)
+            local original = self.inst.Old_AnimState[key]
+            return original(self.inst.Old_AnimState, ...)
+        end
+        t[key] = forwarded
+        return forwarded
+    end
+}
+
+local PLAYER_REPLACE_ANIMS =
 {
     ["wilson"] =
     {
@@ -13,79 +24,127 @@ local REPLACE_ANIMS =
     }
 }
 
-local anim_to_entity = {}
+local AnimState_Player = {}
+AnimState_Player.__index = AnimState_Player
+setmetatable(AnimState_Player, AnimState_Hooked)
 
-local animstate_banks = {}
+function MakeAnimStatePlayer(inst)
+    local new_AnimState = {inst = inst}
+    setmetatable(new_AnimState, AnimState_Player)
+    inst.Old_AnimState = inst.AnimState
+    inst.AnimState = new_AnimState
+end
 
-local function clean_up_mapping(inst)
-    if inst.AnimState then
-        anim_to_entity[inst.AnimState] = nil
-        animstate_banks[inst.AnimState] = nil
+function AnimState_Player:SetBank(bank, ...)
+    self.bank = bank
+    return self.inst.Old_AnimState:SetBank(bank, ...)
+end
+
+AnimState_Player.PlayAnimation = function(self, animname, ...)
+    if PLAYER_REPLACE_ANIMS[self.bank] and PLAYER_REPLACE_ANIMS[self.bank][animname] then
+        return self.inst.Old_AnimState:PlayAnimation(PLAYER_REPLACE_ANIMS[self.bank][animname], ...)
+    else
+        return self.inst.Old_AnimState:PlayAnimation(animname, ...)
     end
 end
 
-local _AddAnimState = Entity.AddAnimState
-function Entity:AddAnimState(...)
-    local animstate = _AddAnimState(self, ...)
-
-    local guid = self:GetGUID()
-    local inst = Ents[guid]
-    anim_to_entity[animstate] = inst
-    inst:ListenForEvent("onremove", clean_up_mapping)
-
-    return animstate
-end
-
-local _SetBank = AnimState.SetBank
-function AnimState:SetBank(bank, ...)
-    animstate_banks[self] = bank
-    return _SetBank(self, bank, ...)
-end
-
-local _PlayAnimation = AnimState.PlayAnimation
-AnimState.PlayAnimation = function(self, animname, ...)
-    local bank = animstate_banks[self]
-    if REPLACE_ANIMS[bank] and REPLACE_ANIMS[bank][animname] then
-        return _PlayAnimation(self, REPLACE_ANIMS[bank][animname], ...)
+AnimState_Player.PushAnimation = function(self, animname, ...)
+    if PLAYER_REPLACE_ANIMS[self.bank] and PLAYER_REPLACE_ANIMS[self.bank][animname] then
+        return self.inst.Old_AnimState:PushAnimation(PLAYER_REPLACE_ANIMS[self.bank][animname], ...)
     else
-        return _PlayAnimation(self, animname, ...)
-    end
-end
-
-local _PushAnimation = AnimState.PushAnimation
-AnimState.PushAnimation = function(self, animname, ...)
-    local bank = animstate_banks[self]
-    if REPLACE_ANIMS[bank] and REPLACE_ANIMS[bank][animname] then
-        return _PushAnimation(self, REPLACE_ANIMS[bank][animname], ...)
-    else
-        return _PushAnimation(self, animname, ...)
+        return self.inst.Old_AnimState:PushAnimation(animname, ...)
     end
 end
 
 local _IsCurrentAnimation = AnimState.IsCurrentAnimation
-AnimState.IsCurrentAnimation = function(self, animname, ...)
-    local bank = animstate_banks[self]
-    if REPLACE_ANIMS[bank] and REPLACE_ANIMS[bank][animname] then
-        return _IsCurrentAnimation(self, REPLACE_ANIMS[bank][animname], ...)
+AnimState_Player.IsCurrentAnimation = function(self, animname, ...)
+    if PLAYER_REPLACE_ANIMS[self.bank] and PLAYER_REPLACE_ANIMS[self.bank][animname] then
+        return self.inst.Old_AnimState:IsCurrentAnimation(PLAYER_REPLACE_ANIMS[self.bank][animname], ...)
     else
-        return _IsCurrentAnimation(self, animname, ...)
+        return self.inst.Old_AnimState:IsCurrentAnimation(animname, ...)
     end
 end
 
-AnimState._Hide = AnimState.Hide
-AnimState.Hide = function(self, layername, ...)
-    local inst = anim_to_entity[self]
-    if inst and inst.Anim_Hide_Hook then
-        return inst.Anim_Hide_Hook(self, layername, ...)
+AnimState_Player.Hide = function(self, layername, ...)
+    if layername == "HAIR" then
+        self.inst.Old_AnimState:Hide("HAIRFRONT")
     end
-    return AnimState._Hide(self, layername, ...)
+    return self.inst.Old_AnimState:Hide(layername, ...)
 end
 
-AnimState._Show = AnimState.Show
-AnimState.Show = function(self, layername, ...)
-    local inst = anim_to_entity[self]
-    if inst and inst.Anim_Show_Hook then
-        return inst.Anim_Show_Hook(self, layername, ...)
+AnimState_Player.Show = function(self, layername, ...)
+    if layername == "HAIR" then
+        self.inst.Old_AnimState:Show("HAIRFRONT")
     end
-    return AnimState._Show(self, layername, ...)
+    return self.inst.Old_AnimState:Show(layername, ...)
+end
+
+----------------------------------------------------------------------------------
+
+
+local Transform_Hooked = {
+    __index = function(t, key)
+        local function forwarded(self, ...)
+            local original = self.inst.Old_Transform[key]
+            return original(self.inst.Old_Transform, ...)
+        end
+        t[key] = forwarded
+        return forwarded
+    end
+}
+
+local Transform_RotatingBillBoard = {}
+Transform_RotatingBillBoard.__index = Transform_RotatingBillBoard
+setmetatable(Transform_RotatingBillBoard, Transform_Hooked)
+
+Transform_RotatingBillBoard.SetRotation = function(self, rot, ...)
+    self.inst.components.rotatingbillboard:SetRotation(rot)
+    return self.inst.Old_Transform:SetRotation(0, ...)
+end
+
+Transform_RotatingBillBoard.GetRotation = function(self, ...)
+    return self.inst.components.rotatingbillboard:GetRotation()
+end
+
+Transform_RotatingBillBoard.SetPosition = function(self, ...)
+    self.inst.Old_Transform:SetPosition(...)
+    self.inst.components.rotatingbillboard:UpdateAnim()
+end
+
+function MakeTransformRotatingBillBoard(inst)
+    local new_Transform = {inst = inst}
+    setmetatable(new_Transform, Transform_RotatingBillBoard)
+    inst.Old_Transform = inst.Transform
+    inst.Transform = new_Transform
+end
+
+
+local AnimState_RotatingBillBoard = {}
+AnimState_RotatingBillBoard.__index = AnimState_RotatingBillBoard
+setmetatable(AnimState_RotatingBillBoard, AnimState_Hooked)
+
+AnimState_RotatingBillBoard.SetHaunted = function(self, haunted, ...)
+    self.inst.components.rotatingbillboard:SetHaunt(haunted, ...)
+end
+
+local function UpdateAnim_RotatingBillboard(inst)
+    inst.components.rotatingbillboard:UpdateAnim()
+end
+
+local function OnReplica_RotatingBillboard(inst)
+    inst:RunOnPostUpdate(UpdateAnim_RotatingBillboard)
+end
+
+function MakeAnimStateRotatingBillBoard(inst)
+    MakeTransformRotatingBillBoard(inst)
+
+    local new_AnimState = {inst = inst}
+    setmetatable(new_AnimState, AnimState_RotatingBillBoard)
+    inst.Old_AnimState = inst.AnimState
+    inst.AnimState = new_AnimState
+
+    inst:AddComponent("rotatingbillboard")
+    inst.Transform:SetRotation(inst.Old_Transform:GetRotation())
+
+    inst:AddOnReplicatedPost(OnReplica_RotatingBillboard)
 end

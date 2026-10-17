@@ -153,6 +153,9 @@ local function OnInteriorChange(inst, data)
 end
 
 AddPlayerPostInit(function(inst)
+    MakeAnimStatePlayer(inst)
+    inst.AnimState.bank = "wilson"
+
     -- inst.AnimState:AddOverrideBuild("player_actions_roll") -- 表现效果不太好
     inst.AnimState:AddOverrideBuild("player_boat_death")
 
@@ -169,7 +172,7 @@ AddPlayerPostInit(function(inst)
                     inst:AddComponent("cloudpuffmanager")
                     inst:AddComponent("persistencevision")
                     inst:AddComponent("tilechangewatcher")
-                    inst:AddComponent("falloffmanager")
+                    -- inst:AddComponent("falloffmanager")
                     inst:AddComponent("pl_tilemanager")
                 end
             end

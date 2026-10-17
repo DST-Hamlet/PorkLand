@@ -342,3 +342,44 @@ end
 function EntityScript:IsInSameArea(target)
     return self:IsInSameIsland(target) or self:IsInSameRoomGroup(target)
 end
+
+function EntityScript:AddOnReplicatedPost(fn)
+    if not self.replicate_post_fns then
+        self.replicate_post_fns = {}
+    end
+    table.insert(self.replicate_post_fns, fn)
+end
+
+local _ReplicateEntity = EntityScript.ReplicateEntity
+function EntityScript:ReplicateEntity(...)
+    _ReplicateEntity(self, ...)
+
+    if self.replicate_post_fns then
+        for i, v in ipairs(self.replicate_post_fns) do
+            v(self)
+        end
+        self.replicate_post_fns = nil
+    end
+end
+
+-- local _DoPeriodicTask = EntityScript.DoPeriodicTask
+-- function EntityScript:DoPeriodicTask(time, fn, ...)
+--     local hooked_fn = function(...)
+--         if self.prefab then
+--             scheduled_prefabs[self.prefab] = scheduled_prefabs[self.prefab] and scheduled_prefabs[self.prefab] + 1 or 1
+--         end
+--         return fn(...)
+--     end
+--     return _DoPeriodicTask(self, time, hooked_fn, ...)
+-- end
+-- 
+-- local _DoTaskInTime = EntityScript.DoTaskInTime
+-- function EntityScript:DoTaskInTime(time, fn, ...)
+--     local hooked_fn = function(...)
+--         if self.prefab then
+--             scheduled_prefabs[self.prefab] = scheduled_prefabs[self.prefab] and scheduled_prefabs[self.prefab] + 1 or 1
+--         end
+--         return fn(...)
+--     end
+--     return _DoTaskInTime(self, time, hooked_fn, ...)
+-- end

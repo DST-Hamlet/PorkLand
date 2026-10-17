@@ -8,6 +8,16 @@ local function OnUpdate(inst, self)
     self:DoUpdate()
 end
 
+local function GetWetnessRate()
+    if TheWorld:HasTag("porkland") then
+        return TheWorld.net.components.plateauweather:GetMoistureRate()
+    end
+
+    local CalculateWetnessRate, index, parent_fn = ToolUtil.GetUpvalue(TheWorld.net.components.weather.GetDebugString, "CalculateWetnessRate")
+    local wetrate = CalculateWetnessRate(TheWorld.state.temperature, TheWorld.state.precipitationrate)
+    return wetrate
+end
+
 local MoistureOverride = Class(function(self, inst)
     self.inst = inst
 
@@ -59,7 +69,7 @@ function MoistureOverride:DoUpdate(dt)
 
     local rate_additive = self.rate_add:Get() * dt
     if rate_additive <= 0 then
-        local wetrate = TheWorld.net.components.plateauweather:GetMoistureRate()
+        local wetrate = GetWetnessRate()
         self.rate_mult:SetModifier(WETNESS_SOURCE_WEATHER, wetrate)
     end
 

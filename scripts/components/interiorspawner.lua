@@ -746,7 +746,7 @@ function InteriorSpawner:ClearInteriorContents(pos, exterior_pos)
             teleport(v, exterior_pos)
             v:SnapCamera()
         else
-            TheWorld.components.playerspawner:SpawnAtNextLocation(v)
+            TheWorld.components.playerspawner:SpawnAtNextLocation(TheWorld, v)
             v:SnapCamera()
         end
     end
@@ -1152,7 +1152,7 @@ function InteriorSpawner:DemolishPlayerRoom(room_id, exit_pos)
             teleport(v, exit_pos)
             v:SnapCamera()
         else
-            TheWorld.components.playerspawner:SpawnAtNextLocation(v)
+            TheWorld.components.playerspawner:SpawnAtNextLocation(TheWorld, v)
             v:SnapCamera()
         end
     end

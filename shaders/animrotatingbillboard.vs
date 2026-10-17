@@ -11,6 +11,7 @@ attribute vec4 POS2D_UV;                  // x, y, u + samplerIndex * 2, v
 
 varying vec3 PS_TEXCOORD;
 varying vec3 PS_POS;
+varying vec3 HAUNT_POS;
 
 #if defined( FADE_OUT )
     uniform mat4 STATIC_WORLD_MATRIX;
@@ -49,6 +50,7 @@ void main()
 
     vec3 object_pos = POSITION.xyz;
 	vec4 world_pos = MatrixW * vec4( object_pos, 1.0 );
+	HAUNT_POS = world_pos.xyz;
 
 	vec3 origin = vec3(X, 0, Z);
 	vec3 offset = world_pos.xyz - origin;

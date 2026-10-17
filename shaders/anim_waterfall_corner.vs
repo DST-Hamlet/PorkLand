@@ -10,6 +10,8 @@ uniform vec3 FLOAT_PARAMS;
 attribute vec4 POS2D_UV;                  // x, y, u + samplerIndex * 2, v
 
 varying vec3 PS_TEXCOORD;
+varying vec3 PS_TEXCOORD_2;
+varying float VERTEX_WEIGHT;
 varying vec3 PS_POS;
 
 const float INDEX_SIZE = 9.0; // 预留的顶点数据数量
@@ -89,6 +91,12 @@ void main()
 	PS_TEXCOORD = TEXCOORD0;
 	PS_TEXCOORD.x = UVOffset[waterfall_index] * 0.15; // 纹理缩放，以及传递纹理坐标数据
 	PS_TEXCOORD.y = float(corner_index) * 0.25;
+	PS_TEXCOORD_2 = PS_TEXCOORD;
+	VERTEX_WEIGHT = 0.25;
+	if (waterfall_index == 0) {
+		PS_TEXCOORD_2.y = float(corner_index - 1) * 0.25;
+		VERTEX_WEIGHT = 0.0;
+	}
 	PS_POS = world_pos.xyz;
 
 }

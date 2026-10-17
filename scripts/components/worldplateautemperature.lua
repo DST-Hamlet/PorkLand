@@ -20,7 +20,7 @@ local TEMPERATURE_NOISE_MAG = 8
 local MIN_TEMPERATURE = 30
 local HUMID_CROSSOVER_TEMPERATURE = 35
 local LUSH_CROSSOVER_TEMPERATURE = 40
--- local APORKALYPSE_TEMPERATURE = 40
+local APORKALYPSE_TEMPERATURE = 40
 
 local PHASE_TEMPERATURES =
 {
@@ -64,6 +64,7 @@ end or nil
 local function CalculateSeasonTemperature(season, progress)
     return (season == "humid" and math.sin(PI * progress) * (MIN_TEMPERATURE - HUMID_CROSSOVER_TEMPERATURE) + HUMID_CROSSOVER_TEMPERATURE)
         or (season == "lush" and Lerp(HUMID_CROSSOVER_TEMPERATURE, LUSH_CROSSOVER_TEMPERATURE, progress))
+        or (season == "aporkalypse" and APORKALYPSE_TEMPERATURE)
         or Lerp(LUSH_CROSSOVER_TEMPERATURE, HUMID_CROSSOVER_TEMPERATURE, progress)
 end
 

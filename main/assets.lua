@@ -391,11 +391,16 @@ Assets = {
     Asset("ANIM", "anim/generating_hamlet.zip"),
 
     -- Billboard
+    --[[
+    .\ShaderCompiler.exe -little "animrotatingbillboard" "animrotatingbillboard.vs" "animrotatingbillboard.ps" "animrotatingbillboard.ksh" -oglsl
+    .\ShaderCompiler.exe -little "animrotatingbillboard_bloom" "animrotatingbillboard.vs" "animrotatingbillboard_bloom.ps" "animrotatingbillboard_bloom.ksh" -oglsl
+    .\ShaderCompiler.exe -little "animrotatingbillboard_bloom_haunt" "animrotatingbillboard.vs" "animrotatingbillboard_bloom_haunt.ps" "animrotatingbillboard_bloom_haunt.ksh" -oglsl
+    --]]
     Asset("SHADER", "shaders/animrotatingbillboard.ksh"),
+    Asset("SHADER", "shaders/animrotatingbillboard_bloom.ksh"),
+    Asset("SHADER", "shaders/animrotatingbillboard_bloom_haunt.ksh"),
 
-    -- Waterfall and Clouds
-    Asset("SHADER", "shaders/anim_waterfall.ksh"),
-    Asset("SHADER", "shaders/anim_waterfall_corner.ksh"),
+    -- Clouds
     Asset("SHADER", "shaders/vfx_particle_cutout.ksh"),
 
     -- Vertical

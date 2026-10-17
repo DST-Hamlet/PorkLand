@@ -713,14 +713,14 @@ local states = {
             inst.components.bloomer:PopBloom("playerghostbloom")
             inst.AnimState:SetLightOverride(0)
             inst:ApplySkinOverrides() -- 此函数已包含inst.AnimState:SetBank("wilson")
-            
+
             if source and source:IsValid() then
                 inst.Physics:Teleport(source.Transform:GetWorldPosition())
                 if source.OnResurrect then
                     source:OnResurrect(inst)
                 end
             end
-            
+
             if inst.components.playercontroller ~= nil then
                 inst.components.playercontroller:Enable(false)
             end
@@ -1194,7 +1194,7 @@ local states = {
 
         onupdate = function(inst)
             inst.components.locomotor:RunForward()
-            
+
             local boat = inst.replica.sailor:GetBoat()
             if boat and boat.replica.sailable and boat.replica.sailable:GetIsSailEquipped() then
                 inst.sg:GoToState("sail")
@@ -1243,7 +1243,13 @@ local states = {
             end
         end,
 
-        onexit = RowEquipUpdate,
+        onexit = function(inst)
+            local boat = inst.replica.sailor:GetBoat()
+            if boat and boat.replica.sailable then
+                boat.replica.sailable:PlayAnim("idle_loop")
+            end
+            RowEquipUpdate(inst)
+        end,
 
         events = {
             EventHandler("animqueueover", function(inst)
@@ -1291,7 +1297,7 @@ local states = {
             local boat = inst.replica.sailor:GetBoat()
             if boat and boat.replica.sailable and not boat.replica.sailable:GetIsSailEquipped() then
                 inst.sg:GoToState("pl_row")
-        
+
                 if not inst:HasTag("mime") then
                     inst.AnimState:OverrideSymbol("paddle", "swap_paddle", "paddle")
                 end
@@ -1377,7 +1383,7 @@ local states = {
             local boat = inst.replica.sailor:GetBoat()
             if boat and boat.replica.sailable and not boat.replica.sailable:GetIsSailEquipped() then
                 inst.sg:GoToState("pl_row")
-        
+
                 if not inst:HasTag("mime") then
                     inst.AnimState:OverrideSymbol("paddle", "swap_paddle", "paddle")
                 end
@@ -1668,7 +1674,7 @@ local states = {
 			FrameEvent(22, function(inst)
 				inst.AnimState:SetLayer(LAYER_BELOW_GROUND)
 			end),
-            
+
 			FrameEvent(30, function(inst)
                 StartTeleporting(inst)
 
@@ -1862,11 +1868,6 @@ local states = {
             inst.components.locomotor:Stop()
             inst.AnimState:PlayAnimation("give")
             inst.AnimState:PushAnimation("give_pst", false)
-            if inst.components.playercontroller then
-                -- inst.components.playercontroller:EnableMapControls(false)
-                inst.components.playercontroller:Enable(false)
-            end
-
             local buffaction = inst:GetBufferedAction()
             local target = buffaction ~= nil and buffaction.target or nil
             if target and target.components.door then
@@ -1877,16 +1878,22 @@ local states = {
         timeline =
         {
             TimeEvent(2 * FRAMES, function(inst)
+                if inst.components.playercontroller then
+                    -- inst.components.playercontroller:EnableMapControls(false) -- 用于让玩家强制退出地图界面
+                    inst.components.playercontroller:Enable(false)
+                end
+    
                 local buffaction = inst:GetBufferedAction()
                 local target = buffaction ~= nil and buffaction.target or nil
                 if target and not target.components.door:IsLocked() then
                     inst:ScreenFade(false, 0.4)
-                    inst.sg.mem.screenfaded = true
+                    inst.sg.statemem.screenfaded = true
                 end
-                inst:DoStaticTaskInTime(0.6, function()
-                    if inst.sg.mem.screenfaded then
+
+                inst.sg.statemem.fadetask = inst:DoStaticTaskInTime(2, function() -- 用于防止服务器暂停导致卡死
+                    if inst.sg.statemem.screenfaded then
                         inst:ScreenFade(true, 0.4)
-                        inst.sg.mem.screenfaded = false
+                        inst.sg.statemem.screenfaded = false
                     end
                 end)
             end),
@@ -1910,12 +1917,16 @@ local states = {
 
         onexit = function(inst)
             if inst.components.playercontroller then
-                inst.components.playercontroller:EnableMapControls(true)
+                -- inst.components.playercontroller:EnableMapControls(true)
                 inst.components.playercontroller:Enable(true)
             end
-            if inst.sg.mem.screenfaded then
+            if inst.sg.statemem.screenfaded then
                 inst:ScreenFade(true, 0.4)
-                inst.sg.mem.screenfaded = false
+                inst.sg.statemem.screenfaded = false
+            end
+            if inst.sg.statemem.fadetask then
+                inst.sg.statemem.fadetask:Cancel()
+                inst.sg.statemem.fadetask = nil
             end
         end,
     },
@@ -3155,7 +3166,7 @@ AddStategraphPostInit("wilson", function(sg)
             inst.sg:GoToState(inst.overridestate["reviver_rebirth"], inst.overridrebirthsource or source)
             inst.overridestate["reviver_rebirth"] = nil
             inst.overridrebirthsource = nil
-            return 
+            return
         end
         return _reviver_rebirth_onenter(inst, source, ...)
     end
@@ -3164,9 +3175,9 @@ AddStategraphPostInit("wilson", function(sg)
     sg.states["abyss_fall"].onenter = function(inst, ...)
         if TheWorld.has_pl_ocean then
             inst.sg:GoToState("abyss_fall_death", ...)
-            return 
+            return
         end
-        return _reviver_rebirth_onenter(inst, ...)
+        return _abyss_fall_onenter(inst, ...)
     end
 
     local _locomote_eventhandler = sg.events.locomote.fn
@@ -3222,7 +3233,7 @@ AddStategraphPostInit("wilson", function(sg)
     sg.events.onsink.fn = function(inst, data, ...)
         if data and data.pl_boat and not inst.components.health:IsDead() and not inst.sg:HasStateTag("drowning") and
             (inst.components.drownable ~= nil and inst.components.drownable:ShouldDrown()) then
-                
+
             inst.sg:GoToState("sink_boat", data.shore_pt)
         else
             if inst.components.sailor and inst.components.sailor.boat and inst.components.sailor.boat.components.container then

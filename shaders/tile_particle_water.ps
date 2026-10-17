@@ -1,5 +1,5 @@
 #if defined( GL_ES )
-precision mediump float;
+precision highp float;
 #endif
 
 uniform sampler2D SAMPLER[4];
@@ -70,15 +70,19 @@ float noise(vec2 p) {
            (d - b) * u.x * u.y;
 }
 
-// 分形噪声（多层级噪声叠加）
+// 山脊分形噪声（让波峰更尖锐、更明显）
 float fbm(vec2 p) {
     float value = 0.0;
-    float amplitude = 0.5;
+    float amplitude = 0.66667;
+    float frequency = 1.0;
     
     for (int i = 0; i < 6; i++) {
-        value += amplitude * noise(p);
-        p *= 2.5;
-        amplitude *= 0.5;
+        float n = noise(p * frequency) * 2.0 - 1.0;
+        float ridge = 1.0 - abs(n);
+        ridge *= ridge * ridge;   // 锐化波峰
+        value += ridge * amplitude;
+        frequency *= 3.0;
+        amplitude *= 0.33334;
     }
     
     return value;
@@ -89,7 +93,7 @@ const float strength = 1.0; // 该值越大，纹理扭曲的力度越大
 
 void main()
 {
-	float time = PS_TEXCOORD_LIFE.z * 1000000000.0;
+	float time = PS_TEXCOORD_LIFE.z * 1000000.0;
 	vec2 new_uv = PS_POS.xz;
     // 计算旋转角度（随时间变化）
     float rotation_angle = time * 0.1; // 控制旋转速度，可根据需要调整

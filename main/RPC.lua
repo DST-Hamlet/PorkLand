@@ -27,7 +27,7 @@ local function printinvalid(rpcname, player)
 end
 
 AddShardModRPCHandler("Porkland", "SetAporkalypseClockRewindMult", function(shardid, rewind_mult)
-    if not TheWorld.ismastershard then
+    if TheWorld and not TheWorld.ismastershard then
         return
     end
 
@@ -35,7 +35,7 @@ AddShardModRPCHandler("Porkland", "SetAporkalypseClockRewindMult", function(shar
 end)
 
 AddShardModRPCHandler("Porkland", "SwitchAporkalypse", function(shardid, active)
-    if not TheWorld.ismastershard then
+    if TheWorld and not TheWorld.ismastershard then
         return
     end
 
@@ -46,16 +46,9 @@ AddShardModRPCHandler("Porkland", "SwitchAporkalypse", function(shardid, active)
     end
 end)
 
-AddModRPCHandler("Porkland", "teleport_to_home", function(inst)
-    -- TODO: 以后可以做一个倒计时...
-    local pos = inst:GetPosition()
-    if TheWorld.components.interiorspawner:IsInInteriorRegion(pos.x, pos.z) then
-        TheWorld.components.playerspawner:SpawnAtNextLocation(inst)
-    end
-end)
-
 AddModRPCHandler("Porkland", "ReleaseControlSecondary", function(player, x, z)
     if not (checknumber(x) and checknumber(z)) then
+        printinvalid("ReleaseControlSecondary", player)
         return
     end
     local playercontroller = player.components.playercontroller
@@ -113,50 +106,32 @@ end)
 AddClientModRPCHandler("Porkland", "tile_changed", function(data)
     local tilechangewatcher = ThePlayer and ThePlayer.components.tilechangewatcher
     if tilechangewatcher then
-        if not TheWorld.ismastersim then
+        if TheWorld and not TheWorld.ismastersim then
             tilechangewatcher:OnTileChanged(DecodeAndUnzipString(data))
         end
     end
 end)
 
 AddClientModRPCHandler("Porkland", "spawn_wave", function(prefab, x, y, z, angle, speed, idle_time, instantActive, id)
-    if not TheWorld.ismastersim then
+    if TheWorld and not TheWorld.ismastersim then
         TheWorld.components.worldwavemanager:SpawnClientWave(prefab, Vector3(x, y, z), angle, speed, idle_time, instantActive, id)
     end
 end)
 SetClientModRPCIngoreTick("porkland", "spawn_wave") -- 不计入RPC帧排队即可执行
 
 AddClientModRPCHandler("Porkland", "remove_wave", function(id)
-    if not TheWorld.ismastersim then
+    if TheWorld and not TheWorld.ismastersim then
         TheWorld.components.worldwavemanager:RemoveWave(id)
     end
 end)
 SetClientModRPCIngoreTick("porkland", "remove_wave")
-
-AddUserCommand("saveme", {
-    aliases = nil,
-    prettyname = nil,
-    desc = nil,
-    permission = COMMAND_PERMISSION.USER,
-    confirm = false,
-    slash = true,
-    usermenu = false,
-    servermenu = false,
-    params = {},
-    vote = false,
-    localfn = function(params, caller)
-        ThePlayer:DoTaskInTime(0, function()
-            SendModRPCToServer(MOD_RPC["Porkland"]["teleport_to_home"])
-        end)
-    end,
-})
 
 local RPC_Client_Queue_No_Tick = {}
 
 local _HandleClientModRPC = HandleClientModRPC
 function HandleClientModRPC(tick, namespace, code, data)
     if No_Tick_Queue_RPC[namespace] and No_Tick_Queue_RPC[namespace][code] then
-        
+
         if CLIENT_MOD_RPC_HANDLERS[namespace] ~= nil then
             local fn = CLIENT_MOD_RPC_HANDLERS[namespace][code]
             if fn ~= nil then

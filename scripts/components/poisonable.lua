@@ -10,10 +10,10 @@ local function UpdateTile(self)
     local was_in_gastile = self._in_gastile
     local in_gastile = false
     local x, y, z = self.inst.Transform:GetWorldPosition()
-    if TheWorld.Map:GetTileAtPoint(x, y, z) == WORLD_TILES.GASJUNGLE then
+    local tile = TheWorld.Map:GetTileAtPoint(x, y, z)
+    if tile == WORLD_TILES.GASJUNGLE then
         in_gastile = true
-    end
-    if TheWorld.Map:GetTileAtPoint(x, y, z) == WORLD_TILES.IMPASSABLE then
+    elseif tile == WORLD_TILES.IMPASSABLE then
         if TheWorld.Map:IsCloseToTile(x, y, z, 1.5, function(_x, _y, _z) -- 计算overhang，也就是地皮往虚空的延申部分
                 local tile = TheWorld.Map:GetTileAtPoint(_x, _y, _z)
                 return tile == WORLD_TILES.GASJUNGLE
@@ -67,7 +67,7 @@ local Poisonable = Class(function(self, inst)
     self.inst:ListenForEvent("death", OnKilled)
     self.inst:DoPeriodicTask(1, function()
         UpdateTile(self)
-    end)
+    end, math.random())
 end)
 
 function Poisonable:IsPoisonBlockerEquiped()

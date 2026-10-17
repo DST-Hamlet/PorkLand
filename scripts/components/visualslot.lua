@@ -55,10 +55,9 @@ function VisualSlot:GetItem()
 end
 
 function VisualSlot:SetDefault()
-    local slot_symbol = self.shelf:GetSlotSymbol(self.slot)
     self.inst.AnimState:SetBuild("visual_slot")
-    self.inst.AnimState:SetBank(self.shelf.anim_def.slot_bank)
-    self.inst.AnimState:PlayAnimation(slot_symbol)
+    self.inst.AnimState:SetBank("default_visual_slot")
+    self.inst.AnimState:PlayAnimation("SWAP_SIGN1")
 end
 
 function VisualSlot:SetArt()
