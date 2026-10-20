@@ -166,7 +166,10 @@ local function WallPlaceTest(inst, distance)
 
         if newpt.x and newpt.z then
             inst.Transform:SetPosition(newpt.x,0,newpt.z)
+        else
+            newpt = pt
         end
+
         if canbuild then
             inst.Transform:SetRotation(rot)
         end
@@ -175,13 +178,13 @@ local function WallPlaceTest(inst, distance)
         inst.AnimState:SetBank(inst.animdata.bank .. side)
         inst.Transform:SetRotation(rot)
 
-        local ents = TheSim:FindEntities(pt.x, pt.y, pt.z, 7, {"fullwallsection"})
+        local ents = TheSim:FindEntities(newpt.x, 0, newpt.z, 7, {"fullwallsection"})
         if #ents > 0 then
             canbuild = false
         end
 
         local dist = distance or 3
-        ents = TheSim:FindEntities(pt.x, pt.y, pt.z, dist, {"wallsection"})
+        ents = TheSim:FindEntities(newpt.x, 0, newpt.z, dist, {"wallsection"})
         if #ents < 1 and canbuild then
             inst.accept_placement = true
             return
