@@ -8,7 +8,7 @@ function Builder:MakeRecipeAtPoint(recipe, pt, rot, skin)
     end
 
     if recipe.placer
-        and (self:KnowsRecipe(recipe) or self:CanLearn(recipe.name) and CanPrototypeRecipe(recipe.level, self.accessible_tech_trees))
+        and (recipe.always_allow_buffered_placer or self:KnowsRecipe(recipe) or self:CanLearn(recipe.name) and CanPrototypeRecipe(recipe.level, self.accessible_tech_trees))
         and self:IsBuildBuffered(recipe.name)
         and TheWorld.Map:CanDeployRecipeAtPoint(pt, recipe, rot, self.inst) then
 
