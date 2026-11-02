@@ -2,20 +2,6 @@ GLOBAL.setfenv(1, GLOBAL)
 
 local Builder = require("components/builder")
 
-function Builder:MakeRecipeAtPoint(recipe, pt, rot, skin)
-    if not self.inst.components.inventory:IsOpenedBy(self.inst) then
-        return -- NOTES(JBK): The inventory was hidden by gameplay do not allow crafting.
-    end
-
-    if recipe.placer
-        and (recipe.always_allow_buffered_placer or self:KnowsRecipe(recipe) or self:CanLearn(recipe.name) and CanPrototypeRecipe(recipe.level, self.accessible_tech_trees))
-        and self:IsBuildBuffered(recipe.name)
-        and TheWorld.Map:CanDeployRecipeAtPoint(pt, recipe, rot, self.inst) then
-
-        self:MakeRecipe(recipe, pt, rot, skin)
-    end
-end
-
 local function get_oinc_cost(recipe)
     for _, v in ipairs(recipe.ingredients) do
         if v.type == "oinc" then
