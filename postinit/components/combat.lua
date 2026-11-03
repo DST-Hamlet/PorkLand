@@ -52,8 +52,9 @@ function Combat:GetIsAttackPoison(attacker)
     return poisonAttack, poisonGasAttack
 end
 
-local _GetAttacked = Combat.GetAttacked
-function Combat:GetAttacked(attacker, damage, weapon, stimuli, spdamage, ...)
+local _GetAttacked_Internal = Combat.GetAttacked_Internal
+function Combat:GetAttacked_Internal(attacker, damage, weapon, stimuli, spdamage, from_doattack, ...)
+    local original_damage = damage
     if self.inst:HasTag("difficult_to_hit") then
         if not self.inst:CanBeHit({ attacker = attacker, weapon = weapon or self:GetWeapon() }) then
             self.inst:PushEvent("avoidattack", { attacker = attacker, weapon = weapon or self:GetWeapon() })
@@ -72,33 +73,46 @@ function Combat:GetAttacked(attacker, damage, weapon, stimuli, spdamage, ...)
 
     if damage and (self.inst.components.sailor and self.inst.components.sailor.boat and self.inst.components.sailor.boat.components.boathealth) then
         local boathealth = self.inst.components.sailor.boat.components.boathealth
+        local damageresolved = 0
         if damage > 0 and not boathealth:IsInvincible() then
+            local oldhealth = boathealth.currenthealth
             boathealth:DoDelta(-damage, "combat", attacker and attacker.prefab or "NIL")
+            damageresolved = oldhealth - boathealth.currenthealth
         else
             blocked = true
         end
 
         if not blocked then
-            self.inst:PushEvent("boatattacked", {attacker = attacker, damage = damage, weapon = weapon, stimuli = stimuli, redirected = false})
+            self.inst:PushEvent("boatattacked", {
+                attacker = attacker, damage = damage, damageresolved = damageresolved, original_damage = original_damage,
+                weapon = weapon, stimuli = stimuli, spdamage = spdamage, redirected = false,
+                noimpactsound = self.noimpactsound, from_doattack = from_doattack,
+            })
 
             if self.onhitfn then
-                self.onhitfn(self.inst, attacker, damage)
+                self.onhitfn(self.inst, attacker, damage, spdamage)
             end
 
             if attacker then
-                attacker:PushEvent("onhitother", {target = self.inst, damage = damage, stimuli = stimuli, redirected = false})
+                attacker:PushEvent("onhitother", {
+                    target = self.inst, damage = damage, damageresolved = damageresolved, stimuli = stimuli,
+                    spdamage = spdamage, weapon = weapon, redirected = false, from_doattack = from_doattack,
+                })
                 if attacker.components.combat and attacker.components.combat.onhitotherfn then
-                    attacker.components.combat.onhitotherfn(attacker, self.inst, damage, stimuli)
+                    attacker.components.combat.onhitotherfn(attacker, self.inst, damage, stimuli, weapon, damageresolved, spdamage, false)
                 end
             end
         else
-            self.inst:PushEvent("blocked", {attacker = attacker})
+            self.inst:PushEvent("blocked", {
+                attacker = attacker, damage = damage, spdamage = spdamage, original_damage = original_damage,
+                weapon = weapon, stimuli = stimuli, from_doattack = from_doattack,
+            })
         end
 
         return not blocked
     end
 
-    local rets = {_GetAttacked(self, attacker, damage, weapon, stimuli, spdamage, ...)}
+    local rets = {_GetAttacked_Internal(self, attacker, damage, weapon, stimuli, spdamage, from_doattack, ...)}
 
     if rets[1] and attacker and poisonAttack and self.inst.components and self.inst.components.poisonable then
         self.inst.components.poisonable:Poison()
