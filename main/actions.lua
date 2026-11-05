@@ -107,7 +107,7 @@ if not rawget(_G, "HotReloading") then
         DODGE = Action({priority = -5, invalid_hold_action = true, distance = math.huge}),
     }
 
-    for name, ACTION in pairs(_G.PL_ACTIONS) do
+    for name, ACTION in orderedPairs(_G.PL_ACTIONS) do
         ACTION.id = name
         ACTION.str = STRINGS.ACTIONS[name] or name
         AddAction(ACTION)

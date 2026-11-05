@@ -428,7 +428,7 @@ local pl_tiledefs = {
 
 }
 
-for tile, def in pairs(pl_tiledefs) do
+for tile, def in orderedPairs(pl_tiledefs) do
     local range = def.tile_range
     if type(range) == "function" then
         range = TileRanges.NOISE
@@ -452,7 +452,7 @@ for tile, def in pairs(pl_tiledefs) do
     end
 end
 
-for prefab, filter in pairs(terrain.filter) do
+for prefab, filter in orderedPairs(terrain.filter) do
     if type(filter) == "table" then
         table.insert(filter, WORLD_TILES.LILYPOND)
         -- if table.contains(filter, WORLD_TILES.CARPET) then
